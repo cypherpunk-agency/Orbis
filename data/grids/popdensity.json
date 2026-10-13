@@ -1,0 +1,27 @@
+{
+ "source": "ghsl-pop",
+ "asOf": "2025",
+ "retrieved": "2026-10-13",
+ "note": "GHS-POP R2023A epoch 2025 (modelled from 2020-round census data), 30 arc-second grid summed into cells; density = residents / total cell area (land and water). Values clamped to 1–10,000 people/km²; 0 = no residents.",
+ "units": "people per km²",
+ "grid": {
+  "width": 2048,
+  "height": 1024,
+  "bbox": [
+   -180,
+   -90,
+   180,
+   90
+  ]
+ },
+ "encoding": {
+  "type": "log",
+  "min": 1.0,
+  "max": 10000.0,
+  "nodata": 0
+ },
+ "palette": "sequential",
+ "frames": {
+  "2025": "data/grids/popdensity-2025.png"
+ }
+}

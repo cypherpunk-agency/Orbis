@@ -21,7 +21,7 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 
 | Id | Source | Tier | Licence | Use | Credit |
 |---|---|---|---|---|---|
-| `naturalearth` | Natural Earth 1:110m countries (via world-atlas) | Base | Public domain | Commercial | Optional; "Made with Natural Earth" |
+| `naturalearth` | Natural Earth: 1:110m countries (`data/world.js`), 1:50m countries (`data/world50.json`), 1:10m admin-1 (`data/geo/admin1/`), disputed areas (`data/geopolitics/pov.json`), rivers (`data/geopolitics/rivers.json`), date line (`data/statistics/dateline.json`) | Base | Public domain | Commercial | Optional; "Made with Natural Earth" |
 | `d3` | D3 7.9.0 | Base | ISC | Commercial | Keep licence notice |
 | `topojson` | topojson-client 3.1.0 | Base | ISC | Commercial | Keep licence notice |
 | `fonts` | Source Serif 4, Barlow Semi Condensed | Base | SIL OFL 1.1 | Commercial | None for web use |
@@ -37,8 +37,23 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `us-tic` | US Treasury TIC major foreign holders, December 2005–2025 (`data/finance/tic.json`) | Layer | US public domain | Commercial | Courtesy credit; custodial caveat in notes |
 | `bis-cbs` | BIS consolidated banking statistics, Q4 2008–2025 (`data/finance/bis.json`) | Layer | BIS terms: unrestricted with citation, no paywall or extra charge | Commercial | "Source: BIS"; never behind a paywall |
 | `wb-ids` | World Bank International Debt Statistics 2000–2024 (`data/finance/ids.json`, `ids_series.json`) | Layer | CC BY 4.0 | Commercial | "Source: World Bank, International Debt Statistics" |
-| `orbis-schematic` | Pipelines, sea lanes, terminals, refineries drawn by Orbis (`data/energy/infrastructure.json`) | Layer | Own work | Commercial | Marked as schematic |
-| `editorial` | Rounded figures typed into stories | Layer | Facts (not copyrightable); cited in each story's notes | Commercial | Sources named in story notes |
+| `ghsl-pop` | GHSL GHS-POP R2023A population grid, epoch 2025, aggregated to 2048×1024 density (`data/grids/popdensity*`) | Layer | CC BY 4.0 (EC Decision 2011/833/EU) | Commercial | "European Commission, JRC: GHS-POP R2023A"; changes indicated |
+| `nasa-gistemp` | NASA GISTEMP v4 temperature anomaly, decadal means 1880s–2020s + 2025 (`data/grids/warming*`) | Layer | NASA open data (no restrictions) | Commercial | "GISTEMP Team, 2026, NASA GISS" + Lenssen et al. 2024 |
+| `noaa-gfs` | NOAA GFS 250 hPa winds, 2026-10-13 12 UTC (`data/grids/wind*`) | Layer | US public domain | Commercial | "NOAA/NCEP GFS"; no implied endorsement |
+| `eurostat` | Eurostat regional statistics: population, GDP per inhabitant, Census 2021 country of birth for AT/DE (`data/regions/austria.json`, `germany.json`) | Layer | CC BY 4.0 (Eurostat reuse policy) | Commercial | "Source: Eurostat" with dataset codes |
+| `us-census` | US Census Bureau population estimates Vintage 2025, ACS 2024 1-year median household income (`data/regions/usa.json`) | Layer | US public domain | Commercial | "Source: U.S. Census Bureau" |
+| `kummu-gdp` | Kummu et al. 2025 subnational GDP per capita (PPP), Zenodo 18429133 (`data/regions/india_gdp.json`) | Layer | CC BY 4.0 | Commercial | Cite paper (Sci Data 12:178) and Zenodo record |
+| `gcp-co2` | Global Carbon Budget 2025 national fossil CO2, 1950–2024, per person, cumulative since 1850 (`data/statistics/co2.json`) | Layer | CC BY 4.0 | Commercial | "Global Carbon Project, Global Carbon Budget 2025"; dataset DOI |
+| `un-wpp` | UN World Population Prospects 2024, life expectancy 1950–2023 (`data/statistics/life-expectancy*.json`) | Layer | CC BY 3.0 IGO | Commercial | UN DESA Population Division (2024), WPP 2024 |
+| `iana-tz` | IANA tz database 2026c, standard offset vs sun time per country (`data/statistics/timezones.json`) | Layer | Public domain | Commercial | Optional |
+| `cia-factbook` | CIA World Factbook "Independence" field via factbook.json archive (`data/rights/independence.json`) | Layer | US public domain (archive CC0) | Commercial | "Source: CIA World Factbook"; no CIA seal |
+| `amnesty-dp` | Amnesty International death penalty reports (end-2025 status, 2025 executions, 2008 abolition list), facts typed in (`data/rights/death_penalty.json`) | Layer | Reports CC BY-NC-ND 4.0; only facts used | **Non-commercial** (cautious) | "Source: Amnesty International …" |
+| `ipu-suffrage` | IPU Women's Suffrage world chronology, years typed in (`data/rights/suffrage.json`) | Layer | IPU terms: non-commercial with acknowledgement; only facts used | **Non-commercial** (cautious) | "Source: Inter-Parliamentary Union" |
+| `economist-bigmac` | The Economist Big Mac index 2000–2026: dollar price, raw and GDP-adjusted index (`data/economics/bigmac.json`) | Layer | CC BY 4.0 (Economist-generated data only; exchange rates and IMF GDP not shipped) | Commercial | "Source: The Economist, Big Mac index" |
+| `ecdc-covid` | ECDC daily COVID-19 cases worldwide to 14 Dec 2020, month of first reported case (`data/people/covid-first.json`) | Layer | CC BY 4.0 | Commercial | ECDC acknowledgement text; modifications stated; no ECDC logo |
+| `owid-covid` | Our World in Data COVID-19, deaths per million to end-2022, from WHO data (`data/people/covid-deaths.json`) | Layer | CC BY 4.0 (OWID); WHO data CC BY 4.0 + WHO terms | Commercial | "Our World in Data, based on WHO"; no misrepresentation |
+| `orbis-schematic` | Drawn by Orbis: pipelines, sea lanes, terminals, refineries (`data/energy/infrastructure.json`), South China Sea claims and 200-nm lines (`data/geopolitics/south-china-sea.json`), container lanes (`data/economics/shipping-lanes.json`), historical journeys and routes (`data/people/journeys.json`, `silk-road.json`, `out-of-africa.json`) | Layer | Own work | Commercial | Marked as schematic |
+| `editorial` | Rounded figures typed into stories, with citations in each dataset note (`data/legacy/`, `data/economics/ports.json`, `data/statistics/worldcup2026.json`, `data/regions/india.json`) | Layer | Facts (not copyrightable); cited in each story's notes | Commercial | Sources named in story notes |
 
 ## Evaluated candidates
 

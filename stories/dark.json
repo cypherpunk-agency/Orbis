@@ -1,0 +1,53 @@
+{
+  "id": "dark",
+  "cat": "Statistics",
+  "title": "Who is in the dark",
+  "hook": "One in ten people on Earth still has no electricity.",
+  "notes": "Access to electricity, % of population, ≈ 2022, World Bank / Tracking SDG7. Values rounded; countries not coloured are at or near universal access (≈ 95%+).",
+  "data": {"values": "data/legacy/values.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Light is not evenly spread",
+      "text": "About 91% of humans have electricity at home. Of the roughly 700 million who don't, more than 80% live in sub-Saharan Africa.",
+      "view": {"mode": "equal", "center": [20, 5], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "electricity_access",
+          "year": 2022,
+          "reverse": true,
+          "fmt": "pct",
+          "title": "Access to electricity, %",
+          "showYear": false
+        }
+      ]
+    },
+    {
+      "title": "The deepest darkness",
+      "text": "In South Sudan, Chad and Burundi, roughly one person in ten has power at home. Across sub-Saharan Africa, it is about half.",
+      "view": {"mode": "globe", "center": [22, 2], "zoom": 1.6},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "electricity_access",
+          "year": 2022,
+          "reverse": true,
+          "fmt": "pct",
+          "title": "Access to electricity, %",
+          "showYear": false
+        }
+      ]
+    },
+    {
+      "title": "A border you can see from space",
+      "text": "At night, satellite images show South Korea glowing. North of the border, almost everything is dark apart from Pyongyang.",
+      "view": {"mode": "globe", "center": [127.5, 38.5], "zoom": 4.5},
+      "fills": {"KOR": "c3", "PRK": "muted"},
+      "points": [{"at": [125.75, 39.03], "label": "Pyongyang", "r": 3}, {"at": [126.98, 37.57], "label": "Seoul", "r": 5, "color": "c3"}],
+      "legend": [{"color": "c3", "label": "Lit"}, {"color": "muted", "label": "Mostly dark"}]
+    }
+  ]
+}

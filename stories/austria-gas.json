@@ -1,0 +1,76 @@
+{
+  "id": "austria-gas",
+  "cat": "Economics",
+  "title": "Austria's gas",
+  "hook": "How a country near Vienna ran on Siberian gas, then stopped.",
+  "notes": "Russian share of Austrian gas imports ≈ 80% in 2021, peaking near 98% in late 2023 (Austrian ministry for climate and energy). Gazprom halted deliveries to OMV in Nov 2024; OMV terminated the contract in Dec 2024; transit through Ukraine ended 1 Jan 2025. Pipeline routes schematic.",
+  "data": {},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Baumgarten",
+      "text": "A village on the March river, east of Vienna, is one of Central Europe's biggest gas hubs. For decades, Soviet and then Russian gas arrived here first.",
+      "view": {"mode": "globe", "center": [16.8, 48.3], "zoom": 8},
+      "highlight": ["AUT"],
+      "points": [{"at": [16.87, 48.31], "label": "Baumgarten", "r": 7, "color": "c2"}, {"at": [16.37, 48.21], "label": "Vienna", "r": 4}]
+    },
+    {
+      "title": "A 4,000 km pipe",
+      "text": "Gas from West Siberia crossed Russia, Ukraine and Slovakia to reach Austria. Austria was the first Western country to sign a gas deal with the Soviet Union, in 1968.",
+      "view": {"mode": "globe", "center": [45, 55], "zoom": 1.6},
+      "routes": [
+        {
+          "path": [[76.5, 66.1], [60, 61], [47.5, 56.4], [36.2, 51.7], [30.5, 50.4], [22.3, 48.62], [17.1, 48.15], [16.87, 48.31]],
+          "color": "c2",
+          "width": 3,
+          "flow": true,
+          "dist": true,
+          "label": "Siberia to Baumgarten"
+        }
+      ],
+      "points": [{"at": [76.5, 66.1], "label": "Urengoy", "r": 5}, {"at": [16.87, 48.31], "label": "Baumgarten", "r": 5, "color": "c2"}]
+    },
+    {
+      "title": "Deeper dependence",
+      "text": "Even after Russia invaded Ukraine in 2022, Russian gas made up most of Austria's imports, close to 98% at one point in late 2023, largely because of a long-term OMV contract running to 2040.",
+      "view": {"mode": "globe", "center": [30, 52], "zoom": 2.2},
+      "fills": {"AUT": "c2", "RUS": "c2"},
+      "routes": [
+        {
+          "path": [[76.5, 66.1], [60, 61], [47.5, 56.4], [36.2, 51.7], [30.5, 50.4], [22.3, 48.62], [17.1, 48.15], [16.87, 48.31]],
+          "color": "c2",
+          "width": 3,
+          "flow": true,
+          "dist": true,
+          "label": "Siberia to Baumgarten"
+        }
+      ]
+    },
+    {
+      "title": "The tap closes",
+      "text": "In November 2024 Gazprom stopped deliveries to OMV, which cancelled the contract. On 1 January 2025, transit through Ukraine ended. Austria now imports via Germany and Italy, including Norwegian gas and LNG.",
+      "view": {"mode": "globe", "center": [12, 51], "zoom": 2.3},
+      "fills": {"AUT": "c1"},
+      "routes": [
+        {
+          "path": [[3.7, 60.6], [7.2, 53.37], [11, 50.5], [13.77, 48.55], [16.87, 48.31]],
+          "color": "c1",
+          "width": 2.5,
+          "flow": true,
+          "label": "Norwegian gas",
+          "labelAt": 0
+        },
+        {"path": [[8.1, 53.52], [11, 50.5], [13.77, 48.55]], "color": "c4", "width": 2, "flow": true, "label": "LNG terminals, Germany", "labelAt": 0},
+        {"path": [[12.6, 45.1], [13.58, 46.5], [15.4, 47.1], [16.87, 48.31]], "color": "c4", "width": 2.5, "flow": true, "label": "LNG, Italy", "labelAt": 0},
+        {
+          "path": [[30.5, 50.4], [22.3, 48.62], [17.1, 48.15]],
+          "color": "muted",
+          "width": 2,
+          "dash": true,
+          "label": "Ukraine transit, closed 2025",
+          "labelAt": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "where-people-live", "cat": "Statistics", "title": "Where people really live",
+  "hook": "Country totals hide it: most of humanity is packed into river valleys, deltas and coasts.",
+  "notes": "Population density: European Commission JRC, GHS-POP R2023A, 2025 values (modelled from census data around 2020), aggregated by Orbis from a 1 km grid to cells of about 20 km and shown as people per km² on a logarithmic scale. Bangladesh's national density from the same order of magnitude as UN figures (about 1,300 people per km²). Night lights: NASA Black Marble 2016.",
+  "data": {"pop": "data/grids/popdensity.json"},
+  "scenes": [
+    {
+      "title": "Eight billion, unevenly spread",
+      "text": "Each coloured cell shows how many people live there per square kilometre, from 1 (faint) to 10,000 and more (dark). Country averages hide this: deserts, ice and forests are almost empty, while some valleys and coasts are among the most crowded places on Earth. Tap anywhere to read the density.",
+      "view": {"mode": "equal", "center": [15, 10], "zoom": 1},
+      "layers": [{"type": "raster", "data": "pop", "title": "People per km², 2025", "fmt": "ppkm2"}]
+    },
+    {
+      "title": "The great plains of Asia",
+      "text": "The plain of the Ganges and the deltas of Bangladesh form the largest dense band of people anywhere. Bangladesh averages about 1,300 people per square kilometre, more than ten times Europe's density. Eastern China, Java and the Japanese coast follow.",
+      "view": {"mode": "globe", "center": [92, 26], "zoom": 2.6},
+      "layers": [{"type": "raster", "data": "pop", "title": "People per km², 2025", "fmt": "ppkm2"}],
+      "countryLabels": true
+    },
+    {
+      "title": "A country on a ribbon",
+      "text": "Egypt is a large country on paper, but almost everyone lives on a thin green strip along the Nile and in its delta. The rest is desert. Switch the map to satellite to see the river's green band match the people.",
+      "view": {"mode": "globe", "center": [31, 27], "zoom": 5},
+      "layers": [{"type": "raster", "data": "pop", "title": "People per km², 2025", "fmt": "ppkm2"}],
+      "countryLabels": true
+    },
+    {
+      "title": "Empty quarters",
+      "text": "Canada, Australia and Russia are among the largest countries, yet most of their land has fewer than one person per square kilometre. Their people cluster along a southern border, a coastline or a railway.",
+      "view": {"mode": "equal", "center": [40, 30], "zoom": 1.1},
+      "layers": [{"type": "raster", "data": "pop", "title": "People per km², 2025", "fmt": "ppkm2"}]
+    },
+    {
+      "title": "People without light",
+      "text": "Compare with the night. Europe, India and eastern China glow where people live. Large parts of Africa are home to millions but stay dark, because hundreds of millions of people there still lack electricity.",
+      "view": {"mode": "equal", "center": [20, 5], "zoom": 1.6},
+      "basemap": "night"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "cables",
+  "cat": "Geopolitics",
+  "title": "The internet is under the sea",
+  "hook": "Almost all intercontinental data travels through cables on the seabed.",
+  "notes": "Around 600 cables are active or planned (TeleGeography). Routes here are schematic and a small sample. Cable faults: about 150–200 per year, mostly from fishing and anchors (International Cable Protection Committee).",
+  "data": {"routes": "data/legacy/routes.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Not satellites, cables",
+      "text": "Your video call to New York almost certainly runs through a cable about the width of a garden hose, lying on the ocean floor.",
+      "view": {"mode": "globe", "center": [-40, 35], "zoom": 1.05},
+      "layers": [{"type": "lines", "data": "routes", "set": "cables_atlantic", "color": "c1", "width": 2, "labels": true, "flow": true}]
+    },
+    {
+      "title": "Big tech builds its own",
+      "text": "Google, Meta, Microsoft and Amazon now pay for many new cables themselves. MAREA, Dunant and Grace Hopper cross the Atlantic; JUPITER crosses the Pacific.",
+      "view": {"mode": "globe", "center": [-130, 30], "zoom": 1},
+      "layers": [
+        {"type": "lines", "data": "routes", "set": "cables_atlantic", "color": "c1", "width": 2, "labels": true, "flow": true},
+        {"type": "lines", "data": "routes", "set": "cables_pacific", "color": "c1", "width": 2, "labels": true, "flow": true},
+        {"type": "lines", "data": "routes", "set": "cable_smw6", "color": "c1", "width": 2, "labels": true, "flow": true}
+      ]
+    },
+    {
+      "title": "Wrapping a continent",
+      "text": "2Africa, led by Meta with partners, circles the African continent and is one of the longest cables ever built, around 45,000 km.",
+      "view": {"mode": "globe", "center": [15, 5], "zoom": 1.05},
+      "layers": [
+        {"type": "lines", "data": "routes", "set": "cable_2africa", "color": "c2", "width": 2.5, "labels": true, "flow": true},
+        {"type": "lines", "data": "routes", "set": "cable_equiano", "color": "c2", "width": 2.5, "labels": true, "flow": true},
+        {"type": "lines", "data": "routes", "set": "cables_atlantic", "color": "c1", "width": 1.5, "labels": true}
+      ]
+    },
+    {
+      "title": "When cables break",
+      "text": "In early 2024, a ship's dragging anchor in the Red Sea cut three major cables at once. Repairs need specialised ships, and there are only a few dozen in the world.",
+      "view": {"mode": "globe", "center": [42, 16], "zoom": 3.5},
+      "layers": [
+        {"type": "lines", "data": "routes", "set": "cable_2africa", "color": "c1", "width": 2},
+        {"type": "lines", "data": "routes", "set": "cable_smw6", "color": "c1", "width": 2}
+      ],
+      "points": [{"at": [42.7, 13.6], "label": "Cables cut, 2024", "r": 7, "color": "c2"}]
+    }
+  ]
+}

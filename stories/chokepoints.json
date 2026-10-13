@@ -1,0 +1,111 @@
+{
+  "id": "chokepoints",
+  "cat": "Geopolitics",
+  "title": "Chokepoints",
+  "hook": "A handful of narrow straits carry the world's oil and goods.",
+  "notes": "Oil flows from the US Energy Information Administration (World Oil Transit Chokepoints; Hormuz ≈ 20 million barrels/day in 2024, Malacca ≈ 23 million in 2023). Trade share and Red Sea disruption: UNCTAD, 2024. Routes are schematic; distances are computed along the drawn line.",
+  "data": {"routes": "data/legacy/routes.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Seven narrow doors",
+      "text": "Most of the world's seaborne trade squeezes through a few straits and canals. Block one, and prices move worldwide within days.",
+      "view": {"mode": "globe", "center": [50, 20], "zoom": 1},
+      "political": true,
+      "layers": [{"type": "points", "data": "routes", "set": "chokepoints", "color": "c2", "r": 6}]
+    },
+    {
+      "title": "Strait of Hormuz",
+      "text": "About 20 million barrels of oil pass here every day, roughly a fifth of global consumption. At its narrowest the strait is about 33 km wide.",
+      "view": {"mode": "globe", "center": [55, 26], "zoom": 5},
+      "highlight": ["IRN", "OMN", "ARE"],
+      "points": [{"at": [56.4, 26.6], "label": "Hormuz", "r": 7, "color": "c2"}]
+    },
+    {
+      "title": "Strait of Malacca",
+      "text": "The busiest oil route by volume, linking the Indian Ocean to China, Japan and Korea. Tens of thousands of ships a year thread between Malaysia and Sumatra.",
+      "view": {"mode": "globe", "center": [101, 3], "zoom": 4.5},
+      "highlight": ["MYS", "IDN"],
+      "points": [{"at": [100.8, 2.8], "label": "Malacca", "r": 7, "color": "c2"}]
+    },
+    {
+      "title": "The Red Sea detour",
+      "text": "Since attacks on shipping began in late 2023, many ships avoid Suez and sail around Africa. Compare the two routes from Shanghai to Rotterdam.",
+      "view": {"mode": "globe", "center": [45, 5], "zoom": 0.95},
+      "routes": [
+        {
+          "path": [
+            [121.5, 31],
+            [118, 22],
+            [110, 10],
+            [104.5, 1.6],
+            [100.5, 3.5],
+            [95, 6],
+            [80, 5.5],
+            [60, 12.5],
+            [50, 12.8],
+            [43.4, 12.6],
+            [38.5, 20.5],
+            [33.5, 27.5],
+            [32.5, 30.2],
+            [32.3, 31.4],
+            [25, 34],
+            [12, 37.3],
+            [0, 37],
+            [-5.6, 35.95],
+            [-9.6, 38],
+            [-9.8, 43],
+            [-5.5, 48.6],
+            [1.5, 50.6],
+            [4, 52]
+          ],
+          "color": "c1",
+          "width": 2.5,
+          "label": "Via Suez",
+          "dist": true,
+          "flow": true,
+          "labelAt": 15
+        },
+        {
+          "path": [
+            [121.5, 31],
+            [118, 22],
+            [110, 10],
+            [104.5, 1.6],
+            [100.5, 3.5],
+            [95, 6],
+            [80, 5.5],
+            [65, -5],
+            [48, -28],
+            [35, -36.5],
+            [18.5, -35.2],
+            [8, -25],
+            [0, -8],
+            [-12, 5],
+            [-19, 15],
+            [-19, 28],
+            [-12, 38],
+            [-9.8, 43],
+            [-5.5, 48.6],
+            [1.5, 50.6],
+            [4, 52]
+          ],
+          "color": "c2",
+          "width": 2.5,
+          "label": "Around the Cape",
+          "dist": true,
+          "flow": true,
+          "labelAt": 11
+        }
+      ],
+      "points": [{"at": [43.4, 12.6], "label": "Bab el-Mandeb", "r": 5}, {"at": [32.4, 30.6], "label": "Suez Canal", "r": 5}]
+    },
+    {
+      "title": "The Panama Canal",
+      "text": "The canal runs on fresh water from lakes. A severe drought in 2023 forced it to cut daily ship crossings by roughly a third, showing that climate is a chokepoint too.",
+      "view": {"mode": "globe", "center": [-80, 10], "zoom": 5},
+      "highlight": ["PAN"],
+      "points": [{"at": [-79.7, 9.1], "label": "Panama Canal", "r": 7, "color": "c2"}]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "id": "arctic",
+  "cat": "Geopolitics",
+  "title": "The Arctic opens",
+  "hook": "Melting ice is creating a new ocean, and new claims.",
+  "notes": "September Arctic sea-ice minimum ≈ 7 million km² around 1980 vs ≈ 3.4 million in 2012 (record low), NSIDC. Ice is drawn as a circle of equal area, schematic. Routes schematic; distances computed along the drawn line.",
+  "data": {"routes": "data/legacy/routes.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Looking down from the pole",
+      "text": "Most maps cut the Arctic into an edge. On a globe it is the centre of a ring of powers: Russia, the US, Canada, Denmark via Greenland, Norway.",
+      "view": {"mode": "globe", "center": [0, 88], "zoom": 1.25},
+      "fills": {"RUS": "c2", "USA": "c1", "CAN": "c1", "GRL": "c4", "NOR": "c4", "ISL": "c4"}
+    },
+    {
+      "title": "The ice is shrinking",
+      "text": "Around 1980, September sea ice covered about 7 million km². In 2012 it fell to about 3.4 million. Each circle has the same area as the ice in that year.",
+      "view": {"mode": "globe", "center": [0, 88], "zoom": 1.25},
+      "circles": [
+        {"center": [0, 90], "km": 1500, "color": "c1", "label": "≈ 1980", "labelAt": [135, 74]},
+        {"center": [0, 90], "km": 1040, "color": "c3", "label": "≈ 2012", "labelAt": [-45, 84]}
+      ]
+    },
+    {
+      "title": "A shortcut to Asia",
+      "text": "The Northern Sea Route along Russia's coast is far shorter between Europe and East Asia than the route via Suez. Ice, cost and politics still keep most ships away.",
+      "view": {"mode": "globe", "center": [60, 65], "zoom": 0.95},
+      "routes": [
+        {
+          "path": [
+            [4, 52],
+            [5, 58],
+            [8, 63],
+            [18, 70.5],
+            [33, 71],
+            [50, 72.5],
+            [62, 76.5],
+            [80, 77],
+            [104, 77.9],
+            [130, 76],
+            [160, 71],
+            [-170, 67.5],
+            [-169, 64],
+            [178, 62],
+            [163, 55],
+            [150, 45],
+            [142, 38],
+            [139.7, 35.2]
+          ],
+          "color": "c4",
+          "width": 2.5,
+          "label": "Northern Sea Route",
+          "dist": true,
+          "flow": true
+        },
+        {
+          "path": [
+            [139.7, 35.2],
+            [132, 31],
+            [125, 28],
+            [118, 22],
+            [110, 10],
+            [104.5, 1.6],
+            [100.5, 3.5],
+            [95, 6],
+            [80, 5.5],
+            [60, 12.5],
+            [50, 12.8],
+            [43.4, 12.6],
+            [38.5, 20.5],
+            [33.5, 27.5],
+            [32.5, 30.2],
+            [32.3, 31.4],
+            [25, 34],
+            [12, 37.3],
+            [0, 37],
+            [-5.6, 35.95],
+            [-9.6, 38],
+            [-9.8, 43],
+            [-5.5, 48.6],
+            [1.5, 50.6],
+            [4, 52]
+          ],
+          "color": "c1",
+          "width": 2,
+          "label": "Via Suez",
+          "dist": true
+        }
+      ]
+    },
+    {
+      "title": "The Northwest Passage",
+      "text": "On the Canadian side, a maze of islands. Canada calls these internal waters; the US and others call it an international strait.",
+      "view": {"mode": "globe", "center": [-100, 72], "zoom": 2},
+      "layers": [{"type": "lines", "data": "routes", "set": "nwp", "color": "c2", "width": 2.5, "labels": true, "flow": true}],
+      "fills": {"CAN": "c1"}
+    },
+    {
+      "title": "Who owns the pole",
+      "text": "Russia, Denmark and Canada have all filed UN claims to the seabed of the Lomonosov Ridge. Their claims overlap, and all three include the North Pole.",
+      "view": {"mode": "globe", "center": [0, 88], "zoom": 1.6},
+      "fills": {"RUS": "c2", "GRL": "c4", "CAN": "c1"},
+      "routes": [{"path": [[142, 77], [-5, 90], [-70, 83]], "color": "c3", "width": 3, "label": "Lomonosov Ridge"}],
+      "points": [{"at": [0, 90], "label": "North Pole", "r": 4}]
+    }
+  ]
+}

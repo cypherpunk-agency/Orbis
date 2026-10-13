@@ -1,0 +1,16 @@
+{
+ "source": "editorial", "asOf": "2025-12-31", "retrieved": "2026-10-13",
+ "note": "Active-duty US military personnel by host country, 31 December 2025: Defense Manpower Data Center (DMDC) figures as reported by Reuters and Fox News (Japan 54,288; Germany 36,436; South Korea 23,495; Italy 12,662; United Kingdom 10,156). DMDC counts exclude troops on temporary duty, rotations and contingency deployments. Total active-duty personnel in foreign countries 169,589 (USAFacts, citing DMDC). Base locations are well-documented public facts.",
+ "years": [2025],
+ "series": {"troops": {"label": "US active-duty personnel", "units": "people", "values": {"JPN": [54288], "DEU": [36436], "KOR": [23495], "ITA": [12662], "GBR": [10156]}}},
+ "lines": {},
+ "points": {
+  "bases": [
+   {"name": "Ramstein", "at": [7.6, 49.44]}, {"name": "Grafenwöhr", "at": [11.9, 49.7]}, {"name": "Aviano", "at": [12.6, 46.03]}, {"name": "Vicenza", "at": [11.55, 45.55]},
+   {"name": "Naples", "at": [14.25, 40.85]}, {"name": "Lakenheath", "at": [0.56, 52.41]}, {"name": "Rota", "at": [-6.35, 36.62]}, {"name": "Incirlik", "at": [35.43, 37.0]},
+   {"name": "Al Udeid", "at": [51.31, 25.12]}, {"name": "Bahrain (5th Fleet)", "at": [50.6, 26.21]}, {"name": "Camp Lemonnier", "at": [43.15, 11.55]},
+   {"name": "Diego Garcia", "at": [72.41, -7.31]}, {"name": "Kadena (Okinawa)", "at": [127.77, 26.36]}, {"name": "Yokosuka", "at": [139.67, 35.29]},
+   {"name": "Misawa", "at": [141.37, 40.7]}, {"name": "Camp Humphreys", "at": [127.03, 36.96]}, {"name": "Guam", "at": [144.79, 13.45]}, {"name": "Guantánamo Bay", "at": [-75.13, 19.9]}
+  ]
+ }
+}

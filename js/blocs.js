@@ -1,0 +1,30 @@
+// Reference lists for Explore mode (bloc buttons). Story data lives in stories/*.json.
+const STORIES = [];  // filled from stories/index.json at startup
+const DATA = {};
+const AFRICA = "DZA AGO BEN BWA BFA BDI CMR CAF TCD COD COG CIV DJI EGY GNQ ERI SWZ ETH GAB GMB GHA GIN GNB KEN LSO LBR LBY MDG MWI MLI MRT MAR MOZ NAM NER NGA RWA SEN SLE SOM SOL ZAF SSD SDN TZA TGO TUN UGA ESH ZMB ZWE".split(" ");
+const EU27 = "AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX NLD POL PRT ROU SVK SVN ESP SWE".split(" ");
+const SSA = AFRICA.filter(c => !["DZA","EGY","LBY","MAR","TUN","ESH"].includes(c));
+
+const NATO_JOIN = {USA:1949,CAN:1949,GBR:1949,FRA:1949,BEL:1949,NLD:1949,LUX:1949,NOR:1949,DNK:1949,ISL:1949,ITA:1949,PRT:1949,
+  GRC:1952,TUR:1952,DEU:1955,ESP:1982,CZE:1999,HUN:1999,POL:1999,BGR:2004,EST:2004,LVA:2004,LTU:2004,ROU:2004,SVK:2004,SVN:2004,
+  ALB:2009,HRV:2009,MNE:2017,MKD:2020,FIN:2023,SWE:2024};
+// Warsaw Pact 1955–1991. Soviet republics shown as today's states; East Germany cannot be split from today's Germany at this scale.
+const WARSAW = {RUS:[1955,1991],UKR:[1955,1991],BLR:[1955,1991],EST:[1955,1991],LVA:[1955,1991],LTU:[1955,1991],MDA:[1955,1991],
+  GEO:[1955,1991],ARM:[1955,1991],AZE:[1955,1991],KAZ:[1955,1991],UZB:[1955,1991],TKM:[1955,1991],KGZ:[1955,1991],TJK:[1955,1991],
+  POL:[1955,1991],CZE:[1955,1991],SVK:[1955,1991],HUN:[1955,1991],ROU:[1955,1991],BGR:[1955,1991],ALB:[1955,1968]};
+const EU_JOIN = {BEL:1958,FRA:1958,DEU:1958,ITA:1958,LUX:1958,NLD:1958,DNK:1973,IRL:1973,GBR:1973,GRC:1981,PRT:1986,ESP:1986,
+  AUT:1995,FIN:1995,SWE:1995,CYP:2004,CZE:2004,EST:2004,HUN:2004,LVA:2004,LTU:2004,POL:2004,SVK:2004,SVN:2004,BGR:2007,ROU:2007,HRV:2013};
+const BRICS_JOIN = {BRA:2009,RUS:2009,IND:2009,CHN:2009,ZAF:2011,EGY:2024,ETH:2024,IRN:2024,ARE:2024,IDN:2025};
+const range = (a,b,s=1)=>{const r=[];for(let i=a;i<=b;i+=s)r.push(i);return r;};
+
+// Current memberships for the explore mode
+const BLOCS = {
+  EU: {label:"European Union", ids:EU27},
+  NATO: {label:"NATO", ids:Object.keys(NATO_JOIN)},
+  BRICS: {label:"BRICS", ids:Object.keys(BRICS_JOIN)},
+  G7: {label:"G7", ids:"USA CAN GBR FRA DEU ITA JPN".split(" ")},
+  ASEAN: {label:"ASEAN", ids:"BRN KHM IDN LAO MYS MMR PHL THA VNM TLS".split(" ")},
+  OPEC: {label:"OPEC", ids:"DZA COG GNQ GAB IRN IRQ KWT LBY NGA SAU ARE VEN".split(" ")},
+  AU: {label:"African Union", ids:AFRICA.filter(c=>c!=="SOL")}
+};
+

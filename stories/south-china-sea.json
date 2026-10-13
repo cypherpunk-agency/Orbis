@@ -1,0 +1,296 @@
+{
+  "id": "south-china-sea",
+  "cat": "Geopolitics",
+  "title": "One sea, six claimants",
+  "hook": "China claims most of the South China Sea. Its neighbours, and an international court, disagree.",
+  "notes": "All lines are schematic, drawn by Orbis. China's nine-dash line: approximate, traced by hand from the map China attached to its notes verbale to the UN of 7 May 2009 (CML/17/2009, CML/18/2009); China has never published coordinates for it, and its maps since 2013 show a tenth dash east of Taiwan. 200-nautical-mile lines: the reach of each state's mainland and main-island coast (Natural Earth 1:50m) buffered by 370 km; real exclusive economic zones stop at median lines or agreed boundaries and are measured from legal baselines, so these lines only show where entitlements overlap. Ruling: Permanent Court of Arbitration, Case 2013-19, The South China Sea Arbitration (Philippines v. China), award of 12 July 2016. Artificial islands: US Department of Defense, Annual Report to Congress on Military and Security Developments Involving the PRC, 2016 ('more than 3,200 acres'). Trade: CSIS ChinaPower, 'How much trade transits the South China Sea?' (estimate for 2016, $3.4 trillion, about 21% of global trade). Oil through Malacca: US EIA, World Oil Transit Chokepoints (March 2026). Events: Paracels taken by China from South Vietnam in January 1974; Scarborough Shoal under Chinese coast-guard control since a standoff in 2012; Philippine marines on the grounded BRP Sierra Madre at Second Thomas Shoal since 1999.",
+  "data": {
+    "scs": "data/geopolitics/south-china-sea.json",
+    "choke": "data/energy/chokepoints.json",
+    "infra": "data/energy/infrastructure.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "A sea full of shipping",
+      "text": "The South China Sea links the Indian Ocean to the ports of China, Korea and Japan. About $3.4 trillion of goods crossed it in 2016, a fifth of world trade, by one estimate (CSIS ChinaPower). Most tankers bound for East Asia enter through the Strait of Malacca, which carried about 22.5 million barrels of oil a day in 2024.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          110,
+          12
+        ],
+        "zoom": 2.2
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "infra",
+          "set": "tankerRoutes",
+          "color": "c1",
+          "width": 1.8,
+          "flow": true
+        },
+        {
+          "type": "symbols",
+          "data": "choke",
+          "field": "oil",
+          "period": "2024",
+          "color": "c2",
+          "title": "Oil through chokepoints, 2024",
+          "fmt": "mbd",
+          "maxR": 30,
+          "vmax": 24,
+          "labels": 1
+        },
+        {
+          "type": "points",
+          "data": "scs",
+          "set": "groups",
+          "color": "c3",
+          "r": 5
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "China's nine dashes",
+      "text": "China claims 'historic rights' inside a U-shaped line of nine dashes that reaches over 1,500 km south of Hainan, almost to Borneo. It first appeared on a 1947 map and was sent to the UN in 2009. China has never published its coordinates or said exactly what it claims inside it; this tracing is approximate. Taiwan claims a similar line.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          114,
+          12
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "nineDash",
+          "color": "c2",
+          "width": 3.2,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "scs",
+          "set": "groups",
+          "color": "c3",
+          "r": 5
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Everyone's 200 miles",
+      "text": "Under the UN Convention on the Law of the Sea, every coast earns an exclusive economic zone up to 200 nautical miles (370 km) offshore. Drawn from their coasts, the zones of Vietnam, the Philippines, Malaysia and Brunei overlap each other and cut deep inside China's line. Even Indonesia's waters off the Natuna Islands reach past it.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          113,
+          11
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "limits200",
+          "color": "c1",
+          "width": 2,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "nineDash",
+          "color": "c2",
+          "width": 3.2,
+          "labels": true
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "China's nine-dash line (approximate)"
+        },
+        {
+          "color": "c4",
+          "label": "Vietnam, 200 nm from the coast"
+        },
+        {
+          "color": "c1",
+          "label": "Philippines, 200 nm"
+        },
+        {
+          "color": "c5",
+          "label": "Malaysia, 200 nm"
+        },
+        {
+          "color": "c3",
+          "label": "Brunei, 200 nm"
+        },
+        {
+          "color": "muted",
+          "label": "Indonesia, 200 nm"
+        }
+      ],
+      "highlight": [
+        "VNM",
+        "PHL",
+        "MYS",
+        "BRN",
+        "IDN",
+        "CHN",
+        "TWN"
+      ]
+    },
+    {
+      "title": "The 2016 ruling",
+      "text": "In 2013 the Philippines took China to an arbitral tribunal under the Law of the Sea. On 12 July 2016 it ruled that China has no legal basis for historic rights inside the nine-dash line, and that none of the Spratlys earns its own 200-mile zone. Mischief Reef and Second Thomas Shoal lie in the Philippines' zone. China called the award 'null and void' and ignores it.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          116.5,
+          12.5
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "limitsPHL",
+          "color": "c1",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "nineDash",
+          "color": "c2",
+          "width": 3.2
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            117.76,
+            15.15
+          ],
+          "label": "Scarborough Shoal",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            113.2,
+            9.0
+          ],
+          "label": "Spratly Islands",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            115.87,
+            9.73
+          ],
+          "label": "",
+          "color": "c2",
+          "r": 4
+        },
+        {
+          "at": [
+            115.53,
+            9.9
+          ],
+          "label": "Mischief Reef, Second Thomas Shoal",
+          "color": "c2",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "China's nine-dash line (approximate)"
+        },
+        {
+          "color": "c1",
+          "label": "Philippines, 200 nm (schematic)"
+        },
+        {
+          "color": "c3",
+          "label": "Island groups and shoals"
+        }
+      ],
+      "highlight": [
+        "PHL",
+        "CHN"
+      ]
+    },
+    {
+      "title": "Islands made of sand",
+      "text": "Between 2013 and 2016 China dredged sand onto seven Spratly reefs and turned them into more than 3,200 acres (13 km²) of new land, according to the US Defense Department. Three of them, Fiery Cross, Subi and Mischief, now have runways about 3 km long, hangars and radar. Vietnam, the Philippines and Malaysia also hold features in the Spratlys, on a smaller scale.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          114.0,
+          9.9
+        ],
+        "zoom": 8
+      },
+      "basemap": "satellite",
+      "layers": [
+        {
+          "type": "points",
+          "data": "scs",
+          "set": "built",
+          "color": "c3",
+          "r": 5
+        }
+      ]
+    },
+    {
+      "title": "Where the claims clash",
+      "text": "The dispute plays out at sea. China took the Paracels from South Vietnam in 1974 and runs them from Woody Island. Since a standoff in 2012, its coast guard has kept Philippine boats from Scarborough Shoal. At Second Thomas Shoal, a few Philippine marines live on a rusting warship grounded in 1999; Chinese vessels have blocked and water-cannoned its supply boats since 2023.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          115,
+          13
+        ],
+        "zoom": 4
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "nineDash",
+          "color": "c2",
+          "width": 2.6
+        },
+        {
+          "type": "points",
+          "data": "scs",
+          "set": "flashpoints",
+          "color": "c2",
+          "r": 6
+        }
+      ],
+      "highlight": [
+        "CHN",
+        "VNM",
+        "PHL"
+      ],
+      "countryLabels": true
+    }
+  ]
+}

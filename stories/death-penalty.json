@@ -1,0 +1,221 @@
+{
+  "id": "death-penalty",
+  "cat": "Rights",
+  "title": "The end of executions",
+  "hook": "In 1977 only 16 countries had abolished the death penalty. Today 113 have. Watch them come, and see who still kills.",
+  "notes": "Status at the end of 2025 and executions recorded in 2025: Amnesty International, Death Sentences and Executions 2025 (ACT 50/0778/2026, May 2026), Annexes I and II. Amnesty's four categories: abolished for all crimes; abolished for ordinary crimes only (the death penalty remains for exceptional crimes such as those under military law or in wartime); abolitionist in practice (no executions for at least 10 years and an apparent policy of not executing); retentionist. Amnesty counts Morocco and Western Sahara as one entry, so its 23 'in practice' countries show as 24 shapes. Lebanon's parliament voted to abolish the death penalty on 11 August 2026 (reported by AP); the map shows it as abolished, so its 'today' map runs to August 2026 while the counts in the text are Amnesty's for the end of 2025. Israel passed a law allowing death sentences for terrorism in March 2026 (Amnesty report, note 2); it remains in Amnesty's 'ordinary crimes only' group here. Years of abolition to 2008: Amnesty International, List of abolitionist and retentionist countries (31 December 2008, ACT 50/002/2009). Later years are when the abolishing law, constitution or court ruling took effect (Bolivia and Kyrgyzstan: new constitutions of 2009 and 2010). Seven Pacific states that never had the death penalty after independence are dated by their independence year (CIA World Factbook). Execution figures are minimums: Amnesty confirmed executions in China, Iraq, North Korea and Viet Nam but could not give a credible number; China is believed to execute thousands a year. Facts are typed from Amnesty's reports; no Amnesty text or graphics are reproduced. Borders are today's.",
+  "data": {
+    "dp": "data/rights/death_penalty.json"
+  },
+  "sources": [
+    "cia-factbook"
+  ],
+  "scenes": [
+    {
+      "title": "A short list for a long time",
+      "text": "Venezuela abolished the death penalty for all crimes in 1863, San Marino in 1865, Costa Rica in 1877. For a century few followed. In 1977, when Amnesty International began its campaign, only 16 countries had abolished it for all crimes. Teal shows countries that kept it only for war or military crimes.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -20,
+          20
+        ],
+        "zoom": 1.1
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "dp",
+          "set": "ordinary",
+          "year": "t",
+          "color": "c4",
+          "title": "Abolished except for war or military crimes"
+        },
+        {
+          "type": "since",
+          "data": "dp",
+          "set": "abolished",
+          "year": "t",
+          "color": "c1",
+          "title": "Abolished for all crimes"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1860,
+          1977
+        ],
+        "start": 1863,
+        "captions": {
+          "1863": "Venezuela is first.",
+          "1865": "San Marino.",
+          "1877": "Costa Rica.",
+          "1906": "Ecuador; Uruguay follows in 1907, Colombia in 1910.",
+          "1928": "Iceland.",
+          "1972": "Sweden and Finland.",
+          "1976": "Portugal.",
+          "1977": "16 countries have abolished it for all crimes."
+        }
+      }
+    },
+    {
+      "title": "The great wave",
+      "text": "Then the numbers took off. When communism fell in Europe in 1989–90, Romania, Czechoslovakia, Hungary and others dropped the death penalty. South Africa's new Constitutional Court struck it down in 1995. By 2000, 74 of today's countries had abolished it for all crimes.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          20,
+          25
+        ],
+        "zoom": 1.25
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "dp",
+          "set": "ordinary",
+          "year": "t",
+          "color": "c4",
+          "title": "Abolished except for war or military crimes"
+        },
+        {
+          "type": "since",
+          "data": "dp",
+          "set": "abolished",
+          "year": "t",
+          "color": "c1",
+          "title": "Abolished for all crimes"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1977,
+          2000
+        ],
+        "start": 1977,
+        "captions": {
+          "1981": "France.",
+          "1987": "East Germany; West Germany had abolished it in 1949.",
+          "1989": "Romania, Cambodia, New Zealand.",
+          "1990": "Czechoslovakia, Hungary, Ireland, Mozambique, Namibia.",
+          "1995": "South Africa's court ends it for murder; full abolition follows in 1997.",
+          "1998": "The United Kingdom and Canada abolish it for all crimes.",
+          "2000": "74 countries."
+        }
+      }
+    },
+    {
+      "title": "Africa leads now",
+      "text": "Since 2000 much of the change has come from Africa: Senegal, Rwanda, Burundi, Togo, Gabon, Benin, Guinea, Chad, Sierra Leone, the Central African Republic and Zambia. Burkina Faso, Equatorial Guinea and Zimbabwe ended it for ordinary crimes.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          18,
+          2
+        ],
+        "zoom": 1.9
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "dp",
+          "set": "ordinary",
+          "year": "t",
+          "color": "c4",
+          "title": "Abolished except for war or military crimes"
+        },
+        {
+          "type": "since",
+          "data": "dp",
+          "set": "abolished",
+          "year": "t",
+          "color": "c1",
+          "title": "Abolished for all crimes"
+        }
+      ],
+      "timeline": {
+        "years": [
+          2000,
+          2026
+        ],
+        "start": 2000,
+        "captions": {
+          "2000": "Côte d'Ivoire.",
+          "2004": "Senegal.",
+          "2007": "Rwanda.",
+          "2009": "Burundi and Togo.",
+          "2016": "Benin.",
+          "2020": "Chad.",
+          "2021": "Sierra Leone.",
+          "2022": "Central African Republic, Zambia; Equatorial Guinea for ordinary crimes.",
+          "2024": "Zimbabwe abolishes it for ordinary crimes."
+        }
+      }
+    },
+    {
+      "title": "Where it stands",
+      "text": "At the end of 2025, by Amnesty International's count, 113 countries had abolished the death penalty for all crimes and 9 for ordinary crimes. 23 more keep it in law but have not executed anyone for at least ten years. 54 retain it. In August 2026 Lebanon became the first country in the Middle East to abolish it.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "dp",
+          "set": "status",
+          "colors": {
+            "all": "c1",
+            "ordinary": "c4",
+            "practice": "c3",
+            "retain": "c2"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Who still executes",
+      "text": "Only 17 countries carried out executions in 2025. Amnesty recorded at least 2,707, the most since 1981. Iran alone executed at least 2,159, eight in ten of the total, followed by Saudi Arabia (at least 356), Yemen and the United States (47). China executes thousands a year but keeps the number secret, so it is not counted.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          25,
+          25
+        ],
+        "zoom": 1.1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "dp",
+          "set": "executed",
+          "colors": {
+            "yes": "c2"
+          }
+        },
+        {
+          "type": "symbols",
+          "data": "dp",
+          "series": "executions",
+          "year": 2025,
+          "color": "c3",
+          "title": "Recorded executions, 2025 (minimum)",
+          "maxR": 44,
+          "labels": 6
+        }
+      ],
+      "chart": {
+        "data": "dp",
+        "series": "executions",
+        "year": 2025,
+        "top": 8,
+        "title": "Recorded executions (minimum)",
+        "color": "c2"
+      }
+    }
+  ]
+}

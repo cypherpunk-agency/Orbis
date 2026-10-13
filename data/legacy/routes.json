@@ -1,0 +1,136 @@
+{
+  "source": "editorial",
+  "asOf": "2026-10",
+  "retrieved": "2026-10-13",
+  "note": "Schematic routes and approximate places drawn for the original Orbis stories; for orientation only. Cables: Around 600 cables are active or planned (TeleGeography). Routes here are schematic and a small sample. Cable faults: about 150–200 per year, mostly from fishing and anchors (International Cable Protection Committee). Chokepoints: Oil flows from the US Energy Information Administration (World Oil Transit Chokepoints; Hormuz ≈ 20 million barrels/day in 2024, Malacca ≈ 23 million in 2023). Trade share and Red Sea disruption: UNCTAD, 2024. Routes are schematic; distances are computed along the drawn line. Phone supply chain: An illustrative, typical smartphone supply chain. Specific suppliers and shares vary by brand and model and change every year. Minerals: Mine production shares ≈ 2023, US Geological Survey Mineral Commodity Summaries 2024, rounded. Refining shares ≈ IEA Global Critical Minerals Outlook 2024. China export controls: gallium and germanium (2023), graphite (2023), selected rare earths (2025). Remittance corridors: World Bank Migration and Development Brief 40 (2024): ≈ USD 656 billion to low- and middle-income countries in 2023, larger than FDI and official aid combined (excl. China). Shares of GDP ≈ 2023, rounded. Flows drawn are major corridors, schematic. Breakfast: Shares rounded and approximate: Côte d'Ivoire ≈ 40% of world cocoa; Brazil the largest coffee producer and ≈ 3/4 of orange-juice exports; Ecuador the largest banana exporter (FAO, ICCO, USDA). Northwest Passage: September Arctic sea-ice minimum ≈ 7 million km² around 1980 vs ≈ 3.4 million in 2012 (record low), NSIDC. Ice is drawn as a circle of equal area, schematic. Routes schematic; distances computed along the drawn line.",
+  "lines": {
+    "cables_atlantic": [
+      {"name": "MAREA", "path": [[-75.98, 36.85], [-2.98, 43.38]]},
+      {"name": "Grace Hopper", "path": [[-72.9, 40.8], [-4.55, 50.83]]},
+      {"name": "Dunant", "path": [[-75.98, 36.85], [-1.95, 46.72]]},
+      {"name": "EllaLink", "path": [[-38.5, -3.7], [-8.87, 37.95]]},
+      {"name": "SAIL", "path": [[9.9, 2.94], [-38.5, -3.7]]}
+    ],
+    "cables_pacific": [{"name": "JUPITER", "path": [[136.8, 34.3], [-118.4, 33.86]]}, {"name": "Southern Cross", "path": [[151.2, -33.9], [-158, 21.4], [-120.85, 35.37]]}],
+    "cable_smw6": [
+      {
+        "name": "SEA-ME-WE 6",
+        "path": [[103.82, 1.35], [95, 6], [80, 5.5], [72.8, 19], [60, 15], [43.15, 11.6], [39.2, 21.5], [32.5, 29.9], [32.3, 31.4], [20, 34], [5.37, 43.3]]
+      }
+    ],
+    "cable_2africa": [
+      {
+        "name": "2Africa",
+        "path": [
+          [8.9, 44.4],
+          [2.2, 41.4],
+          [-5.6, 35.95],
+          [-17.5, 14.7],
+          [-4, 5.3],
+          [3.4, 6.4],
+          [9.7, 4],
+          [13.2, -8.8],
+          [18.4, -33.9],
+          [31, -29.9],
+          [32.6, -25.97],
+          [39.3, -6.8],
+          [39.66, -4.05],
+          [45.3, 2],
+          [43.15, 11.6],
+          [39.2, 21.5],
+          [32.5, 29.9],
+          [32.3, 31.4],
+          [28, 33.5],
+          [8.9, 44.4]
+        ]
+      }
+    ],
+    "cable_equiano": [{"name": "Equiano", "path": [[-9.14, 38.7], [-17, 20], [-10, 5], [3.4, 6.4], [14.5, -22.7], [18.44, -33.72]]}],
+    "nwp": [
+      {
+        "name": "Northwest Passage",
+        "path": [[-55, 68], [-62, 73], [-80, 74.2], [-95, 74.3], [-105, 69], [-115, 68.6], [-125, 70.5], [-140, 71], [-156, 71.5], [-168, 66]]
+      }
+    ],
+    "to_refinery_imported": [
+      {"name": "Cobalt, DR Congo to refining in China", "path": [[25.47, -10.72], [112, 30]]},
+      {"name": "Lithium, Australia to refining in China", "path": [[116.06, -33.85], [112, 30]]},
+      {"name": "Lithium, Chile to refining in China", "path": [[-68.2, -23.5], [112, 30]]},
+      {"name": "Tin, Indonesia to refining in China", "path": [[106.1, -2.1], [112, 30]]}
+    ],
+    "to_refinery_domestic": [{"name": "Rare earths, China to refining", "path": [[109.97, 41.77], [112, 30]]}],
+    "phone_chips": [
+      {"name": "Design, California to Chips, Taiwan", "path": [[-121.95, 37.35], [120.97, 24.8]]},
+      {"name": "ASML, Netherlands to Chips, Taiwan", "path": [[5.4, 51.42], [120.97, 24.8]]},
+      {"name": "Memory, South Korea to Zhengzhou, China", "path": [[127.1, 37], [113.63, 34.75]]},
+      {"name": "Sensors, Japan to Zhengzhou, China", "path": [[130.7, 32.8], [113.63, 34.75]]},
+      {"name": "Chips, Taiwan to Zhengzhou, China", "path": [[120.97, 24.8], [113.63, 34.75]]}
+    ],
+    "phone_assembly": [
+      {"name": "Chips, Taiwan to Chennai, India", "path": [[120.97, 24.8], [79.95, 12.97]]},
+      {"name": "Chips, Taiwan to Bac Ninh, Vietnam", "path": [[120.97, 24.8], [105.9, 21.1]]}
+    ],
+    "phone_home": [
+      {"name": "Zhengzhou, China to Vienna", "path": [[113.63, 34.75], [16.37, 48.21]]},
+      {"name": "Chennai, India to Vienna", "path": [[79.95, 12.97], [16.37, 48.21]]},
+      {"name": "Bac Ninh, Vietnam to Vienna", "path": [[105.9, 21.1], [16.37, 48.21]]}
+    ],
+    "remittances": [
+      {"name": "Corridor 1", "path": [[-100, 38], [-102, 23]]},
+      {"name": "Corridor 2", "path": [[-100, 38], [-90.5, 14.6]]},
+      {"name": "Corridor 3", "path": [[-100, 38], [121, 14]]},
+      {"name": "Corridor 4", "path": [[-100, 38], [78, 22]]},
+      {"name": "Corridor 5", "path": [[45, 24], [78, 22]]},
+      {"name": "Corridor 6", "path": [[54, 24], [76, 20]]},
+      {"name": "Corridor 7", "path": [[45, 24], [70, 30]]},
+      {"name": "Corridor 8", "path": [[45, 24], [31, 30]]},
+      {"name": "Corridor 9", "path": [[37.6, 55.7], [68.8, 38.5]]},
+      {"name": "Corridor 10", "path": [[37.6, 55.7], [74.6, 42.9]]},
+      {"name": "Corridor 11", "path": [[50, 26], [85, 28]]},
+      {"name": "Corridor 12", "path": [[10, 50], [30, 49]]}
+    ],
+    "plate_coffee": [
+      {"name": "Brazil", "path": [[-45.5, -21.5], [16.37, 48.21]]},
+      {"name": "Vietnam", "path": [[108.05, 12.67], [16.37, 48.21]]},
+      {"name": "Ethiopia", "path": [[38.4, 6.7], [16.37, 48.21]]},
+      {"name": "Colombia", "path": [[-75.7, 5], [16.37, 48.21]]}
+    ],
+    "plate_cj": [
+      {"name": "Côte d'Ivoire (cocoa)", "path": [[-5.5, 6.8], [16.37, 48.21]]},
+      {"name": "Ghana (cocoa)", "path": [[-1.6, 6.7], [16.37, 48.21]]},
+      {"name": "São Paulo (oranges)", "path": [[-48.5, -21.2], [16.37, 48.21]]}
+    ],
+    "plate_local": [
+      {"name": "Sugar beet, Tulln", "path": [[16.05, 48.33], [16.37, 48.21]]},
+      {"name": "Apricots, Wachau", "path": [[15.42, 48.38], [16.37, 48.21]]},
+      {"name": "Wheat, Marchfeld", "path": [[16.65, 48.25], [16.37, 48.21]]},
+      {"name": "Milk, Waldviertel", "path": [[15.7, 48.6], [16.37, 48.21]]}
+    ]
+  },
+  "points": {
+    "chokepoints": [
+      {"name": "Hormuz", "at": [56.4, 26.6]},
+      {"name": "Malacca", "at": [100.8, 2.8]},
+      {"name": "Suez", "at": [32.4, 30.6]},
+      {"name": "Bab el-Mandeb", "at": [43.4, 12.6]},
+      {"name": "Panama", "at": [-79.7, 9.1]},
+      {"name": "Bosporus", "at": [29.05, 41.12]},
+      {"name": "Gibraltar", "at": [-5.6, 35.95]}
+    ],
+    "phone_mines": [
+      {"name": "Cobalt, DR Congo", "at": [25.47, -10.72]},
+      {"name": "Lithium, Australia", "at": [116.06, -33.85]},
+      {"name": "Lithium, Chile", "at": [-68.2, -23.5]},
+      {"name": "Rare earths, China", "at": [109.97, 41.77]},
+      {"name": "Tin, Indonesia", "at": [106.1, -2.1]}
+    ],
+    "phone_chips": [
+      {"name": "Design, California", "at": [-121.95, 37.35]},
+      {"name": "ASML, Netherlands", "at": [5.4, 51.42]},
+      {"name": "Chips, Taiwan", "at": [120.97, 24.8]},
+      {"name": "Memory, South Korea", "at": [127.1, 37]},
+      {"name": "Sensors, Japan", "at": [130.7, 32.8]}
+    ],
+    "phone_assembly": [{"name": "Zhengzhou, China", "at": [113.63, 34.75]}, {"name": "Chennai, India", "at": [79.95, 12.97]}, {"name": "Bac Ninh, Vietnam", "at": [105.9, 21.1]}]
+  }
+}

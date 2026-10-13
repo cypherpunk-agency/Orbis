@@ -1,0 +1,90 @@
+{
+  "id": "silk-road",
+  "cat": "People",
+  "title": "The Silk Roads",
+  "hook": "For 1,500 years, silk, paper, faith and plague moved across Asia along the same caravan tracks.",
+  "notes": "Routes are schematic, drawn by Orbis between historically attested cities and ports; the network changed over the centuries. Distance measured along these lines. Name: Ferdinand von Richthofen, 'China', vol. 1 (1877). Zhang Qian's mission (about 138–126 BCE): Sima Qian, Records of the Grand Historian; dates as in Valerie Hansen, 'The Silk Road: A New History' (2012). Chang'an–Tianshan corridor: UNESCO World Heritage List no. 1442 (2014), about 5,000 km and 33 sites. Diamond Sutra of 868: British Library, Or.8210/P.2. Silkworm eggs smuggled to Constantinople around 552: Procopius, History of the Wars, VIII.17. Paper in Baghdad by the 790s: Jonathan Bloom, 'Paper Before Print' (2001), who also notes the story of Chinese papermakers captured at Talas (751) is a legend. Merv's size and destruction (1221): UNESCO site no. 886 and Encyclopaedia Iranica. Belitung wreck (found 1998, about 60,000 pieces, a bowl dated 826): Krahl et al., 'Shipwrecked: Tang Treasures and Monsoon Winds' (Smithsonian, 2010). Black Death origin in the Chüy valley near Lake Issyk-Kul, 1338–39: Spyrou et al., Nature 606, 718–724 (2022). Caffa 1346 and Messina 1347: Ole Benedictow, 'The Black Death 1346–1353' (2004).",
+  "data": {"s": "data/people/silk-road.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "A web, not a road",
+      "text": "The 'Silk Road' is a name a German geographer, Ferdinand von Richthofen, coined in 1877. In reality it was a web of caravan tracks and sea lanes linking China with Persia, India and the Mediterranean from about the 2nd century BCE to the 15th century CE. On these lines, Chang'an to Constantinople is about 8,000 km. Few people travelled the whole way: goods passed from trader to trader.",
+      "view": {"mode": "equal", "center": [72, 30], "zoom": 2.5},
+      "layers": [
+        {"type": "lines", "data": "s", "set": "overland", "color": "c3", "width": 2.2, "flow": true},
+        {"type": "lines", "data": "s", "set": "steppe", "color": "c3", "width": 1.6},
+        {"type": "lines", "data": "s", "set": "sea", "color": "c1", "width": 2, "flow": true},
+        {"type": "points", "data": "s", "set": "cities", "color": "c3", "r": 4.5}
+      ],
+      "legend": [{"color": "c3", "label": "Overland routes (schematic)"}, {"color": "c1", "label": "Sea routes (schematic)"}]
+    },
+    {
+      "title": "Out of Chang'an",
+      "text": "Around 138 BCE, the Han emperor sent an envoy, Zhang Qian, west to find allies against the nomadic Xiongnu. He came back more than a decade later with news of rich lands and fine horses. China then pushed its control along the Hexi Corridor, a strip of oases between mountains and desert, to Dunhuang. In 2014, UNESCO listed 5,000 km of this route network as World Heritage.",
+      "view": {"mode": "globe", "center": [101, 37.5], "zoom": 4.2},
+      "basemap": "satellite",
+      "layers": [
+        {"type": "lines", "data": "s", "set": "overland", "color": "c3", "width": 2.6, "labels": true, "flow": true},
+        {"type": "points", "data": "s", "set": "hexi", "color": "c3", "r": 5}
+      ],
+      "legend": [{"color": "c3", "label": "Silk Road routes (schematic)"}]
+    },
+    {
+      "title": "Around the Taklamakan",
+      "text": "West of Dunhuang lies the Taklamakan, one of the largest sand deserts on Earth. Caravans did not cross it. They skirted its edges, from oasis to oasis, along a northern and a southern route that met again at Kashgar. Buddhism came into China along these tracks. In a cave at Dunhuang, a copy of the Diamond Sutra printed in 868 survives: the oldest dated printed book.",
+      "view": {"mode": "globe", "center": [84, 40], "zoom": 4.6},
+      "basemap": "satellite",
+      "layers": [
+        {"type": "lines", "data": "s", "set": "overland", "color": "c3", "width": 2.6, "labels": true, "flow": true},
+        {"type": "points", "data": "s", "set": "tarim", "color": "c3", "r": 5}
+      ],
+      "legend": [{"color": "c3", "label": "Silk Road routes (schematic)"}]
+    },
+    {
+      "title": "Samarkand and Merv",
+      "text": "Beyond the Pamir mountains, the routes ran through the oasis cities of Central Asia. Sogdian merchants from around Samarkand were the great middlemen of the trade for centuries. Merv, on the edge of the Karakum desert, grew into one of the largest cities in the world by the 12th century, until the Mongols destroyed it in 1221.",
+      "view": {"mode": "globe", "center": [64, 38.5], "zoom": 5.2},
+      "basemap": "satellite",
+      "layers": [
+        {"type": "lines", "data": "s", "set": "overland", "color": "c3", "width": 2.6, "labels": true, "flow": true},
+        {"type": "points", "data": "s", "set": "west", "color": "c3", "r": 5}
+      ],
+      "legend": [{"color": "c3", "label": "Silk Road routes (schematic)"}]
+    },
+    {
+      "title": "Silk west, paper too",
+      "text": "Silk was so valuable that China guarded how it was made. Around 552, monks are said to have smuggled silkworm eggs to Constantinople, and the Byzantines started their own industry. Paper went the same way. It reached Samarkand by the 8th century, and Baghdad had paper mills by the 790s, centuries before Europe.",
+      "view": {"mode": "globe", "center": [50, 38], "zoom": 2.4},
+      "layers": [
+        {"type": "lines", "data": "s", "set": "overland", "color": "c3", "width": 2.4, "flow": true},
+        {"type": "lines", "data": "s", "set": "steppe", "color": "c3", "width": 1.6},
+        {"type": "points", "data": "s", "set": "cities", "color": "c3", "r": 5}
+      ],
+      "legend": [{"color": "c3", "label": "Silk Road routes (schematic)"}]
+    },
+    {
+      "title": "The sea route",
+      "text": "Ships carried far more than camels. Monsoon winds blew sailors from China to India and the Gulf in one season and back in the next. In 1998, divers off the Indonesian island of Belitung found an Arab-style ship that sank around 830, carrying about 60,000 pieces of Chinese pottery. One bowl is dated 826.",
+      "view": {"mode": "globe", "center": [78, 14], "zoom": 1.6},
+      "layers": [
+        {"type": "lines", "data": "s", "set": "overland", "color": "muted", "width": 1.4},
+        {"type": "lines", "data": "s", "set": "sea", "color": "c1", "width": 2.6, "labels": true, "flow": true},
+        {"type": "points", "data": "s", "set": "ports", "color": "c1", "r": 5}
+      ],
+      "legend": [{"color": "c1", "label": "Sea routes (schematic)"}, {"color": "muted", "label": "Overland routes"}]
+    },
+    {
+      "title": "Plague travels too",
+      "text": "Trade routes also carry disease. Ancient DNA from graves near Lake Issyk-Kul, in today's Kyrgyzstan, shows the plague strain behind the Black Death was there in 1338–39. By 1346 it was at Caffa, a Genoese port on the Black Sea. Ships took it to Sicily in 1347. Within a few years it had killed perhaps a third to a half of Europe's people.",
+      "view": {"mode": "globe", "center": [47, 42], "zoom": 2.1},
+      "layers": [
+        {"type": "lines", "data": "s", "set": "overland", "color": "muted", "width": 1.4},
+        {"type": "lines", "data": "s", "set": "steppe", "color": "muted", "width": 1.4},
+        {"type": "lines", "data": "s", "set": "plague", "color": "c2", "width": 2.8, "labels": true, "flow": true},
+        {"type": "points", "data": "s", "set": "plague", "color": "c2", "r": 5}
+      ],
+      "legend": [{"color": "c2", "label": "Spread of the Black Death (schematic)"}, {"color": "muted", "label": "Silk Road routes"}]
+    }
+  ]
+}

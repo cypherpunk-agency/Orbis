@@ -1,0 +1,57 @@
+{
+  "id": "circle",
+  "cat": "Statistics",
+  "title": "Half the world in one circle",
+  "hook": "More people live inside this circle than outside it.",
+  "notes": "Circle after Danny Quah (2015), refining a 2013 observation by Reddit user valeriepieris: radius ≈ 3,300 km, centred near Mong Khet, Myanmar. Population figures ≈ 2025, UN World Population Prospects 2024, rounded.",
+  "data": {"values": "data/legacy/values.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Draw a circle here",
+      "text": "Centre it in northern Myanmar and give it a radius of about 3,300 km. Inside: India, Bangladesh, most of China and Pakistan, and nearly all of Southeast Asia. More than half of all humans. Japan is just outside.",
+      "view": {"mode": "globe", "center": [100, 22], "zoom": 1.05},
+      "circles": [{"center": [99.9, 21.3], "km": 3300, "color": "c2", "label": "≈ 50%+ of humanity"}]
+    },
+    {
+      "title": "Where people actually are",
+      "text": "Population by country. Two countries, India and China, have about 1.4 billion people each. Together they hold more than a third of the world.",
+      "view": {"mode": "equal", "center": [20, 15], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "pop",
+          "year": 2025,
+          "mult": 1000000,
+          "log": true,
+          "title": "Population, millions (≈ 2025)",
+          "showYear": false
+        }
+      ]
+    },
+    {
+      "title": "The empty side",
+      "text": "Turn the globe around and you find a hemisphere that is almost entirely water. Fewer than one in twenty people live on this side of the planet.",
+      "view": {"mode": "globe", "center": [-160, -15], "zoom": 1},
+      "circles": [{"center": [99.9, 21.3], "km": 3300, "color": "c2"}]
+    },
+    {
+      "title": "Population on the globe",
+      "text": "The same numbers on a sphere. Africa is the fastest-growing region: Nigeria alone has about 240 million people today.",
+      "view": {"mode": "globe", "center": [30, 15], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "pop",
+          "year": 2025,
+          "mult": 1000000,
+          "log": true,
+          "title": "Population, millions (≈ 2025)",
+          "showYear": false
+        }
+      ]
+    }
+  ]
+}

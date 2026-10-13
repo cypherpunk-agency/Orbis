@@ -30,6 +30,7 @@ const Raster = (function(){
   in vec2 vRot;
   uniform sampler2D uTex;
   uniform float uDl, uDp, uClip, uAlpha;   // rotation (radians), cos(clip angle) or -2 for none
+  uniform vec4 uBox;                       // patch extent in degrees (lon0, lat0, lon1, lat1); lon0 > lon1 means whole world
   out vec4 o;
   void main(){
     float cl=cos(vRot.x), cp=cos(vRot.y);
@@ -38,6 +39,13 @@ const Raster = (function(){
     float x=cl*cp, y=sin(vRot.x)*cp, z=sin(vRot.y), c=cos(uDp), s=sin(uDp);
     float lam=atan(y, x*c+z*s) - uDl, phi=asin(clamp(z*c-x*s,-1.0,1.0));
     float u=lam/6.283185307+0.5, v=0.5-phi/3.141592654;
+    if(uBox.x<uBox.z){ // a regional patch: map into its box, nothing outside it
+      float lo=degrees(lam), la=degrees(phi);
+      lo=lo-360.0*floor((lo-uBox.x)/360.0);
+      if(lo>uBox.z||la<uBox.y||la>uBox.w) discard;
+      vec2 uv=vec2((lo-uBox.x)/(uBox.z-uBox.x),(uBox.w-la)/(uBox.w-uBox.y));
+      o=texture(uTex,uv)*uAlpha; return;
+    }
     // continuous u for derivatives, so the mip level does not jump at the date line
     float u2=fract(u+0.5)-0.5;
     vec2 dx=vec2(dFdx(u),dFdx(v)), dy=vec2(dFdy(u),dFdy(v));
@@ -46,7 +54,7 @@ const Raster = (function(){
     o = textureGrad(uTex, vec2(fract(u), v), dx, dy) * uAlpha;
   }`;
   let gl=null, prog=null, buf=null, count=0, U={}, canvas=null, ok=false;
-  const tex={}, pending={};
+  const tex={}, pending={}, box={};
   function init(c){
     canvas=c;
     try{ gl=c.getContext("webgl2",{premultipliedAlpha:true,antialias:false}); }catch(e){ gl=null; }
@@ -58,7 +66,7 @@ const Raster = (function(){
       gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS)); gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));
       gl.linkProgram(prog); if(!gl.getProgramParameter(prog,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
     }catch(e){ console.warn("Raster layer disabled:",e); gl=null; return false; }
-    ["uA","uB","uT","uSa","uSb","uK","uTr","uSize","uTex","uDl","uDp","uClip","uAlpha"].forEach(n=>U[n]=gl.getUniformLocation(prog,n));
+    ["uA","uB","uT","uSa","uSb","uK","uTr","uSize","uTex","uDl","uDp","uClip","uAlpha","uBox"].forEach(n=>U[n]=gl.getUniformLocation(prog,n));
     // mesh: 1° cells in rotated lon/lat space
     const R=Math.PI/180, v=[];
     for(let i=-180;i<180;i++) for(let j=-90;j<90;j++){
@@ -108,10 +116,14 @@ const Raster = (function(){
     gl.uniform1f(U.uClip,p.clip==null?-2:Math.cos(p.clip*Math.PI/180));
     gl.enable(gl.BLEND); gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
     gl.activeTexture(gl.TEXTURE0); gl.uniform1i(U.uTex,0);
-    list.forEach(l=>{ gl.uniform1f(U.uAlpha,l.alpha==null?1:l.alpha); gl.bindTexture(gl.TEXTURE_2D,tex[l.name]); gl.drawArrays(gl.TRIANGLES,0,count); });
+    list.forEach(l=>{ gl.uniform1f(U.uAlpha,l.alpha==null?1:l.alpha); const b=box[l.name]||[1,0,0,0];
+      gl.uniform4f(U.uBox,b[0],b[1],b[2],b[3]); gl.bindTexture(gl.TEXTURE_2D,tex[l.name]); gl.drawArrays(gl.TRIANGLES,0,count); });
     return true;
   }
   function clear(){ if(ok){ gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT); } }
   function put(name,canvasOrImage){ if(ok) upload(name,canvasOrImage); }
-  return {init, load, put, draw, clear, get ok(){return ok;}, has:n=>!!tex[n]};
+  // a texture that covers only a lon/lat box (clamped, no wrapping)
+  function putPatch(name,img,bbox){ if(!ok) return; upload(name,img); box[name]=bbox;
+    gl.bindTexture(gl.TEXTURE_2D,tex[name]); gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE); }
+  return {init, load, put, putPatch, draw, clear, get ok(){return ok;}, has:n=>!!tex[n]};
 })();

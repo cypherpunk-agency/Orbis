@@ -113,7 +113,7 @@ function arr(v,kind){ if(!v) return []; if(typeof v==="string") return resolveRe
 function routePath(r){ let p=typeof r.path==="string"?resolveRef(r.path):r.path; if(r.until!=null) p=p.slice(0,r.until+1); return p; }
 function layers(){
   const s=scene||{};
-  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:s.highlight||[],symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[]};
+  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:s.highlight||[],symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null};
   Object.assign(L.fills,s.fills||{});
   L.groups=(s.groups||[]).slice();
   if(s.choro) L.choro=s.choro;
@@ -123,12 +123,16 @@ function layers(){
   if(explore.bloc){const b=BLOCS[explore.bloc];L.groups.push({label:b.label,color:"c2",ids:b.ids});}
   L.political = scene ? !!s.political : !explore.bloc;
   L.countryLabels = scene ? !!s.countryLabels : true;
-  L.gmap=new Map(); L.groups.forEach(g=>g.ids.forEach(id=>L.gmap.set(id,g)));
   compileLayers(s,L);
-  if(L.choro){const d=L.choro.values||DATA[L.choro.data],vals=Object.values(d);
-    const lo=d3.min(vals),hi=d3.max(vals);
-    const sc=L.choro.log?d3.scaleLog().domain([Math.max(lo,0.1),hi]):d3.scaleLinear().domain([lo,hi]);
-    L.color=v=>{let t=clamp(sc(Math.max(v,0.1)),0,1); if(L.choro.reverse)t=1-t; return C.seq(t);};
+  L.gmap=new Map(); L.groups.forEach(g=>g.ids.forEach(id=>L.gmap.set(id,g)));
+  if(L.choro){const ch=L.choro,d=ch.values||DATA[ch.data],vals=Object.values(d);
+    const lo=ch.vmin!=null?ch.vmin:d3.min(vals),hi=ch.vmax!=null?ch.vmax:d3.max(vals);
+    if(ch.diverging){ // blue below the midpoint, red above, symmetric so equal distances look equal
+      const m=ch.mid, r=Math.max(Math.abs(hi-m),Math.abs(m-lo))||1, dv=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
+      L.color=v=>dv(clamp(0.5+(v-m)/(2*r),0,1)); L.ramp=dv;
+    } else {
+      const sc=ch.log?d3.scaleLog().domain([Math.max(lo,0.1),hi]):d3.scaleLinear().domain([lo,hi]);
+      L.color=v=>{let t=clamp(sc(ch.log?Math.max(v,0.1):v),0,1); if(ch.reverse)t=1-t; return C.seq(t);}; L.ramp=null; }
     L.cdata=d;L.lo=lo;L.hi=hi;}
   return L;
 }
@@ -167,12 +171,103 @@ function drawRaster(){
   if(m==="political"&&L&&L.rasters.length) m="plain";   // data grids need a base the vector canvas does not cover
   if(m==="plain"){ ensurePlain(); list.push({name:"plain"}); }
   else if(BASEMAPS[m].tex){ if(!Raster.has(m)) Raster.load(m,BASEMAPS[m].tex,render); list.push({name:m}); }
+  if(DETAIL.name&&DETAIL.mode===m&&Raster.has(DETAIL.name)) list.push({name:DETAIL.name});
   if(L) L.rasters.forEach(r=>{ if(Raster.has(r.tex)) list.push({name:r.tex,alpha:r.alpha}); });
   if(!list.length||!list.some(l=>Raster.has(l.name))){ if(rasterOn){Raster.clear();rasterOn=false;} return false; }
   const wg=wGlobe(), c=V.center;
   rasterOn=Raster.draw({layers:list,a:V.a,b:V.b,t:V.t,sa:S[V.a],sb:S[V.b],k:V.zoom,tr:proj.translate(),
     rot:[-c[0]*rad,-c[1]*wg*rad],clip:wg>0.001?90+(1-wg)*89.4:null,W,H,dpr:DPR});
   return rasterOn;
+}
+// historical border snapshots, decoded once (inline TopoJSON or one file per snapshot)
+const HIST={};
+function histSnap(alias,d,yr){
+  const key=alias+":"+yr; if(HIST[key]) return HIST[key].ready?HIST[key]:null;
+  HIST[key]={ready:false};
+  const done=t=>{ const o=t.objects.states||Object.values(t.objects)[0], fs=topojson.feature(t,o).features;
+    const nb=topojson.neighbors(o.geometries), tn=new Array(fs.length).fill(0);
+    fs.map((f,i)=>i).sort((a,b)=>nb[b].length-nb[a].length).forEach(i=>{const u=new Set(nb[i].map(j=>tn[j]));let k=0;while(u.has(k))k++;tn[i]=k%5;});
+    Object.assign(HIST[key],{feats:fs,tint:tn,mesh:topojson.mesh(t,o,(a,b)=>a!==b),area:fs.map(f=>d3.geoArea(f)),ready:true}); lateData(); };
+  if(d.snapshots) setTimeout(()=>done(d.snapshots[yr]),0); else loadJSON(d.files[yr]).then(done);
+  return null;
+}
+// data that arrives after a scene opened: rebuild layers and the panel's legend
+function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML(); render(); }
+// admin-1 geometry per country, loaded on demand
+const REG={};
+function regionGeo(iso){
+  if(REG[iso]) return REG[iso].ready?REG[iso]:null;
+  REG[iso]={ready:false};
+  loadJSON("data/geo/admin1/"+iso+".json").then(t=>{ const o=t.objects.regions||Object.values(t.objects)[0];
+    Object.assign(REG[iso],{feats:topojson.feature(t,o).features,mesh:topojson.mesh(t,o,(a,b)=>a!==b),ready:true}); lateData(); })
+    .catch(e=>console.warn("No regions for",iso,e));
+  return null;
+}
+// u/v wind field from an RGB PNG (R=u, G=v, 128 = 0)
+const VF={};
+function vectorField(alias,desc){
+  if(VF[alias]) return VF[alias].ready?VF[alias]:null;
+  const G=VF[alias]={ready:false}, url=Object.values(desc.frames)[0], e=desc.encoding;
+  const img=new Image(); img.onload=()=>{ const cv=document.createElement("canvas"); cv.width=img.width; cv.height=img.height;
+    const g=cv.getContext("2d"); g.drawImage(img,0,0); const px=g.getImageData(0,0,cv.width,cv.height).data;
+    G.w=cv.width; G.h=cv.height; G.u=new Float32Array(G.w*G.h); G.v=new Float32Array(G.w*G.h);
+    for(let i=0;i<G.u.length;i++){ G.u[i]=(px[i*4]-128)/127*e.max; G.v[i]=(px[i*4+1]-128)/127*e.max; }
+    G.ready=true; lateData(); };
+  img.src=url; return null;
+}
+function windAt(F,lon,lat){ const x=((lon+180)/360*F.w%F.w+F.w)%F.w, y=clamp((90-lat)/180*F.h,0,F.h-1.001);
+  const x0=Math.floor(x), y0=Math.floor(y), x1=(x0+1)%F.w, y1=y0+1<F.h?y0+1:y0, fx=x-x0, fy=y-y0;
+  const at=(a,i,j)=>a[j*F.w+i], lerp=(a)=>(at(a,x0,y0)*(1-fx)+at(a,x1,y0)*fx)*(1-fy)+(at(a,x0,y1)*(1-fx)+at(a,x1,y1)*fx)*fy;
+  return [lerp(F.u),lerp(F.v)]; }
+let PARTS=null;
+function drawParticles(P){
+  const n=P.count, TR=12;
+  function seed(i,init){ PARTS.lon[i]=Math.random()*360-180; PARTS.lat[i]=Math.asin(Math.random()*2-1)*deg*0.95; PARTS.age[i]=init?Math.floor(Math.random()*80):0;
+    for(let k=0;k<TR;k++){ PARTS.tr[(i*TR+k)*2]=PARTS.lon[i]; PARTS.tr[(i*TR+k)*2+1]=PARTS.lat[i]; } }
+  if(!PARTS||PARTS.n!==n){ PARTS={n,lon:new Float32Array(n),lat:new Float32Array(n),age:new Uint16Array(n),tr:new Float32Array(n*TR*2)};
+    for(let i=0;i<n;i++) seed(i,true); }
+  const k=reduce?0:0.008*P.speed;
+  ctx.lineWidth=1.3; ctx.lineCap="round";
+  const fast=[],slow=[];
+  for(let i=0;i<n;i++){
+    const w=windAt(P.F,PARTS.lon[i],PARTS.lat[i]), sp=Math.hypot(w[0],w[1]);
+    for(let t=TR-1;t>0;t--){ PARTS.tr[(i*TR+t)*2]=PARTS.tr[(i*TR+t-1)*2]; PARTS.tr[(i*TR+t)*2+1]=PARTS.tr[(i*TR+t-1)*2+1]; }
+    PARTS.lon[i]+=w[0]*k/Math.max(0.2,Math.cos(PARTS.lat[i]*rad)); PARTS.lat[i]+=w[1]*k;
+    if(PARTS.lon[i]>180) PARTS.lon[i]-=360; if(PARTS.lon[i]<-180) PARTS.lon[i]+=360;
+    PARTS.tr[i*TR*2]=PARTS.lon[i]; PARTS.tr[i*TR*2+1]=PARTS.lat[i];
+    if(++PARTS.age[i]>90||Math.abs(PARTS.lat[i])>85||sp<3){ seed(i,false); continue; }
+    (sp>35?fast:slow).push(i);
+  }
+  [[slow,0.35],[fast,0.85]].forEach(([ids,a])=>{ ctx.beginPath();
+    ids.forEach(i=>{ let prev=null;
+      for(let t=0;t<TR;t++){ const ll=[PARTS.tr[(i*TR+t)*2],PARTS.tr[(i*TR+t)*2+1]];
+        if(!visible(ll)){prev=null;continue;} const p=proj(ll); if(!p){prev=null;continue;}
+        if(prev&&Math.abs(prev[0]-p[0])<40){ ctx.moveTo(prev[0],prev[1]); ctx.lineTo(p[0],p[1]); } prev=p; } });
+    ctx.strokeStyle=onDark?"#FFFFFF":col(P.color); ctx.globalAlpha=a; ctx.stroke(); ctx.globalAlpha=1; });
+}
+// deep zoom: when the camera rests zoomed in on an image basemap, fetch a sharper patch of just the visible area
+// from NASA GIBS (500 m/px source) and draw it over the global texture
+const GIBS={satellite:"BlueMarble_NextGeneration",night:"VIIRS_Black_Marble",terrain:"BlueMarble_ShadedRelief_Bathymetry"};
+const DETAIL={name:null,mode:null,key:null,timer:null};
+function scheduleDetail(){
+  clearTimeout(DETAIL.timer);
+  DETAIL.timer=setTimeout(()=>{
+    const m=BM.mode; if(!GIBS[m]||V.zoom<2.5||anim||V.t!==0||!proj.invert) return;
+    // visible box from the frame corners and edges
+    const pts=[]; for(let i=0;i<=8;i++) for(let j=0;j<=8;j++){ const p=proj.invert([F.x+F.w*i/8,F.y+F.h*j/8]); if(p&&!isNaN(p[0])&&(curKind()!=="globe"||d3.geoDistance(p,V.center)<Math.PI/2)) pts.push(p); }
+    if(pts.length<4) return;
+    let lo0=d3.min(pts,p=>p[0]),lo1=d3.max(pts,p=>p[0]),la0=d3.min(pts,p=>p[1]),la1=d3.max(pts,p=>p[1]);
+    if(lo1-lo0>180) return;  // spans the date line or too wide to gain detail
+    const pad=0.08*(lo1-lo0); lo0=Math.max(-180,lo0-pad); lo1=Math.min(180,lo1+pad); la0=Math.max(-90,la0-pad); la1=Math.min(90,la1+pad);
+    const key=m+[lo0,la0,lo1,la1].map(v=>v.toFixed(1)).join(","); if(key===DETAIL.key) return; DETAIL.key=key;
+    const w=2048, h=Math.max(256,Math.min(2048,Math.round(w*(la1-la0)/(lo1-lo0))));
+    const url="https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS="+GIBS[m]+
+      "&STYLES=&CRS=EPSG:4326&BBOX="+[la0,lo0,la1,lo1].map(v=>v.toFixed(3)).join(",")+"&WIDTH="+w+"&HEIGHT="+h+"&FORMAT=image/jpeg";
+    const img=new Image(); img.crossOrigin="anonymous";
+    img.onload=()=>{ if(DETAIL.key!==key) return; const name="detail:"+(DETAIL.flip=!DETAIL.flip?1:0);
+      Raster.putPatch(name,img,[lo0,la0,lo1,la1]); DETAIL.name=name; DETAIL.mode=m; render(); };
+    img.src=url;
+  },500);
 }
 // plain land/ocean texture in the theme colours, drawn once from the country shapes
 let plainFor=null;
@@ -202,7 +297,7 @@ function gridFrame(alias,desc,label){
     g.drawImage(img,0,0); const id=g.getImageData(0,0,cv.width,cv.height), px=id.data, lut=gridPalette(desc.palette);
     G.w=cv.width; G.h=cv.height; G.bytes=new Uint8Array(cv.width*cv.height);
     for(let i=0;i<G.bytes.length;i++){ const b=px[i*4]; G.bytes[i]=b; px[i*4]=lut[b*4]; px[i*4+1]=lut[b*4+1]; px[i*4+2]=lut[b*4+2]; px[i*4+3]=b?lut[b*4+3]:0; }
-    g.putImageData(id,0,0); Raster.put(G.tex,cv); G.ready=true; render(); };
+    g.putImageData(id,0,0); Raster.put(G.tex,cv); G.ready=true; lateData(); };
   img.src=url; return G;
 }
 function gridDecode(desc,b){ if(!b) return null; const e=desc.encoding, t=(b-1)/254;
@@ -218,13 +313,24 @@ function draw(){
   ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
   if(!ras){ctx.beginPath();path(SPHERE);ctx.fillStyle=C.ocean;ctx.fill();}
   ctx.beginPath();path(GRAT);ctx.strokeStyle=onDark?"rgba(255,255,255,.10)":C.grat;ctx.lineWidth=0.6;ctx.stroke();
-  if(L.carto) drawCartogram(ras);
+  if(L.hist){ const Hh=L.hist.H;
+    ctx.beginPath(); feats.forEach(f=>path(f)); ctx.fillStyle=onDark?"rgba(255,255,255,.1)":C.land; ctx.fill();
+    Hh.feats.forEach((f,i)=>{ ctx.beginPath(); path(f); ctx.fillStyle=C.tints[Hh.tint[i]]; ctx.globalAlpha=ras?0.75:1; ctx.fill(); ctx.globalAlpha=1; });
+    ctx.beginPath(); path(Hh.mesh); ctx.strokeStyle=C.ink; ctx.lineWidth=0.9; ctx.stroke();
+  }
+  else if(L.carto) drawCartogram(ras);
   else{
     if(ras) ctx.globalAlpha=0.72;
     for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(geom(feats[i]));ctx.fillStyle=fc;ctx.fill();}
     ctx.globalAlpha=1;
     ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke();
   }
+  L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id]; ctx.beginPath(); path(f); ctx.fillStyle=v==null?C.nodata:rg.color(v); ctx.fill(); });
+    ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=C.paper; ctx.lineWidth=0.8; ctx.stroke(); });
+  if(L.pov) L.pov.areas.forEach(a=>{ let o=a.properties.o[L.pov.view]; if(o&&!NAMES.has(o)) o=null; if(L.pov.only&&!L.pov.only.includes(a.properties.name)) return;
+    ctx.beginPath(); path(a); const idx=feats.findIndex(f=>f.id===o);
+    ctx.fillStyle=o&&idx>=0?C.tints[tint[idx]]:C.nodata; ctx.fill();
+    ctx.setLineDash([3,3]); ctx.strokeStyle=C.accent; ctx.lineWidth=1.3; ctx.stroke(); ctx.setLineDash([]); });
   if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f));});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
   // circles
   L.circles.forEach(c=>{const g=d3.geoCircle().center(c.center).radius(c.km/R_EARTH*deg).precision(1)();
@@ -242,7 +348,7 @@ function draw(){
     if(r.flow&&!reduce){ctx.beginPath();path(line);ctx.setLineDash([3,11]);ctx.lineDashOffset=-(tNow/45)%14;ctx.lineWidth=(r.width||2)+0.6;ctx.stroke();ctx.setLineDash([]);}
     if(r.label||r.dist){
       const at=r.labelAt!=null?p[r.labelAt]:p.length>2?p[Math.floor(p.length/2)]:d3.geoInterpolate(p[0],p[1])(0.5);
-      if(visible(at)){const xy=proj(at); if(xy){let t=(r.label||"")+(r.dist?(r.label?": ":"")+"≈ "+d3.format(",")(Math.round(km(p)/100)*100)+" km":""); labels.push([t,xy[0]+6,xy[1]-10,{color:col(r.color),size:13}]);}}}
+      if(visible(at)){const xy=proj(at); if(xy){let t=(r.label||"")+(r.dist?(r.label?": ":"")+"≈ "+(km(p)<1000?d3.format(",")(Math.round(km(p)/10)*10):d3.format(",")(Math.round(km(p)/100)*100))+" km":""); labels.push([t,xy[0]+6,xy[1]-10,{color:col(r.color),size:13}]);}}}
   });
   // flows: great-circle arcs, width by value, dashes moving from exporter to importer
   L.flows.forEach(fl=>{ const line={type:"LineString",coordinates:fl.path};
@@ -273,8 +379,23 @@ function draw(){
     ctx.beginPath();ctx.arc(xy[0],xy[1],pt.r||4,0,2*Math.PI);ctx.fillStyle=col(pt.color||"c1");ctx.fill();ctx.lineWidth=1.5;ctx.strokeStyle=C.halo;ctx.stroke();
     if(pt.label) labels.push([pt.label,xy[0]+(pt.r||4)+5,xy[1],{size:13}]);
   });
+  if(L.particles) drawParticles(L.particles);
+  // events: older ones faint, the current timeline step bright
+  L.events.forEach(E=>{ const c=col(E.color);
+    [[false,0.28],[true,0.85]].forEach(([now,a])=>{ ctx.beginPath();
+      E.pts.forEach(p=>{ if(p.now!==now||!visible(p.at)) return; const q=proj(p.at); if(!q) return; ctx.moveTo(q[0]+p.r,q[1]); ctx.arc(q[0],q[1],p.r,0,2*Math.PI); });
+      ctx.fillStyle=c; ctx.globalAlpha=a; ctx.fill(); ctx.globalAlpha=1; if(now){ctx.lineWidth=0.8; ctx.strokeStyle=C.halo; ctx.stroke();} }); });
+  if(L.hist&&L.hist.labels){ const Hh=L.hist.H, R=Math.min(F.w,F.h)/2*V.zoom*0.9;
+    Hh.feats.map((f,i)=>[f,i]).sort((a,b)=>Hh.area[b[1]]-Hh.area[a[1]]).forEach(([f,i])=>{ const n=f.properties.name||"", size=Math.sqrt(Hh.area[i])*R;
+      if(size<n.length*5.2) return; const at=f.properties.lx!=null?[f.properties.lx,f.properties.ly]:d3.geoCentroid(f); if(!visible(at)) return;
+      const q=proj(at); if(q) labels.push([n,q[0],q[1],{align:"center",size:size>160?14:12}]); }); }
+  L.regions.forEach(rg=>{ if(!rg.labels) return; rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], at=[f.properties.lx,f.properties.ly];
+    if(at[0]==null||!visible(at)) return; const p=proj(at); if(p) labels.push([f.properties.name+(v!=null?" "+rg.fmt(v):""),p[0],p[1],{align:"center",size:12}]); }); });
+  if(L.pov) L.pov.areas.forEach(a=>{ let o=a.properties.o[L.pov.view]; if(o&&!NAMES.has(o)) o=null; if(L.pov.only&&!L.pov.only.includes(a.properties.name)) return;
+    if(path.area(a)<400) return;  // skip slivers
+    const c=d3.geoCentroid(a); if(!visible(c)) return; const p=proj(c); if(p) labels.push([o?nameOf(o):"disputed",p[0],p[1],{align:"center",size:12,color:C.accent}]); });
   if(L._cartoLabels) labels.unshift(...L._cartoLabels);
-  if(L.countryLabels&&!L.carto) countryLabels(labels);
+  if(L.countryLabels&&!L.carto&&!L.hist) countryLabels(labels);
   labels.forEach(l=>label(...l));
   // rim
   ctx.beginPath();path(SPHERE);ctx.strokeStyle=C.rim;ctx.lineWidth=1;ctx.stroke();
@@ -311,7 +432,7 @@ function drawCartogram(ras){
 
 // ---------- animation loop ----------
 let anim=null, spin=false, raf=null, last=0;
-function hasFlow(){return !reduce && L && (L.flows.length>0 || L.routes.some(r=>r.flow));}
+function hasFlow(){return !reduce && L && (L.flows.length>0 || !!L.particles || L.routes.some(r=>r.flow));}
 function render(){ if(!raf) raf=requestAnimationFrame(tick); }
 function tick(now){
   raf=null; const dt=last?Math.min(50,now-last):16; last=now; tNow=now; let more=false;
@@ -329,7 +450,7 @@ function flyTo(t,dur=1600){
   const dip=Math.min(1,dist/1.2)*(Math.max(z0,z1)>1.5?0.45:0.2);
   anim={start:performance.now(),dur,
     step(e){V.center=gi(e);V.zoom=Math.exp(Math.log(z0)*(1-e)+Math.log(z1)*e)*(1-dip*Math.sin(Math.PI*e));V.t=k0===k1?0:e;},
-    end(){V.a=V.b=k1;V.t=0;V.center=t.center.slice();V.zoom=z1;}};
+    end(){V.a=V.b=k1;V.t=0;V.center=t.center.slice();V.zoom=z1;scheduleDetail();}};
   render();
 }
 function settle(){ if(anim){anim=null;} const k=curKind(); V.a=V.b=k;V.t=0; }
@@ -348,11 +469,11 @@ canvas.addEventListener("pointermove",e=>{const pr=ptrs.get(e.pointerId); if(!pr
   else if(ptrs.size===2&&drag.pinch){const [p,q]=[...ptrs.values()];settle();V.zoom=clamp(drag.pinch.z*Math.hypot(p.x-q.x,p.y-q.y)/drag.pinch.d,0.6,24);render();}
 });
 function endPtr(e){ if(!ptrs.has(e.pointerId)) return; ptrs.delete(e.pointerId);
-  if(ptrs.size===0){ if(drag&&!drag.moved) tap(e.clientX,e.clientY); drag=null; render(); } }
+  if(ptrs.size===0){ if(drag&&!drag.moved) tap(e.clientX,e.clientY); drag=null; render(); scheduleDetail(); } }
 canvas.addEventListener("pointerup",endPtr);canvas.addEventListener("pointercancel",endPtr);
-canvas.addEventListener("wheel",e=>{e.preventDefault();settle();spin=false;V.zoom=clamp(V.zoom*Math.exp(-e.deltaY*0.0015),0.6,24);render();},{passive:false});
-document.getElementById("zin").onclick=()=>{settle();V.zoom=clamp(V.zoom*1.5,0.6,24);render();};
-document.getElementById("zout").onclick=()=>{settle();V.zoom=clamp(V.zoom/1.5,0.6,24);render();};
+canvas.addEventListener("wheel",e=>{e.preventDefault();settle();spin=false;V.zoom=clamp(V.zoom*Math.exp(-e.deltaY*0.0015),0.6,24);render();scheduleDetail();},{passive:false});
+document.getElementById("zin").onclick=()=>{settle();V.zoom=clamp(V.zoom*1.5,0.6,24);render();scheduleDetail();};
+document.getElementById("zout").onclick=()=>{settle();V.zoom=clamp(V.zoom/1.5,0.6,24);render();scheduleDetail();};
 
 const tip=document.getElementById("tip"); let tipTimer=null;
 function hideTip(){tip.hidden=true;}
@@ -360,9 +481,15 @@ function tap(x,y){
   if(V.t!==0||!proj.invert) return;
   const ll=proj.invert([x,y]); if(!ll||isNaN(ll[0])) return;
   if(curKind()==="globe"&&d3.geoDistance(ll,V.center)>Math.PI/2) return;
+  for(const rg of L.regions){ const rf=rg.R.feats.find(f=>d3.geoContains(f,ll)); if(rf){ const v=rg.vals[rf.id];
+    tip.innerHTML="<b>"+esc(rf.properties.name)+"</b><span>"+esc(rg.title)+": "+(v==null?"No data":esc(rg.fmt(v)))+"</span>";
+    tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; } }
   const gridHtml=L.rasters.map(r=>{ const G=r.G; if(!G.bytes) return "";
     const x=Math.floor((ll[0]+180)/360*G.w)%G.w, y=Math.min(G.h-1,Math.floor((90-ll[1])/180*G.h)), v=gridDecode(r.desc,G.bytes[y*G.w+x]);
     return v==null?"":"<span>"+esc(r.title)+": "+esc(r.fmt(v))+"</span>"; }).join("");
+  if(L.hist){ const hf=L.hist.H.feats.find(f=>d3.geoContains(f,ll));
+    tip.innerHTML=hf?"<b>"+esc(hf.properties.name||"")+"</b><span>Borders of "+L.hist.year+"</span>":"<span>Not an independent state in "+L.hist.year+"</span>";
+    tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
   const f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll));
   if(!f&&gridHtml){ tip.innerHTML="<b>"+d3.format(".1f")(Math.abs(ll[1]))+"°"+(ll[1]>=0?"N":"S")+" "+d3.format(".1f")(Math.abs(ll[0]))+"°"+(ll[0]>=0?"E":"W")+"</b>"+gridHtml;
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
@@ -403,6 +530,7 @@ function setBasemap(m,user){
   BM.mode=m; bmBtn.textContent=m==="political"?"Map":BASEMAPS[m].label;
   [...bmMenu.children].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bm===m)));
   if(BASEMAPS[m].tex) Raster.load(m,BASEMAPS[m].tex,render);
+  DETAIL.key=null; scheduleDetail();
   if(typeof renderData==="function"&&el) renderData(); render();
 }
 function closeBm(){ bmMenu.hidden=true; bmBtn.setAttribute("aria-expanded","false"); }
@@ -421,7 +549,7 @@ async function ensureStory(i){
   js.scenes.forEach(sc=>{ const t=sc.timeline; if(t&&!t.frame){
     const ys=t.years.length===2&&t.years[1]-t.years[0]>1?d3.range(t.years[0],t.years[1]+1):t.years;
     const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const lab=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):(y=>y);
+    const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):(y=>y), lab=y=>(t.labels&&t.labels[y])||lab0(y);
     sc.timeline={years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
   const st=Object.assign({},js,{file:meta.file,_data:data},meta.id.startsWith("@")?{id:meta.id}:{}); STORIES[i]=st; return st;
 }
@@ -439,10 +567,22 @@ const FMT={
   kg:v=>v>=1e6?d3.format(".1f")(v/1e6)+" kt":v>=1e3?d3.format(",.0f")(v/1e3)+" t":d3.format(",.0f")(v)+" kg",
   degc:v=>(v>0?"+":"")+d3.format(".1f")(v)+" °C",
   ppkm2:v=>d3.format(v<10?".1f":",.0f")(v)+" per km²",
+  int:v=>d3.format(",.0f")(v),
+  num:v=>d3.format(Math.abs(v)<10?",.2~f":",.1~f")(v),
+  dollar:v=>"$"+d3.format(",.2f")(v),
+  tpp:v=>d3.format(v<10?".1f":",.0f")(v)+" t",
+  mil:v=>d3.format(",.0f")(v)+" M",
+  yrs:v=>d3.format(".0f")(v)+" yrs",
+  pct0:v=>d3.format(".0f")(v)+"%",
+  usdB:v=>"$"+d3.format(",.0f")(v)+" B",
+  people:v=>v>=1e6?d3.format(".1f")(v/1e6)+" m":d3.format(",.0f")(v),
+  usd:v=>"$"+d3.format(",.0f")(v),
+  eur:v=>"€"+d3.format(",.0f")(v),
+  intd:v=>"Int$ "+d3.format(",.0f")(v),
   pct:v=>d3.format(v<10?".1f":".0f")(v)+"%",
   busd:v=>v>=1000?"$"+d3.format(".1f")(v/1000)+" tn":"$"+d3.format(",.0f")(v)+" bn"
 };
-const fmtOf=f=>typeof f==="function"?f:(FMT[f]||d3.format(",.3~s"));
+const fmtOf=f=>typeof f==="function"?f:(FMT[f]||(typeof f==="string"&&f.startsWith("d3:")?d3.format(f.slice(3)):d3.format(",.3~s")));
 const lastYear=d=>d.years?d.years[d.years.length-1]:null;
 // values per country for a layer spec at a year: EIA-style series or BACI-style trade totals
 function valuesOf(ly,d,y){
@@ -461,7 +601,8 @@ function pointValues(ly,d,y){
 }
 const LAYER={
   choropleth(ly,d,y,L){ const v={}; Object.entries(valuesOf(ly,d,y)).forEach(([k,x])=>{ if(byId.has(k)) v[k]=x; });  // only countries the map can colour
-    L.choro={title:ly.title+(ly.showYear===false?"":" · "+y),fmt:fmtOf(ly.fmt),log:ly.log,reverse:ly.reverse,values:v}; },
+    L.choro={title:ly.title+(ly.showYear===false?"":" · "+y),fmt:fmtOf(ly.fmt),log:ly.log,reverse:ly.reverse,values:v,nodata:ly.nodataLabel,
+      vmin:ly.vmin,vmax:ly.vmax,diverging:ly.diverging,mid:ly.mid||0}; },
   symbols(ly,d,y,L){
     const items=Array.isArray(d.points)?pointValues(ly,d,y)
       :Object.entries(valuesOf(ly,d,y)).filter(([k,v])=>v>0&&ANCHOR.has(k)).map(([k,v])=>({id:k,name:nameOf(k),at:ANCHOR.get(k),v}));
@@ -469,7 +610,7 @@ const LAYER={
     const vmax=ly.vmax||(items[0]&&items[0].v)||1, R=ly.maxR||40, f=fmtOf(ly.fmt), n=ly.labels==null?6:ly.labels, c=ly.color||"c3";
     items.forEach((x,i)=>{ if(x.v<=0) return; L.symbols.push({at:x.at,r:Math.max(1.5,R*Math.sqrt(x.v/vmax)),color:c,label:i<n?x.name+" "+f(x.v):null}); });
     if(!Array.isArray(d.points)) L.vals.push({title:ly.title,values:Object.fromEntries(items.map(x=>[x.id,x.v])),fmt:f});
-    L.sizeKey={color:c,title:ly.title};
+    if(ly.key!==false) L.sizeKey={color:c,title:ly.title};
   },
   flows(ly,d,y,L){
     const g=d.groups[ly.group]; if(!g) return;
@@ -488,8 +629,9 @@ const LAYER={
     const fv=m===3?FMT.musd:f;  // totals are always values; quantity layers still show them in USD
     L.vals.push({title:title+", exports",values:g.exports[y]||{},fmt:fv},{title:title+", imports",values:g.imports[y]||{},fmt:fv});
   },
-  lines(ly,d,y,L){ (d.lines[ly.set]||[]).forEach(x=>L.routes.push({path:x.path,color:x.color||ly.color,width:ly.width||2.2,
-    dash:!!x.status&&x.status!=="operating",flow:ly.flow&&(!x.status||x.status==="operating"),label:ly.labels?x.name:null,labelAt:x.labelAt})); },
+  lines(ly,d,y,L){ (d.lines[ly.set]||[]).filter(x=>!ly.only||ly.only.includes(x.name)).forEach(x=>L.routes.push({path:x.path,color:ly.forceColor?ly.color:(x.color||ly.color),width:x.width||ly.width||2.2,
+    dash:x.dash!=null?x.dash:(ly.dash!=null?ly.dash:!!x.status&&x.status!=="operating"),flow:ly.flow&&(!x.status||x.status==="operating"),
+    label:ly.labels?x.name:null,labelAt:x.labelAt,dist:x.dist||ly.dist,until:x.until!=null?x.until:ly.until})); },
   spikes(ly,d,y,L){
     const items=Object.entries(valuesOf(ly,d,y)).filter(([k,v])=>v>0&&ANCHOR.has(k)).sort((a,b)=>b[1]-a[1]);
     const vmax=ly.vmax||(items[0]&&items[0][1])||1, f=fmtOf(ly.fmt), n=ly.labels==null?5:ly.labels, c=ly.color||"c2";
@@ -514,19 +656,47 @@ const LAYER={
   since(ly,d,y,L){ // countries coloured from the year they joined/adopted; values: year or [from, until]
     const set=d.sets[ly.set]; if(!set) return; const yr=+y;
     const ids=Object.entries(set.members).filter(([k,v])=>{ const a=Array.isArray(v)?v[0]:v, b=Array.isArray(v)?v[1]:null; return a<=yr&&(b==null||yr<b); }).map(([k])=>k);
-    L.groups.push({label:ly.title||set.label,color:ly.color||"c2",ids});
+    // "titles": {"1958": "EEC", "1993": "EU"} switches the label by year; "{n}" becomes the member count
+    let t=ly.title||set.label; if(ly.titles){ const k=Object.keys(ly.titles).map(Number).filter(a=>a<=yr).sort((a,b)=>b-a)[0]; if(k!=null) t=ly.titles[k]; }
+    L.groups.push({label:t.replace("{n}",ids.length),color:ly.color||"c2",ids});
   },
   categories(ly,d,y,L){ // one fill colour per category; values: {ISO3: category}
     const set=d.sets[ly.set]; if(!set) return;
     Object.entries(ly.colors).forEach(([cat,c])=>L.groups.push({label:(set.labels&&set.labels[cat])||cat,color:c,
       ids:Object.entries(set.values).filter(([k,v])=>v===cat).map(([k])=>k)}));
   },
+  events(ly,d,y,L){ // many dated points: cumulative up to the timeline year, or a moving window
+    const t=+y, w=ly.window, ev=d.events, vmax=ly.vmax||d3.max(ev,e=>e[3])||1;
+    const r=v=>ly.scale==="mag"?(ly.minR||1.2)+(ly.maxR||16)*Math.sqrt(Math.pow(10,0.75*(v-(ly.base||6)))/Math.pow(10,0.75*(vmax-(ly.base||6)))):(ly.minR||1.2)+((ly.maxR||14)-(ly.minR||1.2))*Math.sqrt(v/vmax);
+    const pick=ev.filter(e=>w==="all"?true:w?(e[2]<=t&&e[2]>t-w):e[2]<=t);
+    L.events.push({pts:pick.map(e=>({at:[e[0],e[1]],r:r(e[3]),now:e[2]===t,v:e[3]})),color:ly.color||"c2",title:ly.title||d.vLabel,count:pick.length,fmt:fmtOf(ly.fmt)});
+  },
+  borders(ly,d,y,L){ // historical state borders: the latest snapshot at or before the year
+    const yrs=Object.keys(d.snapshots||d.files).map(Number).sort((a,b)=>a-b), yr=+y;
+    const snap=yrs.filter(v=>v<=yr).pop()||yrs[0], H=histSnap(ly.data,d,snap); if(!H) return;
+    L.hist={H,year:snap,labels:ly.labels!==false};
+  },
+  regions(ly,d,y,L){ // sub-national areas (admin-1) of one country, coloured by a series keyed by region id
+    const R=regionGeo(ly.country); if(!R) return;
+    const sr=d.series[ly.series], i=d.years.indexOf(+y); if(!sr||i<0) return;
+    const vals={}; Object.entries(sr.values).forEach(([k,a])=>{ if(a[i]!=null) vals[k]=a[i]*(ly.mult||1); });
+    const v=Object.values(vals), lo=d3.min(v), hi=d3.max(v);
+    const sc=ly.log?d3.scaleLog().domain([Math.max(lo,1e-9),hi]):d3.scaleLinear().domain([lo,hi]);
+    L.regions.push({R,vals,color:x=>C.seq(clamp(sc(x),0,1)),lo,hi,title:ly.title+" · "+y,fmt:fmtOf(ly.fmt),labels:ly.labels});
+  },
+  pov(ly,d,y,L){ // disputed areas as one country sees them: filled with the owner's tint, outlined dashed
+    if(!d._areas) d._areas=topojson.feature(d.areas,d.areas.objects.areas).features;
+    const view=ly.view; L.pov={areas:d._areas,view,viewIso:d.views[view]||view,only:ly.areas};
+  },
+  particles(ly,d,y,L){ // animated particles advected by a u/v wind field
+    const F=vectorField(ly.data,d); if(!F) return; L.particles={F,color:ly.color||"ink",count:ly.count||2600,speed:ly.speed||1};
+  },
   raster(ly,d,y,L){ // a lon/lat grid; frames keyed by label (a year for timelines)
     const lab=String(ly.frame!=null&&ly.frame!=="t"?ly.frame:((frame&&frame.year)||Object.keys(d.frames).pop()));
     const G=gridFrame(ly.data,d,lab); if(!G) return;
     L.rasters.push({tex:G.tex,alpha:ly.opacity==null?0.9:ly.opacity,G,desc:d,title:ly.title||d.units,fmt:fmtOf(ly.fmt)});
   },
-  points(ly,d,y,L){ (d.points[ly.set]||[]).forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.color,r:ly.r||4.5})); }
+  points(ly,d,y,L){ (d.points[ly.set]||[]).filter(x=>!ly.only||ly.only.includes(x.name)).forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.forceColor?ly.color:(x.color||ly.color),r:x.r||ly.r||4.5})); }
 };
 // tapping a country in a flows scene shows only that country's flows
 let focus=null;
@@ -541,18 +711,37 @@ function compileLayers(s,L){
     const y=(ly.year==null||ly.year==="t")?((frame&&frame.year)||lastYear(d)||new Date().getFullYear()):ly.year;
     fn(ly,d,y,L); });
 }
+function renderMedia(){
+  const m=scene&&scene.media, st=si>=0?STORIES[si]:null;
+  if(!m||!m.length){ el.media.hidden=true; el.media.innerHTML=""; return; }
+  el.media.innerHTML=m.map(x=>{
+    if(x.type==="image") return `<figure class="md-img"><img src="${esc(x.src)}" alt="${esc(x.alt||"")}" loading="lazy"><figcaption>${esc(x.caption||"")} <span class="md-credit">${x.href?`<a href="${esc(x.href)}" target="_blank" rel="noopener">${esc(x.credit||"Source")}</a>`:esc(x.credit||"")}${x.licence?" · "+esc(x.licence):""}</span></figcaption></figure>`;
+    if(x.type==="quote") return `<blockquote class="md-quote"><p>${esc(x.text)}</p>${x.by?`<footer>${esc(x.by)}</footer>`:""}</blockquote>`;
+    if(x.type==="line"){ const d=st&&st._data&&st._data[x.data]; if(!d||!d.series) return "";
+      const sr=d.series[x.series], ys=d.years, w=330, h=120, pad=[8,46,18,4];
+      const lines=(x.countries||[]).map((c,i)=>({c,col:col(["c1","c2","c3","c4","c5"][i%5]),pts:ys.map((y,j)=>[y,sr.values[c]?sr.values[c][j]:null]).filter(p=>p[1]!=null)})).filter(l=>l.pts.length);
+      const all=lines.flatMap(l=>l.pts); if(!all.length) return "";
+      const sx=d3.scaleLinear().domain(d3.extent(ys)).range([pad[3],w-pad[1]]), sy=d3.scaleLinear().domain([Math.min(0,d3.min(all,p=>p[1])),d3.max(all,p=>p[1])]).nice().range([h-pad[2],pad[0]]);
+      const f=fmtOf(x.fmt), ln=d3.line().x(p=>sx(p[0])).y(p=>sy(p[1]));
+      return `<figure class="md-line"><figcaption>${esc(x.title||sr.label)}</figcaption><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(x.title||sr.label)}">`+
+        sy.ticks(3).map(t=>`<line x1="${pad[3]}" x2="${w-pad[1]}" y1="${sy(t)}" y2="${sy(t)}" class="md-grid"/><text x="${w-pad[1]+4}" y="${sy(t)+4}" class="md-tick">${esc(f(t))}</text>`).join("")+
+        `<text x="${pad[3]}" y="${h-3}" class="md-tick">${ys[0]}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${ys[ys.length-1]}</text>`+
+        lines.map(l=>`<path d="${ln(l.pts)}" fill="none" stroke="${l.col}" stroke-width="2"/><text x="${sx(l.pts[l.pts.length-1][0])-2}" y="${sy(l.pts[l.pts.length-1][1])-5}" class="md-lab" fill="${l.col}" text-anchor="end">${esc(nameOf(l.c))}</text>`).join("")+`</svg></figure>`; }
+    return ""; }).join("");
+  el.media.hidden=false;
+}
 function renderChart(){
   const c=subst(scene&&scene.chart), st=si>=0?STORIES[si]:null, d=c&&st&&st._data&&st._data[c.data];
   if(!d){ el.chart.hidden=true; return; }
   const y=(c.year==null||c.year==="t")?((frame&&frame.year)||lastYear(d)):c.year;
   let rows=Array.isArray(d.points)?pointValues(c,d,y).map(p=>[p.name,p.v]):Object.entries(valuesOf(c,d,y)).map(([k,v])=>[nameOf(k),v]);
-  rows=rows.filter(r=>r[1]>0).sort((a,b)=>b[1]-a[1]);
+  rows=rows.filter(r=>c.order==="asc"?r[1]!=null:r[1]>0).sort((a,b)=>c.order==="asc"?a[1]-b[1]:b[1]-a[1]);
   let f=fmtOf(c.fmt);
   if(c.share){ // show each country's share of the world total (dataset's own world figure when it has one)
     const w=d.world&&d.world[c.series], tot=(w&&w[d.years.indexOf(+y)])||d3.sum(rows,r=>r[1]);
     rows=rows.map(r=>[r[0],r[1]/tot*100]); f=FMT.pct; }
   rows=rows.slice(0,c.top||8);
-  const mx=rows.length?rows[0][1]:1;
+  const mx=rows.length?d3.max(rows,r=>Math.abs(r[1])):1;
   el.chart.innerHTML=`<div class="ch-title">${esc(c.title)}${c.period||y?" · "+esc(String(c.period||y)):""}</div>`+
     rows.map(([n,v])=>`<div class="ch-row"><span class="nm">${esc(n)}</span><span class="bar" style="width:${(v/mx*100).toFixed(1)}%;background:${col(c.color||"c3")}"></span><span class="v">${esc(f(v))}</span></div>`).join("");
   el.chart.hidden=false;
@@ -571,7 +760,7 @@ function renderSwitch(){
 // ---------- panel ----------
 const $=id=>document.getElementById(id);
 const el={kicker:$("sKicker"),title:$("sTitle"),text:$("sText"),legend:$("sLegend"),tl:$("sTimeline"),slider:$("tlSlider"),year:$("tlYear"),play:$("tlPlay"),cap:$("tlCaption"),
-  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart"),sw:$("sSwitch")};
+  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart"),sw:$("sSwitch"),media:$("sMedia")};
 let si=-1, ci=0, tlIdx=0, playing=null;
 const explore={bloc:null};
 
@@ -585,13 +774,19 @@ function legendHTML(){
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · tower height = amount");
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · country size = amount");
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · circle area = amount</span></span>`;
+  if(L) L.regions.forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(t=>C.seq(t)).join(",");
+    h+=`<div class="ramp"><div class="ramp-title">${esc(rg.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(rg.fmt(rg.lo))}</span><span>${esc(rg.fmt(rg.hi))}</span></div></div>`; });
+  if(L&&L.pov) h+=`<span class="chip"><i style="background:none;border:1.5px dashed ${C.accent}"></i>Disputed areas, drawn as seen from ${esc(nameOf(L.pov.viewIso))}</span>`;
+  if(L) L.events.forEach(E=>h+=chip(E.color,E.title+" · "+d3.format(",")(E.count)+" shown"));
+  if(L&&L.hist) h+=`<span class="chip">Borders as of ${L.hist.year}</span>`;
+  if(L&&L.particles) h+=`<span class="chip">Each streak is a parcel of air; bright = faster than 35 m/s</span>`;
   if(L) L.rasters.forEach(r=>{ const e=r.desc.encoding, lut=gridPalette(r.desc.palette);
     const stops=d3.range(1,256,25).map(i=>`rgb(${lut[i*4]},${lut[i*4+1]},${lut[i*4+2]})`).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(r.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(r.fmt(e.min))}</span><span>${esc(r.fmt(e.max))}</span></div></div>`; });
   const ch=L&&L.choro;
-  if(ch){const stops=d3.range(0,1.01,0.1).map(t=>C.seq(ch.reverse?1-t:t)).join(",");
+  if(ch){const stops=d3.range(0,1.01,0.1).map(t=>L.ramp?L.ramp(t):C.seq(ch.reverse?1-t:t)).join(",");
     const f=ch.fmt||(x=>x);
-    h+=`<div class="ramp"><div class="ramp-title">${esc(ch.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(String(f(L.lo)))}</span><span>${esc(String(f(L.hi)))}</span></div><div class="ramp-na"><i style="background:${C.nodata}"></i>${ch.data==="POWER"?"Near-universal access":"No data"}</div></div>`;}
+    h+=`<div class="ramp"><div class="ramp-title">${esc(ch.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(String(f(L.lo)))}</span><span>${esc(String(f(L.hi)))}</span></div><div class="ramp-na"><i style="background:${C.nodata}"></i>${esc(ch.nodata||(ch.data==="POWER"?"Near-universal access":"No data"))}</div></div>`;}
   return h;
 }
 // ---------- data and licences ----------
@@ -649,7 +844,7 @@ function showScene(i, fly=true){
   if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.years.length-1;}
   else el.tl.hidden=true;
   markDirty(); focus=null; switchIdx=(scene.switch&&scene.switch.start)||0; cartoStart=performance.now(); renderSwitch();
-  frame=null; setFrame(); L=layers(); el.legend.innerHTML=legendHTML(); renderChart();
+  frame=null; setFrame(); L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderMedia();
   el.dots.innerHTML=st.scenes.map((s,j)=>`<button class="dot" aria-label="Scene ${j+1}: ${esc(s.title)}" ${j===ci?'aria-current="step"':""}></button>`).join("");
   [...el.dots.children].forEach((b,j)=>b.onclick=()=>showScene(j));
   el.prev.disabled=ci===0 && si===0;
@@ -677,7 +872,7 @@ async function openStory(i, scn=0){
   showScene(scn==="last"?STORIES[i].scenes.length-1:scn);
 }
 function openExplore(){
-  si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true;
+  si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true;
   el.kicker.textContent="Explore"; el.title.textContent="The world, your way";
   el.text.textContent="Drag to turn the world, pinch or scroll to zoom, tap a country to see its name. Switch between political, satellite and night views with the map button. Show a group of countries:";
   el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=false;
@@ -691,7 +886,7 @@ function renderBlocs(){
 
 // ---------- table of contents ----------
 const tocList=$("tocList");
-const CATS=["Energy","Geopolitics","Economics","Statistics","Rights","People"];
+const CATS=["Energy","Geopolitics","Economics","Planet","Statistics","Rights","People"];
 function buildToc(){
   tocList.innerHTML=CATS.map(cat=>{const items=STORIES.map((s,i)=>[s,i]).filter(([s])=>s.cat===cat); if(!items.length) return "";
     return `<section class="toc-cat"><h2>${cat}</h2><ul>`+items.map(([s,i])=>`<li><button class="toc-story" data-i="${i}"><span class="toc-title">${esc(s.title)}</span><span class="toc-hook">${esc(s.hook)}</span></button></li>`).join("")+`</ul></section>`;}).join("");

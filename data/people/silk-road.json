@@ -1,0 +1,73 @@
+{
+  "source": "orbis-schematic",
+  "asOf": "2026-10",
+  "note": "Schematic routes drawn by Orbis between historically attested Silk Road cities and ports (after UNESCO's Silk Roads routes network and Valerie Hansen, 'The Silk Road: A New History', 2012). The network shifted over 1,500 years; no single map was ever true at one time. The plague line is a schematic of the commonly described path of the Black Death, not a traced route.",
+  "lines": {
+    "overland": [
+      {"name": "Hexi Corridor", "labelAt": 3, "path": [[108.94, 34.26], [105.7, 34.6], [103.83, 36.06], [102.64, 37.93], [100.45, 38.93], [98.49, 39.73], [94.66, 40.14]]},
+      {"name": "Northern route", "labelAt": 5, "path": [[94.66, 40.14], [93.51, 42.83], [89.19, 42.95], [86.57, 42.06], [82.96, 41.72], [80.26, 41.17], [75.99, 39.47]]},
+      {"name": "Southern route", "labelAt": 3, "path": [[94.66, 40.14], [91.5, 39.4], [88.97, 39.23], [85.5, 38.1], [82.7, 37.06], [79.92, 37.11], [77.24, 38.42], [75.99, 39.47]]},
+      {"name": "Over the Pamirs", "labelAt": 3, "path": [[75.99, 39.47], [73.9, 39.7], [72.8, 40.53], [70.94, 40.53], [69.62, 40.28], [66.96, 39.65], [64.42, 39.77], [61.83, 37.66]]},
+      {"name": "Iranian plateau", "labelAt": 2, "path": [[61.83, 37.66], [58.8, 36.21], [54.35, 36.17], [51.43, 35.59], [48.51, 34.8], [44.4, 33.3]]},
+      {"name": "To the Mediterranean", "labelAt": 2, "path": [[44.4, 33.3], [40.4, 34.4], [38.27, 34.55], [36.16, 36.2]]},
+      {"name": "To Constantinople", "labelAt": 2, "path": [[36.16, 36.2], [34.9, 36.92], [32.48, 37.87], [30.5, 39.8], [28.97, 41.01]]},
+      {"name": "Via Tabriz to the Black Sea", "labelAt": 1, "path": [[51.43, 35.59], [46.29, 38.08], [41.27, 39.9], [39.72, 41.0]]},
+      {"name": "To India", "labelAt": 3, "path": [[75.99, 39.47], [75.23, 37.77], [72.5, 37.0], [69.5, 36.9], [66.9, 36.76], [69.2, 34.5], [72.82, 33.74]]},
+      {"name": "", "path": [[66.9, 36.76], [64, 37.2], [61.83, 37.66]]}
+    ],
+    "steppe": [
+      {"name": "Steppe route", "labelAt": 3, "path": [[66.96, 39.65], [69.24, 41.3], [68.3, 42.85], [61, 44.5], [53, 46], [47.3, 46.6], [39.4, 47.1], [35.38, 45.03]]}
+    ],
+    "sea": [
+      {"name": "Maritime route", "labelAt": 6, "path": [[113.26, 23.13], [111, 18], [109, 12], [105.5, 5], [101, 2.8], [98, 5.8], [95, 6.2], [81, 5.6], [77, 7.8], [75.78, 11.25], [65, 20], [59.8, 22.6], [57.4, 25.3], [56.45, 27.1], [52.33, 27.66], [47.8, 30.5]]},
+      {"name": "Via the Red Sea", "labelAt": 2, "path": [[75.78, 11.25], [60, 13.5], [45.0, 12.6], [43.4, 12.6], [38.5, 18.5], [34.3, 26.1], [32.7, 25.7], [31.24, 30.04], [29.9, 31.2]]},
+      {"name": "", "path": [[105.5, 5], [107.6, -2.6], [112.7, -6.9]]}
+    ],
+    "plague": [
+      {"name": "Black Death, 1338–1348 (schematic)", "labelAt": 3, "path": [[75.25, 42.75], [69.24, 41.3], [61, 44.5], [53, 46], [47.3, 46.6], [39.4, 47.1], [35.38, 45.03], [28.97, 41.01], [26.4, 40.1], [25, 37.5], [22.3, 36.2], [15.55, 38.19], [12, 38.6], [9.25, 41.3], [5.37, 43.3]]}
+    ]
+  },
+  "points": {
+    "cities": [
+      {"name": "Chang'an (Xi'an)", "at": [108.94, 34.26]},
+      {"name": "Dunhuang", "at": [94.66, 40.14]},
+      {"name": "Kashgar", "at": [75.99, 39.47]},
+      {"name": "Samarkand", "at": [66.96, 39.65]},
+      {"name": "Merv", "at": [61.83, 37.66]},
+      {"name": "Baghdad", "at": [44.4, 33.3]},
+      {"name": "Constantinople", "at": [28.97, 41.01]}
+    ],
+    "tarim": [
+      {"name": "Dunhuang", "at": [94.66, 40.14]},
+      {"name": "Turpan", "at": [89.19, 42.95]},
+      {"name": "Kucha", "at": [82.96, 41.72]},
+      {"name": "Khotan", "at": [79.92, 37.11]},
+      {"name": "Kashgar", "at": [75.99, 39.47]}
+    ],
+    "hexi": [
+      {"name": "Chang'an (Xi'an)", "at": [108.94, 34.26]},
+      {"name": "Lanzhou", "at": [103.83, 36.06]},
+      {"name": "Jiuquan", "at": [98.49, 39.73]},
+      {"name": "Dunhuang", "at": [94.66, 40.14]}
+    ],
+    "west": [
+      {"name": "Samarkand", "at": [66.96, 39.65]},
+      {"name": "Bukhara", "at": [64.42, 39.77]},
+      {"name": "Merv", "at": [61.83, 37.66]},
+      {"name": "Balkh", "at": [66.9, 36.76]}
+    ],
+    "ports": [
+      {"name": "Guangzhou", "at": [113.26, 23.13]},
+      {"name": "Belitung wreck", "at": [107.6, -2.6]},
+      {"name": "Calicut", "at": [75.78, 11.25]},
+      {"name": "Siraf", "at": [52.33, 27.66]},
+      {"name": "Basra", "at": [47.8, 30.5]},
+      {"name": "Alexandria", "at": [29.9, 31.2]}
+    ],
+    "plague": [
+      {"name": "Chüy valley, 1338–39", "at": [75.25, 42.75]},
+      {"name": "Caffa, 1346", "at": [35.38, 45.03]},
+      {"name": "Messina, 1347", "at": [15.55, 38.19]}
+    ]
+  }
+}

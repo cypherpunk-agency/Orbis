@@ -1,0 +1,128 @@
+{
+  "id": "darien",
+  "cat": "People",
+  "title": "One journey north",
+  "hook": "From Caracas to the US border, through one of the world's most dangerous jungles.",
+  "notes": "A composite route built from widely reported migrant journeys, not one individual's story. Darién crossings counted by Panama's migration authority: ≈ 520,000 in 2023, ≈ 300,000 in 2024; numbers fell sharply in 2025 after US policy changes.",
+  "data": {},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Leaving Caracas",
+      "text": "Since 2014, close to 8 million people have left Venezuela, one of the largest displacement crises in the world. Most stay in South America. Some head north.",
+      "view": {"mode": "globe", "center": [-70, 8], "zoom": 3.5},
+      "routes": [{"path": [[-66.9, 10.5], [-72.5, 7.9]], "color": "c2", "width": 2, "flow": true}],
+      "points": [{"at": [-66.9, 10.5], "label": "Caracas", "r": 3, "color": "c1"}, {"at": [-72.5, 7.9], "label": "Cúcuta", "r": 6, "color": "c2"}]
+    },
+    {
+      "title": "Necoclí, Colombia",
+      "text": "On the Caribbean coast, boats carry people across the Gulf of Urabá to the edge of the jungle. Families wait here for days.",
+      "view": {"mode": "globe", "center": [-76.5, 8.3], "zoom": 9},
+      "routes": [{"path": [[-66.9, 10.5], [-72.5, 7.9], [-75.57, 6.25], [-76.78, 8.42]], "color": "c2", "width": 2.5, "flow": true}],
+      "points": [
+        {"at": [-66.9, 10.5], "label": "Caracas", "r": 3, "color": "c1"},
+        {"at": [-72.5, 7.9], "r": 3, "color": "c1"},
+        {"at": [-75.57, 6.25], "r": 3, "color": "c1"},
+        {"at": [-76.78, 8.42], "label": "Necoclí", "r": 6, "color": "c2"}
+      ]
+    },
+    {
+      "title": "The Darién Gap",
+      "text": "About 100 km of roadless jungle, rivers and mountains between Colombia and Panama. The crossing takes most people four to ten days on foot. In 2023, about 520,000 people made it.",
+      "view": {"mode": "globe", "center": [-77.4, 8.2], "zoom": 6},
+      "routes": [{"path": [[-66.9, 10.5], [-72.5, 7.9], [-75.57, 6.25], [-76.78, 8.42], [-77.35, 8.63], [-77.85, 8.35]], "color": "c2", "width": 3, "flow": true}],
+      "points": [
+        {"at": [-66.9, 10.5], "label": "Caracas", "r": 3, "color": "c1"},
+        {"at": [-72.5, 7.9], "r": 3, "color": "c1"},
+        {"at": [-75.57, 6.25], "r": 3, "color": "c1"},
+        {"at": [-76.78, 8.42], "r": 3, "color": "c1"},
+        {"at": [-77.35, 8.63], "r": 3, "color": "c1"},
+        {"at": [-77.85, 8.35], "label": "Darién Gap", "r": 6, "color": "c2"}
+      ]
+    },
+    {
+      "title": "Through Central America",
+      "text": "Buses north through Costa Rica, Nicaragua, Honduras and Guatemala. Every border is a new set of checks, fees and risks.",
+      "view": {"mode": "globe", "center": [-86, 12], "zoom": 4},
+      "routes": [
+        {
+          "path": [
+            [-66.9, 10.5],
+            [-72.5, 7.9],
+            [-75.57, 6.25],
+            [-76.78, 8.42],
+            [-77.35, 8.63],
+            [-77.85, 8.35],
+            [-80, 8.6],
+            [-84.09, 9.93],
+            [-86.25, 12.13],
+            [-87.2, 14.07],
+            [-90.5, 14.6]
+          ],
+          "color": "c2",
+          "width": 2.5,
+          "flow": true
+        }
+      ],
+      "points": [
+        {"at": [-66.9, 10.5], "label": "Caracas", "r": 3, "color": "c1"},
+        {"at": [-72.5, 7.9], "r": 3, "color": "c1"},
+        {"at": [-75.57, 6.25], "r": 3, "color": "c1"},
+        {"at": [-76.78, 8.42], "r": 3, "color": "c1"},
+        {"at": [-77.35, 8.63], "r": 3, "color": "c1"},
+        {"at": [-77.85, 8.35], "r": 3, "color": "c1"},
+        {"at": [-80, 8.6], "r": 3, "color": "c1"},
+        {"at": [-84.09, 9.93], "r": 3, "color": "c1"},
+        {"at": [-86.25, 12.13], "r": 3, "color": "c1"},
+        {"at": [-87.2, 14.07], "r": 3, "color": "c1"},
+        {"at": [-90.5, 14.6], "label": "Guatemala City", "r": 6, "color": "c2"}
+      ]
+    },
+    {
+      "title": "The last border",
+      "text": "From Tapachula, it is still more than 3,000 km across Mexico to the US border. In 2025, crossings through Darién fell to a trickle, and many people began travelling south again.",
+      "view": {"mode": "globe", "center": [-85, 18], "zoom": 2},
+      "routes": [
+        {
+          "path": [
+            [-66.9, 10.5],
+            [-72.5, 7.9],
+            [-75.57, 6.25],
+            [-76.78, 8.42],
+            [-77.35, 8.63],
+            [-77.85, 8.35],
+            [-80, 8.6],
+            [-84.09, 9.93],
+            [-86.25, 12.13],
+            [-87.2, 14.07],
+            [-90.5, 14.6],
+            [-92.26, 14.9],
+            [-99.13, 19.43],
+            [-106.42, 31.69]
+          ],
+          "color": "c2",
+          "width": 2.5,
+          "flow": true,
+          "dist": true,
+          "label": "Whole journey"
+        }
+      ],
+      "points": [
+        {"at": [-66.9, 10.5], "label": "Caracas", "r": 3, "color": "c1"},
+        {"at": [-72.5, 7.9], "r": 3, "color": "c1"},
+        {"at": [-75.57, 6.25], "r": 3, "color": "c1"},
+        {"at": [-76.78, 8.42], "r": 3, "color": "c1"},
+        {"at": [-77.35, 8.63], "r": 3, "color": "c1"},
+        {"at": [-77.85, 8.35], "r": 3, "color": "c1"},
+        {"at": [-80, 8.6], "r": 3, "color": "c1"},
+        {"at": [-84.09, 9.93], "r": 3, "color": "c1"},
+        {"at": [-86.25, 12.13], "r": 3, "color": "c1"},
+        {"at": [-87.2, 14.07], "r": 3, "color": "c1"},
+        {"at": [-90.5, 14.6], "r": 3, "color": "c1"},
+        {"at": [-92.26, 14.9], "r": 3, "color": "c1"},
+        {"at": [-99.13, 19.43], "r": 3, "color": "c1"},
+        {"at": [-106.42, 31.69], "label": "Ciudad Juárez", "r": 6, "color": "c2"}
+      ]
+    }
+  ]
+}

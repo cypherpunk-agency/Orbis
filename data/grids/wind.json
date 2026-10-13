@@ -1,0 +1,26 @@
+{
+ "source": "noaa-gfs",
+ "asOf": "2026-10-13T12:00Z",
+ "retrieved": "2026-10-13",
+ "note": "NOAA NCEP GFS 0.25°-model analysis (f000) on the 1° output grid, 13 Oct 2026 12:00 UTC, 250 hPa (≈10 km, jet-stream level). Grid points averaged to 1° cells. Components clamped to ±100 m/s.",
+ "units": "m/s",
+ "grid": {
+  "width": 360,
+  "height": 180,
+  "bbox": [
+   -180,
+   -90,
+   180,
+   90
+  ]
+ },
+ "encoding": {
+  "type": "vector",
+  "min": -100.0,
+  "max": 100.0
+ },
+ "palette": "sequential",
+ "frames": {
+  "2026": "data/grids/wind-2026101312.png"
+ }
+}

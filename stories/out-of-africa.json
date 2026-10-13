@@ -1,0 +1,86 @@
+{
+  "id": "out-of-africa",
+  "cat": "People",
+  "title": "Out of Africa",
+  "hook": "Every person alive descends from people who lived in Africa. Here is how, and roughly when, they reached the rest of the world.",
+  "notes": "All dates are scientific estimates with uncertainty ranges, and new finds keep moving them. Routes are schematic, drawn by Orbis to link dated sites; the real paths are unknown. Africa: Jebel Irhoud ≈ 315,000 ± 34,000 years (Richter et al., Nature 2017; Hublin et al., Nature 2017); Omo Kibish ≥ 233,000 (Vidal et al., Nature 2022). Early dispersals: Misliya ≈ 194,000–177,000 (Hershkovitz et al., Science 2018); Skhul and Qafzeh ≈ 120,000–90,000; Al Wusta ≈ 95,000–86,000 (Groucutt et al., Nature Ecology & Evolution 2018). Main dispersal ≈ 60,000–50,000 years ago and its genetics: review by Bergström, Stringer, Hajdinjak, Scerri and Skoglund, 'Origins of modern human ancestry', Nature 2021. Neanderthal gene flow ≈ 50,500–43,500 years ago (Iasi et al., Science 2024; Sümer et al., Nature 2025: ≈ 49,000–45,000). Southeast Asia: Tam Pa Ling ≈ 86,000–68,000 (Freidline et al., Nature Communications 2023); Lida Ajer ≈ 73,000–63,000 (Westaway et al., Nature 2017). Australia: Madjedbebe ≈ 65,000 (Clarkson et al., Nature 2017), disputed; others argue for ≈ 50,000 (O'Connell et al., PNAS 2018). Europe: Bacho Kiro ≈ 46,000–44,000 (Hublin et al., Nature 2020; Fewlass et al., Nature Ecology & Evolution 2020); Ranis ≈ 47,000–45,000 (Mylopotamitaki et al., Nature 2024). Siberia: Ust'-Ishim ≈ 45,000 (Fu et al., Nature 2014). East Asia: Tianyuan ≈ 40,000 (Fu et al., PNAS 2013). Americas: White Sands footprints ≈ 23,000–21,000 (Bennett et al., Science 2021; Pigati et al., Science 2023); Page-Ladson ≈ 14,500 (Halligan et al., Science Advances 2016); Monte Verde ≈ 14,500 (Dillehay et al.), challenged by Surovell et al., Science 2026. Sea level about 120 m lower at the last glacial maximum. Remote Oceania from ≈ 3,000 years ago (Lapita settlement of Vanuatu); East Polynesia, including New Zealand ≈ 1280 CE (Wilmshurst et al., PNAS 2011).",
+  "data": {"o": "data/people/out-of-africa.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Born in Africa",
+      "text": "The oldest fossils of our species, Homo sapiens, come from Jebel Irhoud in Morocco and are roughly 300,000 years old. Others, at Omo Kibish in Ethiopia, are at least 233,000 years old. For most of our species' history, every human lived in Africa. All dates in this story are scientific estimates, with wide error bars.",
+      "view": {"mode": "globe", "center": [15, 10], "zoom": 1.6},
+      "layers": [{"type": "points", "data": "o", "set": "africa", "color": "c2", "r": 6}],
+      "legend": [{"color": "c2", "label": "Oldest Homo sapiens fossils (estimated age)"}]
+    },
+    {
+      "title": "Early forays",
+      "text": "Some groups left early. A jawbone at Misliya cave in Israel is dated to about 194,000–177,000 years ago. Nearby, people were buried at Skhul and Qafzeh about 120,000–90,000 years ago, and a finger bone from Arabia's Nefud desert is about 90,000 years old. Genetics suggests these early groups left few or no descendants among people alive today.",
+      "view": {"mode": "globe", "center": [38, 20], "zoom": 2.4},
+      "layers": [
+        {"type": "lines", "data": "o", "set": "early", "color": "c5", "width": 2.4, "labels": true},
+        {"type": "points", "data": "o", "set": "early", "color": "c5", "r": 5}
+      ],
+      "legend": [{"color": "c5", "label": "Early dispersals (dashed: few or no living descendants)"}]
+    },
+    {
+      "title": "The big move",
+      "text": "Nearly all people outside Africa descend from groups that left roughly 60,000 to 50,000 years ago, probably across the Sinai or the narrow mouth of the Red Sea. On the way they met Neanderthals and had children with them, mostly between about 50,000 and 43,000 years ago. Most people outside Africa still carry 1–2% Neanderthal DNA.",
+      "view": {"mode": "globe", "center": [42, 22], "zoom": 2.2},
+      "layers": [
+        {"type": "lines", "data": "o", "set": "early", "color": "muted", "width": 1.4},
+        {"type": "lines", "data": "o", "set": "exit", "color": "c2", "width": 3, "labels": true, "flow": true}
+      ],
+      "legend": [{"color": "c2", "label": "Main dispersal, ≈ 60,000–50,000 years ago (schematic)"}, {"color": "muted", "label": "Earlier dispersals"}]
+    },
+    {
+      "title": "Along the coasts to Australia",
+      "text": "People spread through South and Southeast Asia, perhaps along the coasts. Fossils from caves in Laos and Sumatra are dated to roughly 70,000 years ago; if those dates hold, some groups got there before the main wave. Even with sea levels much lower, reaching Australia and New Guinea meant crossing open water by boat. Some date the first Australians to 65,000 years ago; others argue for about 50,000.",
+      "view": {"mode": "globe", "center": [112, 0], "zoom": 1.5},
+      "layers": [
+        {"type": "lines", "data": "o", "set": "exit", "color": "muted", "width": 1.6},
+        {"type": "lines", "data": "o", "set": "south", "color": "c2", "width": 2.8, "labels": true, "flow": true},
+        {"type": "points", "data": "o", "set": "sahul", "color": "c2", "r": 5}
+      ],
+      "legend": [{"color": "c2", "label": "Dispersal routes (schematic) and dated sites"}]
+    },
+    {
+      "title": "Into Europe and northern Asia",
+      "text": "Modern humans reached Europe by about 47,000–45,000 years ago, at caves such as Bacho Kiro in Bulgaria and Ranis in Germany, where Neanderthals still lived. A 45,000-year-old thigh bone from Ust'-Ishim shows people had reached western Siberia. By about 40,000 years ago they lived near today's Beijing.",
+      "view": {"mode": "globe", "center": [72, 44], "zoom": 1.5},
+      "layers": [
+        {"type": "lines", "data": "o", "set": "exit", "color": "muted", "width": 1.6},
+        {"type": "lines", "data": "o", "set": "south", "color": "muted", "width": 1.6},
+        {"type": "lines", "data": "o", "set": "north", "color": "c2", "width": 2.8, "labels": true, "flow": true},
+        {"type": "lines", "data": "o", "set": "east", "color": "c2", "width": 2.8, "labels": true, "flow": true},
+        {"type": "points", "data": "o", "set": "north", "color": "c2", "r": 5}
+      ],
+      "legend": [{"color": "c2", "label": "Dispersal routes (schematic) and dated sites"}]
+    },
+    {
+      "title": "Into the Americas",
+      "text": "In the last ice age, sea level was about 120 m lower, and a land bridge, Beringia, joined Siberia and Alaska. Footprints at White Sands, New Mexico, suggest people were in North America 23,000–21,000 years ago. By about 14,500 years ago they had reached Florida. A similar date at Monte Verde in Chile was challenged in 2026 and is now debated.",
+      "view": {"mode": "equal", "center": [-115, 18], "zoom": 1.7},
+      "layers": [
+        {"type": "lines", "data": "o", "set": "americas", "color": "c2", "width": 2.8, "labels": true, "flow": true},
+        {"type": "points", "data": "o", "set": "americas", "color": "c2", "r": 5}
+      ],
+      "legend": [{"color": "c2", "label": "Possible routes into the Americas (schematic)"}]
+    },
+    {
+      "title": "The last places",
+      "text": "The open Pacific was the last big region people reached. Seafarers settled Vanuatu and Fiji about 3,000 years ago. Hawaii, Rapa Nui and finally New Zealand, around 1280 CE, were settled within the last thousand years. By then, humans lived on every continent except Antarctica.",
+      "view": {"mode": "equal", "center": [-175, -5], "zoom": 1.45},
+      "layers": [
+        {"type": "lines", "data": "o", "set": "exit", "color": "muted", "width": 1.6},
+        {"type": "lines", "data": "o", "set": "south", "color": "muted", "width": 1.6},
+        {"type": "lines", "data": "o", "set": "north", "color": "muted", "width": 1.6},
+        {"type": "lines", "data": "o", "set": "east", "color": "muted", "width": 1.6},
+        {"type": "lines", "data": "o", "set": "americas", "color": "muted", "width": 1.6},
+        {"type": "lines", "data": "o", "set": "pacific", "color": "c4", "width": 2.8, "labels": true, "flow": true}
+      ],
+      "legend": [{"color": "c4", "label": "Settlement of the Pacific islands (schematic)"}, {"color": "muted", "label": "Earlier dispersals"}]
+    }
+  ]
+}

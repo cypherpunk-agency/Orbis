@@ -1,0 +1,48 @@
+{
+  "id": "un-ukraine", "cat": "Geopolitics", "title": "The world votes on Ukraine",
+  "hook": "In March 2022, 141 countries at the UN demanded that Russia leave Ukraine. Here is who did not, and how the vote has shifted since.",
+  "notes": "Votes: recorded votes of the UN General Assembly's eleventh emergency special session, taken from the UN Digital Library voting records (Y, N, A or blank for each of the 193 Member States). Resolution ES-11/1 of 2 March 2022 (record 3959039): 141 in favour, 5 against, 35 abstentions, 12 did not vote. ES-11/4 of 12 October 2022 (record 3990400): 143, 5, 35, 10. ES-11/7 of 24 February 2025 (record 4076672): 93, 18, 65, 17. ES-11/10 of 24 February 2026 (record 4103179): 107, 12, 51, 23. The two 2022 votes were checked country by country against the official meeting records A/ES-11/PV.5 and A/ES-11/PV.14. The Digital Library blocks automated access, so its pages were read from Internet Archive copies. 'Did not vote' covers delegations that were absent or did not take part; it is not a formal position. On 24 February 2025 the Assembly also adopted a shorter US-drafted text, amended by European states (ES-11/8: 93 in favour, 8 against, 73 abstentions), which is not mapped here. General Assembly resolutions are not legally binding. Taiwan, Kosovo, Palestine and Vatican City are not UN Member States and have no vote.",
+  "data": { "un": "data/geopolitics/un_votes.json" },
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "141 to 5",
+      "text": "On 2 March 2022, a week after Russia's full-scale invasion, the UN General Assembly demanded that Russia 'immediately, completely and unconditionally' withdraw its forces from Ukraine. 141 of 193 member states voted in favour, 5 against and 35 abstained; 12 did not vote.",
+      "view": { "mode": "equal", "center": [10, 15], "zoom": 1 },
+      "layers": [{ "type": "categories", "data": "un", "set": "es11_1", "colors": { "yes": "c1", "no": "c2", "abstain": "c3", "absent": "muted" } }]
+    },
+    {
+      "title": "The five against",
+      "text": "Only Russia and four other states voted no: Belarus, North Korea, Syria and Eritrea. Seven months later the same vote count recurred on Russia's annexation claims, with Nicaragua in place of Eritrea, which abstained.",
+      "view": { "mode": "globe", "center": [75, 35], "zoom": 1.1 },
+      "layers": [{ "type": "categories", "data": "un", "set": "es11_1", "colors": { "no": "c2" } }],
+      "highlight": ["RUS", "BLR", "PRK", "SYR", "ERI"],
+      "countryLabels": true
+    },
+    {
+      "title": "The large abstainers",
+      "text": "Among the 35 abstentions were China and India, the two most populous countries, as well as Pakistan, Bangladesh, Vietnam, Iran and South Africa. 17 of the abstainers were African states. In the debate, several explained their abstention with calls for dialogue and a negotiated settlement.",
+      "view": { "mode": "equal", "center": [55, 10], "zoom": 1.25 },
+      "layers": [{ "type": "categories", "data": "un", "set": "es11_1", "colors": { "yes": "c1", "abstain": "c3", "absent": "muted" } }],
+      "highlight": ["CHN", "IND", "ZAF", "PAK", "BGD", "VNM", "IRN"]
+    },
+    {
+      "title": "Four votes, four years",
+      "text": "The Assembly has voted on the war several times. Pick a vote to compare.",
+      "view": { "mode": "equal", "center": [10, 15], "zoom": 1 },
+      "switch": { "label": "Vote", "start": 0, "options": [
+        { "v": "es11_1", "label": "Mar 2022", "text": "March 2022, 'Aggression against Ukraine': 141 in favour, 5 against, 35 abstentions. The demand that Russia withdraw is backed by most of the world outside parts of Africa and Asia." },
+        { "v": "es11_4", "label": "Oct 2022", "text": "October 2022, after Russia claimed to annex four Ukrainian regions: 143 in favour, 5 against, 35 abstentions. The Assembly declared the annexation invalid; the largest majority of the four votes shown here." },
+        { "v": "es11_7", "label": "Feb 2025", "text": "February 2025, on the third anniversary: 93 in favour, 18 against, 65 abstentions. The United States, which had tabled its own shorter text, voted against alongside Russia, as did Hungary and Israel. Brazil, Saudi Arabia and the Gulf states abstained." },
+        { "v": "es11_10", "label": "Feb 2026", "text": "February 2026, 'Support for lasting peace in Ukraine': 107 in favour, 12 against, 51 abstentions. The United States and Hungary abstained; China, India and South Africa abstained, as in every vote." }
+      ]},
+      "layers": [{ "type": "categories", "data": "un", "set": "{v}", "colors": { "yes": "c1", "no": "c2", "abstain": "c3", "absent": "muted" } }]
+    },
+    {
+      "title": "Who moved",
+      "text": "Of the 141 countries that voted in favour in March 2022, 106 did so again in February 2026. 35 did not: most abstained, including the United States, Brazil, Indonesia, Saudi Arabia and Hungary; Niger voted against and some did not vote. Bolivia went the other way, from abstaining to voting in favour.",
+      "view": { "mode": "equal", "center": [10, 15], "zoom": 1 },
+      "layers": [{ "type": "categories", "data": "un", "set": "shift", "colors": { "kept": "c1", "left": "c3", "joined": "c4" } }]
+    }
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "id": "water-wars",
+  "cat": "Geopolitics",
+  "title": "Rivers across borders",
+  "hook": "When a river crosses a border, whoever is upstream holds the tap. Three rivers show what happens next.",
+  "notes": "Rivers: Natural Earth 1:10m rivers and lake centerlines (public domain), simplified; only the Nile, Indus and Mekong systems are shown. Dam positions typed in by Orbis. Nile: Grand Ethiopian Renaissance Dam inaugurated 9 September 2025; 5,150 MW and a reservoir of about 74 billion m³ (Ethiopian government, as reported by ENR and Water Power Magazine, September 2025). The share of Nile water from the Ethiopian highlands (about 85% at Aswan) is a widely cited estimate. 1959 Nile Waters Agreement between Egypt and Sudan: 55.5 and 18.5 billion m³ a year. Indus: Indus Waters Treaty, 19 September 1960, brokered by the World Bank. India declared the treaty 'in abeyance' on 23 April 2025, the day after the Pahalgam attack; a Court of Arbitration under the treaty ruled on 31 August 2026 that the treaty remains in force, which India rejects (as reported by The Week and Dawn, September 2026). Mekong: number of Chinese mainstream dams from the Stimson Center's Mekong Dam Monitor (11 by 2020; a 12th, Tuoba, began filling in 2024); storage of Xiaowan (about 15 billion m³) and Nuozhadu (about 22 billion m³) as published by the Mekong River Commission. The 2019 drought finding is from Eyes on Earth (April 2020), commissioned by the US-funded Lower Mekong Initiative, and is disputed by China.",
+  "data": {
+    "rv": "data/geopolitics/rivers.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Upstream holds the tap",
+      "text": "Most of the world's big rivers cross at least one border. A dam upstream can store water, release it for electricity or hold it back in a drought, and the countries below have little say. Three rivers show the pattern: the Nile, the Indus and the Mekong.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          68,
+          20
+        ],
+        "zoom": 2.1
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "nile",
+          "color": "c1",
+          "width": 2,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusWest",
+          "color": "c1",
+          "width": 2
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusEast",
+          "color": "c1",
+          "width": 2
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "mekong",
+          "color": "c1",
+          "width": 2,
+          "labels": true
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            70.5,
+            28.5
+          ],
+          "label": "Indus",
+          "color": "c1",
+          "r": 0
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Egypt's lifeline",
+      "text": "Egypt gets almost all its fresh water from the Nile, and almost all Egyptians live along its banks. But the river begins far upstream: by a common estimate about 85% of the water reaching Aswan falls as rain on the Ethiopian highlands and flows down the Blue Nile and its neighbours. A 1959 treaty split the river between Egypt and Sudan alone. Ethiopia was not asked.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          17
+        ],
+        "zoom": 2.6
+      },
+      "basemap": "satellite",
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "nile",
+          "color": "c1",
+          "width": 2.2,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "nileDams",
+          "color": "c3",
+          "r": 5
+        }
+      ]
+    },
+    {
+      "title": "Africa's biggest dam",
+      "text": "Ethiopia began the Grand Ethiopian Renaissance Dam on the Blue Nile in 2011, about 15 km from Sudan, and opened it in September 2025. At 5,150 megawatts it is Africa's largest hydropower plant, and its reservoir holds about 74 billion m³, more than Egypt's whole yearly share of the river. Egypt calls it a threat to its survival; talks have failed to agree how fast to fill it in droughts.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          35,
+          13
+        ],
+        "zoom": 4.5
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "nile",
+          "color": "c1",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "nileDams",
+          "color": "c3",
+          "r": 6
+        }
+      ],
+      "highlight": [
+        "ETH",
+        "SDN",
+        "EGY"
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "The Indus, split in two",
+      "text": "The 1960 Indus Waters Treaty, brokered by the World Bank, divided the river system between India and Pakistan. India got the three eastern rivers (Ravi, Beas, Sutlej). Pakistan got the western three (Indus, Jhelum, Chenab), about four-fifths of the water. India may build run-of-river dams on the western rivers, but not store much water behind them.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          73,
+          30
+        ],
+        "zoom": 4
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusWest",
+          "color": "c4",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusEast",
+          "color": "c2",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "indusDams",
+          "color": "c3",
+          "r": 5,
+          "labels": false
+        }
+      ],
+      "legend": [
+        {
+          "color": "c4",
+          "label": "Western rivers: Pakistan"
+        },
+        {
+          "color": "c2",
+          "label": "Eastern rivers: India"
+        },
+        {
+          "color": "c3",
+          "label": "Dams"
+        }
+      ],
+      "highlight": [
+        "IND",
+        "PAK"
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "A treaty in abeyance",
+      "text": "The treaty survived three wars. But on 23 April 2025, a day after militants killed 26 people at Pahalgam in Kashmir, India declared it 'in abeyance'. Pakistan said stopping its water would be 'an act of war'. In August 2026 a Court of Arbitration under the treaty ruled that it remains in force; India rejects the court. India's dams on the Chenab and Jhelum are the flashpoints.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          74.5,
+          33.2
+        ],
+        "zoom": 9
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusWest",
+          "color": "c4",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusEast",
+          "color": "c2",
+          "width": 2.4
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "indusDams",
+          "color": "c3",
+          "r": 5
+        }
+      ],
+      "highlight": [
+        "IND",
+        "PAK"
+      ]
+    },
+    {
+      "title": "The Mekong's upstream cascade",
+      "text": "The Mekong rises on the Tibetan plateau, where China calls it the Lancang, and flows through Myanmar, Laos, Thailand, Cambodia and Vietnam, feeding the world's largest inland fishery. China has built about a dozen dams on its stretch; the two biggest reservoirs, Xiaowan and Nuozhadu, hold about 37 billion m³ between them. In the 2019 drought, a US-funded study argued they held water back; China disputes it.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          102,
+          20
+        ],
+        "zoom": 3.2
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "mekong",
+          "color": "c1",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "chinaDams",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "mekongDams",
+          "color": "c3",
+          "r": 5
+        }
+      ],
+      "legend": [
+        {
+          "color": "c1",
+          "label": "Mekong"
+        },
+        {
+          "color": "c2",
+          "label": "Chinese dams (largest of about a dozen)"
+        },
+        {
+          "color": "c3",
+          "label": "Dams on the main river in Laos"
+        }
+      ],
+      "highlight": [
+        "CHN",
+        "MMR",
+        "LAO",
+        "THA",
+        "KHM",
+        "VNM"
+      ],
+      "countryLabels": true
+    }
+  ]
+}

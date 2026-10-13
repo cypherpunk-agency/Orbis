@@ -1,0 +1,78 @@
+{
+  "id": "independence", "cat": "Rights", "title": "A world of new states",
+  "hook": "Most of today's countries are younger than the United Nations. Watch them appear, wave after wave, from 1776 to 2011.",
+  "notes": "Years come from the 'Independence' field of the CIA World Factbook (public domain), read from the factbook.json archive because the CIA stopped publishing the Factbook on 4 February 2026. We use the first year the Factbook names, so a declaration counts even where recognition came later: the United States 1776, Mexico 1810, Guinea-Bissau 1973. Former dominions take the Factbook's date of union or federation: Canada 1867, Australia 1901, New Zealand 1907, South Africa 1910. Exceptions: Bulgaria 1908 (the Factbook's 1878 date was autonomy within the Ottoman Empire); Tanzania 1961, when Tanganyika became independent (the Factbook gives the 1964 union with Zanzibar); Timor-Leste 2002 (its 1975 declaration ended with Indonesia's invasion); Estonia, Latvia and Lithuania were independent from 1918 until the Soviet Union annexed them in 1940, and again from 1991. Grey marks long-established states: those the Factbook dates before 1776 (for example France, the United Kingdom, Spain, Portugal, the Netherlands, Sweden, Switzerland, Thailand, Nepal and Oman), Ethiopia and Bhutan, and China, Iran, Japan, Russia and Turkey, whose Factbook dates mark a new regime or the end of the Soviet Union rather than independence. Taiwan, Palestine, Western Sahara, Somaliland and Northern Cyprus are not dated. The map shows today's borders: many countries had different borders when they became independent, and some, such as Czechoslovakia and Yugoslavia, no longer exist; their successors appear only when they became independent themselves.",
+  "data": { "ind": "data/rights/independence.json" },
+  "scenes": [
+    {
+      "title": "The Americas break away",
+      "text": "The first wave came in the Americas. The United States declared independence in 1776, Haiti in 1804 after a slave revolt. Between 1810 and 1825 Spain and Portugal lost almost all of Latin America. Grey marks states that were already old.",
+      "view": {"mode": "equal", "center": [-40, 10], "zoom": 1.3},
+      "layers": [
+        {"type": "since", "data": "ind", "set": "old", "year": "t", "color": "muted", "title": "Long-established states"},
+        {"type": "since", "data": "ind", "set": "independent", "year": "t", "color": "c2", "title": "Independent"}
+      ],
+      "legend": [{"color": "muted", "label": "Long-established states"}, {"color": "c2", "label": "Independent (today's borders)"}],
+      "timeline": {"years": [1775, 1850], "start": 1775, "captions": {"1776": "The United States declares independence.", "1804": "Haiti, the first state founded after a slave revolt.", "1810": "Mexico, Colombia and Chile declare independence.", "1816": "Argentina.", "1821": "Central America and Peru.", "1822": "Brazil, from Portugal.", "1825": "Bolivia and Uruguay."}}
+    },
+    {
+      "title": "Nations in Europe",
+      "text": "In Europe new nation states emerged in the 19th century: Belgium and Greece in 1830, Italy in 1861, Germany in 1871. When the empires of Russia, Austria-Hungary and Germany collapsed after the First World War, Finland, Poland, the Baltic states and others became independent.",
+      "view": {"mode": "globe", "center": [18, 50], "zoom": 2.3},
+      "layers": [
+        {"type": "since", "data": "ind", "set": "old", "year": "t", "color": "muted", "title": "Long-established states"},
+        {"type": "since", "data": "ind", "set": "interwar", "year": "t", "color": "c2", "title": "Independent 1918-1940"},
+        {"type": "since", "data": "ind", "set": "independent", "year": "t", "color": "c2", "title": "Independent"}
+      ],
+      "legend": [{"color": "muted", "label": "Long-established states"}, {"color": "c2", "label": "Independent (today's borders)"}],
+      "timeline": {"years": [1825, 1925], "start": 1825, "captions": {"1830": "Greece and Belgium.", "1861": "The Kingdom of Italy.", "1871": "The German Empire.", "1877": "Romania breaks from the Ottoman Empire.", "1905": "Norway leaves its union with Sweden.", "1908": "Bulgaria.", "1917": "Finland.", "1918": "Poland, Hungary, Iceland and the Baltic states.", "1921": "Ireland."}}
+    },
+    {
+      "title": "Empires leave Asia",
+      "text": "After the Second World War the colonial empires came apart. In Asia, Indonesia and Vietnam declared independence in 1945, the Philippines followed in 1946, India and Pakistan in 1947, Burma and Sri Lanka in 1948. In the Middle East, Syria, Jordan and Israel became states.",
+      "view": {"mode": "globe", "center": [85, 20], "zoom": 1.5},
+      "layers": [
+        {"type": "since", "data": "ind", "set": "old", "year": "t", "color": "muted", "title": "Long-established states"},
+        {"type": "since", "data": "ind", "set": "independent", "year": "t", "color": "c2", "title": "Independent"}
+      ],
+      "legend": [{"color": "muted", "label": "Long-established states"}, {"color": "c2", "label": "Independent (today's borders)"}],
+      "timeline": {"years": [1940, 1960], "start": 1940, "captions": {"1943": "Lebanon.", "1945": "Indonesia, Vietnam and Korea.", "1946": "The Philippines, Syria and Jordan.", "1947": "India and Pakistan.", "1948": "Burma, Sri Lanka and Israel.", "1953": "Cambodia.", "1957": "Malaysia."}}
+    },
+    {
+      "title": "1960, the Year of Africa",
+      "text": "In 1957 Ghana became the first colony south of the Sahara to win independence. In 1960 alone, 17 African countries followed, most of them former French colonies, along with Nigeria, Somalia and the Congo. The last Portuguese colonies, Angola and Mozambique among them, followed in 1975 after a revolution in Lisbon.",
+      "view": {"mode": "globe", "center": [18, 3], "zoom": 1.9},
+      "layers": [
+        {"type": "since", "data": "ind", "set": "old", "year": "t", "color": "muted", "title": "Long-established states"},
+        {"type": "since", "data": "ind", "set": "independent", "year": "t", "color": "c2", "title": "Independent"}
+      ],
+      "legend": [{"color": "muted", "label": "Long-established states"}, {"color": "c2", "label": "Independent (today's borders)"}],
+      "timeline": {"years": [1950, 1990], "start": 1955, "captions": {"1951": "Libya.", "1956": "Sudan, Morocco and Tunisia.", "1957": "Ghana.", "1958": "Guinea.", "1960": "17 African countries in a single year.", "1962": "Algeria, after an eight-year war with France.", "1975": "Angola and Mozambique.", "1980": "Zimbabwe.", "1990": "Namibia, from South African rule."}}
+    },
+    {
+      "title": "Two federations break up",
+      "text": "In 1991 the Soviet Union dissolved into 15 states, and Yugoslavia began to break apart in war. Czechoslovakia split peacefully into Czechia and Slovakia on 1 January 1993. Serbia and Montenegro stayed together until 2006.",
+      "view": {"mode": "globe", "center": [45, 50], "zoom": 1.7},
+      "layers": [
+        {"type": "since", "data": "ind", "set": "old", "year": "t", "color": "muted", "title": "Long-established states"},
+        {"type": "since", "data": "ind", "set": "interwar", "year": "t", "color": "c2", "title": "Independent 1918-1940"},
+        {"type": "since", "data": "ind", "set": "independent", "year": "t", "color": "c2", "title": "Independent"}
+      ],
+      "legend": [{"color": "muted", "label": "Long-established states"}, {"color": "c2", "label": "Independent (today's borders)"}],
+      "timeline": {"years": [1989, 1990, 1991, 1992, 1993, 2006], "start": 0, "captions": {"1990": "Yemen unites; Namibia becomes independent.", "1991": "The Soviet Union ends; Slovenia, Croatia and North Macedonia leave Yugoslavia.", "1992": "Bosnia and Herzegovina.", "1993": "Czechia and Slovakia; Eritrea leaves Ethiopia.", "2006": "Montenegro and Serbia go separate ways."}}
+    },
+    {
+      "title": "The newest countries",
+      "text": "Timor-Leste became independent in 2002, after a UN-run vote and years of Indonesian occupation. Kosovo declared independence from Serbia in 2008; more than 100 states recognise it, Serbia does not. The newest UN member is South Sudan, independent since 9 July 2011.",
+      "view": {"mode": "equal", "center": [60, 15], "zoom": 1.15},
+      "countryLabels": false,
+      "layers": [
+        {"type": "since", "data": "ind", "set": "old", "year": "t", "color": "muted", "title": "Long-established states"},
+        {"type": "since", "data": "ind", "set": "independent", "year": "t", "color": "c2", "title": "Independent"}
+      ],
+      "highlight": ["TLS", "XKX", "SSD"],
+      "legend": [{"color": "muted", "label": "Long-established states"}, {"color": "c2", "label": "Independent (today's borders)"}],
+      "timeline": {"years": [1995, 2026], "start": 2026, "captions": {"2002": "Timor-Leste.", "2006": "Montenegro and Serbia.", "2008": "Kosovo declares independence.", "2011": "South Sudan, the newest UN member."}}
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "minerals",
+  "cat": "Economics",
+  "title": "Critical minerals",
+  "hook": "The energy transition runs on minerals from very few places.",
+  "notes": "Mine production shares ≈ 2023, US Geological Survey Mineral Commodity Summaries 2024, rounded. Refining shares ≈ IEA Global Critical Minerals Outlook 2024. China export controls: gallium and germanium (2023), graphite (2023), selected rare earths (2025).",
+  "data": {"values": "data/legacy/values.json", "routes": "data/legacy/routes.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Cobalt",
+      "text": "About three quarters of the world's cobalt is mined in the DR Congo. It goes into most lithium-ion batteries.",
+      "view": {"mode": "globe", "center": [25, -5], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "cobalt_share",
+          "year": 2023,
+          "fmt": "pct",
+          "title": "Share of world cobalt mining, %",
+          "showYear": false
+        }
+      ]
+    },
+    {
+      "title": "Lithium",
+      "text": "Australia digs about half of the world's lithium; Chile and China follow.",
+      "view": {"mode": "equal", "center": [30, 0], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "lithium_share",
+          "year": 2023,
+          "fmt": "pct",
+          "title": "Share of world lithium mining, %",
+          "showYear": false
+        }
+      ]
+    },
+    {
+      "title": "Rare earths",
+      "text": "China mines roughly 70% of rare earths, the metals inside wind turbine and electric-car magnets.",
+      "view": {"mode": "globe", "center": [105, 30], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "rare_earth_share",
+          "year": 2023,
+          "fmt": "pct",
+          "title": "Share of world rare-earth mining, %",
+          "showYear": false
+        }
+      ]
+    },
+    {
+      "title": "The real bottleneck: refining",
+      "text": "Mining is spread out. Refining is not. China processes about 90% of rare earths, around 75% of cobalt and two thirds of lithium, and has started restricting exports of some of them.",
+      "view": {"mode": "globe", "center": [105, 32], "zoom": 1.3},
+      "layers": [{"type": "lines", "data": "routes", "set": "to_refinery_imported", "color": "c2", "width": 2, "flow": true}],
+      "fills": {"CHN": "c2"},
+      "legend": [{"color": "c2", "label": "China: ≈ 90% rare earths, ≈ 75% cobalt, ≈ 65% lithium refining"}]
+    }
+  ]
+}

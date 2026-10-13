@@ -9,7 +9,7 @@ const read = f => fs.readFileSync(path.join(root, f), "utf8");
 const ctx = { d3: new Proxy({}, { get: () => () => () => "" }), module: undefined };
 vm.createContext(ctx);
 vm.runInContext(read("js/sources.js") + "\nthis.SOURCES=SOURCES;", ctx);
-vm.runInContext(read("js/stories.js") + "\nthis.STORIES=STORIES;", ctx);
+vm.runInContext(read("js/blocs.js") + "\nthis.STORIES=STORIES;", ctx);
 const { SOURCES, STORIES } = ctx;
 const doc = read("docs/LICENSING.md");
 const errs = [];
@@ -42,9 +42,12 @@ index.forEach(meta => {
     ds[alias] = d;
   }
   [...(st.sources || []), ...st.scenes.flatMap(sc => sc.sources || [])].forEach(id => { if (!SOURCES[id]) errs.push(`story ${st.id}: unknown source "${id}"`); });
-  st.scenes.forEach((sc, i) => [...(sc.layers || []), ...(sc.chart ? [sc.chart] : [])].forEach(l => {
+  // a scene "switch" fills {placeholders}: check the layers once per option
+  const variants = sc => !sc.switch ? [sc] : sc.switch.options.map(op =>
+    JSON.parse(JSON.stringify(sc).replace(/\{(\w+)\}/g, (m, k) => op[k] != null ? String(op[k]) : m)));
+  st.scenes.forEach((sc0, i) => variants(sc0).forEach(sc => [...(sc.layers || []), ...(sc.chart ? [sc.chart] : [])].forEach(l => {
     if (!ds[l.data]) errs.push(`story ${st.id} scene ${i + 1}: layer uses undeclared data "${l.data}"`);
-  }));
+  })));
 });
 // basemap sources referenced by the engine
 const app = read("js/app.js");

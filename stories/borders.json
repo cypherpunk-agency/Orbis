@@ -1,0 +1,54 @@
+{
+  "id": "borders",
+  "cat": "Geopolitics",
+  "title": "Same border, different truths",
+  "hook": "Every map takes a side. Here are six places where it shows.",
+  "notes": "Simplified. Kashmir shares: ≈ India 55%, Pakistan 30%, China 15% of the territory. Taiwan: recognised by 12 states incl. the Holy See (2024); smaller recognisers are islands too small for this map. Kosovo: recognition counts vary by source. Map makers such as Google show different borders depending on the country you view from.",
+  "data": {},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Western Sahara, as the UN sees it",
+      "text": "The UN lists Western Sahara as a non-self-governing territory. Its status has been disputed since Spain withdrew in 1975.",
+      "view": {"mode": "globe", "center": [-9, 26], "zoom": 3.2},
+      "fills": {"MAR": "c1", "ESH": "c3"},
+      "legend": [{"color": "c1", "label": "Morocco"}, {"color": "c3", "label": "Disputed territory"}]
+    },
+    {
+      "title": "Western Sahara, as Morocco sees it",
+      "text": "Maps sold in Morocco show one country, no border. Morocco controls most of the territory. The United States recognised Moroccan sovereignty in 2020.",
+      "view": {"mode": "globe", "center": [-9, 26], "zoom": 3.2},
+      "fills": {"MAR": "c1", "ESH": "c1"},
+      "legend": [{"color": "c1", "label": "Morocco, as drawn in Rabat"}]
+    },
+    {
+      "title": "Kashmir",
+      "text": "India, Pakistan and China each administer part of Kashmir, and the two largest each claim more. Indian maps show all of it as Indian; Pakistani maps differ.",
+      "view": {"mode": "globe", "center": [76, 33], "zoom": 4},
+      "fills": {"IND": "c1", "PAK": "c4", "CHN": "c3"},
+      "points": [{"at": [76.5, 34.5], "label": "Kashmir", "r": 7, "color": "c2"}]
+    },
+    {
+      "title": "Crimea",
+      "text": "Russia annexed Crimea in 2014. In a 2014 UN General Assembly vote, 100 countries affirmed Ukraine's territorial integrity; most maps still show it as Ukraine.",
+      "view": {"mode": "globe", "center": [34, 47], "zoom": 4},
+      "fills": {"UKR": "c3", "RUS": "c2"},
+      "points": [{"at": [34.1, 44.95], "label": "Crimea", "r": 7, "color": "c2"}]
+    },
+    {
+      "title": "Taiwan",
+      "text": "Taiwan governs itself, while Beijing claims it. Only about a dozen states recognise Taiwan officially; those large enough to see on this map are highlighted.",
+      "view": {"mode": "equal", "center": [0, 10], "zoom": 1},
+      "fills": {"TWN": "c3", "CHN": "c2", "BLZ": "c3", "GTM": "c3", "HTI": "c3", "PRY": "c3", "SWZ": "c3"},
+      "points": [{"at": [121, 23.7], "label": "Taiwan", "r": 4, "color": "c3"}],
+      "legend": [{"color": "c3", "label": "Taiwan and states recognising it"}, {"color": "c2", "label": "PRC"}]
+    },
+    {
+      "title": "Kosovo",
+      "text": "Kosovo declared independence from Serbia in 2008. Roughly half of UN members recognise it; Serbia, Russia, China and five EU states do not.",
+      "view": {"mode": "globe", "center": [20.9, 42.6], "zoom": 7},
+      "fills": {"XKX": "c3", "SRB": "c1"},
+      "points": [{"at": [21.17, 42.66], "label": "Pristina", "r": 3}]
+    }
+  ]
+}

@@ -26,5 +26,299 @@
   "title": "Who owes whom",
   "hook": "The world's governments owe about $100 trillion. Here is where the debt sits and who lends it.",
   "file": "stories/debt.json"
+ },
+ {
+  "id": "map-lies",
+  "cat": "Statistics",
+  "title": "The map lies",
+  "hook": "Greenland looks as big as Africa. It's fourteen times smaller.",
+  "file": "stories/map-lies.json"
+ },
+ {
+  "id": "circle",
+  "cat": "Statistics",
+  "title": "Half the world in one circle",
+  "hook": "More people live inside this circle than outside it.",
+  "file": "stories/circle.json"
+ },
+ {
+  "id": "demography",
+  "cat": "Statistics",
+  "title": "The world in 2100",
+  "hook": "Europe and East Asia are greying. Africa is young.",
+  "file": "stories/demography.json"
+ },
+ {
+  "id": "dark",
+  "cat": "Statistics",
+  "title": "Who is in the dark",
+  "hook": "One in ten people on Earth still has no electricity.",
+  "file": "stories/dark.json"
+ },
+ {
+  "id": "chokepoints",
+  "cat": "Geopolitics",
+  "title": "Chokepoints",
+  "hook": "A handful of narrow straits carry the world's oil and goods.",
+  "file": "stories/chokepoints.json"
+ },
+ {
+  "id": "blocs",
+  "cat": "Geopolitics",
+  "title": "Blocs over time",
+  "hook": "Watch alliances grow, split and shift from 1945 to today.",
+  "file": "stories/blocs.json"
+ },
+ {
+  "id": "borders",
+  "cat": "Geopolitics",
+  "title": "Same border, different truths",
+  "hook": "Every map takes a side. Here are six places where it shows.",
+  "file": "stories/borders.json"
+ },
+ {
+  "id": "arctic",
+  "cat": "Geopolitics",
+  "title": "The Arctic opens",
+  "hook": "Melting ice is creating a new ocean, and new claims.",
+  "file": "stories/arctic.json"
+ },
+ {
+  "id": "cables",
+  "cat": "Geopolitics",
+  "title": "The internet is under the sea",
+  "hook": "Almost all intercontinental data travels through cables on the seabed.",
+  "file": "stories/cables.json"
+ },
+ {
+  "id": "gravity",
+  "cat": "Economics",
+  "title": "The economic centre of gravity",
+  "hook": "For 2,000 years, the world's economic centre has been on the move.",
+  "file": "stories/gravity.json"
+ },
+ {
+  "id": "phone",
+  "cat": "Economics",
+  "title": "Where your phone comes from",
+  "hook": "Follow a smartphone from the mine to your pocket.",
+  "file": "stories/phone.json"
+ },
+ {
+  "id": "minerals",
+  "cat": "Economics",
+  "title": "Critical minerals",
+  "hook": "The energy transition runs on minerals from very few places.",
+  "file": "stories/minerals.json"
+ },
+ {
+  "id": "austria-gas",
+  "cat": "Economics",
+  "title": "Austria's gas",
+  "hook": "How a country near Vienna ran on Siberian gas, then stopped.",
+  "file": "stories/austria-gas.json"
+ },
+ {
+  "id": "remittances",
+  "cat": "Economics",
+  "title": "Money sent home",
+  "hook": "Migrants send home more than all foreign aid and investment combined.",
+  "file": "stories/remittances.json"
+ },
+ {
+  "id": "darien",
+  "cat": "People",
+  "title": "One journey north",
+  "hook": "From Caracas to the US border, through one of the world's most dangerous jungles.",
+  "file": "stories/darien.json"
+ },
+ {
+  "id": "plate",
+  "cat": "People",
+  "title": "What's on your plate",
+  "hook": "A Viennese breakfast, traced back to its fields.",
+  "file": "stories/plate.json"
+ },
+ {
+  "id": "flights",
+  "cat": "People",
+  "title": "Why planes fly curves",
+  "hook": "The straight line on a globe is a curve on a flat map.",
+  "file": "stories/flights.json"
+ },
+ {
+  "id": "languages",
+  "cat": "People",
+  "title": "Languages going quiet",
+  "hook": "About 7,000 languages, and many have only a few speakers left.",
+  "file": "stories/languages.json"
+ },
+ {
+  "id": "where-people-live",
+  "cat": "Statistics",
+  "title": "Where people really live",
+  "hook": "Country totals hide it: most of humanity is packed into river valleys, deltas and coasts.",
+  "file": "stories/where-people-live.json"
+ },
+ {
+  "id": "warming",
+  "cat": "Planet",
+  "title": "A warming world",
+  "hook": "Play 140 years of temperature records and watch the planet turn red, fastest at the top.",
+  "file": "stories/warming.json"
+ },
+ {
+  "id": "jet-stream",
+  "cat": "Planet",
+  "title": "Rivers of air",
+  "hook": "Ten kilometres up, winds of 200 km/h circle the planet. Planes ride them east.",
+  "file": "stories/jet-stream.json"
+ },
+ {
+  "id": "whose-land",
+  "cat": "Geopolitics",
+  "title": "Whose land?",
+  "hook": "The same piece of land is drawn differently depending on who prints the map.",
+  "file": "stories/whose-land.json"
+ },
+ {
+  "id": "inside-countries",
+  "cat": "Statistics",
+  "title": "Inside the lines",
+  "hook": "National averages hide big differences between a country's own regions.",
+  "file": "stories/inside-countries.json"
+ },
+ {
+  "id": "co2",
+  "cat": "Statistics",
+  "title": "Who emits the carbon",
+  "hook": "Count carbon dioxide by country, by person or since 1850, and the ranking flips each time.",
+  "file": "stories/co2.json"
+ },
+ {
+  "id": "life-expectancy",
+  "cat": "Statistics",
+  "title": "How long we live",
+  "hook": "A child born today can expect to live about 73 years, nearly 30 more than in 1950. Not everywhere, and not in a straight line.",
+  "file": "stories/life-expectancy.json"
+ },
+ {
+  "id": "time-zones",
+  "cat": "Statistics",
+  "title": "Clocks against the sun",
+  "hook": "Noon on the clock should be when the sun is highest. In much of the world it isn't, and the date line zig-zags.",
+  "file": "stories/time-zones.json"
+ },
+ {
+  "id": "world-cup-2026",
+  "cat": "Statistics",
+  "title": "A World Cup across a continent",
+  "hook": "The 2026 World Cup was spread over three countries, sixteen cities and four time zones. Qatar's fitted inside one city.",
+  "file": "stories/world-cup-2026.json"
+ },
+ {
+  "id": "suffrage",
+  "cat": "Rights",
+  "title": "Votes for women",
+  "hook": "New Zealand let women vote in 1893. Saudi Arabia did so in 2015. Watch the right spread, country by country.",
+  "file": "stories/suffrage.json"
+ },
+ {
+  "id": "death-penalty",
+  "cat": "Rights",
+  "title": "The end of executions",
+  "hook": "In 1977 only 16 countries had abolished the death penalty. Today 113 have. Watch them come, and see who still kills.",
+  "file": "stories/death-penalty.json"
+ },
+ {
+  "id": "independence",
+  "cat": "Rights",
+  "title": "A world of new states",
+  "hook": "Most of today's countries are younger than the United Nations. Watch them appear, wave after wave, from 1776 to 2011.",
+  "file": "stories/independence.json"
+ },
+ {
+  "id": "south-china-sea",
+  "cat": "Geopolitics",
+  "title": "One sea, six claimants",
+  "hook": "China claims most of the South China Sea. Its neighbours, and an international court, disagree.",
+  "file": "stories/south-china-sea.json"
+ },
+ {
+  "id": "water-wars",
+  "cat": "Geopolitics",
+  "title": "Rivers across borders",
+  "hook": "When a river crosses a border, whoever is upstream holds the tap. Three rivers show what happens next.",
+  "file": "stories/water-wars.json"
+ },
+ {
+  "id": "ports",
+  "cat": "Economics",
+  "title": "Where the boxes go",
+  "hook": "All ten of the world's busiest container ports are in Asia, and six are in mainland China.",
+  "file": "stories/ports.json"
+ },
+ {
+  "id": "big-mac",
+  "cat": "Economics",
+  "title": "The burger standard",
+  "hook": "A Big Mac costs $9 in Switzerland and under $2.50 in India. What the price of a burger says about money.",
+  "file": "stories/big-mac.json"
+ },
+ {
+  "id": "nuclear",
+  "cat": "Geopolitics",
+  "title": "The nuclear club",
+  "hook": "Nine countries have nuclear weapons. Four others once had them and gave them up.",
+  "file": "stories/nuclear.json"
+ },
+ {
+  "id": "us-abroad",
+  "cat": "Geopolitics",
+  "title": "America's bases abroad",
+  "hook": "About 170,000 US troops serve abroad. Half of them are in just two countries.",
+  "file": "stories/us-abroad.json"
+ },
+ {
+  "id": "un-ukraine",
+  "cat": "Geopolitics",
+  "title": "The world votes on Ukraine",
+  "hook": "In March 2022, 141 countries at the UN demanded that Russia leave Ukraine. Here is who did not, and how the vote has shifted since.",
+  "file": "stories/un-ukraine.json"
+ },
+ {
+  "id": "russia-sanctions",
+  "cat": "Geopolitics",
+  "title": "Sanctions and Russian oil",
+  "hook": "About 50 governments imposed sanctions on Russia after it invaded Ukraine. Most of the world did not, and that is where Russia's oil went.",
+  "file": "stories/russia-sanctions.json"
+ },
+ {
+  "id": "journeys",
+  "cat": "People",
+  "title": "The great journeys",
+  "hook": "A fleet that circled the Earth, a Chinese armada, and a traveller who walked half the known world.",
+  "file": "stories/journeys.json"
+ },
+ {
+  "id": "silk-road",
+  "cat": "People",
+  "title": "The Silk Roads",
+  "hook": "For 1,500 years, silk, paper, faith and plague moved across Asia along the same caravan tracks.",
+  "file": "stories/silk-road.json"
+ },
+ {
+  "id": "out-of-africa",
+  "cat": "People",
+  "title": "Out of Africa",
+  "hook": "Every person alive descends from people who lived in Africa. Here is how, and roughly when, they reached the rest of the world.",
+  "file": "stories/out-of-africa.json"
+ },
+ {
+  "id": "covid-spread",
+  "cat": "People",
+  "title": "How COVID-19 spread",
+  "hook": "From one city in December 2019 to almost every country on Earth in three months.",
+  "file": "stories/covid-spread.json"
  }
 ]

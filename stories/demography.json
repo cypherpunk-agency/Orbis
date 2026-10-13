@@ -1,0 +1,90 @@
+{
+  "id": "demography",
+  "cat": "Statistics",
+  "title": "The world in 2100",
+  "hook": "Europe and East Asia are greying. Africa is young.",
+  "notes": "Median ages ≈ 2024 and projections from UN World Population Prospects 2024 (medium scenario), rounded. Projections are scenarios, not certainties.",
+  "data": {"values": "data/legacy/values.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Median age today",
+      "text": "Half the people in each country are older than this number. Japan and Italy sit near 48–49. Niger sits near 15.",
+      "view": {"mode": "equal", "center": [20, 15], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "values", "series": "median_age", "year": 2024, "title": "Median age, years (≈ 2024)", "showYear": false}]
+    },
+    {
+      "title": "Peak humanity",
+      "text": "The UN expects the world population to rise from about 8.2 billion today to a peak near 10.3 billion in the mid-2080s, then slowly decline.",
+      "view": {"mode": "globe", "center": [40, 20], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "values", "series": "median_age", "year": 2024, "title": "Median age, years (≈ 2024)", "showYear": false}]
+    },
+    {
+      "title": "Shrinking giants",
+      "text": "China's population is already falling and is projected to roughly halve by 2100. Japan, South Korea, Italy and much of Eastern Europe are shrinking too.",
+      "view": {"mode": "globe", "center": [115, 35], "zoom": 1.4},
+      "fills": {"CHN": "c2", "JPN": "c2", "KOR": "c2"},
+      "highlight": ["CHN", "JPN", "KOR"]
+    },
+    {
+      "title": "Africa's century",
+      "text": "Sub-Saharan Africa will account for more than half of global population growth to 2050. By 2100, Nigeria, the DR Congo and Ethiopia are projected to be among the most populous countries on Earth.",
+      "view": {"mode": "globe", "center": [20, 0], "zoom": 1.1},
+      "fills": {
+        "AGO": "c4",
+        "BEN": "c4",
+        "BWA": "c4",
+        "BFA": "c4",
+        "BDI": "c4",
+        "CMR": "c4",
+        "CAF": "c4",
+        "TCD": "c4",
+        "COD": "c4",
+        "COG": "c4",
+        "CIV": "c4",
+        "DJI": "c4",
+        "GNQ": "c4",
+        "ERI": "c4",
+        "SWZ": "c4",
+        "ETH": "c4",
+        "GAB": "c4",
+        "GMB": "c4",
+        "GHA": "c4",
+        "GIN": "c4",
+        "GNB": "c4",
+        "KEN": "c4",
+        "LSO": "c4",
+        "LBR": "c4",
+        "MDG": "c4",
+        "MWI": "c4",
+        "MLI": "c4",
+        "MRT": "c4",
+        "MOZ": "c4",
+        "NAM": "c4",
+        "NER": "c4",
+        "NGA": "c4",
+        "RWA": "c4",
+        "SEN": "c4",
+        "SLE": "c4",
+        "SOM": "c4",
+        "SOL": "c4",
+        "ZAF": "c4",
+        "SSD": "c4",
+        "SDN": "c4",
+        "TZA": "c4",
+        "TGO": "c4",
+        "UGA": "c4",
+        "ZMB": "c4",
+        "ZWE": "c4"
+      },
+      "highlight": ["NGA", "COD", "ETH"]
+    },
+    {
+      "title": "India's peak",
+      "text": "India passed China as the most populous country in 2023. It is projected to peak around 1.7 billion in the early 2060s.",
+      "view": {"mode": "globe", "center": [80, 22], "zoom": 1.6},
+      "fills": {"IND": "c3"},
+      "highlight": ["IND"]
+    }
+  ]
+}

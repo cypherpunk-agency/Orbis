@@ -14,7 +14,7 @@ A story is one JSON file in `stories/`, listed in `stories/index.json`. It names
 | Field | Required | Meaning |
 |---|---|---|
 | `id` | yes | Short slug, used in links: `#<id>/<scene>` |
-| `cat` | yes | Table-of-contents section: `Energy`, `Geopolitics`, `Economics`, `Statistics`, `People`, `Rights` |
+| `cat` | yes | Table-of-contents section: `Energy`, `Geopolitics`, `Economics`, `Planet`, `Statistics`, `Rights`, `People` |
 | `title`, `hook` | yes | Title and one-sentence teaser for the table of contents |
 | `notes` | yes | Sources and caveats, shown under "Sources and notes" |
 | `data` | yes | `{ "alias": "data/<topic>/<file>.json" }`, loaded when the story opens |
@@ -39,7 +39,9 @@ A story is one JSON file in `stories/`, listed in `stories/index.json`. It names
 | `routes` | Inline lines `[ { "path": [[lon, lat], …], "color": "c1", "width": 2, "dash": false, "flow": true, "label": "…", "labelAt": 3, "dist": true } ]` (`dist` adds the great-circle length) |
 | `circles` | `[ { "center": [lon, lat], "km": 3300, "color": "c2", "label": "…" } ]` |
 | `countryLabels` | `true` shows country names (default off in stories, on in Explore) |
+| `political` | `true` tints countries in political colours instead of plain land |
 | `sources` | Extra source ids for this scene |
+| `media` | Panel media: `{ "type": "image", "src", "alt", "caption", "credit", "licence", "href" }`, `{ "type": "quote", "text", "by" }`, `{ "type": "line", "data", "series", "countries": [ISO3…], "title", "fmt" }`. Images must be openly licensed and registered like any source. |
 
 Colours: `c1` blue, `c2` magenta, `c3` amber, `c4` teal, `c5` violet, `muted` grey. They adapt to dark mode.
 
@@ -47,14 +49,18 @@ Colours: `c1` blue, `c2` magenta, `c3` amber, `c4` teal, `c5` violet, `muted` gr
 
 | `type` | Dataset shape | Parameters |
 |---|---|---|
-| `choropleth` | series | `series`, `year`, `per` (divide by another series, e.g. `"pop"`), `mult`, `log`, `reverse`, `title`, `fmt` |
+| `choropleth` | series | `series`, `year`, `per` (divide by another series, e.g. `"pop"`), `mult`, `log`, `reverse`, `vmin`/`vmax` (fixed scale, e.g. across a timeline), `diverging: true` with `mid` (blue below, red above), `nodataLabel`, `title`, `fmt` |
 | `symbols` | series, or points list | Circles, area = value. `series`/`year` or `field`/`period` for point lists; `color`, `maxR` (px), `vmax` (fix the scale across years), `labels` (how many to label), `title`, `fmt` |
 | `spikes` | series | Towers, height = value. `maxH` (share of map radius, 0.5–0.7), `width`, `labels`, `vmax`, `color`, `title`, `fmt` |
 | `cartogram` | series | Countries resized by value, animated from their real shape. `maxK` (cap on enlargement, default 5), `labels`, `title`, `fmt` |
 | `flows` | groups | Arcs from → to, width = value. `group`, `year`, `top`, `from: [ISO3]`, `to: [ISO3]`, `metric: "qty"` (use quantity), `vmax`, `maxW`, `color`, `title`, `fmt`. Users can tap a country to see only its flows. |
-| `lines` | lines/points sets | `set`, `color`, `width`, `labels: true`, `flow: true` (animated). Items with `status` other than `"operating"` draw dashed. |
-| `points` | lines/points sets | `set`, `color`, `r`, `labels: false` to hide names |
+| `lines` | lines/points sets | `set`, `color`, `width`, `labels: true`, `flow: true` (animated), `dist: true` (length label), `dash`, `until` (show the path up to point n), `only: [names]` (subset), `forceColor: true` (layer colour wins over item colours). Items may set `color`, `width`, `dash`, `dist`, `until`. Items with `status` other than `"operating"` draw dashed. |
+| `points` | lines/points sets | `set`, `color`, `r`, `labels: false` to hide names, `only: [names]`, `forceColor`; items may set `color`, `r` |
 | `since` | sets | Countries coloured while a membership holds: `set`, `year`, `color`, `title`. Use with a timeline for "who joined when". |
+| `pov` | disputed areas (`data/geopolitics/pov.json`) | Disputed areas drawn as one country sees them: `view` (two-letter code: `US`, `RU`, `UA`, `IN`, `PK`, `CN`, `TW`, `MA`, `ES`, `FR`, `GB`, `AR`, `JP`, `VN`, …), `areas` (names to show). Use with `political: true` and a `switch` over views. |
+| `regions` | series keyed by admin-1 ids | States/provinces of one country: `country` (ISO3; geometry in `data/geo/admin1/<ISO3>.json`), `series`, `year`, `log`, `mult`, `labels: true`, `title`, `fmt` |
+| `raster` | grid descriptor (`data/grids/*.json`) | A lon/lat grid image: `frame` (a frame label, or `"t"` for the timeline), `opacity`, `title`, `fmt` (e.g. `degc`, `ppkm2`). Tap shows the value. |
+| `particles` | vector grid (`data/grids/wind.json`) | Animated streaks following a u/v field: `count`, `speed`, `color` |
 | `categories` | sets | One colour per category: `set`, `colors: { "yes": "c4", "no": "c2" }` |
 
 ## Dataset shapes
@@ -99,7 +105,7 @@ Flow rows are `[from, to, value, quantity_or_null]`, sorted by value.
 
 ## Formats (`fmt`)
 
-`kbd` thousand barrels/day → "1.2 m b/d", `mbd`, `bcm`, `bcfd`, `musd` (million USD → "$1.2 bn"), `busd` (billion USD → "$1.2 tn"), `t` (tonnes), `kt` (thousand tonnes), `kg`, `mt` (thousand tonnes → "Mt"), `pct` (value already in %), `bpp`, `m3pp`. Anything else: compact SI.
+`int` (1,234), `num`, `dollar` ($6.22), `tpp` (tonnes/person), `mil` ("1,464 M"), `yrs`, `pct0`, `usd`, `eur`, `people`, `degc`, `ppkm2`, `d3:<format>` (any d3-format string, e.g. `d3:$.2f`), `kbd` thousand barrels/day → "1.2 m b/d", `mbd`, `bcm`, `bcfd`, `musd` (million USD → "$1.2 bn"), `busd` (billion USD → "$1.2 tn"), `t` (tonnes), `kt` (thousand tonnes), `kg`, `mt` (thousand tonnes → "Mt"), `pct` (value already in %), `bpp`, `m3pp`. Anything else: compact SI.
 
 ## Writing rules
 - One idea per scene; the map must show what the text says.

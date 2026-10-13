@@ -1,0 +1,39 @@
+{
+  "id": "languages",
+  "cat": "People",
+  "title": "Languages going quiet",
+  "hook": "About 7,000 languages, and many have only a few speakers left.",
+  "notes": "Ethnologue (2024): ≈ 7,160 living languages, ≈ 44% endangered; half the world speaks one of ≈ 23 languages. Language counts per country approximate.",
+  "data": {"values": "data/legacy/values.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Where languages live",
+      "text": "Papua New Guinea alone has around 840 languages. Indonesia, Nigeria and India each have hundreds. Half of humanity speaks one of just 23 languages.",
+      "view": {"mode": "equal", "center": [60, 0], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "values", "series": "languages", "year": 2024, "log": true, "title": "Living languages (≈)", "showYear": false}]
+    },
+    {
+      "title": "The last speaker",
+      "text": "In 2022, Cristina Calderón died in Puerto Williams, Chile. She was the last native speaker of Yaghan, the language of people who lived at the southern tip of the Americas.",
+      "view": {"mode": "globe", "center": [-68, -54], "zoom": 5},
+      "points": [{"at": [-67.6, -54.93], "label": "Puerto Williams", "r": 6, "color": "c2"}]
+    },
+    {
+      "title": "Livonian",
+      "text": "In 2013, Grizelda Kristiņa, the last native speaker of Livonian from the Latvian coast, died at 103. A small community still learns it today.",
+      "view": {"mode": "globe", "center": [22, 57.5], "zoom": 7},
+      "points": [{"at": [22, 57.6], "label": "Livonian coast", "r": 6, "color": "c2"}]
+    },
+    {
+      "title": "Coming back",
+      "text": "Languages can return. Manx lost its last native speaker in 1974 and now has a primary school. Hawaiian, once nearly gone, is taught from preschool to university. Ainu in Japan is being revived too.",
+      "view": {"mode": "globe", "center": [-170, 40], "zoom": 0.95},
+      "points": [
+        {"at": [-4.5, 54.2], "label": "Manx", "r": 6, "color": "c4"},
+        {"at": [-157.8, 21.3], "label": "Hawaiian", "r": 6, "color": "c4"},
+        {"at": [142.8, 43.2], "label": "Ainu", "r": 6, "color": "c4"}
+      ]
+    }
+  ]
+}

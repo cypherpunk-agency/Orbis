@@ -1,0 +1,34 @@
+{
+  "id": "warming", "cat": "Planet", "title": "A warming world",
+  "hook": "Play 140 years of temperature records and watch the planet turn red, fastest at the top.",
+  "notes": "NASA GISTEMP v4 (GHCNv4 land stations + ERSSTv5 ocean data, 1200 km smoothing), decadal means of monthly anomalies relative to 1951–1980; the 2020s average runs from January 2020 to September 2026; 2025 is the annual mean. Grey cells have too few early measurements. Averages quoted are area-weighted over cells with data, computed by Orbis. Values are clamped at ±4 °C.",
+  "data": {"t": "data/grids/warming.json"},
+  "scenes": [
+    {
+      "title": "The 1880s",
+      "text": "Each cell shows how much warmer (red) or cooler (blue) a decade was than the average of 1951–1980. In the 1880s, where we have records, the world was slightly cooler than that baseline. Press Play.",
+      "view": {"mode": "equal", "center": [10, 10], "zoom": 1},
+      "layers": [{"type": "raster", "data": "t", "frame": "t", "title": "Temperature vs 1951–1980", "fmt": "degc"}],
+      "timeline": {"years": [1880, 1890, 1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020], "start": 1880,
+        "captions": {"1880": "Records are sparse: grey means no data.", "1940": "A temporary warm spell in the Arctic.", "1980": "The steady rise begins.", "2020": "The 2020s so far: about 1.1 °C above the 1951–1980 average."}}
+    },
+    {
+      "title": "The 2020s",
+      "text": "Today almost the whole map is red. The 2020s so far have been about 1.1 °C warmer than 1951–1980 on average, and warming over land is faster than over the oceans.",
+      "view": {"mode": "equal", "center": [10, 10], "zoom": 1},
+      "layers": [{"type": "raster", "data": "t", "frame": "2020", "title": "Temperature vs 1951–1980, 2020s", "fmt": "degc"}]
+    },
+    {
+      "title": "The Arctic leads",
+      "text": "The far north is warming fastest. North of 64°N, the 2020s average is nearly 3 °C above the baseline, more than twice the global figure. As snow and sea ice retreat, darker ground and water absorb more sunlight, which warms them further.",
+      "view": {"mode": "globe", "center": [10, 75], "zoom": 1.2},
+      "layers": [{"type": "raster", "data": "t", "frame": "2020", "title": "Temperature vs 1951–1980, 2020s", "fmt": "degc"}]
+    },
+    {
+      "title": "2025",
+      "text": "A single recent year: 2025 was about 1.2 °C warmer than 1951–1980 over the areas with data. A few cooler patches remain, mostly over the oceans, but they are exceptions.",
+      "view": {"mode": "globe", "center": [-30, 20], "zoom": 1},
+      "layers": [{"type": "raster", "data": "t", "frame": "2025", "title": "Temperature vs 1951–1980, 2025", "fmt": "degc"}]
+    }
+  ]
+}

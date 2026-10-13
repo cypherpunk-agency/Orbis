@@ -1,0 +1,37 @@
+{
+  "id": "jet-stream", "cat": "Planet", "title": "Rivers of air",
+  "hook": "Ten kilometres up, winds of 200 km/h circle the planet. Planes ride them east.",
+  "notes": "Winds at the 250 hPa pressure level (about 10 km up) from the NOAA/NCEP Global Forecast System analysis of 13 October 2026, 12:00 UTC, on a 1° grid. One moment in time: the jet streams shift and wander from day to day. Flight times are typical scheduled times and vary by airline and season.",
+  "data": {"wind": "data/grids/wind.json"},
+  "scenes": [
+    {
+      "title": "Winds at airliner height",
+      "text": "Each streak is a parcel of air drifting with the wind at about the height where airliners cruise. Bright streaks move faster than 35 metres per second, about 125 km/h. Two wavy bands stand out over the mid-latitudes: the jet streams.",
+      "view": {"mode": "globe", "center": [-40, 40], "zoom": 1},
+      "basemap": "satellite",
+      "layers": [{"type": "particles", "data": "wind", "count": 3000}]
+    },
+    {
+      "title": "Faster going east",
+      "text": "The jet streams blow from west to east. A flight from New York to London rides the tailwind and is usually about an hour shorter than the same flight going the other way.",
+      "view": {"mode": "globe", "center": [-35, 47], "zoom": 1.6},
+      "basemap": "satellite",
+      "layers": [{"type": "particles", "data": "wind", "count": 3000}],
+      "routes": [{"path": [[-73.78, 40.64], [-0.45, 51.47]], "color": "c3", "width": 2.2, "label": "New York–London", "dist": true}]
+    },
+    {
+      "title": "The southern jet",
+      "text": "The southern hemisphere has its own jet stream, circling Antarctica over open ocean. With few mountains to disturb it, it is often steadier than the northern one.",
+      "view": {"mode": "globe", "center": [60, -50], "zoom": 1},
+      "basemap": "satellite",
+      "layers": [{"type": "particles", "data": "wind", "count": 3000}]
+    },
+    {
+      "title": "Weather makers",
+      "text": "The jet streams steer storms and separate cold polar air from warmer air to the south. When they buckle into big loops, cold or hot spells can stall over a region for days.",
+      "view": {"mode": "equal", "center": [10, 30], "zoom": 1},
+      "basemap": "satellite",
+      "layers": [{"type": "particles", "data": "wind", "count": 3500}]
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "id": "ports",
+  "cat": "Economics",
+  "title": "Where the boxes go",
+  "hook": "All ten of the world's busiest container ports are in Asia, and six are in mainland China.",
+  "notes": "Container throughput in TEU (twenty-foot equivalent units: one standard 20-foot box; a common 40-foot box counts as two). 2024 figures as reported by port authorities and governments, rounded: Shanghai, Singapore, Ningbo-Zhoushan, Shenzhen, Qingdao and Tianjin as compiled in the JOC Top 50 Global Container Ports (August 2025); Guangzhou as reported by the port (26.1 million; JOC lists 26.45 million for Guangzhou-Nansha); Busan: Busan Port Authority; Jebel Ali: DP World; Port Klang and Tanjung Pelepas: Malaysian Ministry of Transport; Rotterdam: Port of Rotterdam; Hong Kong: Census and Statistics Department; Antwerp-Bruges and Hamburg: HHLA Annual Report 2024; Los Angeles and Long Beach: the two ports. 2009 and 2023: Hong Kong Marine Department, Ranking of Container Ports of the World (as at 16 May 2024), which lists only the top ten of each year. Only the ports shown are included; there are hundreds more. Shipping lanes are schematic, drawn by Orbis. Trade through the South China Sea and the Red Sea diversions are covered in other stories.",
+  "data": {
+    "ports": "data/economics/ports.json",
+    "lanes": "data/economics/shipping-lanes.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "The busiest ports",
+      "text": "Nearly everything you buy spent part of its journey in a steel box. In 2024 Shanghai handled about 51.5 million of them, counted in twenty-foot units (TEU), more than any port in history. Singapore (41 million) and Ningbo-Zhoushan (39 million) come next. All ten of the busiest ports are in Asia.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "ports",
+          "field": "teu",
+          "period": "2024",
+          "color": "c1",
+          "title": "Container throughput 2024, million TEU",
+          "maxR": 34,
+          "vmax": 52,
+          "labels": 3
+        }
+      ],
+      "chart": {
+        "data": "ports",
+        "field": "teu",
+        "period": "2024",
+        "top": 10,
+        "title": "Busiest container ports 2024, million TEU",
+        "color": "c1"
+      }
+    },
+    {
+      "title": "China's coast is the world's dock",
+      "text": "Six of the top ten are in mainland China, strung along its coast from Tianjin to Guangzhou: the factories of the Yangtze and Pearl River deltas ship from here. Shanghai's main terminal, Yangshan, sits on islands 30 km offshore, linked by a bridge. Busan in South Korea is the busiest port outside China and Singapore.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          118,
+          30
+        ],
+        "zoom": 4.2
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "ports",
+          "field": "teu",
+          "period": "2024",
+          "color": "c1",
+          "title": "Container throughput 2024, million TEU",
+          "maxR": 18,
+          "vmax": 52,
+          "labels": 9
+        }
+      ],
+      "countryLabels": true,
+      "chart": {
+        "data": "ports",
+        "field": "teu",
+        "period": "2024",
+        "top": 10,
+        "title": "Busiest container ports 2024, million TEU",
+        "color": "c1"
+      }
+    },
+    {
+      "title": "The rise of Ningbo, the fall of Hong Kong",
+      "text": "In 2009 Hong Kong was the world's third-busiest port, with 21 million TEU. By 2023 it had slipped to tenth with 14 million, as factories moved inland and nearby Shenzhen and Guangzhou built their own terminals. Ningbo-Zhoushan more than tripled, from 10.5 to 35 million. Switch between the two years' top tens.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          112,
+          22
+        ],
+        "zoom": 2.2
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "ports",
+          "field": "teu",
+          "period": "{p}",
+          "color": "c1",
+          "title": "Container throughput {p}, million TEU (top ten only)",
+          "maxR": 26,
+          "vmax": 52,
+          "labels": 10
+        }
+      ],
+      "switch": {
+        "label": "Top ten in",
+        "start": 0,
+        "options": [
+          {
+            "p": "2009",
+            "label": "2009"
+          },
+          {
+            "p": "2023",
+            "label": "2023"
+          }
+        ]
+      },
+      "chart": {
+        "data": "ports",
+        "field": "teu",
+        "period": "{p}",
+        "top": 10,
+        "title": "Busiest container ports {p}, million TEU",
+        "color": "c1"
+      }
+    },
+    {
+      "title": "The Singapore Strait",
+      "text": "Singapore is the world's biggest transshipment hub: most of its boxes are unloaded from one ship and loaded onto another, without ever entering the country. Across the strait, Malaysia's Tanjung Pelepas (12 million TEU) and, up the coast, Port Klang (15 million) compete for the same traffic.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          102.6,
+          2.4
+        ],
+        "zoom": 10
+      },
+      "basemap": "satellite",
+      "layers": [
+        {
+          "type": "lines",
+          "data": "lanes",
+          "set": "lanes",
+          "color": "c4",
+          "width": 2
+        },
+        {
+          "type": "symbols",
+          "data": "ports",
+          "field": "teu",
+          "period": "2024",
+          "color": "c3",
+          "title": "Container throughput 2024, million TEU",
+          "maxR": 40,
+          "vmax": 52,
+          "labels": 0
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            101.36,
+            3.0
+          ],
+          "label": "Port Klang 14.6",
+          "color": "c3",
+          "r": 3
+        },
+        {
+          "at": [
+            103.78,
+            1.26
+          ],
+          "label": "Singapore 41.1, Tanjung Pelepas 12.3",
+          "color": "c3",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "Lanes between the factories and the shops",
+      "text": "Container ships run fixed loops between Asia, Europe and North America. Since attacks on Red Sea shipping began in late 2023, most Asia–Europe services sail around Africa instead of through Suez (dashed). Europe's biggest ports, Rotterdam (13.8 million TEU) and Antwerp-Bruges (13.5 million), rank just outside the world's top ten.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "lanes",
+          "set": "lanes",
+          "color": "c4",
+          "width": 2,
+          "labels": true
+        },
+        {
+          "type": "symbols",
+          "data": "ports",
+          "field": "teu",
+          "period": "2024",
+          "color": "c1",
+          "title": "Container throughput 2024, million TEU",
+          "maxR": 34,
+          "vmax": 52,
+          "labels": 0
+        }
+      ]
+    },
+    {
+      "title": "America's front door",
+      "text": "Much of America's trade with Asia lands at two neighbouring ports in southern California. Los Angeles (10.3 million TEU) and Long Beach (9.6 million) together handled about 20 million TEU in 2024, a record for Long Beach, as importers rushed goods in ahead of new tariffs.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -150,
+          32
+        ],
+        "zoom": 1.25
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "lanes",
+          "set": "lanes",
+          "color": "c4",
+          "width": 2,
+          "labels": true
+        },
+        {
+          "type": "symbols",
+          "data": "ports",
+          "field": "teu",
+          "period": "2024",
+          "color": "c1",
+          "title": "Container throughput 2024, million TEU",
+          "maxR": 34,
+          "vmax": 52,
+          "labels": 2
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            -118.23,
+            33.74
+          ],
+          "label": "Los Angeles 10.3, Long Beach 9.6",
+          "color": "c1",
+          "r": 3
+        }
+      ]
+    }
+  ]
+}

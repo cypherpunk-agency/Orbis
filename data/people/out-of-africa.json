@@ -1,0 +1,55 @@
+{
+  "source": "orbis-schematic",
+  "asOf": "2026-10",
+  "note": "Schematic dispersal routes drawn by Orbis to connect dated sites; nobody knows the exact paths. Dashed: early dispersals that left few or no descendants among living people. Dates are scientific estimates with ranges, cited in the story notes.",
+  "lines": {
+    "early": [
+      {"name": "Misliya, ≈ 194,000–177,000 years ago", "status": "early", "labelAt": 3, "path": [[36.5, 7], [33.5, 16], [32.5, 26], [33.6, 30.5], [34.97, 32.7]]},
+      {"name": "Al Wusta, Arabia, ≈ 95,000–86,000", "status": "early", "labelAt": 3, "path": [[39, 9], [42.5, 12.2], [43.4, 12.8], [44, 17.5], [41.5, 23], [39.0, 27.4]]}
+    ],
+    "exit": [
+      {"name": "Out of Africa, ≈ 60,000–50,000 years ago", "labelAt": 2, "path": [[36.5, 7], [40.5, 10.5], [43.4, 12.6], [47, 14.5], [52, 16.5], [57.5, 21], [57.5, 25.5]]},
+      {"name": "", "path": [[36.5, 7], [33.5, 16], [32.5, 26], [33.6, 30.5], [35.2, 32.5], [37, 35.5]]}
+    ],
+    "south": [
+      {"name": "South Asia", "labelAt": 2, "path": [[57.5, 25.5], [62, 25.3], [67, 24.5], [72, 20.5], [76, 12], [80.5, 13.5], [87, 21.5], [92.5, 21]]},
+      {"name": "Sunda", "labelAt": 3, "path": [[92.5, 21], [97, 16], [98.5, 8.5], [101.5, 2.5], [106, -6], [112, -7.5], [118, -8.7], [124, -9.5]]},
+      {"name": "Sahul (Australia–New Guinea)", "labelAt": 4, "path": [[124, -9.5], [129, -11], [132.6, -12.5], [136, -19], [140, -27], [143.1, -33.8]]},
+      {"name": "", "path": [[129, -11], [135, -5], [141, -4], [147, -6.5]]}
+    ],
+    "north": [
+      {"name": "", "labelAt": 5, "path": [[37, 35.5], [33, 38.5], [29, 40.5], [25.4, 42.95], [19.5, 45.5], [14.5, 48.5], [11.57, 50.66]]},
+      {"name": "Siberia", "labelAt": 3, "path": [[37, 35.5], [46, 36.5], [54, 37.5], [62, 41], [67, 48], [71.17, 57.7]]}
+    ],
+    "east": [
+      {"name": "East Asia", "labelAt": 3, "path": [[98.5, 16], [103.5, 20.2], [108, 24], [112, 30], [115.9, 39.65], [122, 39], [129, 35], [139.5, 36]]}
+    ],
+    "americas": [
+      {"name": "Across Beringia", "labelAt": 3, "path": [[71.17, 57.7], [95, 59], [120, 62.5], [150, 65], [170, 66], [-170, 65.5], [-160, 62], [-150, 59.5]]},
+      {"name": "Down the Pacific coast", "labelAt": 3, "path": [[-150, 59.5], [-138, 57.5], [-129, 51], [-124, 42], [-117, 33], [-110, 24], [-95, 15], [-80, 7], [-80, -5], [-77, -15], [-71.5, -30], [-73.2, -41.5]]},
+      {"name": "", "path": [[-117, 33], [-106.3, 32.8]]}
+    ],
+    "pacific": [
+      {"name": "Remote Oceania, from ≈ 3,000 years ago", "labelAt": 3, "path": [[147, -6.5], [152, -4.5], [160, -9], [168, -16], [178, -18], [-175.2, -21.1], [-172, -13.8], [-149.5, -17.5]]},
+      {"name": "Hawaii, ≈ 1000–1300 CE", "labelAt": 2, "path": [[-149.5, -17.5], [-152, -5], [-155.5, 19.6]]},
+      {"name": "Rapa Nui", "labelAt": 1, "path": [[-149.5, -17.5], [-130, -24], [-109.35, -27.1]]},
+      {"name": "New Zealand, ≈ 1280 CE", "labelAt": 2, "path": [[-149.5, -17.5], [-159.8, -21.2], [174.8, -41.3]]}
+    ]
+  },
+  "points": {
+    "africa": [{"name": "Jebel Irhoud, ≈ 300,000 years ago", "at": [-8.87, 31.85]}, {"name": "Omo Kibish, ≈ 233,000", "at": [35.95, 5.4]}],
+    "early": [{"name": "Skhul and Qafzeh, ≈ 120,000–90,000", "at": [35.3, 32.7]}],
+    "sahul": [
+      {"name": "Madjedbebe, ≈ 65,000 (debated)", "at": [132.6, -12.5]},
+      {"name": "Lida Ajer, ≈ 73,000–63,000", "at": [100.3, -0.2]},
+      {"name": "Tam Pa Ling, ≈ 86,000–68,000", "at": [103.5, 20.2]}
+    ],
+    "north": [
+      {"name": "Bacho Kiro, ≈ 46,000–44,000", "at": [25.43, 42.95]},
+      {"name": "Ranis, ≈ 47,000–45,000", "at": [11.57, 50.66]},
+      {"name": "Ust'-Ishim, ≈ 45,000", "at": [71.17, 57.7]},
+      {"name": "Tianyuan, ≈ 40,000", "at": [115.9, 39.65]}
+    ],
+    "americas": [{"name": "White Sands, ≈ 23,000–21,000", "at": [-106.3, 32.8]}, {"name": "Monte Verde, ≈ 14,500 (disputed)", "at": [-73.2, -41.5]}]
+  }
+}

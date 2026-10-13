@@ -1,0 +1,248 @@
+{
+ "id": "whose-land",
+ "cat": "Geopolitics",
+ "title": "Whose land?",
+ "hook": "The same piece of land is drawn differently depending on who prints the map.",
+ "notes": "Disputed areas and their owners as drawn on Natural Earth's 'point of view' maps (version 5.1), which follow the official positions or common map practice of each country. Natural Earth's views can lag behind recent diplomatic changes; dashed outlines mark areas whose owner differs between views. 'Disputed' means the map shows the area without assigning it to any country.",
+ "data": {
+  "pov": "data/geopolitics/pov.json"
+ },
+ "scenes": [
+  {
+   "title": "One peninsula, two maps",
+   "text": "Russia annexed Crimea in 2014. Russian maps show it as part of Russia; Ukraine and most other countries still draw it as Ukrainian. Switch the point of view.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     35,
+     46.5
+    ],
+    "zoom": 9
+   },
+   "switch": {
+    "label": "Seen from",
+    "options": [
+     {
+      "v": "UA",
+      "label": "Ukraine"
+     },
+     {
+      "v": "RU",
+      "label": "Russia"
+     },
+     {
+      "v": "US",
+      "label": "United States"
+     },
+     {
+      "v": "CN",
+      "label": "China"
+     }
+    ]
+   },
+   "layers": [
+    {
+     "type": "pov",
+     "data": "pov",
+     "view": "{v}",
+     "areas": [
+      "Crimea",
+      "Ukraine"
+     ]
+    }
+   ],
+   "countryLabels": true,
+   "political": true
+  },
+  {
+   "title": "Kashmir, three ways",
+   "text": "India, Pakistan and China each control part of Kashmir, and each claims more. Indian maps show the whole of it as Indian, including areas held by Pakistan and China. Pakistani and Chinese maps draw their own claims.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     77,
+     34.5
+    ],
+    "zoom": 6
+   },
+   "switch": {
+    "label": "Seen from",
+    "options": [
+     {
+      "v": "IN",
+      "label": "India"
+     },
+     {
+      "v": "PK",
+      "label": "Pakistan"
+     },
+     {
+      "v": "CN",
+      "label": "China"
+     },
+     {
+      "v": "US",
+      "label": "United States"
+     }
+    ]
+   },
+   "layers": [
+    {
+     "type": "pov",
+     "data": "pov",
+     "view": "{v}",
+     "areas": [
+      "India",
+      "Pakistan",
+      "China",
+      "Siachen Glacier"
+     ]
+    }
+   ],
+   "countryLabels": true,
+   "political": true
+  },
+  {
+   "title": "Western Sahara",
+   "text": "Morocco controls most of Western Sahara and considers it Moroccan; the Polisario Front seeks independence. Moroccan maps show no border at all. Many others draw the territory separately, and some, like Natural Earth's French and Indian maps, show it as Moroccan.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -11,
+     25
+    ],
+    "zoom": 4.5
+   },
+   "switch": {
+    "label": "Seen from",
+    "options": [
+     {
+      "v": "MA",
+      "label": "Morocco"
+     },
+     {
+      "v": "ES",
+      "label": "Spain"
+     },
+     {
+      "v": "FR",
+      "label": "France"
+     },
+     {
+      "v": "IN",
+      "label": "India"
+     }
+    ]
+   },
+   "layers": [
+    {
+     "type": "pov",
+     "data": "pov",
+     "view": "{v}",
+     "areas": [
+      "W. Sahara"
+     ]
+    }
+   ],
+   "countryLabels": true,
+   "political": true
+  },
+  {
+   "title": "Islands in the China seas",
+   "text": "Chinese maps show Taiwan as part of China, and claim the Senkaku/Diaoyu islands that Japan administers. The Spratly and Paracel islands are claimed in whole or part by China, Taiwan, Vietnam and others; most maps leave them unassigned.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     118,
+     18
+    ],
+    "zoom": 2.7
+   },
+   "switch": {
+    "label": "Seen from",
+    "options": [
+     {
+      "v": "CN",
+      "label": "China"
+     },
+     {
+      "v": "TW",
+      "label": "Taiwan"
+     },
+     {
+      "v": "VN",
+      "label": "Vietnam"
+     },
+     {
+      "v": "JP",
+      "label": "Japan"
+     },
+     {
+      "v": "US",
+      "label": "United States"
+     }
+    ]
+   },
+   "layers": [
+    {
+     "type": "pov",
+     "data": "pov",
+     "view": "{v}",
+     "areas": [
+      "Taiwan",
+      "Nansei-shoto",
+      "Spratly Is.",
+      "Paracel Is."
+     ]
+    }
+   ],
+   "countryLabels": true,
+   "political": true
+  },
+  {
+   "title": "Recognised by some",
+   "text": "Kosovo declared independence from Serbia in 2008. About half the world's countries recognise it, so it appears on some maps and not on others. Argentina claims the Falkland Islands, which Britain governs. Switch viewpoints to see both disputes change.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     -15,
+     15
+    ],
+    "zoom": 1.3
+   },
+   "switch": {
+    "label": "Seen from",
+    "options": [
+     {
+      "v": "US",
+      "label": "United States"
+     },
+     {
+      "v": "RU",
+      "label": "Russia"
+     },
+     {
+      "v": "AR",
+      "label": "Argentina"
+     },
+     {
+      "v": "GB",
+      "label": "United Kingdom"
+     }
+    ]
+   },
+   "layers": [
+    {
+     "type": "pov",
+     "data": "pov",
+     "view": "{v}",
+     "areas": [
+      "Kosovo",
+      "Falkland Is."
+     ]
+    }
+   ],
+   "political": true
+  }
+ ]
+}

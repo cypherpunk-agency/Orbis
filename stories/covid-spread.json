@@ -1,0 +1,77 @@
+{
+  "id": "covid-spread",
+  "cat": "People",
+  "title": "How COVID-19 spread",
+  "hook": "From one city in December 2019 to almost every country on Earth in three months.",
+  "notes": "First cases: month in which each country or territory first reported a confirmed COVID-19 case, from ECDC's daily worldwide data (31 Dec 2019 to 14 Dec 2020), by reporting date. Reporting lagged infections, and some early cases were only found later. One ECDC error corrected: Mexico's first case was confirmed on 28 Feb 2020, not in January. Hong Kong and Macao are not reported separately by ECDC and are left blank. Turkmenistan and North Korea officially reported no cases in 2020. Deaths: confirmed COVID-19 deaths per million people by 31 Dec 2022, Our World in Data based on WHO COVID-19 dashboard data (world total ≈ 6.7 million). Confirmed deaths depend on testing and death registration and undercount the true toll, by very different amounts in different countries. WHO's excess-mortality estimate for 2020–2021: ≈ 14.9 million (range 13.3–16.6 million), WHO news release, 5 May 2022; Msemburi et al., Nature 2023. Event dates: WHO COVID-19 timeline (who.int).",
+  "data": {"first": "data/people/covid-first.json", "deaths": "data/people/covid-deaths.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "A cluster in Wuhan",
+      "text": "On 31 December 2019, health officials in Wuhan, a city of 11 million in central China, reported a cluster of pneumonia cases with an unknown cause. On 11 January 2020, Chinese scientists published the genome of a new coronavirus. On 23 January, Wuhan was locked down. By then, the virus was already travelling.",
+      "view": {"mode": "globe", "center": [112, 30], "zoom": 2.2},
+      "layers": [{"type": "since", "data": "first", "set": "first_case", "year": 201912, "color": "c2", "title": "First case reported"}],
+      "points": [{"at": [114.3, 30.59], "label": "Wuhan", "color": "c3", "r": 6}]
+    },
+    {
+      "title": "Within weeks",
+      "text": "On 13 January, Thailand reported the first confirmed case outside China. By the end of January, 21 countries and territories had cases, and by the end of February, 58. Press Play to see the month each country reported its first case.",
+      "view": {"mode": "equal", "center": [40, 15], "zoom": 1},
+      "layers": [{"type": "since", "data": "first", "set": "first_case", "year": "t", "color": "c2", "title": "First case reported by this month"}],
+      "timeline": {
+        "years": [201912, 202001, 202002, 202003, 202004, 202005, 202006, 202007, 202008, 202009, 202010, 202011, 202012],
+        "start": 202001,
+        "format": "month",
+        "captions": {
+          "201912": "31 Dec: Wuhan reports a cluster of pneumonia of unknown cause.",
+          "202001": "Thailand, Japan, South Korea, the US, France and others report cases. 30 Jan: WHO declares a global health emergency.",
+          "202002": "Outbreaks grow in South Korea, Iran and northern Italy.",
+          "202003": "11 Mar: WHO calls it a pandemic. Cases in nearly every country.",
+          "202004": "Malawi, South Sudan, Yemen and others report first cases.",
+          "202010": "Remote Pacific islands begin to report cases."
+        }
+      }
+    },
+    {
+      "title": "Everywhere by March",
+      "text": "March 2020 was the month the virus went global. On 11 March, WHO called the outbreak a pandemic. By the end of the month, 196 countries and territories had reported cases, out of 213 that did so in 2020. Borders closed, but mostly after the virus had already crossed them.",
+      "view": {"mode": "equal", "center": [20, 15], "zoom": 1},
+      "layers": [{"type": "since", "data": "first", "set": "first_case", "year": 202003, "color": "c2", "title": "First case reported by March 2020"}]
+    },
+    {
+      "title": "The last to report",
+      "text": "A few places kept the virus out for months. Some Pacific island states, isolated by distance and early border closures, reported their first cases only in late 2020, and several, such as Tonga, Kiribati and Tuvalu, none at all that year. Turkmenistan and North Korea said they had no cases, a claim widely doubted.",
+      "view": {"mode": "equal", "center": [132, 8], "zoom": 1.75},
+      "layers": [{"type": "since", "data": "first", "set": "first_case", "year": 202012, "color": "c2", "title": "First case reported in 2020"}],
+      "highlight": ["TKM", "PRK"],
+      "legend": [
+        {"color": "c2", "label": "First case reported in 2020"},
+        {"color": "muted", "label": "No case reported in 2020 (outlined: officially none, widely doubted)"}
+      ],
+      "points": [
+        {"at": [-175.2, -21.1], "label": "Tonga: none", "color": "muted", "r": 4},
+        {"at": [173.0, 1.4], "label": "Kiribati: none", "color": "muted", "r": 4},
+        {"at": [160.0, -9.4], "label": "Solomon Is. (Oct)", "color": "c2", "r": 4},
+        {"at": [171.4, 7.1], "label": "Marshall Is. (Oct)", "color": "c2", "r": 4},
+        {"at": [168.3, -17.7], "label": "Vanuatu (Nov)", "color": "c2", "r": 4}
+      ]
+    },
+    {
+      "title": "The toll",
+      "text": "By the end of 2022, countries had reported about 6.7 million COVID-19 deaths to WHO. Per person, Peru was hit hardest, with about 6,500 deaths per million people, followed by countries in Central and Eastern Europe. These are confirmed deaths only. WHO estimates that about 14.9 million more people died than normal in 2020 and 2021 alone.",
+      "view": {"mode": "equal", "center": [10, 15], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "deaths",
+          "series": "deaths_pm",
+          "year": 2022,
+          "title": "Confirmed COVID-19 deaths per million, end of",
+          "fmt": "n"
+        }
+      ],
+      "chart": {"data": "deaths", "series": "deaths_pm", "year": 2022, "top": 8, "title": "Confirmed deaths per million", "fmt": "n", "color": "c2"}
+    }
+  ]
+}

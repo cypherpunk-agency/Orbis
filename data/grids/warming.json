@@ -1,0 +1,42 @@
+{
+ "source": "nasa-gistemp",
+ "asOf": "2026-09",
+ "retrieved": "2026-10-13",
+ "note": "GISTEMP v4 (GHCNv4 + ERSSTv5, 1200 km smoothing). Decadal means of monthly anomalies vs 1951–1980; the 2020s frame averages 81 months (Jan 2020–2026-09). Frame '2025' is the annual mean for 2025. Cells with too few months are nodata. Clamped to ±4 °C.",
+ "units": "°C vs 1951–1980",
+ "grid": {
+  "width": 180,
+  "height": 90,
+  "bbox": [
+   -180,
+   -90,
+   180,
+   90
+  ]
+ },
+ "encoding": {
+  "type": "linear",
+  "min": -4.0,
+  "max": 4.0,
+  "nodata": 0
+ },
+ "palette": "diverging",
+ "frames": {
+  "1880": "data/grids/warming-1880.png",
+  "1890": "data/grids/warming-1890.png",
+  "1900": "data/grids/warming-1900.png",
+  "1910": "data/grids/warming-1910.png",
+  "1920": "data/grids/warming-1920.png",
+  "1930": "data/grids/warming-1930.png",
+  "1940": "data/grids/warming-1940.png",
+  "1950": "data/grids/warming-1950.png",
+  "1960": "data/grids/warming-1960.png",
+  "1970": "data/grids/warming-1970.png",
+  "1980": "data/grids/warming-1980.png",
+  "1990": "data/grids/warming-1990.png",
+  "2000": "data/grids/warming-2000.png",
+  "2010": "data/grids/warming-2010.png",
+  "2020": "data/grids/warming-2020.png",
+  "2025": "data/grids/warming-2025.png"
+ }
+}

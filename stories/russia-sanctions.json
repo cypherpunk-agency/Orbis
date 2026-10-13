@@ -1,0 +1,54 @@
+{
+  "id": "russia-sanctions", "cat": "Geopolitics", "title": "Sanctions and Russian oil",
+  "hook": "About 50 governments imposed sanctions on Russia after it invaded Ukraine. Most of the world did not, and that is where Russia's oil went.",
+  "notes": "Sanctioning countries: compiled by Orbis from official sources, status October 2026: Council of the EU ('EU sanctions against Russia explained', last review 7 October 2026) for the 27 member states and the oil embargo; the EU High Representative's statement of 4 June 2025 for countries aligning with EU Council Decision (CFSP) 2025/931 (Albania, Bosnia and Herzegovina, Iceland, Liechtenstein, Montenegro, North Macedonia, Norway, Ukraine); Swiss Federal Council, 28 February 2022; national sanctions pages and announcements of the United States (OFAC), United Kingdom, Canada, Japan, South Korea, Australia (DFAT), New Zealand (Russia Sanctions Act 2022), Singapore (MFA, 5 March 2022), Taiwan (MOFA, 25 February 2022) and Ukraine. Monaco, San Marino and Andorra apply EU measures through their own decisions; Kosovo's alignment (government decision of 25 February 2022) is taken from press reports. The map shows broad sanctions programmes, not their depth: measures differ a lot from country to country, and countries that only sanctioned individuals under other regimes (for example Moldova) or restricted their airspace are not coloured. Full citations are in the dataset note. Oil trade: CEPII BACI (HS 2709, crude petroleum), values in US dollars at the border as reported to UN Comtrade; the dataset keeps only the 80 largest crude flows worldwide each year (above about $3 billion), so smaller buyers of Russian crude such as Turkey are not shown, and pipeline deliveries are included. China and India shares are of Russia's total crude exports in BACI.",
+  "data": { "sx": "data/geopolitics/sanctions.json", "trade": "data/energy/trade.json" },
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Who sanctions Russia",
+      "text": "After Russia's full-scale invasion of Ukraine on 24 February 2022, about 50 governments imposed sanctions on it: the 27 EU states, European neighbours that adopt EU sanctions such as Switzerland and Norway, and the US, UK, Canada, Japan, South Korea, Australia, New Zealand, Singapore and Taiwan with their own measures. Most countries, including China, India, Brazil, Turkey and the Gulf states, did not.",
+      "view": { "mode": "equal", "center": [10, 20], "zoom": 1 },
+      "layers": [{ "type": "categories", "data": "sx", "set": "sanctions", "colors": { "eu": "c1", "aligned": "c4", "own": "c5" } }]
+    },
+    {
+      "title": "Europe's sanctions",
+      "text": "EU sanctions need the agreement of all 27 member states; by July 2026 the EU had adopted 21 packages. Non-EU neighbours from Norway and Switzerland to Albania and Montenegro adopt them too. Serbia, Turkey and Georgia, all candidates to join the EU, have not.",
+      "view": { "mode": "globe", "center": [20, 50], "zoom": 2.2 },
+      "layers": [{ "type": "categories", "data": "sx", "set": "sanctions", "colors": { "eu": "c1", "aligned": "c4", "own": "c5" } }],
+      "highlight": ["SRB", "TUR", "GEO"],
+      "countryLabels": true
+    },
+    {
+      "title": "Asia and the Pacific",
+      "text": "In Asia, Japan, South Korea, Taiwan and Singapore imposed sanctions or export controls, as did Australia and New Zealand. Singapore said it acted 'in concert with many other like-minded countries' because Russia had vetoed a Security Council resolution. China, India, Indonesia, Vietnam and the rest of the region did not join.",
+      "view": { "mode": "globe", "center": [120, 15], "zoom": 1.5 },
+      "layers": [{ "type": "categories", "data": "sx", "set": "sanctions", "colors": { "eu": "c1", "aligned": "c4", "own": "c5" } }],
+      "highlight": ["CHN", "IND", "IDN", "VNM"],
+      "countryLabels": true
+    },
+    {
+      "title": "Where Russia's crude went",
+      "text": "Before the war, at least a third of Russia's crude oil exports by value went to five EU countries, led by the Netherlands and Germany. The EU banned seaborne imports from December 2022. By 2023 almost all large flows ran to China and India. Play the years.",
+      "view": { "mode": "globe", "center": [60, 40], "zoom": 1.1 },
+      "layers": [{ "type": "flows", "data": "trade", "group": "crude", "year": "t", "from": ["RUS"], "top": 12, "color": "c3", "title": "Russian crude oil exports", "fmt": "musd", "vmax": 63000, "maxW": 12 }],
+      "timeline": { "years": [2021, 2024], "start": 2021, "captions": {
+        "2021": "China buys $35 billion, the Netherlands $17 billion, Germany $9 billion.",
+        "2022": "Prices jump; Europe still buys until the embargo starts in December. India becomes the second-largest buyer.",
+        "2023": "The EU embargo is in force. China and India take 90% of Russia's crude exports by value.",
+        "2024": "China $63 billion, India $53 billion." } },
+      "sources": ["baci"]
+    },
+    {
+      "title": "Sold outside the sanctions map",
+      "text": "In 2024 China and India bought about 93% of Russia's crude exports by value, some 200 million tonnes, and neither imposes sanctions on Russia. With $124 billion in crude sales, Russia remained the world's second-largest crude exporter by value, after Saudi Arabia and just ahead of the United States.",
+      "view": { "mode": "equal", "center": [60, 30], "zoom": 1.4 },
+      "layers": [
+        { "type": "categories", "data": "sx", "set": "sanctions", "colors": { "eu": "c1", "aligned": "c4", "own": "c5" } },
+        { "type": "flows", "data": "trade", "group": "crude", "year": 2024, "from": ["RUS"], "color": "c3", "title": "Russian crude oil exports", "fmt": "musd", "vmax": 63000, "maxW": 12 }
+      ],
+      "chart": { "data": "trade", "group": "crude", "side": "exports", "year": 2024, "top": 6, "title": "Largest crude oil exporters, by value", "fmt": "musd", "color": "c3" },
+      "sources": ["baci"]
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+"source": "editorial",
+"asOf": "2026-07-19",
+"retrieved": "2026-10-13",
+"note": "FIFA World Cup 2026 host cities and number of matches per stadium (104 in total: 78 in the US, 13 each in Canada and Mexico), from the official FIFA match schedule as summarised in Wikipedia, '2026 FIFA World Cup' (venues table, retrieved 13 Oct 2026). Stadium coordinates typed in from public maps, rounded. Not affiliated with or endorsed by FIFA.",
+"periods": [
+"2026"
+],
+"points": [
+{
+"id": "vancouver",
+"name": "Vancouver",
+"stadium": "BC Place",
+"at": [
+-123.1119,
+49.2768
+],
+"matches": [
+7
+]
+},
+{
+"id": "seattle",
+"name": "Seattle",
+"stadium": "Lumen Field",
+"at": [
+-122.3316,
+47.5952
+],
+"matches": [
+6
+]
+},
+{
+"id": "sf",
+"name": "San Francisco Bay Area",
+"stadium": "Levi's Stadium, Santa Clara",
+"at": [
+-121.97,
+37.4033
+],
+"matches": [
+6
+]
+},
+{
+"id": "la",
+"name": "Los Angeles",
+"stadium": "SoFi Stadium, Inglewood",
+"at": [
+-118.3392,
+33.9535
+],
+"matches": [
+8
+]
+},
+{
+"id": "guadalajara",
+"name": "Guadalajara",
+"stadium": "Estadio Akron, Zapopan",
+"at": [
+-103.4625,
+20.6819
+],
+"matches": [
+4
+]
+},
+{
+"id": "mexico",
+"name": "Mexico City",
+"stadium": "Estadio Azteca",
+"at": [
+-99.1505,
+19.3029
+],
+"matches": [
+5
+]
+},
+{
+"id": "monterrey",
+"name": "Monterrey",
+"stadium": "Estadio BBVA, Guadalupe",
+"at": [
+-100.2446,
+25.669
+],
+"matches": [
+4
+]
+},
+{
+"id": "houston",
+"name": "Houston",
+"stadium": "NRG Stadium",
+"at": [
+-95.4107,
+29.6847
+],
+"matches": [
+7
+]
+},
+{
+"id": "dallas",
+"name": "Dallas",
+"stadium": "AT&T Stadium, Arlington",
+"at": [
+-97.0929,
+32.7473
+],
+"matches": [
+9
+]
+},
+{
+"id": "kc",
+"name": "Kansas City",
+"stadium": "Arrowhead Stadium",
+"at": [
+-94.4839,
+39.0489
+],
+"matches": [
+6
+]
+},
+{
+"id": "atlanta",
+"name": "Atlanta",
+"stadium": "Mercedes-Benz Stadium",
+"at": [
+-84.4008,
+33.7554
+],
+"matches": [
+8
+]
+},
+{
+"id": "miami",
+"name": "Miami",
+"stadium": "Hard Rock Stadium, Miami Gardens",
+"at": [
+-80.2389,
+25.958
+],
+"matches": [
+7
+]
+},
+{
+"id": "toronto",
+"name": "Toronto",
+"stadium": "BMO Field",
+"at": [
+-79.4186,
+43.6332
+],
+"matches": [
+6
+]
+},
+{
+"id": "boston",
+"name": "Boston",
+"stadium": "Gillette Stadium, Foxborough",
+"at": [
+-71.2643,
+42.0909
+],
+"matches": [
+7
+]
+},
+{
+"id": "philadelphia",
+"name": "Philadelphia",
+"stadium": "Lincoln Financial Field",
+"at": [
+-75.1675,
+39.9008
+],
+"matches": [
+6
+]
+},
+{
+"id": "nynj",
+"name": "New York / New Jersey",
+"stadium": "MetLife Stadium, East Rutherford",
+"at": [
+-74.0745,
+40.8135
+],
+"matches": [
+8
+]
+}
+]
+}

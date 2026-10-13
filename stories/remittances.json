@@ -1,0 +1,50 @@
+{
+  "id": "remittances",
+  "cat": "Economics",
+  "title": "Money sent home",
+  "hook": "Migrants send home more than all foreign aid and investment combined.",
+  "notes": "World Bank Migration and Development Brief 40 (2024): ≈ USD 656 billion to low- and middle-income countries in 2023, larger than FDI and official aid combined (excl. China). Shares of GDP ≈ 2023, rounded. Flows drawn are major corridors, schematic.",
+  "data": {"routes": "data/legacy/routes.json", "values": "data/legacy/values.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "A quiet giant",
+      "text": "In 2023, migrants sent about 656 billion dollars to families in low- and middle-income countries. That is more than foreign direct investment and development aid combined.",
+      "view": {"mode": "globe", "center": [20, 25], "zoom": 1},
+      "layers": [{"type": "lines", "data": "routes", "set": "remittances", "color": "c4", "width": 2, "flow": true}]
+    },
+    {
+      "title": "The biggest receivers",
+      "text": "India received about 120 billion dollars, more than any country in history. Mexico followed with about 66 billion, then China, the Philippines and Pakistan.",
+      "view": {"mode": "equal", "center": [0, 20], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "remit_usd",
+          "year": 2023,
+          "log": true,
+          "fmt": "busd",
+          "title": "Remittances received, USD billion (2023)",
+          "showYear": false
+        }
+      ]
+    },
+    {
+      "title": "Where it matters most",
+      "text": "In Tajikistan, money sent home is close to half of the whole economy, mostly from workers in Russia. In Nepal, Honduras and Lebanon, it is about a quarter.",
+      "view": {"mode": "globe", "center": [45, 30], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "remit_gdp",
+          "year": 2023,
+          "fmt": "pct",
+          "title": "Remittances, % of GDP (≈ 2023)",
+          "showYear": false
+        }
+      ]
+    }
+  ]
+}

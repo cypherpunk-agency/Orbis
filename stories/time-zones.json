@@ -1,0 +1,74 @@
+{
+  "id": "time-zones", "cat": "Statistics", "title": "Clocks against the sun",
+  "hook": "Noon on the clock should be when the sun is highest. In much of the world it isn't, and the date line zig-zags.",
+  "notes": "Official time: IANA time zone database (tz), version 2026c, public domain; each country's main zone in standard time, without summer time. Sun time is estimated from the longitude of each country's middle (the Natural Earth label point), at 15 degrees per hour; real solar noon also shifts by up to about 16 minutes over the year (the equation of time), which is ignored here. Countries with several zones on their main territory (such as the US, Russia, Brazil, Australia, Indonesia and Kiribati) are not classed. Historical changes (Spain 1940, France 1940, Nepal 1986, Kiribati 1994–95, Samoa 2011) are from the tz database's zone histories. Xinjiang time: tz database notes on Asia/Urumqi. International Date Line: Natural Earth 1:50m geographic lines (public domain), simplified. Distances are great-circle distances.",
+  "data": { "tz": "data/statistics/timezones.json", "idl": "data/statistics/dateline.json" },
+  "scenes": [
+    {
+      "title": "Clocks versus the sun",
+      "text": "By the sun, noon is the moment it stands highest. Most countries set their clocks ahead of that. In standard (winter) time, 30 countries run 45 minutes or more ahead of the sun at their geographic middle, and 76 more run a little ahead. Only 19 run behind, none by much more than half an hour. Summer time adds another hour.",
+      "view": {"mode": "equal", "center": [15, 15], "zoom": 1},
+      "layers": [{"type": "categories", "data": "tz", "set": "clock", "colors": {"ahead": "c2", "little": "c3", "right": "c4", "behind": "c1", "several": "muted"}}]
+    },
+    {
+      "title": "One clock for China",
+      "text": "China spans about 60 degrees of longitude, four hours of sun time, yet since 1949 the whole country has run on Beijing time, UTC+8. In Kashgar in the far west, the sun stands highest close to 3 pm. Many Uyghurs keep unofficial Xinjiang time, two hours behind. Cross into Afghanistan and clocks jump back three and a half hours.",
+      "view": {"mode": "globe", "center": [95, 33], "zoom": 2.2},
+      "layers": [{"type": "categories", "data": "tz", "set": "clock", "colors": {"ahead": "c2", "little": "c3", "right": "c4", "behind": "c1", "several": "muted"}}],
+      "routes": [
+        {"path": [[75, 20], [75, 52]], "color": "muted", "width": 1.2, "dash": true, "label": "75°E: sun time UTC+5", "labelAt": 1},
+        {"path": [[90, 20], [90, 52]], "color": "muted", "width": 1.2, "dash": true, "label": "90°E: UTC+6", "labelAt": 1},
+        {"path": [[105, 20], [105, 52]], "color": "muted", "width": 1.2, "dash": true, "label": "105°E: UTC+7", "labelAt": 1},
+        {"path": [[120, 20], [120, 52]], "color": "muted", "width": 1.2, "dash": true, "label": "120°E: UTC+8", "labelAt": 1},
+        {"path": [[135, 20], [135, 52]], "color": "muted", "width": 1.2, "dash": true, "label": "135°E: UTC+9", "labelAt": 1}
+      ],
+      "points": [
+        {"at": [116.4, 39.9], "label": "Beijing: UTC+8", "color": "c2", "r": 4},
+        {"at": [75.99, 39.47], "label": "Kashgar: sun highest near 3 pm", "color": "c2", "r": 4},
+        {"at": [69.2, 34.5], "label": "Kabul: UTC+4:30", "color": "c3", "r": 3.5}
+      ]
+    },
+    {
+      "title": "Spain and France, an hour early",
+      "text": "Most of Spain lies west of the Greenwich meridian, like Britain and Portugal, which keep Greenwich time. But Spain moved its clocks to Central European Time in 1940, and France kept German time after the occupation. Both run about an hour ahead of the sun. In summer, the sun peaks over Madrid at about 2:15 pm.",
+      "view": {"mode": "globe", "center": [2, 46], "zoom": 3.2},
+      "layers": [{"type": "categories", "data": "tz", "set": "clock", "colors": {"ahead": "c2", "little": "c3", "right": "c4", "behind": "c1", "several": "muted"}}],
+      "routes": [{"path": [[0, 36], [0, 60]], "color": "c1", "width": 1.6, "dash": true, "label": "Greenwich meridian, 0°", "labelAt": 1}],
+      "points": [
+        {"at": [-3.70, 40.42], "label": "Madrid, 3.7°W: UTC+1", "color": "c2", "r": 4},
+        {"at": [2.35, 48.86], "label": "Paris: UTC+1", "color": "c2", "r": 4},
+        {"at": [-9.14, 38.72], "label": "Lisbon: UTC+0", "color": "c4", "r": 4},
+        {"at": [-0.13, 51.51], "label": "London: UTC+0", "color": "c4", "r": 4}
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Half hours and quarter hours",
+      "text": "India uses one zone for the whole country, UTC+5:30, though the sun rises about two hours earlier in the far northeast than in the far west. Nepal goes further: since 1986 it has kept UTC+5:45, one of only a few quarter-hour zones. Walk from Nepal into Tibet and the clock jumps two hours and fifteen minutes.",
+      "view": {"mode": "globe", "center": [84, 24], "zoom": 3.2},
+      "layers": [{"type": "categories", "data": "tz", "set": "clock", "colors": {"ahead": "c2", "little": "c3", "right": "c4", "behind": "c1", "several": "muted"}}],
+      "points": [
+        {"at": [77.2, 28.6], "label": "Delhi: UTC+5:30", "color": "c1", "r": 4},
+        {"at": [85.32, 27.71], "label": "Kathmandu: UTC+5:45", "color": "c1", "r": 4},
+        {"at": [90.41, 23.81], "label": "Dhaka: UTC+6", "color": "c1", "r": 4},
+        {"at": [91.11, 29.65], "label": "Lhasa: UTC+8", "color": "c2", "r": 4},
+        {"at": [67.0, 24.86], "label": "Karachi: UTC+5", "color": "c1", "r": 4},
+        {"at": [94.9, 27.5], "label": "Assam: sunrise 70 min before Delhi", "color": "c1", "r": 3.5}
+      ]
+    },
+    {
+      "title": "The date line zig-zags",
+      "text": "The date line is not a law, just an agreement, and countries move it. Kiribati's islands spread across it, so its west and east had different dates. At the end of 1994 the eastern islands skipped 31 December and moved from UTC−10 to UTC+14, the earliest time on Earth. In 2011 Samoa skipped 30 December to join the western side, with Australia and New Zealand. Neighbouring American Samoa, about 125 km away, is now a full day behind.",
+      "view": {"mode": "globe", "center": [-175, 0], "zoom": 1.5},
+      "layers": [{"type": "lines", "data": "idl", "set": "dateline", "color": "c2", "width": 2.2, "labels": true}],
+      "points": [
+        {"at": [-157.4, 1.87], "label": "Kiritimati: UTC+14", "color": "c2", "r": 4},
+        {"at": [173.0, 1.45], "label": "Tarawa: UTC+12", "color": "c2", "r": 4},
+        {"at": [-157.86, 21.31], "label": "Honolulu: UTC−10", "color": "c1", "r": 4},
+        {"at": [178.44, -18.14], "label": "Fiji: UTC+12", "color": "c2", "r": 3.5},
+        {"at": [-175.2, -21.14], "label": "Tonga: UTC+13", "color": "c2", "r": 3.5}
+      ],
+      "routes": [{"path": [[-171.76, -13.83], [-170.70, -14.28]], "color": "c3", "width": 2.4, "label": "Samoa UTC+13 – American Samoa UTC−11: about 125 km", "labelAt": 1}]
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "id": "suffrage",
+  "cat": "Rights",
+  "title": "Votes for women",
+  "hook": "New Zealand let women vote in 1893. Saudi Arabia did so in 2015. Watch the right spread, country by country.",
+  "notes": "Years come from the Inter-Parliamentary Union's chronology 'Women's Suffrage: A World Chronology of the Recognition of Women's Rights to Vote and to Stand for Election' (archive.ipu.org/wmn-e/suffrage.htm, retrieved 13 October 2026). We use the IPU year for the right to vote in national elections. Where the IPU marks the first right as restricted (by age, property, education, race or region), the map shows a 'limited' phase until the year it marks restrictions as lifted. Restrictions that applied to men too, and unofficial barriers, are not counted: Black women in the American South, for example, were largely kept from voting until the Voting Rights Act of 1965. Countries that were then part of a larger state take its date (Yugoslavia 1946 for Serbia, Montenegro and Kosovo; Sudan 1964 for South Sudan). Added or corrected by hand, with the IPU page as the base: Mexico 1947 and Turkey 1930 were local elections (national votes followed in 1953 and 1934); Bahrain 2002 (women first voted in that year's elections); Oman 1994 for a limited group and 2003 for all citizens; Qatar 1999 municipal and 2021 Shura Council; UAE 2006, an appointed electoral college for men and women alike; Saudi Arabia 2015, municipal elections only, as there are no national elections; Taiwan 1947 (constitution of the Republic of China); Moldova 1940, when it became part of the Soviet Union, where women already voted (the IPU gives 1978 and 1993). Brunei holds no elections. Not shown: Palestine, Western Sahara, Somaliland, Timor-Leste and dependent territories. Borders are today's.",
+  "data": {
+    "suf": "data/rights/suffrage.json"
+  },
+  "scenes": [
+    {
+      "title": "A right won country by country",
+      "text": "In 1893 New Zealand became the first self-governing country where women could vote in national elections. It took more than a century for the rest of the world to follow. Press Play to watch the map fill. Amber marks countries where only some women could vote, or only in local elections.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Limited: some women, or local elections only"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Women vote on the same terms as men"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1890,
+          2025
+        ],
+        "start": 1893,
+        "captions": {
+          "1893": "New Zealand, then a self-governing British colony, is first.",
+          "1902": "Australia: white women can vote; most Aboriginal people wait until 1962.",
+          "1906": "Finland is first in Europe.",
+          "1918": "After the First World War, a wave across Europe.",
+          "1920": "The 19th Amendment: women in the United States can vote.",
+          "1945": "France, Italy and Japan have just followed.",
+          "1960": "Newly independent African states start with equal rights.",
+          "1971": "Switzerland, finally.",
+          "2015": "Saudi Arabia: women vote in municipal elections."
+        }
+      },
+      "points": [
+        {
+          "at": [
+            172.5,
+            -41.5
+          ],
+          "label": "New Zealand, 1893",
+          "color": "c2",
+          "r": 4
+        }
+      ]
+    },
+    {
+      "title": "Finland goes first in Europe",
+      "text": "In 1906 Finland, then a self-governing grand duchy of the Russian Empire, gave all women both the right to vote and the right to stand for parliament, a world first. In the 1907 election 19 women won seats. Norway followed in 1913, Denmark and Iceland in 1915.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          15,
+          58
+        ],
+        "zoom": 2.4
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Limited: some women only"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Women vote on the same terms as men"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1900,
+          1917
+        ],
+        "start": 1906,
+        "captions": {
+          "1906": "Finland: all women can vote and stand.",
+          "1913": "Norway.",
+          "1915": "Denmark; Iceland with an age limit of 40 for women."
+        }
+      }
+    },
+    {
+      "title": "After the First World War",
+      "text": "The war changed minds. Between 1917 and 1920 Germany, Poland, Austria, the Netherlands and the United States gave women the vote. Britain let women over 30 who met a property test vote in 1918, but equality with men had to wait until 1928.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -35,
+          32
+        ],
+        "zoom": 1.35
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Limited: some women only"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Women vote on the same terms as men"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1914,
+          1930
+        ],
+        "start": 1914,
+        "captions": {
+          "1917": "Canada: some women can vote in federal elections.",
+          "1918": "Germany, Austria, Poland, the Baltic states; British women over 30.",
+          "1919": "The Netherlands; Belgium (war widows and mothers only).",
+          "1920": "United States: the 19th Amendment is ratified in August.",
+          "1928": "Britain: women vote at 21, like men."
+        }
+      }
+    },
+    {
+      "title": "Born with the vote",
+      "text": "France granted women the vote in 1944, Italy and Japan in 1945. India's constitution gave every adult the vote in 1950. Many countries that won independence from the 1950s on gave women and men the vote at the same time.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          10
+        ],
+        "zoom": 1.15
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Limited: some women only"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Women vote on the same terms as men"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1940,
+          1975
+        ],
+        "start": 1940,
+        "captions": {
+          "1944": "France.",
+          "1945": "Italy, Japan, Indonesia.",
+          "1947": "Pakistan; Argentina.",
+          "1949": "China.",
+          "1950": "India's constitution: votes for all adults.",
+          "1956": "Egypt.",
+          "1960": "Year of Africa: new states vote together."
+        }
+      }
+    },
+    {
+      "title": "Switzerland, 1971",
+      "text": "Swiss men voted to let women take part in federal elections only on 7 February 1971. One canton, Appenzell Innerrhoden, kept women out of local votes until the Federal Supreme Court forced it in 1990. Portugal lifted its last limits in 1976, and Liechtenstein became the last European country in 1984.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          8,
+          46
+        ],
+        "zoom": 3.2
+      },
+      "countryLabels": true,
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Limited: some women only"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Women vote on the same terms as men"
+        }
+      ],
+      "highlight": [
+        "CHE",
+        "LIE"
+      ],
+      "timeline": {
+        "years": [
+          1965,
+          1990
+        ],
+        "start": 1970,
+        "captions": {
+          "1971": "Switzerland: women vote in federal elections.",
+          "1976": "Portugal lifts its last restrictions.",
+          "1984": "Liechtenstein, the last in Europe.",
+          "1990": "Appenzell Innerrhoden is ordered to let women vote in its affairs."
+        }
+      }
+    },
+    {
+      "title": "The Gulf comes last",
+      "text": "The last changes came in the Gulf. Kuwait gave women the vote in 2005, and four women won seats in 2009. Saudi Arabia let women vote and stand in municipal elections in December 2015; it holds no national elections. Qatar held its first Shura Council election in 2021, with women voting. Brunei holds no elections at all.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          48,
+          24
+        ],
+        "zoom": 3
+      },
+      "countryLabels": true,
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Limited: some women, or local or indirect elections only"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Women vote on the same terms as men"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1995,
+          2025
+        ],
+        "start": 2000,
+        "captions": {
+          "1999": "Qatar: women vote in the first municipal election.",
+          "2002": "Bahrain: women vote in parliamentary elections.",
+          "2003": "Oman: all citizens over 21 can vote.",
+          "2005": "Kuwait's parliament gives women the vote.",
+          "2006": "UAE: a hand-picked electoral college, women included.",
+          "2015": "Saudi Arabia: women vote in municipal elections.",
+          "2021": "Qatar: first Shura Council election."
+        }
+      }
+    }
+  ]
+}

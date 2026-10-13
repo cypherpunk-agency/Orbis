@@ -1,0 +1,55 @@
+{
+  "id": "life-expectancy", "cat": "Statistics", "title": "How long we live",
+  "hook": "A child born today can expect to live about 73 years, nearly 30 more than in 1950. Not everywhere, and not in a straight line.",
+  "notes": "Life expectancy at birth, 1950–2023: United Nations, Department of Economic and Social Affairs, Population Division (2024), World Population Prospects 2024, Online Edition, licensed CC BY 3.0 IGO. It is a period measure: how long a newborn would live if the death rates of that year stayed the same for life. It is not a forecast. Where vital registration is incomplete, the UN figures are model estimates, so values for many countries, especially before 1990 and in years of war or famine, are uncertain. Colours on the map are stretched to each year's lowest and highest values, so compare the legend ends across years. The pandemic scene shows the fall from 2019 to the lower of 2020 and 2021; in some countries other events add to it (Armenia: the 2020 war with Azerbaijan; Lebanon: the Beirut port explosion and economic crisis).",
+  "data": { "wpp": "data/statistics/life-expectancy.json", "gaps": "data/statistics/life-expectancy-gaps.json" },
+  "scenes": [
+    {
+      "title": "Thirty years more",
+      "text": "In 1950 a newborn could expect to live about 46 years on average worldwide. By 2023 it was 73. Much of the gain came from fewer children dying young. Press Play to watch the world catch up with the early leaders in Europe and North America.",
+      "view": {"mode": "equal", "center": [15, 15], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "wpp", "series": "lex", "year": "t", "title": "Life expectancy at birth, years"}],
+      "timeline": {"years": [1950, 2023], "start": 1950, "captions": {"1950": "World average: about 46 years. Norway, the Netherlands and Sweden lead with about 71.", "1990": "World average: 64 years.", "2023": "World average: 73 years."}},
+      "chart": {"data": "wpp", "series": "lex", "year": "t", "top": 8, "title": "Longest lives, years", "color": "c4"}
+    },
+    {
+      "title": "Thirty years apart",
+      "text": "The gap between countries is still huge. A baby in Japan, Hong Kong or South Korea can expect about 84 to 86 years. In Nigeria and Chad it is about 55, in Lesotho, the Central African Republic and South Sudan about 57.",
+      "view": {"mode": "equal", "center": [15, 15], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "wpp", "series": "lex", "year": 2023, "title": "Life expectancy at birth, years"}],
+      "highlight": ["NGA", "TCD", "LSO", "CAF", "SSD"],
+      "chart": {"data": "wpp", "series": "lex", "year": 2023, "top": 8, "title": "Longest lives, years", "color": "c4"}
+    },
+    {
+      "title": "Famine and genocide",
+      "text": "The curve is not smooth. During China's Great Leap Forward famine, life expectancy there fell from about 49 years in 1958 to 33 in 1960. Under the Khmer Rouge, Cambodia's fell to about 11 in 1977. In Rwanda's genocide in 1994 it fell to about 12. Each recovered within a few years, but millions were dead.",
+      "view": {"mode": "globe", "center": [70, 10], "zoom": 1.1},
+      "layers": [{"type": "choropleth", "data": "wpp", "series": "lex", "year": "t", "title": "Life expectancy at birth, years"}],
+      "timeline": {"years": [1957, 1958, 1959, 1960, 1961, 1962, 1965, 1970, 1975, 1976, 1977, 1978, 1979, 1980, 1985, 1990, 1993, 1994, 1995, 2000], "start": 1960, "captions": {"1960": "China's famine: life expectancy about 33 years.", "1977": "Cambodia under the Khmer Rouge: about 11 years.", "1994": "Rwanda's genocide: about 12 years."}},
+      "highlight": ["CHN", "KHM", "RWA"]
+    },
+    {
+      "title": "AIDS in southern Africa",
+      "text": "In southern Africa, HIV/AIDS reversed decades of progress. In Eswatini, life expectancy fell from 61 years in 1990 to 44 in 2005; in Lesotho from 59 to 44; in Botswana from 60 to 52 in 2001. Antiretroviral drugs then brought most of it back.",
+      "view": {"mode": "globe", "center": [12, -16], "zoom": 1.9},
+      "layers": [{"type": "choropleth", "data": "wpp", "series": "lex", "year": "t", "title": "Life expectancy at birth, years"}],
+      "timeline": {"years": [1985, 2023], "start": 2005, "captions": {"1990": "Before the epidemic peaks: Eswatini 61 years, Lesotho 59.", "2005": "Eswatini and Lesotho: about 44 years.", "2023": "Eswatini 64 years, Lesotho 57, Botswana 69."}},
+      "highlight": ["SWZ", "LSO", "BWA", "ZAF", "ZWE", "NAM"],
+      "countryLabels": true
+    },
+    {
+      "title": "The pandemic dip",
+      "text": "Covid-19 cut world life expectancy from 72.6 years in 2019 to 70.9 in 2021. Latin America was hit hard: Bolivia lost about 6 years, Ecuador and Mexico about 5, Peru almost 5. India lost about 3 and the US about 2.5. Japan, China, South Korea, Australia and New Zealand saw no fall. By 2023 the world was back above its old level.",
+      "view": {"mode": "equal", "center": [-20, 10], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "gaps", "series": "lex_drop", "year": 2021, "title": "Years lost, 2019 to 2020–21 low", "showYear": false}],
+      "chart": {"data": "gaps", "series": "lex_drop", "year": 2021, "top": 8, "title": "Largest falls, years", "color": "c2"}
+    },
+    {
+      "title": "Women live longer",
+      "text": "Almost everywhere, women outlive men. The gap is widest in the former Soviet Union: in Russia, women live about 12 years longer than men, linked to men's drinking, smoking and violent deaths. War widened it further in 2023: to 13 years in Ukraine and 12 in the Palestinian territories. In Nigeria, Togo and Niger, and in Qatar and Bahrain, it is under two years.",
+      "view": {"mode": "globe", "center": [45, 45], "zoom": 1.05},
+      "layers": [{"type": "choropleth", "data": "gaps", "series": "lex_gap_pct", "year": 2023, "title": "Women's life expectancy above men's", "fmt": "pct"}],
+      "chart": {"data": "gaps", "series": "lex_gap", "year": 2023, "top": 8, "title": "Women outlive men by, years", "color": "c5"}
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "co2", "cat": "Statistics", "title": "Who emits the carbon",
+  "hook": "Count carbon dioxide by country, by person or since 1850, and the ranking flips each time.",
+  "notes": "All figures: Global Carbon Project, Global Carbon Budget 2025, fossil CO2 emissions dataset version 2025v15 (Andrew & Peters, Zenodo, doi 10.5281/zenodo.17417124), licensed CC BY 4.0. Emissions are from fossil fuels and cement, counted where they are produced (territorial); emissions from deforestation and other land-use change are not included, and neither are emissions embodied in imported goods. Per-person figures use the dataset's own population series. Cumulative emissions are summed from 1850 to 2024, with historical emissions assigned to today's borders (for example, Soviet-era emissions are split among Russia, Ukraine, Kazakhstan and the other successor states). World totals include international aviation and shipping, about 3% of the 2024 total, which no country is assigned; shares are of that world total.",
+  "data": { "gcb": "data/statistics/co2.json" },
+  "scenes": [
+    {
+      "title": "Who emits most today",
+      "text": "In 2024 the world emitted about 38.6 billion tonnes of carbon dioxide from burning fossil fuels and making cement. China emitted 12.3 billion tonnes, nearly a third of the total. The United States emitted 4.9 billion and India 3.2 billion.",
+      "view": {"mode": "equal", "center": [20, 20], "zoom": 1},
+      "layers": [{"type": "spikes", "data": "gcb", "series": "co2", "year": 2024, "color": "c2", "title": "Fossil CO2 emissions", "fmt": "mt", "labels": 5, "maxH": 0.55}],
+      "chart": {"data": "gcb", "series": "co2", "year": 2024, "share": true, "top": 8, "title": "Share of world CO2 emissions", "color": "c2"}
+    },
+    {
+      "title": "How the centre of emissions moved",
+      "text": "In 1950 the United States produced 43% of the world's fossil CO2. China overtook it in 2006. US emissions peaked around 2005 and are now about a fifth lower, while China's nearly doubled again after 2006. Press Play to watch.",
+      "view": {"mode": "equal", "center": [20, 25], "zoom": 1},
+      "layers": [{"type": "symbols", "data": "gcb", "series": "co2", "year": "t", "color": "c2", "title": "Fossil CO2 emissions", "fmt": "mt", "maxR": 48, "vmax": 12300000, "labels": 4}],
+      "timeline": {"years": [1950, 2024], "start": 1950, "captions": {"1950": "The US alone emits 43% of the world total.", "1991": "The Soviet Union collapses; emissions in Russia and Ukraine fall steeply.", "2006": "China overtakes the US as the largest emitter.", "2020": "The pandemic cuts world emissions by about 5%, for one year."}},
+      "chart": {"data": "gcb", "series": "co2", "year": "t", "top": 8, "title": "Largest emitters", "fmt": "mt", "color": "c2"}
+    },
+    {
+      "title": "Per person, the order flips",
+      "text": "Divide by population and the map looks different. The average person in Qatar emits about 41 tonnes of CO2 a year, an American about 14, a Chinese about 9, an Indian about 2. In much of Africa it is a few hundred kilograms or less. The world average is under 5 tonnes.",
+      "view": {"mode": "equal", "center": [20, 15], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "gcb", "series": "co2_pc", "year": 2024, "title": "CO2 per person, a year", "fmt": "kg", "log": true}],
+      "chart": {"data": "gcb", "series": "co2_pc", "year": 2024, "top": 8, "title": "Highest CO2 per person", "fmt": "kg", "color": "c2"}
+    },
+    {
+      "title": "Counting since 1850",
+      "text": "Carbon dioxide stays in the air for centuries, so what has piled up matters most for warming. Since 1850 the United States has emitted about 435 billion tonnes, nearly a quarter of the total. China is second with about 15%, Russia third. India, third today, has emitted less than 4%.",
+      "view": {"mode": "equal", "center": [15, 20], "zoom": 1},
+      "layers": [{"type": "cartogram", "data": "gcb", "series": "co2_cum", "year": 2024, "title": "CO2 emitted 1850–2024", "fmt": "mt", "labels": 7, "maxK": 4}],
+      "chart": {"data": "gcb", "series": "co2_cum", "year": 2024, "share": true, "top": 8, "title": "Share of all CO2 emitted since 1850", "color": "c2"}
+    },
+    {
+      "title": "Three ways to count",
+      "text": "The same emissions, counted three ways. Each count puts a different country on top. Pick one.",
+      "view": {"mode": "equal", "center": [15, 20], "zoom": 1},
+      "switch": {"label": "Count", "start": 0, "options": [
+        {"s": "co2", "ty": "spikes", "fmt": "mt", "label": "Total, 2024", "t": "Fossil CO2 emissions, 2024", "text": "By yearly total, China leads by far: 12.3 billion tonnes in 2024, more than the United States, India and Russia together."},
+        {"s": "co2_pc", "ty": "choropleth", "fmt": "kg", "label": "Per person", "t": "CO2 per person, a year", "text": "Per person, small oil and gas producers lead: Qatar, Kuwait, Brunei, Bahrain. Among large countries, Saudi Arabia (about 20 tonnes), Australia and the US (about 14) top the list. China is far down, India further still."},
+        {"s": "co2_cum", "ty": "cartogram", "fmt": "mt", "label": "Since 1850", "t": "CO2 emitted 1850–2024", "text": "Added up since 1850, the United States is first again, with about 24% of all fossil CO2 ever emitted. Europe's early industrial powers, Germany and Britain, still rank in the top five."}
+      ]},
+      "layers": [{"type": "{ty}", "data": "gcb", "series": "{s}", "year": 2024, "title": "{t}", "fmt": "{fmt}", "color": "c2", "labels": 5, "maxH": 0.55, "maxK": 4, "log": true}],
+      "chart": {"data": "gcb", "series": "{s}", "year": 2024, "top": 8, "title": "{t}", "fmt": "{fmt}", "color": "c2"}
+    }
+  ]
+}

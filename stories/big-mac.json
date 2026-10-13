@@ -1,0 +1,250 @@
+{
+  "id": "big-mac",
+  "cat": "Economics",
+  "title": "The burger standard",
+  "hook": "A Big Mac costs $9 in Switzerland and under $2.50 in India. What the price of a burger says about money.",
+  "notes": "Data: The Economist, Big Mac index (github.com/TheEconomist/big-mac-data), CC BY 4.0; survey of July 2026 unless stated, one mid-year survey per year for the timeline. Dollar prices use market exchange rates collected by The Economist (Refinitiv); the exchange rates themselves are not shipped. The euro-area figure is a weighted average and is shown on every country that used the euro in that year; real prices vary between member states. The 'GDP-adjusted' index is The Economist's: it compares each price with what would be expected given the country's GDP per person (IMF data). The Big Mac index is a light-hearted guide to purchasing-power parity, not a forecast of exchange rates: local costs, taxes, competition and the burger's status differ by country.",
+  "data": {
+    "bm": "data/economics/bigmac.json"
+  },
+  "scenes": [
+    {
+      "title": "One burger, many prices",
+      "text": "The Big Mac is made to the same recipe almost everywhere, so its price is a handy yardstick. In July 2026 it cost $6.22 in the United States, over $9 in Switzerland and about $8 in Norway and Colombia, but under $2.50 in India, Indonesia and Taiwan.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "bm",
+          "series": "price_usd",
+          "year": 2026,
+          "title": "Price of a Big Mac, US dollars"
+        }
+      ],
+      "chart": {
+        "data": "bm",
+        "series": "price_usd",
+        "year": 2026,
+        "top": 7,
+        "title": "Most expensive Big Macs, US dollars",
+        "color": "c3"
+      }
+    },
+    {
+      "title": "What burgers say about currencies",
+      "text": "In the long run, exchange rates should move so that the same goods cost the same everywhere. By that test, the Swiss franc is about 45% overvalued against the dollar, the euro about 14% and the pound about 19%. The yen is about 50% undervalued, and China's yuan about 37%. The United States is the baseline.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "fills": {
+        "ARE": "c4",
+        "ARG": "muted",
+        "AUS": "muted",
+        "AUT": "c2",
+        "AZE": "c4",
+        "BEL": "c2",
+        "BGR": "c2",
+        "BHR": "c4",
+        "BRA": "c4",
+        "CAN": "muted",
+        "CHE": "c2",
+        "CHL": "c4",
+        "CHN": "c4",
+        "COL": "c2",
+        "CRI": "c2",
+        "CYP": "c2",
+        "CZE": "c4",
+        "DEU": "c2",
+        "DNK": "c2",
+        "EGY": "c1",
+        "ESP": "c2",
+        "EST": "c2",
+        "FIN": "c2",
+        "FRA": "c2",
+        "GBR": "c2",
+        "GRC": "c2",
+        "GTM": "c4",
+        "HKG": "c1",
+        "HND": "c4",
+        "HRV": "c2",
+        "HUN": "c4",
+        "IDN": "c1",
+        "IND": "c1",
+        "IRL": "c2",
+        "ISR": "c2",
+        "ITA": "c2",
+        "JOR": "c1",
+        "JPN": "c1",
+        "KOR": "c4",
+        "KWT": "c4",
+        "LBN": "c4",
+        "LTU": "c2",
+        "LUX": "c2",
+        "LVA": "c2",
+        "MDA": "c4",
+        "MEX": "muted",
+        "MLT": "c2",
+        "MYS": "c1",
+        "NIC": "c4",
+        "NLD": "c2",
+        "NOR": "c2",
+        "NZL": "c4",
+        "OMN": "c4",
+        "PAK": "c4",
+        "PER": "c4",
+        "PHL": "c1",
+        "POL": "muted",
+        "PRT": "c2",
+        "QAT": "c4",
+        "ROU": "c4",
+        "SAU": "c4",
+        "SGP": "muted",
+        "SVK": "c2",
+        "SVN": "c2",
+        "SWE": "c2",
+        "THA": "c4",
+        "TUR": "c2",
+        "TWN": "c1",
+        "UKR": "c1",
+        "URY": "c2",
+        "USA": "muted",
+        "VEN": "c4",
+        "VNM": "c1",
+        "ZAF": "c1"
+      },
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Overvalued by 10% or more"
+        },
+        {
+          "color": "muted",
+          "label": "Within 10%"
+        },
+        {
+          "color": "c4",
+          "label": "Undervalued by 10–40%"
+        },
+        {
+          "color": "c1",
+          "label": "Undervalued by 40% or more"
+        }
+      ],
+      "sources": [
+        "economist-bigmac"
+      ]
+    },
+    {
+      "title": "The yen's long slide",
+      "text": "Prices relative to America's move with exchange rates. In 2000 a Big Mac in Japan cost a quarter more than in the US. By 2026 it cost half as much, because the yen lost value and Japanese prices barely rose. Press Play to watch Britain, Brazil and others swing too.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "bm",
+          "series": "rel_us",
+          "year": "t",
+          "title": "Big Mac price as % of the US price",
+          "fmt": "pct"
+        }
+      ],
+      "timeline": {
+        "years": [
+          2000,
+          2026
+        ],
+        "start": 2000,
+        "captions": {
+          "2002": "Argentina abandons its dollar peg: a Big Mac there costs 80 cents.",
+          "2008": "Weak dollar: Big Macs in Europe and Norway cost far more than in the US.",
+          "2011": "Brazil's real and the Swiss franc hit record highs.",
+          "2018": "Turkey's lira crisis: its Big Mac falls to half the US price.",
+          "2022": "A strong dollar makes most of the world look cheap.",
+          "2026": "Japan's Big Mac costs half the US price."
+        }
+      }
+    },
+    {
+      "title": "Rich countries pay more",
+      "text": "Burgers are cheap in poor countries partly because wages and rents are low. The Economist's adjusted index allows for each country's income. On that basis China's yuan is only about a quarter undervalued, not 37%. Uruguay, Colombia and Switzerland look the most expensive, Taiwan and Indonesia still the cheapest.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "bm",
+          "series": "rel_us_adj",
+          "year": 2026,
+          "title": "Big Mac price as % of US price, adjusted for income",
+          "fmt": "pct"
+        }
+      ],
+      "chart": {
+        "data": "bm",
+        "series": "rel_us_adj",
+        "year": 2026,
+        "top": 8,
+        "title": "Priciest after adjusting for income, %",
+        "fmt": "pct",
+        "color": "c2"
+      }
+    },
+    {
+      "title": "Burger inflation",
+      "text": "Prices rise too. A Big Mac in the United States cost $2.24 in 2000 and $6.22 in 2026, nearly three times as much. The steepest jumps came after the pandemic, when wages and food costs rose fast. Play the years to watch prices climb around the world.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "spikes",
+          "data": "bm",
+          "series": "price_usd",
+          "year": "t",
+          "color": "c3",
+          "title": "Price of a Big Mac, US dollars",
+          "labels": 4,
+          "maxH": 0.5,
+          "vmax": 9.5
+        }
+      ],
+      "timeline": {
+        "years": [
+          2000,
+          2026
+        ],
+        "start": 2026
+      }
+    }
+  ]
+}

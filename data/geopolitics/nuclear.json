@@ -1,0 +1,13 @@
+{
+ "source": "editorial", "asOf": "2025", "retrieved": "2026-10-13",
+ "note": "First nuclear test years: widely documented dates (USA 1945, USSR/Russia 1949, UK 1952, France 1960, China 1964, India 1974, Pakistan 1998, North Korea 2006). Israel has never confirmed an arsenal and is shown separately. Warhead inventories: Federation of American Scientists, Status of World Nuclear Forces 2025 (estimates, total inventory incl. retired warheads awaiting dismantlement; sum 12,241, matching SIPRI's January 2025 estimate). Peak of about 70,300 warheads in 1986: FAS. South Africa dismantled its six devices by 1991; Ukraine, Belarus and Kazakhstan transferred Soviet-era weapons to Russia by 1996. Nuclear sharing: US weapons reported in Belgium, Germany, Italy, the Netherlands and Turkey under NATO arrangements; Russia announced the deployment of weapons in Belarus in 2023.",
+ "years": [2025],
+ "series": {"warheads": {"label": "Nuclear warheads (estimate)", "units": "warheads", "values": {"RUS": [5459], "USA": [5177], "CHN": [600], "FRA": [290], "GBR": [225], "IND": [180], "PAK": [170], "ISR": [90], "PRK": [50]}}},
+ "sets": {
+  "club": {"label": "Nuclear-armed states (first test)", "members": {"USA": 1945, "RUS": 1949, "GBR": 1952, "FRA": 1960, "CHN": 1964, "IND": 1974, "PAK": 1998, "PRK": 2006}},
+  "status": {"label": "Status", "values": {"USA": "armed", "RUS": "armed", "GBR": "armed", "FRA": "armed", "CHN": "armed", "IND": "armed", "PAK": "armed", "PRK": "armed", "ISR": "undeclared", "ZAF": "gaveup", "UKR": "gaveup", "BLR": "gaveup", "KAZ": "gaveup"},
+   "labels": {"armed": "Has nuclear weapons", "undeclared": "Undeclared (Israel)", "gaveup": "Gave them up"}},
+  "sharing": {"label": "Hosts another country's weapons", "values": {"BEL": "us", "DEU": "us", "ITA": "us", "NLD": "us", "TUR": "us", "BLR": "ru"},
+   "labels": {"us": "US weapons (NATO sharing, reported)", "ru": "Russian weapons (announced 2023)"}}
+ }
+}

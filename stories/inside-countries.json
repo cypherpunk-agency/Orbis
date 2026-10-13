@@ -1,0 +1,41 @@
+{
+  "id": "inside-countries", "cat": "Statistics", "title": "Inside the lines",
+  "hook": "National averages hide big differences between a country's own regions.",
+  "notes": "Austria and Germany: Eurostat regional accounts (GDP per inhabitant, current euros, 2024), population on 1 January 2025, country of birth from the 2021 census (NUTS 2 for Austria = Bundesländer, NUTS 1 for Germany = Länder). United States: Census Bureau, American Community Survey 2024 1-year, median household income. India: population from the 2011 census (latest full count), re-cut to today's states and union territories; GDP per person from Kummu et al. (2025), based on Reserve Bank of India state accounts scaled to national purchasing-power figures — compare states with each other rather than reading absolute levels. Region outlines: Natural Earth.",
+  "data": {"at": "data/regions/austria.json", "de": "data/regions/germany.json", "us": "data/regions/usa.json", "in": "data/regions/india.json", "ing": "data/regions/india_gdp.json"},
+  "scenes": [
+    {
+      "title": "Austria, Land by Land",
+      "text": "In Austria, output per person is highest in Salzburg (about €65,800 in 2024) and Vienna (€61,900), and lowest in Burgenland (€39,000). Vienna also stands out for how international it is: 37% of its residents were born abroad, against 20% for Austria as a whole.",
+      "view": {"mode": "globe", "center": [13.4, 47.6], "zoom": 13},
+      "switch": {"label": "Show", "options": [
+        {"ds": "at", "s": "gdp_pc", "label": "GDP per person", "fmt": "eur", "y": 2024},
+        {"ds": "at", "s": "foreign_born", "label": "Born abroad", "fmt": "pct", "y": 2021},
+        {"ds": "at", "s": "pop", "label": "Population", "fmt": "people", "y": 2025}
+      ]},
+      "layers": [{"type": "regions", "country": "AUT", "data": "{ds}", "series": "{s}", "year": "{y}", "title": "{label}", "fmt": "{fmt}", "labels": true}]
+    },
+    {
+      "title": "Germany's east–west gap",
+      "text": "Thirty-five years after reunification, the five eastern Länder still produce less per person than any western one: around €37,000–40,000 against €43,000–60,000 in most of the west. Hamburg, a port and business city, leads at €87,500.",
+      "view": {"mode": "globe", "center": [10.4, 51.2], "zoom": 7.5},
+      "layers": [{"type": "regions", "country": "DEU", "data": "de", "series": "gdp_pc", "year": 2024, "title": "GDP per person", "fmt": "eur", "labels": true}]
+    },
+    {
+      "title": "American incomes",
+      "text": "The typical household in Washington, D.C., Massachusetts or New Jersey earns over $100,000 a year. In Mississippi it is about $59,000, the lowest of any state.",
+      "view": {"mode": "globe", "center": [-96, 38.5], "zoom": 3.2},
+      "layers": [{"type": "regions", "country": "USA", "data": "us", "series": "income", "year": 2024, "title": "Median household income", "fmt": "usd"}]
+    },
+    {
+      "title": "India's states are countries",
+      "text": "Uttar Pradesh alone had about 200 million people at the last census, as many as Brazil. Income gaps are wide too: output per person in Goa is roughly ten times that of Bihar, India's poorest state.",
+      "view": {"mode": "globe", "center": [80, 22], "zoom": 3.4},
+      "switch": {"label": "Show", "options": [
+        {"ds": "in", "s": "pop", "label": "Population (2011 census)", "fmt": "people", "y": 2011},
+        {"ds": "ing", "s": "gdp_pc_ppp", "label": "GDP per person", "fmt": "intd", "y": 2024}
+      ]},
+      "layers": [{"type": "regions", "country": "IND", "data": "{ds}", "series": "{s}", "year": "{y}", "title": "{label}", "fmt": "{fmt}"}]
+    }
+  ]
+}

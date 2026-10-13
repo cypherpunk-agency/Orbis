@@ -1,0 +1,49 @@
+{
+  "source": "editorial",
+  "asOf": "2026-10",
+  "retrieved": "2026-10-13",
+  "note": "Approximate positions of the economic centre of gravity. Illustrative reconstruction after McKinsey Global Institute (2012), 'Urban world'. Positions are approximate. The centre of gravity is calculated through the Earth and then placed on the surface, which is why it sits so far north.",
+  "periods": ["1", "1000", "1500", "1820", "1870", "1913", "1940", "1950", "1960", "1970", "1980", "1990", "2000", "2010", "2025"],
+  "units": {"centre": "display size only: 1 = position of the centre in the year shown, 0.15 = an earlier position"},
+  "points": [
+    {"id": "y1", "name": "Year 1", "at": [70, 47], "centre": [1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1000", "name": "1000", "at": [72, 46], "centre": [null, 1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1500", "name": "1500", "at": [68, 48], "centre": [null, null, 1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1820", "name": "1820", "at": [55, 52], "centre": [null, null, null, 1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1870", "name": "1870", "at": [32, 57], "centre": [null, null, null, null, 1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1913", "name": "1913", "at": [10, 61], "centre": [null, null, null, null, null, 1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1940", "name": "1940", "at": [-12, 62], "centre": [null, null, null, null, null, null, 1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1950", "name": "1950", "at": [-24, 63], "centre": [null, null, null, null, null, null, null, 1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1960", "name": "1960", "at": [-20, 64], "centre": [null, null, null, null, null, null, null, null, 1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1970", "name": "1970", "at": [-14, 65], "centre": [null, null, null, null, null, null, null, null, null, 1, 0.15, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1980", "name": "1980", "at": [-10, 66], "centre": [null, null, null, null, null, null, null, null, null, null, 1, 0.15, 0.15, 0.15, 0.15]},
+    {"id": "y1990", "name": "1990", "at": [-3, 66], "centre": [null, null, null, null, null, null, null, null, null, null, null, 1, 0.15, 0.15, 0.15]},
+    {"id": "y2000", "name": "2000", "at": [5, 67], "centre": [null, null, null, null, null, null, null, null, null, null, null, null, 1, 0.15, 0.15]},
+    {"id": "y2010", "name": "2010", "at": [24, 66], "centre": [null, null, null, null, null, null, null, null, null, null, null, null, null, 1, 0.15]},
+    {"id": "y2025", "name": "2025", "at": [60, 64], "centre": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1]}
+  ],
+  "lines": {
+    "path": [
+      {
+        "name": "Economic centre of gravity, year 1 to 2025",
+        "path": [
+          [70, 47],
+          [72, 46],
+          [68, 48],
+          [55, 52],
+          [32, 57],
+          [10, 61],
+          [-12, 62],
+          [-24, 63],
+          [-20, 64],
+          [-14, 65],
+          [-10, 66],
+          [-3, 66],
+          [5, 67],
+          [24, 66],
+          [60, 64]
+        ]
+      }
+    ]
+  }
+}
