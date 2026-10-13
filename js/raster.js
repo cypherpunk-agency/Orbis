@@ -68,13 +68,11 @@ const Raster = (function(){
     buf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,buf); gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(v),gl.STATIC_DRAW);
     count=v.length/2; ok=true; return true;
   }
-  function load(name,url,onReady){
-    if(!ok||tex[name]||pending[name]) return;
-    pending[name]=true;
-    const img=new Image(); img.crossOrigin="anonymous";
-    img.onload=()=>{ const t=gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,t);
+  // upload an image or canvas as a mipmapped, longitude-wrapping texture
+  function upload(name,src){
+      const t=tex[name]||gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,t);
       gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);
-      gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+      gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,src);
       gl.generateMipmap(gl.TEXTURE_2D);
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
@@ -82,30 +80,38 @@ const Raster = (function(){
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
       const ext=gl.getExtension("EXT_texture_filter_anisotropic");
       if(ext) gl.texParameterf(gl.TEXTURE_2D,ext.TEXTURE_MAX_ANISOTROPY_EXT,Math.min(8,gl.getParameter(ext.MAX_TEXTURE_MAX_ANISOTROPY_EXT)));
-      tex[name]=t; delete pending[name]; onReady&&onReady(); };
+      tex[name]=t;
+  }
+  function load(name,url,onReady){
+    if(!ok||tex[name]||pending[name]) return;
+    pending[name]=true;
+    const img=new Image(); img.crossOrigin="anonymous";
+    img.onload=()=>{ upload(name,img); delete pending[name]; onReady&&onReady(); };
     img.onerror=()=>{ delete pending[name]; console.warn("Could not load raster",url); };
     img.src=url;
   }
   const MODE={globe:0,equal:1,mercator:2};
-  // p: {name, a, b, t, sa, sb, k, tr:[x,y], rot:[dl,dp] (radians), clip (degrees or null), W, H, dpr, alpha}
+  // p: {layers:[{name, alpha}], a, b, t, sa, sb, k, tr:[x,y], rot:[dl,dp] (radians), clip (degrees or null), W, H, dpr}
+  // layers are drawn in order (base map first, data grids on top); returns true if anything was drawn
   function draw(p){
     if(!ok) return false;
     const w=Math.round(p.W*p.dpr), h=Math.round(p.H*p.dpr);
     if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
     gl.viewport(0,0,w,h); gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
-    const t=p.name&&tex[p.name]; if(!t) return false;
+    const list=(p.layers||[]).filter(l=>tex[l.name]); if(!list.length) return false;
     gl.useProgram(prog); gl.bindBuffer(gl.ARRAY_BUFFER,buf);
     const loc=gl.getAttribLocation(prog,"aRot"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
     gl.uniform1i(U.uA,MODE[p.a]); gl.uniform1i(U.uB,MODE[p.b]); gl.uniform1f(U.uT,p.t);
     gl.uniform1f(U.uSa,p.sa); gl.uniform1f(U.uSb,p.sb); gl.uniform1f(U.uK,p.k);
     gl.uniform2f(U.uTr,p.tr[0],p.tr[1]); gl.uniform2f(U.uSize,p.W,p.H);
     gl.uniform1f(U.uDl,p.rot[0]); gl.uniform1f(U.uDp,p.rot[1]);
-    gl.uniform1f(U.uClip,p.clip==null?-2:Math.cos(p.clip*Math.PI/180)); gl.uniform1f(U.uAlpha,p.alpha==null?1:p.alpha);
-    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D,t); gl.uniform1i(U.uTex,0);
+    gl.uniform1f(U.uClip,p.clip==null?-2:Math.cos(p.clip*Math.PI/180));
     gl.enable(gl.BLEND); gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
-    gl.drawArrays(gl.TRIANGLES,0,count);
+    gl.activeTexture(gl.TEXTURE0); gl.uniform1i(U.uTex,0);
+    list.forEach(l=>{ gl.uniform1f(U.uAlpha,l.alpha==null?1:l.alpha); gl.bindTexture(gl.TEXTURE_2D,tex[l.name]); gl.drawArrays(gl.TRIANGLES,0,count); });
     return true;
   }
   function clear(){ if(ok){ gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT); } }
-  return {init, load, draw, clear, get ok(){return ok;}, has:n=>!!tex[n]};
+  function put(name,canvasOrImage){ if(ok) upload(name,canvasOrImage); }
+  return {init, load, put, draw, clear, get ok(){return ok;}, has:n=>!!tex[n]};
 })();

@@ -113,7 +113,7 @@ function arr(v,kind){ if(!v) return []; if(typeof v==="string") return resolveRe
 function routePath(r){ let p=typeof r.path==="string"?resolveRef(r.path):r.path; if(r.until!=null) p=p.slice(0,r.until+1); return p; }
 function layers(){
   const s=scene||{};
-  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:s.highlight||[],symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null};
+  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:s.highlight||[],symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[]};
   Object.assign(L.fills,s.fills||{});
   L.groups=(s.groups||[]).slice();
   if(s.choro) L.choro=s.choro;
@@ -159,15 +159,54 @@ function label(text,x,y,opts={}){
   ctx.fillStyle=onDark&&(!opts.color||opts.color===C.ink)?"#F2F5F6":(opts.color||C.ink);ctx.fillText(text,x,y);
 }
 function km(p){let d=0;for(let i=1;i<p.length;i++)d+=d3.geoDistance(p[i-1],p[i]);return d*R_EARTH;}
+// image layers drawn by WebGL under the vector canvas: a base map texture, then data grids
 function drawRaster(){
-  const m=BM.mode, b=BASEMAPS[m];
-  if(!b.tex||!Raster.ok){ if(rasterOn){Raster.clear();rasterOn=false;} return false; }
-  if(!Raster.has(m)){ Raster.load(m,b.tex,render); if(rasterOn){Raster.clear();rasterOn=false;} return false; }
+  if(!Raster.ok) return false;
+  const list=[];
+  let m=BM.mode;
+  if(m==="political"&&L&&L.rasters.length) m="plain";   // data grids need a base the vector canvas does not cover
+  if(m==="plain"){ ensurePlain(); list.push({name:"plain"}); }
+  else if(BASEMAPS[m].tex){ if(!Raster.has(m)) Raster.load(m,BASEMAPS[m].tex,render); list.push({name:m}); }
+  if(L) L.rasters.forEach(r=>{ if(Raster.has(r.tex)) list.push({name:r.tex,alpha:r.alpha}); });
+  if(!list.length||!list.some(l=>Raster.has(l.name))){ if(rasterOn){Raster.clear();rasterOn=false;} return false; }
   const wg=wGlobe(), c=V.center;
-  rasterOn=Raster.draw({name:m,a:V.a,b:V.b,t:V.t,sa:S[V.a],sb:S[V.b],k:V.zoom,tr:proj.translate(),
+  rasterOn=Raster.draw({layers:list,a:V.a,b:V.b,t:V.t,sa:S[V.a],sb:S[V.b],k:V.zoom,tr:proj.translate(),
     rot:[-c[0]*rad,-c[1]*wg*rad],clip:wg>0.001?90+(1-wg)*89.4:null,W,H,dpr:DPR});
   return rasterOn;
 }
+// plain land/ocean texture in the theme colours, drawn once from the country shapes
+let plainFor=null;
+function ensurePlain(){
+  const key=C.ocean+C.land+feats.length; if(plainFor===key) return; plainFor=key;
+  const cv=document.createElement("canvas"); cv.width=4096; cv.height=2048; const g=cv.getContext("2d");
+  const pr=d3.geoEquirectangular().scale(4096/(2*Math.PI)).translate([2048,1024]).precision(0.2), pa=d3.geoPath(pr,g);
+  g.fillStyle=C.ocean; g.fillRect(0,0,4096,2048);
+  g.beginPath(); feats.forEach(f=>pa(f)); g.fillStyle=C.land; g.fill();
+  Raster.put("plain",cv);
+}
+// data grids: greyscale PNG frames decoded through a palette into colour textures
+const GRIDS={};
+function gridPalette(kind){
+  const lut=new Uint8ClampedArray(256*4), dv=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
+  for(let i=1;i<256;i++){ const t=(i-1)/254;
+    const c=d3.rgb(kind==="diverging"?dv(t):C.seq(t)); lut[i*4]=c.r; lut[i*4+1]=c.g; lut[i*4+2]=c.b;
+    lut[i*4+3]=kind==="diverging"?235:Math.round(255*(0.25+0.75*t)); }
+  return lut;
+}
+function gridFrame(alias,desc,label){
+  const key=alias+":"+label, url=desc.frames[label]; if(!url) return null;
+  if(GRIDS[key]) return GRIDS[key];
+  const G=GRIDS[key]={tex:"grid:"+key,ready:false};
+  const img=new Image(); img.onload=()=>{
+    const cv=document.createElement("canvas"); cv.width=img.width; cv.height=img.height; const g=cv.getContext("2d");
+    g.drawImage(img,0,0); const id=g.getImageData(0,0,cv.width,cv.height), px=id.data, lut=gridPalette(desc.palette);
+    G.w=cv.width; G.h=cv.height; G.bytes=new Uint8Array(cv.width*cv.height);
+    for(let i=0;i<G.bytes.length;i++){ const b=px[i*4]; G.bytes[i]=b; px[i*4]=lut[b*4]; px[i*4+1]=lut[b*4+1]; px[i*4+2]=lut[b*4+2]; px[i*4+3]=b?lut[b*4+3]:0; }
+    g.putImageData(id,0,0); Raster.put(G.tex,cv); G.ready=true; render(); };
+  img.src=url; return G;
+}
+function gridDecode(desc,b){ if(!b) return null; const e=desc.encoding, t=(b-1)/254;
+  return e.type==="log"?Math.pow(10,Math.log10(e.min)+t*(Math.log10(e.max)-Math.log10(e.min))):e.min+t*(e.max-e.min); }
 let rasterOn=false;
 // layers depend on the scene, timeline frame, switch and focus, not on the camera: rebuild only when marked dirty
 let Ldirty=true;
@@ -175,16 +214,16 @@ const markDirty=()=>{Ldirty=true;};
 function draw(){
   update(); if(Ldirty||!L){ L=layers(); Ldirty=false; }
   if(L.carto) L._cartoLabels=[];
-  const ras=drawRaster(); onDark=ras; placed=[];
+  const ras=drawRaster(); onDark=ras&&(BM.mode==="satellite"||BM.mode==="night"||BM.mode==="terrain"); placed=[];
   ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
   if(!ras){ctx.beginPath();path(SPHERE);ctx.fillStyle=C.ocean;ctx.fill();}
-  ctx.beginPath();path(GRAT);ctx.strokeStyle=ras?"rgba(255,255,255,.10)":C.grat;ctx.lineWidth=0.6;ctx.stroke();
+  ctx.beginPath();path(GRAT);ctx.strokeStyle=onDark?"rgba(255,255,255,.10)":C.grat;ctx.lineWidth=0.6;ctx.stroke();
   if(L.carto) drawCartogram(ras);
   else{
     if(ras) ctx.globalAlpha=0.72;
     for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(geom(feats[i]));ctx.fillStyle=fc;ctx.fill();}
     ctx.globalAlpha=1;
-    ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=ras?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=ras?0.7:0.6;ctx.stroke();
+    ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke();
   }
   if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f));});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
   // circles
@@ -321,9 +360,15 @@ function tap(x,y){
   if(V.t!==0||!proj.invert) return;
   const ll=proj.invert([x,y]); if(!ll||isNaN(ll[0])) return;
   if(curKind()==="globe"&&d3.geoDistance(ll,V.center)>Math.PI/2) return;
-  const f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll)); if(!f){hideTip();return;}
+  const gridHtml=L.rasters.map(r=>{ const G=r.G; if(!G.bytes) return "";
+    const x=Math.floor((ll[0]+180)/360*G.w)%G.w, y=Math.min(G.h-1,Math.floor((90-ll[1])/180*G.h)), v=gridDecode(r.desc,G.bytes[y*G.w+x]);
+    return v==null?"":"<span>"+esc(r.title)+": "+esc(r.fmt(v))+"</span>"; }).join("");
+  const f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll));
+  if(!f&&gridHtml){ tip.innerHTML="<b>"+d3.format(".1f")(Math.abs(ll[1]))+"°"+(ll[1]>=0?"N":"S")+" "+d3.format(".1f")(Math.abs(ll[0]))+"°"+(ll[0]>=0?"E":"W")+"</b>"+gridHtml;
+    tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
+  if(!f){hideTip();return;}
   if(L.flows.length||focus){ focus=focus===f.id?null:f.id; L=layers(); el.legend.innerHTML=legendHTML(); render(); }
-  let html="<b>"+esc(f.properties.name)+"</b>";
+  let html="<b>"+esc(nameOf(f.id))+"</b>"+gridHtml;
   if(L.choro){const v=L.cdata[f.id]; html+="<span>"+(v==null?"No data":esc(String(L.choro.fmt?L.choro.fmt(v):v)))+"</span>";}
   L.vals.forEach(lv=>{const v=lv.values[f.id]; if(v!=null) html+="<span>"+esc(lv.title)+": "+esc(lv.fmt(v))+"</span>";});
   const g=L.gmap.get(f.id); if(g) html+="<span>"+esc(g.label)+"</span>";
@@ -346,7 +391,8 @@ modeBtns.forEach(b=>b.onclick=()=>{const want=b.dataset.mode; const k=curKind();
 const BASEMAPS={
   political:{label:"Political"},
   satellite:{label:"Satellite",tex:"data/tex/satellite-4096.webp",source:"nasa-bluemarble"},
-  night:{label:"Night lights",tex:"data/tex/night-4096.webp",source:"nasa-blackmarble"}
+  night:{label:"Night lights",tex:"data/tex/night-4096.webp",source:"nasa-blackmarble"},
+  terrain:{label:"Terrain",tex:"data/tex/terrain-4096.webp",source:"nasa-relief"}
 };
 const BM={mode:"political",user:null};
 Raster.init(document.getElementById("raster"));
@@ -391,6 +437,8 @@ const FMT={
   t:v=>v>=1e6?d3.format(".1f")(v/1e6)+" Mt":v>=1e4?d3.format(",.0f")(v/1e3)+" kt":v>=1e3?d3.format(".1f")(v/1e3)+" kt":d3.format(",.0f")(v)+" t",
   kt:v=>v>=1000?d3.format(v>=1e5?",.0f":".1f")(v/1000)+" Mt":d3.format(",.0f")(v)+" kt",  // input in thousand tonnes
   kg:v=>v>=1e6?d3.format(".1f")(v/1e6)+" kt":v>=1e3?d3.format(",.0f")(v/1e3)+" t":d3.format(",.0f")(v)+" kg",
+  degc:v=>(v>0?"+":"")+d3.format(".1f")(v)+" °C",
+  ppkm2:v=>d3.format(v<10?".1f":",.0f")(v)+" per km²",
   pct:v=>d3.format(v<10?".1f":".0f")(v)+"%",
   busd:v=>v>=1000?"$"+d3.format(".1f")(v/1000)+" tn":"$"+d3.format(",.0f")(v)+" bn"
 };
@@ -473,6 +521,11 @@ const LAYER={
     Object.entries(ly.colors).forEach(([cat,c])=>L.groups.push({label:(set.labels&&set.labels[cat])||cat,color:c,
       ids:Object.entries(set.values).filter(([k,v])=>v===cat).map(([k])=>k)}));
   },
+  raster(ly,d,y,L){ // a lon/lat grid; frames keyed by label (a year for timelines)
+    const lab=String(ly.frame!=null&&ly.frame!=="t"?ly.frame:((frame&&frame.year)||Object.keys(d.frames).pop()));
+    const G=gridFrame(ly.data,d,lab); if(!G) return;
+    L.rasters.push({tex:G.tex,alpha:ly.opacity==null?0.9:ly.opacity,G,desc:d,title:ly.title||d.units,fmt:fmtOf(ly.fmt)});
+  },
   points(ly,d,y,L){ (d.points[ly.set]||[]).forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.color,r:ly.r||4.5})); }
 };
 // tapping a country in a flows scene shows only that country's flows
@@ -532,6 +585,9 @@ function legendHTML(){
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · tower height = amount");
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · country size = amount");
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · circle area = amount</span></span>`;
+  if(L) L.rasters.forEach(r=>{ const e=r.desc.encoding, lut=gridPalette(r.desc.palette);
+    const stops=d3.range(1,256,25).map(i=>`rgb(${lut[i*4]},${lut[i*4+1]},${lut[i*4+2]})`).join(",");
+    h+=`<div class="ramp"><div class="ramp-title">${esc(r.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(r.fmt(e.min))}</span><span>${esc(r.fmt(e.max))}</span></div></div>`; });
   const ch=L&&L.choro;
   if(ch){const stops=d3.range(0,1.01,0.1).map(t=>C.seq(ch.reverse?1-t:t)).join(",");
     const f=ch.fmt||(x=>x);

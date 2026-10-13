@@ -40,6 +40,12 @@ const SOURCES = {
     url: "https://science.nasa.gov/earth/earth-observatory/earth-at-night/maps", use: "commercial", redistribute: true,
     credit: "NASA Earth Observatory / NASA GSFC; imagery via NASA GIBS"
   },
+  "nasa-relief": {
+    name: "NASA shaded relief", what: "Terrain basemap (Blue Marble shaded relief and bathymetry, via NASA GIBS)", tier: "base",
+    licence: "NASA open data (CC0)", licenceUrl: "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+    url: "https://nasa-gibs.github.io/gibs-api-docs/", use: "commercial", redistribute: true,
+    credit: "NASA Earth Observatory; imagery via NASA GIBS"
+  },
   "eia-intl": {
     name: "US EIA", what: "Oil and gas production, consumption and trade by country, 2000–2024 (international energy data)", tier: "layer",
     licence: "US public domain", licenceUrl: "https://www.eia.gov/about/copyrights_reuse.php",

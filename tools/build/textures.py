@@ -5,6 +5,7 @@ root = os.path.join(os.path.dirname(__file__), "..", "..")
 OUT = {  # name: (source file, quality)
     "satellite": ("BlueMarble_NextGeneration.jpg", 78),
     "night": ("VIIRS_Black_Marble.jpg", 82),
+    "terrain": ("BlueMarble_ShadedRelief_Bathymetry.jpg", 78),
 }
 WIDTH = 4096  # 4096 x 2048 ≈ 9.8 km/px; keep each file under ~1 MB
 for name, (src, q) in OUT.items():

@@ -27,6 +27,7 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `fonts` | Source Serif 4, Barlow Semi Condensed | Base | SIL OFL 1.1 | Commercial | None for web use |
 | `nasa-bluemarble` | NASA Blue Marble Next Generation, 4096×2048 texture via GIBS (`data/tex/satellite-4096.webp`) | Base | NASA open data (CC0) | Commercial | "NASA Earth Observatory"; acknowledge GIBS; no implied endorsement |
 | `nasa-blackmarble` | NASA Black Marble 2016 night lights, 4096×2048 texture via GIBS (`data/tex/night-4096.webp`) | Base | NASA open data (CC0) | Commercial | "NASA Earth Observatory / NASA GSFC"; acknowledge GIBS |
+| `nasa-relief` | NASA Blue Marble shaded relief + bathymetry, 4096×2048 via GIBS (`data/tex/terrain-4096.webp`) | Base | NASA open data (CC0) | Commercial | "NASA Earth Observatory"; acknowledge GIBS |
 | `eia-intl` | US EIA international energy data, 2000–2024 (`data/energy/eia.json`) | Layer | US public domain | Commercial | "Source: U.S. Energy Information Administration"; no EIA logo |
 | `eia-chokepoints` | EIA World Oil Transit Chokepoints, typed in (`data/energy/chokepoints.json`) | Layer | US public domain | Commercial | EIA, plus "based on Vortexa tanker tracking" |
 | `baci` | CEPII BACI HS2017 V202601, trade 2021–2024 in energy, minerals, crops (`data/energy/trade.json`, `data/resources/trade.json`) | Layer | Etalab Open Licence 2.0 | Commercial | CEPII BACI, version and update date; built from UN Comtrade |
