@@ -1,1 +1,8 @@
-{"private": true, "description": "Build-time tools for Orbis (not needed to run the site)", "dependencies": {"mapshaper": "0.6.102"}}
+{
+ "private": true,
+ "description": "Build-time tools for Orbis (not needed to run the site)",
+ "dependencies": {
+  "mapshaper": "0.6.102",
+  "playwright": "1.64.0"
+ }
+}

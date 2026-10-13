@@ -374,8 +374,10 @@ async function ensureStory(i){
   await Promise.all(Object.entries(js.data||{}).map(async([k,u])=>{ data[k]=await loadJSON(u); }));
   js.scenes.forEach(sc=>{ const t=sc.timeline; if(t&&!t.frame){
     const ys=t.years.length===2&&t.years[1]-t.years[0]>1?d3.range(t.years[0],t.years[1]+1):t.years;
-    sc.timeline={years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:y=>y,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
-  const st=Object.assign({},js,{file:meta.file,_data:data}); STORIES[i]=st; return st;
+    const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const lab=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):(y=>y);
+    sc.timeline={years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
+  const st=Object.assign({},js,{file:meta.file,_data:data},meta.id.startsWith("@")?{id:meta.id}:{}); STORIES[i]=st; return st;
 }
 const FMT={
   kbd:v=>v>=1000?d3.format(".1f")(v/1000)+" m b/d":d3.format(",.0f")(v)+" k b/d",
@@ -633,7 +635,7 @@ function renderBlocs(){
 
 // ---------- table of contents ----------
 const tocList=$("tocList");
-const CATS=["Energy","Geopolitics","Economics","Statistics","People"];
+const CATS=["Energy","Geopolitics","Economics","Statistics","Rights","People"];
 function buildToc(){
   tocList.innerHTML=CATS.map(cat=>{const items=STORIES.map((s,i)=>[s,i]).filter(([s])=>s.cat===cat); if(!items.length) return "";
     return `<section class="toc-cat"><h2>${cat}</h2><ul>`+items.map(([s,i])=>`<li><button class="toc-story" data-i="${i}"><span class="toc-title">${esc(s.title)}</span><span class="toc-hook">${esc(s.hook)}</span></button></li>`).join("")+`</ul></section>`;}).join("");
@@ -670,7 +672,10 @@ setTimeout(loadDetail,300);
 loadJSON("stories/index.json").then(list=>{ STORIES.unshift(...list.map(x=>Object.assign({},x))); }).catch(e=>console.warn("Story index not loaded:",e))
 .then(()=>{
   buildToc();
-  const h=location.hash.slice(1).split("/"); const idx=STORIES.findIndex(s=>s.id===h[0]);
+  let h=location.hash.slice(1).split("/");
+  if(h[0].startsWith("@")){ const m=location.hash.slice(2).match(/^(.+\.json)(?:\/(\d+))?$/);
+    if(m){ STORIES.push({id:"@"+m[1],cat:"Draft",title:"Draft",hook:"",file:m[1]}); h=["@"+m[1],m[2]||"1"]; } }
+  const idx=STORIES.findIndex(s=>s.id===h[0]);
   if(idx>=0) openStory(idx, Math.max(0,(+h[1]||1)-1));
   else if(h[0]==="explore") openExplore();
   else { openExplore(); openToc(false); }
