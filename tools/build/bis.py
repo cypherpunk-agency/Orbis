@@ -49,7 +49,7 @@ for r in rows:
     if not a or not b:
         skipped[(r["cp"], r["cp_name"]) if a else (r["rep"], r["rep_name"])] += 1
         continue
-    if a == b: continue
+    if a == b or r["value"].lower() == "nan": continue  # flat file carries NaN for suppressed cells
     names[b] = r["cp_name"]
     val[r["basis"]][y][(a, b)] = float(r["value"]) * 10 ** (int(r["mult"]) - 9)
 # ultimate-risk basis where the reporter publishes it, immediate-borrower basis otherwise (per reporter and year)

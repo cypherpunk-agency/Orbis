@@ -171,3 +171,5 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* scene switch (e.g. pick a commodity) */
 #sSwitch{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 12px}
 .sw-label{font-size:15px;font-weight:600;color:var(--ink-soft);margin-right:2px}
+.src{white-space:nowrap;max-width:100%}
+.src b{overflow:hidden;text-overflow:ellipsis}

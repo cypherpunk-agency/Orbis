@@ -351,6 +351,7 @@ const FMT={
   m3pp:v=>d3.format(",.0f")(v)+" m³",
   mt:v=>d3.format(v<10000?".1f":",.0f")(v/1000)+" Mt",
   t:v=>v>=1e6?d3.format(".1f")(v/1e6)+" Mt":v>=1e4?d3.format(",.0f")(v/1e3)+" kt":v>=1e3?d3.format(".1f")(v/1e3)+" kt":d3.format(",.0f")(v)+" t",
+  kt:v=>v>=1000?d3.format(v>=1e5?",.0f":".1f")(v/1000)+" Mt":d3.format(",.0f")(v)+" kt",  // input in thousand tonnes
   kg:v=>v>=1e6?d3.format(".1f")(v/1e6)+" kt":v>=1e3?d3.format(",.0f")(v/1e3)+" t":d3.format(",.0f")(v)+" kg",
   pct:v=>d3.format(v<10?".1f":".0f")(v)+"%",
   busd:v=>v>=1000?"$"+d3.format(".1f")(v/1000)+" tn":"$"+d3.format(",.0f")(v)+" bn"

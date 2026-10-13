@@ -29,7 +29,9 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `nasa-blackmarble` | NASA Black Marble 2016 night lights, 4096×2048 texture via GIBS (`data/tex/night-4096.webp`) | Base | NASA open data (CC0) | Commercial | "NASA Earth Observatory / NASA GSFC"; acknowledge GIBS |
 | `eia-intl` | US EIA international energy data, 2000–2024 (`data/energy/eia.json`) | Layer | US public domain | Commercial | "Source: U.S. Energy Information Administration"; no EIA logo |
 | `eia-chokepoints` | EIA World Oil Transit Chokepoints, typed in (`data/energy/chokepoints.json`) | Layer | US public domain | Commercial | EIA, plus "based on Vortexa tanker tracking" |
-| `baci` | CEPII BACI HS2017 V202601, energy trade 2021–2024 (`data/energy/trade.json`) | Layer | Etalab Open Licence 2.0 | Commercial | CEPII BACI, version and update date; built from UN Comtrade |
+| `baci` | CEPII BACI HS2017 V202601, trade 2021–2024 in energy, minerals, crops (`data/energy/trade.json`, `data/resources/trade.json`) | Layer | Etalab Open Licence 2.0 | Commercial | CEPII BACI, version and update date; built from UN Comtrade |
+| `usgs-mcs` | USGS Mineral Commodity Summaries 2026 data release (`data/resources/usgs.json`) | Layer | US public domain (CC0) | Commercial | "Source: U.S. Geological Survey" |
+| `faostat` | FAOSTAT crop production 2000–2024 (`data/resources/fao.json`) | Layer | CC BY 4.0 | Commercial (not in commercial promotion) | FAO citation incl. access date; no implied endorsement |
 | `orbis-schematic` | Pipelines, sea lanes, terminals, refineries drawn by Orbis (`data/energy/infrastructure.json`) | Layer | Own work | Commercial | Marked as schematic |
 | `editorial` | Rounded figures typed into stories | Layer | Facts (not copyrightable); cited in each story's notes | Commercial | Sources named in story notes |
 

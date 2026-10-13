@@ -53,10 +53,22 @@ const SOURCES = {
     credit: "Source: U.S. Energy Information Administration, based on Vortexa tanker tracking and Panama Canal Authority data"
   },
   baci: {
-    name: "CEPII BACI", what: "Bilateral trade in crude, oil products, LNG and pipeline gas, 2021–2024 (HS2017, version 202601)", tier: "layer",
+    name: "CEPII BACI", what: "Bilateral trade in energy, minerals and crops, 2021–2024 (HS2017, version 202601)", tier: "layer",
     licence: "Etalab Open Licence 2.0", licenceUrl: "https://www.etalab.gouv.fr/licence-ouverte-open-licence/",
     url: "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37", use: "commercial", redistribute: true,
     credit: "CEPII BACI (Gaulier & Zignago 2010), version 202601, updated January 2026; built from UN Comtrade"
+  },
+  "usgs-mcs": {
+    name: "USGS minerals", what: "Mineral Commodity Summaries 2026: mine production 2024–2025 and reserves by country", tier: "layer",
+    licence: "US public domain (CC0)", licenceUrl: "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+    url: "https://doi.org/10.5066/P1WKQ63T", use: "commercial", redistribute: true,
+    credit: "Source: U.S. Geological Survey, Mineral Commodity Summaries 2026"
+  },
+  faostat: {
+    name: "FAOSTAT", what: "Crop production by country, 2000–2024 (Production: Crops and livestock products)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://www.fao.org/contact-us/terms/db-terms-of-use/en/",
+    url: "https://www.fao.org/faostat/en/#data/QCL", use: "commercial", redistribute: true,
+    credit: "Source: FAO, FAOSTAT (accessed 2026-10-13). Not to be used in commercial promotion"
   },
   "orbis-schematic": {
     name: "Orbis schematic routes", what: "Pipelines, sea lanes and facility locations drawn by Orbis from public reporting; approximate", tier: "layer",

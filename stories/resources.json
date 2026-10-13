@@ -1,0 +1,96 @@
+{
+  "id": "resources", "cat": "Economics", "title": "Who has what",
+  "hook": "The metals in your phone and car, and the food on your plate, come from surprisingly few places.",
+  "notes": "Mine production and reserves: USGS Mineral Commodity Summaries 2026; 2025 values are USGS estimates. Shares are of the USGS world total. US production of some minerals (e.g. lithium) is withheld by USGS and missing here. Gallium is low-purity primary production. Trade: CEPII BACI, version 202601, values in US dollars; the 'lithium ore' group uses HS 253090, a catch-all code that also contains other minerals. Crops: FAOSTAT 2024 (palm oil 2023), including FAO estimates.",
+  "data": {
+    "usgs": "data/resources/usgs.json",
+    "trade": "data/resources/trade.json",
+    "fao": "data/resources/fao.json"
+  },
+  "scenes": [
+    {
+      "title": "Who mines what",
+      "text": "Pick a resource. For many of the minerals that batteries, magnets and chips need, one country mines most of the world's supply.",
+      "view": {"mode": "equal", "center": [20, 10], "zoom": 1},
+      "switch": {"label": "Resource", "options": [
+        {"c": "lithium", "label": "Lithium", "fmt": "t", "text": "Lithium goes into batteries. Australia mines about a third of it from hard rock; Chile and Argentina pump it out of salt-flat brines. China (21%) and Zimbabwe (10%) are fast-growing producers."},
+        {"c": "cobalt", "label": "Cobalt", "fmt": "t", "text": "About three-quarters of the world's cobalt comes from the Democratic Republic of the Congo, mostly as a by-product of copper mining in the south. Indonesia, a by-product of its nickel boom, is now second with 14%."},
+        {"c": "rare_earths", "label": "Rare earths", "fmt": "t", "text": "Rare earths make the strong magnets in electric motors and wind turbines. China mines about 69% of them; the United States, Australia and Myanmar most of the rest."},
+        {"c": "graphite", "label": "Graphite", "fmt": "t", "text": "Natural graphite forms the anode of most lithium-ion batteries. China mines about 78% of it."},
+        {"c": "nickel", "label": "Nickel", "fmt": "t", "text": "Indonesia now mines two-thirds of the world's nickel. It banned exports of raw ore in 2020, which pulled smelters, mostly Chinese-financed, into the country."},
+        {"c": "copper", "label": "Copper", "fmt": "kt", "text": "Copper carries electricity, so electrification needs ever more of it. Chile (23%), Congo (14%) and Peru (12%) are the largest miners."},
+        {"c": "gallium", "label": "Gallium", "fmt": "kg", "text": "Gallium is used in chips, LEDs and radar. Almost all primary gallium is produced in China, which began restricting its export in 2023."},
+        {"c": "tungsten", "label": "Tungsten", "fmt": "t", "text": "Tungsten makes cutting tools and armour-piercing ammunition. China mines about 79%."},
+        {"c": "platinum", "label": "Platinum", "fmt": "kg", "text": "South Africa mines about 71% of the world's platinum, used in catalytic converters and hydrogen electrolysers."},
+        {"c": "iron_ore", "label": "Iron ore", "fmt": "kt", "text": "Iron ore is the bulk trade behind steel. Australia (38%) and Brazil (16%) ship most of it, largely to China."}
+      ]},
+      "layers": [{"type": "symbols", "data": "usgs", "series": "{c}_prod", "year": 2025, "color": "c3", "title": "{label}, mine production 2025", "fmt": "{fmt}", "maxR": 44, "labels": 4}],
+      "chart": {"data": "usgs", "series": "{c}_prod", "year": 2025, "share": true, "top": 6, "title": "{label}: share of world mine production", "color": "c3"}
+    },
+    {
+      "title": "The world redrawn by mining",
+      "text": "Here each country is resized by how much it mines. Watch Congo swell for cobalt, Indonesia for nickel and China for rare earths, while most of the map shrinks to almost nothing.",
+      "view": {"mode": "equal", "center": [20, 10], "zoom": 1},
+      "switch": {"label": "Resource", "start": 1, "options": [
+        {"c": "lithium", "label": "Lithium", "fmt": "t"},
+        {"c": "cobalt", "label": "Cobalt", "fmt": "t"},
+        {"c": "rare_earths", "label": "Rare earths", "fmt": "t"},
+        {"c": "graphite", "label": "Graphite", "fmt": "t"},
+        {"c": "nickel", "label": "Nickel", "fmt": "t"},
+        {"c": "copper", "label": "Copper", "fmt": "kt"}
+      ]},
+      "layers": [{"type": "cartogram", "data": "usgs", "series": "{c}_prod", "year": 2025, "title": "{label}, mine production 2025", "fmt": "{fmt}", "labels": 5}]
+    },
+    {
+      "title": "What is still in the ground",
+      "text": "Production is not the same as reserves. China mines 69% of rare earths but holds about half of known reserves; Brazil has a quarter and barely mines them yet. Chile holds the largest lithium reserves. The towers show known reserves.",
+      "view": {"mode": "equal", "center": [25, 12], "zoom": 1},
+      "switch": {"label": "Reserves of", "start": 2, "options": [
+        {"c": "lithium", "label": "Lithium", "fmt": "t"},
+        {"c": "cobalt", "label": "Cobalt", "fmt": "t"},
+        {"c": "rare_earths", "label": "Rare earths", "fmt": "t"},
+        {"c": "nickel", "label": "Nickel", "fmt": "t"},
+        {"c": "copper", "label": "Copper", "fmt": "kt"}
+      ]},
+      "layers": [{"type": "spikes", "data": "usgs", "series": "{c}_res", "year": 2025, "color": "c4", "title": "{label} reserves", "fmt": "{fmt}", "labels": 5, "maxH": 0.65}],
+      "chart": {"data": "usgs", "series": "{c}_res", "year": 2025, "share": true, "top": 6, "title": "{label}: share of known reserves", "color": "c4"}
+    },
+    {
+      "title": "Everything flows to China",
+      "text": "Ores and concentrates travel to where they are refined, and that is overwhelmingly China. In 2024 Chile and Peru shipped it over $36 billion of copper ore; Australia and Zimbabwe sent lithium ore, Congo cobalt, Myanmar rare earths.",
+      "view": {"mode": "globe", "center": [60, 5], "zoom": 1},
+      "switch": {"label": "Flow of", "options": [
+        {"g": "copper_ore", "label": "Copper ore"},
+        {"g": "lithium_ore", "label": "Lithium ore"},
+        {"g": "cobalt", "label": "Cobalt"},
+        {"g": "rare_earths", "label": "Rare earths"}
+      ]},
+      "layers": [{"type": "flows", "data": "trade", "group": "{g}", "year": 2024, "top": 20, "color": "c3", "title": "{label} trade, 2024", "fmt": "musd"}],
+      "chart": {"data": "trade", "group": "{g}", "side": "imports", "year": 2024, "top": 6, "title": "{label}: largest importers by value", "fmt": "musd", "color": "c3"}
+    },
+    {
+      "title": "Bread for Egypt",
+      "text": "Food is concentrated too. Egypt is one of the world's largest wheat importers, and most of it comes across the Black Sea. Russia's wheat sales to Egypt nearly doubled in value from 2021 to 2024, to about $3 billion; Ukraine kept supplying despite the war. Play the years.",
+      "view": {"mode": "globe", "center": [30, 38], "zoom": 1.8},
+      "layers": [
+        {"type": "flows", "data": "trade", "group": "wheat", "year": "t", "to": ["EGY"], "top": 10, "color": "c3", "title": "Wheat into Egypt", "fmt": "musd", "vmax": 3100, "maxW": 12}
+      ],
+      "timeline": {"years": [2021, 2022, 2023, 2024], "start": 2021, "captions": {"2022": "Russia invades Ukraine; Black Sea ports close until a UN-brokered grain deal in July.", "2023": "Russia leaves the grain deal in July; Ukraine ships through its own corridor."}},
+      "chart": {"data": "trade", "group": "wheat", "side": "imports", "year": "t", "top": 6, "title": "Largest wheat importers by value", "fmt": "musd", "color": "c3"}
+    },
+    {
+      "title": "Breakfast from a few places",
+      "text": "Pick a crop. Two West African neighbours, Côte d'Ivoire and Ghana, grow almost half the world's cocoa. Brazil grows nearly a third of its coffee and over a third of its soybeans. Indonesia and Malaysia make four-fifths of all palm oil.",
+      "view": {"mode": "equal", "center": [0, 5], "zoom": 1},
+      "switch": {"label": "Crop", "options": [
+        {"c": "cocoa", "label": "Cocoa", "y": 2024},
+        {"c": "coffee", "label": "Coffee", "y": 2024},
+        {"c": "soybeans", "label": "Soybeans", "y": 2024},
+        {"c": "palm_oil", "label": "Palm oil", "y": 2023},
+        {"c": "wheat", "label": "Wheat", "y": 2024}
+      ]},
+      "layers": [{"type": "cartogram", "data": "fao", "series": "{c}", "year": "{y}", "title": "{label} production, {y}", "fmt": "t", "labels": 5}],
+      "chart": {"data": "fao", "series": "{c}", "year": "{y}", "share": true, "top": 6, "title": "{label}: share of world production", "color": "c3"}
+    }
+  ]
+}
