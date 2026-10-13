@@ -16,6 +16,8 @@ python3 -m http.server 8000   # then http://localhost:8000
 - `js/app.js` — rendering (d3 canvas, globe/equal-area/Mercator morphing), story navigation, explore mode
 - `data/world.js` — world country topology (`WORLD`, TopoJSON)
 
+See [docs/ROADMAP.md](docs/ROADMAP.md) for known limits, story backlog and the technical path.
+
 Deep links: `#<story-id>/<scene>` (e.g. `#map-lies/2`) or `#explore`.
 
 External libraries load from CDN: d3 7.9.0, topojson-client 3.1.0, Google Fonts.
