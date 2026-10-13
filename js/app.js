@@ -23,6 +23,7 @@ feats.forEach(f=>{ let g=f.geometry;
 // where a centroid misleads (Russia's lies in Siberia, far from its export ports and population), anchor by hand
 Object.entries({RUS:[44,56]}).forEach(([k,v])=>ANCHOR.set(k,v));
 const nameOf=id=>NAMES.get(id)||id;
+const AREA=new Map(feats.map(f=>[f.id,d3.geoArea(f)]));
 // political tints: greedy colouring so neighbours differ
 const nb = topojson.neighbors(WORLD.objects.countries.geometries);
 const tint = new Array(feats.length).fill(0);
@@ -96,7 +97,7 @@ function arr(v,kind){ if(!v) return []; if(typeof v==="string") return resolveRe
 function routePath(r){ let p=typeof r.path==="string"?resolveRef(r.path):r.path; if(r.until!=null) p=p.slice(0,r.until+1); return p; }
 function layers(){
   const s=scene||{};
-  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:s.highlight||[],symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[]};
+  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:s.highlight||[],symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null};
   Object.assign(L.fills,s.fills||{});
   L.groups=(s.groups||[]).slice();
   if(s.choro) L.choro=s.choro;
@@ -157,10 +158,13 @@ function draw(){
   ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
   if(!ras){ctx.beginPath();path(SPHERE);ctx.fillStyle=C.ocean;ctx.fill();}
   ctx.beginPath();path(GRAT);ctx.strokeStyle=ras?"rgba(255,255,255,.10)":C.grat;ctx.lineWidth=0.6;ctx.stroke();
-  if(ras) ctx.globalAlpha=0.72;
-  for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(feats[i]);ctx.fillStyle=fc;ctx.fill();}
-  ctx.globalAlpha=1;
-  ctx.beginPath();path(borders);ctx.strokeStyle=ras?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=ras?0.7:0.6;ctx.stroke();
+  if(L.carto) drawCartogram(ras);
+  else{
+    if(ras) ctx.globalAlpha=0.72;
+    for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(feats[i]);ctx.fillStyle=fc;ctx.fill();}
+    ctx.globalAlpha=1;
+    ctx.beginPath();path(borders);ctx.strokeStyle=ras?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=ras?0.7:0.6;ctx.stroke();
+  }
   if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(f);});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
   // circles
   L.circles.forEach(c=>{const g=d3.geoCircle().center(c.center).radius(c.km/R_EARTH*deg).precision(1)();
@@ -193,14 +197,42 @@ function draw(){
     ctx.lineWidth=1.3;ctx.strokeStyle=col(sy.color);ctx.stroke();
     if(sy.label) labels.push([sy.label,xy[0]+Math.min(sy.r,14)+4,xy[1],{size:13}]);
   });
+  // spikes: towers standing on the map, height proportional to value
+  if(L.spikes.length){ const Rpx=Math.min(F.w,F.h)/2*V.zoom*0.9;
+    L.spikes.filter(sp=>sp.h*Rpx>=2.5).map(sp=>({sp,b:visible(sp.at)&&proj(sp.at)})).filter(o=>o.b).sort((a,b)=>a.b[1]-b.b[1]).forEach(({sp,b})=>{
+      const top=[b[0],b[1]-sp.h*Rpx], w=sp.w||7, c=col(sp.color);
+      ctx.beginPath();ctx.ellipse(b[0],b[1],w*0.75,w*0.32,0,0,2*Math.PI);ctx.fillStyle="rgba(0,0,0,.18)";ctx.fill();
+      ctx.lineCap="butt";ctx.beginPath();ctx.moveTo(b[0],b[1]);ctx.lineTo(top[0],top[1]);ctx.strokeStyle=c;ctx.lineWidth=w;ctx.stroke();
+      ctx.beginPath();ctx.moveTo(b[0]-w*0.22,b[1]);ctx.lineTo(top[0]-w*0.22,top[1]);ctx.strokeStyle="rgba(255,255,255,.35)";ctx.lineWidth=w*0.3;ctx.stroke();
+      ctx.beginPath();ctx.ellipse(top[0],top[1],w/2,w*0.22,0,0,2*Math.PI);ctx.fillStyle=c;ctx.fill();ctx.lineWidth=0.8;ctx.strokeStyle="rgba(255,255,255,.6)";ctx.stroke();
+      ctx.lineCap="round";
+      if(sp.label) labels.push([sp.label,top[0],top[1]-11,{size:13,align:"center"}]);
+    }); }
   // points
   L.points.forEach(pt=>{ if(!visible(pt.at)) return; const xy=proj(pt.at); if(!xy) return;
     ctx.beginPath();ctx.arc(xy[0],xy[1],pt.r||4,0,2*Math.PI);ctx.fillStyle=col(pt.color||"c1");ctx.fill();ctx.lineWidth=1.5;ctx.strokeStyle=C.halo;ctx.stroke();
     if(pt.label) labels.push([pt.label,xy[0]+(pt.r||4)+5,xy[1],{size:13}]);
   });
+  if(L._cartoLabels) labels.unshift(...L._cartoLabels);
   labels.forEach(l=>label(...l));
   // rim
   ctx.beginPath();path(SPHERE);ctx.strokeStyle=C.rim;ctx.lineWidth=1;ctx.stroke();
+}
+
+// ---------- cartogram ----------
+let cartoStart=0;
+const cartoEase=()=>reduce?1:d3.easeCubicInOut(clamp((performance.now()-cartoStart-900)/1500,0,1));
+function drawCartogram(ras){
+  const e=cartoEase();
+  // the true map stays as a faint ghost so the distortion reads as a change
+  ctx.beginPath(); feats.forEach(f=>path(f)); ctx.fillStyle=ras?"rgba(255,255,255,.12)":C.nodata; ctx.globalAlpha=0.7; ctx.fill(); ctx.globalAlpha=1;
+  L.carto.items.forEach(it=>{ const a=ANCHOR.get(it.f.id); if(!a||!visible(a)) return; const p=proj(a); if(!p) return;
+    const k=1+(it.k-1)*e;
+    ctx.save(); ctx.translate(p[0],p[1]); ctx.scale(k,k); ctx.translate(-p[0],-p[1]);
+    ctx.beginPath(); path(it.f); ctx.fillStyle=it.color; ctx.globalAlpha=0.9; ctx.fill(); ctx.globalAlpha=1;
+    ctx.lineWidth=0.9/k; ctx.strokeStyle=C.paper; ctx.stroke(); ctx.restore();
+    if(it.label&&e>0.98) L._cartoLabels.push([it.label,p[0],p[1],{align:"center",size:13}]);
+  });
 }
 
 // ---------- animation loop ----------
@@ -212,6 +244,7 @@ function tick(now){
   if(anim){const e=Math.min(1,(now-anim.start)/anim.dur);anim.step(d3.easeCubicInOut(e)); if(e>=1){anim.end();anim=null;}else more=true;}
   else if(spin&&!drag){V.center=[V.center[0]+dt*0.006,V.center[1]];more=true;}
   draw();
+  if(L&&L.carto&&cartoEase()<1) more=true;
   if(more||hasFlow()) render(); else last=0;
 }
 function flyTo(t,dur=1600){
@@ -316,7 +349,11 @@ const FMT={
   musd:v=>v>=1000?"$"+d3.format(v>=10000?",.0f":".1f")(v/1000)+" bn":"$"+d3.format(",.0f")(v)+" m",
   bpp:v=>d3.format(".1f")(v)+" barrels",
   m3pp:v=>d3.format(",.0f")(v)+" m³",
-  mt:v=>d3.format(v<10000?".1f":",.0f")(v/1000)+" Mt"
+  mt:v=>d3.format(v<10000?".1f":",.0f")(v/1000)+" Mt",
+  t:v=>v>=1e6?d3.format(".1f")(v/1e6)+" Mt":v>=1e4?d3.format(",.0f")(v/1e3)+" kt":v>=1e3?d3.format(".1f")(v/1e3)+" kt":d3.format(",.0f")(v)+" t",
+  kg:v=>v>=1e6?d3.format(".1f")(v/1e6)+" kt":v>=1e3?d3.format(",.0f")(v/1e3)+" t":d3.format(",.0f")(v)+" kg",
+  pct:v=>d3.format(v<10?".1f":".0f")(v)+"%",
+  busd:v=>v>=1000?"$"+d3.format(".1f")(v/1000)+" tn":"$"+d3.format(",.0f")(v)+" bn"
 };
 const fmtOf=f=>typeof f==="function"?f:(FMT[f]||d3.format(",.3~s"));
 const lastYear=d=>d.years?d.years[d.years.length-1]:null;
@@ -364,30 +401,71 @@ const LAYER={
   },
   lines(ly,d,y,L){ (d.lines[ly.set]||[]).forEach(x=>L.routes.push({path:x.path,color:x.color||ly.color,width:ly.width||2.2,
     dash:!!x.status&&x.status!=="operating",flow:ly.flow&&(!x.status||x.status==="operating"),label:ly.labels?x.name:null,labelAt:x.labelAt})); },
+  spikes(ly,d,y,L){
+    const items=Object.entries(valuesOf(ly,d,y)).filter(([k,v])=>v>0&&ANCHOR.has(k)).sort((a,b)=>b[1]-a[1]);
+    const vmax=ly.vmax||(items[0]&&items[0][1])||1, f=fmtOf(ly.fmt), n=ly.labels==null?5:ly.labels, c=ly.color||"c2";
+    items.forEach(([k,v],i)=>L.spikes.push({at:ANCHOR.get(k),h:(ly.maxH||0.6)*v/vmax,color:c,w:ly.width||7,label:i<n?nameOf(k)+" "+f(v):null}));
+    L.vals.push({title:ly.title,values:Object.fromEntries(items),fmt:f});
+    L.spikeKey={color:c,title:ly.title};
+  },
+  cartogram(ly,d,y,L){
+    const vals=valuesOf(ly,d,y), fs=feats.filter(f=>vals[f.id]>0);
+    const tv=d3.sum(fs,f=>vals[f.id]), ta=d3.sum(fs,f=>AREA.get(f.id)), f=fmtOf(ly.fmt), c=col(ly.color||"c2");
+    const vmax=d3.max(fs,ft=>vals[ft.id])||1;
+    // shade by value as well as size, so overlapping countries stay distinguishable
+    const items=fs.map(ft=>({f:ft,v:vals[ft.id],k:clamp(Math.sqrt((vals[ft.id]/tv)/(AREA.get(ft.id)/ta)),0.12,ly.maxK||5),color:C.seq(0.3+0.7*Math.sqrt(vals[ft.id]/vmax))}))
+      .sort((a,b)=>b.v-a.v);
+    items.forEach((it,i)=>{ if(i<(ly.labels==null?6:ly.labels)) it.label=nameOf(it.f.id); });
+    // draw big-on-screen countries first so small ones stay visible on top
+    items.sort((a,b)=>b.k*b.k*AREA.get(b.f.id)-a.k*a.k*AREA.get(a.f.id));
+    L.carto={items}; L._cartoLabels=[];
+    L.vals.push({title:ly.title,values:vals,fmt:f});
+    L.cartoKey={color:C.seq(0.8),title:ly.title};
+  },
   points(ly,d,y,L){ (d.points[ly.set]||[]).forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.color,r:ly.r||4.5})); }
 };
+// a scene "switch" (e.g. pick a commodity) fills {placeholders} in its layers, chart and text
+let switchIdx=0;
+const switchOpt=()=>scene&&scene.switch?scene.switch.options[switchIdx]:null;
+function subst(o){ const op=switchOpt(); if(!op||o==null) return o;
+  return JSON.parse(JSON.stringify(o).replace(/\{(\w+)\}/g,(m,k)=>op[k]!=null?String(op[k]).replace(/["\\]/g,"\\$&"):m)); }
 function compileLayers(s,L){
   const st=si>=0?STORIES[si]:null, D=(st&&st._data)||{};
-  (s.layers||[]).forEach(ly=>{ const d=D[ly.data], fn=LAYER[ly.type]; if(!d||!fn) return;
+  (subst(s.layers)||[]).forEach(ly=>{ const d=D[ly.data], fn=LAYER[ly.type]; if(!d||!fn) return;
     const y=(ly.year==null||ly.year==="t")?((frame&&frame.year)||lastYear(d)):ly.year;
     fn(ly,d,y,L); });
 }
 function renderChart(){
-  const c=scene&&scene.chart, st=si>=0?STORIES[si]:null, d=c&&st&&st._data&&st._data[c.data];
+  const c=subst(scene&&scene.chart), st=si>=0?STORIES[si]:null, d=c&&st&&st._data&&st._data[c.data];
   if(!d){ el.chart.hidden=true; return; }
   const y=(c.year==null||c.year==="t")?((frame&&frame.year)||lastYear(d)):c.year;
   let rows=Array.isArray(d.points)?pointValues(c,d,y).map(p=>[p.name,p.v]):Object.entries(valuesOf(c,d,y)).map(([k,v])=>[nameOf(k),v]);
-  rows=rows.filter(r=>r[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,c.top||8);
-  const mx=rows.length?rows[0][1]:1, f=fmtOf(c.fmt);
+  rows=rows.filter(r=>r[1]>0).sort((a,b)=>b[1]-a[1]);
+  let f=fmtOf(c.fmt);
+  if(c.share){ // show each country's share of the world total (dataset's own world figure when it has one)
+    const w=d.world&&d.world[c.series], tot=(w&&w[d.years.indexOf(+y)])||d3.sum(rows,r=>r[1]);
+    rows=rows.map(r=>[r[0],r[1]/tot*100]); f=FMT.pct; }
+  rows=rows.slice(0,c.top||8);
+  const mx=rows.length?rows[0][1]:1;
   el.chart.innerHTML=`<div class="ch-title">${esc(c.title)}${c.period||y?" · "+esc(String(c.period||y)):""}</div>`+
     rows.map(([n,v])=>`<div class="ch-row"><span class="nm">${esc(n)}</span><span class="bar" style="width:${(v/mx*100).toFixed(1)}%;background:${col(c.color||"c3")}"></span><span class="v">${esc(f(v))}</span></div>`).join("");
   el.chart.hidden=false;
 }
 
+function renderSwitch(){
+  const sw=scene&&scene.switch, box=el.sw;
+  if(!sw){ box.hidden=true; return; }
+  box.innerHTML=`<span class="sw-label">${esc(sw.label||"Show")}</span>`+sw.options.map((o,i)=>`<button class="bloc" data-i="${i}" aria-pressed="${String(i===switchIdx)}">${esc(o.label)}</button>`).join("");
+  [...box.querySelectorAll("button")].forEach(b=>b.onclick=()=>{ switchIdx=+b.dataset.i; cartoStart=performance.now()-900; renderSwitch();
+    const op=switchOpt(); el.text.textContent=op.text||scene.text; L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderData(); render(); });
+  box.hidden=false;
+  const op=switchOpt(); if(op&&op.text) el.text.textContent=op.text;
+}
+
 // ---------- panel ----------
 const $=id=>document.getElementById(id);
 const el={kicker:$("sKicker"),title:$("sTitle"),text:$("sText"),legend:$("sLegend"),tl:$("sTimeline"),slider:$("tlSlider"),year:$("tlYear"),play:$("tlPlay"),cap:$("tlCaption"),
-  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart")};
+  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart"),sw:$("sSwitch")};
 let si=-1, ci=0, tlIdx=0, playing=null;
 const explore={bloc:null};
 
@@ -397,6 +475,8 @@ function legendHTML(){
   if(s.legend) h+=s.legend.map(l=>chip(l.color,l.label)).join("");
   else if(L&&L.groups.length) h+=L.groups.map(g=>chip(g.color,g.label)).join("");
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · line width = "+(k.qty?"tonnes":"value")));
+  if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · tower height = amount");
+  if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · country size = amount");
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · circle area = amount</span></span>`;
   const ch=L&&L.choro;
   if(ch){const stops=d3.range(0,1.01,0.1).map(t=>C.seq(ch.reverse?1-t:t)).join(",");
@@ -411,7 +491,7 @@ function sourceIds(){
   const ids=[];
   if(si>=0&&STORIES[si].scenes){ const st=STORIES[si], D=st._data||{};
     ids.push(...(st.sources||(st._data?[]:["editorial"])), ...((scene&&scene.sources)||[]));
-    if(scene) [...(scene.layers||[]), ...(scene.chart?[scene.chart]:[])].forEach(l=>{const d=D[l.data]; if(d&&d.source) ids.push(d.source);}); }
+    if(scene) [...(subst(scene.layers)||[]), ...(scene.chart?[subst(scene.chart)]:[])].forEach(l=>{const d=D[l.data]; if(d&&d.source) ids.push(d.source);}); }
   if(BASEMAPS[BM.mode].source) ids.push(BASEMAPS[BM.mode].source);
   ids.push("naturalearth");
   return [...new Set(ids)].filter(id=>SOURCES[id]);
@@ -458,6 +538,7 @@ function showScene(i, fly=true){
   el.blocs.hidden=true; el.steps.hidden=false; el.notes.hidden=false;
   if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.years.length-1;}
   else el.tl.hidden=true;
+  switchIdx=(scene.switch&&scene.switch.start)||0; cartoStart=performance.now(); renderSwitch();
   frame=null; setFrame(); L=layers(); el.legend.innerHTML=legendHTML(); renderChart();
   el.dots.innerHTML=st.scenes.map((s,j)=>`<button class="dot" aria-label="Scene ${j+1}: ${esc(s.title)}" ${j===ci?'aria-current="step"':""}></button>`).join("");
   [...el.dots.children].forEach((b,j)=>b.onclick=()=>showScene(j));
@@ -486,7 +567,7 @@ async function openStory(i, scn=0){
   showScene(scn==="last"?STORIES[i].scenes.length-1:scn);
 }
 function openExplore(){
-  si=-1; scene=null; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true;
+  si=-1; scene=null; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true;
   el.kicker.textContent="Explore"; el.title.textContent="The world, your way";
   el.text.textContent="Drag to turn the world, pinch or scroll to zoom, tap a country to see its name. Switch between political, satellite and night views with the map button. Show a group of countries:";
   el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=false;
