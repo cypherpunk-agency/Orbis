@@ -853,7 +853,7 @@ function describe(){
   if(L.groups.length) L.groups.forEach(g=>parts.push(g.label+": "+g.ids.length+" countries highlighted."));
   if(L.routes.length) parts.push(L.routes.length+" routes drawn"+(L.routes.some(r=>r.label)?": "+L.routes.filter(r=>r.label).slice(0,5).map(r=>r.label).join(", "):"")+".");
   if(L.points.length) parts.push("Places marked: "+L.points.filter(p=>p.label).slice(0,8).map(p=>p.label).join(", ")+".");
-  if(L.rasters.length) parts.push("A colour grid shows "+L.rasters.filter(r=>r.side!=="R").map(r=>r.title).join(", ")+"+(L.swipe?" (left: "+L.swipe.left+", right: "+L.swipe.right+")":"")+"; tap the map to read values.");
+  if(L.rasters.length) parts.push("A colour grid shows "+L.rasters.filter(r=>r.side!=="R").map(r=>r.title).join(", ")+(L.swipe?" (left: "+L.swipe.left+", right: "+L.swipe.right+")":"")+"; tap the map to read values.");
   if(L.hist) parts.push("Borders as of "+L.hist.year+".");
   const txt=parts.join(" "); $("srDesc").textContent=txt; canvas.setAttribute("aria-label",(scene&&scene.title?scene.title+". ":"")+txt);
 }
