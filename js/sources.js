@@ -125,10 +125,22 @@ const SOURCES = {
     credit: "Source: Eurostat (demo_r_d2jan, nama_10r_2gdp, cens_21cob_r3)"
   },
   "us-census": {
-    name: "US Census Bureau", what: "State population estimates (Vintage 2025) and median household income (ACS 2024 1-year)", tier: "layer",
+    name: "US Census Bureau", what: "State population estimates (Vintage 2025), median household income (ACS 2024 1-year), US goods trade by partner country, monthly (FT-900)", tier: "layer",
     licence: "US public domain", licenceUrl: "https://www.usa.gov/government-copyright",
     url: "https://www.census.gov/", use: "commercial", redistribute: true,
-    credit: "Source: U.S. Census Bureau, Population Estimates Program and American Community Survey"
+    credit: "Source: U.S. Census Bureau, Population Estimates Program, American Community Survey, and U.S. International Trade in Goods and Services"
+  },
+  "us-treasury-fiscal": {
+    name: "US Treasury Fiscal Data", what: "Monthly Treasury Statement: customs duties and total federal receipts, monthly, 2017–2026", tier: "layer",
+    licence: "US public domain (open data, commercial use allowed)", licenceUrl: "https://fiscaldata.treasury.gov/about-us/",
+    url: "https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/", use: "commercial", redistribute: true,
+    credit: "Source: U.S. Department of the Treasury, Bureau of the Fiscal Service, Monthly Treasury Statement"
+  },
+  usitc: {
+    name: "US International Trade Commission", what: "US imports for consumption, duties collected and ratio of duties to value, 1891–2025 (Table 1)", tier: "layer",
+    licence: "US public domain", licenceUrl: "https://www.usa.gov/government-copyright",
+    url: "https://www.usitc.gov/documents/dataweb/ave_table.pdf", use: "commercial", redistribute: true,
+    credit: "Source: U.S. International Trade Commission, Office of Analysis and Research Services"
   },
   "kummu-gdp": {
     name: "Kummu et al. GDP per capita", what: "Subnational GDP per capita (PPP) 1990–2024, admin-1 table (used for Indian states)", tier: "layer",

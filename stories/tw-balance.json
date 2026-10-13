@@ -1,0 +1,251 @@
+{
+  "id": "tw-balance",
+  "cat": "Economics",
+  "title": "The deficit that would not shrink",
+  "hook": "Tariffs were meant to close America's trade gap. The deficit with China shrank, but the overall gap barely moved: it shifted to Vietnam, Taiwan and Mexico.",
+  "updated": "2026-10-13",
+  "notes": "All figures: US Census Bureau, US goods trade by partner country (exports minus general imports, Census basis, not seasonally adjusted), FT-900 country file with data through August 2026; goods only, services are not included. '12 months' means the 12 months ending in the month shown; December values are calendar years. A negative balance is a US deficit. Gold: US Census Bureau and BEA, 'U.S. International Trade in Goods and Services, August 2026' (6 October 2026): exports of nonmonetary gold were $86.6 billion in January-August 2026 against $40.1 billion a year earlier. Hong Kong is counted separately from mainland China. Bilateral balances are partly an artefact of where goods are finished: goods assembled in Vietnam or Mexico from Chinese parts count as Vietnamese or Mexican imports. The saving-investment link is an accounting identity of national accounts: a country's current-account balance equals its saving minus its investment.",
+  "data": {
+    "bal": "data/tradewar/balance.json",
+    "long": "data/tradewar/balance_long.json",
+    "sh": "data/tradewar/shift.json"
+  },
+  "scenes": [
+    {
+      "title": "A record gap",
+      "text": "In 2024 the US bought $1.2 trillion more goods from the rest of the world than it sold. In 2025, when tariffs rose to their highest level since the 1940s, the gap grew to a record $1.23 trillion. In 1990 it was about $100 billion.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          20
+        ],
+        "zoom": 1.05
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "sh",
+          "series": "bal_2024",
+          "year": 202608,
+          "showYear": false,
+          "title": "US goods trade balance with each country, 2024 (blue: US deficit)",
+          "fmt": "busd",
+          "diverging": true,
+          "mid": 0,
+          "vmin": -150,
+          "vmax": 150
+        }
+      ],
+      "media": [
+        {
+          "type": "line",
+          "data": "long",
+          "series": "bal",
+          "countries": [
+            "USA"
+          ],
+          "title": "US goods trade balance with the world, billion USD per year",
+          "fmt": "d3:$,.0f"
+        }
+      ]
+    },
+    {
+      "title": "Who the US buys more from",
+      "text": "In 2024 the biggest gap was with China: the US bought $297 billion more from China than it sold there. Mexico ($169 billion), Vietnam ($123 billion), Ireland and Germany followed. Blue marks a US deficit. The US sold more than it bought to the Netherlands, Hong Kong, the UAE and Australia.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          20
+        ],
+        "zoom": 1.05
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "sh",
+          "series": "bal_2024",
+          "year": 202608,
+          "showYear": false,
+          "title": "US goods trade balance, 2024 (blue: US deficit)",
+          "fmt": "busd",
+          "diverging": true,
+          "mid": 0,
+          "vmin": -150,
+          "vmax": 150
+        }
+      ],
+      "chart": {
+        "data": "sh",
+        "series": "bal_2024",
+        "year": 202608,
+        "period": "2024",
+        "mult": -1,
+        "top": 8,
+        "title": "Largest US goods deficits",
+        "fmt": "busd",
+        "color": "c1"
+      }
+    },
+    {
+      "title": "The gap moves",
+      "text": "In the 12 months to August 2026 the deficit with China was down to $166 billion, the smallest since 2004. Now Vietnam ($229 billion), Mexico ($224 billion) and Taiwan ($210 billion) each top China. Play the years to watch the blue spread across Southeast Asia.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          20
+        ],
+        "zoom": 1.05
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "bal",
+          "series": "bal12",
+          "year": "t",
+          "title": "US goods trade balance (blue: US deficit)",
+          "fmt": "busd",
+          "diverging": true,
+          "mid": 0,
+          "vmin": -150,
+          "vmax": 150
+        }
+      ],
+      "timeline": {
+        "years": [
+          201712,
+          201812,
+          201912,
+          202012,
+          202112,
+          202212,
+          202312,
+          202412,
+          202512,
+          202608
+        ],
+        "start": 202608,
+        "format": "month",
+        "labels": {
+          "201712": "2017",
+          "201812": "2018",
+          "201912": "2019",
+          "202012": "2020",
+          "202112": "2021",
+          "202212": "2022",
+          "202312": "2023",
+          "202412": "2024",
+          "202512": "2025",
+          "202608": "12 months to Aug 2026"
+        },
+        "captions": {
+          "201812": "2018: the deficit with China peaks at $418 billion.",
+          "202412": "2024: China still accounts for a quarter of the US goods deficit.",
+          "202608": "China has dropped to fourth place."
+        }
+      },
+      "chart": {
+        "data": "bal",
+        "series": "bal12",
+        "year": "t",
+        "mult": -1,
+        "top": 8,
+        "title": "Largest US goods deficits",
+        "fmt": "busd",
+        "color": "c1"
+      }
+    },
+    {
+      "title": "Shifted, not shrunk",
+      "text": "Compared with 2024, the deficit with China shrank by $131 billion. But the deficit with Taiwan grew by $137 billion, with Vietnam by $106 billion, Thailand by $61 billion and Mexico by $56 billion. Blue marks where the US deficit grew. By accounting, a country's trade deficit mirrors the gap between what it invests and what it saves. Unless tariffs change that gap, they mostly move the deficit from one partner to another.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          20
+        ],
+        "zoom": 1.05
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "sh",
+          "series": "bal_chg",
+          "year": 202608,
+          "showYear": false,
+          "title": "Change in US goods balance, 12 months to Aug 2026 vs 2024 (blue: deficit grew)",
+          "fmt": "busd",
+          "diverging": true,
+          "mid": 0,
+          "vmin": -140,
+          "vmax": 140
+        }
+      ],
+      "chart": {
+        "data": "sh",
+        "series": "bal_chg",
+        "year": 202608,
+        "period": "vs 2024",
+        "mult": -1,
+        "top": 8,
+        "title": "Where the US deficit grew most",
+        "fmt": "busd",
+        "color": "c1"
+      }
+    },
+    {
+      "title": "Gold makes the gap look smaller",
+      "text": "The total gap peaked at $1.38 trillion in the 12 months to March 2025, when companies rushed in goods ahead of the tariffs. In the 12 months to August 2026 it was $1.12 trillion. Imports did not fall. Exports rose, by $326 billion on 2024, the most to Switzerland, a centre of the gold trade: US gold exports more than doubled in January to August 2026, to $87 billion.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          30
+        ],
+        "zoom": 1.05
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "sh",
+          "series": "exp_chg",
+          "year": 202608,
+          "showYear": false,
+          "title": "Change in US goods exports, 12 months to Aug 2026 vs 2024",
+          "fmt": "busd",
+          "diverging": true,
+          "mid": 0,
+          "vmin": -65,
+          "vmax": 65
+        }
+      ],
+      "chart": {
+        "data": "sh",
+        "series": "exp_chg",
+        "year": 202608,
+        "period": "vs 2024",
+        "top": 8,
+        "title": "Biggest increases in US exports",
+        "fmt": "busd",
+        "color": "c2"
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "bal",
+          "series": "total_bal12",
+          "countries": [
+            "USA"
+          ],
+          "title": "US goods trade balance, 12 months to each month, billion USD",
+          "fmt": "d3:$,.0f"
+        }
+      ],
+      "sources": [
+        "us-census"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "id": "tw-bill",
+  "cat": "Economics",
+  "title": "Who pays the tariffs",
+  "hook": "US customs revenue quadrupled in 2025. The bill landed mostly on American companies and shoppers, and then a court ordered much of it paid back.",
+  "updated": "2026-10-13",
+  "notes": "Customs duties: Monthly Treasury Statement, Table 4, line 'Customs Duties', via Treasury Fiscal Data (through August 2026). 'Collected' is gross deposits; 'net' subtracts refunds. Duty rate by month: gross duties divided by US goods imports in the same month (Census), an approximation, because duties are deposited a few weeks after goods arrive. Long-run tariff rate: USITC, 'U.S. imports for consumption, duties collected, and ratio of duties to value, 1891-2025' (March 2026); fiscal years until 1918, calendar years after. USITC warns that this ratio understates how restrictive a tariff is, because goods kept out by high tariffs do not count. Imports by origin: US Census Bureau, 12 months to August 2026. Who bears the cost: Amiti, Flanagan, Heise and Weinstein, 'Who Is Paying for the 2025 U.S. Tariffs?', Federal Reserve Bank of New York, Liberty Street Economics, 12 February 2026 (import data through November 2025); Goldman Sachs Research, October 2025 estimate as reported by The Hill and NBC News (projection for the end of 2025: consumers 55%, US businesses 22%, foreign exporters 18%); Yale Budget Lab, 'The State of U.S. Tariffs', 24 August 2026 (about $1,100 per household per year under current law; average statutory rate 11.0%). Court and refunds: Supreme Court, Learning Resources v. Trump, 20 February 2026 (6-3); US Customs and Border Protection opened its refund system (CAPE) on 20 April 2026. Refunds in the Treasury figures from May 2026 are mostly, but not only, IEEPA refunds; refunds may still be under appeal.",
+  "data": {
+    "cus": "data/tradewar/customs.json",
+    "long": "data/tradewar/tariff_long.json",
+    "imp": "data/tradewar/imports.json"
+  },
+  "scenes": [
+    {
+      "title": "A tax paid at the border",
+      "text": "A tariff is a tax on imports. The American company that brings goods into the country pays it to US Customs when the goods arrive, not the foreign seller. In the 12 months to August 2026 the US imported $3.5 trillion of goods. The circles show where they came from.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -20,
+          25
+        ],
+        "zoom": 1.05
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "imp",
+          "series": "imp12",
+          "year": 202608,
+          "color": "c1",
+          "title": "US goods imports, 12 months to Aug 2026",
+          "fmt": "musd",
+          "labels": 8,
+          "maxR": 34
+        }
+      ],
+      "chart": {
+        "data": "imp",
+        "series": "imp12",
+        "year": 202608,
+        "top": 8,
+        "title": "Largest suppliers of US imports",
+        "fmt": "musd",
+        "color": "c1",
+        "period": "12 months to Aug 2026"
+      },
+      "highlight": [
+        "USA"
+      ]
+    },
+    {
+      "title": "The bill quadruples",
+      "text": "Through 2024, US Customs collected about $7 billion a month. After the new tariffs of April 2025, collections climbed to a peak of $33 billion in October 2025. In the fiscal year to September 2025, customs brought in $195 billion, two and a half times the year before and nearly 4% of all federal revenue.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          38
+        ],
+        "zoom": 1.6
+      },
+      "fills": {
+        "USA": "c3"
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "cus",
+          "series": "gross",
+          "countries": [
+            "USA"
+          ],
+          "title": "Customs duties collected per month, billion USD",
+          "fmt": "d3:$,.0f"
+        }
+      ],
+      "sources": [
+        "us-treasury-fiscal"
+      ]
+    },
+    {
+      "title": "The highest tariffs since the 1940s",
+      "text": "In 2025, duties equalled 7.8% of the value of everything the US imported, up from 2.3% in 2024. The last time the average was that high was 1947. It is still below the 1930s, when the Smoot-Hawley tariff pushed it near 20%. In single months of late 2025, duties reached about 12% of imports.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          38
+        ],
+        "zoom": 1.6
+      },
+      "fills": {
+        "USA": "c3"
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "long",
+          "series": "rate",
+          "countries": [
+            "USA"
+          ],
+          "title": "Average US tariff: duties as % of all imports, 1891-2025",
+          "fmt": "d3:.0f"
+        },
+        {
+          "type": "line",
+          "data": "cus",
+          "series": "rate_m",
+          "countries": [
+            "USA"
+          ],
+          "title": "Duties as % of imports, by month since 2017",
+          "fmt": "d3:.0f"
+        }
+      ],
+      "sources": [
+        "usitc",
+        "us-treasury-fiscal",
+        "us-census"
+      ]
+    },
+    {
+      "title": "Who really pays",
+      "text": "The company that pays at the border can absorb the tax, raise its prices, or push the foreign seller to cut prices. Economists at the New York Fed found that foreign exporters cut their prices very little: through November 2025, nearly 90% of the cost fell on US firms and consumers. Goldman Sachs expected consumers to carry about 55% by the end of 2025. The Yale Budget Lab puts the cost at about $1,100 per household per year.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -20,
+          25
+        ],
+        "zoom": 1.05
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "imp",
+          "series": "imp12",
+          "year": 202608,
+          "color": "c2",
+          "title": "US goods imports, 12 months to Aug 2026",
+          "fmt": "musd",
+          "labels": 6,
+          "maxR": 34
+        }
+      ],
+      "media": [
+        {
+          "type": "quote",
+          "text": "Nearly 90 percent of the tariffs' economic burden fell on U.S. firms and consumers.",
+          "by": "Amiti, Flanagan, Heise and Weinstein, Federal Reserve Bank of New York, February 2026"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "The court sends the money back",
+      "text": "On 20 February 2026 the Supreme Court ruled 6-3 that the emergency law behind many of the 2025 tariffs, including the 'reciprocal' tariffs on almost every country, does not allow the president to impose tariffs. Customs began paying importers back in spring. Between May and August 2026 it refunded $115 billion, more than it collected, so net customs revenue was negative in May, June and July.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          38
+        ],
+        "zoom": 1.6
+      },
+      "fills": {
+        "USA": "c2"
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "cus",
+          "series": "net",
+          "countries": [
+            "USA"
+          ],
+          "title": "Customs duties net of refunds, billion USD per month",
+          "fmt": "d3:$,.0f"
+        },
+        {
+          "type": "line",
+          "data": "cus",
+          "series": "refunds",
+          "countries": [
+            "USA"
+          ],
+          "title": "Duties refunded, billion USD per month",
+          "fmt": "d3:$,.0f"
+        }
+      ],
+      "sources": [
+        "us-treasury-fiscal",
+        "editorial"
+      ]
+    },
+    {
+      "title": "Lower, but not gone",
+      "text": "New tariffs under other laws replaced the struck-down ones. In mid-2026, duties still came to about 7% of imports each month, nearly three times the 2024 level, and collections held near $23 billion a month. The refunds go to the importers who paid, not to the shoppers who paid higher prices. The Yale Budget Lab put the average tariff rate on the books at 11% in August 2026.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          38
+        ],
+        "zoom": 1.6
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "cus",
+          "series": "rate_m",
+          "countries": [
+            "USA"
+          ],
+          "title": "Duties as % of imports, by month",
+          "fmt": "d3:.0f"
+        },
+        {
+          "type": "line",
+          "data": "cus",
+          "series": "gross",
+          "countries": [
+            "USA"
+          ],
+          "title": "Customs duties collected per month, billion USD",
+          "fmt": "d3:$,.0f"
+        }
+      ],
+      "sources": [
+        "us-treasury-fiscal",
+        "us-census",
+        "editorial"
+      ],
+      "fills": {
+        "USA": "c3"
+      }
+    }
+  ]
+}

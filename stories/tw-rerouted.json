@@ -1,0 +1,482 @@
+{
+  "id": "tw-rerouted",
+  "cat": "Economics",
+  "title": "Trade takes a detour",
+  "hook": "Tariffs cut what America buys from China by almost half. The goods now come from Mexico, Taiwan, Vietnam and Thailand instead.",
+  "updated": "2026-10-13",
+  "notes": "All trade figures: US Census Bureau, US goods imports by country of origin (general imports, Census basis, not seasonally adjusted), FT-900 country file with data through August 2026. '12 months' means the 12 months ending in the month shown; December values are calendar years. Imports from Hong Kong and Macao are counted separately from mainland China. Country of origin is where goods were last substantially transformed, so goods assembled in Vietnam or Mexico from Chinese parts count as Vietnamese or Mexican. Supply chains: Freund, Mattoo, Mulabdic and Ruta, 'Is US trade policy reshaping global supply chains?', World Bank Policy Research Working Paper 10593 (2023; Journal of International Economics, 2024) found that the countries that gained US market share after the 2018 tariffs were those most tied into China's supply chains. Taiwan's exports to the US: mostly servers and computer equipment for AI data centres, according to Taiwan's Ministry of Finance export statistics as reported by Focus Taiwan (2026). Gold and medicines in early 2025: Census monthly trade releases; Ireland's Central Statistics Office reported exports to the US up about fivefold in March 2025 compared with a year earlier.",
+  "data": {
+    "imp": "data/tradewar/imports.json",
+    "sh": "data/tradewar/shift.json"
+  },
+  "scenes": [
+    {
+      "title": "Where America shops",
+      "text": "In 2017 the US bought $505 billion of goods from China, more than a fifth of everything it imported. China was by far its largest supplier. Press play to watch the circles shift over the following years.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -20,
+          25
+        ],
+        "zoom": 1.05
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "imp",
+          "series": "imp12",
+          "year": "t",
+          "color": "c1",
+          "title": "US goods imports",
+          "fmt": "musd",
+          "labels": 7,
+          "maxR": 34,
+          "vmax": 600000
+        }
+      ],
+      "timeline": {
+        "years": [
+          201712,
+          201812,
+          201912,
+          202012,
+          202112,
+          202212,
+          202312,
+          202412,
+          202512,
+          202608
+        ],
+        "start": 201712,
+        "format": "month",
+        "labels": {
+          "201712": "2017",
+          "201812": "2018",
+          "201912": "2019",
+          "202012": "2020",
+          "202112": "2021",
+          "202212": "2022",
+          "202312": "2023",
+          "202412": "2024",
+          "202512": "2025",
+          "202608": "12 months to Aug 2026"
+        },
+        "captions": {
+          "201812": "2018: the first trade war. The US puts tariffs on Chinese goods.",
+          "202312": "2023: Mexico overtakes China as the largest supplier.",
+          "202512": "2025: new tariffs. Imports from China fall by $130 billion in one year.",
+          "202608": "Today Mexico sells more than twice as much to the US as China does."
+        }
+      },
+      "chart": {
+        "data": "imp",
+        "series": "imp12",
+        "year": "t",
+        "top": 8,
+        "title": "Largest suppliers of US imports",
+        "fmt": "musd",
+        "color": "c1"
+      }
+    },
+    {
+      "title": "China's share shrinks",
+      "text": "China's share of US imports fell from 22% in 2017 to 13% in 2024, and to under 8% in the 12 months to August 2026. Mexico's rose to 17%. Taiwan and Vietnam, each around 2% in 2017, now supply about 7 to 8% each.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          20
+        ],
+        "zoom": 1.05
+      },
+      "switch": {
+        "label": "Period",
+        "start": 2,
+        "options": [
+          {
+            "s": "share_2017",
+            "label": "2017"
+          },
+          {
+            "s": "share_2024",
+            "label": "2024"
+          },
+          {
+            "s": "share_latest",
+            "label": "Last 12 months"
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "sh",
+          "series": "{s}",
+          "year": 202608,
+          "showYear": false,
+          "title": "Share of US goods imports, {label}",
+          "fmt": "pct",
+          "vmin": 0,
+          "vmax": 22
+        }
+      ],
+      "chart": {
+        "data": "sh",
+        "series": "{s}",
+        "year": 202608,
+        "period": "{label}",
+        "top": 8,
+        "title": "Share of US imports",
+        "fmt": "pct",
+        "color": "c1"
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "imp",
+          "series": "share12",
+          "countries": [
+            "CHN",
+            "MEX"
+          ],
+          "title": "Share of US imports, %, 12 months to each month",
+          "fmt": "d3:.0f"
+        }
+      ]
+    },
+    {
+      "title": "Who filled the gap",
+      "text": "Compared with 2017, the US now buys $232 billion less a year from China. Imports from Mexico rose by $287 billion, from Taiwan by $227 billion and from Vietnam by $201 billion. Red marks countries that sell more to the US than in 2017, blue those that sell less.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          30,
+          20
+        ],
+        "zoom": 1.05
+      },
+      "switch": {
+        "label": "Compared with",
+        "options": [
+          {
+            "c": "chg_2017",
+            "label": "2017",
+            "text": "Compared with 2017, the US now buys $232 billion less a year from China. Imports from Mexico rose by $287 billion, from Taiwan by $227 billion and from Vietnam by $201 billion. Red marks countries that sell more to the US than in 2017, blue those that sell less."
+          },
+          {
+            "c": "chg_2024",
+            "label": "2024",
+            "text": "Since the new tariffs of 2025, the shift has sped up. Compared with 2024, imports from China fell by $168 billion. Imports from Taiwan rose by $153 billion, from Vietnam by $111 billion, from Mexico by $96 billion and from Thailand by $67 billion. Total US imports did not fall: they rose by $246 billion."
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "sh",
+          "series": "{c}",
+          "year": 202608,
+          "showYear": false,
+          "title": "Change in US imports, 12 months to Aug 2026 vs {label}",
+          "fmt": "busd",
+          "diverging": true,
+          "mid": 0,
+          "vmin": -150,
+          "vmax": 150
+        }
+      ],
+      "chart": {
+        "data": "sh",
+        "series": "{c}",
+        "year": 202608,
+        "period": "vs {label}",
+        "top": 8,
+        "title": "Biggest increases in US imports",
+        "fmt": "busd",
+        "color": "c2"
+      }
+    },
+    {
+      "title": "Taiwan's AI boom",
+      "text": "Taiwan sold the US $116 billion of goods in 2024 and $269 billion in the 12 months to August 2026, mostly servers and computer equipment for AI data centres. From December 2025 to May 2026, the US bought more from Taiwan than from China every month.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          115,
+          25
+        ],
+        "zoom": 2.2
+      },
+      "highlight": [
+        "TWN",
+        "CHN"
+      ],
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "imp",
+          "series": "imp_m",
+          "year": "t",
+          "color": "c1",
+          "title": "US imports in the month",
+          "fmt": "musd",
+          "labels": 6,
+          "maxR": 40,
+          "vmax": 45000
+        }
+      ],
+      "timeline": {
+        "years": [
+          202401,
+          202402,
+          202403,
+          202404,
+          202405,
+          202406,
+          202407,
+          202408,
+          202409,
+          202410,
+          202411,
+          202412,
+          202501,
+          202502,
+          202503,
+          202504,
+          202505,
+          202506,
+          202507,
+          202508,
+          202509,
+          202510,
+          202511,
+          202512,
+          202601,
+          202602,
+          202603,
+          202604,
+          202605,
+          202606,
+          202607,
+          202608
+        ],
+        "start": 202604,
+        "format": "month",
+        "captions": {
+          "202512": "December 2025: Taiwan overtakes China.",
+          "202606": "June 2026: China is back ahead."
+        }
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "imp",
+          "series": "imp_m",
+          "countries": [
+            "CHN",
+            "TWN"
+          ],
+          "title": "US imports per month",
+          "fmt": "musd"
+        }
+      ]
+    },
+    {
+      "title": "The detour through Southeast Asia",
+      "text": "US imports from Vietnam are five times what they were in 2017, from Thailand four times. Part of this is Chinese and other firms moving final assembly out of China to avoid the tariffs. A World Bank study found that the countries gaining US market share after 2018 were the ones most tied into China's supply chains.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          108,
+          12
+        ],
+        "zoom": 2.3
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "sh",
+          "series": "pct_2017",
+          "year": 202608,
+          "showYear": false,
+          "title": "Change in US imports since 2017, %",
+          "fmt": "d3:+,.0f",
+          "diverging": true,
+          "mid": 0,
+          "vmin": -400,
+          "vmax": 400
+        }
+      ],
+      "highlight": [
+        "VNM",
+        "THA",
+        "MYS",
+        "KHM",
+        "CHN"
+      ],
+      "media": [
+        {
+          "type": "line",
+          "data": "imp",
+          "series": "imp12",
+          "countries": [
+            "VNM",
+            "THA",
+            "MYS",
+            "IDN"
+          ],
+          "title": "US imports over 12 months",
+          "fmt": "musd"
+        }
+      ]
+    },
+    {
+      "title": "The rush before the tariffs",
+      "text": "Companies hurried to bring goods in before the new tariffs hit. In January 2025 imports from Switzerland jumped to $24 billion, more than four times the usual monthly amount, much of it gold. In March, imports from Ireland reached $31 billion, mostly medicines, more than three times the usual. Both fell back once the tariffs were set.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          0,
+          47
+        ],
+        "zoom": 2.4
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "imp",
+          "series": "imp_m",
+          "year": "t",
+          "color": "c3",
+          "title": "US imports in the month",
+          "fmt": "musd",
+          "labels": 6,
+          "maxR": 40,
+          "vmax": 35000
+        }
+      ],
+      "timeline": {
+        "years": [
+          202410,
+          202411,
+          202412,
+          202501,
+          202502,
+          202503,
+          202504,
+          202505,
+          202506,
+          202507,
+          202508,
+          202509,
+          202510,
+          202511,
+          202512
+        ],
+        "start": 202503,
+        "format": "month",
+        "captions": {
+          "202501": "January 2025: gold flows from Switzerland to New York.",
+          "202503": "March 2025: medicines from Ireland ahead of expected drug tariffs.",
+          "202504": "April 2025: the new tariffs take effect."
+        }
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "imp",
+          "series": "imp_m",
+          "countries": [
+            "IRL",
+            "CHE"
+          ],
+          "title": "US imports per month",
+          "fmt": "musd"
+        }
+      ]
+    },
+    {
+      "title": "China comes back, partly",
+      "text": "After the Supreme Court struck down the emergency tariffs of 2025 in February 2026, imports from China picked up: from $19 billion in February to $27 billion in August. That is still well below the $37 billion a month of 2024. Other tariffs on Chinese goods, some dating from 2018, remain.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          30,
+          25
+        ],
+        "zoom": 1.05
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "imp",
+          "series": "imp_m",
+          "year": "t",
+          "color": "c1",
+          "title": "US imports in the month",
+          "fmt": "musd",
+          "labels": 6,
+          "maxR": 34,
+          "vmax": 62000
+        }
+      ],
+      "timeline": {
+        "years": [
+          202401,
+          202402,
+          202403,
+          202404,
+          202405,
+          202406,
+          202407,
+          202408,
+          202409,
+          202410,
+          202411,
+          202412,
+          202501,
+          202502,
+          202503,
+          202504,
+          202505,
+          202506,
+          202507,
+          202508,
+          202509,
+          202510,
+          202511,
+          202512,
+          202601,
+          202602,
+          202603,
+          202604,
+          202605,
+          202606,
+          202607,
+          202608
+        ],
+        "start": 202608,
+        "format": "month",
+        "captions": {
+          "202504": "April 2025: US tariffs on Chinese goods reach 145%.",
+          "202602": "February 2026: the Supreme Court strikes down the emergency tariffs."
+        }
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "imp",
+          "series": "imp_m",
+          "countries": [
+            "CHN",
+            "MEX",
+            "CAN"
+          ],
+          "title": "US imports per month",
+          "fmt": "musd"
+        }
+      ]
+    }
+  ]
+}

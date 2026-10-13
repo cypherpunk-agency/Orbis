@@ -725,15 +725,23 @@ function renderMedia(){
     if(x.type==="image") return `<figure class="md-img"><img src="${esc(x.src)}" alt="${esc(x.alt||"")}" loading="lazy"><figcaption>${esc(x.caption||"")} <span class="md-credit">${x.href?`<a href="${esc(x.href)}" target="_blank" rel="noopener">${esc(x.credit||"Source")}</a>`:esc(x.credit||"")}${x.licence?" · "+esc(x.licence):""}</span></figcaption></figure>`;
     if(x.type==="quote") return `<blockquote class="md-quote"><p>${esc(x.text)}</p>${x.by?`<footer>${esc(x.by)}</footer>`:""}</blockquote>`;
     if(x.type==="line"){ const d=st&&st._data&&st._data[x.data]; if(!d||!d.series) return "";
-      const sr=d.series[x.series], ys=d.years, w=330, h=120, pad=[8,46,18,4];
+      // x positions: plain years, or yyyymm / yyyymmdd numbers (dataset "format": "month" | "date") as fractional years
+      const fm=d.format, xv=y=>fm==="month"?Math.floor(y/100)+(y%100-1)/12:fm==="date"?Math.floor(y/1e4)+(Math.floor(y/100)%100-1)/12+(y%100-1)/365:y;
+      const mon=LANG==="de"?["Jan.","Feb.","März","Apr.","Mai","Juni","Juli","Aug.","Sept.","Okt.","Nov.","Dez."]:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      const ylb=y=>fm==="month"?mon[y%100-1]+" "+Math.floor(y/100):fm==="date"?fmtDate(y):y;
+      const sr=d.series[x.series], ys0=d.years, ys=ys0.map(xv), w=330, h=120, pad=[8,46,18,4];
       const lines=(x.countries||[]).map((c,i)=>({c,col:col(["c1","c2","c3","c4","c5"][i%5]),pts:ys.map((y,j)=>[y,sr.values[c]?sr.values[c][j]:null]).filter(p=>p[1]!=null)})).filter(l=>l.pts.length);
       const all=lines.flatMap(l=>l.pts); if(!all.length) return "";
       const sx=d3.scaleLinear().domain(d3.extent(ys)).range([pad[3],w-pad[1]]), sy=d3.scaleLinear().domain([Math.min(0,d3.min(all,p=>p[1])),d3.max(all,p=>p[1])]).nice().range([h-pad[2],pad[0]]);
       const f=fmtOf(x.fmt), ln=d3.line().x(p=>sx(p[0])).y(p=>sy(p[1]));
       return `<figure class="md-line"><figcaption>${esc(x.title||sr.label)}</figcaption><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(x.title||sr.label)}">`+
         sy.ticks(3).map(t=>`<line x1="${pad[3]}" x2="${w-pad[1]}" y1="${sy(t)}" y2="${sy(t)}" class="md-grid"/><text x="${w-pad[1]+4}" y="${sy(t)+4}" class="md-tick">${esc(f(t))}</text>`).join("")+
-        `<text x="${pad[3]}" y="${h-3}" class="md-tick">${ys[0]}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${ys[ys.length-1]}</text>`+
-        lines.map(l=>`<path d="${ln(l.pts)}" fill="none" stroke="${l.col}" stroke-width="2"/><text x="${sx(l.pts[l.pts.length-1][0])-2}" y="${sy(l.pts[l.pts.length-1][1])-5}" class="md-lab" fill="${l.col}" text-anchor="end">${esc(nameOf(l.c))}</text>`).join("")+`</svg></figure>`; }
+        `<text x="${pad[3]}" y="${h-3}" class="md-tick">${esc(ylb(ys0[0]))}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${esc(ylb(ys0[ys0.length-1]))}</text>`+
+        lines.map(l=>`<path d="${ln(l.pts)}" fill="none" stroke="${l.col}" stroke-width="2"/>`).join("")+
+        // end labels (only when there is more than one line), pushed apart so they do not overlap
+        (lines.length>1?(()=>{ const lb=lines.map(l=>({l,y:sy(l.pts[l.pts.length-1][1])-5})).sort((a,b)=>a.y-b.y);
+          for(let i=1;i<lb.length;i++) if(lb[i].y-lb[i-1].y<11) lb[i].y=lb[i-1].y+11;
+          return lb.map(({l,y})=>`<text x="${sx(l.pts[l.pts.length-1][0])-2}" y="${Math.min(y,h-pad[2]-2)}" class="md-lab" fill="${l.col}" text-anchor="end">${esc(l.label||nameOf(l.c))}</text>`).join(""); })():"")+`</svg></figure>`; }
     return ""; }).join("");
   el.media.hidden=false;
 }
