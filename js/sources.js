@@ -59,7 +59,7 @@ const SOURCES = {
     credit: "Source: U.S. Energy Information Administration, based on Vortexa tanker tracking and Panama Canal Authority data"
   },
   baci: {
-    name: "CEPII BACI", what: "Bilateral trade in energy, minerals and crops, 2021–2024 (HS2017, version 202601)", tier: "layer",
+    name: "CEPII BACI", what: "Bilateral trade in energy, minerals, crops and goods hit by US tariffs, 2021–2024 (HS2017, version 202601)", tier: "layer",
     licence: "Etalab Open Licence 2.0", licenceUrl: "https://www.etalab.gouv.fr/licence-ouverte-open-licence/",
     url: "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37", use: "commercial", redistribute: true,
     credit: "CEPII BACI (Gaulier & Zignago 2010), version 202601, updated January 2026; built from UN Comtrade"
@@ -135,6 +135,18 @@ const SOURCES = {
     licence: "US public domain (open data, commercial use allowed)", licenceUrl: "https://fiscaldata.treasury.gov/about-us/",
     url: "https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/", use: "commercial", redistribute: true,
     credit: "Source: U.S. Department of the Treasury, Bureau of the Fiscal Service, Monthly Treasury Statement"
+  },
+  "us-fedreg": {
+    name: "US Federal Register", what: "Presidential proclamations, executive orders and USTR notices on US tariffs, 2025–2026", tier: "layer",
+    licence: "US government work (public domain)", licenceUrl: "https://www.usa.gov/government-copyright",
+    url: "https://www.federalregister.gov/", use: "commercial", redistribute: true,
+    credit: "Source: Federal Register (Office of the Federal Register / GPO govinfo); compiled by Orbis"
+  },
+  "us-courts": {
+    name: "US court opinions", what: "Supreme Court, Federal Circuit and Court of International Trade opinions on the 2025–2026 tariffs", tier: "layer",
+    licence: "US government work (public domain)", licenceUrl: "https://www.usa.gov/government-copyright",
+    url: "https://www.supremecourt.gov/opinions/slipopinion/25", use: "commercial", redistribute: true,
+    credit: "Supreme Court of the United States; U.S. Court of Appeals for the Federal Circuit; U.S. Court of International Trade"
   },
   usitc: {
     name: "US International Trade Commission", what: "US imports for consumption, duties collected and ratio of duties to value, 1891–2025 (Table 1)", tier: "layer",
