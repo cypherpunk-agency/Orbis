@@ -25,7 +25,13 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `d3` | D3 7.9.0 | Base | ISC | Commercial | Keep licence notice |
 | `topojson` | topojson-client 3.1.0 | Base | ISC | Commercial | Keep licence notice |
 | `fonts` | Source Serif 4, Barlow Semi Condensed | Base | SIL OFL 1.1 | Commercial | None for web use |
-| `editorial` | Rounded figures typed into the 18 launch stories | Layer | Facts (not copyrightable); cited in each story's notes | Commercial | Sources named in story notes |
+| `nasa-bluemarble` | NASA Blue Marble Next Generation, 4096×2048 texture via GIBS (`data/tex/satellite-4096.webp`) | Base | NASA open data (CC0) | Commercial | "NASA Earth Observatory"; acknowledge GIBS; no implied endorsement |
+| `nasa-blackmarble` | NASA Black Marble 2016 night lights, 4096×2048 texture via GIBS (`data/tex/night-4096.webp`) | Base | NASA open data (CC0) | Commercial | "NASA Earth Observatory / NASA GSFC"; acknowledge GIBS |
+| `eia-intl` | US EIA international energy data, 2000–2024 (`data/energy/eia.json`) | Layer | US public domain | Commercial | "Source: U.S. Energy Information Administration"; no EIA logo |
+| `eia-chokepoints` | EIA World Oil Transit Chokepoints, typed in (`data/energy/chokepoints.json`) | Layer | US public domain | Commercial | EIA, plus "based on Vortexa tanker tracking" |
+| `baci` | CEPII BACI HS2017 V202601, energy trade 2021–2024 (`data/energy/trade.json`) | Layer | Etalab Open Licence 2.0 | Commercial | CEPII BACI, version and update date; built from UN Comtrade |
+| `orbis-schematic` | Pipelines, sea lanes, terminals, refineries drawn by Orbis (`data/energy/infrastructure.json`) | Layer | Own work | Commercial | Marked as schematic |
+| `editorial` | Rounded figures typed into stories | Layer | Facts (not copyrightable); cited in each story's notes | Commercial | Sources named in story notes |
 
 ## Evaluated candidates
 

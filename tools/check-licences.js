@@ -29,5 +29,26 @@ STORIES.forEach(st => {
   ids.forEach(id => { used.add(id); if (!SOURCES[id]) errs.push(`story ${st.id}: unknown source "${id}"`); });
 });
 
+// data-file stories: story/scene sources plus the source declared in every dataset they load
+const index = JSON.parse(read("stories/index.json"));
+index.forEach(meta => {
+  const st = JSON.parse(read(meta.file));
+  const ds = {};
+  for (const [alias, file] of Object.entries(st.data || {})) {
+    const d = JSON.parse(read(file));
+    if (!d.source) errs.push(`${file}: dataset has no "source"`);
+    else if (!SOURCES[d.source]) errs.push(`${file}: unknown source "${d.source}"`);
+    if (!d.asOf) errs.push(`${file}: dataset has no "asOf"`);
+    ds[alias] = d;
+  }
+  [...(st.sources || []), ...st.scenes.flatMap(sc => sc.sources || [])].forEach(id => { if (!SOURCES[id]) errs.push(`story ${st.id}: unknown source "${id}"`); });
+  st.scenes.forEach((sc, i) => [...(sc.layers || []), ...(sc.chart ? [sc.chart] : [])].forEach(l => {
+    if (!ds[l.data]) errs.push(`story ${st.id} scene ${i + 1}: layer uses undeclared data "${l.data}"`);
+  }));
+});
+// basemap sources referenced by the engine
+const app = read("js/app.js");
+for (const m of app.matchAll(/source:"([a-z0-9-]+)"/g)) if (!SOURCES[m[1]]) errs.push(`js/app.js: basemap source "${m[1]}" not registered`);
+
 if (errs.length) { console.error("Licence check failed:\n  " + errs.join("\n  ")); process.exit(1); }
-console.log(`Licence check passed: ${Object.keys(SOURCES).length} sources, ${STORIES.length} stories.`);
+console.log(`Licence check passed: ${Object.keys(SOURCES).length} sources, ${STORIES.length + index.length} stories.`);

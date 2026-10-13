@@ -173,6 +173,9 @@ Rebuilding a dataset is one command; the "as of" date comes from the source, not
 
 ## 5. Phases
 
+**Status (phase 1 delivered):** data-file stories with lazy loading; layer types `symbols`, `flows`, data-driven `lines` and `points`, computed `choropleth`; panel bar chart; label collision avoidance; WebGL raster underlay with political / satellite / night base maps (4096×2048 textures, 370 KB and 243 KB); data pipeline for EIA, BACI and textures; **Oil** (8 scenes) and **Gas** (7 scenes) stories. Pipelines and terminals are schematic own work until the Global Energy Monitor files are downloaded. Still open from phase 1: `raster` as a story layer (beyond base maps), DOM label layer.
+
+
 | Phase | Deliverable | Proves |
 |---|---|---|
 | **1. Framework + oil and gas** | JSON story format, lazy loading; layer types symbols, flows, data-driven lines/points, labels, panel chart; WebGL raster underlay with satellite and night base modes; data pipeline for EIA, GEM, BACI; **Oil** and **Gas** stories | Layers 1–7, 11, 12 |

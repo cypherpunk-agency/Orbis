@@ -1,0 +1,71 @@
+{
+  "id": "gas", "cat": "Energy", "title": "Pipes and ships",
+  "hook": "Gas moves by pipeline or as a liquid on ships. Europe just switched from one to the other.",
+  "notes": "Production and use: US EIA international data, dry natural gas, 2024, billion cubic metres (bcm). Trade: CEPII BACI version 202601, HS 271121 (pipeline gas) and 271111 (LNG). Trade statistics miss some pipeline flows: Germany, for example, does not publish the origin of its gas imports, so Russian pipeline deliveries to Germany are absent from the data. Flaring estimate: World Bank Global Gas Flaring Tracker. Pipelines, sea lanes and terminal locations are schematic, drawn by Orbis.",
+  "data": {
+    "eia": "data/energy/eia.json",
+    "trade": "data/energy/trade.json",
+    "choke": "data/energy/chokepoints.json",
+    "infra": "data/energy/infrastructure.json"
+  },
+  "scenes": [
+    {
+      "title": "Who produces gas",
+      "text": "The United States produces about 1,070 billion cubic metres of gas a year, a quarter of the world total and far ahead of Russia (642). Iran, China, Canada and Qatar follow. Press Play to see the US shale gas boom after 2008.",
+      "view": {"mode": "globe", "center": [20, 38], "zoom": 1},
+      "layers": [{"type": "symbols", "data": "eia", "series": "gas_prod", "year": "t", "color": "c4", "title": "Gas production", "fmt": "bcm", "maxR": 46, "vmax": 1070}],
+      "timeline": {"years": [2000, 2024], "start": 2024},
+      "chart": {"data": "eia", "series": "gas_prod", "year": "t", "top": 8, "title": "Largest producers", "fmt": "bcm", "color": "c4"}
+    },
+    {
+      "title": "The pipeline web",
+      "text": "Gas is bulky, so the cheapest way to move it over land is a pipe. For decades Russian gas reached Europe through Ukraine, Belarus and under the Baltic Sea. Dashed lines no longer carry Russian gas: Nord Stream was blown up in September 2022, Yamal–Europe stopped the same year and transit through Ukraine ended on 1 January 2025. TurkStream is now the only pipeline carrying Russian gas into the EU.",
+      "view": {"mode": "globe", "center": [38, 50], "zoom": 1.7},
+      "layers": [{"type": "lines", "data": "infra", "set": "gasPipelines", "color": "c4", "width": 2.4, "labels": true, "flow": true}]
+    },
+    {
+      "title": "Turning gas into a liquid",
+      "text": "Cooled to minus 162 °C, gas shrinks 600-fold and can travel by ship as liquefied natural gas (LNG). Export plants (orange) cluster in Qatar, Australia and the US Gulf Coast. Import terminals (blue) line the coasts of Japan, Korea, China and Europe.",
+      "view": {"mode": "equal", "center": [40, 20], "zoom": 1},
+      "layers": [
+        {"type": "lines", "data": "infra", "set": "lngRoutes", "color": "c4", "width": 1.6, "flow": true},
+        {"type": "points", "data": "infra", "set": "lngExport", "color": "c3", "r": 5, "labels": false},
+        {"type": "points", "data": "infra", "set": "lngImport", "color": "c1", "r": 4, "labels": false}
+      ],
+      "legend": [{"color": "c3", "label": "LNG export plant"}, {"color": "c1", "label": "LNG import terminal"}, {"color": "c4", "label": "Main LNG shipping lanes (schematic)"}]
+    },
+    {
+      "title": "Pipe versus ship",
+      "text": "By value, more gas now crosses borders on ships than in pipes. Australia, the US and Qatar each sold between about $38 and $47 billion of LNG in 2024. Pipeline trade is regional: Norway to Germany and Britain, Turkmenistan to China, Algeria to Italy.",
+      "view": {"mode": "equal", "center": [50, 25], "zoom": 1},
+      "layers": [
+        {"type": "flows", "data": "trade", "group": "pipegas", "year": 2024, "top": 20, "color": "c4", "title": "Pipeline gas", "fmt": "musd", "vmax": 17000},
+        {"type": "flows", "data": "trade", "group": "lng", "year": 2024, "top": 25, "color": "c2", "title": "LNG", "fmt": "musd", "vmax": 17000}
+      ],
+      "chart": {"data": "trade", "group": "lng", "side": "exports", "year": 2024, "top": 8, "title": "Largest LNG exporters by value", "fmt": "musd", "color": "c2"}
+    },
+    {
+      "title": "Europe switches to ships",
+      "text": "When Russian pipeline gas dried up, Europe bought LNG instead, above all from the United States. American LNG shipments to Europe roughly tripled between 2021 and 2023. Russian LNG, which the EU did not ban at first, kept flowing too. Lines show tonnes of LNG; play the years.",
+      "view": {"mode": "equal", "center": [-25, 42], "zoom": 1.6},
+      "layers": [{"type": "flows", "data": "trade", "group": "lng", "year": "t", "metric": "qty", "to": ["AUT","BEL","BGR","HRV","CYP","CZE","DNK","EST","FIN","FRA","DEU","GRC","HUN","IRL","ITA","LVA","LTU","LUX","NLD","POL","PRT","ROU","SVK","SVN","ESP","SWE","GBR"], "top": 25, "color": "c2", "title": "LNG into Europe", "fmt": "mt", "vmax": 13000}],
+      "timeline": {"years": [2021, 2022, 2023, 2024], "start": 2021, "captions": {"2021": "Russia still supplies around 40% of the EU's imported gas, mostly by pipeline.", "2022": "War, Nord Stream sabotage: Europe scrambles for LNG.", "2023": "The US is Europe's largest LNG supplier.", "2024": "New import terminals in Germany and elsewhere are running."}}
+    },
+    {
+      "title": "Who uses gas",
+      "text": "Gas heats homes, runs power stations and feeds fertiliser and chemical plants. Per person, the Gulf states use the most because gas powers their desalination and air conditioning: a Qatari resident accounts for about 15,000 cubic metres a year, a Russian about 3,400.",
+      "view": {"mode": "equal", "center": [30, 25], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "eia", "series": "gas_cons", "per": "pop", "mult": 1000000, "year": 2024, "title": "Gas use per person, cubic metres a year", "fmt": "m3pp", "log": true}],
+      "chart": {"data": "eia", "series": "gas_cons", "year": 2024, "top": 8, "title": "Largest consumers", "fmt": "bcm", "color": "c4"}
+    },
+    {
+      "title": "Burned for nothing",
+      "text": "At night, some of the brightest lights in deserts and swamps are not cities but gas flares at oil fields, burning gas nobody captures. Look at southern Iraq near Basra and the Niger Delta. The World Bank estimates that about 150 billion cubic metres a year are flared worldwide, more than Germany uses.",
+      "view": {"mode": "equal", "center": [27, 18], "zoom": 2.4},
+      "basemap": "night",
+      "layers": [],
+      "points": [{"at": [47.4, 30.7], "label": "Oil fields of southern Iraq", "color": "c3", "r": 3}, {"at": [6.4, 5.0], "label": "Niger Delta", "color": "c3", "r": 3}],
+      "sources": ["editorial"]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "oil", "cat": "Energy", "title": "The oil machine",
+  "hook": "Where oil comes out of the ground, how it travels, and who burns it.",
+  "notes": "Production and consumption: US EIA international data, 2024 ('petroleum and other liquids', which includes natural gas liquids, biofuels and refinery gains). Trade: CEPII BACI, values in US dollars as reported by importers and exporters, version 202601. Chokepoints: EIA, World Oil Transit Chokepoints (3 March 2026). Pipelines, sea lanes and refinery locations are schematic, drawn by Orbis for orientation.",
+  "data": {
+    "eia": "data/energy/eia.json",
+    "trade": "data/energy/trade.json",
+    "choke": "data/energy/chokepoints.json",
+    "infra": "data/energy/infrastructure.json"
+  },
+  "scenes": [
+    {
+      "title": "Who pumps it",
+      "text": "The world produces about 103 million barrels of oil and other liquids a day. The United States is now the largest producer by far, at about 22.8 million, more than Saudi Arabia (10.9) and Russia (10.5) combined. Press Play to watch the US shale boom.",
+      "view": {"mode": "globe", "center": [10, 32], "zoom": 1},
+      "layers": [{"type": "symbols", "data": "eia", "series": "oil_prod", "year": "t", "color": "c3", "title": "Oil production", "fmt": "kbd", "maxR": 46, "vmax": 23000}],
+      "timeline": {"years": [2000, 2024], "start": 2024, "captions": {"2008": "US output bottoms out at about 8.6 million barrels a day.", "2014": "Shale drilling has nearly doubled US output; prices crash.", "2018": "The US overtakes Saudi Arabia and Russia.", "2020": "The pandemic cuts demand and output."}},
+      "chart": {"data": "eia", "series": "oil_prod", "year": "t", "top": 8, "title": "Largest producers", "fmt": "kbd", "color": "c3"}
+    },
+    {
+      "title": "Who burns it",
+      "text": "Use per person differs enormously. A Saudi resident accounts for about 38 barrels a year, a German about 9, an Indian about 1.4. In total, the US (20.5 million barrels a day) and China (16.4) use more than a third of the world's oil.",
+      "view": {"mode": "equal", "center": [10, 15], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "eia", "series": "oil_cons", "per": "pop", "mult": 365, "year": 2024, "title": "Oil use per person, barrels a year", "fmt": "bpp"}],
+      "chart": {"data": "eia", "series": "oil_cons", "year": 2024, "top": 8, "title": "Largest consumers", "fmt": "kbd", "color": "c1"}
+    },
+    {
+      "title": "Pipes across continents",
+      "text": "On land, oil moves by pipeline. Russia's Druzhba ('Friendship') line has fed Central Europe since the 1960s. Kazakh oil reaches the Black Sea through the Caspian pipeline, and Azerbaijani oil reaches the Mediterranean via Georgia and Turkey. In the east, the ESPO line carries Siberian crude to China and the Pacific.",
+      "view": {"mode": "globe", "center": [62, 48], "zoom": 1.55},
+      "layers": [{"type": "lines", "data": "infra", "set": "oilPipelines", "color": "c3", "width": 2.4, "labels": true, "flow": true}]
+    },
+    {
+      "title": "Most of it goes by sea",
+      "text": "Tankers carry most traded oil, and they squeeze through a handful of narrow straits. In 2024 about 22.5 million barrels a day passed the Strait of Malacca. The Strait of Hormuz alone handled 20.7 million, about a fifth of the world’s oil.",
+      "view": {"mode": "globe", "center": [70, 20], "zoom": 1.15},
+      "layers": [
+        {"type": "lines", "data": "infra", "set": "tankerRoutes", "color": "c1", "width": 1.6, "flow": true},
+        {"type": "symbols", "data": "choke", "field": "oil", "period": "2024", "color": "c2", "title": "Oil through chokepoints, 2024", "fmt": "mbd", "maxR": 34, "labels": 4}
+      ],
+      "chart": {"data": "choke", "field": "oil", "period": "2024", "top": 8, "title": "Oil through chokepoints, million barrels a day", "fmt": "mbd", "color": "c2"}
+    },
+    {
+      "title": "The Red Sea empties",
+      "text": "After attacks on shipping in the Red Sea began in late 2023, tankers avoided the Suez route. Oil through Bab el-Mandeb fell from 9.3 million barrels a day in 2023 to 4.1 in 2024, while traffic around Africa's Cape of Good Hope rose from 6.2 to 9.3. The detour adds roughly two weeks to a voyage from the Gulf to Europe.",
+      "view": {"mode": "equal", "center": [30, 5], "zoom": 1.7},
+      "layers": [
+        {"type": "lines", "data": "infra", "set": "tankerRoutes", "color": "c1", "width": 1.6, "flow": true},
+        {"type": "symbols", "data": "choke", "field": "oil", "period": "2023", "color": "muted", "title": "2023", "fmt": "mbd", "maxR": 34, "vmax": 24, "labels": 0},
+        {"type": "symbols", "data": "choke", "field": "oil", "period": "2024", "color": "c2", "title": "Oil through chokepoints, 2024 (grey: 2023)", "fmt": "mbd", "maxR": 34, "vmax": 24, "labels": 6}
+      ]
+    },
+    {
+      "title": "Who sells to whom",
+      "text": "The thickest crude flow on Earth runs from Canada to the United States, worth about $100 billion in 2024. Next come Russian crude to China and to India, and Saudi crude to China. Tap a country to see its exports and imports.",
+      "view": {"mode": "equal", "center": [40, 30], "zoom": 1},
+      "layers": [{"type": "flows", "data": "trade", "group": "crude", "year": "t", "top": 30, "color": "c3", "title": "Crude oil trade", "fmt": "musd"}],
+      "timeline": {"years": [2021, 2022, 2023, 2024], "start": 2024},
+      "chart": {"data": "trade", "group": "crude", "side": "exports", "year": "t", "top": 8, "title": "Largest crude exporters by value", "fmt": "musd", "color": "c3"}
+    },
+    {
+      "title": "Russia's oil turns east",
+      "text": "Before the invasion of Ukraine, Europe was a main buyer of Russian crude. The EU stopped seaborne imports in December 2022. Within a year, India went from a minor customer to Russia's second-largest, next to China. Play the years to watch the flows swing.",
+      "view": {"mode": "globe", "center": [60, 40], "zoom": 1.1},
+      "layers": [{"type": "flows", "data": "trade", "group": "crude", "year": "t", "from": ["RUS"], "top": 15, "color": "c2", "title": "Russian crude exports", "fmt": "musd", "vmax": 65000}],
+      "timeline": {"years": [2021, 2022, 2023, 2024], "start": 2021, "captions": {"2021": "Europe still buys much of Russia's crude.", "2022": "War in Ukraine; EU embargo on seaborne Russian crude from December.", "2023": "India and China take most of it.", "2024": "China and India together buy over $115 billion."}}
+    },
+    {
+      "title": "Where it becomes fuel",
+      "text": "Crude is useless until refined into petrol, diesel and jet fuel. The world's largest refining complex is at Jamnagar in western India, rated at about 1.4 million barrels a day. Many refineries sit on the coast, close to tanker berths: here they are on the satellite view. India now exports more refined products than any country except the United States.",
+      "view": {"mode": "globe", "center": [62, 22], "zoom": 1.5},
+      "basemap": "satellite",
+      "layers": [
+        {"type": "points", "data": "infra", "set": "refineries", "color": "c3", "r": 5},
+        {"type": "flows", "data": "trade", "group": "products", "year": 2024, "from": ["IND"], "top": 10, "color": "c4", "title": "India's refined-product exports", "fmt": "musd"}
+      ],
+      "chart": {"data": "trade", "group": "products", "side": "exports", "year": 2024, "top": 8, "title": "Largest exporters of oil products by value", "fmt": "musd", "color": "c4"}
+    }
+  ]
+}

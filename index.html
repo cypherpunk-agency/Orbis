@@ -12,12 +12,21 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
 </head>
 <body>
+<canvas id="raster" aria-hidden="true"></canvas>
 <canvas id="map" role="img" aria-label="Interactive world map. Drag to turn, pinch or scroll to zoom, tap a country for its name."></canvas>
 
 <header id="topbar">
   <button id="tocBtn" class="pill" aria-controls="toc" aria-expanded="false">Stories</button>
   <span class="brand">Orbis</span>
   <span class="spacer"></span>
+  <div class="bm-wrap">
+    <button id="bmBtn" class="pill" aria-haspopup="true" aria-expanded="false" aria-controls="bmMenu">Map</button>
+    <div id="bmMenu" role="menu" hidden>
+      <button role="menuitemradio" data-bm="political" aria-checked="true">Political</button>
+      <button role="menuitemradio" data-bm="satellite" aria-checked="false">Satellite</button>
+      <button role="menuitemradio" data-bm="night" aria-checked="false">Night lights</button>
+    </div>
+  </div>
   <div class="zoom"><button id="zout" class="pill" aria-label="Zoom out">−</button><button id="zin" class="pill" aria-label="Zoom in">+</button></div>
   <div class="seg" role="group" aria-label="Map shape">
     <button data-mode="globe" aria-pressed="true">Globe</button><button data-mode="flat" aria-pressed="false">Flat</button>
@@ -38,6 +47,7 @@
     <p id="tlCaption" hidden></p>
   </div>
   <div id="sLegend" class="collapsible"></div>
+  <div id="sChart" class="collapsible" hidden></div>
   <nav id="steps" aria-label="Story steps">
     <button id="prev" class="btn">Back</button>
     <div id="dots"></div>
@@ -55,13 +65,14 @@
 
 <div id="toc" hidden role="dialog" aria-label="Stories">
   <div class="toc-head"><h1>Stories on a turning world</h1><button id="tocClose">Close</button></div>
-  <p class="toc-lede">Eighteen short stories about power, money, numbers and people. Each one moves the map for you. Switch between globe and flat map any time to see what changes.</p>
+  <p class="toc-lede"><span id="tocCount">Short</span> stories about power, money, numbers and people. Each one moves the map for you. Switch between globe and flat map any time to see what changes.</p>
   <button id="exploreBtn">Explore the map freely</button>
   <div id="tocList"></div>
 </div>
 
 <script src="data/world.js"></script>
 <script src="js/sources.js"></script>
+<script src="js/raster.js"></script>
 <script src="js/stories.js"></script>
 <script src="js/app.js"></script>
 </body>

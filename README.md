@@ -16,6 +16,14 @@ python3 -m http.server 8000   # then http://localhost:8000
 - `js/stories.js` — reference data (blocs, memberships, routes, datasets) and the `STORIES` array
 - `js/app.js` — rendering (d3 canvas, globe/equal-area/Mercator morphing), story navigation, explore mode
 - `data/world.js` — world country topology (`WORLD`, TopoJSON)
+- `js/raster.js` — WebGL layer that draws satellite / night imagery and follows the globe-to-flat morph
+- `stories/*.json` — data-file stories (listed in `stories/index.json`), loaded on demand with their datasets
+- `data/energy/`, `data/tex/` — reduced datasets and basemap textures, each with `source` and `asOf`
+- `tools/fetch/sources.sh`, `tools/build/*.py` — download raw data into `.cache/` (gitignored) and rebuild the datasets
+
+### Story file format
+
+Scenes declare layers instead of code. Layer types: `choropleth`, `symbols` (circle area = amount), `flows` (arcs, width = value or tonnes), `lines`, `points`. Each layer names a dataset; the dataset's `source` fills the licence line under the story automatically. A scene can also set `basemap` (`political`, `satellite`, `night`), a `timeline` and a `chart` (top-N bar chart). See `stories/oil.json`.
 
 See [docs/FRAMEWORK.md](docs/FRAMEWORK.md) for the framework plan, [docs/ROADMAP.md](docs/ROADMAP.md) for limits and the story backlog, and [docs/LICENSING.md](docs/LICENSING.md) for the licence policy (`node tools/check-licences.js`).
 

@@ -1,0 +1,4 @@
+[
+  {"id":"oil","cat":"Energy","title":"The oil machine","hook":"Where oil comes out of the ground, how it travels, and who burns it.","file":"stories/oil.json"},
+  {"id":"gas","cat":"Energy","title":"Pipes and ships","hook":"Gas moves by pipeline or as a liquid on ships. Europe just switched from one to the other.","file":"stories/gas.json"}
+]
