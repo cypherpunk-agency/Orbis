@@ -49,6 +49,11 @@ index.forEach(meta => {
     if (!ds[l.data]) errs.push(`story ${st.id} scene ${i + 1}: layer uses undeclared data "${l.data}"`);
   })));
 });
+// campaigns (story series): every chapter must be a listed story
+if (fs.existsSync(path.join(root, "stories/campaigns.json"))) JSON.parse(read("stories/campaigns.json")).forEach(c => {
+  ["id", "title", "hook", "chapters"].forEach(k => { if (!c[k]) errs.push(`campaign ${c.id}: missing "${k}"`); });
+  (c.chapters || []).forEach(id => { if (!index.some(m => m.id === id)) errs.push(`campaign ${c.id}: chapter "${id}" is not in stories/index.json`); });
+});
 // basemap sources referenced by the engine
 const app = read("js/app.js");
 for (const m of app.matchAll(/source:"([a-z0-9-]+)"/g)) if (!SOURCES[m[1]]) errs.push(`js/app.js: basemap source "${m[1]}" not registered`);

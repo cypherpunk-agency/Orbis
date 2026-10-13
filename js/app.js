@@ -550,9 +550,9 @@ async function ensureStory(i){
   const js=meta.file==="draft"?JSON.parse(localStorage.getItem("orbis-draft")||"null"):await loadJSON(meta.file).then(j=>(LANG!=="en"&&meta.file.startsWith("stories/"+LANG+"/")&&(j._translated=true),j)).catch(e=>{ const en=meta.file.replace("stories/"+LANG+"/","stories/"); if(en!==meta.file) return loadJSON(en); throw e; }), data={};
   await Promise.all(Object.entries(js.data||{}).map(async([k,u])=>{ data[k]=await loadJSON(u); }));
   js.scenes.forEach(sc=>{ const t=sc.timeline; if(t&&!t.frame){
-    const ys=t.years.length===2&&t.years[1]-t.years[0]>1?d3.range(t.years[0],t.years[1]+1):t.years;
+    const ys=!t.format&&t.years.length===2&&t.years[1]-t.years[0]>1?d3.range(t.years[0],t.years[1]+1):t.years;
     const MON=LANG==="de"?["Jan.","Feb.","März","Apr.","Mai","Juni","Juli","Aug.","Sept.","Okt.","Nov.","Dez."]:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):(y=>y), lab=y=>(t.labels&&t.labels[y])||lab0(y);
+    const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):t.format==="date"?(y=>(LANG==="de"?y%100+". ":y%100+" ")+MON[Math.floor(y/100)%100-1]+" "+Math.floor(y/10000)):(y=>y), lab=y=>(t.labels&&t.labels[y])||lab0(y);
     sc.timeline={years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
   const st=Object.assign({},js,{file:meta.file,_data:data},meta.id.startsWith("@")?{id:meta.id}:{}); STORIES[i]=st; return st;
 }
@@ -588,9 +588,13 @@ const FMT={
 const fmtOf=f=>typeof f==="function"?f:(FMT[f]||(typeof f==="string"&&f.startsWith("d3:")?d3.format(f.slice(3)):d3.format(",.3~s")));
 const lastYear=d=>d.years?d.years[d.years.length-1]:null;
 // values per country for a layer spec at a year: EIA-style series or BACI-style trade totals
+// index of year y in a series dataset; with "step": true a value holds until the next listed date
+// a year as the scene timeline shows it ("2 Apr 2025" for date timelines)
+const ylab=y=>scene&&scene.timeline&&scene.timeline.years.includes(+y)?scene.timeline.label(+y):y;
+function yearIndex(d,y){ let i=d.years.indexOf(+y); if(i<0&&d.step){ i=-1; d.years.forEach((v,j)=>{ if(v<=+y) i=j; }); } return i; }
 function valuesOf(ly,d,y){
   const out={};
-  if(d.series){ const sr=d.series[ly.series], i=d.years.indexOf(+y), pop=ly.per&&d.series[ly.per].values;
+  if(d.series){ const sr=d.series[ly.series], i=yearIndex(d,y), pop=ly.per&&d.series[ly.per].values;
     if(!sr||i<0) return out;
     for(const [k,arr] of Object.entries(sr.values)){ if(!NAMES.has(k)) continue; let v=arr[i]; if(v==null) continue;
       if(pop){ const q=pop[k]&&pop[k][i]; if(!q) continue; v=v/q; } out[k]=v*(ly.mult||1); }
@@ -604,7 +608,7 @@ function pointValues(ly,d,y){
 }
 const LAYER={
   choropleth(ly,d,y,L){ const v={}; Object.entries(valuesOf(ly,d,y)).forEach(([k,x])=>{ if(byId.has(k)) v[k]=x; });  // only countries the map can colour
-    L.choro={title:ly.title+(ly.showYear===false?"":" · "+y),fmt:fmtOf(ly.fmt),log:ly.log,reverse:ly.reverse,values:v,nodata:ly.nodataLabel,
+    L.choro={title:ly.title+(ly.showYear===false?"":" · "+ylab(y)),fmt:fmtOf(ly.fmt),log:ly.log,reverse:ly.reverse,values:v,nodata:ly.nodataLabel,
       vmin:ly.vmin,vmax:ly.vmax,diverging:ly.diverging,mid:ly.mid||0}; },
   symbols(ly,d,y,L){
     const items=Array.isArray(d.points)?pointValues(ly,d,y)
@@ -681,11 +685,11 @@ const LAYER={
   },
   regions(ly,d,y,L){ // sub-national areas (admin-1) of one country, coloured by a series keyed by region id
     const R=regionGeo(ly.country); if(!R) return;
-    const sr=d.series[ly.series], i=d.years.indexOf(+y); if(!sr||i<0) return;
+    const sr=d.series[ly.series], i=yearIndex(d,y); if(!sr||i<0) return;
     const vals={}; Object.entries(sr.values).forEach(([k,a])=>{ if(a[i]!=null) vals[k]=a[i]*(ly.mult||1); });
     const v=Object.values(vals), lo=d3.min(v), hi=d3.max(v);
     const sc=ly.log?d3.scaleLog().domain([Math.max(lo,1e-9),hi]):d3.scaleLinear().domain([lo,hi]);
-    L.regions.push({R,vals,color:x=>C.seq(clamp(sc(x),0,1)),lo,hi,title:ly.title+" · "+y,fmt:fmtOf(ly.fmt),labels:ly.labels});
+    L.regions.push({R,vals,color:x=>C.seq(clamp(sc(x),0,1)),lo,hi,title:ly.title+" · "+ylab(y),fmt:fmtOf(ly.fmt),labels:ly.labels});
   },
   pov(ly,d,y,L){ // disputed areas as one country sees them: filled with the owner's tint, outlined dashed
     if(!d._areas) d._areas=topojson.feature(d.areas,d.areas.objects.areas).features;
@@ -741,11 +745,11 @@ function renderChart(){
   rows=rows.filter(r=>c.order==="asc"?r[1]!=null:r[1]>0).sort((a,b)=>c.order==="asc"?a[1]-b[1]:b[1]-a[1]);
   let f=fmtOf(c.fmt);
   if(c.share){ // show each country's share of the world total (dataset's own world figure when it has one)
-    const w=d.world&&d.world[c.series], tot=(w&&w[d.years.indexOf(+y)])||d3.sum(rows,r=>r[1]);
+    const w=d.world&&d.world[c.series], tot=(w&&w[yearIndex(d,y)])||d3.sum(rows,r=>r[1]);
     rows=rows.map(r=>[r[0],r[1]/tot*100]); f=FMT.pct; }
   rows=rows.slice(0,c.top||8);
   const mx=rows.length?d3.max(rows,r=>Math.abs(r[1])):1;
-  el.chart.innerHTML=`<div class="ch-title">${esc(c.title)}${c.period||y?" · "+esc(String(c.period||y)):""}</div>`+
+  el.chart.innerHTML=`<div class="ch-title">${esc(c.title)}${c.period||y?" · "+esc(String(c.period||ylab(y))):""}</div>`+
     rows.map(([n,v])=>`<div class="ch-row"><span class="nm">${esc(n)}</span><span class="bar" style="width:${(v/mx*100).toFixed(1)}%;background:${col(c.color||"c3")}"></span><span class="v">${esc(f(v))}</span></div>`).join("");
   el.chart.hidden=false;
 }
@@ -824,7 +828,7 @@ function describe(){
 const quiz={mode:null,score:0,streak:0,q:null};
 async function openQuiz(){
   si=-1; scene={layers:[],fills:{},political:true,view:{mode:"equal",center:[15,20],zoom:1}}; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
-  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true;
+  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true;
   history.replaceState(null,"","#quiz"); el.kicker.textContent=t("Quiz");
   const d=await loadJSON("data/energy/eia.json"); const i=d.years.indexOf(2024), pop=d.series.pop.values;
   quiz.pop=Object.entries(pop).filter(([k,v])=>v[i]>2000&&byId.has(k)).map(([k,v])=>[k,v[i]*1000]);
@@ -863,7 +867,7 @@ const HUBS=[["London",-0.13,51.51],["New York",-74.0,40.71],["Tokyo",139.69,35.6
   ["Lagos",3.38,6.52],["Sydney",151.21,-33.87],["Moscow",37.62,55.76],["Cairo",31.24,30.04],["Mexico City",-99.13,19.43],["Johannesburg",28.05,-26.2]];
 async function openCity(){
   si=-1; scene={layers:[],routes:[],points:[],countryLabels:true,political:true,view:{mode:"globe",center:[15,30],zoom:1}}; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
-  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true;
+  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true;
   history.replaceState(null,"","#city"); el.kicker.textContent=t("Your city"); el.title.textContent=t("Find your city");
   el.text.textContent=t("How far is everything from where you are? Pick a city, or use your location.");
   const d=await loadJSON("data/geo/places.json"); const P=d.places;
@@ -887,7 +891,7 @@ function showCity(name,at){
 // ---------- panel ----------
 const $=id=>document.getElementById(id);
 const el={kicker:$("sKicker"),title:$("sTitle"),text:$("sText"),legend:$("sLegend"),tl:$("sTimeline"),slider:$("tlSlider"),year:$("tlYear"),play:$("tlPlay"),cap:$("tlCaption"),
-  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart"),sw:$("sSwitch"),media:$("sMedia")};
+  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart"),sw:$("sSwitch"),media:$("sMedia"),camp:$("sCamp"),updated:$("sUpdated")};
 let si=-1, ci=0, tlIdx=0, playing=null;
 const explore={bloc:null};
 
@@ -966,7 +970,14 @@ el.slider.oninput=()=>{stopPlay();tlIdx=+el.slider.value;setFrame();};
 
 function showScene(i, fly=true){
   const st=STORIES[si]; ci=clamp(i,0,st.scenes.length-1); scene=st.scenes[ci]; stopPlay();
-  el.kicker.textContent=st.title; el.title.textContent=scene.title; el.text.textContent=scene.text;
+  const cp=campaignOf(st); el.camp.hidden=true;
+  if(cp){ const k=cp.chapters.indexOf(st.id);
+    el.kicker.innerHTML=`<button class="kick-camp" title="${esc(t("All chapters"))}">${esc(cp.title)}</button> · ${esc(t("Chapter {n} of {m}",{n:k+1,m:cp.chapters.length}))}: ${esc(st.title)}`;
+    el.kicker.querySelector("button").onclick=()=>openCampaign(cp.id); }
+  else el.kicker.textContent=st.title;
+  el.title.textContent=scene.title; el.text.textContent=scene.text;
+  el.updated.hidden=!st.updated; if(st.updated) el.updated.textContent=t("Updated {d}",{d:fmtDate(st.updated)});
+  markRead(st.id,ci,st.scenes.length);
   el.blocs.hidden=true; el.steps.hidden=false; el.notes.hidden=false;
   if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.years.length-1;}
   else el.tl.hidden=true;
@@ -976,7 +987,8 @@ function showScene(i, fly=true){
   [...el.dots.children].forEach((b,j)=>b.onclick=()=>showScene(j));
   el.prev.disabled=ci===0 && si===0;
   el.prev.textContent=ci===0?t("Previous story"):t("Back");
-  const lastS=ci===st.scenes.length-1; el.next.textContent=lastS?(si<STORIES.length-1?t("Next story"):t("All stories")):t("Next");
+  const lastS=ci===st.scenes.length-1; el.next.textContent=lastS?(cp?(nextChapter(st,1)>=0?t("Next chapter"):t("All chapters")):si<STORIES.length-1?t("Next story"):t("All stories")):t("Next");
+  if(cp&&ci===0){ el.prev.disabled=false; el.prev.textContent=nextChapter(st,-1)>=0?t("Previous chapter"):t("All chapters"); }
   el.notesBody.textContent=(st._translated&&!st.reviewed?t("Machine translation, not yet reviewed.")+" ":"")+st.notes; el.notes.open=false; renderData();
   history.replaceState(null,"","#"+st.id+"/"+(ci+1));
   setBasemap(scene.basemap||BM.user||"political",false);
@@ -984,8 +996,12 @@ function showScene(i, fly=true){
   if(fly) flyTo(scene.view);
   sheet.scrollTop=0; render();
 }
-el.next.onclick=()=>{ const st=STORIES[si]; if(ci<st.scenes.length-1) showScene(ci+1); else if(si<STORIES.length-1) openStory(si+1); else openToc(); };
-el.prev.onclick=()=>{ if(ci>0) showScene(ci-1); else if(si>0) openStory(si-1,"last"); };
+el.next.onclick=()=>{ const st=STORIES[si], cp=campaignOf(st); if(ci<st.scenes.length-1) return showScene(ci+1);
+  if(cp){ const n=nextChapter(st,1); return n>=0?openStory(n):openCampaign(cp.id); }
+  const n=STORIES.findIndex((x,i)=>i>si&&!campaignOf(x)); if(n>=0) openStory(n); else openToc(); };
+el.prev.onclick=()=>{ const st=STORIES[si], cp=campaignOf(st); if(ci>0) return showScene(ci-1);
+  if(cp){ const n=nextChapter(st,-1); return n>=0?openStory(n,"last"):openCampaign(cp.id); }
+  const p=STORIES.map((x,i)=>i<si&&!campaignOf(x)?i:-1).filter(i=>i>=0).pop(); if(p!=null) openStory(p,"last"); };
 
 let opening=0;
 async function openStory(i, scn=0){
@@ -999,7 +1015,7 @@ async function openStory(i, scn=0){
   showScene(scn==="last"?STORIES[i].scenes.length-1:scn);
 }
 function openExplore(){
-  quiz.mode=null; si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true;
+  quiz.mode=null; si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true;
   el.kicker.textContent=t("Explore"); el.title.textContent=t("The world, your way");
   el.text.textContent=t("Drag to turn the world, pinch or scroll to zoom, tap a country to see its name. Switch between political, satellite and night views with the map button. Show a group of countries:");
   el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=false;
@@ -1011,13 +1027,49 @@ function renderBlocs(){
   [...el.blocs.children].forEach(b=>b.onclick=()=>{explore.bloc=b.dataset.k||null;renderBlocs();L=layers();el.legend.innerHTML=legendHTML();render();});
 }
 
+// ---------- campaigns: a series of stories with a landing page, chapter order and reading progress ----------
+let CAMPAIGNS=[];
+const campaignOf=st=>st&&CAMPAIGNS.find(c=>c.chapters.includes(st.id.replace(/^@stories\/|\.json$/g,"")));
+const storyIndex=id=>STORIES.findIndex(s=>s.id===id);
+// index of the next (dir 1) or previous (dir -1) chapter that exists, or -1
+function nextChapter(st,dir){ const cp=campaignOf(st); if(!cp) return -1; let k=cp.chapters.indexOf(st.id)+dir;
+  while(k>=0&&k<cp.chapters.length){ const i=storyIndex(cp.chapters[k]); if(i>=0) return i; k+=dir; } return -1; }
+function readState(){ try{ return JSON.parse(localStorage.getItem("orbis-read")||"{}"); }catch(e){ return {}; } }
+function markRead(id,scene,n){ if(id.startsWith("@")) return; const r=readState(), p=r[id]||[0,n]; r[id]=[Math.max(p[0],scene+1),n];
+  try{ localStorage.setItem("orbis-read",JSON.stringify(r)); }catch(e){} }
+function fmtDate(d){ const x=new Date(String(d).length===8?String(d).replace(/(\d{4})(\d\d)(\d\d)/,"$1-$2-$3"):d);
+  return isNaN(x)?String(d):x.toLocaleDateString(LANG==="de"?"de-AT":"en-GB",{day:"numeric",month:"short",year:"numeric"}); }
+function openCampaign(id){
+  const cp=CAMPAIGNS.find(c=>c.id===id); if(!cp) return openToc();
+  quiz.mode=null; si=-1; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
+  scene=Object.assign({layers:[],political:true,view:{mode:"globe",center:[0,25],zoom:1}},cp.scene||{});
+  markDirty(); el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true;
+  el.kicker.textContent=(LANG==="de"?"Serie":"Series")+" · "+t("{n} chapters",{n:cp.chapters.length}); el.title.textContent=cp.title; el.text.textContent=cp.intro||cp.hook;
+  el.updated.hidden=!cp.updated; if(cp.updated) el.updated.textContent=t("Updated {d}",{d:fmtDate(cp.updated)});
+  const r=readState(), done=id=>r[id]&&r[id][0]>=r[id][1], seen=id=>r[id]&&r[id][0]>0;
+  const ch=cp.chapters.map(id=>[id,STORIES[storyIndex(id)]]).filter(x=>x[1]);
+  const nextId=(ch.find(([id])=>!done(id))||ch[0]||[])[0], started=ch.some(([id])=>seen(id));
+  el.camp.innerHTML=`<button class="btn camp-go" id="campGo">${t(started?"Continue":"Start")}${nextId&&started?": "+esc(STORIES[storyIndex(nextId)].title):""}</button>
+    <ol class="camp-list">${ch.map(([id,s],k)=>`<li class="${done(id)?"done":seen(id)?"seen":""}"><button data-id="${id}"><span class="camp-n">${done(id)?"✓":k+1}</span><span><b>${esc(s.title)}</b><span class="toc-hook">${esc(s.hook)}</span></span></button></li>`).join("")}</ol>
+    <p class="camp-progress">${t("{n} of {m} read",{n:ch.filter(([id])=>done(id)).length,m:ch.length})}</p>`+
+    (cp.dates&&cp.dates.length?`<details class="camp-dates"><summary>${t("Key dates")}</summary><ul>${cp.dates.map(x=>`<li><span>${esc(fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"")+
+    (cp.changelog&&cp.changelog.length?`<details class="camp-dates"><summary>${t("What changed")}</summary><ul>${cp.changelog.map(x=>`<li><span>${esc(fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"");
+  el.camp.hidden=false;
+  $("campGo").onclick=()=>{ const i=storyIndex(nextId); if(i>=0) openStory(i, done(nextId)||!r[nextId]?0:Math.min(r[nextId][0],r[nextId][1])-1); };
+  [...el.camp.querySelectorAll(".camp-list button")].forEach(b=>b.onclick=()=>openStory(storyIndex(b.dataset.id)));
+  L=layers(); el.legend.innerHTML=legendHTML(); renderData(); renderTools(); describe();
+  history.replaceState(null,"","#c/"+cp.id); flyTo(scene.view); sheet.scrollTop=0; render();
+}
+
 // ---------- table of contents ----------
 const tocList=$("tocList");
 const CATS=["Energy","Geopolitics","Economics","Planet","Statistics","Rights","People"];
 function buildToc(){
-  tocList.innerHTML=CATS.map(cat=>{const items=STORIES.map((s,i)=>[s,i]).filter(([s])=>s.cat===cat); if(!items.length) return "";
+  const inCamp=new Set(CAMPAIGNS.flatMap(c=>c.chapters));
+  tocList.innerHTML=(CAMPAIGNS.length?`<section class="toc-cat"><h2>${esc(t("Series"))}</h2><ul>`+CAMPAIGNS.map(c=>`<li><button class="toc-story toc-camp" data-c="${c.id}"><span class="toc-title">${esc(c.title)}</span><span class="toc-hook">${esc(c.hook)}</span><span class="toc-meta">${t("{n} chapters",{n:c.chapters.length})}${c.updated?" · "+t("Updated {d}",{d:fmtDate(c.updated)}):""}</span></button></li>`).join("")+`</ul></section>`:"")+
+  CATS.map(cat=>{const items=STORIES.map((s,i)=>[s,i]).filter(([s])=>s.cat===cat&&!inCamp.has(s.id)); if(!items.length) return "";
     return `<section class="toc-cat"><h2>${esc(t(cat))}</h2><ul>`+items.map(([s,i])=>`<li><button class="toc-story" data-i="${i}"><span class="toc-title">${esc(s.title)}</span><span class="toc-hook">${esc(s.hook)}</span></button></li>`).join("")+`</ul></section>`;}).join("");
-  [...tocList.querySelectorAll(".toc-story")].forEach(b=>b.onclick=()=>openStory(+b.dataset.i));
+  [...tocList.querySelectorAll(".toc-story")].forEach(b=>b.onclick=()=>b.dataset.c?openCampaign(b.dataset.c):openStory(+b.dataset.i));
   $("tocCount").textContent=STORIES.length;
 }
 $("exploreBtn").onclick=openExplore;
@@ -1054,6 +1106,7 @@ document.fonts && document.fonts.ready.then(render);
 layout();
 setTimeout(loadDetail,300);
 (LANG==="en"?loadJSON("stories/index.json"):loadJSON("stories/"+LANG+"/index.json").catch(()=>loadJSON("stories/index.json"))).then(list=>{ STORIES.unshift(...list.map(x=>Object.assign({},x))); }).catch(e=>console.warn("Story index not loaded:",e))
+.then(()=>(LANG==="en"?loadJSON("stories/campaigns.json"):loadJSON("stories/"+LANG+"/campaigns.json").catch(()=>loadJSON("stories/campaigns.json"))).then(c=>{ CAMPAIGNS=c; }).catch(()=>{}))
 .then(()=>{
   buildToc();
   let h=location.hash.slice(1).split("/");
@@ -1062,6 +1115,7 @@ setTimeout(loadDetail,300);
     if(m){ STORIES.push({id:"@"+m[1],cat:"Draft",title:"Draft",hook:"",file:m[1]}); h=["@"+m[1],m[2]||"1"]; } }
   const idx=STORIES.findIndex(s=>s.id===h[0]);
   if(idx>=0) openStory(idx, Math.max(0,(+h[1]||1)-1));
+  else if(h[0]==="c"&&h[1]) openCampaign(h[1]);
   else if(h[0]==="explore") openExplore();
   else if(h[0]==="quiz") openQuiz();
   else if(h[0]==="city") openCity();

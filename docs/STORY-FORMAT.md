@@ -21,6 +21,22 @@ A story is one JSON file in `stories/`, listed in `stories/index.json`. It names
 | `sources` | no | Extra source ids from `js/sources.js` (for hand-entered facts use `"editorial"`) |
 | `scenes` | yes | Array of scenes, 4–8 is a good length |
 
+`updated` (optional, `"yyyy-mm-dd"`) shows "Updated <date>" under the scene title: use it for stories about events that are still moving.
+
+## Series (campaigns)
+
+A series groups stories into ordered chapters with a landing page (`#c/<id>`), reading progress (kept in the browser), key dates and a change log. Define it in `stories/campaigns.json` (translations: `stories/<lang>/campaigns.json`):
+
+```json
+[{ "id": "trade-war", "title": "…", "hook": "one line for the table of contents", "intro": "a paragraph for the landing page",
+   "updated": "2026-10-13", "scene": { "view": {…}, "fills": {"USA": "c2"} },
+   "chapters": ["tw-liberation-day", "tw-china", …],
+   "dates": [ { "d": 20250402, "t": "what happened" } ],
+   "changelog": [ { "d": "2026-10-13", "t": "what changed in the series" } ] }]
+```
+
+Chapters are ordinary stories listed in `stories/index.json`. They appear under the series in the table of contents (not in their category), their kicker links back to the series, and Next/Back move between chapters. `scene` takes the same map fields as a story scene (no layers). To update a live series: change the chapters, bump `updated` in each changed story and in the series, and add a `changelog` line.
+
 ## Scene fields
 
 | Field | Meaning |
@@ -29,7 +45,7 @@ A story is one JSON file in `stories/`, listed in `stories/index.json`. It names
 | `view` | `{ "mode": "globe" \| "equal" \| "mercator", "center": [lon, lat], "zoom": 1 }`. `equal` is the flat Equal Earth map. Zoom 1 shows the whole globe; 2–3 a region. |
 | `basemap` | `"political"` (default), `"satellite"`, `"night"`, `"terrain"` |
 | `layers` | Array of layer specs (below). Each names a dataset alias in `data`. Its dataset's `source` appears in the UI automatically. |
-| `timeline` | `{ "years": [2000, 2024] \| [list], "start": 2024, "captions": { "2008": "…" }, "format": "month" }`. `[a, b]` with a gap > 1 means every year from a to b. With `"format": "month"`, years are `yyyymm` numbers (e.g. `202003`). Layers with `"year": "t"` follow the slider. |
+| `timeline` | `{ "years": [2000, 2024] \| [list], "start": 2024, "captions": { "2008": "…" }, "format": "month" }`. `[a, b]` with a gap > 1 means every year from a to b. With `"format": "month"`, years are `yyyymm` numbers (e.g. `202003`); with `"format": "date"`, `yyyymmdd` (e.g. `20250402`, shown as "2 Apr 2025"). With a format, `years` is always a list, never a range. Layers with `"year": "t"` follow the slider. |
 | `chart` | Top-N bar chart in the panel: same data fields as a layer, plus `title`, `top` (default 8), `fmt`, `color`, `share: true` (percent of world total). |
 | `switch` | Buttons that swap a placeholder: `{ "label": "Resource", "start": 0, "options": [ { "c": "lithium", "label": "Lithium", "text": "optional scene text for this option", … } ] }`. Any `{key}` in layers or chart is replaced by the option's value (`"series": "{c}_prod"`). |
 | `legend` | Manual legend `[ { "color": "c1", "label": "…" } ]` (otherwise built from layers) |
@@ -73,7 +89,7 @@ All datasets carry `"source"` (an id in `js/sources.js`), `"asOf"`, `"retrieved"
   "series": { "oil_prod": { "label": "…", "units": "…", "values": { "USA": [v2000, v2001, …] } } },
   "world": { "oil_prod": [v2000, …] } }
 ```
-`world` is optional; `chart.share` uses it as the denominator if present.
+`world` is optional; `chart.share` uses it as the denominator if present. Add `"step": true` when values hold until the next listed date (e.g. tariff rates keyed by `yyyymmdd`): a layer asking for a date between two entries then gets the earlier one.
 
 **Groups** (flows, chart with `group` + `side: "exports" | "imports"`):
 ```json

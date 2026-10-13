@@ -50,7 +50,9 @@ const STRINGS = {
     "Find your city": "Ihre Stadt finden", "Use my location": "Meinen Standort verwenden", "Type a city": "Stadt eingeben",
     "How far is everything from where you are? Pick a city, or use your location.": "Wie weit ist alles von Ihnen entfernt? Eine Stadt wählen oder den Standort verwenden.",
     "Distances from {x}": "Entfernungen von {x}", "Directly through the Earth from {x} lies {y}.": "Genau gegenüber von {x}, durch die Erde hindurch, liegt {y}.",
-    "the open ocean": "offenes Meer", "Write a story": "Geschichte schreiben", "Machine translation, not yet reviewed.": "Maschinelle Übersetzung, noch nicht geprüft.", "your location": "Ihrem Standort", "Location not available": "Standort nicht verfügbar",
+    "the open ocean": "offenes Meer", "Write a story": "Geschichte schreiben", "Series": "Serien", "{n} chapters": "{n} Kapitel", "Chapter {n} of {m}": "Kapitel {n} von {m}",
+    "All chapters": "Alle Kapitel", "Next chapter": "Nächstes Kapitel", "Previous chapter": "Voriges Kapitel", "Start": "Beginnen", "Continue": "Weiterlesen",
+    "{n} of {m} read": "{n} von {m} gelesen", "Key dates": "Wichtige Daten", "What changed": "Was sich geändert hat", "Updated {d}": "Aktualisiert am {d}", "Machine translation, not yet reviewed.": "Maschinelle Übersetzung, noch nicht geprüft.", "your location": "Ihrem Standort", "Location not available": "Standort nicht verfügbar",
     // units used by number formats
     " m b/d": " Mio. b/d", " k b/d": " Tsd. b/d", " bcm": " Mrd. m³", " bcf/d": " Mrd. ft³/d", " bn": " Mrd.", " tn": " Bio.", " m": " Mio.",
     " barrels": " Barrel", " per km²": " pro km²", " yrs": " J.", " M": " Mio.", " B": " Mrd.", "Int$ ": "Int$ "

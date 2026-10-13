@@ -200,3 +200,22 @@ button{font:inherit;color:inherit;cursor:pointer}
 .city-list{margin:0 0 10px;padding:0;list-style:none;font-size:15px}.city-list li{display:flex;justify-content:space-between;border-top:1px solid var(--rule);padding:5px 0}
 body.embed #tocBtn, body.embed .brand, body.embed .zoom, body.embed #sTools{display:none}
 body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none;color:var(--ink)}
+
+/* campaigns */
+.updated{margin:0 0 6px;font-size:13px;color:var(--ink-soft)}
+.kick-camp{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.camp-go{width:100%;margin:10px 0 6px;height:42px;border-radius:999px;padding:0 18px;font:600 16px var(--ui);background:var(--ink);color:var(--paper);border:1px solid var(--ink);cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.camp-list{list-style:none;margin:6px 0;padding:0}
+.camp-list li{border-top:1px solid var(--rule)}
+.camp-list button{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:none;border:0;padding:9px 0;color:var(--ink);font:inherit;cursor:pointer}
+.camp-list b{font-family:var(--serif);font-weight:600;font-size:17px}
+.camp-list .toc-hook{font-size:14px}
+.camp-n{flex:0 0 26px;height:26px;border-radius:50%;border:1.5px solid var(--rule);display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--ink-soft)}
+.camp-list .done .camp-n{background:var(--c4);border-color:var(--c4);color:var(--paper)}
+.camp-list .seen .camp-n{border-color:var(--c4);color:var(--c4)}
+.camp-progress{font-size:13px;color:var(--ink-soft);margin:4px 0 8px}
+.camp-dates summary{cursor:pointer;font-weight:600;padding:6px 0}
+.camp-dates ul{list-style:none;margin:0 0 8px;padding:0}
+.camp-dates li{display:grid;grid-template-columns:7.5em 1fr;gap:8px;padding:4px 0;border-top:1px solid var(--rule);font-size:14px;line-height:1.35}
+.camp-dates li span:first-child{color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.toc-meta{display:block;font-size:13px;color:var(--accent);margin-top:4px;font-weight:600}
