@@ -12,7 +12,7 @@ const p = await b.newPage({ viewport: { width: +w, height: +h } });
 const errs = [];
 p.on("pageerror", e => errs.push("page: " + e.message));
 p.on("response", r => { if (r.status() >= 400) errs.push(r.status() + " " + r.url()); });
-const base = "http://localhost:8765/";
+const base = "http://localhost:8765/" + (process.env.ORBIS_LANG ? "?lang=" + process.env.ORBIS_LANG : "");
 await p.goto(base + "#" + id + "/1"); await p.waitForTimeout(2500);
 const n = await p.$$eval("#dots .dot", x => x.length);
 const tag = id.replace(/[^a-z0-9]+/gi, "_");

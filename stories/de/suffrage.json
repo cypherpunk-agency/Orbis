@@ -1,0 +1,298 @@
+{
+  "id": "suffrage",
+  "cat": "Rights",
+  "title": "Wahlrecht für Frauen",
+  "hook": "Neuseeland ließ Frauen 1893 wählen. Saudi-Arabien 2015. Zusehen, wie sich das Recht Land für Land ausbreitet.",
+  "notes": "Die Jahreszahlen stammen aus der Chronologie der Interparlamentarischen Union (IPU) „Women's Suffrage: A World Chronology of the Recognition of Women's Rights to Vote and to Stand for Election“ (archive.ipu.org/wmn-e/suffrage.htm, abgerufen am 13. Oktober 2026). Verwendet wird das IPU-Jahr für das Wahlrecht bei nationalen Wahlen. Wo die IPU das erste Recht als eingeschränkt kennzeichnet (nach Alter, Besitz, Bildung, Hautfarbe oder Region), zeigt die Karte eine „eingeschränkte“ Phase bis zu dem Jahr, in dem die IPU die Aufhebung der Einschränkungen verzeichnet. Einschränkungen, die auch für Männer galten, und inoffizielle Hürden werden nicht berücksichtigt: Schwarze Frauen im Süden der USA etwa wurden bis zum Voting Rights Act von 1965 weitgehend vom Wählen abgehalten. Länder, die damals Teil eines größeren Staates waren, erhalten dessen Datum (Jugoslawien 1946 für Serbien, Montenegro und Kosovo; Sudan 1964 für den Südsudan). Von Hand ergänzt oder korrigiert, mit der IPU-Seite als Grundlage: Mexiko 1947 und die Türkei 1930 waren Kommunalwahlen (nationale Wahlen folgten 1953 und 1934); Bahrain 2002 (Frauen wählten erstmals bei den Wahlen dieses Jahres); Oman 1994 für eine begrenzte Gruppe und 2003 für alle Staatsbürger; Katar 1999 Kommunalwahlen und 2021 Schura-Rat; VAE 2006, ein ernanntes Wahlgremium für Männer und Frauen gleichermaßen; Saudi-Arabien 2015, nur Kommunalwahlen, da es keine nationalen Wahlen gibt; Taiwan 1947 (Verfassung der Republik China); Moldau 1940, als es Teil der Sowjetunion wurde, wo Frauen bereits wählten (die IPU nennt 1978 und 1993). Brunei hält keine Wahlen ab. Nicht dargestellt: Palästina, Westsahara, Somaliland, Timor-Leste und abhängige Gebiete. Die Grenzen sind die heutigen.",
+  "data": {
+    "suf": "data/rights/suffrage.json"
+  },
+  "scenes": [
+    {
+      "title": "Ein Recht, Land für Land erkämpft",
+      "text": "1893 wurde Neuseeland das erste selbstverwaltete Land, in dem Frauen bei nationalen Wahlen wählen durften. Es dauerte mehr als ein Jahrhundert, bis der Rest der Welt folgte. Auf „Play“ tippen und zusehen, wie sich die Karte füllt. Gelb markiert Länder, in denen nur manche Frauen wählen durften oder nur bei Kommunalwahlen.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Eingeschränkt: manche Frauen oder nur Kommunalwahlen"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Frauen wählen zu gleichen Bedingungen wie Männer"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1890,
+          2025
+        ],
+        "start": 1893,
+        "captions": {
+          "1893": "Neuseeland, damals eine selbstverwaltete britische Kolonie, ist das erste Land.",
+          "1902": "Australien: Weiße Frauen dürfen wählen; die meisten Aborigines warten bis 1962.",
+          "1906": "Finnland ist das erste Land in Europa.",
+          "1918": "Nach dem Ersten Weltkrieg eine Welle quer durch Europa.",
+          "1920": "Der 19. Verfassungszusatz: Frauen in den USA dürfen wählen.",
+          "1945": "Frankreich, Italien und Japan sind gerade gefolgt.",
+          "1960": "Neu unabhängige afrikanische Staaten beginnen mit gleichen Rechten.",
+          "1971": "Endlich die Schweiz.",
+          "2015": "Saudi-Arabien: Frauen wählen bei Kommunalwahlen."
+        }
+      },
+      "points": [
+        {
+          "at": [
+            172.5,
+            -41.5
+          ],
+          "label": "Neuseeland, 1893",
+          "color": "c2",
+          "r": 4
+        }
+      ]
+    },
+    {
+      "title": "Finnland macht in Europa den Anfang",
+      "text": "1906 gab Finnland, damals ein selbstverwaltetes Großfürstentum im Russischen Reich, allen Frauen sowohl das aktive als auch das passive Wahlrecht für das Parlament – eine Weltpremiere. Bei der Wahl 1907 gewannen 19 Frauen einen Sitz. Norwegen folgte 1913, Dänemark und Island 1915.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          15,
+          58
+        ],
+        "zoom": 2.4
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Eingeschränkt: nur manche Frauen"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Frauen wählen zu gleichen Bedingungen wie Männer"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1900,
+          1917
+        ],
+        "start": 1906,
+        "captions": {
+          "1906": "Finnland: Alle Frauen dürfen wählen und kandidieren.",
+          "1913": "Norwegen.",
+          "1915": "Dänemark; Island mit einer Altersgrenze von 40 Jahren für Frauen."
+        }
+      }
+    },
+    {
+      "title": "Nach dem Ersten Weltkrieg",
+      "text": "Der Krieg veränderte die Einstellungen. Zwischen 1917 und 1920 gaben Deutschland, Polen, Österreich, die Niederlande und die USA den Frauen das Wahlrecht. Großbritannien ließ 1918 Frauen über 30 wählen, die eine Besitzbedingung erfüllten; die Gleichstellung mit den Männern musste bis 1928 warten.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -35,
+          32
+        ],
+        "zoom": 1.35
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Eingeschränkt: nur manche Frauen"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Frauen wählen zu gleichen Bedingungen wie Männer"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1914,
+          1930
+        ],
+        "start": 1914,
+        "captions": {
+          "1917": "Kanada: Manche Frauen dürfen bei Bundeswahlen wählen.",
+          "1918": "Deutschland, Österreich, Polen, die baltischen Staaten; britische Frauen über 30.",
+          "1919": "Die Niederlande; Belgien (nur Kriegswitwen und -mütter).",
+          "1920": "USA: Der 19. Verfassungszusatz wird im August ratifiziert.",
+          "1928": "Großbritannien: Frauen wählen ab 21, wie Männer."
+        }
+      }
+    },
+    {
+      "title": "Mit dem Wahlrecht geboren",
+      "text": "Frankreich gab Frauen 1944 das Wahlrecht, Italien und Japan 1945. Indiens Verfassung gab 1950 allen Erwachsenen das Wahlrecht. Viele Länder, die ab den 1950er-Jahren unabhängig wurden, gaben Frauen und Männern das Wahlrecht zur selben Zeit.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          10
+        ],
+        "zoom": 1.15
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Eingeschränkt: nur manche Frauen"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Frauen wählen zu gleichen Bedingungen wie Männer"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1940,
+          1975
+        ],
+        "start": 1940,
+        "captions": {
+          "1944": "Frankreich.",
+          "1945": "Italien, Japan, Indonesien.",
+          "1947": "Pakistan; Argentinien.",
+          "1949": "China.",
+          "1950": "Indiens Verfassung: Wahlrecht für alle Erwachsenen.",
+          "1956": "Ägypten.",
+          "1960": "Afrikanisches Jahr: Neue Staaten wählen gemeinsam."
+        }
+      }
+    },
+    {
+      "title": "Schweiz, 1971",
+      "text": "Erst am 7. Februar 1971 stimmten Schweizer Männer dafür, Frauen an eidgenössischen Wahlen teilnehmen zu lassen. Ein Kanton, Appenzell Innerrhoden, schloss Frauen von kantonalen Abstimmungen aus, bis das Bundesgericht ihn 1990 dazu zwang. Portugal hob seine letzten Einschränkungen 1976 auf, und Liechtenstein wurde 1984 das letzte Land Europas.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          8,
+          46
+        ],
+        "zoom": 3.2
+      },
+      "countryLabels": true,
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Eingeschränkt: nur manche Frauen"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Frauen wählen zu gleichen Bedingungen wie Männer"
+        }
+      ],
+      "highlight": [
+        "CHE",
+        "LIE"
+      ],
+      "timeline": {
+        "years": [
+          1965,
+          1990
+        ],
+        "start": 1970,
+        "captions": {
+          "1971": "Schweiz: Frauen wählen bei eidgenössischen Wahlen.",
+          "1976": "Portugal hebt seine letzten Einschränkungen auf.",
+          "1984": "Liechtenstein, das letzte Land in Europa.",
+          "1990": "Appenzell Innerrhoden muss Frauen bei kantonalen Angelegenheiten abstimmen lassen."
+        }
+      }
+    },
+    {
+      "title": "Der Golf kommt zuletzt",
+      "text": "Die letzten Änderungen kamen am Golf. Kuwait gab Frauen 2005 das Wahlrecht, 2009 gewannen vier Frauen einen Sitz. Saudi-Arabien ließ Frauen im Dezember 2015 bei Kommunalwahlen wählen und kandidieren; nationale Wahlen gibt es dort nicht. Katar hielt 2021 seine erste Wahl zum Schura-Rat ab, mit Frauen als Wählerinnen. Brunei hält überhaupt keine Wahlen ab.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          48,
+          24
+        ],
+        "zoom": 3
+      },
+      "countryLabels": true,
+      "layers": [
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "limited",
+          "year": "t",
+          "color": "c3",
+          "title": "Eingeschränkt: manche Frauen oder nur Kommunal- bzw. indirekte Wahlen"
+        },
+        {
+          "type": "since",
+          "data": "suf",
+          "set": "equal",
+          "year": "t",
+          "color": "c2",
+          "title": "Frauen wählen zu gleichen Bedingungen wie Männer"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1995,
+          2025
+        ],
+        "start": 2000,
+        "captions": {
+          "1999": "Katar: Frauen wählen bei der ersten Kommunalwahl.",
+          "2002": "Bahrain: Frauen wählen bei Parlamentswahlen.",
+          "2003": "Oman: Alle Staatsbürger über 21 dürfen wählen.",
+          "2005": "Kuwaits Parlament gibt Frauen das Wahlrecht.",
+          "2006": "VAE: ein handverlesenes Wahlgremium, Frauen eingeschlossen.",
+          "2015": "Saudi-Arabien: Frauen wählen bei Kommunalwahlen.",
+          "2021": "Katar: erste Wahl zum Schura-Rat."
+        }
+      }
+    }
+  ]
+}

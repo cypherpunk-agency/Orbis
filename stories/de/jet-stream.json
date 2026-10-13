@@ -1,0 +1,110 @@
+{
+  "id": "jet-stream",
+  "cat": "Planet",
+  "title": "Flüsse aus Luft",
+  "hook": "In zehn Kilometern Höhe umkreisen Winde mit 200 km/h den Planeten. Flugzeuge reiten auf ihnen nach Osten.",
+  "notes": "Winde auf der 250-hPa-Druckfläche (etwa 10 km Höhe) aus der Analyse des Global Forecast System von NOAA/NCEP vom 13. Oktober 2026, 12:00 UTC, auf einem 1°-Raster. Eine Momentaufnahme: Die Jetstreams verlagern sich und wandern von Tag zu Tag. Flugzeiten sind übliche Flugplanzeiten und schwanken je nach Fluglinie und Jahreszeit.",
+  "data": {
+    "wind": "data/grids/wind.json"
+  },
+  "scenes": [
+    {
+      "title": "Winde in Reiseflughöhe",
+      "text": "Jede Spur ist ein Luftpaket, das mit dem Wind treibt, etwa in der Höhe, in der Verkehrsflugzeuge fliegen. Helle Spuren bewegen sich schneller als 35 Meter pro Sekunde, rund 125 km/h. Zwei wellenförmige Bänder fallen über den mittleren Breiten auf: die Jetstreams.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -40,
+          40
+        ],
+        "zoom": 1
+      },
+      "basemap": "satellite",
+      "layers": [
+        {
+          "type": "particles",
+          "data": "wind",
+          "count": 3000
+        }
+      ]
+    },
+    {
+      "title": "Nach Osten schneller",
+      "text": "Die Jetstreams wehen von West nach Ost. Ein Flug von New York nach London nutzt den Rückenwind und ist meist etwa eine Stunde kürzer als derselbe Flug in Gegenrichtung.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -35,
+          47
+        ],
+        "zoom": 1.6
+      },
+      "basemap": "satellite",
+      "layers": [
+        {
+          "type": "particles",
+          "data": "wind",
+          "count": 3000
+        }
+      ],
+      "routes": [
+        {
+          "path": [
+            [
+              -73.78,
+              40.64
+            ],
+            [
+              -0.45,
+              51.47
+            ]
+          ],
+          "color": "c3",
+          "width": 2.2,
+          "label": "New York–London",
+          "dist": true
+        }
+      ]
+    },
+    {
+      "title": "Der südliche Jet",
+      "text": "Die Südhalbkugel hat ihren eigenen Jetstream, der über offenem Ozean die Antarktis umkreist. Weil kaum Gebirge ihn stören, ist er oft gleichmäßiger als der nördliche.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          60,
+          -50
+        ],
+        "zoom": 1
+      },
+      "basemap": "satellite",
+      "layers": [
+        {
+          "type": "particles",
+          "data": "wind",
+          "count": 3000
+        }
+      ]
+    },
+    {
+      "title": "Wettermacher",
+      "text": "Die Jetstreams lenken Stürme und trennen kalte Polarluft von wärmerer Luft weiter südlich. Schlagen sie große Schleifen, können Kälte- oder Hitzewellen tagelang über einer Region verharren.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          30
+        ],
+        "zoom": 1
+      },
+      "basemap": "satellite",
+      "layers": [
+        {
+          "type": "particles",
+          "data": "wind",
+          "count": 3500
+        }
+      ]
+    }
+  ]
+}

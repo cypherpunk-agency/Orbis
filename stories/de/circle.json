@@ -1,0 +1,57 @@
+{
+  "id": "circle",
+  "cat": "Statistics",
+  "title": "Die halbe Welt in einem Kreis",
+  "hook": "In diesem Kreis leben mehr Menschen als außerhalb.",
+  "notes": "Kreis nach Danny Quah (2015), der eine Beobachtung des Reddit-Nutzers valeriepieris von 2013 verfeinerte: Radius ≈ 3.300 km, Mittelpunkt nahe Mong Khet, Myanmar. Bevölkerungszahlen ≈ 2025, UN World Population Prospects 2024, gerundet.",
+  "data": {"values": "data/legacy/values.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Ein Kreis an dieser Stelle",
+      "text": "Der Mittelpunkt liegt im Norden Myanmars, der Radius beträgt rund 3.300 km. Darin liegen Indien, Bangladesch, der größte Teil Chinas und Pakistans und fast ganz Südostasien. Mehr als die Hälfte aller Menschen. Japan liegt knapp außerhalb.",
+      "view": {"mode": "globe", "center": [100, 22], "zoom": 1.05},
+      "circles": [{"center": [99.9, 21.3], "km": 3300, "color": "c2", "label": "≈ 50 %+ der Menschheit"}]
+    },
+    {
+      "title": "Wo die Menschen tatsächlich leben",
+      "text": "Bevölkerung nach Ländern. Zwei Länder, Indien und China, haben jeweils rund 1,4 Milliarden Einwohner. Zusammen stellen sie mehr als ein Drittel der Weltbevölkerung.",
+      "view": {"mode": "equal", "center": [20, 15], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "pop",
+          "year": 2025,
+          "mult": 1000000,
+          "log": true,
+          "title": "Bevölkerung, Millionen (≈ 2025)",
+          "showYear": false
+        }
+      ]
+    },
+    {
+      "title": "Die leere Seite",
+      "text": "Wer den Globus umdreht, findet eine Halbkugel, die fast nur aus Wasser besteht. Weniger als jeder zwanzigste Mensch lebt auf dieser Seite des Planeten.",
+      "view": {"mode": "globe", "center": [-160, -15], "zoom": 1},
+      "circles": [{"center": [99.9, 21.3], "km": 3300, "color": "c2"}]
+    },
+    {
+      "title": "Bevölkerung auf dem Globus",
+      "text": "Dieselben Zahlen auf einer Kugel. Afrika ist die am schnellsten wachsende Region: Allein Nigeria hat heute rund 240 Millionen Einwohner.",
+      "view": {"mode": "globe", "center": [30, 15], "zoom": 1},
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "pop",
+          "year": 2025,
+          "mult": 1000000,
+          "log": true,
+          "title": "Bevölkerung, Millionen (≈ 2025)",
+          "showYear": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "remittances",
+  "cat": "Economics",
+  "title": "Geld für die Familie daheim",
+  "hook": "Migranten schicken mehr Geld in ihre Heimat als alle Entwicklungshilfe und Auslandsinvestitionen zusammen.",
+  "notes": "Weltbank, Migration and Development Brief 40 (2024): ≈ 656 Mrd. USD an Länder mit niedrigem und mittlerem Einkommen im Jahr 2023, mehr als ausländische Direktinvestitionen und öffentliche Entwicklungshilfe zusammen (ohne China). Anteile am BIP ≈ 2023, gerundet. Die eingezeichneten Ströme sind die wichtigsten Korridore, schematisch.",
+  "data": {
+    "routes": "data/legacy/routes.json",
+    "values": "data/legacy/values.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Ein stiller Riese",
+      "text": "2023 schickten Migranten rund 656 Milliarden Dollar an ihre Familien in Ländern mit niedrigem und mittlerem Einkommen. Das ist mehr als ausländische Direktinvestitionen und Entwicklungshilfe zusammen.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          20,
+          25
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "routes",
+          "set": "remittances",
+          "color": "c4",
+          "width": 2,
+          "flow": true
+        }
+      ]
+    },
+    {
+      "title": "Die größten Empfänger",
+      "text": "Indien erhielt rund 120 Milliarden Dollar, mehr als je ein Land zuvor. Es folgten Mexiko mit rund 66 Milliarden, dann China, die Philippinen und Pakistan.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          0,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "remit_usd",
+          "year": 2023,
+          "log": true,
+          "fmt": "busd",
+          "title": "Empfangene Rücküberweisungen, Mrd. USD (2023)",
+          "showYear": false
+        }
+      ]
+    },
+    {
+      "title": "Wo es am meisten zählt",
+      "text": "In Tadschikistan machen die Überweisungen aus dem Ausland fast die Hälfte der gesamten Wirtschaftsleistung aus, vor allem von Arbeitskräften in Russland. In Nepal, Honduras und im Libanon ist es etwa ein Viertel.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          45,
+          30
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "values",
+          "series": "remit_gdp",
+          "year": 2023,
+          "fmt": "pct",
+          "title": "Rücküberweisungen, % des BIP (≈ 2023)",
+          "showYear": false
+        }
+      ]
+    }
+  ]
+}

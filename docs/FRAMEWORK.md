@@ -175,6 +175,8 @@ Rebuilding a dataset is one command; the "as of" date comes from the source, not
 
 **Status (phase 1 delivered):** data-file stories with lazy loading; layer types `symbols`, `flows`, data-driven `lines` and `points`, computed `choropleth`; panel bar chart; label collision avoidance; WebGL raster underlay with political / satellite / night base maps (4096×2048 textures, 370 KB and 243 KB); data pipeline for EIA, BACI and textures; **Oil** (8 scenes) and **Gas** (7 scenes) stories. Pipelines and terminals are schematic own work until the Global Energy Monitor files are downloaded. Still open from phase 1: `raster` as a story layer (beyond base maps), DOM label layer.
 
+**Status (October 2026):** all five waves in `BUILD-PLAN.md` are built: 49 stories, every layer type in `STORY-FORMAT.md`, historical borders, deep zoom from NASA GIBS, German, embed, image/video export, quiz, city mode, screen-reader descriptions and a story editor. Blocked items are listed at the end of `BUILD-PLAN.md`.
+
 
 | Phase | Deliverable | Proves |
 |---|---|---|

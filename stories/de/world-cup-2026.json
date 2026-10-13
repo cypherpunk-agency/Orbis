@@ -1,0 +1,652 @@
+{
+  "id": "world-cup-2026",
+  "cat": "Statistics",
+  "title": "Eine WM quer über einen Kontinent",
+  "hook": "Die WM 2026 verteilte sich auf drei Länder, sechzehn Städte und vier Zeitzonen. Die in Katar passte in eine einzige Stadt.",
+  "notes": "Gastgeberstädte, Stadien und Spiele pro Stadion: FIFA-Spielplan, wie in Wikipedia aufgeführt, „2026 FIFA World Cup“ (Tabelle der Spielorte) und „2026 FIFA World Cup final“, abgerufen am 13. Oktober 2026; die drei Spielplanregionen stammen aus demselben Artikel und von stadiumdb.com (Februar 2024). Gesamtzuschauerzahl (6,8 Millionen) und Finale (Spanien – Argentinien 1:0 nach Verlängerung, 19. Juli 2026) aus Wikipedia. Zeitzonen: IANA-tz-Datenbank (Abweichungen im Sommer 2026; Mexiko verwendet seit 2022 keine Sommerzeit mehr). Die Standorte der Stadien von Katar 2022 sind aus öffentlichen Karten übernommen. Entfernungen sind Großkreisdistanzen zwischen den Stadien, keine Straßen- oder Flugstrecken. Orbis ist weder mit der FIFA verbunden noch von ihr unterstützt; es werden keine FIFA-Marken verwendet.",
+  "data": {
+    "wc": "data/statistics/worldcup2026.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Sechzehn Städte, drei Länder",
+      "text": "Die WM 2026 war die erste mit 48 Mannschaften und die erste mit drei Gastgeberländern. Ihre 104 Spiele wurden in 16 Stadien ausgetragen: 78 in den USA, je 13 in Kanada und Mexiko. Dallas war mit neun Spielen am häufigsten Austragungsort.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          -98,
+          35
+        ],
+        "zoom": 2.6
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "wc",
+          "field": "matches",
+          "period": "2026",
+          "color": "c1",
+          "title": "Spiele pro Stadion",
+          "maxR": 16,
+          "labels": 16
+        }
+      ],
+      "highlight": [
+        "USA",
+        "CAN",
+        "MEX"
+      ],
+      "chart": {
+        "data": "wc",
+        "field": "matches",
+        "period": "2026",
+        "top": 8,
+        "title": "Spiele pro Gastgeberstadt",
+        "color": "c1"
+      }
+    },
+    {
+      "title": "Von Ecke zu Ecke",
+      "text": "Von Vancouver nach Miami sind es in Luftlinie rund 4.500 km, die größte Entfernung zwischen zwei Spielorten. Von Mexiko-Stadt nach New York sind es rund 3.400 km. Eine Mannschaft konnte zwischen zwei Runden quer über den Kontinent geschickt werden.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          -98,
+          35
+        ],
+        "zoom": 2.6
+      },
+      "points": [
+        {
+          "at": [
+            -123.11,
+            49.28
+          ],
+          "label": "Vancouver",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -80.24,
+            25.96
+          ],
+          "label": "Miami",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -99.15,
+            19.3
+          ],
+          "label": "Mexiko-Stadt",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -74.07,
+            40.81
+          ],
+          "label": "New York / New Jersey",
+          "color": "c1",
+          "r": 4
+        }
+      ],
+      "routes": [
+        {
+          "path": [
+            [
+              -123.11,
+              49.28
+            ],
+            [
+              -80.24,
+              25.96
+            ]
+          ],
+          "color": "c2",
+          "width": 2.4,
+          "dist": true,
+          "label": "Vancouver – Miami",
+          "labelAt": 1
+        },
+        {
+          "path": [
+            [
+              -99.15,
+              19.3
+            ],
+            [
+              -74.07,
+              40.81
+            ]
+          ],
+          "color": "c3",
+          "width": 2.4,
+          "dist": true,
+          "label": "Mexiko-Stadt – New York",
+          "labelAt": 1
+        }
+      ],
+      "highlight": [
+        "USA",
+        "CAN",
+        "MEX"
+      ]
+    },
+    {
+      "title": "Drei Regionen",
+      "text": "Um Reisen zu verkürzen, teilte der Spielplan die Städte nach Längengrad in drei Regionen ein: West (4 Städte), Mitte (6, darunter alle drei mexikanischen Spielorte) und Ost (6). Die meisten Gruppenspiele blieben innerhalb einer Region, doch etwa die Hälfte der Mannschaften musste trotzdem in zweien spielen.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          -98,
+          35
+        ],
+        "zoom": 2.6
+      },
+      "legend": [
+        {
+          "color": "c4",
+          "label": "West"
+        },
+        {
+          "color": "c3",
+          "label": "Mitte"
+        },
+        {
+          "color": "c2",
+          "label": "Ost"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            -123.11,
+            49.28
+          ],
+          "label": "Vancouver",
+          "color": "c4",
+          "r": 5
+        },
+        {
+          "at": [
+            -122.33,
+            47.6
+          ],
+          "label": "Seattle",
+          "color": "c4",
+          "r": 5
+        },
+        {
+          "at": [
+            -121.97,
+            37.4
+          ],
+          "label": "San Francisco Bay Area",
+          "color": "c4",
+          "r": 5
+        },
+        {
+          "at": [
+            -118.34,
+            33.95
+          ],
+          "label": "Los Angeles",
+          "color": "c4",
+          "r": 5
+        },
+        {
+          "at": [
+            -103.46,
+            20.68
+          ],
+          "label": "Guadalajara",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            -99.15,
+            19.3
+          ],
+          "label": "Mexiko-Stadt",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            -100.24,
+            25.67
+          ],
+          "label": "Monterrey",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            -95.41,
+            29.68
+          ],
+          "label": "Houston",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            -97.09,
+            32.75
+          ],
+          "label": "Dallas",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            -94.48,
+            39.05
+          ],
+          "label": "Kansas City",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            -84.4,
+            33.76
+          ],
+          "label": "Atlanta",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -80.24,
+            25.96
+          ],
+          "label": "Miami",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -79.42,
+            43.63
+          ],
+          "label": "Toronto",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -71.26,
+            42.09
+          ],
+          "label": "Boston",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -75.17,
+            39.9
+          ],
+          "label": "Philadelphia",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -74.07,
+            40.81
+          ],
+          "label": "New York / New Jersey",
+          "color": "c2",
+          "r": 5
+        }
+      ]
+    },
+    {
+      "title": "Vier Uhren",
+      "text": "Im Juni und Juli liefen an den Spielorten vier verschiedene Uhren: UTC−7 an der Pazifikküste, UTC−6 in Mexiko, UTC−5 in Dallas, Houston und Kansas City und UTC−4 im Osten. Ein Anstoß um 15 Uhr in Los Angeles war 18 Uhr in New York und Mitternacht in Paris.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          -98,
+          35
+        ],
+        "zoom": 2.6
+      },
+      "legend": [
+        {
+          "color": "c4",
+          "label": "UTC−7 (pazifische Sommerzeit)"
+        },
+        {
+          "color": "c5",
+          "label": "UTC−6 (Mexiko, keine Sommerzeit)"
+        },
+        {
+          "color": "c3",
+          "label": "UTC−5 (zentrale Sommerzeit)"
+        },
+        {
+          "color": "c2",
+          "label": "UTC−4 (östliche Sommerzeit)"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            -123.11,
+            49.28
+          ],
+          "label": "Vancouver",
+          "color": "c4",
+          "r": 5
+        },
+        {
+          "at": [
+            -122.33,
+            47.6
+          ],
+          "label": "Seattle",
+          "color": "c4",
+          "r": 5
+        },
+        {
+          "at": [
+            -121.97,
+            37.4
+          ],
+          "label": "San Francisco Bay Area",
+          "color": "c4",
+          "r": 5
+        },
+        {
+          "at": [
+            -118.34,
+            33.95
+          ],
+          "label": "Los Angeles",
+          "color": "c4",
+          "r": 5
+        },
+        {
+          "at": [
+            -103.46,
+            20.68
+          ],
+          "label": "Guadalajara",
+          "color": "c5",
+          "r": 5
+        },
+        {
+          "at": [
+            -99.15,
+            19.3
+          ],
+          "label": "Mexiko-Stadt",
+          "color": "c5",
+          "r": 5
+        },
+        {
+          "at": [
+            -100.24,
+            25.67
+          ],
+          "label": "Monterrey",
+          "color": "c5",
+          "r": 5
+        },
+        {
+          "at": [
+            -95.41,
+            29.68
+          ],
+          "label": "Houston",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            -97.09,
+            32.75
+          ],
+          "label": "Dallas",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            -94.48,
+            39.05
+          ],
+          "label": "Kansas City",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            -84.4,
+            33.76
+          ],
+          "label": "Atlanta",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -80.24,
+            25.96
+          ],
+          "label": "Miami",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -79.42,
+            43.63
+          ],
+          "label": "Toronto",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -71.26,
+            42.09
+          ],
+          "label": "Boston",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -75.17,
+            39.9
+          ],
+          "label": "Philadelphia",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            -74.07,
+            40.81
+          ],
+          "label": "New York / New Jersey",
+          "color": "c2",
+          "r": 5
+        }
+      ]
+    },
+    {
+      "title": "Katar 2022: eine Stadt",
+      "text": "Vier Jahre zuvor trug Katar alle 64 Spiele in acht Stadien in und um Doha aus. Die beiden am weitesten voneinander entfernten, Al Bayt im Norden und Al Janoub im Süden, liegen rund 55 km auseinander. Fans konnten zwei Spiele an einem Tag sehen. 2026 lagen allein New York und Philadelphia mehr als 130 km auseinander.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          50.95,
+          25.4
+        ],
+        "zoom": 90
+      },
+      "points": [
+        {
+          "at": [
+            51.4874,
+            25.6522
+          ],
+          "label": "Al Bayt",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            51.4904,
+            25.4206
+          ],
+          "label": "Lusail",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            51.342,
+            25.3297
+          ],
+          "label": "Ahmad bin Ali",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            51.4246,
+            25.311
+          ],
+          "label": "Education City",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            51.5537,
+            25.2894
+          ],
+          "label": "Stadion 974",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            51.4482,
+            25.2637
+          ],
+          "label": "Khalifa International",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            51.5326,
+            25.2356
+          ],
+          "label": "Al Thumama",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "at": [
+            51.5734,
+            25.1597
+          ],
+          "label": "Al Janoub",
+          "color": "c2",
+          "r": 5
+        }
+      ],
+      "routes": [
+        {
+          "path": [
+            [
+              51.4874,
+              25.6522
+            ],
+            [
+              51.5734,
+              25.1597
+            ]
+          ],
+          "color": "c3",
+          "width": 2,
+          "dash": true,
+          "label": "Am weitesten entfernt: rund 55 km",
+          "labelAt": 1
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Das Finale",
+      "text": "Das Finale wurde am 19. Juli im MetLife Stadium bei New York ausgetragen, 38 Tage nach dem Eröffnungsspiel in Mexiko-Stadt. Spanien schlug Argentinien nach Verlängerung 1:0. Über das ganze Turnier sahen rund 6,8 Millionen Menschen die Spiele im Stadion, im Schnitt rund 65.000 pro Spiel.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          -98,
+          35
+        ],
+        "zoom": 2.6
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "wc",
+          "field": "matches",
+          "period": "2026",
+          "color": "c1",
+          "title": "Spiele pro Stadion",
+          "maxR": 16,
+          "labels": 0
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            -74.07,
+            40.81
+          ],
+          "label": "Finale: MetLife Stadium, 19. Juli",
+          "color": "c2",
+          "r": 6
+        }
+      ],
+      "routes": [
+        {
+          "path": [
+            [
+              -99.15,
+              19.3
+            ],
+            [
+              -74.07,
+              40.81
+            ]
+          ],
+          "color": "c2",
+          "width": 1.6,
+          "dash": true,
+          "flow": true,
+          "label": "Eröffnungsspiel: Mexiko-Stadt, 11. Juni",
+          "labelAt": 0
+        }
+      ]
+    }
+  ]
+}

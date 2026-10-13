@@ -1,0 +1,47 @@
+{
+  "id": "cables",
+  "cat": "Geopolitics",
+  "title": "Das Internet liegt unter dem Meer",
+  "hook": "Fast alle interkontinentalen Daten laufen durch Kabel auf dem Meeresgrund.",
+  "notes": "Rund 600 Kabel sind in Betrieb oder geplant (TeleGeography). Die Routen hier sind schematisch und nur eine kleine Auswahl. Kabelschäden: etwa 150–200 pro Jahr, meist durch Fischerei und Anker (International Cable Protection Committee).",
+  "data": {"routes": "data/legacy/routes.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Kabel statt Satelliten",
+      "text": "Ein Videoanruf nach New York läuft fast sicher durch ein Kabel, etwa so dick wie ein Gartenschlauch, das auf dem Meeresboden liegt.",
+      "view": {"mode": "globe", "center": [-40, 35], "zoom": 1.05},
+      "layers": [{"type": "lines", "data": "routes", "set": "cables_atlantic", "color": "c1", "width": 2, "labels": true, "flow": true}]
+    },
+    {
+      "title": "Big Tech baut selbst",
+      "text": "Google, Meta, Microsoft und Amazon bezahlen viele neue Kabel inzwischen selbst. MAREA, Dunant und Grace Hopper durchqueren den Atlantik, JUPITER den Pazifik.",
+      "view": {"mode": "globe", "center": [-130, 30], "zoom": 1},
+      "layers": [
+        {"type": "lines", "data": "routes", "set": "cables_atlantic", "color": "c1", "width": 2, "labels": true, "flow": true},
+        {"type": "lines", "data": "routes", "set": "cables_pacific", "color": "c1", "width": 2, "labels": true, "flow": true},
+        {"type": "lines", "data": "routes", "set": "cable_smw6", "color": "c1", "width": 2, "labels": true, "flow": true}
+      ]
+    },
+    {
+      "title": "Ein Kontinent wird umwickelt",
+      "text": "2Africa, ein von Meta angeführtes Projekt mit Partnern, umrundet den afrikanischen Kontinent und ist mit rund 45.000 km eines der längsten je gebauten Kabel.",
+      "view": {"mode": "globe", "center": [15, 5], "zoom": 1.05},
+      "layers": [
+        {"type": "lines", "data": "routes", "set": "cable_2africa", "color": "c2", "width": 2.5, "labels": true, "flow": true},
+        {"type": "lines", "data": "routes", "set": "cable_equiano", "color": "c2", "width": 2.5, "labels": true, "flow": true},
+        {"type": "lines", "data": "routes", "set": "cables_atlantic", "color": "c1", "width": 1.5, "labels": true}
+      ]
+    },
+    {
+      "title": "Wenn Kabel reißen",
+      "text": "Anfang 2024 durchtrennte der schleifende Anker eines Schiffs im Roten Meer drei große Kabel auf einmal. Für Reparaturen braucht es Spezialschiffe, und davon gibt es weltweit nur einige Dutzend.",
+      "view": {"mode": "globe", "center": [42, 16], "zoom": 3.5},
+      "layers": [
+        {"type": "lines", "data": "routes", "set": "cable_2africa", "color": "c1", "width": 2},
+        {"type": "lines", "data": "routes", "set": "cable_smw6", "color": "c1", "width": 2}
+      ],
+      "points": [{"at": [42.7, 13.6], "label": "Kabel durchtrennt, 2024", "r": 7, "color": "c2"}]
+    }
+  ]
+}

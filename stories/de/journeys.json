@@ -1,0 +1,478 @@
+{
+  "id": "journeys",
+  "cat": "People",
+  "title": "Die großen Reisen",
+  "hook": "Eine Flotte, die die Erde umrundete, eine chinesische Armada und ein Reisender, der die halbe bekannte Welt durchwanderte.",
+  "notes": "Die Routen sind schematisch: von Orbis durch belegte Stationen gezogene Linien, keine Schiffskurse. Entfernungen (≈) sind entlang dieser Linien gemessen und runden die tatsächlichen, im Zickzack verlaufenden Reisen nach unten ab. Magellan–Elcano: Daten und Besatzung nach dem Bericht von Antonio Pigafetta und Laurence Bergreen, „Over the Edge of the World“ (2003); die Angaben zur Besatzungsstärke schwanken je nach Quelle zwischen etwa 240 und 270. Zheng He: Daten der sieben Reisen nach den Inschriften von Liujiagang und Changle (1431) und dem Ming Shilu, zusammengefasst bei Edward Dreyer, „Zheng He: China and the Oceans in the Early Ming Dynasty“ (2007); die Größe der Schatzschiffe ist umstritten. Ibn Battuta: Reiseroute und Daten nach Ross Dunn, „The Adventures of Ibn Battuta“ (überarbeitet 2005); einige Etappen, vor allem der Besuch in Peking, werden von Historikern angezweifelt. Die Gesamtstrecke von ≈ 117.000 km für Ibn Battuta ist Dunns häufig zitierte Schätzung.",
+  "data": {
+    "j": "data/people/journeys.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Fünf Schiffe segeln nach Westen",
+      "text": "Im September 1519 verließen fünf spanische Schiffe unter Ferdinand Magellan mit etwa 250 Mann Sanlúcar de Barrameda. Sie suchten einen westlichen Seeweg zu den Gewürzinseln. Nach einer Überwinterung in Patagonien und der Niederschlagung einer Meuterei fanden sie im Oktober 1520 eine Durchfahrt an der Südspitze Südamerikas. Für die Passage brauchten sie 38 Tage.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -40,
+          -12
+        ],
+        "zoom": 1.45
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "magellan",
+          "width": 2.6,
+          "labels": true,
+          "flow": true,
+          "color": "c2"
+        },
+        {
+          "type": "points",
+          "data": "j",
+          "set": "magellan",
+          "color": "c2",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Magellans Flotte, 1519–20 (schematisch)"
+        }
+      ]
+    },
+    {
+      "title": "Der Pazifik ist größer als gedacht",
+      "text": "Magellan erwartete einen kurzen Sprung nach Asien. Die Überfahrt dauerte 98 Tage. Die Mannschaften aßen Leder und Sägemehl, viele starben an Skorbut. Im März 1521 erreichten sie Guam und Tage später die Philippinen. Am 27. April 1521 wurde Magellan bei einem Kampf auf der Insel Mactan getötet.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -175,
+          -8
+        ],
+        "zoom": 1.25
+      },
+      "routes": [
+        {
+          "path": [
+            [
+              -74.7,
+              -52.72
+            ],
+            [
+              -77.5,
+              -45
+            ],
+            [
+              -79,
+              -33
+            ],
+            [
+              -95,
+              -25
+            ],
+            [
+              -115,
+              -18
+            ],
+            [
+              -138.8,
+              -14.8
+            ],
+            [
+              -151.8,
+              -11.4
+            ],
+            [
+              -165,
+              -2
+            ],
+            [
+              -178,
+              7
+            ],
+            [
+              165,
+              12
+            ],
+            [
+              144.75,
+              13.45
+            ]
+          ],
+          "color": "c2",
+          "width": 2.8,
+          "dist": true,
+          "label": "98 Tage",
+          "labelAt": 4
+        }
+      ],
+      "layers": [
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "magellan",
+          "color": "muted",
+          "width": 1.6
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "pacific",
+          "width": 2.4,
+          "flow": true,
+          "color": "c2"
+        },
+        {
+          "type": "points",
+          "data": "j",
+          "set": "magellan",
+          "color": "c2",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Pazifiküberquerung und Philippinen, 1520–21 (schematisch)"
+        }
+      ]
+    },
+    {
+      "title": "Achtzehn Männer kehren heim",
+      "text": "Nur zwei Schiffe erreichten die Gewürzinseln. Die Victoria unter Juan Sebastián Elcano lud Gewürznelken und segelte westwärts nach Hause, über den Indischen Ozean und um Afrika herum, unter Meidung portugiesischer Häfen. Am 6. September 1522, drei Jahre nach der Abfahrt, erreichte sie Spanien mit 18 Mann der ursprünglichen Besatzung. Sie waren die ersten bekannten Menschen, die die Welt umsegelt hatten.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          -5
+        ],
+        "zoom": 1
+      },
+      "routes": [
+        {
+          "path": [
+            [
+              127.4,
+              0.68
+            ],
+            [
+              127.9,
+              -3.6
+            ],
+            [
+              124.5,
+              -8.4
+            ],
+            [
+              123.6,
+              -10.3
+            ],
+            [
+              110,
+              -20
+            ],
+            [
+              85,
+              -33
+            ],
+            [
+              55,
+              -39
+            ],
+            [
+              25,
+              -36.5
+            ],
+            [
+              17,
+              -34
+            ],
+            [
+              10,
+              -24
+            ],
+            [
+              2,
+              -10
+            ],
+            [
+              -10,
+              1
+            ],
+            [
+              -18,
+              10
+            ],
+            [
+              -23.5,
+              14.9
+            ],
+            [
+              -31,
+              26
+            ],
+            [
+              -27,
+              37
+            ],
+            [
+              -14,
+              37.5
+            ],
+            [
+              -6.35,
+              36.78
+            ]
+          ],
+          "color": "c2",
+          "width": 2.8,
+          "flow": true,
+          "dist": true,
+          "label": "Der Heimweg der Victoria",
+          "labelAt": 6
+        }
+      ],
+      "layers": [
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "magellan",
+          "width": 1.8,
+          "color": "c2"
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "pacific",
+          "width": 1.8,
+          "color": "c2"
+        },
+        {
+          "type": "points",
+          "data": "j",
+          "set": "magellan",
+          "color": "c2",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Weltumsegelung Magellan–Elcano, 1519–22: ≈ 60.000 km auf diesen Linien"
+        }
+      ]
+    },
+    {
+      "title": "Zheng Hes Schatzflotten",
+      "text": "Zwischen 1405 und 1433 führte der Ming-Admiral Zheng He sieben Expeditionen in den Indischen Ozean. Die erste umfasste etwa 27.800 Mann. Die Flotten trieben Handel, beförderten Gesandte und demonstrierten die Macht der Ming; sie erreichten Kalikut, Hormus, Dschidda und die ostafrikanische Küste. Ming-Quellen beschreiben Schatzschiffe von weit über 100 m Länge; viele Historiker halten sie für kleiner. Nach 1433 endeten die Reisen.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          82,
+          10
+        ],
+        "zoom": 1.55
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "zhenghe",
+          "width": 2.6,
+          "labels": true,
+          "flow": true,
+          "color": "c4"
+        },
+        {
+          "type": "points",
+          "data": "j",
+          "set": "zhenghe",
+          "color": "c4",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c4",
+          "label": "Zheng Hes Flotten, 1405–33 (schematisch): Nanjing bis Malindi ≈ 15.000 km"
+        }
+      ]
+    },
+    {
+      "title": "Ibn Battuta bricht auf",
+      "text": "Im Juni 1325 verließ ein 21-jähriger Rechtsgelehrter namens Ibn Battuta Tanger, um die Pilgerfahrt nach Mekka anzutreten. Er kehrte erst 24 Jahre später heim. In seinen ersten sieben Jahren durchquerte er Nordafrika, Syrien und Arabien, bereiste Irak und Persien und segelte die ostafrikanische Küste hinunter bis Kilwa.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          30,
+          20
+        ],
+        "zoom": 1.6
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "battuta1",
+          "width": 2.4,
+          "labels": true,
+          "flow": true,
+          "color": "c3"
+        },
+        {
+          "type": "points",
+          "data": "j",
+          "set": "battuta1",
+          "color": "c3",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c3",
+          "label": "Ibn Battuta, 1325–32 (schematisch)"
+        }
+      ]
+    },
+    {
+      "title": "Nach Delhi, China und Mali",
+      "text": "Er durchquerte die Steppe und den Hindukusch bis Delhi, wo er dem Sultan etwa acht Jahre lang als Richter diente. Als Gesandter nach China geschickt, erreichte er um 1345 Quanzhou. Auf dem Heimweg erlebte er 1348 in Damaskus den Schwarzen Tod. Nach seiner Rückkehr nach Marokko 1349 durchquerte er die Sahara bis Mali und Timbuktu. Um 1355 diktierte er in Fès seine Geschichte: die Rihla.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          56,
+          22
+        ],
+        "zoom": 1.85
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "battuta1",
+          "color": "muted",
+          "width": 1.4
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "battuta2",
+          "width": 2.2,
+          "labels": true,
+          "flow": true,
+          "color": "c3"
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "battuta3",
+          "width": 2.2,
+          "labels": true,
+          "flow": true,
+          "color": "c3"
+        },
+        {
+          "type": "points",
+          "data": "j",
+          "set": "battuta2",
+          "color": "c3",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c3",
+          "label": "Ibn Battuta, 1332–54 (schematisch; gestrichelt: angezweifelt)"
+        },
+        {
+          "color": "muted",
+          "label": "1325–32"
+        }
+      ]
+    },
+    {
+      "title": "Drei Reisen im Vergleich",
+      "text": "Die Linien auf dieser Karte summieren sich für Magellan und Elcano auf etwa 60.000 km und für Ibn Battuta auf etwa 70.000 km. Mit allen Umwegen werden Ibn Battutas Reisen meist auf rund 117.000 km beziffert, eine der längsten bekannten Reisen aus der Zeit vor dem Dampfzeitalter. Zheng Hes Flotten befuhren siebenmal den Indischen Ozean.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          20,
+          5
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "magellan",
+          "width": 1.8,
+          "color": "c2"
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "pacific",
+          "width": 1.8,
+          "color": "c2"
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "elcano",
+          "width": 1.8,
+          "color": "c2"
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "zhenghe",
+          "width": 2.2,
+          "color": "c4"
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "battuta1",
+          "width": 1.6,
+          "color": "c3"
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "battuta2",
+          "width": 1.6,
+          "color": "c3"
+        },
+        {
+          "type": "lines",
+          "data": "j",
+          "set": "battuta3",
+          "width": 1.6,
+          "color": "c3"
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Magellan und Elcano, 1519–22"
+        },
+        {
+          "color": "c4",
+          "label": "Zheng He, 1405–33"
+        },
+        {
+          "color": "c3",
+          "label": "Ibn Battuta, 1325–54"
+        }
+      ]
+    }
+  ]
+}

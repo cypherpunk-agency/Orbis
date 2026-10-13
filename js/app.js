@@ -33,9 +33,9 @@ function loadDetail(){
   return fetch("data/world50.json").then(r=>r.json()).then(t=>{
     const fs=topojson.feature(t,t.objects.countries).features;
     HI.byId=new Map(fs.map(f=>[f.id,f])); HI.borders=topojson.mesh(t,t.objects.countries,(a,b)=>a!==b);
-    fs.forEach(f=>{ HI.label.set(f.id,[f.properties.lx,f.properties.ly]);
+    fs.forEach(f=>{ HI.label.set(f.id,[f.properties.lx,f.properties.ly]); if(LANG==="de"&&f.properties.de) NAMES.set(f.id,f.properties.de);
       if(byId.has(f.id)) return;   // a small state the 1:110m map lacks: add it everywhere
-      f.properties={name:f.properties.name}; feats.push(f); byId.set(f.id,f); AREA.set(f.id,d3.geoArea(f));
+      f.properties={name:LANG==="de"&&f.properties.de||f.properties.name}; feats.push(f); byId.set(f.id,f); AREA.set(f.id,d3.geoArea(f));
       tint.push(feats.length%5); NAMES.set(f.id,f.properties.name); if(!ANCHOR.has(f.id)) ANCHOR.set(f.id,d3.geoCentroid(f)); });
     markDirty(); render();
   }).catch(e=>console.warn("Detailed map not loaded:",e));
@@ -120,7 +120,7 @@ function layers(){
   L.routes=arr(s.routes).slice(); L.points=arr(s.points).slice(); L.circles=(s.circles||[]).slice();
   if(frame){ if(frame.groups)L.groups=L.groups.concat(frame.groups); if(frame.routes)L.routes=L.routes.concat(frame.routes);
     if(frame.points)L.points=L.points.concat(frame.points); if(frame.fills)Object.assign(L.fills,frame.fills); }
-  if(explore.bloc){const b=BLOCS[explore.bloc];L.groups.push({label:b.label,color:"c2",ids:b.ids});}
+  if(explore.bloc){const b=BLOCS[explore.bloc];L.groups.push({label:t(b.label),color:"c2",ids:b.ids});}
   L.political = scene ? !!s.political : !explore.bloc;
   L.countryLabels = scene ? !!s.countryLabels : true;
   compileLayers(s,L);
@@ -393,7 +393,7 @@ function draw(){
     if(at[0]==null||!visible(at)) return; const p=proj(at); if(p) labels.push([f.properties.name+(v!=null?" "+rg.fmt(v):""),p[0],p[1],{align:"center",size:12}]); }); });
   if(L.pov) L.pov.areas.forEach(a=>{ let o=a.properties.o[L.pov.view]; if(o&&!NAMES.has(o)) o=null; if(L.pov.only&&!L.pov.only.includes(a.properties.name)) return;
     if(path.area(a)<400) return;  // skip slivers
-    const c=d3.geoCentroid(a); if(!visible(c)) return; const p=proj(c); if(p) labels.push([o?nameOf(o):"disputed",p[0],p[1],{align:"center",size:12,color:C.accent}]); });
+    const c=d3.geoCentroid(a); if(!visible(c)) return; const p=proj(c); if(p) labels.push([o?nameOf(o):t("disputed"),p[0],p[1],{align:"center",size:12,color:C.accent}]); });
   if(L._cartoLabels) labels.unshift(...L._cartoLabels);
   if(L.countryLabels&&!L.carto&&!L.hist) countryLabels(labels);
   labels.forEach(l=>label(...l));
@@ -482,13 +482,14 @@ function tap(x,y){
   const ll=proj.invert([x,y]); if(!ll||isNaN(ll[0])) return;
   if(curKind()==="globe"&&d3.geoDistance(ll,V.center)>Math.PI/2) return;
   for(const rg of L.regions){ const rf=rg.R.feats.find(f=>d3.geoContains(f,ll)); if(rf){ const v=rg.vals[rf.id];
-    tip.innerHTML="<b>"+esc(rf.properties.name)+"</b><span>"+esc(rg.title)+": "+(v==null?"No data":esc(rg.fmt(v)))+"</span>";
+    tip.innerHTML="<b>"+esc(rf.properties.name)+"</b><span>"+esc(rg.title)+": "+(v==null?t("No data"):esc(rg.fmt(v)))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; } }
   const gridHtml=L.rasters.map(r=>{ const G=r.G; if(!G.bytes) return "";
     const x=Math.floor((ll[0]+180)/360*G.w)%G.w, y=Math.min(G.h-1,Math.floor((90-ll[1])/180*G.h)), v=gridDecode(r.desc,G.bytes[y*G.w+x]);
     return v==null?"":"<span>"+esc(r.title)+": "+esc(r.fmt(v))+"</span>"; }).join("");
+  if(quiz.mode==="where"&&f0(ll)){ quizTap(f0(ll).id); return; }
   if(L.hist){ const hf=L.hist.H.feats.find(f=>d3.geoContains(f,ll));
-    tip.innerHTML=hf?"<b>"+esc(hf.properties.name||"")+"</b><span>Borders of "+L.hist.year+"</span>":"<span>Not an independent state in "+L.hist.year+"</span>";
+    tip.innerHTML=hf?"<b>"+esc(hf.properties.name||"")+"</b><span>"+esc(t("Borders of {y}",{y:L.hist.year}))+"</span>":"<span>"+esc(t("Not an independent state in {y}",{y:L.hist.year}))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
   const f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll));
   if(!f&&gridHtml){ tip.innerHTML="<b>"+d3.format(".1f")(Math.abs(ll[1]))+"°"+(ll[1]>=0?"N":"S")+" "+d3.format(".1f")(Math.abs(ll[0]))+"°"+(ll[0]>=0?"E":"W")+"</b>"+gridHtml;
@@ -496,7 +497,7 @@ function tap(x,y){
   if(!f){hideTip();return;}
   if(L.flows.length||focus){ focus=focus===f.id?null:f.id; L=layers(); el.legend.innerHTML=legendHTML(); render(); }
   let html="<b>"+esc(nameOf(f.id))+"</b>"+gridHtml;
-  if(L.choro){const v=L.cdata[f.id]; html+="<span>"+(v==null?"No data":esc(String(L.choro.fmt?L.choro.fmt(v):v)))+"</span>";}
+  if(L.choro){const v=L.cdata[f.id]; html+="<span>"+(v==null?t("No data"):esc(String(L.choro.fmt?L.choro.fmt(v):v)))+"</span>";}
   L.vals.forEach(lv=>{const v=lv.values[f.id]; if(v!=null) html+="<span>"+esc(lv.title)+": "+esc(lv.fmt(v))+"</span>";});
   const g=L.gmap.get(f.id); if(g) html+="<span>"+esc(g.label)+"</span>";
   tip.innerHTML=html; tip.hidden=false;
@@ -504,6 +505,8 @@ function tap(x,y){
   clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500);
 }
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function f0(ll){ return feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll)); }
 
 // ---------- mode toggle ----------
 const modeBtns=[...document.querySelectorAll("[data-mode]")];
@@ -516,10 +519,10 @@ modeBtns.forEach(b=>b.onclick=()=>{const want=b.dataset.mode; const k=curKind();
 
 // ---------- basemaps ----------
 const BASEMAPS={
-  political:{label:"Political"},
-  satellite:{label:"Satellite",tex:"data/tex/satellite-4096.webp",source:"nasa-bluemarble"},
-  night:{label:"Night lights",tex:"data/tex/night-4096.webp",source:"nasa-blackmarble"},
-  terrain:{label:"Terrain",tex:"data/tex/terrain-4096.webp",source:"nasa-relief"}
+  political:{label:t("Political")},
+  satellite:{label:t("Satellite"),tex:"data/tex/satellite-4096.webp",source:"nasa-bluemarble"},
+  night:{label:t("Night lights"),tex:"data/tex/night-4096.webp",source:"nasa-blackmarble"},
+  terrain:{label:t("Terrain"),tex:"data/tex/terrain-4096.webp",source:"nasa-relief"}
 };
 const BM={mode:"political",user:null};
 Raster.init(document.getElementById("raster"));
@@ -527,7 +530,7 @@ const bmBtn=document.getElementById("bmBtn"), bmMenu=document.getElementById("bm
 function setBasemap(m,user){
   if(!BASEMAPS[m]||(BASEMAPS[m].tex&&!Raster.ok)) m="political";
   if(user) BM.user=m;
-  BM.mode=m; bmBtn.textContent=m==="political"?"Map":BASEMAPS[m].label;
+  BM.mode=m; bmBtn.textContent=m==="political"?t("Map"):BASEMAPS[m].label;
   [...bmMenu.children].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bm===m)));
   if(BASEMAPS[m].tex) Raster.load(m,BASEMAPS[m].tex,render);
   DETAIL.key=null; scheduleDetail();
@@ -544,43 +547,43 @@ const JSONS={};
 function loadJSON(url){ return JSONS[url]||(JSONS[url]=fetch(url).then(r=>{ if(!r.ok) throw new Error(url+": HTTP "+r.status); return r.json(); })); }
 async function ensureStory(i){
   const meta=STORIES[i]; if(meta.scenes) return meta;
-  const js=await loadJSON(meta.file), data={};
+  const js=meta.file==="draft"?JSON.parse(localStorage.getItem("orbis-draft")||"null"):await loadJSON(meta.file).then(j=>(LANG!=="en"&&meta.file.startsWith("stories/"+LANG+"/")&&(j._translated=true),j)).catch(e=>{ const en=meta.file.replace("stories/"+LANG+"/","stories/"); if(en!==meta.file) return loadJSON(en); throw e; }), data={};
   await Promise.all(Object.entries(js.data||{}).map(async([k,u])=>{ data[k]=await loadJSON(u); }));
   js.scenes.forEach(sc=>{ const t=sc.timeline; if(t&&!t.frame){
     const ys=t.years.length===2&&t.years[1]-t.years[0]>1?d3.range(t.years[0],t.years[1]+1):t.years;
-    const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const MON=LANG==="de"?["Jan.","Feb.","März","Apr.","Mai","Juni","Juli","Aug.","Sept.","Okt.","Nov.","Dez."]:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):(y=>y), lab=y=>(t.labels&&t.labels[y])||lab0(y);
     sc.timeline={years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
   const st=Object.assign({},js,{file:meta.file,_data:data},meta.id.startsWith("@")?{id:meta.id}:{}); STORIES[i]=st; return st;
 }
 const FMT={
-  kbd:v=>v>=1000?d3.format(".1f")(v/1000)+" m b/d":d3.format(",.0f")(v)+" k b/d",
-  mbd:v=>d3.format(".1f")(v)+" m b/d",
-  bcm:v=>d3.format(v<10?".1f":",.0f")(v)+" bcm",
-  bcfd:v=>d3.format(".1f")(v)+" bcf/d",
-  musd:v=>v>=1000?"$"+d3.format(v>=10000?",.0f":".1f")(v/1000)+" bn":"$"+d3.format(",.0f")(v)+" m",
-  bpp:v=>d3.format(".1f")(v)+" barrels",
+  kbd:v=>v>=1000?d3.format(".1f")(v/1000)+t(" m b/d"):d3.format(",.0f")(v)+t(" k b/d"),
+  mbd:v=>d3.format(".1f")(v)+t(" m b/d"),
+  bcm:v=>d3.format(v<10?".1f":",.0f")(v)+t(" bcm"),
+  bcfd:v=>d3.format(".1f")(v)+t(" bcf/d"),
+  musd:v=>v>=1000?"$"+d3.format(v>=10000?",.0f":".1f")(v/1000)+t(" bn"):"$"+d3.format(",.0f")(v)+t(" m"),
+  bpp:v=>d3.format(".1f")(v)+t(" barrels"),
   m3pp:v=>d3.format(",.0f")(v)+" m³",
   mt:v=>d3.format(v<10000?".1f":",.0f")(v/1000)+" Mt",
   t:v=>v>=1e6?d3.format(".1f")(v/1e6)+" Mt":v>=1e4?d3.format(",.0f")(v/1e3)+" kt":v>=1e3?d3.format(".1f")(v/1e3)+" kt":d3.format(",.0f")(v)+" t",
   kt:v=>v>=1000?d3.format(v>=1e5?",.0f":".1f")(v/1000)+" Mt":d3.format(",.0f")(v)+" kt",  // input in thousand tonnes
   kg:v=>v>=1e6?d3.format(".1f")(v/1e6)+" kt":v>=1e3?d3.format(",.0f")(v/1e3)+" t":d3.format(",.0f")(v)+" kg",
   degc:v=>(v>0?"+":"")+d3.format(".1f")(v)+" °C",
-  ppkm2:v=>d3.format(v<10?".1f":",.0f")(v)+" per km²",
+  ppkm2:v=>d3.format(v<10?".1f":",.0f")(v)+t(" per km²"),
   int:v=>d3.format(",.0f")(v),
   num:v=>d3.format(Math.abs(v)<10?",.2~f":",.1~f")(v),
   dollar:v=>"$"+d3.format(",.2f")(v),
   tpp:v=>d3.format(v<10?".1f":",.0f")(v)+" t",
-  mil:v=>d3.format(",.0f")(v)+" M",
-  yrs:v=>d3.format(".0f")(v)+" yrs",
+  mil:v=>d3.format(",.0f")(v)+t(" M"),
+  yrs:v=>d3.format(".0f")(v)+t(" yrs"),
   pct0:v=>d3.format(".0f")(v)+"%",
-  usdB:v=>"$"+d3.format(",.0f")(v)+" B",
-  people:v=>v>=1e6?d3.format(".1f")(v/1e6)+" m":d3.format(",.0f")(v),
+  usdB:v=>"$"+d3.format(",.0f")(v)+t(" B"),
+  people:v=>v>=1e6?d3.format(".1f")(v/1e6)+t(" m"):d3.format(",.0f")(v),
   usd:v=>"$"+d3.format(",.0f")(v),
   eur:v=>"€"+d3.format(",.0f")(v),
   intd:v=>"Int$ "+d3.format(",.0f")(v),
   pct:v=>d3.format(v<10?".1f":".0f")(v)+"%",
-  busd:v=>v>=1000?"$"+d3.format(".1f")(v/1000)+" tn":"$"+d3.format(",.0f")(v)+" bn"
+  busd:v=>v>=1000?"$"+d3.format(".1f")(v/1000)+t(" tn"):"$"+d3.format(",.0f")(v)+t(" bn")
 };
 const fmtOf=f=>typeof f==="function"?f:(FMT[f]||(typeof f==="string"&&f.startsWith("d3:")?d3.format(f.slice(3)):d3.format(",.3~s")));
 const lastYear=d=>d.years?d.years[d.years.length-1]:null;
@@ -623,7 +626,7 @@ const LAYER={
     const vmax=ly.vmax||d3.max(fl,r=>r[m])||1, f=fmtOf(ly.fmt||"musd"), c=ly.color||"c3";
     fl.forEach(r=>{ const a=ANCHOR.get(r[0]), b=ANCHOR.get(r[1]), gi=d3.geoInterpolate(a,b);
       const n=Math.max(8,Math.ceil(d3.geoDistance(a,b)*deg/3));
-      L.flows.push({path:d3.range(n+1).map(i=>gi(i/n)),width:0.8+(ly.maxW||9)*r[m]/vmax,color:c,to:b}); });
+      L.flows.push({path:d3.range(n+1).map(i=>gi(i/n)),width:0.8+(ly.maxW||9)*r[m]/vmax,color:c,to:b,a:r[0],b:r[1],v:r[m],fmt:f,title:ly.title||g.label}); });
     const title=ly.title||g.label;
     L.flowKeys.push({color:c,title,qty:m===3});
     const fv=m===3?FMT.musd:f;  // totals are always values; quantity layers still show them in USD
@@ -750,11 +753,135 @@ function renderChart(){
 function renderSwitch(){
   const sw=scene&&scene.switch, box=el.sw;
   if(!sw){ box.hidden=true; return; }
-  box.innerHTML=`<span class="sw-label">${esc(sw.label||"Show")}</span>`+sw.options.map((o,i)=>`<button class="bloc" data-i="${i}" aria-pressed="${String(i===switchIdx)}">${esc(o.label)}</button>`).join("");
+  box.innerHTML=`<span class="sw-label">${esc(sw.label||t("Show"))}</span>`+sw.options.map((o,i)=>`<button class="bloc" data-i="${i}" aria-pressed="${String(i===switchIdx)}">${esc(o.label)}</button>`).join("");
   [...box.querySelectorAll("button")].forEach(b=>b.onclick=()=>{ switchIdx=+b.dataset.i; cartoStart=performance.now()-900; renderSwitch();
     const op=switchOpt(); el.text.textContent=op.text||scene.text; L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderData(); render(); });
   box.hidden=false;
   const op=switchOpt(); if(op&&op.text) el.text.textContent=op.text;
+}
+
+// ---------- tools: save image, record video, share, embed ----------
+function composite(cv,g){ // raster + vector canvases plus a caption strip
+  draw(); const w=canvas.width,h=canvas.height; if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}
+  g.fillStyle=getComputedStyle(document.body).backgroundColor; g.fillRect(0,0,w,h);
+  g.drawImage(document.getElementById("raster"),0,0,w,h); g.drawImage(canvas,0,0,w,h);
+  const st=si>=0?STORIES[si]:null, title=st&&scene?st.title+" · "+scene.title:t("The world, your way");
+  const credit="Orbis · "+t("Data")+": "+sourceIds().map(id=>SOURCES[id].name).join(", ");
+  const fs=Math.round(15*DPR); g.font=`600 ${fs*1.25}px 'Source Serif 4', Georgia, serif`;
+  g.fillStyle="rgba(250,248,243,.92)"; g.fillRect(0,h-fs*4.2,w,fs*4.2);
+  g.fillStyle="#1D2A30"; g.fillText(title,fs,h-fs*2.4); g.font=`${fs*0.85}px 'Barlow Semi Condensed', sans-serif`; g.fillStyle="#4C5B61"; g.fillText(credit,fs,h-fs*0.9);
+}
+function download(blob,name){ const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000); }
+const fileBase=()=>"orbis-"+(si>=0?STORIES[si].id.replace(/[^a-z0-9-]/gi,"")+"-"+(ci+1):"map");
+function saveImage(){ const cv=document.createElement("canvas"), g=cv.getContext("2d"); composite(cv,g); cv.toBlob(b=>download(b,fileBase()+".png"),"image/png"); }
+let rec=null;
+function toggleRecord(btn){
+  if(rec){ rec.stop(); return; }
+  const cv=document.createElement("canvas"), g=cv.getContext("2d"); composite(cv,g);
+  const stream=cv.captureStream(30), mime=["video/webm;codecs=vp9","video/webm","video/mp4"].find(m=>window.MediaRecorder&&MediaRecorder.isTypeSupported(m));
+  if(!mime) return;
+  const chunks=[], r=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:6e6}); rec=r;
+  r.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+  r.onstop=()=>{ rec=null; btn.textContent=t("Record video"); btn.classList.remove("rec"); download(new Blob(chunks,{type:mime}),fileBase()+(mime.includes("mp4")?".mp4":".webm")); };
+  r.start(); btn.textContent=t("Stop recording"); btn.classList.add("rec");
+  const t0=performance.now(); let tl=scene&&scene.timeline;
+  if(tl){ tlIdx=0; setFrame(); if(!playing) el.play.click(); }
+  (function loop(){ if(!rec) return; composite(cv,g); const done=tl?(!playing&&performance.now()-t0>1500):performance.now()-t0>8000;
+    if(done||performance.now()-t0>60000) r.stop(); else requestAnimationFrame(loop); })();
+}
+function shareUrl(embed){ const u=new URL(location.href); u.searchParams.delete("embed"); if(embed) u.searchParams.set("embed","1"); if(LANG!=="en") u.searchParams.set("lang",LANG); return u.toString(); }
+function copy(text,btn){ (navigator.clipboard?navigator.clipboard.writeText(text):Promise.reject()).then(()=>{ const o=btn.textContent; btn.textContent=t("Copied"); setTimeout(()=>btn.textContent=o,1500); }).catch(()=>prompt("",text)); }
+function renderTools(){
+  const box=$("sTools"); if(!box) return;
+  box.innerHTML=`<button data-a="img">${t("Save image")}</button>`+(window.MediaRecorder?`<button data-a="rec">${t("Record video")}</button>`:"")+
+    `<button data-a="link">${t("Copy link")}</button><button data-a="embed">${t("Copy embed code")}</button>`;
+  box.querySelector('[data-a="img"]').onclick=saveImage;
+  const rb=box.querySelector('[data-a="rec"]'); if(rb) rb.onclick=()=>toggleRecord(rb);
+  box.querySelector('[data-a="link"]').onclick=e=>copy(shareUrl(false),e.target);
+  box.querySelector('[data-a="embed"]').onclick=e=>{ const st=si>=0?STORIES[si]:null;
+    copy(`<iframe src="${shareUrl(true)}" title="${esc(st?st.title:"Orbis")}" width="100%" height="620" style="border:0;border-radius:12px" loading="lazy" allow="fullscreen"></iframe>`,e.target); };
+}
+
+// ---------- screen-reader description of what the map shows ----------
+function describe(){
+  if(!L) return; const parts=[], top=(vals,f,n=3)=>Object.entries(vals||{}).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([k,v])=>nameOf(k)+" "+f(v)).join(", ");
+  const vw=(scene&&scene.view)||{mode:curKind(),center:V.center}, mode=vw.mode==="globe"?"Globe":"Flat map";
+  parts.push(mode+" centred near "+Math.round(vw.center[1])+"° latitude, "+Math.round(vw.center[0])+"° longitude.");
+  if(L.symbols.some(x=>x.label)) parts.push("Circles: "+L.symbols.filter(x=>x.label).slice(0,4).map(x=>x.label).join(", ")+".");
+  if(L.spikes.some(x=>x.label)) parts.push("Towers: "+L.spikes.filter(x=>x.label).slice(0,4).map(x=>x.label).join(", ")+".");
+  if(L.choro) parts.push("Countries coloured by "+L.choro.title+"; highest: "+top(L.cdata,L.choro.fmt)+".");
+  L.vals.forEach(v=>parts.push(v.title+"; largest: "+top(v.values,v.fmt)+"."));
+  if(L.flows.length){ const f=L.flows.slice().sort((a,b)=>b.v-a.v).slice(0,3); parts.push("Lines show "+f[0].title+": "+f.map(x=>nameOf(x.a)+" to "+nameOf(x.b)+" "+x.fmt(x.v)).join("; ")+"."); }
+  if(L.groups.length) L.groups.forEach(g=>parts.push(g.label+": "+g.ids.length+" countries highlighted."));
+  if(L.routes.length) parts.push(L.routes.length+" routes drawn"+(L.routes.some(r=>r.label)?": "+L.routes.filter(r=>r.label).slice(0,5).map(r=>r.label).join(", "):"")+".");
+  if(L.points.length) parts.push("Places marked: "+L.points.filter(p=>p.label).slice(0,8).map(p=>p.label).join(", ")+".");
+  if(L.rasters.length) parts.push("A colour grid shows "+L.rasters.map(r=>r.title).join(", ")+"; tap the map to read values.");
+  if(L.hist) parts.push("Borders as of "+L.hist.year+".");
+  const txt=parts.join(" "); $("srDesc").textContent=txt; canvas.setAttribute("aria-label",(scene&&scene.title?scene.title+". ":"")+txt);
+}
+
+// ---------- quiz ----------
+const quiz={mode:null,score:0,streak:0,q:null};
+async function openQuiz(){
+  si=-1; scene={layers:[],fills:{},political:true,view:{mode:"equal",center:[15,20],zoom:1}}; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
+  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true;
+  history.replaceState(null,"","#quiz"); el.kicker.textContent=t("Quiz");
+  const d=await loadJSON("data/energy/eia.json"); const i=d.years.indexOf(2024), pop=d.series.pop.values;
+  quiz.pop=Object.entries(pop).filter(([k,v])=>v[i]>2000&&byId.has(k)).map(([k,v])=>[k,v[i]*1000]);
+  nextQuestion();
+}
+function nextQuestion(){
+  const P=quiz.pop, pick=()=>P[Math.floor(Math.random()*P.length)];
+  quiz.mode=Math.random()<0.5?"more":"where";
+  if(quiz.mode==="more"){ let a=pick(), b=pick(); while(b[0]===a[0]||Math.max(a[1],b[1])/Math.min(a[1],b[1])<1.25) b=pick();
+    quiz.q={a,b}; scene.fills={[a[0]]:"c1",[b[0]]:"c2"}; scene.countryLabels=false;
+    el.title.textContent=t("Which has more people?"); el.text.textContent="";
+    const mid=d3.geoInterpolate(ANCHOR.get(a[0]),ANCHOR.get(b[0]))(0.5), dist=d3.geoDistance(ANCHOR.get(a[0]),ANCHOR.get(b[0]));
+    flyTo({mode:"globe",center:mid,zoom:clamp(1.6/Math.max(dist,0.5),1,4)});
+    quizUI([a,b].map(([k])=>`<button data-k="${k}">${esc(nameOf(k))}</button>`).join(""));
+    [...el.legend.querySelectorAll("button[data-k]")].forEach(btn=>btn.onclick=()=>quizAnswer(btn.dataset.k));
+  } else { const a=pick(); quiz.q={a}; scene.fills={}; scene.countryLabels=false;
+    el.title.textContent=t("Where is {x}?",{x:nameOf(a[0])}); el.text.textContent=t("Tap the country on the map.");
+    flyTo({mode:"equal",center:[15,20],zoom:1}); quizUI(""); }
+  markDirty(); render();
+}
+function quizUI(buttons,feedback=""){
+  el.legend.innerHTML=`<div class="qz-score">${t("Score")}: ${quiz.score} · ${t("{n} in a row",{n:quiz.streak})}</div><div class="qz">${buttons}</div>${feedback}`;
+}
+function quizResult(ok,extra){
+  if(ok){quiz.score++;quiz.streak++;} else quiz.streak=0;
+  el.text.textContent=(ok?t("Right!"):t("Not quite."))+" "+extra;
+  quizUI(`<button id="qzNext">${t("Next question")}</button>`); $("qzNext").onclick=nextQuestion;
+}
+function quizAnswer(k){ const {a,b}=quiz.q, win=a[1]>b[1]?a[0]:b[0], f=d3.format(",.0f");
+  quizResult(k===win, nameOf(a[0])+": "+f(a[1]/1e6)+" "+t(" m").trim()+", "+nameOf(b[0])+": "+f(b[1]/1e6)+" "+t(" m").trim()+"."); }
+function quizTap(id){ const a=quiz.q.a[0]; scene.fills={[a]:"c4"}; if(id!==a) scene.fills[id]="c2"; markDirty();
+  quizResult(id===a, id===a?"":t("That was {x}.",{x:nameOf(id)})); quiz.mode="done"; flyTo({mode:"globe",center:ANCHOR.get(a),zoom:2}); }
+
+// ---------- your city in the world ----------
+const HUBS=[["London",-0.13,51.51],["New York",-74.0,40.71],["Tokyo",139.69,35.69],["Beijing",116.4,39.9],["Delhi",77.21,28.61],["São Paulo",-46.63,-23.55],
+  ["Lagos",3.38,6.52],["Sydney",151.21,-33.87],["Moscow",37.62,55.76],["Cairo",31.24,30.04],["Mexico City",-99.13,19.43],["Johannesburg",28.05,-26.2]];
+async function openCity(){
+  si=-1; scene={layers:[],routes:[],points:[],countryLabels:true,political:true,view:{mode:"globe",center:[15,30],zoom:1}}; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
+  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true;
+  history.replaceState(null,"","#city"); el.kicker.textContent=t("Your city"); el.title.textContent=t("Find your city");
+  el.text.textContent=t("How far is everything from where you are? Pick a city, or use your location.");
+  const d=await loadJSON("data/geo/places.json"); const P=d.places;
+  el.legend.innerHTML=`<div class="city"><input id="cityIn" list="cityList" placeholder="${esc(t("Type a city"))}" autocomplete="off"><button id="cityGeo">${t("Use my location")}</button></div>
+    <datalist id="cityList">${P.map(p=>`<option value="${esc(p[0]+", "+nameOf(p[1]))}">`).join("")}</datalist><ul class="city-list" id="cityOut"></ul>`;
+  $("cityIn").onchange=()=>{ const v=$("cityIn").value, p=P.find(p=>p[0]+", "+nameOf(p[1])===v)||P.find(p=>p[0].toLowerCase()===v.toLowerCase()); if(p) showCity(p[0],[p[2],p[3]]); };
+  $("cityGeo").onclick=()=>navigator.geolocation?navigator.geolocation.getCurrentPosition(pos=>showCity(t("your location"),[pos.coords.longitude,pos.coords.latitude]),()=>{$("cityOut").textContent=t("Location not available");}):null;
+}
+function showCity(name,at){
+  const km=b=>Math.round(d3.geoDistance(at,b)*R_EARTH), hubs=HUBS.filter(h=>km([h[1],h[2]])>150).map(h=>({n:h[0],at:[h[1],h[2]],d:km([h[1],h[2]])}));
+  const anti=[at[0]>0?at[0]-180:at[0]+180,-at[1]], af=f0(anti);
+  scene.routes=hubs.map(h=>({path:[at,h.at],color:"c1",width:1.6,label:h.n,labelAt:1,dist:false}));
+  scene.points=[{at,label:name,color:"c2",r:6},{at:anti,label:"↧ "+(af?nameOf(af.id):t("the open ocean")),color:"muted",r:4}];
+  scene.circles=[]; markDirty(); flyTo({mode:"globe",center:at,zoom:1.05});
+  el.title.textContent=t("Distances from {x}",{x:name});
+  el.text.textContent=t("Directly through the Earth from {x} lies {y}.",{x:name,y:af?nameOf(af.id):t("the open ocean")});
+  $("cityOut").innerHTML=hubs.sort((a,b)=>a.d-b.d).map(h=>`<li><span>${esc(h.n)}</span><span>${d3.format(",")(Math.round(h.d/10)*10)} km</span></li>`).join("");
+  describe(); render();
 }
 
 // ---------- panel ----------
@@ -765,28 +892,28 @@ let si=-1, ci=0, tlIdx=0, playing=null;
 const explore={bloc:null};
 
 function legendHTML(){
-  const s=scene; if(!s){ if(explore.bloc) return chip("c2",BLOCS[explore.bloc].label); return ""; }
+  const s=scene; if(!s){ if(explore.bloc) return chip("c2",t(BLOCS[explore.bloc].label)); return ""; }
   let h="";
   if(s.legend) h+=s.legend.map(l=>chip(l.color,l.label)).join("");
   else if(L&&L.groups.length) h+=L.groups.map(g=>chip(g.color,g.label)).join("");
-  if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · line width = "+(k.qty?"tonnes":"value")));
-  if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?"Showing "+esc(nameOf(focus))+" only · tap it again for all":"Tap a country to see only its flows"}</span>`;
-  if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · tower height = amount");
-  if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · country size = amount");
-  if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · circle area = amount</span></span>`;
+  if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · "+t(k.qty?"line width = tonnes":"line width = value")));
+  if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?esc(t("Showing {x} only · tap it again for all",{x:nameOf(focus)})):esc(t("Tap a country to see only its flows"))}</span>`;
+  if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
+  if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · "+t("country size = amount"));
+  if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · ${t("circle area = amount")}</span></span>`;
   if(L) L.regions.forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(t=>C.seq(t)).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(rg.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(rg.fmt(rg.lo))}</span><span>${esc(rg.fmt(rg.hi))}</span></div></div>`; });
-  if(L&&L.pov) h+=`<span class="chip"><i style="background:none;border:1.5px dashed ${C.accent}"></i>Disputed areas, drawn as seen from ${esc(nameOf(L.pov.viewIso))}</span>`;
-  if(L) L.events.forEach(E=>h+=chip(E.color,E.title+" · "+d3.format(",")(E.count)+" shown"));
-  if(L&&L.hist) h+=`<span class="chip">Borders as of ${L.hist.year}</span>`;
-  if(L&&L.particles) h+=`<span class="chip">Each streak is a parcel of air; bright = faster than 35 m/s</span>`;
+  if(L&&L.pov) h+=`<span class="chip"><i style="background:none;border:1.5px dashed ${C.accent}"></i>${esc(t("Disputed areas, drawn as seen from {x}",{x:nameOf(L.pov.viewIso)}))}</span>`;
+  if(L) L.events.forEach(E=>h+=chip(E.color,E.title+" · "+t("{n} shown",{n:d3.format(",")(E.count)})));
+  if(L&&L.hist) h+=`<span class="chip">${esc(t("Borders as of {y}",{y:L.hist.year}))}</span>`;
+  if(L&&L.particles) h+=`<span class="chip">${esc(t("Each streak is a parcel of air; bright = faster than 35 m/s"))}</span>`;
   if(L) L.rasters.forEach(r=>{ const e=r.desc.encoding, lut=gridPalette(r.desc.palette);
     const stops=d3.range(1,256,25).map(i=>`rgb(${lut[i*4]},${lut[i*4+1]},${lut[i*4+2]})`).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(r.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(r.fmt(e.min))}</span><span>${esc(r.fmt(e.max))}</span></div></div>`; });
   const ch=L&&L.choro;
   if(ch){const stops=d3.range(0,1.01,0.1).map(t=>L.ramp?L.ramp(t):C.seq(ch.reverse?1-t:t)).join(",");
     const f=ch.fmt||(x=>x);
-    h+=`<div class="ramp"><div class="ramp-title">${esc(ch.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(String(f(L.lo)))}</span><span>${esc(String(f(L.hi)))}</span></div><div class="ramp-na"><i style="background:${C.nodata}"></i>${esc(ch.nodata||(ch.data==="POWER"?"Near-universal access":"No data"))}</div></div>`;}
+    h+=`<div class="ramp"><div class="ramp-title">${esc(ch.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(String(f(L.lo)))}</span><span>${esc(String(f(L.hi)))}</span></div><div class="ramp-na"><i style="background:${C.nodata}"></i>${esc(ch.nodata||(ch.data==="POWER"?"Near-universal access":t("No data")))}</div></div>`;}
   return h;
 }
 // ---------- data and licences ----------
@@ -802,19 +929,19 @@ function sourceIds(){
   return [...new Set(ids)].filter(id=>SOURCES[id]);
 }
 function renderData(){
-  el.data.innerHTML='<span class="dl">Data</span>'+sourceIds().map(id=>{const s=SOURCES[id];
-    return `<button class="src ${useCls(s.use)}" data-src="${id}" title="${esc(USE_LABEL[s.use])}"><b>${esc(s.name)}</b>${esc(s.licence)}</button>`;}).join("")+
-    '<button id="licAll">All licences</button>';
+  el.data.innerHTML='<span class="dl">'+t("Data")+'</span>'+sourceIds().map(id=>{const s=SOURCES[id];
+    return `<button class="src ${useCls(s.use)}" data-src="${id}" title="${esc(t(USE_LABEL[s.use]))}"><b>${esc(s.name)}</b>${esc(s.licence)}</button>`;}).join("")+
+    '<button id="licAll">'+t("All licences")+'</button>';
   [...el.data.querySelectorAll("[data-src]")].forEach(b=>b.onclick=()=>openLic(b.dataset.src));
   $("licAll").onclick=()=>openLic();
 }
 const lic=$("lic");
 function openLic(focusId){
-  const tiers=[["base","Base map and engine (commercial use required)"],["layer","Story layers"]];
+  const tiers=[["base",t("Base map and engine (commercial use required)")],["layer",t("Story layers")]];
   $("licList").innerHTML=tiers.map(([t,h])=>`<section class="lic-tier"><h2>${h}</h2>`+
     Object.entries(SOURCES).filter(([,s])=>s.tier===t).map(([id,s])=>`<div class="lic-item" id="lic-${id}"><span class="n">${esc(s.name)}</span><span class="w">${esc(s.what)}</span>
       <span class="l"><span>${s.licenceUrl?`<a href="${esc(s.licenceUrl)}" target="_blank" rel="noopener">${esc(s.licence)}</a>`:esc(s.licence)}</span>
-      <span class="lic-use ${useCls(s.use)}">${esc(USE_LABEL[s.use])}</span>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">Source</a>`:""}</span>
+      <span class="lic-use ${useCls(s.use)}">${esc(t(USE_LABEL[s.use]))}</span>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${t("Source")}</a>`:""}</span>
       <span class="w">${esc(s.credit)}</span></div>`).join("")+`</section>`).join("");
   lic.hidden=false; $("licClose").focus({preventScroll:true});
   if(focusId){const n=$("lic-"+focusId); if(n) n.scrollIntoView({block:"center"});}
@@ -831,9 +958,9 @@ function setFrame(){
   el.cap.textContent=frame.caption||""; el.cap.hidden=!frame.caption;
   L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); render();
 }
-function stopPlay(){ if(playing){clearInterval(playing);playing=null;} el.play.textContent="Play"; el.play.setAttribute("aria-label","Play timeline"); }
+function stopPlay(){ if(playing){clearInterval(playing);playing=null;} el.play.textContent=t("Play"); el.play.setAttribute("aria-label",t("Play timeline")); }
 el.play.onclick=()=>{ if(playing){stopPlay();return;} const t=scene.timeline; if(tlIdx>=t.years.length-1) tlIdx=0;
-  el.play.textContent="Pause"; el.play.setAttribute("aria-label","Pause timeline");
+  el.play.textContent=t("Pause"); el.play.setAttribute("aria-label",t("Pause timeline"));
   playing=setInterval(()=>{ if(tlIdx>=t.years.length-1){stopPlay();return;} tlIdx++; setFrame(); }, t.years.length>30?(reduce?400:160):(reduce?1600:1100)); };
 el.slider.oninput=()=>{stopPlay();tlIdx=+el.slider.value;setFrame();};
 
@@ -844,13 +971,13 @@ function showScene(i, fly=true){
   if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.years.length-1;}
   else el.tl.hidden=true;
   markDirty(); focus=null; switchIdx=(scene.switch&&scene.switch.start)||0; cartoStart=performance.now(); renderSwitch();
-  frame=null; setFrame(); L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderMedia();
-  el.dots.innerHTML=st.scenes.map((s,j)=>`<button class="dot" aria-label="Scene ${j+1}: ${esc(s.title)}" ${j===ci?'aria-current="step"':""}></button>`).join("");
+  frame=null; setFrame(); L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderMedia(); renderTools(); describe();
+  el.dots.innerHTML=st.scenes.map((s,j)=>`<button class="dot" aria-label="${t("Scene")} ${j+1}: ${esc(s.title)}" ${j===ci?'aria-current="step"':""}></button>`).join("");
   [...el.dots.children].forEach((b,j)=>b.onclick=()=>showScene(j));
   el.prev.disabled=ci===0 && si===0;
-  el.prev.textContent=ci===0?"Previous story":"Back";
-  const lastS=ci===st.scenes.length-1; el.next.textContent=lastS?(si<STORIES.length-1?"Next story":"All stories"):"Next";
-  el.notesBody.textContent=st.notes; el.notes.open=false; renderData();
+  el.prev.textContent=ci===0?t("Previous story"):t("Back");
+  const lastS=ci===st.scenes.length-1; el.next.textContent=lastS?(si<STORIES.length-1?t("Next story"):t("All stories")):t("Next");
+  el.notesBody.textContent=(st._translated&&!st.reviewed?t("Machine translation, not yet reviewed.")+" ":"")+st.notes; el.notes.open=false; renderData();
   history.replaceState(null,"","#"+st.id+"/"+(ci+1));
   setBasemap(scene.basemap||BM.user||"political",false);
   syncMode(scene.view.mode); spin=false;
@@ -862,25 +989,25 @@ el.prev.onclick=()=>{ if(ci>0) showScene(ci-1); else if(si>0) openStory(si-1,"la
 
 let opening=0;
 async function openStory(i, scn=0){
-  const tok=++opening; si=i; closeToc(); sheet.classList.remove("collapsed"); BM.user=null;
+  quiz.mode=null; const tok=++opening; si=i; closeToc(); sheet.classList.remove("collapsed"); BM.user=null;
   if(!STORIES[i].scenes){
-    el.kicker.textContent=STORIES[i].title; el.title.textContent="Loading…"; el.text.textContent=""; el.chart.hidden=true; sheet.classList.add("loading");
+    el.kicker.textContent=STORIES[i].title; el.title.textContent=t("Loading…"); el.text.textContent=""; el.chart.hidden=true; sheet.classList.add("loading");
     try{ await ensureStory(i); }
-    catch(e){ sheet.classList.remove("loading"); if(tok===opening){ el.title.textContent="This story could not load"; el.text.textContent=String(e.message||e); } return; }
+    catch(e){ sheet.classList.remove("loading"); if(tok===opening){ el.title.textContent=t("This story could not load"); el.text.textContent=String(e.message||e); } return; }
     sheet.classList.remove("loading"); if(tok!==opening) return;
   }
   showScene(scn==="last"?STORIES[i].scenes.length-1:scn);
 }
 function openExplore(){
-  si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true;
-  el.kicker.textContent="Explore"; el.title.textContent="The world, your way";
-  el.text.textContent="Drag to turn the world, pinch or scroll to zoom, tap a country to see its name. Switch between political, satellite and night views with the map button. Show a group of countries:";
+  quiz.mode=null; si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true;
+  el.kicker.textContent=t("Explore"); el.title.textContent=t("The world, your way");
+  el.text.textContent=t("Drag to turn the world, pinch or scroll to zoom, tap a country to see its name. Switch between political, satellite and night views with the map button. Show a group of countries:");
   el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=false;
   renderBlocs(); renderData(); el.legend.innerHTML=legendHTML(); history.replaceState(null,"","#explore");
   syncMode(curKind()); render();
 }
 function renderBlocs(){
-  el.blocs.innerHTML=[["",{label:"None"}],...Object.entries(BLOCS)].map(([k,b])=>`<button class="bloc" data-k="${k}" aria-pressed="${String((explore.bloc||"")===k)}">${esc(b.label)}</button>`).join("");
+  el.blocs.innerHTML=[["",{label:t("None")}],...Object.entries(BLOCS).map(([k,b])=>[k,{label:t(b.label)}])].map(([k,b])=>`<button class="bloc" data-k="${k}" aria-pressed="${String((explore.bloc||"")===k)}">${esc(b.label)}</button>`).join("");
   [...el.blocs.children].forEach(b=>b.onclick=()=>{explore.bloc=b.dataset.k||null;renderBlocs();L=layers();el.legend.innerHTML=legendHTML();render();});
 }
 
@@ -889,11 +1016,14 @@ const tocList=$("tocList");
 const CATS=["Energy","Geopolitics","Economics","Planet","Statistics","Rights","People"];
 function buildToc(){
   tocList.innerHTML=CATS.map(cat=>{const items=STORIES.map((s,i)=>[s,i]).filter(([s])=>s.cat===cat); if(!items.length) return "";
-    return `<section class="toc-cat"><h2>${cat}</h2><ul>`+items.map(([s,i])=>`<li><button class="toc-story" data-i="${i}"><span class="toc-title">${esc(s.title)}</span><span class="toc-hook">${esc(s.hook)}</span></button></li>`).join("")+`</ul></section>`;}).join("");
+    return `<section class="toc-cat"><h2>${esc(t(cat))}</h2><ul>`+items.map(([s,i])=>`<li><button class="toc-story" data-i="${i}"><span class="toc-title">${esc(s.title)}</span><span class="toc-hook">${esc(s.hook)}</span></button></li>`).join("")+`</ul></section>`;}).join("");
   [...tocList.querySelectorAll(".toc-story")].forEach(b=>b.onclick=()=>openStory(+b.dataset.i));
-  $("tocCount").textContent=STORIES.length+" short";
+  $("tocCount").textContent=STORIES.length;
 }
 $("exploreBtn").onclick=openExplore;
+$("tocTools").innerHTML=`<button id="quizBtn">${t("Quiz")}</button><button id="cityBtn">${t("Your city")}</button><a href="editor.html">${t("Write a story")}</a>`+
+  Object.entries(LANGS).map(([k,n])=>{ const u=new URL(location.href); u.searchParams.set("lang",k); return `<a href="${esc(u.toString())}" aria-current="${k===LANG}" lang="${k}">${n}</a>`; }).join("");
+$("quizBtn").onclick=openQuiz; $("cityBtn").onclick=openCity;
 $("tocBtn").onclick=()=>toc.hidden?openToc():closeToc();
 $("tocClose").onclick=closeToc;
 function openToc(focus=true){ toc.hidden=false; layout(); $("tocBtn").setAttribute("aria-expanded","true"); stopPlay();
@@ -913,6 +1043,9 @@ document.addEventListener("keydown",e=>{
 });
 
 // ---------- boot ----------
+applyStaticStrings();
+if(new URLSearchParams(location.search).get("embed")){ document.body.classList.add("embed"); const of=$("openFull"); of.hidden=false;
+  const u=new URL(location.href); u.searchParams.delete("embed"); of.href=u.toString(); }
 readColors();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{readColors();if(scene||si<0)el.legend.innerHTML=legendHTML();render();});
 new ResizeObserver(()=>layout()).observe(sheet);
@@ -920,15 +1053,18 @@ addEventListener("resize",layout);
 document.fonts && document.fonts.ready.then(render);
 layout();
 setTimeout(loadDetail,300);
-loadJSON("stories/index.json").then(list=>{ STORIES.unshift(...list.map(x=>Object.assign({},x))); }).catch(e=>console.warn("Story index not loaded:",e))
+(LANG==="en"?loadJSON("stories/index.json"):loadJSON("stories/"+LANG+"/index.json").catch(()=>loadJSON("stories/index.json"))).then(list=>{ STORIES.unshift(...list.map(x=>Object.assign({},x))); }).catch(e=>console.warn("Story index not loaded:",e))
 .then(()=>{
   buildToc();
   let h=location.hash.slice(1).split("/");
-  if(h[0].startsWith("@")){ const m=location.hash.slice(2).match(/^(.+\.json)(?:\/(\d+))?$/);
+  if(h[0]==="@draft"){ STORIES.push({id:"@draft",cat:"Draft",title:"Draft",hook:"",file:"draft"}); }
+  else if(h[0].startsWith("@")){ const m=location.hash.slice(2).match(/^(.+\.json)(?:\/(\d+))?$/);
     if(m){ STORIES.push({id:"@"+m[1],cat:"Draft",title:"Draft",hook:"",file:m[1]}); h=["@"+m[1],m[2]||"1"]; } }
   const idx=STORIES.findIndex(s=>s.id===h[0]);
   if(idx>=0) openStory(idx, Math.max(0,(+h[1]||1)-1));
   else if(h[0]==="explore") openExplore();
+  else if(h[0]==="quiz") openQuiz();
+  else if(h[0]==="city") openCity();
   else { openExplore(); openToc(false); }
 });
 })();

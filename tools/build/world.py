@@ -2,7 +2,7 @@
 Run: python3 tools/build/world.py   (needs: cd tools && npm install; raw file in .cache/ne/)
 Download: https://naciscdn.org/naturalearth/50m/cultural/ne_50m_admin_0_countries.zip (or the GeoJSON from the
 natural-earth-vector repository) into .cache/ne/ne_50m_admin_0_countries.geojson
-Output: data/world50.json  objects.countries, each with id (ISO3-style) and properties {name, lx, ly} (label point)."""
+Output: data/world50.json  objects.countries, each with id (ISO3-style) and properties {name, de (German name), lx, ly} (label point)."""
 import json, os, subprocess, tempfile
 root = os.path.join(os.path.dirname(__file__), "..", "..")
 src = json.load(open(os.path.join(root, ".cache/ne/ne_50m_admin_0_countries.geojson")))
@@ -15,7 +15,7 @@ for f in src["features"]:
     a3 = p["ADM0_A3"]
     fid = FIX.get(a3) or (iso if iso and iso != "-99" else a3)
     feats.append({"type": "Feature", "id": fid, "geometry": f["geometry"],
-                  "properties": {"id": fid, "name": p["NAME"], "lx": round(p["LABEL_X"], 2), "ly": round(p["LABEL_Y"], 2)}})
+                  "properties": {"id": fid, "name": p["NAME"], "de": p.get("NAME_DE") or p["NAME"], "lx": round(p["LABEL_X"], 2), "ly": round(p["LABEL_Y"], 2)}})
 ids = [f["id"] for f in feats]
 dups = {i for i in ids if ids.count(i) > 1}
 assert not dups, dups

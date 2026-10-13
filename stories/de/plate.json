@@ -1,0 +1,194 @@
+{
+  "id": "plate",
+  "cat": "People",
+  "title": "Was auf dem Teller liegt",
+  "hook": "Ein Wiener Frühstück, zurückverfolgt bis auf die Felder.",
+  "notes": "Anteile gerundet und ungefähr: Côte d'Ivoire ≈ 40 % des weltweiten Kakaos; Brasilien größter Kaffeeproduzent und ≈ 3/4 der Orangensaftexporte; Ecuador größter Bananenexporteur (FAO, ICCO, USDA).",
+  "data": {
+    "routes": "data/legacy/routes.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Kaffee",
+      "text": "Die Melange beginnt in Brasilien, dem größten Kaffeeproduzenten der Welt, oder in Vietnam, dem zweitgrößten. Ursprünglich wuchs Kaffee wild in Äthiopien.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -10,
+          15
+        ],
+        "zoom": 0.95
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "routes",
+          "set": "plate_coffee",
+          "color": "c3",
+          "width": 2,
+          "labels": true,
+          "flow": true
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            16.37,
+            48.21
+          ],
+          "label": "Wien",
+          "r": 6,
+          "color": "c2"
+        }
+      ]
+    },
+    {
+      "title": "Schokolade und Orangensaft",
+      "text": "Der Kakao für den Aufstrich kommt vor allem aus Côte d'Ivoire und Ghana. Der Orangensaft stammt fast sicher aus dem Bundesstaat São Paulo in Brasilien.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -15,
+          10
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "routes",
+          "set": "plate_cj",
+          "color": "c3",
+          "width": 2,
+          "labels": true,
+          "flow": true
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            16.37,
+            48.21
+          ],
+          "label": "Wien",
+          "r": 6,
+          "color": "c2"
+        }
+      ]
+    },
+    {
+      "title": "Die Banane",
+      "text": "Ecuador exportiert mehr Bananen als jedes andere Land, etwa ein Viertel der weltweiten Ausfuhren.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -40,
+          25
+        ],
+        "zoom": 1
+      },
+      "routes": [
+        {
+          "path": [
+            [
+              -79.96,
+              -3.26
+            ],
+            [
+              16.37,
+              48.21
+            ]
+          ],
+          "color": "c3",
+          "width": 2.5,
+          "flow": true,
+          "label": "Ecuador",
+          "dist": true
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            16.37,
+            48.21
+          ],
+          "label": "Wien",
+          "r": 6,
+          "color": "c2"
+        }
+      ]
+    },
+    {
+      "title": "Und aus der Nachbarschaft",
+      "text": "Die Semmel, die Butter, der Zucker aus niederösterreichischen Rüben und die Marillenmarmelade aus der Wachau hatten weniger als 100 km Weg.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          48.3
+        ],
+        "zoom": 9
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "routes",
+          "set": "plate_local",
+          "color": "c4",
+          "width": 2,
+          "flow": true
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            16.05,
+            48.33
+          ],
+          "label": "Zuckerrüben, Tulln",
+          "r": 5,
+          "color": "c4"
+        },
+        {
+          "at": [
+            15.42,
+            48.38
+          ],
+          "label": "Marillen, Wachau",
+          "r": 5,
+          "color": "c4"
+        },
+        {
+          "at": [
+            16.65,
+            48.25
+          ],
+          "label": "Weizen, Marchfeld",
+          "r": 5,
+          "color": "c4"
+        },
+        {
+          "at": [
+            15.7,
+            48.6
+          ],
+          "label": "Milch, Waldviertel",
+          "r": 5,
+          "color": "c4"
+        },
+        {
+          "at": [
+            16.37,
+            48.21
+          ],
+          "label": "Wien",
+          "r": 6,
+          "color": "c2"
+        }
+      ]
+    }
+  ]
+}

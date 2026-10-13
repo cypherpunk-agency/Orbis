@@ -1,0 +1,292 @@
+{
+  "id": "water-wars",
+  "cat": "Geopolitics",
+  "title": "Flüsse über Grenzen",
+  "hook": "Wenn ein Fluss eine Grenze überquert, hat der Oberlieger den Hahn in der Hand. Drei Flüsse zeigen, was dann geschieht.",
+  "notes": "Flüsse: Natural Earth 1:10m Flüsse und Seemittellinien (gemeinfrei), vereinfacht; gezeigt werden nur die Flusssysteme von Nil, Indus und Mekong. Lage der Staudämme von Orbis eingegeben. Nil: Grand-Ethiopian-Renaissance-Staudamm am 9. September 2025 eingeweiht; 5.150 MW und ein Stausee von etwa 74 Milliarden m³ (äthiopische Regierung, nach Berichten von ENR und Water Power Magazine, September 2025). Der Anteil des Nilwassers aus dem äthiopischen Hochland (etwa 85 % bei Assuan) ist eine weithin zitierte Schätzung. Nilwasserabkommen von 1959 zwischen Ägypten und Sudan: 55,5 und 18,5 Milliarden m³ pro Jahr. Indus: Indus-Wasservertrag vom 19. September 1960, vermittelt von der Weltbank. Indien erklärte den Vertrag am 23. April 2025, einen Tag nach dem Anschlag von Pahalgam, für „ausgesetzt“; ein Schiedsgericht nach dem Vertrag entschied am 31. August 2026, dass der Vertrag in Kraft bleibt, was Indien zurückweist (nach Berichten von The Week und Dawn, September 2026). Mekong: Zahl der chinesischen Staudämme am Hauptstrom laut Mekong Dam Monitor des Stimson Center (11 bis 2020; ein 12., Tuoba, wird seit 2024 aufgestaut); Speichervolumen von Xiaowan (etwa 15 Milliarden m³) und Nuozhadu (etwa 22 Milliarden m³) nach Angaben der Mekong River Commission. Der Befund zur Dürre 2019 stammt von Eyes on Earth (April 2020), beauftragt von der US-finanzierten Lower Mekong Initiative, und wird von China bestritten.",
+  "data": {
+    "rv": "data/geopolitics/rivers.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Der Oberlieger hat den Hahn in der Hand",
+      "text": "Die meisten großen Flüsse der Welt überqueren mindestens eine Grenze. Ein Staudamm flussaufwärts kann Wasser speichern, es zur Stromerzeugung ablassen oder in einer Dürre zurückhalten, und die Länder flussabwärts haben wenig mitzureden. Drei Flüsse zeigen das Muster: Nil, Indus und Mekong.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          68,
+          20
+        ],
+        "zoom": 2.1
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "nile",
+          "color": "c1",
+          "width": 2,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusWest",
+          "color": "c1",
+          "width": 2
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusEast",
+          "color": "c1",
+          "width": 2
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "mekong",
+          "color": "c1",
+          "width": 2,
+          "labels": true
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            70.5,
+            28.5
+          ],
+          "label": "Indus",
+          "color": "c1",
+          "r": 0
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Ägyptens Lebensader",
+      "text": "Ägypten bezieht fast sein gesamtes Süßwasser aus dem Nil, und fast alle Ägypter leben an seinen Ufern. Doch der Fluss entspringt weit flussaufwärts: Nach einer gängigen Schätzung fallen etwa 85 % des Wassers, das Assuan erreicht, als Regen im äthiopischen Hochland und fließen über den Blauen Nil und seine Nachbarflüsse ab. Ein Vertrag von 1959 teilte den Fluss allein zwischen Ägypten und Sudan auf. Äthiopien wurde nicht gefragt.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          17
+        ],
+        "zoom": 2.6
+      },
+      "basemap": "satellite",
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "nile",
+          "color": "c1",
+          "width": 2.2,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "nileDams",
+          "color": "c3",
+          "r": 5
+        }
+      ]
+    },
+    {
+      "title": "Afrikas größter Staudamm",
+      "text": "Äthiopien begann 2011 mit dem Bau des Grand-Ethiopian-Renaissance-Staudamms am Blauen Nil, etwa 15 km von Sudan entfernt, und eröffnete ihn im September 2025. Mit 5.150 Megawatt ist er Afrikas größtes Wasserkraftwerk, und sein Stausee fasst etwa 74 Milliarden m³, mehr als Ägyptens gesamter jährlicher Anteil am Fluss. Ägypten sieht darin eine Bedrohung seines Überlebens; Verhandlungen darüber, wie schnell er in Dürren gefüllt werden darf, sind gescheitert.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          35,
+          13
+        ],
+        "zoom": 4.5
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "nile",
+          "color": "c1",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "nileDams",
+          "color": "c3",
+          "r": 6
+        }
+      ],
+      "highlight": [
+        "ETH",
+        "SDN",
+        "EGY"
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Der Indus, zweigeteilt",
+      "text": "Der Indus-Wasservertrag von 1960, vermittelt von der Weltbank, teilte das Flusssystem zwischen Indien und Pakistan auf. Indien erhielt die drei östlichen Flüsse (Ravi, Beas, Sutlej). Pakistan erhielt die drei westlichen (Indus, Jhelum, Chenab), etwa vier Fünftel des Wassers. Indien darf an den westlichen Flüssen Laufwasserkraftwerke bauen, aber nicht viel Wasser hinter ihnen speichern.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          73,
+          30
+        ],
+        "zoom": 4
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusWest",
+          "color": "c4",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusEast",
+          "color": "c2",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "indusDams",
+          "color": "c3",
+          "r": 5,
+          "labels": false
+        }
+      ],
+      "legend": [
+        {
+          "color": "c4",
+          "label": "Westliche Flüsse: Pakistan"
+        },
+        {
+          "color": "c2",
+          "label": "Östliche Flüsse: Indien"
+        },
+        {
+          "color": "c3",
+          "label": "Staudämme"
+        }
+      ],
+      "highlight": [
+        "IND",
+        "PAK"
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Ein ausgesetzter Vertrag",
+      "text": "Der Vertrag überstand drei Kriege. Doch am 23. April 2025, einen Tag nachdem Militante in Pahalgam in Kaschmir 26 Menschen getötet hatten, erklärte Indien ihn für „ausgesetzt“. Pakistan erklärte, ein Stopp seines Wassers wäre „ein kriegerischer Akt“. Im August 2026 entschied ein Schiedsgericht nach dem Vertrag, dass er in Kraft bleibt; Indien erkennt das Gericht nicht an. Indiens Staudämme an Chenab und Jhelum sind die Brennpunkte.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          74.5,
+          33.2
+        ],
+        "zoom": 9
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusWest",
+          "color": "c4",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "indusEast",
+          "color": "c2",
+          "width": 2.4
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "indusDams",
+          "color": "c3",
+          "r": 5
+        }
+      ],
+      "highlight": [
+        "IND",
+        "PAK"
+      ]
+    },
+    {
+      "title": "Die Staudammkaskade am oberen Mekong",
+      "text": "Der Mekong entspringt auf dem tibetischen Hochplateau, wo China ihn Lancang nennt, und fließt durch Myanmar, Laos, Thailand, Kambodscha und Vietnam. Er speist die größte Binnenfischerei der Welt. China hat an seinem Abschnitt etwa ein Dutzend Staudämme gebaut; die beiden größten Stauseen, Xiaowan und Nuozhadu, fassen zusammen etwa 37 Milliarden m³. Während der Dürre 2019 argumentierte eine US-finanzierte Studie, sie hätten Wasser zurückgehalten; China bestreitet das.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          102,
+          20
+        ],
+        "zoom": 3.2
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "rv",
+          "set": "mekong",
+          "color": "c1",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "chinaDams",
+          "color": "c2",
+          "r": 5
+        },
+        {
+          "type": "points",
+          "data": "rv",
+          "set": "mekongDams",
+          "color": "c3",
+          "r": 5
+        }
+      ],
+      "legend": [
+        {
+          "color": "c1",
+          "label": "Mekong"
+        },
+        {
+          "color": "c2",
+          "label": "Chinesische Staudämme (die größten von etwa einem Dutzend)"
+        },
+        {
+          "color": "c3",
+          "label": "Staudämme am Hauptstrom in Laos"
+        }
+      ],
+      "highlight": [
+        "CHN",
+        "MMR",
+        "LAO",
+        "THA",
+        "KHM",
+        "VNM"
+      ],
+      "countryLabels": true
+    }
+  ]
+}

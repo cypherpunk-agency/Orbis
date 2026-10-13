@@ -1,0 +1,296 @@
+{
+  "id": "south-china-sea",
+  "cat": "Geopolitics",
+  "title": "Ein Meer, sechs Anspruchsteller",
+  "hook": "China beansprucht den Großteil des Südchinesischen Meeres. Seine Nachbarn und ein internationales Schiedsgericht sehen das anders.",
+  "notes": "Alle Linien sind schematisch und von Orbis gezeichnet. Chinas Neun-Striche-Linie: näherungsweise, von Hand nachgezeichnet nach der Karte, die China seinen Verbalnoten an die UN vom 7. Mai 2009 beigefügt hat (CML/17/2009, CML/18/2009); China hat nie Koordinaten dafür veröffentlicht, und seine Karten zeigen seit 2013 einen zehnten Strich östlich von Taiwan. 200-Seemeilen-Linien: die Reichweite der Festlands- und Hauptinselküste jedes Staates (Natural Earth 1:50m), um 370 km gepuffert; echte ausschließliche Wirtschaftszonen enden an Mittellinien oder vereinbarten Grenzen und werden von rechtlichen Basislinien aus gemessen, daher zeigen diese Linien nur, wo sich Ansprüche überschneiden. Schiedsspruch: Ständiger Schiedshof, Fall 2013-19, The South China Sea Arbitration (Philippines v. China), Entscheidung vom 12. Juli 2016. Künstliche Inseln: US-Verteidigungsministerium, Annual Report to Congress on Military and Security Developments Involving the PRC, 2016 („more than 3,200 acres“). Handel: CSIS ChinaPower, „How much trade transits the South China Sea?“ (Schätzung für 2016, 3,4 Billionen Dollar, etwa 21 % des Welthandels). Öl durch die Straße von Malakka: US EIA, World Oil Transit Chokepoints (März 2026). Ereignisse: Paracel-Inseln im Januar 1974 von China Südvietnam abgenommen; Scarborough-Riff seit einer Konfrontation 2012 unter Kontrolle der chinesischen Küstenwache; philippinische Marineinfanteristen seit 1999 auf der auf Grund gesetzten BRP Sierra Madre am Second-Thomas-Riff.",
+  "data": {
+    "scs": "data/geopolitics/south-china-sea.json",
+    "choke": "data/energy/chokepoints.json",
+    "infra": "data/energy/infrastructure.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "Ein Meer voller Schiffe",
+      "text": "Das Südchinesische Meer verbindet den Indischen Ozean mit den Häfen Chinas, Koreas und Japans. Einer Schätzung zufolge (CSIS ChinaPower) passierten es 2016 Waren im Wert von etwa 3,4 Billionen Dollar, ein Fünftel des Welthandels. Die meisten Tanker mit Ziel Ostasien fahren durch die Straße von Malakka ein. Durch sie flossen 2024 etwa 22,5 Millionen Barrel Öl pro Tag.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          110,
+          12
+        ],
+        "zoom": 2.2
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "infra",
+          "set": "tankerRoutes",
+          "color": "c1",
+          "width": 1.8,
+          "flow": true
+        },
+        {
+          "type": "symbols",
+          "data": "choke",
+          "field": "oil",
+          "period": "2024",
+          "color": "c2",
+          "title": "Öl durch Meerengen, 2024",
+          "fmt": "mbd",
+          "maxR": 30,
+          "vmax": 24,
+          "labels": 1
+        },
+        {
+          "type": "points",
+          "data": "scs",
+          "set": "groups",
+          "color": "c3",
+          "r": 5
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Chinas neun Striche",
+      "text": "China beansprucht „historische Rechte“ innerhalb einer U-förmigen Linie aus neun Strichen, die mehr als 1.500 km südlich von Hainan reicht, fast bis Borneo. Sie erschien erstmals auf einer Karte von 1947 und wurde 2009 an die UN übermittelt. China hat nie ihre Koordinaten veröffentlicht oder genau gesagt, was es innerhalb der Linie beansprucht; diese Nachzeichnung ist näherungsweise. Taiwan beansprucht eine ähnliche Linie.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          114,
+          12
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "nineDash",
+          "color": "c2",
+          "width": 3.2,
+          "labels": true
+        },
+        {
+          "type": "points",
+          "data": "scs",
+          "set": "groups",
+          "color": "c3",
+          "r": 5
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Jedem seine 200 Meilen",
+      "text": "Nach dem Seerechtsübereinkommen der Vereinten Nationen steht jeder Küste eine ausschließliche Wirtschaftszone von bis zu 200 Seemeilen (370 km) zu. Von ihren Küsten aus gezogen, überschneiden sich die Zonen Vietnams, der Philippinen, Malaysias und Bruneis und reichen tief in Chinas Linie hinein. Selbst Indonesiens Gewässer vor den Natuna-Inseln reichen über sie hinaus.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          113,
+          11
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "limits200",
+          "color": "c1",
+          "width": 2,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "nineDash",
+          "color": "c2",
+          "width": 3.2,
+          "labels": true
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Chinas Neun-Striche-Linie (näherungsweise)"
+        },
+        {
+          "color": "c4",
+          "label": "Vietnam, 200 sm von der Küste"
+        },
+        {
+          "color": "c1",
+          "label": "Philippinen, 200 sm"
+        },
+        {
+          "color": "c5",
+          "label": "Malaysia, 200 sm"
+        },
+        {
+          "color": "c3",
+          "label": "Brunei, 200 sm"
+        },
+        {
+          "color": "muted",
+          "label": "Indonesien, 200 sm"
+        }
+      ],
+      "highlight": [
+        "VNM",
+        "PHL",
+        "MYS",
+        "BRN",
+        "IDN",
+        "CHN",
+        "TWN"
+      ]
+    },
+    {
+      "title": "Der Schiedsspruch von 2016",
+      "text": "2013 riefen die Philippinen gegen China ein Schiedsgericht nach dem Seerechtsübereinkommen an. Am 12. Juli 2016 entschied es, dass China keine Rechtsgrundlage für historische Rechte innerhalb der Neun-Striche-Linie hat und dass keine der Spratly-Inseln eine eigene 200-Meilen-Zone begründet. Mischief-Riff und Second-Thomas-Riff liegen in der Zone der Philippinen. China nannte den Spruch „null und nichtig“ und ignoriert ihn.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          116.5,
+          12.5
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "limitsPHL",
+          "color": "c1",
+          "width": 2.4,
+          "labels": true
+        },
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "nineDash",
+          "color": "c2",
+          "width": 3.2
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            117.76,
+            15.15
+          ],
+          "label": "Scarborough-Riff",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            113.2,
+            9.0
+          ],
+          "label": "Spratly-Inseln",
+          "color": "c3",
+          "r": 5
+        },
+        {
+          "at": [
+            115.87,
+            9.73
+          ],
+          "label": "",
+          "color": "c2",
+          "r": 4
+        },
+        {
+          "at": [
+            115.53,
+            9.9
+          ],
+          "label": "Mischief-Riff, Second-Thomas-Riff",
+          "color": "c2",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Chinas Neun-Striche-Linie (näherungsweise)"
+        },
+        {
+          "color": "c1",
+          "label": "Philippinen, 200 sm (schematisch)"
+        },
+        {
+          "color": "c3",
+          "label": "Inselgruppen und Riffe"
+        }
+      ],
+      "highlight": [
+        "PHL",
+        "CHN"
+      ]
+    },
+    {
+      "title": "Inseln aus Sand",
+      "text": "Zwischen 2013 und 2016 schüttete China Sand auf sieben Spratly-Riffe und schuf so nach Angaben des US-Verteidigungsministeriums mehr als 3.200 Acres (13 km²) neues Land. Drei davon, Fiery Cross, Subi und Mischief, haben heute Start- und Landebahnen von etwa 3 km Länge, Hangars und Radaranlagen. Auch Vietnam, die Philippinen und Malaysia halten Inseln und Riffe in den Spratlys, in kleinerem Maßstab.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          114.0,
+          9.9
+        ],
+        "zoom": 8
+      },
+      "basemap": "satellite",
+      "layers": [
+        {
+          "type": "points",
+          "data": "scs",
+          "set": "built",
+          "color": "c3",
+          "r": 5
+        }
+      ]
+    },
+    {
+      "title": "Wo die Ansprüche aufeinanderprallen",
+      "text": "Der Streit wird auf See ausgetragen. China nahm 1974 Südvietnam die Paracel-Inseln ab und verwaltet sie von Woody Island aus. Seit einer Konfrontation 2012 hält seine Küstenwache philippinische Boote vom Scarborough-Riff fern. Am Second-Thomas-Riff leben einige philippinische Marineinfanteristen auf einem rostenden Kriegsschiff, das 1999 auf Grund gesetzt wurde; chinesische Schiffe blockieren seit 2023 seine Versorgungsboote und beschießen sie mit Wasserwerfern.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          115,
+          13
+        ],
+        "zoom": 4
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "scs",
+          "set": "nineDash",
+          "color": "c2",
+          "width": 2.6
+        },
+        {
+          "type": "points",
+          "data": "scs",
+          "set": "flashpoints",
+          "color": "c2",
+          "r": 6
+        }
+      ],
+      "highlight": [
+        "CHN",
+        "VNM",
+        "PHL"
+      ],
+      "countryLabels": true
+    }
+  ]
+}

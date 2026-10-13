@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orbis story editor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%2323559E'/%3E%3Cpath d='M2 16h28M16 2c-6 7-6 21 0 28M16 2c6 7 6 21 0 28' stroke='%23fff' fill='none' stroke-width='1.6'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAF8F3;--ink:#1D2A30;--soft:#4C5B61;--rule:#D8D2C4;--accent:#A8146F;--ok:#0E7C86;--bad:#B5197A;--warn:#C27C0E;--field:#fff;
+  --ui:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#132430;--ink:#E8EEF0;--soft:#A9B7BC;--rule:#2B3F4A;--accent:#F06AAE;--ok:#2EB3BC;--bad:#E8559F;--warn:#E0A33A;--field:#0C1A24}}
+:root[data-theme="dark"]{--paper:#132430;--ink:#E8EEF0;--soft:#A9B7BC;--rule:#2B3F4A;--accent:#F06AAE;--ok:#2EB3BC;--bad:#E8559F;--warn:#E0A33A;--field:#0C1A24}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--ui);display:flex;flex-direction:column}
+header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--rule)}
+h1{font:600 1.15rem var(--ui);margin:0 12px 0 0}
+h1 a{color:inherit;text-decoration:none}
+select,button{font:500 .95rem var(--ui);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;min-height:36px}
+button{cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 22rem;min-height:0}
+textarea{width:100%;height:100%;resize:none;border:0;border-right:1px solid var(--rule);padding:12px 16px;background:var(--field);color:var(--ink);font:13px/1.5 var(--mono);tab-size:2}
+textarea:focus{outline:2px solid var(--accent);outline-offset:-2px}
+aside{overflow:auto;padding:12px 16px}
+aside h2{font:600 .8rem var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin:14px 0 6px}
+ul{list-style:none;margin:0;padding:0}
+li{padding:5px 0;border-bottom:1px solid var(--rule);font-size:.95rem;line-height:1.3}
+li.err::before{content:"✕ ";color:var(--bad);font-weight:600}
+li.warn::before{content:"! ";color:var(--warn);font-weight:600}
+li.ok::before{content:"✓ ";color:var(--ok);font-weight:600}
+li button{min-height:28px;padding:2px 8px;font-size:.85rem;margin-left:4px}
+.hint{color:var(--soft);font-size:.9rem;line-height:1.4}
+.hint a{color:var(--accent)}
+@media (max-width:760px){main{grid-template-columns:1fr;grid-template-rows:60vh auto}textarea{border-right:0;border-bottom:1px solid var(--rule)}}
+</style>
+</head>
+<body>
+<header>
+  <h1><a href="index.html">Orbis</a> · story editor</h1>
+  <select id="pick" aria-label="Start from a story"><option value="">Start from…</option><option value="@blank">Blank story</option></select>
+  <button id="fmt" type="button">Tidy JSON</button>
+  <button id="dl" type="button">Download</button>
+  <button id="prev" class="primary" type="button">Preview ▸</button>
+</header>
+<main>
+  <textarea id="src" spellcheck="false" aria-label="Story JSON"></textarea>
+  <aside>
+    <h2>Check</h2>
+    <ul id="checks"></ul>
+    <h2>Scenes</h2>
+    <ul id="scenes"></ul>
+    <h2>How it works</h2>
+    <p class="hint">Edit the story as JSON (format: <a href="docs/STORY-FORMAT.md">STORY-FORMAT.md</a>). Your draft is kept in this browser. <b>Preview</b> opens it in Orbis; each scene button opens that scene. Data files must already exist in the repository. To publish, download the file, put it in <code>stories/</code>, list it in <code>stories/index.json</code> and run <code>node tools/check-licences.js</code>.</p>
+  </aside>
+</main>
+<script src="js/sources.js"></script>
+<script>
+const KEY="orbis-draft", TEXT="orbis-draft-text";
+const TYPES=["choropleth","symbols","flows","lines","spikes","cartogram","since","categories","events","borders","regions","pov","particles","raster","points"];
+const CATS=["Energy","Geopolitics","Economics","Planet","Statistics","Rights","People"];
+const MODES=["globe","equal","mercator"], BASES=["political","satellite","night","terrain"];
+const BLANK={id:"my-story",cat:"Statistics",title:"My story",hook:"One sentence that makes people tap.",notes:"Where the numbers come from.",
+  data:{wpp:"data/statistics/life-expectancy.json"},
+  scenes:[{title:"First scene",text:"Say one thing. The map shows it.",view:{mode:"globe",center:[10,20],zoom:1},
+    layers:[{type:"choropleth",data:"wpp",series:"lex",year:2023,title:"Life expectancy at birth",fmt:"yrs"}]}]};
+const $=id=>document.getElementById(id), src=$("src");
+const fileCache={};
+async function exists(path){ if(path in fileCache) return fileCache[path];
+  const r=await fetch(path,{method:"HEAD"}).then(r=>r.ok).catch(()=>false); return fileCache[path]=r; }
+
+function placeholders(s){ return [...JSON.stringify(s).matchAll(/\{(\w+)\}/g)].map(m=>m[1]); }
+async function check(){
+  const out=[], scenesEl=$("scenes"); scenesEl.innerHTML="";
+  let st; try{ st=JSON.parse(src.value); }catch(e){ show([["err","Not valid JSON: "+e.message]]); return null; }
+  const err=m=>out.push(["err",m]), warn=m=>out.push(["warn",m]);
+  ["id","cat","title","hook","notes","data","scenes"].forEach(k=>{ if(st[k]==null) err("Missing story field \""+k+"\""); });
+  if(st.cat&&!CATS.includes(st.cat)) warn("Category \""+st.cat+"\" is not one of "+CATS.join(", "));
+  const data=st.data||{};
+  for(const [a,p] of Object.entries(data)) if(!(await exists(p))) err("Dataset \""+a+"\" not found: "+p);
+  const srcIds=typeof SOURCES!=="undefined"?SOURCES:{};
+  (st.sources||[]).forEach(id=>{ if(!srcIds[id]) err("Unknown source id \""+id+"\" (register it in js/sources.js)"); });
+  (st.scenes||[]).forEach((sc,i)=>{
+    const n="Scene "+(i+1)+": ";
+    if(!sc.title) warn(n+"no title");
+    if(!sc.text&&!(sc.switch&&sc.switch.options.every(o=>o.text))) warn(n+"no text");
+    if(sc.view){ if(sc.view.mode&&!MODES.includes(sc.view.mode)) err(n+"view.mode must be "+MODES.join(" / "));
+      if(!Array.isArray(sc.view.center)||sc.view.center.length!==2) err(n+"view.center must be [lon, lat]"); }
+    if(sc.basemap&&!BASES.includes(sc.basemap)) err(n+"basemap must be "+BASES.join(" / "));
+    (sc.sources||[]).forEach(id=>{ if(!srcIds[id]) err(n+"unknown source id \""+id+"\""); });
+    const specs=(sc.layers||[]).concat(sc.chart?[Object.assign({type:"chart"},sc.chart)]:[]);
+    specs.forEach((ly,j)=>{
+      if(ly.type!=="chart"&&!TYPES.includes(ly.type)) err(n+"layer "+(j+1)+" has unknown type \""+ly.type+"\"");
+      if(ly.data&&!data[ly.data]) err(n+(ly.type)+" uses data alias \""+ly.data+"\" that is not in \"data\"");
+    });
+    const opts=sc.switch&&sc.switch.options||[];
+    const need=new Set(placeholders(sc.layers||[]).concat(placeholders(sc.chart||{})));
+    need.forEach(k=>{ if(!opts.length) err(n+"uses {"+k+"} but has no switch");
+      else if(opts.some(o=>o[k]==null)) err(n+"switch option missing \""+k+"\""); });
+    if(sc.timeline&&!Array.isArray(sc.timeline.years)) err(n+"timeline.years must be a list");
+    const li=document.createElement("li");
+    li.textContent=(i+1)+". "+(sc.title||"(untitled)");
+    const b=document.createElement("button"); b.type="button"; b.textContent="Open"; b.onclick=()=>preview(i+1); li.append(b);
+    scenesEl.append(li);
+  });
+  if(!out.length) out.push(["ok","Looks good: "+(st.scenes||[]).length+" scenes, "+Object.keys(data).length+" datasets"]);
+  show(out); return st;
+}
+function show(list){ $("checks").innerHTML=""; list.forEach(([c,m])=>{ const li=document.createElement("li"); li.className=c; li.textContent=m; $("checks").append(li); }); }
+
+let tm; src.addEventListener("input",()=>{ try{localStorage.setItem(TEXT,src.value);}catch(e){} clearTimeout(tm); tm=setTimeout(check,400); });
+src.addEventListener("keydown",e=>{ if(e.key==="Tab"){ e.preventDefault(); const s=src.selectionStart; src.setRangeText("  ",s,src.selectionEnd,"end"); } });
+async function preview(n){ const st=await check(); if(!st) return;
+  try{ localStorage.setItem(KEY,JSON.stringify(st)); }catch(e){ alert("Could not save the draft in this browser."); return; }
+  window.open("index.html#@draft/"+(n||1),"orbis-preview"); }
+$("prev").onclick=()=>preview(1);
+$("fmt").onclick=()=>{ try{ src.value=JSON.stringify(JSON.parse(src.value),null,2); check(); }catch(e){ check(); } };
+$("dl").onclick=()=>{ let id="story"; try{ id=JSON.parse(src.value).id||id; }catch(e){}
+  const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([src.value],{type:"application/json"})); a.download=id+".json"; a.click(); };
+$("pick").onchange=async e=>{ const v=e.target.value; e.target.value=""; if(!v) return;
+  if(src.value.trim()&&!confirm("Replace the current draft?")) return;
+  const st=v==="@blank"?BLANK:await fetch(v).then(r=>r.json());
+  src.value=JSON.stringify(st,null,2); try{localStorage.setItem(TEXT,src.value);}catch(e){} check(); };
+fetch("stories/index.json").then(r=>r.json()).then(list=>list.forEach(s=>{ const o=document.createElement("option"); o.value=s.file; o.textContent=s.title; $("pick").append(o); }));
+let saved=null; try{ saved=localStorage.getItem(TEXT); }catch(e){}
+src.value=saved||JSON.stringify(BLANK,null,2); check();
+</script>
+</body>
+</html>

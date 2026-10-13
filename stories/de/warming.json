@@ -1,0 +1,122 @@
+{
+  "id": "warming",
+  "cat": "Planet",
+  "title": "Eine Welt wird wärmer",
+  "hook": "140 Jahre Temperaturmessungen abspielen und zusehen, wie der Planet rot wird – am schnellsten ganz oben.",
+  "notes": "NASA GISTEMP v4 (GHCNv4-Landstationen + ERSSTv5-Ozeandaten, Glättung über 1.200 km), Zehnjahresmittel der monatlichen Abweichungen gegenüber 1951–1980; der Durchschnitt der 2020er-Jahre reicht von Januar 2020 bis September 2026; 2025 ist das Jahresmittel. Graue Zellen haben zu wenige frühe Messungen. Die genannten Durchschnitte sind flächengewichtet über Zellen mit Daten, berechnet von Orbis. Werte sind bei ±4 °C gekappt.",
+  "data": {
+    "t": "data/grids/warming.json"
+  },
+  "scenes": [
+    {
+      "title": "Die 1880er-Jahre",
+      "text": "Jede Zelle zeigt, wie viel wärmer (rot) oder kühler (blau) ein Jahrzehnt war als der Durchschnitt von 1951–1980. In den 1880er-Jahren war die Welt, soweit Messungen vorliegen, etwas kühler als dieser Bezugswert. Auf „Play“ tippen.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          10
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "t",
+          "frame": "t",
+          "title": "Temperatur gegenüber 1951–1980",
+          "fmt": "degc"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1880,
+          1890,
+          1900,
+          1910,
+          1920,
+          1930,
+          1940,
+          1950,
+          1960,
+          1970,
+          1980,
+          1990,
+          2000,
+          2010,
+          2020
+        ],
+        "start": 1880,
+        "captions": {
+          "1880": "Messungen sind spärlich: Grau heißt keine Daten.",
+          "1940": "Eine vorübergehende Wärmephase in der Arktis.",
+          "1980": "Der stetige Anstieg beginnt.",
+          "2020": "Die 2020er-Jahre bisher: etwa 1,1 °C über dem Durchschnitt von 1951–1980."
+        }
+      }
+    },
+    {
+      "title": "Die 2020er-Jahre",
+      "text": "Heute ist fast die ganze Karte rot. Die 2020er-Jahre waren bisher im Schnitt etwa 1,1 °C wärmer als 1951–1980, und über Land erwärmt es sich schneller als über den Ozeanen.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          10
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "t",
+          "frame": "2020",
+          "title": "Temperatur gegenüber 1951–1980, 2020er-Jahre",
+          "fmt": "degc"
+        }
+      ]
+    },
+    {
+      "title": "Die Arktis vorneweg",
+      "text": "Der hohe Norden erwärmt sich am schnellsten. Nördlich von 64° N liegt der Durchschnitt der 2020er-Jahre fast 3 °C über dem Bezugswert, mehr als doppelt so hoch wie der globale Wert. Wenn Schnee und Meereis schwinden, nehmen dunklerer Boden und dunkleres Wasser mehr Sonnenlicht auf und erwärmen sich weiter.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10,
+          75
+        ],
+        "zoom": 1.2
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "t",
+          "frame": "2020",
+          "title": "Temperatur gegenüber 1951–1980, 2020er-Jahre",
+          "fmt": "degc"
+        }
+      ]
+    },
+    {
+      "title": "2025",
+      "text": "Ein einzelnes Jahr aus jüngster Zeit: 2025 war über den Gebieten mit Daten etwa 1,2 °C wärmer als 1951–1980. Einige kühlere Flecken bleiben, meist über den Ozeanen, doch sie sind Ausnahmen.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -30,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "t",
+          "frame": "2025",
+          "title": "Temperatur gegenüber 1951–1980, 2025",
+          "fmt": "degc"
+        }
+      ]
+    }
+  ]
+}

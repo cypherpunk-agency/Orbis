@@ -1,0 +1,77 @@
+{
+  "id": "debt", "cat": "Economics", "title": "Wer wem was schuldet",
+  "hook": "Die Staaten der Welt schulden zusammen rund 100 Billionen Dollar. Hier ist zu sehen, wo die Schulden liegen und wer das Geld leiht.",
+  "notes": "Staatsschulden: IWF, World Economic Outlook, Oktober 2026 (Bruttoschulden des Gesamtstaats), über IMF DataMapper; IWF-Daten dürfen mit Quellenangabe weiterverwendet werden, kommerziell aber nur mit Genehmigung, daher sind diese Kartenebenen als nicht kommerziell gekennzeichnet. Schulden von Haushalten und Unternehmen: IWF, Global Debt Database. Halter von US-Staatsanleihen: US-Finanzministerium, TIC; Bestände werden dort erfasst, wo die Wertpapiere verwahrt werden, daher stehen Belgien, Luxemburg, Großbritannien und die Kaimaninseln teilweise für andere Eigentümer, darunter China. Bankkredite: konsolidierte Bankenstatistik der BIZ, Auslandsforderungen nach Nationalität der Banken (China meldet keine Daten). Kredite an Regierungen von Ländern mit niedrigem und mittlerem Einkommen: Weltbank, International Debt Statistics, öffentliche und öffentlich garantierte Schulden gegenüber bilateralen staatlichen Gläubigern; Kredite chinesischer Staatsbanken, die als kommerzielle Kredite verbucht sind, fehlen, daher wird Chinas Rolle unterschätzt. Zinsen versus Gesundheitsausgaben: UNCTAD, A World of Debt (2024).",
+  "data": {
+    "imf": "data/finance/imf.json",
+    "tic": "data/finance/tic.json",
+    "bis": "data/finance/bis.json",
+    "ids": "data/finance/ids.json",
+    "idss": "data/finance/ids_series.json"
+  },
+  "scenes": [
+    {
+      "title": "Wie viel Staaten schulden",
+      "text": "Gemessen an der Wirtschaftsleistung ist Japans Staat unter den großen Ländern am höchsten verschuldet: mit 214 % des BIP. Die USA kommen auf 122 %, Frankreich auf 113 %, Deutschland auf 61 %. Ab 2000 abspielen, um zu sehen, wie die Schulden nach der Finanzkrise 2008 und erneut in der Pandemie 2020 nach oben springen.",
+      "view": {"mode": "equal", "center": [10, 15], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "imf", "series": "gov_debt_gdp", "year": "t", "title": "Staatsschulden, % des BIP", "fmt": "pct"}],
+      "timeline": {"years": [2000, 2024], "start": 2024, "captions": {"2009": "Die Finanzkrise: Staaten nehmen Kredite auf, um Banken und Volkswirtschaften zu retten.", "2020": "Die Pandemie: der größte Anstieg der Staatsschulden binnen eines Jahres seit dem Zweiten Weltkrieg."}},
+      "chart": {"data": "imf", "series": "gov_debt_gdp", "year": "t", "top": 8, "title": "Höchste Schulden, % des BIP", "fmt": "pct", "color": "c2"}
+    },
+    {
+      "title": "Schulden in Dollar",
+      "text": "In Dollar gerechnet ändert sich das Bild. Der US-Staat schuldet rund 36 Billionen Dollar, etwa ein Drittel aller Staatsschulden der Welt. Es folgen China mit rund 17 Billionen und Japan mit 9 Billionen Dollar. Die Türme zeigen die Staatsschulden in US-Dollar.",
+      "view": {"mode": "equal", "center": [10, 20], "zoom": 1},
+      "layers": [{"type": "spikes", "data": "imf", "series": "gov_debt_usd", "year": 2024, "color": "c2", "title": "Staatsschulden, US-Dollar", "fmt": "busd", "labels": 5, "maxH": 0.55}],
+      "chart": {"data": "imf", "series": "gov_debt_usd", "year": 2024, "share": true, "top": 8, "title": "Anteil an den weltweiten Staatsschulden", "color": "c2"}
+    },
+    {
+      "title": "Die Welt, neu gezeichnet nach Schulden",
+      "text": "Wird jedes Land danach skaliert, was sein Staat schuldet, gerät die Welt in Schieflage: Die USA, China und Japan blähen sich auf, Afrika und Südamerika verschwinden fast. Reiche Länder können sich am meisten leihen, weil Geldgeber darauf vertrauen, dass sie zurückzahlen.",
+      "view": {"mode": "equal", "center": [10, 15], "zoom": 1},
+      "layers": [{"type": "cartogram", "data": "imf", "series": "gov_debt_usd", "year": 2024, "title": "Staatsschulden, US-Dollar", "fmt": "busd", "labels": 6, "maxK": 4}]
+    },
+    {
+      "title": "Wer Amerikas Schulden hält",
+      "text": "Das Ausland hält US-Staatsanleihen im Wert von rund 9,3 Billionen Dollar. Japan ist mit 1,19 Billionen Dollar der größte Halter, gefolgt von Großbritannien und China. Chinas Bestände erreichten um 2011 ihren Höhepunkt, als es der größte Halter war, und sind seither um etwa 40 % gesunken. Bestände werden dort erfasst, wo sie verwahrt werden; Belgien und Großbritannien halten daher teilweise für andere.",
+      "view": {"mode": "globe", "center": [-30, 35], "zoom": 1},
+      "layers": [{"type": "flows", "data": "tic", "group": "treasuries", "year": "t", "top": 20, "color": "c1", "title": "US-Staatsanleihen in ausländischer Hand", "fmt": "busd", "vmax": 1300, "maxW": 11}],
+      "timeline": {"years": [2005, 2025], "start": 2025, "captions": {"2011": "China ist der größte ausländische Halter.", "2019": "Japan überholt China wieder."}},
+      "chart": {"data": "tic", "group": "treasuries", "side": "exports", "year": "t", "top": 8, "title": "Größte ausländische Halter", "fmt": "busd", "color": "c1"}
+    },
+    {
+      "title": "Banken verleihen über Grenzen hinweg",
+      "text": "Auch Banken verleihen Geld ins Ausland. Japanische Banken haben die größten Auslandsforderungen, rund 5,6 Billionen Dollar, gefolgt von britischen, amerikanischen und französischen Banken. Viel davon fließt in die USA, einiges in Finanzzentren wie die Kaimaninseln. Ein Land antippen, um nur seine Kreditgeber oder Kreditnehmer zu sehen.",
+      "view": {"mode": "equal", "center": [-10, 30], "zoom": 1.15},
+      "layers": [{"type": "flows", "data": "bis", "group": "banks", "year": "t", "top": 35, "color": "c4", "title": "Auslandsforderungen von Banken", "fmt": "busd", "vmax": 2800, "maxW": 11}],
+      "timeline": {"years": [2008, 2025], "start": 2025, "captions": {"2008": "Auf dem Höhepunkt der Krise haben britische, japanische und Schweizer Banken die größten Forderungen gegenüber den USA."}},
+      "chart": {"data": "bis", "group": "banks", "side": "exports", "year": "t", "top": 8, "title": "Größte Kreditgeber, nach Herkunftsland der Banken", "fmt": "busd", "color": "c4"}
+    },
+    {
+      "title": "China als Kreditgeber",
+      "text": "Unter den Staaten, die Regierungen ärmerer Länder Geld leihen, ist China zum größten geworden. Regierungen von Ländern mit niedrigem und mittlerem Einkommen schuldeten China 2024 rund 148 Milliarden Dollar, nach 34 Milliarden im Jahr 2010; ihre Schulden bei Japan sanken dagegen auf 106 Milliarden. Für 54 von rund 120 Schuldnerländern ist China der größte staatliche Gläubiger, von Pakistan und Sri Lanka bis Kenia und Laos.",
+      "view": {"mode": "globe", "center": [75, 10], "zoom": 1.05},
+      "layers": [{"type": "flows", "data": "ids", "group": "bilateral", "year": "t", "from": ["CHN"], "top": 30, "color": "c2", "title": "Staatsschulden gegenüber China", "fmt": "busd", "vmax": 23}],
+      "timeline": {"years": [2000, 2024], "start": 2024},
+      "chart": {"data": "idss", "series": "china_share", "year": "t", "top": 8, "title": "Anteil der öffentlichen Auslandsschulden gegenüber China", "fmt": "pct", "color": "c2"}
+    },
+    {
+      "title": "Wenn Schulden zur Last werden",
+      "text": "Entscheidend sind die Schulden im Verhältnis zu dem, was ein Land erwirtschaftet. Mosambiks gesamte Auslandsschulden sind mehr als dreimal so hoch wie sein Nationaleinkommen, die der Mongolei und Senegals mehr als anderthalbmal. Laut den Vereinten Nationen leben rund 3,3 Milliarden Menschen in Ländern, deren Regierungen mehr für Zinsen ausgeben als für Gesundheit.",
+      "view": {"mode": "equal", "center": [40, 5], "zoom": 1.1},
+      "layers": [{"type": "choropleth", "data": "idss", "series": "ext_debt_gni", "year": 2024, "title": "Auslandsschulden, % des Nationaleinkommens", "fmt": "pct", "log": true}],
+      "chart": {"data": "idss", "series": "ext_debt_gni", "year": 2024, "top": 8, "title": "Höchste Auslandsschulden, % des Nationaleinkommens", "fmt": "pct", "color": "c2"}
+    },
+    {
+      "title": "Auch Haushalte und Unternehmen sind verschuldet",
+      "text": "Staatsschulden sind nur ein Teil. Haushalte in der Schweiz, in Australien und in Kanada schulden mehr als das gesamte jährliche BIP ihres Landes, vor allem in Form von Hypotheken. Einen Schuldner auswählen.",
+      "view": {"mode": "equal", "center": [10, 20], "zoom": 1},
+      "switch": {"label": "Schuldner", "options": [
+        {"s": "hh_debt_gdp", "label": "Haushalte", "text": "Haushalte in der Schweiz (125 % des BIP), in Australien (112 %) und in Kanada (100 %) schulden mehr als die jährliche Wirtschaftsleistung ihres Landes, vor allem in Form von Hypotheken. In weiten Teilen Afrikas und Südasiens sind die Schulden der Haushalte winzig, weil nur wenige Menschen Kredit bekommen."},
+        {"s": "nfc_debt_gdp", "label": "Unternehmen", "text": "Die Unternehmensschulden sind in Finanzzentren wie Luxemburg und Hongkong am höchsten, wo Holdinggesellschaften multinationaler Konzerne ihre Kredite verbuchen. Unter den großen Volkswirtschaften gehören Chinas Unternehmen zu den am höchsten verschuldeten."}
+      ]},
+      "layers": [{"type": "choropleth", "data": "imf", "series": "{s}", "year": 2024, "title": "{label}: Schulden, % des BIP", "fmt": "pct"}],
+      "chart": {"data": "imf", "series": "{s}", "year": 2024, "top": 8, "title": "{label}: höchste Schulden, % des BIP", "fmt": "pct", "color": "c2"}
+    }
+  ]
+}

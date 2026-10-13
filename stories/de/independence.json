@@ -1,0 +1,373 @@
+{
+  "id": "independence",
+  "cat": "Rights",
+  "title": "Eine Welt neuer Staaten",
+  "hook": "Die meisten heutigen Länder sind jünger als die Vereinten Nationen. Zusehen, wie sie Welle um Welle entstehen, von 1776 bis 2011.",
+  "notes": "Die Jahreszahlen stammen aus dem Feld „Independence“ des CIA World Factbook (gemeinfrei), gelesen aus dem Archiv factbook.json, da die CIA die Veröffentlichung des Factbook am 4. Februar 2026 eingestellt hat. Verwendet wird das erste Jahr, das das Factbook nennt; eine Erklärung zählt also auch dort, wo die Anerkennung später kam: die USA 1776, Mexiko 1810, Guinea-Bissau 1973. Frühere Dominions erhalten das Datum der Union oder Föderation laut Factbook: Kanada 1867, Australien 1901, Neuseeland 1907, Südafrika 1910. Ausnahmen: Bulgarien 1908 (das Factbook-Datum 1878 bezeichnete die Autonomie innerhalb des Osmanischen Reichs); Tansania 1961, als Tanganjika unabhängig wurde (das Factbook nennt die Vereinigung mit Sansibar 1964); Timor-Leste 2002 (seine Erklärung von 1975 endete mit der Invasion Indonesiens); Estland, Lettland und Litauen waren von 1918 bis zur Annexion durch die Sowjetunion 1940 unabhängig und erneut ab 1991. Grau markiert seit Langem bestehende Staaten: jene, die das Factbook vor 1776 datiert (zum Beispiel Frankreich, das Vereinigte Königreich, Spanien, Portugal, die Niederlande, Schweden, die Schweiz, Thailand, Nepal und Oman), Äthiopien und Bhutan sowie China, Iran, Japan, Russland und die Türkei, deren Factbook-Daten ein neues Regime oder das Ende der Sowjetunion markieren, nicht die Unabhängigkeit. Taiwan, Palästina, Westsahara, Somaliland und Nordzypern sind nicht datiert. Die Karte zeigt die heutigen Grenzen: Viele Länder hatten bei ihrer Unabhängigkeit andere Grenzen, und manche, etwa die Tschechoslowakei und Jugoslawien, gibt es nicht mehr; ihre Nachfolgestaaten erscheinen erst, als sie selbst unabhängig wurden.",
+  "data": {
+    "ind": "data/rights/independence.json"
+  },
+  "scenes": [
+    {
+      "title": "Amerika sagt sich los",
+      "text": "Die erste Welle kam in Amerika. Die USA erklärten 1776 ihre Unabhängigkeit, Haiti 1804 nach einem Sklavenaufstand. Zwischen 1810 und 1825 verloren Spanien und Portugal fast ganz Lateinamerika. Grau markiert Staaten, die schon damals alt waren.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -40,
+          10
+        ],
+        "zoom": 1.3
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "old",
+          "year": "t",
+          "color": "muted",
+          "title": "Seit Langem bestehende Staaten"
+        },
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "independent",
+          "year": "t",
+          "color": "c2",
+          "title": "Unabhängig"
+        }
+      ],
+      "legend": [
+        {
+          "color": "muted",
+          "label": "Seit Langem bestehende Staaten"
+        },
+        {
+          "color": "c2",
+          "label": "Unabhängig (heutige Grenzen)"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1775,
+          1850
+        ],
+        "start": 1775,
+        "captions": {
+          "1776": "Die USA erklären ihre Unabhängigkeit.",
+          "1804": "Haiti, der erste Staat, der aus einem Sklavenaufstand hervorging.",
+          "1810": "Mexiko, Kolumbien und Chile erklären ihre Unabhängigkeit.",
+          "1816": "Argentinien.",
+          "1821": "Mittelamerika und Peru.",
+          "1822": "Brasilien, von Portugal.",
+          "1825": "Bolivien und Uruguay."
+        }
+      }
+    },
+    {
+      "title": "Nationen in Europa",
+      "text": "In Europa entstanden im 19. Jahrhundert neue Nationalstaaten: Belgien und Griechenland 1830, Italien 1861, Deutschland 1871. Als nach dem Ersten Weltkrieg die Reiche Russlands, Österreich-Ungarns und Deutschlands zerfielen, wurden Finnland, Polen, die baltischen Staaten und andere unabhängig.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          18,
+          50
+        ],
+        "zoom": 2.3
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "old",
+          "year": "t",
+          "color": "muted",
+          "title": "Seit Langem bestehende Staaten"
+        },
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "interwar",
+          "year": "t",
+          "color": "c2",
+          "title": "Unabhängig 1918–1940"
+        },
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "independent",
+          "year": "t",
+          "color": "c2",
+          "title": "Unabhängig"
+        }
+      ],
+      "legend": [
+        {
+          "color": "muted",
+          "label": "Seit Langem bestehende Staaten"
+        },
+        {
+          "color": "c2",
+          "label": "Unabhängig (heutige Grenzen)"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1825,
+          1925
+        ],
+        "start": 1825,
+        "captions": {
+          "1830": "Griechenland und Belgien.",
+          "1861": "Das Königreich Italien.",
+          "1871": "Das Deutsche Kaiserreich.",
+          "1877": "Rumänien löst sich vom Osmanischen Reich.",
+          "1905": "Norwegen verlässt die Union mit Schweden.",
+          "1908": "Bulgarien.",
+          "1917": "Finnland.",
+          "1918": "Polen, Ungarn, Island und die baltischen Staaten.",
+          "1921": "Irland."
+        }
+      }
+    },
+    {
+      "title": "Die Imperien verlassen Asien",
+      "text": "Nach dem Zweiten Weltkrieg zerfielen die Kolonialreiche. In Asien erklärten Indonesien und Vietnam 1945 ihre Unabhängigkeit, die Philippinen folgten 1946, Indien und Pakistan 1947, Birma und Sri Lanka 1948. Im Nahen Osten wurden Syrien, Jordanien und Israel Staaten.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          85,
+          20
+        ],
+        "zoom": 1.5
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "old",
+          "year": "t",
+          "color": "muted",
+          "title": "Seit Langem bestehende Staaten"
+        },
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "independent",
+          "year": "t",
+          "color": "c2",
+          "title": "Unabhängig"
+        }
+      ],
+      "legend": [
+        {
+          "color": "muted",
+          "label": "Seit Langem bestehende Staaten"
+        },
+        {
+          "color": "c2",
+          "label": "Unabhängig (heutige Grenzen)"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1940,
+          1960
+        ],
+        "start": 1940,
+        "captions": {
+          "1943": "Libanon.",
+          "1945": "Indonesien, Vietnam und Korea.",
+          "1946": "Die Philippinen, Syrien und Jordanien.",
+          "1947": "Indien und Pakistan.",
+          "1948": "Birma, Sri Lanka und Israel.",
+          "1953": "Kambodscha.",
+          "1957": "Malaysia."
+        }
+      }
+    },
+    {
+      "title": "1960, das Afrikanische Jahr",
+      "text": "1957 erlangte Ghana als erste Kolonie südlich der Sahara die Unabhängigkeit. Allein 1960 folgten 17 afrikanische Länder, die meisten davon frühere französische Kolonien, dazu Nigeria, Somalia und der Kongo. Die letzten portugiesischen Kolonien, darunter Angola und Mosambik, folgten 1975 nach einer Revolution in Lissabon.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          18,
+          3
+        ],
+        "zoom": 1.9
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "old",
+          "year": "t",
+          "color": "muted",
+          "title": "Seit Langem bestehende Staaten"
+        },
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "independent",
+          "year": "t",
+          "color": "c2",
+          "title": "Unabhängig"
+        }
+      ],
+      "legend": [
+        {
+          "color": "muted",
+          "label": "Seit Langem bestehende Staaten"
+        },
+        {
+          "color": "c2",
+          "label": "Unabhängig (heutige Grenzen)"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1950,
+          1990
+        ],
+        "start": 1955,
+        "captions": {
+          "1951": "Libyen.",
+          "1956": "Sudan, Marokko und Tunesien.",
+          "1957": "Ghana.",
+          "1958": "Guinea.",
+          "1960": "17 afrikanische Länder in einem einzigen Jahr.",
+          "1962": "Algerien, nach acht Jahren Krieg mit Frankreich.",
+          "1975": "Angola und Mosambik.",
+          "1980": "Simbabwe.",
+          "1990": "Namibia, von südafrikanischer Herrschaft."
+        }
+      }
+    },
+    {
+      "title": "Zwei Föderationen zerbrechen",
+      "text": "1991 löste sich die Sowjetunion in 15 Staaten auf, und Jugoslawien begann im Krieg zu zerfallen. Die Tschechoslowakei teilte sich am 1. Januar 1993 friedlich in Tschechien und die Slowakei. Serbien und Montenegro blieben bis 2006 zusammen.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          45,
+          50
+        ],
+        "zoom": 1.7
+      },
+      "layers": [
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "old",
+          "year": "t",
+          "color": "muted",
+          "title": "Seit Langem bestehende Staaten"
+        },
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "interwar",
+          "year": "t",
+          "color": "c2",
+          "title": "Unabhängig 1918–1940"
+        },
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "independent",
+          "year": "t",
+          "color": "c2",
+          "title": "Unabhängig"
+        }
+      ],
+      "legend": [
+        {
+          "color": "muted",
+          "label": "Seit Langem bestehende Staaten"
+        },
+        {
+          "color": "c2",
+          "label": "Unabhängig (heutige Grenzen)"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1989,
+          1990,
+          1991,
+          1992,
+          1993,
+          2006
+        ],
+        "start": 0,
+        "captions": {
+          "1990": "Jemen vereinigt sich; Namibia wird unabhängig.",
+          "1991": "Die Sowjetunion endet; Slowenien, Kroatien und Nordmazedonien verlassen Jugoslawien.",
+          "1992": "Bosnien und Herzegowina.",
+          "1993": "Tschechien und die Slowakei; Eritrea löst sich von Äthiopien.",
+          "2006": "Montenegro und Serbien gehen getrennte Wege."
+        }
+      }
+    },
+    {
+      "title": "Die jüngsten Länder",
+      "text": "Timor-Leste wurde 2002 unabhängig, nach einer von der UNO organisierten Abstimmung und Jahren indonesischer Besatzung. Kosovo erklärte sich 2008 von Serbien unabhängig; mehr als 100 Staaten erkennen es an, Serbien nicht. Jüngstes UN-Mitglied ist der Südsudan, unabhängig seit dem 9. Juli 2011.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          60,
+          15
+        ],
+        "zoom": 1.15
+      },
+      "countryLabels": false,
+      "layers": [
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "old",
+          "year": "t",
+          "color": "muted",
+          "title": "Seit Langem bestehende Staaten"
+        },
+        {
+          "type": "since",
+          "data": "ind",
+          "set": "independent",
+          "year": "t",
+          "color": "c2",
+          "title": "Unabhängig"
+        }
+      ],
+      "highlight": [
+        "TLS",
+        "XKX",
+        "SSD"
+      ],
+      "legend": [
+        {
+          "color": "muted",
+          "label": "Seit Langem bestehende Staaten"
+        },
+        {
+          "color": "c2",
+          "label": "Unabhängig (heutige Grenzen)"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1995,
+          2026
+        ],
+        "start": 2026,
+        "captions": {
+          "2002": "Timor-Leste.",
+          "2006": "Montenegro und Serbien.",
+          "2008": "Kosovo erklärt seine Unabhängigkeit.",
+          "2011": "Südsudan, das jüngste UN-Mitglied."
+        }
+      }
+    }
+  ]
+}

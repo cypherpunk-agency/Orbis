@@ -1,0 +1,345 @@
+[
+ {
+  "id": "oil",
+  "cat": "Energy",
+  "title": "Die Ölmaschine",
+  "hook": "Wo Öl aus dem Boden kommt, wie es reist und wer es verbrennt.",
+  "file": "stories/de/oil.json"
+ },
+ {
+  "id": "gas",
+  "cat": "Energy",
+  "title": "Rohre und Schiffe",
+  "hook": "Gas reist per Pipeline oder verflüssigt auf Schiffen. Europa ist gerade vom einen zum anderen gewechselt.",
+  "file": "stories/de/gas.json"
+ },
+ {
+  "id": "resources",
+  "cat": "Economics",
+  "title": "Wer hat was",
+  "hook": "Die Metalle in Handy und Auto und die Lebensmittel auf dem Teller stammen aus erstaunlich wenigen Orten.",
+  "file": "stories/de/resources.json"
+ },
+ {
+  "id": "debt",
+  "cat": "Economics",
+  "title": "Wer wem was schuldet",
+  "hook": "Die Staaten der Welt schulden zusammen rund 100 Billionen Dollar. Hier ist zu sehen, wo die Schulden liegen und wer das Geld leiht.",
+  "file": "stories/de/debt.json"
+ },
+ {
+  "id": "map-lies",
+  "cat": "Statistics",
+  "title": "Die Karte lügt",
+  "hook": "Grönland wirkt so groß wie Afrika. Dabei ist es vierzehnmal kleiner.",
+  "file": "stories/de/map-lies.json"
+ },
+ {
+  "id": "circle",
+  "cat": "Statistics",
+  "title": "Die halbe Welt in einem Kreis",
+  "hook": "In diesem Kreis leben mehr Menschen als außerhalb.",
+  "file": "stories/de/circle.json"
+ },
+ {
+  "id": "demography",
+  "cat": "Statistics",
+  "title": "Die Welt im Jahr 2100",
+  "hook": "Europa und Ostasien ergrauen. Afrika ist jung.",
+  "file": "stories/de/demography.json"
+ },
+ {
+  "id": "dark",
+  "cat": "Statistics",
+  "title": "Wer im Dunkeln sitzt",
+  "hook": "Jeder zehnte Mensch auf der Erde hat noch immer keinen Strom.",
+  "file": "stories/de/dark.json"
+ },
+ {
+  "id": "chokepoints",
+  "cat": "Geopolitics",
+  "title": "Nadelöhre",
+  "hook": "Durch eine Handvoll enger Meerengen fließen das Öl und die Waren der Welt.",
+  "file": "stories/de/chokepoints.json"
+ },
+ {
+  "id": "blocs",
+  "cat": "Geopolitics",
+  "title": "Blöcke im Wandel der Zeit",
+  "hook": "Wie Bündnisse von 1945 bis heute wachsen, zerfallen und sich verschieben.",
+  "file": "stories/de/blocs.json"
+ },
+ {
+  "id": "borders",
+  "cat": "Geopolitics",
+  "title": "Gleiche Grenze, verschiedene Wahrheiten",
+  "hook": "Jede Karte bezieht Stellung. Sechs Orte, an denen das sichtbar wird.",
+  "file": "stories/de/borders.json"
+ },
+ {
+  "id": "arctic",
+  "cat": "Geopolitics",
+  "title": "Die Arktis öffnet sich",
+  "hook": "Das schmelzende Eis schafft einen neuen Ozean – und neue Ansprüche.",
+  "file": "stories/de/arctic.json"
+ },
+ {
+  "id": "cables",
+  "cat": "Geopolitics",
+  "title": "Das Internet liegt unter dem Meer",
+  "hook": "Fast alle interkontinentalen Daten laufen durch Kabel auf dem Meeresgrund.",
+  "file": "stories/de/cables.json"
+ },
+ {
+  "id": "gravity",
+  "cat": "Economics",
+  "title": "Der wirtschaftliche Schwerpunkt",
+  "hook": "Seit 2.000 Jahren ist der wirtschaftliche Mittelpunkt der Welt in Bewegung.",
+  "file": "stories/de/gravity.json"
+ },
+ {
+  "id": "phone",
+  "cat": "Economics",
+  "title": "Woher das Handy kommt",
+  "hook": "Ein Smartphone auf seinem Weg von der Mine bis in die Hosentasche.",
+  "file": "stories/de/phone.json"
+ },
+ {
+  "id": "minerals",
+  "cat": "Economics",
+  "title": "Kritische Rohstoffe",
+  "hook": "Die Energiewende läuft mit Mineralen aus sehr wenigen Ländern.",
+  "file": "stories/de/minerals.json"
+ },
+ {
+  "id": "austria-gas",
+  "cat": "Economics",
+  "title": "Österreichs Gas",
+  "hook": "Wie Österreich mit sibirischem Gas lief – und dann nicht mehr.",
+  "file": "stories/de/austria-gas.json"
+ },
+ {
+  "id": "remittances",
+  "cat": "Economics",
+  "title": "Geld für die Familie daheim",
+  "hook": "Migranten schicken mehr Geld in ihre Heimat als alle Entwicklungshilfe und Auslandsinvestitionen zusammen.",
+  "file": "stories/de/remittances.json"
+ },
+ {
+  "id": "darien",
+  "cat": "People",
+  "title": "Eine Reise nach Norden",
+  "hook": "Von Caracas bis zur Grenze der USA, durch einen der gefährlichsten Dschungel der Welt.",
+  "file": "stories/de/darien.json"
+ },
+ {
+  "id": "plate",
+  "cat": "People",
+  "title": "Was auf dem Teller liegt",
+  "hook": "Ein Wiener Frühstück, zurückverfolgt bis auf die Felder.",
+  "file": "stories/de/plate.json"
+ },
+ {
+  "id": "flights",
+  "cat": "People",
+  "title": "Warum Flugzeuge Kurven fliegen",
+  "hook": "Die gerade Linie auf dem Globus ist auf der flachen Karte eine Kurve.",
+  "file": "stories/de/flights.json"
+ },
+ {
+  "id": "languages",
+  "cat": "People",
+  "title": "Sprachen, die verstummen",
+  "hook": "Rund 7.000 Sprachen gibt es, und viele haben nur noch wenige Sprecher.",
+  "file": "stories/de/languages.json"
+ },
+ {
+  "id": "where-people-live",
+  "cat": "Statistics",
+  "title": "Wo die Menschen wirklich leben",
+  "hook": "Landessummen verbergen es: Der Großteil der Menschheit drängt sich in Flusstälern, Deltas und an Küsten.",
+  "file": "stories/de/where-people-live.json"
+ },
+ {
+  "id": "warming",
+  "cat": "Planet",
+  "title": "Eine Welt wird wärmer",
+  "hook": "140 Jahre Temperaturmessungen abspielen und zusehen, wie der Planet rot wird – am schnellsten ganz oben.",
+  "file": "stories/de/warming.json"
+ },
+ {
+  "id": "jet-stream",
+  "cat": "Planet",
+  "title": "Flüsse aus Luft",
+  "hook": "In zehn Kilometern Höhe umkreisen Winde mit 200 km/h den Planeten. Flugzeuge reiten auf ihnen nach Osten.",
+  "file": "stories/de/jet-stream.json"
+ },
+ {
+  "id": "whose-land",
+  "cat": "Geopolitics",
+  "title": "Wessen Land?",
+  "hook": "Dasselbe Stück Land wird unterschiedlich gezeichnet – je nachdem, wer die Karte druckt.",
+  "file": "stories/de/whose-land.json"
+ },
+ {
+  "id": "inside-countries",
+  "cat": "Statistics",
+  "title": "Innerhalb der Grenzen",
+  "hook": "Landesdurchschnitte verbergen große Unterschiede zwischen den Regionen eines Landes.",
+  "file": "stories/de/inside-countries.json"
+ },
+ {
+  "id": "co2",
+  "cat": "Statistics",
+  "title": "Wer das CO2 ausstößt",
+  "hook": "Kohlendioxid nach Ländern, pro Kopf oder seit 1850 gezählt – und jedes Mal kippt die Rangliste.",
+  "file": "stories/de/co2.json"
+ },
+ {
+  "id": "life-expectancy",
+  "cat": "Statistics",
+  "title": "Wie lange wir leben",
+  "hook": "Ein heute geborenes Kind kann mit rund 73 Lebensjahren rechnen, fast 30 mehr als 1950. Nicht überall, und nicht in gerader Linie.",
+  "file": "stories/de/life-expectancy.json"
+ },
+ {
+  "id": "time-zones",
+  "cat": "Statistics",
+  "title": "Uhren gegen die Sonne",
+  "hook": "Mittag auf der Uhr sollte sein, wenn die Sonne am höchsten steht. In weiten Teilen der Welt ist das nicht so – und die Datumsgrenze verläuft im Zickzack.",
+  "file": "stories/de/time-zones.json"
+ },
+ {
+  "id": "world-cup-2026",
+  "cat": "Statistics",
+  "title": "Eine WM quer über einen Kontinent",
+  "hook": "Die WM 2026 verteilte sich auf drei Länder, sechzehn Städte und vier Zeitzonen. Die in Katar passte in eine einzige Stadt.",
+  "file": "stories/de/world-cup-2026.json"
+ },
+ {
+  "id": "suffrage",
+  "cat": "Rights",
+  "title": "Wahlrecht für Frauen",
+  "hook": "Neuseeland ließ Frauen 1893 wählen. Saudi-Arabien 2015. Zusehen, wie sich das Recht Land für Land ausbreitet.",
+  "file": "stories/de/suffrage.json"
+ },
+ {
+  "id": "death-penalty",
+  "cat": "Rights",
+  "title": "Das Ende der Hinrichtungen",
+  "hook": "1977 hatten erst 16 Länder die Todesstrafe abgeschafft. Heute sind es 113. Zusehen, wie sie dazukommen – und sehen, wer noch tötet.",
+  "file": "stories/de/death-penalty.json"
+ },
+ {
+  "id": "independence",
+  "cat": "Rights",
+  "title": "Eine Welt neuer Staaten",
+  "hook": "Die meisten heutigen Länder sind jünger als die Vereinten Nationen. Zusehen, wie sie Welle um Welle entstehen, von 1776 bis 2011.",
+  "file": "stories/de/independence.json"
+ },
+ {
+  "id": "south-china-sea",
+  "cat": "Geopolitics",
+  "title": "Ein Meer, sechs Anspruchsteller",
+  "hook": "China beansprucht den Großteil des Südchinesischen Meeres. Seine Nachbarn und ein internationales Schiedsgericht sehen das anders.",
+  "file": "stories/de/south-china-sea.json"
+ },
+ {
+  "id": "water-wars",
+  "cat": "Geopolitics",
+  "title": "Flüsse über Grenzen",
+  "hook": "Wenn ein Fluss eine Grenze überquert, hat der Oberlieger den Hahn in der Hand. Drei Flüsse zeigen, was dann geschieht.",
+  "file": "stories/de/water-wars.json"
+ },
+ {
+  "id": "ports",
+  "cat": "Economics",
+  "title": "Wohin die Container gehen",
+  "hook": "Alle zehn der größten Containerhäfen der Welt liegen in Asien, sechs davon in Festlandchina.",
+  "file": "stories/de/ports.json"
+ },
+ {
+  "id": "big-mac",
+  "cat": "Economics",
+  "title": "Der Burger-Standard",
+  "hook": "Ein Big Mac kostet in der Schweiz 9 Dollar und in Indien weniger als 2,50 Dollar. Was der Preis eines Burgers über Geld verrät.",
+  "file": "stories/de/big-mac.json"
+ },
+ {
+  "id": "nuclear",
+  "cat": "Geopolitics",
+  "title": "Der Atomklub",
+  "hook": "Neun Länder besitzen Atomwaffen. Vier weitere hatten einst welche und gaben sie auf.",
+  "file": "stories/de/nuclear.json"
+ },
+ {
+  "id": "us-abroad",
+  "cat": "Geopolitics",
+  "title": "Amerikas Stützpunkte im Ausland",
+  "hook": "Rund 170.000 US-Soldaten dienen im Ausland. Die Hälfte von ihnen ist in nur zwei Ländern stationiert.",
+  "file": "stories/de/us-abroad.json"
+ },
+ {
+  "id": "un-ukraine",
+  "cat": "Geopolitics",
+  "title": "Die Welt stimmt über die Ukraine ab",
+  "hook": "Im März 2022 forderten 141 Staaten in der UN den Abzug Russlands aus der Ukraine. Wer nicht zustimmte und wie sich das Abstimmungsverhalten seither verschoben hat.",
+  "file": "stories/de/un-ukraine.json"
+ },
+ {
+  "id": "russia-sanctions",
+  "cat": "Geopolitics",
+  "title": "Sanktionen und russisches Öl",
+  "hook": "Rund 50 Regierungen verhängten nach dem Einmarsch in die Ukraine Sanktionen gegen Russland. Der Großteil der Welt tat es nicht, und dorthin floss Russlands Öl.",
+  "file": "stories/de/russia-sanctions.json"
+ },
+ {
+  "id": "journeys",
+  "cat": "People",
+  "title": "Die großen Reisen",
+  "hook": "Eine Flotte, die die Erde umrundete, eine chinesische Armada und ein Reisender, der die halbe bekannte Welt durchwanderte.",
+  "file": "stories/de/journeys.json"
+ },
+ {
+  "id": "silk-road",
+  "cat": "People",
+  "title": "Die Seidenstraßen",
+  "hook": "1.500 Jahre lang zogen Seide, Papier, Glaube und Pest auf denselben Karawanenpfaden durch Asien.",
+  "file": "stories/de/silk-road.json"
+ },
+ {
+  "id": "out-of-africa",
+  "cat": "People",
+  "title": "Aus Afrika in die Welt",
+  "hook": "Jeder lebende Mensch stammt von Menschen ab, die in Afrika lebten. Wie und ungefähr wann sie den Rest der Welt erreichten.",
+  "file": "stories/de/out-of-africa.json"
+ },
+ {
+  "id": "covid-spread",
+  "cat": "People",
+  "title": "Wie sich COVID-19 ausbreitete",
+  "hook": "Von einer Stadt im Dezember 2019 in fast jedes Land der Erde in drei Monaten.",
+  "file": "stories/de/covid-spread.json"
+ },
+ {
+  "id": "earthquakes",
+  "cat": "Planet",
+  "title": "Wo die Erde bricht",
+  "hook": "Jedes große Erdbeben seit 1900 liegt auf wenigen schmalen Linien: den Rändern der Platten.",
+  "file": "stories/de/earthquakes.json"
+ },
+ {
+  "id": "counting-war",
+  "cat": "Geopolitics",
+  "title": "Krieg zählen",
+  "hook": "Forscher in Uppsala erfassen jeden tödlichen Zusammenstoß, den sie überprüfen können. Was ihre Daten für die Ukraine, Syrien und Sudan zeigen.",
+  "file": "stories/de/counting-war.json"
+ },
+ {
+  "id": "borders-in-time",
+  "cat": "Geopolitics",
+  "title": "Grenzen im Wandel der Zeit",
+  "hook": "Die meisten heutigen Grenzen sind jünger als die Generation der Großeltern. Wie Imperien zerfallen.",
+  "file": "stories/de/borders-in-time.json"
+ }
+]

@@ -1,0 +1,178 @@
+{
+  "id": "un-ukraine",
+  "cat": "Geopolitics",
+  "title": "Die Welt stimmt über die Ukraine ab",
+  "hook": "Im März 2022 forderten 141 Staaten in der UN den Abzug Russlands aus der Ukraine. Wer nicht zustimmte und wie sich das Abstimmungsverhalten seither verschoben hat.",
+  "notes": "Abstimmungen: namentliche Abstimmungen der elften Notstandssondertagung der UN-Generalversammlung, entnommen den Abstimmungsdaten der UN Digital Library (Y, N, A oder leer für jeden der 193 Mitgliedstaaten). Resolution ES-11/1 vom 2. März 2022 (Datensatz 3959039): 141 dafür, 5 dagegen, 35 Enthaltungen, 12 nicht abgestimmt. ES-11/4 vom 12. Oktober 2022 (Datensatz 3990400): 143, 5, 35, 10. ES-11/7 vom 24. Februar 2025 (Datensatz 4076672): 93, 18, 65, 17. ES-11/10 vom 24. Februar 2026 (Datensatz 4103179): 107, 12, 51, 23. Die beiden Abstimmungen von 2022 wurden Land für Land mit den offiziellen Sitzungsprotokollen A/ES-11/PV.5 und A/ES-11/PV.14 abgeglichen. Die Digital Library sperrt automatisierte Zugriffe, daher wurden ihre Seiten über Kopien im Internet Archive gelesen. „Nicht abgestimmt“ umfasst Delegationen, die abwesend waren oder nicht teilnahmen; es ist keine formelle Position. Am 24. Februar 2025 verabschiedete die Versammlung außerdem einen kürzeren, von den USA entworfenen und von europäischen Staaten geänderten Text (ES-11/8: 93 dafür, 8 dagegen, 73 Enthaltungen), der hier nicht kartiert ist. Resolutionen der Generalversammlung sind rechtlich nicht bindend. Taiwan, Kosovo, Palästina und die Vatikanstadt sind keine UN-Mitgliedstaaten und haben kein Stimmrecht.",
+  "data": {
+    "un": "data/geopolitics/un_votes.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "141 zu 5",
+      "text": "Am 2. März 2022, eine Woche nach Beginn der russischen Großinvasion, forderte die UN-Generalversammlung Russland auf, seine Truppen „sofort, vollständig und bedingungslos“ aus der Ukraine abzuziehen. 141 der 193 Mitgliedstaaten stimmten dafür, 5 dagegen, 35 enthielten sich; 12 stimmten nicht ab.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "un",
+          "set": "es11_1",
+          "colors": {
+            "yes": "c1",
+            "no": "c2",
+            "abstain": "c3",
+            "absent": "muted"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Die fünf Gegenstimmen",
+      "text": "Nur Russland und vier weitere Staaten stimmten mit Nein: Belarus, Nordkorea, Syrien und Eritrea. Sieben Monate später wiederholte sich bei der Abstimmung über Russlands Annexionsansprüche dieselbe Zahl der Gegenstimmen, mit Nicaragua an der Stelle Eritreas, das sich enthielt.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          75,
+          35
+        ],
+        "zoom": 1.1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "un",
+          "set": "es11_1",
+          "colors": {
+            "no": "c2"
+          }
+        }
+      ],
+      "highlight": [
+        "RUS",
+        "BLR",
+        "PRK",
+        "SYR",
+        "ERI"
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "Die großen Enthaltungen",
+      "text": "Unter den 35 Enthaltungen waren China und Indien, die beiden bevölkerungsreichsten Länder, sowie Pakistan, Bangladesch, Vietnam, Iran und Südafrika. 17 der Staaten, die sich enthielten, lagen in Afrika. In der Debatte begründeten mehrere ihre Enthaltung mit Aufrufen zu Dialog und einer Verhandlungslösung.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          55,
+          10
+        ],
+        "zoom": 1.25
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "un",
+          "set": "es11_1",
+          "colors": {
+            "yes": "c1",
+            "abstain": "c3",
+            "absent": "muted"
+          }
+        }
+      ],
+      "highlight": [
+        "CHN",
+        "IND",
+        "ZAF",
+        "PAK",
+        "BGD",
+        "VNM",
+        "IRN"
+      ]
+    },
+    {
+      "title": "Vier Abstimmungen, vier Jahre",
+      "text": "Die Versammlung hat mehrfach über den Krieg abgestimmt. Eine Abstimmung zum Vergleich auswählen.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "switch": {
+        "label": "Abstimmung",
+        "start": 0,
+        "options": [
+          {
+            "v": "es11_1",
+            "label": "März 2022",
+            "text": "März 2022, „Aggression gegen die Ukraine“: 141 dafür, 5 dagegen, 35 Enthaltungen. Die Forderung nach einem Abzug Russlands wird vom Großteil der Welt unterstützt, mit Ausnahme von Teilen Afrikas und Asiens."
+          },
+          {
+            "v": "es11_4",
+            "label": "Okt. 2022",
+            "text": "Oktober 2022, nachdem Russland die Annexion von vier ukrainischen Regionen verkündet hatte: 143 dafür, 5 dagegen, 35 Enthaltungen. Die Versammlung erklärte die Annexion für ungültig; die größte Mehrheit der vier hier gezeigten Abstimmungen."
+          },
+          {
+            "v": "es11_7",
+            "label": "Feb. 2025",
+            "text": "Februar 2025, zum dritten Jahrestag: 93 dafür, 18 dagegen, 65 Enthaltungen. Die USA, die einen eigenen, kürzeren Text eingebracht hatten, stimmten an der Seite Russlands dagegen, ebenso Ungarn und Israel. Brasilien, Saudi-Arabien und die Golfstaaten enthielten sich."
+          },
+          {
+            "v": "es11_10",
+            "label": "Feb. 2026",
+            "text": "Februar 2026, „Unterstützung für einen dauerhaften Frieden in der Ukraine“: 107 dafür, 12 dagegen, 51 Enthaltungen. Die USA und Ungarn enthielten sich; China, Indien und Südafrika enthielten sich wie bei jeder Abstimmung."
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "un",
+          "set": "{v}",
+          "colors": {
+            "yes": "c1",
+            "no": "c2",
+            "abstain": "c3",
+            "absent": "muted"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Wer die Seite wechselte",
+      "text": "Von den 141 Ländern, die im März 2022 dafür stimmten, taten dies im Februar 2026 erneut 106. 35 taten es nicht: Die meisten enthielten sich, darunter die USA, Brasilien, Indonesien, Saudi-Arabien und Ungarn; Niger stimmte dagegen, einige stimmten nicht ab. Bolivien ging den umgekehrten Weg, von der Enthaltung zur Zustimmung.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "un",
+          "set": "shift",
+          "colors": {
+            "kept": "c1",
+            "left": "c3",
+            "joined": "c4"
+          }
+        }
+      ]
+    }
+  ]
+}

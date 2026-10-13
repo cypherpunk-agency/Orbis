@@ -27,7 +27,7 @@ A story is one JSON file in `stories/`, listed in `stories/index.json`. It names
 |---|---|
 | `title`, `text` | Heading and 1–4 sentences. Plain language, active voice, numbers rounded. |
 | `view` | `{ "mode": "globe" \| "equal" \| "mercator", "center": [lon, lat], "zoom": 1 }`. `equal` is the flat Equal Earth map. Zoom 1 shows the whole globe; 2–3 a region. |
-| `basemap` | `"political"` (default), `"satellite"`, `"night"` |
+| `basemap` | `"political"` (default), `"satellite"`, `"night"`, `"terrain"` |
 | `layers` | Array of layer specs (below). Each names a dataset alias in `data`. Its dataset's `source` appears in the UI automatically. |
 | `timeline` | `{ "years": [2000, 2024] \| [list], "start": 2024, "captions": { "2008": "…" }, "format": "month" }`. `[a, b]` with a gap > 1 means every year from a to b. With `"format": "month"`, years are `yyyymm` numbers (e.g. `202003`). Layers with `"year": "t"` follow the slider. |
 | `chart` | Top-N bar chart in the panel: same data fields as a layer, plus `title`, `top` (default 8), `fmt`, `color`, `share: true` (percent of world total). |
@@ -106,6 +106,12 @@ Flow rows are `[from, to, value, quantity_or_null]`, sorted by value.
 ## Formats (`fmt`)
 
 `int` (1,234), `num`, `dollar` ($6.22), `tpp` (tonnes/person), `mil` ("1,464 M"), `yrs`, `pct0`, `usd`, `eur`, `people`, `degc`, `ppkm2`, `d3:<format>` (any d3-format string, e.g. `d3:$.2f`), `kbd` thousand barrels/day → "1.2 m b/d", `mbd`, `bcm`, `bcfd`, `musd` (million USD → "$1.2 bn"), `busd` (billion USD → "$1.2 tn"), `t` (tonnes), `kt` (thousand tonnes), `kg`, `mt` (thousand tonnes → "Mt"), `pct` (value already in %), `bpp`, `m3pp`. Anything else: compact SI.
+
+## Editor and translations
+
+- `editor.html` edits a story as JSON, checks datasets, layer types, aliases, switch placeholders and source ids, and previews it in Orbis (`index.html#@draft/<scene>`, read from this browser's storage). Unlisted files can also be opened directly: `index.html#@stories/<file>.json`.
+- Translations live in `stories/<lang>/<id>.json` with exactly the same structure as the English file; only text fields change (keep `{placeholders}`, ids, aliases and option values). Rebuild the language index with `python3 tools/build/lang_index.py <lang>`. Missing translations fall back to English. Translated stories are labelled as unreviewed machine translations in their notes until a person checks them and adds `"reviewed": true`.
+- Interface strings are in `js/i18n.js`.
 
 ## Writing rules
 - One idea per scene; the map must show what the text says.

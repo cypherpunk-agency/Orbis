@@ -1,0 +1,250 @@
+{
+  "id": "big-mac",
+  "cat": "Economics",
+  "title": "Der Burger-Standard",
+  "hook": "Ein Big Mac kostet in der Schweiz 9 Dollar und in Indien weniger als 2,50 Dollar. Was der Preis eines Burgers über Geld verrät.",
+  "notes": "Daten: The Economist, Big-Mac-Index (github.com/TheEconomist/big-mac-data), CC BY 4.0; Erhebung vom Juli 2026, sofern nicht anders angegeben, für die Zeitleiste eine Erhebung zur Jahresmitte pro Jahr. Die Dollarpreise beruhen auf Marktwechselkursen, die The Economist erhoben hat (Refinitiv); die Wechselkurse selbst werden nicht mitgeliefert. Der Wert für den Euroraum ist ein gewichteter Durchschnitt und wird für jedes Land angezeigt, das im jeweiligen Jahr den Euro hatte; die tatsächlichen Preise unterscheiden sich zwischen den Mitgliedstaaten. Der „BIP-bereinigte“ Index stammt von The Economist: Er vergleicht jeden Preis mit dem, was angesichts des BIP pro Kopf des Landes zu erwarten wäre (IWF-Daten). Der Big-Mac-Index ist ein augenzwinkernder Wegweiser zur Kaufkraftparität, keine Wechselkursprognose: Lokale Kosten, Steuern, Wettbewerb und der Stellenwert des Burgers unterscheiden sich von Land zu Land.",
+  "data": {
+    "bm": "data/economics/bigmac.json"
+  },
+  "scenes": [
+    {
+      "title": "Ein Burger, viele Preise",
+      "text": "Der Big Mac wird fast überall nach demselben Rezept hergestellt, daher ist sein Preis ein praktischer Maßstab. Im Juli 2026 kostete er in den USA 6,22 Dollar, in der Schweiz über 9 Dollar und in Norwegen und Kolumbien etwa 8 Dollar, in Indien, Indonesien und Taiwan dagegen weniger als 2,50 Dollar.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "bm",
+          "series": "price_usd",
+          "year": 2026,
+          "title": "Preis eines Big Mac, US-Dollar"
+        }
+      ],
+      "chart": {
+        "data": "bm",
+        "series": "price_usd",
+        "year": 2026,
+        "top": 7,
+        "title": "Teuerste Big Macs, US-Dollar",
+        "color": "c3"
+      }
+    },
+    {
+      "title": "Was Burger über Währungen verraten",
+      "text": "Langfristig sollten sich Wechselkurse so bewegen, dass dieselben Waren überall gleich viel kosten. Nach diesem Maßstab ist der Schweizer Franken gegenüber dem Dollar um etwa 45 % überbewertet, der Euro um etwa 14 % und das Pfund um etwa 19 %. Der Yen ist um etwa 50 % unterbewertet, Chinas Yuan um etwa 37 %. Die USA sind die Bezugsgröße.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "fills": {
+        "ARE": "c4",
+        "ARG": "muted",
+        "AUS": "muted",
+        "AUT": "c2",
+        "AZE": "c4",
+        "BEL": "c2",
+        "BGR": "c2",
+        "BHR": "c4",
+        "BRA": "c4",
+        "CAN": "muted",
+        "CHE": "c2",
+        "CHL": "c4",
+        "CHN": "c4",
+        "COL": "c2",
+        "CRI": "c2",
+        "CYP": "c2",
+        "CZE": "c4",
+        "DEU": "c2",
+        "DNK": "c2",
+        "EGY": "c1",
+        "ESP": "c2",
+        "EST": "c2",
+        "FIN": "c2",
+        "FRA": "c2",
+        "GBR": "c2",
+        "GRC": "c2",
+        "GTM": "c4",
+        "HKG": "c1",
+        "HND": "c4",
+        "HRV": "c2",
+        "HUN": "c4",
+        "IDN": "c1",
+        "IND": "c1",
+        "IRL": "c2",
+        "ISR": "c2",
+        "ITA": "c2",
+        "JOR": "c1",
+        "JPN": "c1",
+        "KOR": "c4",
+        "KWT": "c4",
+        "LBN": "c4",
+        "LTU": "c2",
+        "LUX": "c2",
+        "LVA": "c2",
+        "MDA": "c4",
+        "MEX": "muted",
+        "MLT": "c2",
+        "MYS": "c1",
+        "NIC": "c4",
+        "NLD": "c2",
+        "NOR": "c2",
+        "NZL": "c4",
+        "OMN": "c4",
+        "PAK": "c4",
+        "PER": "c4",
+        "PHL": "c1",
+        "POL": "muted",
+        "PRT": "c2",
+        "QAT": "c4",
+        "ROU": "c4",
+        "SAU": "c4",
+        "SGP": "muted",
+        "SVK": "c2",
+        "SVN": "c2",
+        "SWE": "c2",
+        "THA": "c4",
+        "TUR": "c2",
+        "TWN": "c1",
+        "UKR": "c1",
+        "URY": "c2",
+        "USA": "muted",
+        "VEN": "c4",
+        "VNM": "c1",
+        "ZAF": "c1"
+      },
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Um 10 % oder mehr überbewertet"
+        },
+        {
+          "color": "muted",
+          "label": "Innerhalb von 10 %"
+        },
+        {
+          "color": "c4",
+          "label": "Um 10–40 % unterbewertet"
+        },
+        {
+          "color": "c1",
+          "label": "Um 40 % oder mehr unterbewertet"
+        }
+      ],
+      "sources": [
+        "economist-bigmac"
+      ]
+    },
+    {
+      "title": "Der lange Abstieg des Yen",
+      "text": "Die Preise im Verhältnis zu den USA bewegen sich mit den Wechselkursen. 2000 kostete ein Big Mac in Japan ein Viertel mehr als in den USA. 2026 kostete er nur halb so viel, weil der Yen an Wert verlor und die japanischen Preise kaum stiegen. Auf „Play“ tippen, um auch Großbritannien, Brasilien und andere schwanken zu sehen.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "bm",
+          "series": "rel_us",
+          "year": "t",
+          "title": "Big-Mac-Preis in % des US-Preises",
+          "fmt": "pct"
+        }
+      ],
+      "timeline": {
+        "years": [
+          2000,
+          2026
+        ],
+        "start": 2000,
+        "captions": {
+          "2002": "Argentinien gibt die Dollarbindung auf: Ein Big Mac kostet dort 80 Cent.",
+          "2008": "Schwacher Dollar: Big Macs in Europa und Norwegen kosten weit mehr als in den USA.",
+          "2011": "Brasiliens Real und der Schweizer Franken erreichen Rekordhochs.",
+          "2018": "Lira-Krise in der Türkei: Der Big Mac dort fällt auf die Hälfte des US-Preises.",
+          "2022": "Ein starker Dollar lässt den Großteil der Welt billig erscheinen.",
+          "2026": "Japans Big Mac kostet die Hälfte des US-Preises."
+        }
+      }
+    },
+    {
+      "title": "Reiche Länder zahlen mehr",
+      "text": "Burger sind in armen Ländern auch deshalb billig, weil Löhne und Mieten niedrig sind. Der bereinigte Index von The Economist berücksichtigt das Einkommen jedes Landes. Auf dieser Grundlage ist Chinas Yuan nur um etwa ein Viertel unterbewertet, nicht um 37 %. Uruguay, Kolumbien und die Schweiz erscheinen am teuersten, Taiwan und Indonesien weiterhin am billigsten.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "bm",
+          "series": "rel_us_adj",
+          "year": 2026,
+          "title": "Big-Mac-Preis in % des US-Preises, einkommensbereinigt",
+          "fmt": "pct"
+        }
+      ],
+      "chart": {
+        "data": "bm",
+        "series": "rel_us_adj",
+        "year": 2026,
+        "top": 8,
+        "title": "Am teuersten nach Einkommensbereinigung, %",
+        "fmt": "pct",
+        "color": "c2"
+      }
+    },
+    {
+      "title": "Burger-Inflation",
+      "text": "Auch die Preise steigen. Ein Big Mac kostete in den USA 2000 noch 2,24 Dollar und 2026 6,22 Dollar, fast dreimal so viel. Die stärksten Sprünge kamen nach der Pandemie, als Löhne und Lebensmittelkosten rasch stiegen. Die Jahre abspielen, um die Preise weltweit steigen zu sehen.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "spikes",
+          "data": "bm",
+          "series": "price_usd",
+          "year": "t",
+          "color": "c3",
+          "title": "Preis eines Big Mac, US-Dollar",
+          "labels": 4,
+          "maxH": 0.5,
+          "vmax": 9.5
+        }
+      ],
+      "timeline": {
+        "years": [
+          2000,
+          2026
+        ],
+        "start": 2026
+      }
+    }
+  ]
+}

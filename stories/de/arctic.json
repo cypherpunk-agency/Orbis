@@ -1,0 +1,108 @@
+{
+  "id": "arctic",
+  "cat": "Geopolitics",
+  "title": "Die Arktis öffnet sich",
+  "hook": "Das schmelzende Eis schafft einen neuen Ozean – und neue Ansprüche.",
+  "notes": "Minimum des arktischen Meereises im September: ≈ 7 Millionen km² um 1980 gegenüber ≈ 3,4 Millionen im Jahr 2012 (Rekordtief), NSIDC. Das Eis ist schematisch als flächengleicher Kreis dargestellt. Routen schematisch; Entfernungen entlang der gezeichneten Linie berechnet.",
+  "data": {"routes": "data/legacy/routes.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Der Blick vom Pol",
+      "text": "Die meisten Karten schieben die Arktis an den Rand. Auf dem Globus ist sie das Zentrum eines Rings von Mächten: Russland, die USA, Kanada, Dänemark über Grönland, Norwegen.",
+      "view": {"mode": "globe", "center": [0, 88], "zoom": 1.25},
+      "fills": {"RUS": "c2", "USA": "c1", "CAN": "c1", "GRL": "c4", "NOR": "c4", "ISL": "c4"}
+    },
+    {
+      "title": "Das Eis schrumpft",
+      "text": "Um 1980 bedeckte das Meereis im September rund 7 Millionen km². 2012 sank die Fläche auf etwa 3,4 Millionen. Jeder Kreis hat dieselbe Fläche wie das Eis im jeweiligen Jahr.",
+      "view": {"mode": "globe", "center": [0, 88], "zoom": 1.25},
+      "circles": [
+        {"center": [0, 90], "km": 1500, "color": "c1", "label": "≈ 1980", "labelAt": [135, 74]},
+        {"center": [0, 90], "km": 1040, "color": "c3", "label": "≈ 2012", "labelAt": [-45, 84]}
+      ]
+    },
+    {
+      "title": "Eine Abkürzung nach Asien",
+      "text": "Der Nördliche Seeweg entlang der russischen Küste ist zwischen Europa und Ostasien weit kürzer als die Route über Suez. Eis, Kosten und Politik halten die meisten Schiffe aber noch fern.",
+      "view": {"mode": "globe", "center": [60, 65], "zoom": 0.95},
+      "routes": [
+        {
+          "path": [
+            [4, 52],
+            [5, 58],
+            [8, 63],
+            [18, 70.5],
+            [33, 71],
+            [50, 72.5],
+            [62, 76.5],
+            [80, 77],
+            [104, 77.9],
+            [130, 76],
+            [160, 71],
+            [-170, 67.5],
+            [-169, 64],
+            [178, 62],
+            [163, 55],
+            [150, 45],
+            [142, 38],
+            [139.7, 35.2]
+          ],
+          "color": "c4",
+          "width": 2.5,
+          "label": "Nördlicher Seeweg",
+          "dist": true,
+          "flow": true
+        },
+        {
+          "path": [
+            [139.7, 35.2],
+            [132, 31],
+            [125, 28],
+            [118, 22],
+            [110, 10],
+            [104.5, 1.6],
+            [100.5, 3.5],
+            [95, 6],
+            [80, 5.5],
+            [60, 12.5],
+            [50, 12.8],
+            [43.4, 12.6],
+            [38.5, 20.5],
+            [33.5, 27.5],
+            [32.5, 30.2],
+            [32.3, 31.4],
+            [25, 34],
+            [12, 37.3],
+            [0, 37],
+            [-5.6, 35.95],
+            [-9.6, 38],
+            [-9.8, 43],
+            [-5.5, 48.6],
+            [1.5, 50.6],
+            [4, 52]
+          ],
+          "color": "c1",
+          "width": 2,
+          "label": "Über Suez",
+          "dist": true
+        }
+      ]
+    },
+    {
+      "title": "Die Nordwestpassage",
+      "text": "Auf kanadischer Seite ein Labyrinth aus Inseln. Kanada betrachtet die Gewässer als Binnengewässer; die USA und andere sehen darin eine internationale Meerenge.",
+      "view": {"mode": "globe", "center": [-100, 72], "zoom": 2},
+      "layers": [{"type": "lines", "data": "routes", "set": "nwp", "color": "c2", "width": 2.5, "labels": true, "flow": true}],
+      "fills": {"CAN": "c1"}
+    },
+    {
+      "title": "Wem der Pol gehört",
+      "text": "Russland, Dänemark und Kanada haben bei der UN Ansprüche auf den Meeresboden des Lomonossow-Rückens angemeldet. Die Ansprüche überschneiden sich, und alle drei schließen den Nordpol ein.",
+      "view": {"mode": "globe", "center": [0, 88], "zoom": 1.6},
+      "fills": {"RUS": "c2", "GRL": "c4", "CAN": "c1"},
+      "routes": [{"path": [[142, 77], [-5, 90], [-70, 83]], "color": "c3", "width": 3, "label": "Lomonossow-Rücken"}],
+      "points": [{"at": [0, 90], "label": "Nordpol", "r": 4}]
+    }
+  ]
+}

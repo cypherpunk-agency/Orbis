@@ -1,0 +1,90 @@
+{
+  "id": "demography",
+  "cat": "Statistics",
+  "title": "Die Welt im Jahr 2100",
+  "hook": "Europa und Ostasien ergrauen. Afrika ist jung.",
+  "notes": "Medianalter ≈ 2024 und Projektionen aus den UN World Population Prospects 2024 (mittlere Variante), gerundet. Projektionen sind Szenarien, keine Gewissheiten.",
+  "data": {"values": "data/legacy/values.json"},
+  "sources": ["editorial"],
+  "scenes": [
+    {
+      "title": "Medianalter heute",
+      "text": "Die Hälfte der Menschen in jedem Land ist älter als dieser Wert. Japan und Italien liegen bei etwa 48–49 Jahren. Niger liegt bei etwa 15.",
+      "view": {"mode": "equal", "center": [20, 15], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "values", "series": "median_age", "year": 2024, "title": "Medianalter, Jahre (≈ 2024)", "showYear": false}]
+    },
+    {
+      "title": "Der Gipfel der Menschheit",
+      "text": "Die UN erwarten, dass die Weltbevölkerung von heute rund 8,2 Milliarden auf einen Höchststand von etwa 10,3 Milliarden Mitte der 2080er-Jahre wächst und danach langsam zurückgeht.",
+      "view": {"mode": "globe", "center": [40, 20], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "values", "series": "median_age", "year": 2024, "title": "Medianalter, Jahre (≈ 2024)", "showYear": false}]
+    },
+    {
+      "title": "Schrumpfende Riesen",
+      "text": "Chinas Bevölkerung sinkt bereits und dürfte sich bis 2100 ungefähr halbieren. Auch Japan, Südkorea, Italien und große Teile Osteuropas schrumpfen.",
+      "view": {"mode": "globe", "center": [115, 35], "zoom": 1.4},
+      "fills": {"CHN": "c2", "JPN": "c2", "KOR": "c2"},
+      "highlight": ["CHN", "JPN", "KOR"]
+    },
+    {
+      "title": "Afrikas Jahrhundert",
+      "text": "Auf Subsahara-Afrika wird bis 2050 mehr als die Hälfte des weltweiten Bevölkerungswachstums entfallen. Bis 2100 dürften Nigeria, die DR Kongo und Äthiopien zu den bevölkerungsreichsten Ländern der Erde gehören.",
+      "view": {"mode": "globe", "center": [20, 0], "zoom": 1.1},
+      "fills": {
+        "AGO": "c4",
+        "BEN": "c4",
+        "BWA": "c4",
+        "BFA": "c4",
+        "BDI": "c4",
+        "CMR": "c4",
+        "CAF": "c4",
+        "TCD": "c4",
+        "COD": "c4",
+        "COG": "c4",
+        "CIV": "c4",
+        "DJI": "c4",
+        "GNQ": "c4",
+        "ERI": "c4",
+        "SWZ": "c4",
+        "ETH": "c4",
+        "GAB": "c4",
+        "GMB": "c4",
+        "GHA": "c4",
+        "GIN": "c4",
+        "GNB": "c4",
+        "KEN": "c4",
+        "LSO": "c4",
+        "LBR": "c4",
+        "MDG": "c4",
+        "MWI": "c4",
+        "MLI": "c4",
+        "MRT": "c4",
+        "MOZ": "c4",
+        "NAM": "c4",
+        "NER": "c4",
+        "NGA": "c4",
+        "RWA": "c4",
+        "SEN": "c4",
+        "SLE": "c4",
+        "SOM": "c4",
+        "SOL": "c4",
+        "ZAF": "c4",
+        "SSD": "c4",
+        "SDN": "c4",
+        "TZA": "c4",
+        "TGO": "c4",
+        "UGA": "c4",
+        "ZMB": "c4",
+        "ZWE": "c4"
+      },
+      "highlight": ["NGA", "COD", "ETH"]
+    },
+    {
+      "title": "Indiens Höchststand",
+      "text": "Indien hat China 2023 als bevölkerungsreichstes Land überholt. Seine Bevölkerung dürfte Anfang der 2060er-Jahre mit rund 1,7 Milliarden ihren Höchststand erreichen.",
+      "view": {"mode": "globe", "center": [80, 22], "zoom": 1.6},
+      "fills": {"IND": "c3"},
+      "highlight": ["IND"]
+    }
+  ]
+}

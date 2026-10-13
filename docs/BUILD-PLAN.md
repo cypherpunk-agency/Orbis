@@ -59,7 +59,9 @@ Goal: every capability in `FRAMEWORK.md` and every story in `ROADMAP.md`, built 
 
 ## Wave 5: product
 
-German; embed mode; save image / record video of a story; quiz mode; "your city in the world"; scene descriptions for screen readers; story editor (JSON with live preview).
+**Done.** German (interface in `js/i18n.js`, all stories in `stories/de/`, machine-translated and awaiting human review); embed mode (`?embed=1`); save image (PNG with caption strip) and record video (WebM) of a scene; share link and embed code; quiz mode (`#quiz`); "your city in the world" (`#city`); scene descriptions for screen readers; story editor (`editor.html`, preview via `#@draft`).
+
+All five waves are built. What remains is in the list below.
 
 ## Blocked or deferred (needs a decision or outside input)
 

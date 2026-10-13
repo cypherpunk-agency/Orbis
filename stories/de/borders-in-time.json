@@ -1,0 +1,193 @@
+{
+  "id": "borders-in-time",
+  "cat": "Geopolitics",
+  "title": "Grenzen im Wandel der Zeit",
+  "hook": "Die meisten heutigen Grenzen sind jünger als die Generation der Großeltern. Wie Imperien zerfallen.",
+  "notes": "Historische Grenzen aus CShapes 2.0 (ETH Zürich), das die völkerrechtlichen Grenzen unabhängiger Staaten und ihrer abhängigen Gebiete erfasst; Momentaufnahmen jeweils zum 1. Januar oder 1. Juli des gezeigten Jahres. CShapes lässt Veränderungen unter 10.000 km² sowie später rückgängig gemachte Besetzungen in Kriegszeiten weg, daher zeigt 1945 keine nationalsozialistischen Annexionen. Die Namen folgen CShapes. Lizenz: CC BY-NC-SA 4.0 (nicht kommerziell).",
+  "data": {
+    "b": "data/history/borders.json"
+  },
+  "scenes": [
+    {
+      "title": "Europa 1914",
+      "text": "Am Vorabend des Ersten Weltkriegs beherrschten drei Imperien den Großteil Mittel- und Osteuropas: Österreich-Ungarn, das Russische Reich und das Osmanische Reich. Polen, die Tschechoslowakei, Jugoslawien und die baltischen Staaten gab es nicht.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          22,
+          48
+        ],
+        "zoom": 3.2
+      },
+      "layers": [
+        {
+          "type": "borders",
+          "data": "b",
+          "year": 1914
+        }
+      ]
+    },
+    {
+      "title": "Österreich-Ungarn zerfällt",
+      "text": "Die Niederlage von 1918 zerschlug Österreich-Ungarn in neue Staaten: Österreich, Ungarn und die Tschechoslowakei; seine südlichen Gebiete schlossen sich dem neuen Jugoslawien an, andere fielen an Polen, Rumänien und Italien. Wien wurde von der Hauptstadt eines Reiches mit 50 Millionen Menschen zur Hauptstadt eines Landes mit 6,5 Millionen. Auf „Play“ tippen.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          18,
+          47.5
+        ],
+        "zoom": 4.2
+      },
+      "layers": [
+        {
+          "type": "borders",
+          "data": "b",
+          "year": "t"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1914,
+          1920
+        ],
+        "start": 1914,
+        "captions": {
+          "1914": "Österreich-Ungarn, 1914",
+          "1920": "Seine Nachfolgestaaten, 1920"
+        }
+      }
+    },
+    {
+      "title": "Europa nach Hitler",
+      "text": "Nach 1945 wurde Deutschland geteilt, und Polen rückte nach Westen: Es verlor seine Ostgebiete an die Sowjetunion und erhielt deutsches Gebiet bis an Oder und Neiße. Die baltischen Staaten waren in die Sowjetunion eingegliedert worden. Auf „Play“ tippen.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          18,
+          51
+        ],
+        "zoom": 3.6
+      },
+      "layers": [
+        {
+          "type": "borders",
+          "data": "b",
+          "year": "t"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1938,
+          1950
+        ],
+        "start": 1938,
+        "captions": {
+          "1938": "Europa 1938",
+          "1950": "Deutschland geteilt, Polen nach Westen verschoben (1950)"
+        }
+      }
+    },
+    {
+      "title": "Afrika wird unabhängig",
+      "text": "1950 wurde fast ganz Afrika von Europa aus regiert. Allein 1960 wurden 17 afrikanische Länder unabhängig, die meisten von ihnen ehemalige französische Kolonien. Bis 1975 war das portugiesische Kolonialreich, das letzte große, verschwunden. Auf „Play“ tippen.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          18,
+          3
+        ],
+        "zoom": 1.9
+      },
+      "layers": [
+        {
+          "type": "borders",
+          "data": "b",
+          "year": "t"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1950,
+          1960,
+          1975
+        ],
+        "start": 1950,
+        "captions": {
+          "1950": "Koloniales Afrika, 1950 (Flächen mit dem Namen des Gebiets beschriftet)",
+          "1960": "Mitte 1960: Das „Afrikanische Jahr“ ist im Gange",
+          "1975": "1975: Angola und Mosambik unabhängig"
+        }
+      }
+    },
+    {
+      "title": "Die Sowjetunion und Jugoslawien zerfallen",
+      "text": "1991 löste sich die Sowjetunion in 15 Staaten auf, von Estland bis Kasachstan, und Jugoslawien begann im Krieg zu zerbrechen. Am 1. Januar 1993 teilte sich die Tschechoslowakei friedlich in Tschechien und die Slowakei.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          40,
+          50
+        ],
+        "zoom": 2.1
+      },
+      "layers": [
+        {
+          "type": "borders",
+          "data": "b",
+          "year": "t"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1990,
+          1993
+        ],
+        "start": 1990,
+        "captions": {
+          "1990": "1990: die UdSSR, Jugoslawien, die Tschechoslowakei",
+          "1993": "Mitte 1993: ihre Nachfolgestaaten"
+        }
+      }
+    },
+    {
+      "title": "130 Jahre auf einen Blick",
+      "text": "Die ganze Abfolge von 1886 bis 2019 abspielen. Imperien schrumpfen, Kolonien werden zu Staaten, und die Zahl der unabhängigen Staaten verdreifacht sich mehr als, von etwa 55 auf über 170.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          20,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "borders",
+          "data": "b",
+          "year": "t",
+          "labels": false
+        }
+      ],
+      "timeline": {
+        "years": [
+          1886,
+          1900,
+          1914,
+          1920,
+          1925,
+          1938,
+          1945,
+          1950,
+          1960,
+          1975,
+          1990,
+          1993,
+          2000,
+          2011,
+          2019
+        ],
+        "start": 1886
+      }
+    }
+  ]
+}

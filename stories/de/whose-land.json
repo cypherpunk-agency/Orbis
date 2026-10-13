@@ -1,0 +1,248 @@
+{
+  "id": "whose-land",
+  "cat": "Geopolitics",
+  "title": "Wessen Land?",
+  "hook": "Dasselbe Stück Land wird unterschiedlich gezeichnet – je nachdem, wer die Karte druckt.",
+  "notes": "Umstrittene Gebiete und ihre Zugehörigkeit, wie sie auf den „Point of View“-Karten von Natural Earth (Version 5.1) gezeichnet sind; diese folgen den offiziellen Positionen oder der üblichen Kartenpraxis des jeweiligen Landes. Die Sichtweisen von Natural Earth können jüngeren diplomatischen Veränderungen hinterherhinken; gestrichelte Umrisse markieren Gebiete, deren Zugehörigkeit sich je nach Sichtweise unterscheidet. „Umstritten“ heißt, dass die Karte das Gebiet keinem Land zuordnet.",
+  "data": {
+    "pov": "data/geopolitics/pov.json"
+  },
+  "scenes": [
+    {
+      "title": "Eine Halbinsel, zwei Karten",
+      "text": "Russland hat die Krim 2014 annektiert. Russische Karten zeigen sie als Teil Russlands; die Ukraine und die meisten anderen Länder zeichnen sie weiterhin als ukrainisch. Die Sichtweise umschalten.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          35,
+          46.5
+        ],
+        "zoom": 9
+      },
+      "switch": {
+        "label": "Aus Sicht von",
+        "options": [
+          {
+            "v": "UA",
+            "label": "Ukraine"
+          },
+          {
+            "v": "RU",
+            "label": "Russland"
+          },
+          {
+            "v": "US",
+            "label": "USA"
+          },
+          {
+            "v": "CN",
+            "label": "China"
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "pov",
+          "data": "pov",
+          "view": "{v}",
+          "areas": [
+            "Crimea",
+            "Ukraine"
+          ]
+        }
+      ],
+      "countryLabels": true,
+      "political": true
+    },
+    {
+      "title": "Kaschmir, dreifach",
+      "text": "Indien, Pakistan und China kontrollieren jeweils einen Teil Kaschmirs, und jedes Land beansprucht mehr. Indische Karten zeigen das gesamte Gebiet als indisch, auch die von Pakistan und China gehaltenen Teile. Pakistanische und chinesische Karten zeigen ihre eigenen Ansprüche.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          77,
+          34.5
+        ],
+        "zoom": 6
+      },
+      "switch": {
+        "label": "Aus Sicht von",
+        "options": [
+          {
+            "v": "IN",
+            "label": "Indien"
+          },
+          {
+            "v": "PK",
+            "label": "Pakistan"
+          },
+          {
+            "v": "CN",
+            "label": "China"
+          },
+          {
+            "v": "US",
+            "label": "USA"
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "pov",
+          "data": "pov",
+          "view": "{v}",
+          "areas": [
+            "India",
+            "Pakistan",
+            "China",
+            "Siachen Glacier"
+          ]
+        }
+      ],
+      "countryLabels": true,
+      "political": true
+    },
+    {
+      "title": "Westsahara",
+      "text": "Marokko kontrolliert den größten Teil der Westsahara und betrachtet sie als marokkanisch; die Frente Polisario strebt die Unabhängigkeit an. Marokkanische Karten zeigen überhaupt keine Grenze. Viele andere zeichnen das Gebiet gesondert, und einige, etwa die französische und die indische Karte von Natural Earth, zeigen es als marokkanisch.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -11,
+          25
+        ],
+        "zoom": 4.5
+      },
+      "switch": {
+        "label": "Aus Sicht von",
+        "options": [
+          {
+            "v": "MA",
+            "label": "Marokko"
+          },
+          {
+            "v": "ES",
+            "label": "Spanien"
+          },
+          {
+            "v": "FR",
+            "label": "Frankreich"
+          },
+          {
+            "v": "IN",
+            "label": "Indien"
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "pov",
+          "data": "pov",
+          "view": "{v}",
+          "areas": [
+            "W. Sahara"
+          ]
+        }
+      ],
+      "countryLabels": true,
+      "political": true
+    },
+    {
+      "title": "Inseln in den chinesischen Meeren",
+      "text": "Chinesische Karten zeigen Taiwan als Teil Chinas und beanspruchen die Senkaku-/Diaoyu-Inseln, die Japan verwaltet. Die Spratly- und die Paracel-Inseln werden ganz oder teilweise von China, Taiwan, Vietnam und anderen beansprucht; die meisten Karten ordnen sie niemandem zu.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          118,
+          18
+        ],
+        "zoom": 2.7
+      },
+      "switch": {
+        "label": "Aus Sicht von",
+        "options": [
+          {
+            "v": "CN",
+            "label": "China"
+          },
+          {
+            "v": "TW",
+            "label": "Taiwan"
+          },
+          {
+            "v": "VN",
+            "label": "Vietnam"
+          },
+          {
+            "v": "JP",
+            "label": "Japan"
+          },
+          {
+            "v": "US",
+            "label": "USA"
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "pov",
+          "data": "pov",
+          "view": "{v}",
+          "areas": [
+            "Taiwan",
+            "Nansei-shoto",
+            "Spratly Is.",
+            "Paracel Is."
+          ]
+        }
+      ],
+      "countryLabels": true,
+      "political": true
+    },
+    {
+      "title": "Von manchen anerkannt",
+      "text": "Kosovo erklärte sich 2008 von Serbien unabhängig. Etwa die Hälfte der Staaten der Welt erkennt es an, daher erscheint es auf manchen Karten und auf anderen nicht. Argentinien beansprucht die Falklandinseln, die von Großbritannien regiert werden. Die Sichtweisen umschalten, um beide Konflikte sich verändern zu sehen.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -15,
+          15
+        ],
+        "zoom": 1.3
+      },
+      "switch": {
+        "label": "Aus Sicht von",
+        "options": [
+          {
+            "v": "US",
+            "label": "USA"
+          },
+          {
+            "v": "RU",
+            "label": "Russland"
+          },
+          {
+            "v": "AR",
+            "label": "Argentinien"
+          },
+          {
+            "v": "GB",
+            "label": "Vereinigtes Königreich"
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "pov",
+          "data": "pov",
+          "view": "{v}",
+          "areas": [
+            "Kosovo",
+            "Falkland Is."
+          ]
+        }
+      ],
+      "political": true
+    }
+  ]
+}

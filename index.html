@@ -16,22 +16,24 @@
 <canvas id="raster" aria-hidden="true"></canvas>
 <canvas id="map" role="img" aria-label="Interactive world map. Drag to turn, pinch or scroll to zoom, tap a country for its name."></canvas>
 
+<p id="srDesc" class="sr-only" aria-live="polite"></p>
 <header id="topbar">
-  <button id="tocBtn" class="pill" aria-controls="toc" aria-expanded="false">Stories</button>
+  <a id="openFull" class="pill" href="./" target="_blank" rel="noopener" hidden data-t="Open in Orbis">Open in Orbis</a>
+  <button id="tocBtn" class="pill" aria-controls="toc" aria-expanded="false" data-t="Stories">Stories</button>
   <span class="brand">Orbis</span>
   <span class="spacer"></span>
   <div class="bm-wrap">
-    <button id="bmBtn" class="pill" aria-haspopup="true" aria-expanded="false" aria-controls="bmMenu">Map</button>
+    <button id="bmBtn" class="pill" aria-haspopup="true" aria-expanded="false" aria-controls="bmMenu" data-t="Map">Map</button>
     <div id="bmMenu" role="menu" hidden>
-      <button role="menuitemradio" data-bm="political" aria-checked="true">Political</button>
-      <button role="menuitemradio" data-bm="satellite" aria-checked="false">Satellite</button>
-      <button role="menuitemradio" data-bm="night" aria-checked="false">Night lights</button>
-      <button role="menuitemradio" data-bm="terrain" aria-checked="false">Terrain</button>
+      <button role="menuitemradio" data-bm="political" aria-checked="true" data-t="Political">Political</button>
+      <button role="menuitemradio" data-bm="satellite" aria-checked="false" data-t="Satellite">Satellite</button>
+      <button role="menuitemradio" data-bm="night" aria-checked="false" data-t="Night lights">Night lights</button>
+      <button role="menuitemradio" data-bm="terrain" aria-checked="false" data-t="Terrain">Terrain</button>
     </div>
   </div>
-  <div class="zoom"><button id="zout" class="pill" aria-label="Zoom out">−</button><button id="zin" class="pill" aria-label="Zoom in">+</button></div>
-  <div class="seg" role="group" aria-label="Map shape">
-    <button data-mode="globe" aria-pressed="true">Globe</button><button data-mode="flat" aria-pressed="false">Flat</button>
+  <div class="zoom"><button id="zout" class="pill" aria-label="Zoom out" data-t-aria="Zoom out">−</button><button id="zin" class="pill" aria-label="Zoom in" data-t-aria="Zoom in">+</button></div>
+  <div class="seg" role="group" aria-label="Map shape" data-t-aria="Map shape">
+    <button data-mode="globe" aria-pressed="true" data-t="Globe">Globe</button><button data-mode="flat" aria-pressed="false" data-t="Flat">Flat</button>
   </div>
 </header>
 
@@ -53,28 +55,31 @@
   <div id="sMedia" class="collapsible" hidden></div>
   <div id="sChart" class="collapsible" hidden></div>
   <nav id="steps" aria-label="Story steps">
-    <button id="prev" class="btn">Back</button>
+    <button id="prev" class="btn" data-t="Back">Back</button>
     <div id="dots"></div>
-    <button id="next" class="btn">Next</button>
+    <button id="next" class="btn" data-t="Next">Next</button>
   </nav>
-  <details id="sNotes" class="collapsible"><summary>Sources and notes</summary><p id="sNotesBody"></p></details>
+  <details id="sNotes" class="collapsible"><summary data-t="Sources and notes">Sources and notes</summary><p id="sNotesBody"></p></details>
   <div id="sData" class="collapsible" aria-label="Data and licences"></div>
+  <div id="sTools" class="collapsible"></div>
 </section>
 
 <div id="lic" hidden role="dialog" aria-label="Data and licences">
-  <div class="toc-head"><h1>Data and licences</h1><button id="licClose">Close</button></div>
-  <p class="toc-lede">The base map and engine only use material licensed for commercial use. Story layers may use other licences; each one is labelled where it appears.</p>
+  <div class="toc-head"><h1 data-t="Data and licences">Data and licences</h1><button id="licClose" data-t="Close">Close</button></div>
+  <p class="toc-lede" data-t="The base map and engine only use material licensed for commercial use. Story layers may use other licences; each one is labelled where it appears.">The base map and engine only use material licensed for commercial use. Story layers may use other licences; each one is labelled where it appears.</p>
   <div id="licList"></div>
 </div>
 
 <div id="toc" hidden role="dialog" aria-label="Stories">
-  <div class="toc-head"><h1>Stories on a turning world</h1><button id="tocClose">Close</button></div>
-  <p class="toc-lede"><span id="tocCount">Short</span> stories about power, money, numbers and people. Each one moves the map for you. Switch between globe and flat map any time to see what changes.</p>
-  <button id="exploreBtn">Explore the map freely</button>
+  <div class="toc-head"><h1 data-t="Stories on a turning world">Stories on a turning world</h1><button id="tocClose" data-t="Close">Close</button></div>
+  <p class="toc-lede"><span id="tocCount"></span> <span data-t="short stories about power, money, numbers and people. Each one moves the map for you. Switch between globe and flat map any time to see what changes.">short stories about power, money, numbers and people. Each one moves the map for you. Switch between globe and flat map any time to see what changes.</span></p>
+  <button id="exploreBtn" data-t="Explore the map freely">Explore the map freely</button>
+  <div id="tocTools"></div>
   <div id="tocList"></div>
 </div>
 
 <script src="data/world.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/sources.js"></script>
 <script src="js/raster.js"></script>
 <script src="js/blocs.js"></script>
