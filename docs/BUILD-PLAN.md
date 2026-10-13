@@ -61,7 +61,7 @@ Goal: every capability in `FRAMEWORK.md` and every story in `ROADMAP.md`, built 
 
 **Done.** Embed mode (`?embed=1`); save image (PNG with caption strip) and record video (WebM) of a scene; share link and embed code; quiz mode (`#quiz`); "your city in the world" (`#city`); scene descriptions for screen readers; story editor (`editor.html`, preview via `#@draft`).
 
-All five waves are built. What remains is in the list below.
+All five waves are built. What remains is in the list below. The next plan (phases A–F) is [PLAN-HISTORY-ATLAS.md](PLAN-HISTORY-ATLAS.md).
 
 ## Blocked or deferred (needs a decision or outside input)
 

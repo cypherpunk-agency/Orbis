@@ -4,6 +4,8 @@ Status: limits of the current build, story backlog, and suggested technical path
 
 Base data must allow commercial use; story layers may use any licence that lets us publish the files in an open repository (two-tier rule in `CLAUDE.md`, details in [LICENSING.md](LICENSING.md)).
 
+
+**Next:** the plan for history series, wars, calendars, a live conflicts view and a country atlas is in [PLAN-HISTORY-ATLAS.md](PLAN-HISTORY-ATLAS.md); data ideas are in [DATA-CATALOG.md](DATA-CATALOG.md).
 ## Current technical limits
 
 ### Geometry
