@@ -70,6 +70,30 @@ const SOURCES = {
     url: "https://www.fao.org/faostat/en/#data/QCL", use: "commercial", redistribute: true,
     credit: "Source: FAO, FAOSTAT (accessed 2026-10-13). Not to be used in commercial promotion"
   },
+  "imf-weo": {
+    name: "IMF", what: "General government gross debt and GDP (World Economic Outlook, October 2026); household and corporate debt (Global Debt Database), 2000–2024, via IMF DataMapper", tier: "layer",
+    licence: "IMF terms, non-commercial", licenceUrl: "https://www.imf.org/en/About/copyright-and-terms",
+    url: "https://www.imf.org/external/datamapper", use: "noncommercial", redistribute: true,
+    credit: "Source: IMF World Economic Outlook (October 2026) and Global Debt Database, via IMF DataMapper"
+  },
+  "us-tic": {
+    name: "US Treasury TIC", what: "Major foreign holders of US Treasury securities, December 2005–2025", tier: "layer",
+    licence: "US public domain", licenceUrl: "https://www.usa.gov/government-copyright",
+    url: "https://home.treasury.gov/data/treasury-international-capital-tic-system", use: "commercial", redistribute: true,
+    credit: "Source: U.S. Department of the Treasury, Treasury International Capital (TIC) system"
+  },
+  "bis-cbs": {
+    name: "BIS banking statistics", what: "Foreign claims of banks by nationality on each country, Q4 2008–2025 (consolidated banking statistics)", tier: "layer",
+    licence: "BIS terms: free use with citation, never behind a paywall", licenceUrl: "https://data.bis.org/help/legal",
+    url: "https://data.bis.org/topics/CBS", use: "commercial", redistribute: true,
+    credit: "Source: BIS consolidated banking statistics"
+  },
+  "wb-ids": {
+    name: "World Bank debt statistics", what: "Public external debt of low- and middle-income countries by creditor, external debt % of GNI, 2000–2024 (International Debt Statistics)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://www.worldbank.org/en/programs/debt-statistics/ids", use: "commercial", redistribute: true,
+    credit: "Source: World Bank, International Debt Statistics (CC BY 4.0)"
+  },
   "orbis-schematic": {
     name: "Orbis schematic routes", what: "Pipelines, sea lanes and facility locations drawn by Orbis from public reporting; approximate", tier: "layer",
     licence: "Own work", licenceUrl: "", url: "", use: "commercial", redistribute: true,

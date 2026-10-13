@@ -24,6 +24,22 @@ feats.forEach(f=>{ let g=f.geometry;
 Object.entries({RUS:[44,56]}).forEach(([k,v])=>ANCHOR.set(k,v));
 const nameOf=id=>NAMES.get(id)||id;
 const AREA=new Map(feats.map(f=>[f.id,d3.geoArea(f)]));
+// detailed geometry (Natural Earth 1:50m) arrives after the first paint; it adds small states to the logic set
+// and replaces the 1:110m outlines when zoomed in
+const HI={byId:null,borders:null,label:new Map()};
+const useHi=()=>HI.byId&&V.zoom>=2;
+const geom=f=>(useHi()&&HI.byId.get(f.id))||f;
+function loadDetail(){
+  return fetch("data/world50.json").then(r=>r.json()).then(t=>{
+    const fs=topojson.feature(t,t.objects.countries).features;
+    HI.byId=new Map(fs.map(f=>[f.id,f])); HI.borders=topojson.mesh(t,t.objects.countries,(a,b)=>a!==b);
+    fs.forEach(f=>{ HI.label.set(f.id,[f.properties.lx,f.properties.ly]);
+      if(byId.has(f.id)) return;   // a small state the 1:110m map lacks: add it everywhere
+      f.properties={name:f.properties.name}; feats.push(f); byId.set(f.id,f); AREA.set(f.id,d3.geoArea(f));
+      tint.push(feats.length%5); NAMES.set(f.id,f.properties.name); if(!ANCHOR.has(f.id)) ANCHOR.set(f.id,d3.geoCentroid(f)); });
+    markDirty(); render();
+  }).catch(e=>console.warn("Detailed map not loaded:",e));
+}
 // political tints: greedy colouring so neighbours differ
 const nb = topojson.neighbors(WORLD.objects.countries.geometries);
 const tint = new Array(feats.length).fill(0);
@@ -34,8 +50,8 @@ feats.map((f,i)=>i).sort((a,b)=>nb[b].length-nb[a].length).forEach(i=>{
 let C={};
 function readColors(){
   const cs=getComputedStyle(document.documentElement);
-  ["ocean","land","border","grat","ink","halo","accent","paper","c1","c2","c3","c4","c5","muted","nodata","rim","t0","t1","t2","t3","t4","s0","s1","s2","s3"].forEach(k=>C[k]=cs.getPropertyValue("--"+k).trim());
-  C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4];
+  ["ocean","land","border","grat","ink","halo","accent","paper","ink-soft","c1","c2","c3","c4","c5","muted","nodata","rim","t0","t1","t2","t3","t4","s0","s1","s2","s3"].forEach(k=>C[k]=cs.getPropertyValue("--"+k).trim());
+  C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.ink_soft=C["ink-soft"];
   C.seq=d3.interpolateRgbBasis([C.s0,C.s1,C.s2,C.s3]);
 }
 const col = c => !c ? C.accent : (C[c] || c);
@@ -106,6 +122,7 @@ function layers(){
     if(frame.points)L.points=L.points.concat(frame.points); if(frame.fills)Object.assign(L.fills,frame.fills); }
   if(explore.bloc){const b=BLOCS[explore.bloc];L.groups.push({label:b.label,color:"c2",ids:b.ids});}
   L.political = scene ? !!s.political : !explore.bloc;
+  L.countryLabels = scene ? !!s.countryLabels : true;
   L.gmap=new Map(); L.groups.forEach(g=>g.ids.forEach(id=>L.gmap.set(id,g)));
   compileLayers(s,L);
   if(L.choro){const d=L.choro.values||DATA[L.choro.data],vals=Object.values(d);
@@ -152,8 +169,12 @@ function drawRaster(){
   return rasterOn;
 }
 let rasterOn=false;
+// layers depend on the scene, timeline frame, switch and focus, not on the camera: rebuild only when marked dirty
+let Ldirty=true;
+const markDirty=()=>{Ldirty=true;};
 function draw(){
-  update(); L=layers();
+  update(); if(Ldirty||!L){ L=layers(); Ldirty=false; }
+  if(L.carto) L._cartoLabels=[];
   const ras=drawRaster(); onDark=ras; placed=[];
   ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
   if(!ras){ctx.beginPath();path(SPHERE);ctx.fillStyle=C.ocean;ctx.fill();}
@@ -161,11 +182,11 @@ function draw(){
   if(L.carto) drawCartogram(ras);
   else{
     if(ras) ctx.globalAlpha=0.72;
-    for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(feats[i]);ctx.fillStyle=fc;ctx.fill();}
+    for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(geom(feats[i]));ctx.fillStyle=fc;ctx.fill();}
     ctx.globalAlpha=1;
-    ctx.beginPath();path(borders);ctx.strokeStyle=ras?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=ras?0.7:0.6;ctx.stroke();
+    ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=ras?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=ras?0.7:0.6;ctx.stroke();
   }
-  if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(f);});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
+  if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f));});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
   // circles
   L.circles.forEach(c=>{const g=d3.geoCircle().center(c.center).radius(c.km/R_EARTH*deg).precision(1)();
     ctx.beginPath();path(g);ctx.globalAlpha=0.22;ctx.fillStyle=col(c.color);ctx.fill();ctx.globalAlpha=1;
@@ -214,9 +235,23 @@ function draw(){
     if(pt.label) labels.push([pt.label,xy[0]+(pt.r||4)+5,xy[1],{size:13}]);
   });
   if(L._cartoLabels) labels.unshift(...L._cartoLabels);
+  if(L.countryLabels&&!L.carto) countryLabels(labels);
   labels.forEach(l=>label(...l));
   // rim
   ctx.beginPath();path(SPHERE);ctx.strokeStyle=C.rim;ctx.lineWidth=1;ctx.stroke();
+}
+
+// ---------- country names ----------
+// largest countries first; a name is shown when the country is big enough on screen to hold it
+const BY_AREA=()=>feats.slice().sort((a,b)=>AREA.get(b.id)-AREA.get(a.id));
+let byAreaCache=null, byAreaN=0;
+function countryLabels(labels){
+  if(!byAreaCache||byAreaN!==feats.length){ byAreaCache=BY_AREA(); byAreaN=feats.length; }
+  const R=Math.min(F.w,F.h)/2*V.zoom*0.9, soft=onDark?"#D9E2E6":C.ink_soft;
+  byAreaCache.forEach(f=>{ const n=nameOf(f.id), size=Math.sqrt(AREA.get(f.id))*R;
+    if(size<n.length*5.2) return;
+    const at=HI.label.get(f.id)||ANCHOR.get(f.id); if(!at||!visible(at)) return; const p=proj(at); if(!p) return;
+    labels.push([n,p[0],p[1],{align:"center",size:size>160?14:12,color:soft}]); });
 }
 
 // ---------- cartogram ----------
@@ -225,11 +260,11 @@ const cartoEase=()=>reduce?1:d3.easeCubicInOut(clamp((performance.now()-cartoSta
 function drawCartogram(ras){
   const e=cartoEase();
   // the true map stays as a faint ghost so the distortion reads as a change
-  ctx.beginPath(); feats.forEach(f=>path(f)); ctx.fillStyle=ras?"rgba(255,255,255,.12)":C.nodata; ctx.globalAlpha=0.7; ctx.fill(); ctx.globalAlpha=1;
+  ctx.beginPath(); feats.forEach(f=>path(geom(f))); ctx.fillStyle=ras?"rgba(255,255,255,.12)":C.nodata; ctx.globalAlpha=0.7; ctx.fill(); ctx.globalAlpha=1;
   L.carto.items.forEach(it=>{ const a=ANCHOR.get(it.f.id); if(!a||!visible(a)) return; const p=proj(a); if(!p) return;
     const k=1+(it.k-1)*e;
     ctx.save(); ctx.translate(p[0],p[1]); ctx.scale(k,k); ctx.translate(-p[0],-p[1]);
-    ctx.beginPath(); path(it.f); ctx.fillStyle=it.color; ctx.globalAlpha=0.9; ctx.fill(); ctx.globalAlpha=1;
+    ctx.beginPath(); path(geom(it.f)); ctx.fillStyle=it.color; ctx.globalAlpha=0.9; ctx.fill(); ctx.globalAlpha=1;
     ctx.lineWidth=0.9/k; ctx.strokeStyle=C.paper; ctx.stroke(); ctx.restore();
     if(it.label&&e>0.98) L._cartoLabels.push([it.label,p[0],p[1],{align:"center",size:13}]);
   });
@@ -286,7 +321,8 @@ function tap(x,y){
   if(V.t!==0||!proj.invert) return;
   const ll=proj.invert([x,y]); if(!ll||isNaN(ll[0])) return;
   if(curKind()==="globe"&&d3.geoDistance(ll,V.center)>Math.PI/2) return;
-  const f=feats.find(f=>d3.geoContains(f,ll)); if(!f){hideTip();return;}
+  const f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll)); if(!f){hideTip();return;}
+  if(L.flows.length||focus){ focus=focus===f.id?null:f.id; L=layers(); el.legend.innerHTML=legendHTML(); render(); }
   let html="<b>"+esc(f.properties.name)+"</b>";
   if(L.choro){const v=L.cdata[f.id]; html+="<span>"+(v==null?"No data":esc(String(L.choro.fmt?L.choro.fmt(v):v)))+"</span>";}
   L.vals.forEach(lv=>{const v=lv.values[f.id]; if(v!=null) html+="<span>"+esc(lv.title)+": "+esc(lv.fmt(v))+"</span>";});
@@ -390,6 +426,7 @@ const LAYER={
     let fl=(g.flows[y]||[]).filter(r=>ANCHOR.has(r[0])&&ANCHOR.has(r[1]));
     if(ly.from) fl=fl.filter(r=>ly.from.includes(r[0]));
     if(ly.to) fl=fl.filter(r=>ly.to.includes(r[1]));
+    if(focus) fl=fl.filter(r=>r[0]===focus||r[1]===focus);
     const m=ly.metric==="qty"?3:2;  // value (million USD) or quantity (thousand tonnes)
     fl=fl.sort((p,q)=>q[m]-p[m]).slice(0,ly.top||25);
     const vmax=ly.vmax||d3.max(fl,r=>r[m])||1, f=fmtOf(ly.fmt||"musd"), c=ly.color||"c3";
@@ -398,7 +435,8 @@ const LAYER={
       L.flows.push({path:d3.range(n+1).map(i=>gi(i/n)),width:0.8+(ly.maxW||9)*r[m]/vmax,color:c,to:b}); });
     const title=ly.title||g.label;
     L.flowKeys.push({color:c,title,qty:m===3});
-    const fv=FMT.musd; L.vals.push({title:title+", exports",values:g.exports[y]||{},fmt:fv},{title:title+", imports",values:g.imports[y]||{},fmt:fv});
+    const fv=m===3?FMT.musd:f;  // totals are always values; quantity layers still show them in USD
+    L.vals.push({title:title+", exports",values:g.exports[y]||{},fmt:fv},{title:title+", imports",values:g.imports[y]||{},fmt:fv});
   },
   lines(ly,d,y,L){ (d.lines[ly.set]||[]).forEach(x=>L.routes.push({path:x.path,color:x.color||ly.color,width:ly.width||2.2,
     dash:!!x.status&&x.status!=="operating",flow:ly.flow&&(!x.status||x.status==="operating"),label:ly.labels?x.name:null,labelAt:x.labelAt})); },
@@ -423,8 +461,20 @@ const LAYER={
     L.vals.push({title:ly.title,values:vals,fmt:f});
     L.cartoKey={color:C.seq(0.8),title:ly.title};
   },
+  since(ly,d,y,L){ // countries coloured from the year they joined/adopted; values: year or [from, until]
+    const set=d.sets[ly.set]; if(!set) return; const yr=+y;
+    const ids=Object.entries(set.members).filter(([k,v])=>{ const a=Array.isArray(v)?v[0]:v, b=Array.isArray(v)?v[1]:null; return a<=yr&&(b==null||yr<b); }).map(([k])=>k);
+    L.groups.push({label:ly.title||set.label,color:ly.color||"c2",ids});
+  },
+  categories(ly,d,y,L){ // one fill colour per category; values: {ISO3: category}
+    const set=d.sets[ly.set]; if(!set) return;
+    Object.entries(ly.colors).forEach(([cat,c])=>L.groups.push({label:(set.labels&&set.labels[cat])||cat,color:c,
+      ids:Object.entries(set.values).filter(([k,v])=>v===cat).map(([k])=>k)}));
+  },
   points(ly,d,y,L){ (d.points[ly.set]||[]).forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.color,r:ly.r||4.5})); }
 };
+// tapping a country in a flows scene shows only that country's flows
+let focus=null;
 // a scene "switch" (e.g. pick a commodity) fills {placeholders} in its layers, chart and text
 let switchIdx=0;
 const switchOpt=()=>scene&&scene.switch?scene.switch.options[switchIdx]:null;
@@ -433,7 +483,7 @@ function subst(o){ const op=switchOpt(); if(!op||o==null) return o;
 function compileLayers(s,L){
   const st=si>=0?STORIES[si]:null, D=(st&&st._data)||{};
   (subst(s.layers)||[]).forEach(ly=>{ const d=D[ly.data], fn=LAYER[ly.type]; if(!d||!fn) return;
-    const y=(ly.year==null||ly.year==="t")?((frame&&frame.year)||lastYear(d)):ly.year;
+    const y=(ly.year==null||ly.year==="t")?((frame&&frame.year)||lastYear(d)||new Date().getFullYear()):ly.year;
     fn(ly,d,y,L); });
 }
 function renderChart(){
@@ -476,6 +526,7 @@ function legendHTML(){
   if(s.legend) h+=s.legend.map(l=>chip(l.color,l.label)).join("");
   else if(L&&L.groups.length) h+=L.groups.map(g=>chip(g.color,g.label)).join("");
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · line width = "+(k.qty?"tonnes":"value")));
+  if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?"Showing "+esc(nameOf(focus))+" only · tap it again for all":"Tap a country to see only its flows"}</span>`;
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · tower height = amount");
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · country size = amount");
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · circle area = amount</span></span>`;
@@ -539,7 +590,7 @@ function showScene(i, fly=true){
   el.blocs.hidden=true; el.steps.hidden=false; el.notes.hidden=false;
   if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.years.length-1;}
   else el.tl.hidden=true;
-  switchIdx=(scene.switch&&scene.switch.start)||0; cartoStart=performance.now(); renderSwitch();
+  markDirty(); focus=null; switchIdx=(scene.switch&&scene.switch.start)||0; cartoStart=performance.now(); renderSwitch();
   frame=null; setFrame(); L=layers(); el.legend.innerHTML=legendHTML(); renderChart();
   el.dots.innerHTML=st.scenes.map((s,j)=>`<button class="dot" aria-label="Scene ${j+1}: ${esc(s.title)}" ${j===ci?'aria-current="step"':""}></button>`).join("");
   [...el.dots.children].forEach((b,j)=>b.onclick=()=>showScene(j));
@@ -568,7 +619,7 @@ async function openStory(i, scn=0){
   showScene(scn==="last"?STORIES[i].scenes.length-1:scn);
 }
 function openExplore(){
-  si=-1; scene=null; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true;
+  si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true;
   el.kicker.textContent="Explore"; el.title.textContent="The world, your way";
   el.text.textContent="Drag to turn the world, pinch or scroll to zoom, tap a country to see its name. Switch between political, satellite and night views with the map button. Show a group of countries:";
   el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=false;
@@ -615,6 +666,7 @@ new ResizeObserver(()=>layout()).observe(sheet);
 addEventListener("resize",layout);
 document.fonts && document.fonts.ready.then(render);
 layout();
+setTimeout(loadDetail,300);
 loadJSON("stories/index.json").then(list=>{ STORIES.unshift(...list.map(x=>Object.assign({},x))); }).catch(e=>console.warn("Story index not loaded:",e))
 .then(()=>{
   buildToc();

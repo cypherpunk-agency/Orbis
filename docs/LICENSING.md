@@ -32,6 +32,10 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `baci` | CEPII BACI HS2017 V202601, trade 2021–2024 in energy, minerals, crops (`data/energy/trade.json`, `data/resources/trade.json`) | Layer | Etalab Open Licence 2.0 | Commercial | CEPII BACI, version and update date; built from UN Comtrade |
 | `usgs-mcs` | USGS Mineral Commodity Summaries 2026 data release (`data/resources/usgs.json`) | Layer | US public domain (CC0) | Commercial | "Source: U.S. Geological Survey" |
 | `faostat` | FAOSTAT crop production 2000–2024 (`data/resources/fao.json`) | Layer | CC BY 4.0 | Commercial (not in commercial promotion) | FAO citation incl. access date; no implied endorsement |
+| `imf-weo` | IMF WEO Oct 2026 government debt and GDP; Global Debt Database household/corporate debt, via DataMapper API, 6 requests (`data/finance/imf.json`) | Layer | IMF terms: reuse and redistribution with attribution; commercial reuse needs permission; no bulk automated download | **Non-commercial** | "Source: IMF …"; labelled non-commercial in the UI |
+| `us-tic` | US Treasury TIC major foreign holders, December 2005–2025 (`data/finance/tic.json`) | Layer | US public domain | Commercial | Courtesy credit; custodial caveat in notes |
+| `bis-cbs` | BIS consolidated banking statistics, Q4 2008–2025 (`data/finance/bis.json`) | Layer | BIS terms: unrestricted with citation, no paywall or extra charge | Commercial | "Source: BIS"; never behind a paywall |
+| `wb-ids` | World Bank International Debt Statistics 2000–2024 (`data/finance/ids.json`, `ids_series.json`) | Layer | CC BY 4.0 | Commercial | "Source: World Bank, International Debt Statistics" |
 | `orbis-schematic` | Pipelines, sea lanes, terminals, refineries drawn by Orbis (`data/energy/infrastructure.json`) | Layer | Own work | Commercial | Marked as schematic |
 | `editorial` | Rounded figures typed into stories | Layer | Facts (not copyrightable); cited in each story's notes | Commercial | Sources named in story notes |
 

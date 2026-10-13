@@ -19,5 +19,12 @@
   "title": "Who has what",
   "hook": "The metals in your phone and car, and the food on your plate, come from surprisingly few places.",
   "file": "stories/resources.json"
+ },
+ {
+  "id": "debt",
+  "cat": "Economics",
+  "title": "Who owes whom",
+  "hook": "The world's governments owe about $100 trillion. Here is where the debt sits and who lends it.",
+  "file": "stories/debt.json"
  }
 ]

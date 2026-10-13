@@ -1,0 +1,77 @@
+{
+  "id": "debt", "cat": "Economics", "title": "Who owes whom",
+  "hook": "The world's governments owe about $100 trillion. Here is where the debt sits and who lends it.",
+  "notes": "Government debt: IMF World Economic Outlook, October 2026 (general government gross debt), via IMF DataMapper; IMF data may be reused with attribution but not commercially without permission, so these layers are marked non-commercial. Household and corporate debt: IMF Global Debt Database. Holders of US Treasuries: US Treasury TIC; holdings are recorded where securities are held in custody, so Belgium, Luxembourg, the UK and the Cayman Islands partly stand in for other owners, including China. Bank lending: BIS consolidated banking statistics, foreign claims by bank nationality (China does not report). Lending to low- and middle-income governments: World Bank International Debt Statistics, public and publicly guaranteed debt owed to official bilateral creditors; loans from Chinese state banks booked as commercial lending are not included, so China's role is understated. Interest versus health spending: UNCTAD, A World of Debt (2024).",
+  "data": {
+    "imf": "data/finance/imf.json",
+    "tic": "data/finance/tic.json",
+    "bis": "data/finance/bis.json",
+    "ids": "data/finance/ids.json",
+    "idss": "data/finance/ids_series.json"
+  },
+  "scenes": [
+    {
+      "title": "How much governments owe",
+      "text": "Measured against the size of their economies, Japan's government owes the most of any large country: 214% of GDP. The US owes 122%, France 113%, Germany 61%. Play from 2000 and watch debt jump after the 2008 financial crisis and again in the 2020 pandemic.",
+      "view": {"mode": "equal", "center": [10, 15], "zoom": 1},
+      "layers": [{"type": "choropleth", "data": "imf", "series": "gov_debt_gdp", "year": "t", "title": "Government debt, % of GDP", "fmt": "pct"}],
+      "timeline": {"years": [2000, 2024], "start": 2024, "captions": {"2009": "The financial crisis: governments borrow to rescue banks and economies.", "2020": "The pandemic: the biggest one-year rise in public debt since the Second World War."}},
+      "chart": {"data": "imf", "series": "gov_debt_gdp", "year": "t", "top": 8, "title": "Highest debt, % of GDP", "fmt": "pct", "color": "c2"}
+    },
+    {
+      "title": "Debt in dollars",
+      "text": "In dollars, the picture changes. The US government owes about $36 trillion, roughly a third of all government debt in the world. China follows with about $17 trillion, Japan with $9 trillion. The towers show government debt in US dollars.",
+      "view": {"mode": "equal", "center": [10, 20], "zoom": 1},
+      "layers": [{"type": "spikes", "data": "imf", "series": "gov_debt_usd", "year": 2024, "color": "c2", "title": "Government debt, US dollars", "fmt": "busd", "labels": 5, "maxH": 0.55}],
+      "chart": {"data": "imf", "series": "gov_debt_usd", "year": 2024, "share": true, "top": 8, "title": "Share of world government debt", "color": "c2"}
+    },
+    {
+      "title": "The world redrawn by debt",
+      "text": "Resize every country by what its government owes and the world tilts: the United States, China and Japan swell, while Africa and South America nearly vanish. Rich countries can borrow the most because lenders trust them to pay.",
+      "view": {"mode": "equal", "center": [10, 15], "zoom": 1},
+      "layers": [{"type": "cartogram", "data": "imf", "series": "gov_debt_usd", "year": 2024, "title": "Government debt, US dollars", "fmt": "busd", "labels": 6, "maxK": 4}]
+    },
+    {
+      "title": "Who holds America's debt",
+      "text": "Foreigners hold about $9.3 trillion of US Treasury securities. Japan is the largest holder at $1.19 trillion, then the UK and China. China's holdings peaked around 2011, when it was the largest holder, and have fallen by about 40% since. Holdings are recorded where they are kept in custody, so Belgium and the UK partly hold for others.",
+      "view": {"mode": "globe", "center": [-30, 35], "zoom": 1},
+      "layers": [{"type": "flows", "data": "tic", "group": "treasuries", "year": "t", "top": 20, "color": "c1", "title": "US Treasuries held abroad", "fmt": "busd", "vmax": 1300, "maxW": 11}],
+      "timeline": {"years": [2005, 2025], "start": 2025, "captions": {"2011": "China is the largest foreign holder.", "2019": "Japan overtakes China again."}},
+      "chart": {"data": "tic", "group": "treasuries", "side": "exports", "year": "t", "top": 8, "title": "Largest foreign holders", "fmt": "busd", "color": "c1"}
+    },
+    {
+      "title": "Banks lend across borders",
+      "text": "Banks lend abroad too. Japanese banks have the largest foreign claims, about $5.6 trillion, followed by British, American and French banks. Much of it flows to the United States, and some to financial centres such as the Cayman Islands. Tap a country to see only its lenders or borrowers.",
+      "view": {"mode": "equal", "center": [-10, 30], "zoom": 1.15},
+      "layers": [{"type": "flows", "data": "bis", "group": "banks", "year": "t", "top": 35, "color": "c4", "title": "Foreign bank claims", "fmt": "busd", "vmax": 2800, "maxW": 11}],
+      "timeline": {"years": [2008, 2025], "start": 2025, "captions": {"2008": "At the height of the crisis, British, Japanese and Swiss banks have the largest claims on the US."}},
+      "chart": {"data": "bis", "group": "banks", "side": "exports", "year": "t", "top": 8, "title": "Largest lenders, by banks' home country", "fmt": "busd", "color": "c4"}
+    },
+    {
+      "title": "China the lender",
+      "text": "Among governments lending to poorer countries' governments, China has become the largest. Low- and middle-income governments owed China about $148 billion in 2024, up from $34 billion in 2010, while debts to Japan fell to $106 billion. China is the biggest government creditor for 54 of about 120 borrowing countries, from Pakistan and Sri Lanka to Kenya and Laos.",
+      "view": {"mode": "globe", "center": [75, 10], "zoom": 1.05},
+      "layers": [{"type": "flows", "data": "ids", "group": "bilateral", "year": "t", "from": ["CHN"], "top": 30, "color": "c2", "title": "Government debt owed to China", "fmt": "busd", "vmax": 23}],
+      "timeline": {"years": [2000, 2024], "start": 2024},
+      "chart": {"data": "idss", "series": "china_share", "year": "t", "top": 8, "title": "Share of public external debt owed to China", "fmt": "pct", "color": "c2"}
+    },
+    {
+      "title": "When debt becomes a burden",
+      "text": "What matters is debt relative to what a country earns. Mozambique's total external debt is more than three times its national income, Mongolia's and Senegal's over one and a half times. According to the UN, about 3.3 billion people live in countries whose governments spend more on interest than on health.",
+      "view": {"mode": "equal", "center": [40, 5], "zoom": 1.1},
+      "layers": [{"type": "choropleth", "data": "idss", "series": "ext_debt_gni", "year": 2024, "title": "External debt, % of national income", "fmt": "pct", "log": true}],
+      "chart": {"data": "idss", "series": "ext_debt_gni", "year": 2024, "top": 8, "title": "Highest external debt, % of national income", "fmt": "pct", "color": "c2"}
+    },
+    {
+      "title": "Households and companies owe too",
+      "text": "Government debt is only part of it. Households in Switzerland, Australia and Canada owe more than their country's whole yearly GDP, mostly mortgages. Pick a borrower.",
+      "view": {"mode": "equal", "center": [10, 20], "zoom": 1},
+      "switch": {"label": "Borrower", "options": [
+        {"s": "hh_debt_gdp", "label": "Households", "text": "Households in Switzerland (125% of GDP), Australia (112%) and Canada (100%) owe more than their country's yearly output, mostly as mortgages. In much of Africa and South Asia, household debt is tiny because few people can borrow."},
+        {"s": "nfc_debt_gdp", "label": "Companies", "text": "Company debt is highest in financial centres such as Luxembourg and Hong Kong, where holding companies of multinational groups book their borrowing. Among large economies, China's companies are among the most indebted."}
+      ]},
+      "layers": [{"type": "choropleth", "data": "imf", "series": "{s}", "year": 2024, "title": "{label} debt, % of GDP", "fmt": "pct"}],
+      "chart": {"data": "imf", "series": "{s}", "year": 2024, "top": 8, "title": "{label}: highest debt, % of GDP", "fmt": "pct", "color": "c2"}
+    }
+  ]
+}
