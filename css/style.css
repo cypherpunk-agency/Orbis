@@ -219,3 +219,11 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .camp-dates li{display:grid;grid-template-columns:7.5em 1fr;gap:8px;padding:4px 0;border-top:1px solid var(--rule);font-size:14px;line-height:1.35}
 .camp-dates li span:first-child{color:var(--ink-soft);font-variant-numeric:tabular-nums}
 .toc-meta{display:block;font-size:13px;color:var(--accent);margin-top:4px;font-weight:600}
+
+/* before/after divider for raster layers */
+#swipe{position:fixed;width:0;z-index:4;pointer-events:none}
+#swipe::before{content:"";position:absolute;left:-1px;top:0;bottom:0;width:2px;background:var(--paper);box-shadow:0 0 0 1px var(--rim)}
+.sw-h{pointer-events:auto;position:absolute;left:-18px;top:50%;width:36px;height:36px;margin-top:-18px;border-radius:50%;border:1px solid var(--rim);background:var(--paper);cursor:ew-resize;touch-action:none}
+.sw-h::before{content:"◂ ▸";font:600 12px var(--ui);color:var(--ink)}
+.sw-l,.sw-r{position:absolute;top:10px;white-space:nowrap;font:600 13px var(--ui);color:var(--ink);background:var(--halo);padding:2px 8px;border-radius:999px}
+.sw-l{right:10px}.sw-r{left:10px}

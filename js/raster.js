@@ -99,7 +99,7 @@ const Raster = (function(){
     img.src=url;
   }
   const MODE={globe:0,equal:1,mercator:2};
-  // p: {layers:[{name, alpha}], a, b, t, sa, sb, k, tr:[x,y], rot:[dl,dp] (radians), clip (degrees or null), W, H, dpr}
+  // p: {layers:[{name, alpha, span}], a, b, t, sa, sb, k, tr:[x,y], rot:[dl,dp] (radians), clip (degrees or null), W, H, dpr}
   // layers are drawn in order (base map first, data grids on top); returns true if anything was drawn
   function draw(p){
     if(!ok) return false;
@@ -117,7 +117,10 @@ const Raster = (function(){
     gl.enable(gl.BLEND); gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
     gl.activeTexture(gl.TEXTURE0); gl.uniform1i(U.uTex,0);
     list.forEach(l=>{ gl.uniform1f(U.uAlpha,l.alpha==null?1:l.alpha); const b=box[l.name]||[1,0,0,0];
-      gl.uniform4f(U.uBox,b[0],b[1],b[2],b[3]); gl.bindTexture(gl.TEXTURE_2D,tex[l.name]); gl.drawArrays(gl.TRIANGLES,0,count); });
+      // l.span = [x0, x1] in css px: draw only between them (before/after swipe)
+      if(l.span){ gl.enable(gl.SCISSOR_TEST); const x0=Math.round(l.span[0]*p.dpr), x1=Math.round(l.span[1]*p.dpr); gl.scissor(x0,0,Math.max(0,x1-x0),h); }
+      gl.uniform4f(U.uBox,b[0],b[1],b[2],b[3]); gl.bindTexture(gl.TEXTURE_2D,tex[l.name]); gl.drawArrays(gl.TRIANGLES,0,count);
+      if(l.span) gl.disable(gl.SCISSOR_TEST); });
     return true;
   }
   function clear(){ if(ok){ gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT); } }

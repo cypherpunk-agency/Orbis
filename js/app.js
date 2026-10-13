@@ -172,7 +172,8 @@ function drawRaster(){
   if(m==="plain"){ ensurePlain(); list.push({name:"plain"}); }
   else if(BASEMAPS[m].tex){ if(!Raster.has(m)) Raster.load(m,BASEMAPS[m].tex,render); list.push({name:m}); }
   if(DETAIL.name&&DETAIL.mode===m&&Raster.has(DETAIL.name)) list.push({name:DETAIL.name});
-  if(L) L.rasters.forEach(r=>{ if(Raster.has(r.tex)) list.push({name:r.tex,alpha:r.alpha}); });
+  const sx=F.x+F.w*swipeAt;
+  if(L) L.rasters.forEach(r=>{ if(Raster.has(r.tex)) list.push({name:r.tex,alpha:r.alpha,span:r.side==="L"?[0,sx]:r.side==="R"?[sx,W]:null}); });
   if(!list.length||!list.some(l=>Raster.has(l.name))){ if(rasterOn){Raster.clear();rasterOn=false;} return false; }
   const wg=wGlobe(), c=V.center;
   rasterOn=Raster.draw({layers:list,a:V.a,b:V.b,t:V.t,sa:S[V.a],sb:S[V.b],k:V.zoom,tr:proj.translate(),
@@ -307,7 +308,7 @@ let rasterOn=false;
 let Ldirty=true;
 const markDirty=()=>{Ldirty=true;};
 function draw(){
-  update(); if(Ldirty||!L){ L=layers(); Ldirty=false; }
+  update(); if(Ldirty||!L){ L=layers(); Ldirty=false; } placeSwipe();
   if(L.carto) L._cartoLabels=[];
   const ras=drawRaster(); onDark=ras&&(BM.mode==="satellite"||BM.mode==="night"||BM.mode==="terrain"); placed=[];
   ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
@@ -484,7 +485,8 @@ function tap(x,y){
   for(const rg of L.regions){ const rf=rg.R.feats.find(f=>d3.geoContains(f,ll)); if(rf){ const v=rg.vals[rf.id];
     tip.innerHTML="<b>"+esc(rf.properties.name)+"</b><span>"+esc(rg.title)+": "+(v==null?t("No data"):esc(rg.fmt(v)))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; } }
-  const gridHtml=L.rasters.map(r=>{ const G=r.G; if(!G.bytes) return "";
+  const sideAt=x<F.x+F.w*swipeAt?"L":"R";
+  const gridHtml=L.rasters.filter(r=>!r.side||r.side===sideAt).map(r=>{ const G=r.G; if(!G.bytes) return "";
     const x=Math.floor((ll[0]+180)/360*G.w)%G.w, y=Math.min(G.h-1,Math.floor((90-ll[1])/180*G.h)), v=gridDecode(r.desc,G.bytes[y*G.w+x]);
     return v==null?"":"<span>"+esc(r.title)+": "+esc(r.fmt(v))+"</span>"; }).join("");
   if(quiz.mode==="where"&&f0(ll)){ quizTap(f0(ll).id); return; }
@@ -708,11 +710,29 @@ const LAYER={
   raster(ly,d,y,L){ // a lon/lat grid; frames keyed by label (a year for timelines)
     const lab=String(ly.frame!=null&&ly.frame!=="t"?ly.frame:((frame&&frame.year)||Object.keys(d.frames).pop()));
     const G=gridFrame(ly.data,d,lab); if(!G) return;
-    L.rasters.push({tex:G.tex,alpha:ly.opacity==null?0.9:ly.opacity,G,desc:d,title:ly.title||d.units,fmt:fmtOf(ly.fmt)});
+    const base={alpha:ly.opacity==null?0.9:ly.opacity,desc:d,title:ly.title||d.units,fmt:fmtOf(ly.fmt)};
+    if(ly.compare==null){ L.rasters.push(Object.assign({tex:G.tex,G},base)); return; }
+    // before/after: this frame on the left of the divider, the "compare" frame on the right
+    const G2=gridFrame(ly.data,d,String(ly.compare)); if(!G2) return;
+    L.rasters.push(Object.assign({tex:G.tex,G,side:"L"},base),Object.assign({tex:G2.tex,G:G2,side:"R"},base));
+    L.swipe={left:ly.leftLabel||lab,right:ly.rightLabel||String(ly.compare)};
   },
   points(ly,d,y,L){ (d.points[ly.set]||[]).filter(x=>!ly.only||ly.only.includes(x.name)).forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.forceColor?ly.color:(x.color||ly.color),r:x.r||ly.r||4.5})); }
 };
 // tapping a country in a flows scene shows only that country's flows
+let swipeAt=0.5;   // before/after divider position, share of the map frame width
+const swipeEl=document.createElement("div"); swipeEl.id="swipe"; swipeEl.hidden=true;
+swipeEl.innerHTML='<span class="sw-l"></span><button class="sw-h" aria-label="Drag to compare"></button><span class="sw-r"></span>';
+document.body.appendChild(swipeEl);
+function placeSwipe(){ const on=!!(L&&L.swipe); swipeEl.hidden=!on; if(!on) return;
+  swipeEl.style.left=(F.x+F.w*swipeAt)+"px"; swipeEl.style.top=F.y+"px"; swipeEl.style.height=F.h+"px";
+  swipeEl.querySelector(".sw-l").textContent=L.swipe.left; swipeEl.querySelector(".sw-r").textContent=L.swipe.right; }
+const swipeH=swipeEl.querySelector(".sw-h");
+swipeH.addEventListener("pointerdown",e=>{ e.preventDefault(); e.stopPropagation(); swipeH.setPointerCapture(e.pointerId);
+  const mv=ev=>{ swipeAt=clamp((ev.clientX-F.x)/F.w,0.02,0.98); placeSwipe(); render(); };
+  const up=()=>{ swipeH.removeEventListener("pointermove",mv); swipeH.removeEventListener("pointerup",up); };
+  swipeH.addEventListener("pointermove",mv); swipeH.addEventListener("pointerup",up); });
+swipeH.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft"||e.key==="ArrowRight"){ swipeAt=clamp(swipeAt+(e.key==="ArrowLeft"?-0.05:0.05),0.02,0.98); placeSwipe(); render(); } });
 let focus=null, pairFrom=null;   // tapped country: flows filter / pairs origin
 // a scene "switch" (e.g. pick a commodity) fills {placeholders} in its layers, chart and text
 let switchIdx=0;
@@ -833,7 +853,7 @@ function describe(){
   if(L.groups.length) L.groups.forEach(g=>parts.push(g.label+": "+g.ids.length+" countries highlighted."));
   if(L.routes.length) parts.push(L.routes.length+" routes drawn"+(L.routes.some(r=>r.label)?": "+L.routes.filter(r=>r.label).slice(0,5).map(r=>r.label).join(", "):"")+".");
   if(L.points.length) parts.push("Places marked: "+L.points.filter(p=>p.label).slice(0,8).map(p=>p.label).join(", ")+".");
-  if(L.rasters.length) parts.push("A colour grid shows "+L.rasters.map(r=>r.title).join(", ")+"; tap the map to read values.");
+  if(L.rasters.length) parts.push("A colour grid shows "+L.rasters.filter(r=>r.side!=="R").map(r=>r.title).join(", ")+"+(L.swipe?" (left: "+L.swipe.left+", right: "+L.swipe.right+")":"")+"; tap the map to read values.");
   if(L.hist) parts.push("Borders as of "+L.hist.year+".");
   const txt=parts.join(" "); $("srDesc").textContent=txt; canvas.setAttribute("aria-label",(scene&&scene.title?scene.title+". ":"")+txt);
 }
@@ -926,7 +946,7 @@ function legendHTML(){
   if(L) L.events.forEach(E=>h+=chip(E.color,E.title+" · "+t("{n} shown",{n:d3.format(",")(E.count)})));
   if(L&&L.hist) h+=`<span class="chip">${esc(t("Borders as of {y}",{y:L.hist.year}))}</span>`;
   if(L&&L.particles) h+=`<span class="chip">${esc(t("Each streak is a parcel of air; bright = faster than 35 m/s"))}</span>`;
-  if(L) L.rasters.forEach(r=>{ const e=r.desc.encoding, lut=gridPalette(r.desc.palette);
+  if(L) L.rasters.filter(r=>r.side!=="R").forEach(r=>{ const e=r.desc.encoding, lut=gridPalette(r.desc.palette);
     const stops=d3.range(1,256,25).map(i=>`rgb(${lut[i*4]},${lut[i*4+1]},${lut[i*4+2]})`).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(r.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(r.fmt(e.min))}</span><span>${esc(r.fmt(e.max))}</span></div></div>`; });
   const ch=L&&L.choro;
