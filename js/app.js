@@ -33,9 +33,9 @@ function loadDetail(){
   return fetch("data/world50.json").then(r=>r.json()).then(t=>{
     const fs=topojson.feature(t,t.objects.countries).features;
     HI.byId=new Map(fs.map(f=>[f.id,f])); HI.borders=topojson.mesh(t,t.objects.countries,(a,b)=>a!==b);
-    fs.forEach(f=>{ HI.label.set(f.id,[f.properties.lx,f.properties.ly]); if(LANG==="de"&&f.properties.de) NAMES.set(f.id,f.properties.de);
+    fs.forEach(f=>{ HI.label.set(f.id,[f.properties.lx,f.properties.ly]); 
       if(byId.has(f.id)) return;   // a small state the 1:110m map lacks: add it everywhere
-      f.properties={name:LANG==="de"&&f.properties.de||f.properties.name}; feats.push(f); byId.set(f.id,f); AREA.set(f.id,d3.geoArea(f));
+      f.properties={name:f.properties.name}; feats.push(f); byId.set(f.id,f); AREA.set(f.id,d3.geoArea(f));
       tint.push(feats.length%5); NAMES.set(f.id,f.properties.name); if(!ANCHOR.has(f.id)) ANCHOR.set(f.id,d3.geoCentroid(f)); });
     markDirty(); render();
   }).catch(e=>console.warn("Detailed map not loaded:",e));
@@ -547,12 +547,11 @@ const JSONS={};
 function loadJSON(url){ return JSONS[url]||(JSONS[url]=fetch(url).then(r=>{ if(!r.ok) throw new Error(url+": HTTP "+r.status); return r.json(); })); }
 async function ensureStory(i){
   const meta=STORIES[i]; if(meta.scenes) return meta;
-  const js=meta.file==="draft"?JSON.parse(localStorage.getItem("orbis-draft")||"null"):await loadJSON(meta.file).then(j=>(LANG!=="en"&&meta.file.startsWith("stories/"+LANG+"/")&&(j._translated=true),j)).catch(e=>{ const en=meta.file.replace("stories/"+LANG+"/","stories/"); if(en!==meta.file) return loadJSON(en); throw e; }), data={};
+  const js=meta.file==="draft"?JSON.parse(localStorage.getItem("orbis-draft")||"null"):await loadJSON(meta.file), data={};
   await Promise.all(Object.entries(js.data||{}).map(async([k,u])=>{ data[k]=await loadJSON(u); }));
   js.scenes.forEach(sc=>{ const t=sc.timeline; if(t&&!t.frame){
     const ys=!t.format&&t.years.length===2&&t.years[1]-t.years[0]>1?d3.range(t.years[0],t.years[1]+1):t.years;
-    const MON=LANG==="de"?["Jan.","Feb.","März","Apr.","Mai","Juni","Juli","Aug.","Sept.","Okt.","Nov.","Dez."]:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):t.format==="date"?(y=>(LANG==="de"?y%100+". ":y%100+" ")+MON[Math.floor(y/100)%100-1]+" "+Math.floor(y/10000)):(y=>y), lab=y=>(t.labels&&t.labels[y])||lab0(y);
+    const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):t.format==="date"?(y=>y%100+" "+MON[Math.floor(y/100)%100-1]+" "+Math.floor(y/10000)):(y=>y), lab=y=>(t.labels&&t.labels[y])||lab0(y);
     sc.timeline={years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
   const st=Object.assign({},js,{file:meta.file,_data:data},meta.id.startsWith("@")?{id:meta.id}:{}); STORIES[i]=st; return st;
 }
@@ -728,8 +727,7 @@ function renderMedia(){
     if(x.type==="line"){ const d=st&&st._data&&st._data[x.data]; if(!d||!d.series) return "";
       // x positions: plain years, or yyyymm / yyyymmdd numbers (dataset "format": "month" | "date") as fractional years
       const fm=d.format, xv=y=>fm==="month"?Math.floor(y/100)+(y%100-1)/12:fm==="date"?Math.floor(y/1e4)+(Math.floor(y/100)%100-1)/12+(y%100-1)/365:y;
-      const mon=LANG==="de"?["Jan.","Feb.","März","Apr.","Mai","Juni","Juli","Aug.","Sept.","Okt.","Nov.","Dez."]:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-      const ylb=y=>fm==="month"?mon[y%100-1]+" "+Math.floor(y/100):fm==="date"?fmtDate(y):String(y);
+      const ylb=y=>fm==="month"?MON[y%100-1]+" "+Math.floor(y/100):fm==="date"?fmtDate(y):String(y);
       const sr=d.series[x.series], ys0=d.years, ys=ys0.map(xv), w=330, h=120, pad=[8,46,18,4];
       const lines=(x.countries||[]).map((c,i)=>({c,label:x.labels&&x.labels[c],col:col(["c1","c2","c3","c4","c5"][i%5]),pts:ys.map((y,j)=>[y,sr.values[c]?sr.values[c][j]:null]).filter(p=>p[1]!=null)})).filter(l=>l.pts.length);
       const all=lines.flatMap(l=>l.pts); if(!all.length) return "";
@@ -802,7 +800,7 @@ function toggleRecord(btn){
   (function loop(){ if(!rec) return; composite(cv,g); const done=tl?(!playing&&performance.now()-t0>1500):performance.now()-t0>8000;
     if(done||performance.now()-t0>60000) r.stop(); else requestAnimationFrame(loop); })();
 }
-function shareUrl(embed){ const u=new URL(location.href); u.searchParams.delete("embed"); if(embed) u.searchParams.set("embed","1"); if(LANG!=="en") u.searchParams.set("lang",LANG); return u.toString(); }
+function shareUrl(embed){ const u=new URL(location.href); u.searchParams.delete("embed"); if(embed) u.searchParams.set("embed","1"); return u.toString(); }
 function copy(text,btn){ (navigator.clipboard?navigator.clipboard.writeText(text):Promise.reject()).then(()=>{ const o=btn.textContent; btn.textContent=t("Copied"); setTimeout(()=>btn.textContent=o,1500); }).catch(()=>prompt("",text)); }
 function renderTools(){
   const box=$("sTools"); if(!box) return;
@@ -998,7 +996,7 @@ function showScene(i, fly=true){
   el.prev.textContent=ci===0?t("Previous story"):t("Back");
   const lastS=ci===st.scenes.length-1; el.next.textContent=lastS?(cp?(nextChapter(st,1)>=0?t("Next chapter"):t("All chapters")):si<STORIES.length-1?t("Next story"):t("All stories")):t("Next");
   if(cp&&ci===0){ el.prev.disabled=false; el.prev.textContent=nextChapter(st,-1)>=0?t("Previous chapter"):t("All chapters"); }
-  el.notesBody.textContent=(st._translated&&!st.reviewed?t("Machine translation, not yet reviewed.")+" ":"")+st.notes; el.notes.open=false; renderData();
+  el.notesBody.textContent=st.notes; el.notes.open=false; renderData();
   history.replaceState(null,"","#"+st.id+"/"+(ci+1));
   setBasemap(scene.basemap||BM.user||"political",false);
   syncMode(scene.view.mode); spin=false;
@@ -1036,6 +1034,7 @@ function renderBlocs(){
   [...el.blocs.children].forEach(b=>b.onclick=()=>{explore.bloc=b.dataset.k||null;renderBlocs();L=layers();el.legend.innerHTML=legendHTML();render();});
 }
 
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 // ---------- campaigns: a series of stories with a landing page, chapter order and reading progress ----------
 let CAMPAIGNS=[];
 const campaignOf=st=>st&&CAMPAIGNS.find(c=>c.chapters.includes(st.id.replace(/^@stories\/|\.json$/g,"")));
@@ -1047,13 +1046,13 @@ function readState(){ try{ return JSON.parse(localStorage.getItem("orbis-read")|
 function markRead(id,scene,n){ if(id.startsWith("@")) return; const r=readState(), p=r[id]||[0,n]; r[id]=[Math.max(p[0],scene+1),n];
   try{ localStorage.setItem("orbis-read",JSON.stringify(r)); }catch(e){} }
 function fmtDate(d){ const x=new Date(String(d).length===8?String(d).replace(/(\d{4})(\d\d)(\d\d)/,"$1-$2-$3"):d);
-  return isNaN(x)?String(d):x.toLocaleDateString(LANG==="de"?"de-AT":"en-GB",{day:"numeric",month:"short",year:"numeric"}); }
+  return isNaN(x)?String(d):x.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}); }
 function openCampaign(id){
   const cp=CAMPAIGNS.find(c=>c.id===id); if(!cp) return openToc();
   quiz.mode=null; si=-1; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
   scene=Object.assign({layers:[],political:true,view:{mode:"globe",center:[0,25],zoom:1}},cp.scene||{});
   markDirty(); el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true;
-  el.kicker.textContent=(LANG==="de"?"Serie":"Series")+" · "+t("{n} chapters",{n:cp.chapters.length}); el.title.textContent=cp.title; el.text.textContent=cp.intro||cp.hook;
+  el.kicker.textContent="Series"+" · "+t("{n} chapters",{n:cp.chapters.length}); el.title.textContent=cp.title; el.text.textContent=cp.intro||cp.hook;
   el.updated.hidden=!cp.updated; if(cp.updated) el.updated.textContent=t("Updated {d}",{d:fmtDate(cp.updated)});
   const r=readState(), done=id=>r[id]&&r[id][0]>=r[id][1], seen=id=>r[id]&&r[id][0]>0;
   const ch=cp.chapters.map(id=>[id,STORIES[storyIndex(id)]]).filter(x=>x[1]);
@@ -1082,8 +1081,7 @@ function buildToc(){
   $("tocCount").textContent=STORIES.length;
 }
 $("exploreBtn").onclick=openExplore;
-$("tocTools").innerHTML=`<button id="quizBtn">${t("Quiz")}</button><button id="cityBtn">${t("Your city")}</button><a href="editor.html">${t("Write a story")}</a>`+
-  Object.entries(LANGS).map(([k,n])=>{ const u=new URL(location.href); u.searchParams.set("lang",k); return `<a href="${esc(u.toString())}" aria-current="${k===LANG}" lang="${k}">${n}</a>`; }).join("");
+$("tocTools").innerHTML=`<button id="quizBtn">${t("Quiz")}</button><button id="cityBtn">${t("Your city")}</button><a href="editor.html">${t("Write a story")}</a>`;
 $("quizBtn").onclick=openQuiz; $("cityBtn").onclick=openCity;
 $("tocBtn").onclick=()=>toc.hidden?openToc():closeToc();
 $("tocClose").onclick=closeToc;
@@ -1114,8 +1112,8 @@ addEventListener("resize",layout);
 document.fonts && document.fonts.ready.then(render);
 layout();
 setTimeout(loadDetail,300);
-(LANG==="en"?loadJSON("stories/index.json"):loadJSON("stories/"+LANG+"/index.json").catch(()=>loadJSON("stories/index.json"))).then(list=>{ STORIES.unshift(...list.map(x=>Object.assign({},x))); }).catch(e=>console.warn("Story index not loaded:",e))
-.then(()=>(LANG==="en"?loadJSON("stories/campaigns.json"):loadJSON("stories/"+LANG+"/campaigns.json").catch(()=>loadJSON("stories/campaigns.json"))).then(c=>{ CAMPAIGNS=c; }).catch(()=>{}))
+loadJSON("stories/index.json").then(list=>{ STORIES.unshift(...list.map(x=>Object.assign({},x))); }).catch(e=>console.warn("Story index not loaded:",e))
+.then(()=>loadJSON("stories/campaigns.json").then(c=>{ CAMPAIGNS=c; }).catch(()=>{}))
 .then(()=>{
   buildToc();
   let h=location.hash.slice(1).split("/");

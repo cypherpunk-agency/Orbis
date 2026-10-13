@@ -122,7 +122,7 @@ The timeline-plus-colouring feature already handles "rights and change over time
 ## Expansion ideas
 - **Authoring:** stories as a structured file format plus a simple editor. An AI drafting assistant could write a story from sources, with mandatory citations per number and a human checking each one.
 - **Data pipeline:** pull numbers at build time from Our World in Data, the World Bank and UN APIs. Every figure gets a source and an "as of" date automatically.
-- **German and English.**
+- **Languages:** English only for now (a German version was built and dropped; `t()` in `js/i18n.js` keeps the door open).
 - **Embeds and a school edition:** stories embedded in articles and lessons, one link per scene (deep links already exist).
 - **Social export:** render any story as a short video or image sequence.
 - **Quiz mode:** "where is this?", "which is bigger?", streaks.

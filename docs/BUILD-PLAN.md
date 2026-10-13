@@ -10,7 +10,7 @@ Goal: every capability in `FRAMEWORK.md` and every story in `ROADMAP.md`, built 
 | Share-alike | Not used in the base. Allowed in story layers if publishable (e.g. CShapes NC-SA, historical-basemaps GPL), labelled in the UI |
 | War front lines | No licensed daily front-line source (ISW, DeepStateMap need permission). Conflict stories use UCDP events (CC BY 4.0) and dated, cited editorial annotations |
 | AI drafting assistant | Deferred: needs an API key and a server, which a static site does not have |
-| German | Translated by Claude, marked "translation under review" until a person checks it |
+| Languages | English only (German was built and then dropped) |
 
 ## Who builds what
 
@@ -59,7 +59,7 @@ Goal: every capability in `FRAMEWORK.md` and every story in `ROADMAP.md`, built 
 
 ## Wave 5: product
 
-**Done.** German (interface in `js/i18n.js`, all stories in `stories/de/`, machine-translated and awaiting human review); embed mode (`?embed=1`); save image (PNG with caption strip) and record video (WebM) of a scene; share link and embed code; quiz mode (`#quiz`); "your city in the world" (`#city`); scene descriptions for screen readers; story editor (`editor.html`, preview via `#@draft`).
+**Done.** Embed mode (`?embed=1`); save image (PNG with caption strip) and record video (WebM) of a scene; share link and embed code; quiz mode (`#quiz`); "your city in the world" (`#city`); scene descriptions for screen readers; story editor (`editor.html`, preview via `#@draft`).
 
 All five waves are built. What remains is in the list below.
 
