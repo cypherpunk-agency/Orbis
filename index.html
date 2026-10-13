@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orbis: stories on a turning world</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+</head>
+<body>
+<canvas id="map" role="img" aria-label="Interactive world map. Drag to turn, pinch or scroll to zoom, tap a country for its name."></canvas>
+
+<header id="topbar">
+  <button id="tocBtn" class="pill" aria-controls="toc" aria-expanded="false">Stories</button>
+  <span class="brand">Orbis</span>
+  <span class="spacer"></span>
+  <div class="zoom"><button id="zout" class="pill" aria-label="Zoom out">−</button><button id="zin" class="pill" aria-label="Zoom in">+</button></div>
+  <div class="seg" role="group" aria-label="Map shape">
+    <button data-mode="globe" aria-pressed="true">Globe</button><button data-mode="flat" aria-pressed="false">Flat</button>
+  </div>
+</header>
+
+<div id="tip" role="status" hidden></div>
+
+<section id="sheet" aria-live="polite">
+  <div class="handle"><button id="collapse" aria-label="Show or hide story text" aria-expanded="true"></button></div>
+  <p id="sKicker" class="kicker"></p>
+  <h2 id="sTitle"></h2>
+  <p id="sText" class="collapsible"></p>
+  <div id="blocs" class="collapsible" hidden></div>
+  <div id="sTimeline" class="collapsible" hidden>
+    <div class="tl-row"><output id="tlYear"></output><button id="tlPlay" aria-label="Play timeline">Play</button></div>
+    <input id="tlSlider" type="range" min="0" max="10" step="1" value="0" aria-label="Year">
+    <p id="tlCaption" hidden></p>
+  </div>
+  <div id="sLegend" class="collapsible"></div>
+  <nav id="steps" aria-label="Story steps">
+    <button id="prev" class="btn">Back</button>
+    <div id="dots"></div>
+    <button id="next" class="btn">Next</button>
+  </nav>
+  <details id="sNotes" class="collapsible"><summary>Sources and notes</summary><p id="sNotesBody"></p></details>
+</section>
+
+<div id="toc" hidden role="dialog" aria-label="Stories">
+  <div class="toc-head"><h1>Stories on a turning world</h1><button id="tocClose">Close</button></div>
+  <p class="toc-lede">Eighteen short stories about power, money, numbers and people. Each one moves the map for you. Switch between globe and flat map any time to see what changes.</p>
+  <button id="exploreBtn">Explore the map freely</button>
+  <div id="tocList"></div>
+</div>
+
+<script src="data/world.js"></script>
+<script src="js/stories.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
+
