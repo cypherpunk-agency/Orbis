@@ -669,7 +669,8 @@ const LAYER={
   },
   categories(ly,d,y,L){ // one fill colour per category; values: {ISO3: category}
     const set=d.sets[ly.set]; if(!set) return;
-    Object.entries(ly.colors).forEach(([cat,c])=>L.groups.push({label:(set.labels&&set.labels[cat])||cat,color:c,
+    const nm=ly.names&&(typeof ly.names[ly.set]==="object"?ly.names[ly.set]:ly.names); // story-side labels, e.g. translations
+    Object.entries(ly.colors).forEach(([cat,c])=>L.groups.push({label:(nm&&nm[cat])||(set.labels&&set.labels[cat])||cat,color:c,
       ids:Object.entries(set.values).filter(([k,v])=>v===cat).map(([k])=>k)}));
   },
   events(ly,d,y,L){ // many dated points: cumulative up to the timeline year, or a moving window

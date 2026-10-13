@@ -77,7 +77,7 @@ Colours: `c1` blue, `c2` magenta, `c3` amber, `c4` teal, `c5` violet, `muted` gr
 | `regions` | series keyed by admin-1 ids | States/provinces of one country: `country` (ISO3; geometry in `data/geo/admin1/<ISO3>.json`), `series`, `year`, `log`, `mult`, `labels: true`, `title`, `fmt` |
 | `raster` | grid descriptor (`data/grids/*.json`) | A lon/lat grid image: `frame` (a frame label, or `"t"` for the timeline), `opacity`, `title`, `fmt` (e.g. `degc`, `ppkm2`). Tap shows the value. |
 | `particles` | vector grid (`data/grids/wind.json`) | Animated streaks following a u/v field: `count`, `speed`, `color` |
-| `categories` | sets | One colour per category: `set`, `colors: { "yes": "c4", "no": "c2" }` |
+| `categories` | sets | One colour per category: `set`, `colors: { "yes": "c4", "no": "c2" }`, optional `names: { "yes": "…" }` to override the dataset labels (e.g. in a translation; with a switch over sets, `names: { "<set>": { … } }`) |
 
 ## Dataset shapes
 

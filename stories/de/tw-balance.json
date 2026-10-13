@@ -1,0 +1,251 @@
+{
+ "id": "tw-balance",
+ "cat": "Economics",
+ "title": "Das Defizit, das nicht schrumpfen wollte",
+ "hook": "Die Zölle sollten Amerikas Handelslücke schließen. Das Defizit mit China schrumpfte, doch die Lücke insgesamt veränderte sich kaum: Sie verlagerte sich nach Vietnam, Taiwan und Mexiko.",
+ "updated": "2026-10-13",
+ "notes": "Alle Zahlen: US Census Bureau, US-Warenhandel nach Partnerland (Exporte minus Generalhandel-Importe, Census-Basis, nicht saisonbereinigt), FT-900-Länderdatei mit Daten bis August 2026; nur Waren, Dienstleistungen sind nicht enthalten. „12 Monate“ bedeutet die 12 Monate bis einschließlich des gezeigten Monats; Dezemberwerte sind Kalenderjahre. Ein negativer Saldo ist ein US-Defizit. Gold: US Census Bureau und BEA, „U.S. International Trade in Goods and Services, August 2026“ (6. Oktober 2026): Die Exporte von nichtmonetärem Gold betrugen von Januar bis August 2026 86,6 Milliarden Dollar gegenüber 40,1 Milliarden Dollar ein Jahr zuvor. Hongkong wird getrennt vom chinesischen Festland gezählt. Bilaterale Salden sind teilweise ein Artefakt des Orts, an dem Waren fertiggestellt werden: In Vietnam oder Mexiko aus chinesischen Teilen montierte Waren zählen als vietnamesische oder mexikanische Importe. Der Zusammenhang von Sparen und Investieren ist eine buchhalterische Identität der Volkswirtschaftlichen Gesamtrechnung: Der Leistungsbilanzsaldo eines Landes entspricht seiner Ersparnis minus seiner Investitionen.",
+ "data": {
+  "bal": "data/tradewar/balance.json",
+  "long": "data/tradewar/balance_long.json",
+  "sh": "data/tradewar/shift.json"
+ },
+ "scenes": [
+  {
+   "title": "Eine Rekordlücke",
+   "text": "2024 kauften die USA im Rest der Welt Waren für 1,2 Billionen Dollar mehr ein, als sie verkauften. 2025, als die Zölle auf den höchsten Stand seit den 1940er-Jahren stiegen, wuchs die Lücke auf den Rekordwert von 1,23 Billionen Dollar. 1990 lag sie bei rund 100 Milliarden Dollar.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     20
+    ],
+    "zoom": 1.05
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "sh",
+     "series": "bal_2024",
+     "year": 202608,
+     "showYear": false,
+     "title": "US-Warenhandelssaldo mit jedem Land, 2024 (blau: US-Defizit)",
+     "fmt": "busd",
+     "diverging": true,
+     "mid": 0,
+     "vmin": -150,
+     "vmax": 150
+    }
+   ],
+   "media": [
+    {
+     "type": "line",
+     "data": "long",
+     "series": "bal",
+     "countries": [
+      "USA"
+     ],
+     "title": "US-Warenhandelssaldo mit der Welt, Mrd. USD pro Jahr",
+     "fmt": "d3:$,.0f"
+    }
+   ]
+  },
+  {
+   "title": "Wo die USA mehr kaufen",
+   "text": "2024 war die Lücke mit China am größten: Die USA kauften dort für 297 Milliarden Dollar mehr ein, als sie dorthin verkauften. Es folgten Mexiko (169 Milliarden Dollar), Vietnam (123 Milliarden Dollar), Irland und Deutschland. Blau markiert ein US-Defizit. An die Niederlande, Hongkong, die Vereinigten Arabischen Emirate und Australien verkauften die USA mehr, als sie von dort kauften.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     20
+    ],
+    "zoom": 1.05
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "sh",
+     "series": "bal_2024",
+     "year": 202608,
+     "showYear": false,
+     "title": "US-Warenhandelssaldo, 2024 (blau: US-Defizit)",
+     "fmt": "busd",
+     "diverging": true,
+     "mid": 0,
+     "vmin": -150,
+     "vmax": 150
+    }
+   ],
+   "chart": {
+    "data": "sh",
+    "series": "bal_2024",
+    "year": 202608,
+    "period": "2024",
+    "mult": -1,
+    "top": 8,
+    "title": "Größte US-Defizite im Warenhandel",
+    "fmt": "busd",
+    "color": "c1"
+   }
+  },
+  {
+   "title": "Die Lücke wandert",
+   "text": "In den 12 Monaten bis August 2026 war das Defizit mit China auf 166 Milliarden Dollar gesunken, den niedrigsten Wert seit 2004. Nun liegen Vietnam (229 Milliarden Dollar), Mexiko (224 Milliarden Dollar) und Taiwan (210 Milliarden Dollar) jeweils vor China. Die Jahre abspielen, um zu sehen, wie sich das Blau über Südostasien ausbreitet.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     40,
+     20
+    ],
+    "zoom": 1.05
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "bal",
+     "series": "bal12",
+     "year": "t",
+     "title": "US-Warenhandelssaldo (blau: US-Defizit)",
+     "fmt": "busd",
+     "diverging": true,
+     "mid": 0,
+     "vmin": -150,
+     "vmax": 150
+    }
+   ],
+   "timeline": {
+    "years": [
+     201712,
+     201812,
+     201912,
+     202012,
+     202112,
+     202212,
+     202312,
+     202412,
+     202512,
+     202608
+    ],
+    "start": 202608,
+    "format": "month",
+    "labels": {
+     "201712": "2017",
+     "201812": "2018",
+     "201912": "2019",
+     "202012": "2020",
+     "202112": "2021",
+     "202212": "2022",
+     "202312": "2023",
+     "202412": "2024",
+     "202512": "2025",
+     "202608": "12 Monate bis Aug. 2026"
+    },
+    "captions": {
+     "201812": "2018: Das Defizit mit China erreicht mit 418 Milliarden Dollar seinen Höchststand.",
+     "202412": "2024: China steht noch für ein Viertel des US-Defizits im Warenhandel.",
+     "202608": "China ist auf Platz vier zurückgefallen."
+    }
+   },
+   "chart": {
+    "data": "bal",
+    "series": "bal12",
+    "year": "t",
+    "mult": -1,
+    "top": 8,
+    "title": "Größte US-Defizite im Warenhandel",
+    "fmt": "busd",
+    "color": "c1"
+   }
+  },
+  {
+   "title": "Verlagert, nicht geschrumpft",
+   "text": "Verglichen mit 2024 schrumpfte das Defizit mit China um 131 Milliarden Dollar. Doch das Defizit mit Taiwan wuchs um 137 Milliarden Dollar, mit Vietnam um 106 Milliarden, mit Thailand um 61 Milliarden und mit Mexiko um 56 Milliarden. Blau markiert, wo das US-Defizit wuchs. Buchhalterisch spiegelt das Handelsdefizit eines Landes die Lücke zwischen dem, was es investiert, und dem, was es spart. Solange Zölle diese Lücke nicht verändern, verschieben sie das Defizit meist nur von einem Partner zum anderen.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     40,
+     20
+    ],
+    "zoom": 1.05
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "sh",
+     "series": "bal_chg",
+     "year": 202608,
+     "showYear": false,
+     "title": "Veränderung des US-Warenhandelssaldos, 12 Monate bis Aug. 2026 ggü. 2024 (blau: Defizit gewachsen)",
+     "fmt": "busd",
+     "diverging": true,
+     "mid": 0,
+     "vmin": -140,
+     "vmax": 140
+    }
+   ],
+   "chart": {
+    "data": "sh",
+    "series": "bal_chg",
+    "year": 202608,
+    "period": "ggü. 2024",
+    "mult": -1,
+    "top": 8,
+    "title": "Wo das US-Defizit am stärksten wuchs",
+    "fmt": "busd",
+    "color": "c1"
+   }
+  },
+  {
+   "title": "Gold lässt die Lücke kleiner aussehen",
+   "text": "Die Gesamtlücke erreichte in den 12 Monaten bis März 2025 mit 1,38 Billionen Dollar ihren Höchststand, als Unternehmen vor den Zöllen eilig Waren einführten. In den 12 Monaten bis August 2026 betrug sie 1,12 Billionen Dollar. Die Importe sanken nicht. Die Exporte stiegen, um 326 Milliarden Dollar gegenüber 2024, am stärksten in die Schweiz, ein Zentrum des Goldhandels: Die US-Goldexporte haben sich von Januar bis August 2026 mehr als verdoppelt, auf 87 Milliarden Dollar.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     30
+    ],
+    "zoom": 1.05
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "sh",
+     "series": "exp_chg",
+     "year": 202608,
+     "showYear": false,
+     "title": "Veränderung der US-Warenexporte, 12 Monate bis Aug. 2026 ggü. 2024",
+     "fmt": "busd",
+     "diverging": true,
+     "mid": 0,
+     "vmin": -65,
+     "vmax": 65
+    }
+   ],
+   "chart": {
+    "data": "sh",
+    "series": "exp_chg",
+    "year": 202608,
+    "period": "ggü. 2024",
+    "top": 8,
+    "title": "Größte Zuwächse bei den US-Exporten",
+    "fmt": "busd",
+    "color": "c2"
+   },
+   "media": [
+    {
+     "type": "line",
+     "data": "bal",
+     "series": "total_bal12",
+     "countries": [
+      "USA"
+     ],
+     "title": "US-Warenhandelssaldo, jeweils 12 Monate bis zum Monat, Mrd. USD",
+     "fmt": "d3:$,.0f"
+    }
+   ],
+   "sources": [
+    "us-census"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,293 @@
+{
+  "id": "tw-courts",
+  "cat": "Economics",
+  "title": "Zölle vor Gericht",
+  "hook": "Kleine Unternehmen klagten, und der Oberste Gerichtshof der USA (Supreme Court) kippte die größten Zölle von 2025. Binnen Monaten waren die meisten auf Grundlage anderer Gesetze zurück.",
+  "updated": "2026-10-13",
+  "notes": "Urteile: Handelsgericht der USA (US Court of International Trade, CIT), V.O.S. Selections v. United States, Slip Op. 25-66, 28. Mai 2025 (drei Richter, einstimmig); US-Berufungsgericht für den Federal Circuit (en banc), V.O.S. Selections v. Trump, Nr. 2025-1812 und 2025-1813, 29. August 2025 (7 zu 4, per curiam; 149 F.4th 1312); Oberster Gerichtshof der USA (Supreme Court), Learning Resources, Inc. v. Trump, 607 U.S. 229, verhandelt am 5. November 2025, entschieden am 20. Februar 2026 (6 zu 3; Zitate nach dem amtlichen Vorabdruck, hier ins Deutsche übertragen); Court of International Trade, Oregon v. United States, Slip Op. 26-47, 7. Mai 2026 (2 zu 1; einstweilige Verfügung auf die Kläger beschränkt). Zölle: Executive Orders 14193, 14194 und 14195 vom 1. Februar 2025 (90 FR 9113, 9117, 9121) und 14257 vom 2. April 2025 (90 FR 15041), alle nach dem International Emergency Economic Powers Act (IEEPA); Executive Order 14389 vom 20. Februar 2026, die sie beendete (91 FR 9437), und CBP CSMS #67834313 (keine IEEPA-Zölle auf ab 24. Februar 2026 eingeführte Waren); Proklamation 11012 (91 FR 9339) nach Section 122 des Trade Act von 1974, 24. Februar bis 24. Juli 2026; USTR, Section-301-Maßnahmen wegen Zwangsarbeit, 91 FR 47318 (28. Juli 2026); USTR, Section-301-Maßnahme gegen Brasilien (FR Doc. 2026-14542); Proklamationen 11046-11048 nach Section 338 des Tariff Act von 1930 (91 FR 46639-46663). Erstattungen: Anordnung von Richter Richard Eaton am CIT, 4. März 2026; CBP, Seite „IEEPA Duty Refunds“ (zuletzt geändert am 30. September 2026); Erklärung der CBP vom 15. September 2026 gegenüber dem CIT, wie von Holland & Knight, Thompson Hine und Cherry Bekaert berichtet (rund 166 Milliarden Dollar IEEPA-Zölle auf 53 Millionen Einfuhren; rund 122 Milliarden Dollar bis 11. September 2026 bestätigt und zur Erstattung an das Finanzministerium übermittelt). Klagen gegen die Section-301-Zölle wegen Zwangsarbeit (am 30. September 2026 vor dem CIT verhandelt) waren laut handelsrechtlichen Berichten mit Stand 13. Oktober 2026 nicht entschieden. Die Karten zeigen die Rechtsgrundlage des wichtigsten landesweiten Zolls auf jede Volkswirtschaft; Branchenzölle nach Section 232 kommen überall hinzu und sind nicht dargestellt. Abhängige Gebiete (Grönland, Bermuda, Neukaledonien und andere) bleiben leer.",
+  "sources": [
+    "us-fedreg",
+    "us-courts"
+  ],
+  "data": {
+    "law": "data/tradewar/legal.json"
+  },
+  "scenes": [
+    {
+      "title": "Ein Notstandsgesetz, fast alle Länder",
+      "text": "2025 belegte der Präsident fast jedes Land mit Zöllen, indem er nationale Notstände nach dem International Emergency Economic Powers Act (IEEPA) ausrief, einem Sanktionsgesetz von 1977. China, dann Kanada und Mexiko wurden ab Februar und März wegen Fentanyl und Migration mit Zöllen belegt. Ab April trafen fast alle anderen Länder, China eingeschlossen, „reziproke“ Zölle von mindestens 10 %. Ältere Gesetze deckten den Rest ab: Section 232 für Stahl oder Autos, Section 301 für China seit 2018.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "law",
+          "set": "before",
+          "colors": {
+            "a": "c1",
+            "b": "c4",
+            "c": "c2",
+            "e": "c3",
+            "d": "muted"
+          },
+          "names": {
+            "a": "IEEPA: „reziproker“ Zoll",
+            "b": "IEEPA: „Grenz“-Zoll (Kanada, Mexiko)",
+            "c": "IEEPA plus Section 301 (China)",
+            "e": "IEEPA plus 40 % IEEPA-Strafzoll (Brasilien)",
+            "d": "Kein IEEPA-Zoll (bereits unter Sanktionen)"
+          }
+        }
+      ],
+      "highlight": [
+        "CAN",
+        "MEX",
+        "CHN"
+      ]
+    },
+    {
+      "title": "Kleine Unternehmen klagen",
+      "text": "Fünf kleine Unternehmen, angeführt vom Weinimporteur V.O.S. Selections, und zwölf Bundesstaaten klagten vor dem Handelsgericht der USA (Court of International Trade) in New York. Am 28. Mai 2025 entschieden seine drei Richter einstimmig, dass der IEEPA diese Zölle nicht erlaubt. Am 29. August stimmte das Berufungsgericht für den Federal Circuit mit 7 zu 4 zu. Während die Regierung Rechtsmittel einlegte, blieben die Zölle in Kraft.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -85,
+          35
+        ],
+        "zoom": 1.4
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "law",
+          "set": "before",
+          "colors": {
+            "a": "c1",
+            "b": "c4",
+            "c": "c2",
+            "e": "c3",
+            "d": "muted"
+          },
+          "names": {
+            "a": "IEEPA: „reziproker“ Zoll",
+            "b": "IEEPA: „Grenz“-Zoll (Kanada, Mexiko)",
+            "c": "IEEPA plus Section 301 (China)",
+            "e": "IEEPA plus 40 % IEEPA-Strafzoll (Brasilien)",
+            "d": "Kein IEEPA-Zoll (bereits unter Sanktionen)"
+          }
+        }
+      ],
+      "highlight": [
+        "USA"
+      ]
+    },
+    {
+      "title": "Der Supreme Court entscheidet",
+      "text": "Der Oberste Gerichtshof der USA (Supreme Court) verhandelte den Fall am 5. November 2025 und entschied am 20. Februar 2026 mit 6 zu 3: Die Befugnis, „die Einfuhr zu regeln“ („regulate importation“), im IEEPA schließt die Befugnis zur Besteuerung nicht ein. Jeder IEEPA-Zoll auf dieser Karte fiel. Zölle nach anderen Gesetzen waren nicht Teil des Verfahrens, und der US-Zoll stellte die Erhebung der IEEPA-Zölle am 24. Februar ein.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "law",
+          "set": "before",
+          "colors": {
+            "a": "c1",
+            "b": "c4",
+            "c": "c2",
+            "e": "c3",
+            "d": "muted"
+          },
+          "names": {
+            "a": "IEEPA: „reziproker“ Zoll",
+            "b": "IEEPA: „Grenz“-Zoll (Kanada, Mexiko)",
+            "c": "IEEPA plus Section 301 (China)",
+            "e": "IEEPA plus 40 % IEEPA-Strafzoll (Brasilien)",
+            "d": "Kein IEEPA-Zoll (bereits unter Sanktionen)"
+          }
+        }
+      ],
+      "media": [
+        {
+          "type": "quote",
+          "text": "Wir bezweifeln daher, dass der Kongress im IEEPA – und nur im IEEPA – die Übertragung seiner ureigenen Befugnis zur Besteuerung in der alltäglichen Befugnis zu „regeln“ versteckt hat.",
+          "by": "Urteilsbegründung der Mehrheit, verfasst von Chief Justice John Roberts, Learning Resources, Inc. v. Trump, 20. Februar 2026"
+        }
+      ],
+      "sources": [
+        "us-courts"
+      ]
+    },
+    {
+      "title": "Eine Brücke für 150 Tage",
+      "text": "Noch am selben Tag griff der Präsident auf Section 122 des Trade Act von 1974 zurück, die einen Aufschlag von bis zu 15 % für 150 Tage erlaubt, um ein Zahlungsbilanzproblem zu beheben. Ein Aufschlag von 10 % auf fast alle Importe galt vom 24. Februar bis 24. Juli 2026. Am 7. Mai erklärte das Handelsgericht der USA (Court of International Trade) auch ihn mit 2 zu 1 für rechtswidrig, aber nur für die Kläger.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "law",
+          "set": "bridge",
+          "colors": {
+            "b": "c4"
+          },
+          "names": {
+            "b": "Aufschlag nach Section 122, 10 %"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Dieselbe Mauer, ein neues Gesetz",
+      "text": "Die Rechtsgrundlage der Zölle für jedes Land vor dem Urteil und heute vergleichen.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "switch": {
+        "label": "Zölle mit Stand",
+        "start": 1,
+        "options": [
+          {
+            "s": "before",
+            "label": "19. Feb. 2026",
+            "text": "Am Tag vor dem Urteil beruhte der Zoll für fast jedes Land auf dem IEEPA, einem Notstandsgesetz, in dem Zölle nicht einmal erwähnt werden."
+          },
+          {
+            "s": "after",
+            "label": "13. Okt. 2026",
+            "text": "Heute beruhen die wichtigsten Zölle auf Section 301 des Trade Act von 1974, die es dem Handelsbeauftragten erlaubt, unfaire Praktiken nach einer Untersuchung zu bestrafen. Seit 24. Juli zahlen 60 Volkswirtschaften 10 % oder 12,5 %, weil sie Waren aus Zwangsarbeit nicht verbieten. China und Brasilien zahlen einen zweiten Section-301-Zoll. Kanada zahlt außerdem auf einige Waren 50 % nach Section 338, einem Gesetz von 1930 gegen Länder, die US-Waren benachteiligen."
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "law",
+          "set": "{s}",
+          "colors": {
+            "a": "c1",
+            "b": "c4",
+            "c": "c2",
+            "e": "c3",
+            "d": "muted"
+          },
+          "names": {
+            "before": {
+              "a": "IEEPA: „reziproker“ Zoll",
+              "b": "IEEPA: „Grenz“-Zoll (Kanada, Mexiko)",
+              "c": "IEEPA plus Section 301 (China)",
+              "e": "IEEPA plus 40 % IEEPA-Strafzoll (Brasilien)",
+              "d": "Kein IEEPA-Zoll (bereits unter Sanktionen)"
+            },
+            "after": {
+              "a": "Section 301, Zwangsarbeits-Zoll 12,5 %",
+              "b": "Section 301, Zwangsarbeits-Zoll 10 %",
+              "c": "Zwei Section-301-Zölle (China, Brasilien)",
+              "e": "Section 301 plus Section 338 (Kanada)",
+              "d": "Kein landesweiter Zoll"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Die Rückzahlung",
+      "text": "Am 4. März 2026 ordnete das Handelsgericht der USA (Court of International Trade) an, dass der Zoll die IEEPA-Zölle allen Importeuren erstattet, nicht nur den Klägern. Die Erstattungen umfassen rund 166 Milliarden Dollar, gezahlt auf 53 Millionen Sendungen. Bis 11. September hatte der Zoll rund 122 Milliarden Dollar samt Zinsen zur Auszahlung an das Finanzministerium übermittelt. Erstattungen für die ältesten Einfuhren, ab 6. Oktober vorgesehen, sind auf Importeure beschränkt, die geklagt haben.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "law",
+          "set": "before",
+          "colors": {
+            "a": "c1",
+            "b": "c4",
+            "c": "c2",
+            "e": "c3",
+            "d": "muted"
+          },
+          "names": {
+            "a": "IEEPA: „reziproker“ Zoll",
+            "b": "IEEPA: „Grenz“-Zoll (Kanada, Mexiko)",
+            "c": "IEEPA plus Section 301 (China)",
+            "e": "IEEPA plus 40 % IEEPA-Strafzoll (Brasilien)",
+            "d": "Kein IEEPA-Zoll (bereits unter Sanktionen)"
+          }
+        }
+      ],
+      "media": [
+        {
+          "type": "quote",
+          "text": "Das Gericht sagt heute nichts dazu, ob und gegebenenfalls wie die Regierung die Milliarden Dollar zurückzahlen soll, die sie von Importeuren eingenommen hat. Doch dieser Prozess dürfte ein „Chaos“ werden, wie in der mündlichen Verhandlung eingeräumt wurde.",
+          "by": "Richter Brett Kavanaugh, abweichende Meinung, Learning Resources, Inc. v. Trump"
+        }
+      ],
+      "sources": [
+        "us-courts"
+      ]
+    },
+    {
+      "title": "Zweite Runde",
+      "text": "Auch die neuen Zölle liegen vor Gericht. Kleine Unternehmen und 25 Bundesstaaten haben gegen die Zwangsarbeits-Zölle geklagt, mit dem Argument, der Handelsbeauftragte habe Section 301 über das hinaus ausgedehnt, was der Kongress erlaubt. Das Handelsgericht der USA verhandelte am 30. September 2026 einen Musterfall und hatte mit Stand 13. Oktober noch nicht entschieden. Die Section-232-Zölle auf Stahl, Autos und Arzneimittel bestehen weiter.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "law",
+          "set": "after",
+          "colors": {
+            "a": "c1",
+            "b": "c4",
+            "c": "c2",
+            "e": "c3",
+            "d": "muted"
+          },
+          "names": {
+            "a": "Section 301, Zwangsarbeits-Zoll 12,5 %",
+            "b": "Section 301, Zwangsarbeits-Zoll 10 %",
+            "c": "Zwei Section-301-Zölle (China, Brasilien)",
+            "e": "Section 301 plus Section 338 (Kanada)",
+            "d": "Kein landesweiter Zoll"
+          }
+        }
+      ]
+    }
+  ]
+}
