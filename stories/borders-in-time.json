@@ -1,0 +1,193 @@
+{
+ "id": "borders-in-time",
+ "cat": "Geopolitics",
+ "title": "Borders through time",
+ "hook": "Most of today's borders are younger than your grandparents. Watch empires break apart.",
+ "notes": "Historical borders from CShapes 2.0 (ETH Zurich), which records the legal borders of independent states and their dependencies; snapshots are taken on 1 January or 1 July of the year shown. CShapes leaves out changes smaller than 10,000 km² and wartime occupations that were later reversed, so 1945 shows no Nazi annexations. Names follow CShapes. Licence: CC BY-NC-SA 4.0 (non-commercial).",
+ "data": {
+  "b": "data/history/borders.json"
+ },
+ "scenes": [
+  {
+   "title": "Europe in 1914",
+   "text": "On the eve of the First World War, three empires ruled most of central and eastern Europe: Austria-Hungary, the Russian Empire and the Ottoman Empire. Poland, Czechoslovakia, Yugoslavia and the Baltic states did not exist.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     22,
+     48
+    ],
+    "zoom": 3.2
+   },
+   "layers": [
+    {
+     "type": "borders",
+     "data": "b",
+     "year": 1914
+    }
+   ]
+  },
+  {
+   "title": "Austria-Hungary falls apart",
+   "text": "Defeat in 1918 broke Austria-Hungary into new states: Austria, Hungary and Czechoslovakia, with its southern lands joining the new Yugoslavia and others going to Poland, Romania and Italy. Vienna went from capital of 50 million people to capital of 6.5 million. Press Play.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     18,
+     47.5
+    ],
+    "zoom": 4.2
+   },
+   "layers": [
+    {
+     "type": "borders",
+     "data": "b",
+     "year": "t"
+    }
+   ],
+   "timeline": {
+    "years": [
+     1914,
+     1920
+    ],
+    "start": 1914,
+    "captions": {
+     "1914": "Austria-Hungary, 1914",
+     "1920": "Its successor states, 1920"
+    }
+   }
+  },
+  {
+   "title": "Europe after Hitler",
+   "text": "After 1945, Germany was divided, and Poland moved west: it lost its eastern lands to the Soviet Union and gained German territory up to the Oder and Neisse rivers. The Baltic states had been absorbed into the Soviet Union. Press Play.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     18,
+     51
+    ],
+    "zoom": 3.6
+   },
+   "layers": [
+    {
+     "type": "borders",
+     "data": "b",
+     "year": "t"
+    }
+   ],
+   "timeline": {
+    "years": [
+     1938,
+     1950
+    ],
+    "start": 1938,
+    "captions": {
+     "1938": "Europe in 1938",
+     "1950": "Germany divided, Poland moved west (1950)"
+    }
+   }
+  },
+  {
+   "title": "Africa becomes independent",
+   "text": "In 1950 almost all of Africa was ruled from Europe. In 1960 alone, 17 African countries became independent, most of them former French colonies. By 1975 the Portuguese empire, the last large one, was gone. Press Play.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     18,
+     3
+    ],
+    "zoom": 1.9
+   },
+   "layers": [
+    {
+     "type": "borders",
+     "data": "b",
+     "year": "t"
+    }
+   ],
+   "timeline": {
+    "years": [
+     1950,
+     1960,
+     1975
+    ],
+    "start": 1950,
+    "captions": {
+     "1950": "Colonial Africa, 1950 (shapes labelled with the territory's name)",
+     "1960": "Mid-1960: the 'Year of Africa' is under way",
+     "1975": "1975: Angola and Mozambique independent"
+    }
+   }
+  },
+  {
+   "title": "The Soviet Union and Yugoslavia break up",
+   "text": "In 1991 the Soviet Union dissolved into 15 states, from Estonia to Kazakhstan, and Yugoslavia began to break apart in war. On 1 January 1993 Czechoslovakia split peacefully into the Czech Republic and Slovakia.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     40,
+     50
+    ],
+    "zoom": 2.1
+   },
+   "layers": [
+    {
+     "type": "borders",
+     "data": "b",
+     "year": "t"
+    }
+   ],
+   "timeline": {
+    "years": [
+     1990,
+     1993
+    ],
+    "start": 1990,
+    "captions": {
+     "1990": "1990: the USSR, Yugoslavia, Czechoslovakia",
+     "1993": "Mid-1993: their successor states"
+    }
+   }
+  },
+  {
+   "title": "130 years in one sweep",
+   "text": "Play the whole sequence from 1886 to 2019. Empires shrink, colonies become countries, and the number of independent states more than triples, from about 55 to over 170.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     20,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "borders",
+     "data": "b",
+     "year": "t",
+     "labels": false
+    }
+   ],
+   "timeline": {
+    "years": [
+     1886,
+     1900,
+     1914,
+     1920,
+     1925,
+     1938,
+     1945,
+     1950,
+     1960,
+     1975,
+     1990,
+     1993,
+     2000,
+     2011,
+     2019
+    ],
+    "start": 1886
+   }
+  }
+ ]
+}

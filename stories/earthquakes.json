@@ -1,0 +1,202 @@
+{
+ "id": "earthquakes",
+ "cat": "Planet",
+ "title": "Where the Earth breaks",
+ "hook": "Every big earthquake since 1900 lies on a few narrow lines: the edges of the plates.",
+ "notes": "Earthquakes of magnitude 6 and above, 1900–2025, from the USGS ANSS Comprehensive Catalog; most events before 1973 come from the ISC-GEM catalogue (© ISC and GEM Foundation, CC BY-SA 3.0). Fewer early events reflect fewer seismometers, not fewer earthquakes. Circle size grows with the energy released: each step of one magnitude releases about 32 times more energy.",
+ "data": {
+  "q": "data/events/earthquakes.json"
+ },
+ "scenes": [
+  {
+   "title": "125 years of big earthquakes",
+   "text": "Each circle is an earthquake of magnitude 6 or more since 1900, about 14,400 of them. They are not scattered at random: they trace thin lines around the Pacific, through the Mediterranean and the Himalayas, and along the middle of the oceans.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     150,
+     10
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "events",
+     "data": "q",
+     "window": "all",
+     "color": "c2",
+     "scale": "mag",
+     "base": 6,
+     "minR": 1.1,
+     "maxR": 13,
+     "title": "Earthquakes M6+"
+    }
+   ]
+  },
+  {
+   "title": "Year by year",
+   "text": "Press Play to watch the record build up. The bright circles are the current year. Around 120 to 160 earthquakes of magnitude 6 or more are recorded in a typical year.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     150,
+     10
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "events",
+     "data": "q",
+     "year": "t",
+     "color": "c2",
+     "scale": "mag",
+     "base": 6,
+     "minR": 1.1,
+     "maxR": 13,
+     "title": "Earthquakes M6+, up to the year shown"
+    }
+   ],
+   "timeline": {
+    "years": [
+     1900,
+     2025
+    ],
+    "start": 1900,
+    "captions": {
+     "1906": "San Francisco, and a magnitude 8.8 off Ecuador and Colombia.",
+     "1960": "Valdivia, Chile: magnitude 9.5, the strongest ever recorded.",
+     "1964": "Alaska, magnitude 9.2.",
+     "2004": "Sumatra, magnitude 9.1: the Indian Ocean tsunami.",
+     "2011": "Tōhoku, Japan, magnitude 9.1: the Fukushima tsunami.",
+     "2025": "Kamchatka, magnitude 8.8, in July."
+    }
+   }
+  },
+  {
+   "title": "The Ring of Fire",
+   "text": "Around the Pacific, ocean plates dive beneath the continents. These subduction zones produce the largest earthquakes on Earth and most of its volcanoes.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -170,
+     10
+    ],
+    "zoom": 1
+   },
+   "basemap": "terrain",
+   "layers": [
+    {
+     "type": "events",
+     "data": "q",
+     "window": "all",
+     "color": "c3",
+     "scale": "mag",
+     "base": 6,
+     "minR": 1.1,
+     "maxR": 13,
+     "title": "Earthquakes M6+"
+    }
+   ]
+  },
+  {
+   "title": "The giants",
+   "text": "Only five earthquakes since 1900 reached magnitude 9: Chile 1960, Alaska 1964, Sumatra 2004, Japan 2011 and Kamchatka 1952. All struck where one plate dives under another.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     160,
+     15
+    ],
+    "zoom": 1.1
+   },
+   "layers": [
+    {
+     "type": "events",
+     "data": "q",
+     "window": "all",
+     "color": "c2",
+     "scale": "mag",
+     "base": 6,
+     "minR": 0.8,
+     "maxR": 13,
+     "title": "Earthquakes M6+"
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      -73.4,
+      -38.2
+     ],
+     "label": "Chile 1960, M9.5",
+     "color": "c3",
+     "r": 4
+    },
+    {
+     "at": [
+      -147.6,
+      61.0
+     ],
+     "label": "Alaska 1964, M9.2",
+     "color": "c3",
+     "r": 4
+    },
+    {
+     "at": [
+      95.98,
+      3.3
+     ],
+     "label": "Sumatra 2004, M9.1",
+     "color": "c3",
+     "r": 4
+    },
+    {
+     "at": [
+      142.37,
+      38.3
+     ],
+     "label": "Tōhoku 2011, M9.1",
+     "color": "c3",
+     "r": 4
+    },
+    {
+     "at": [
+      159.5,
+      52.6
+     ],
+     "label": "Kamchatka 1952, M9.0",
+     "color": "c3",
+     "r": 4
+    }
+   ]
+  },
+  {
+   "title": "Where mountains are made",
+   "text": "A second belt runs from the Mediterranean through Iran to the Himalayas, where Africa, Arabia and India push north into Eurasia. The collision lifts the highest mountains on Earth and shakes Turkey, Iran, Afghanistan and Nepal.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     55,
+     32
+    ],
+    "zoom": 2.1
+   },
+   "basemap": "terrain",
+   "layers": [
+    {
+     "type": "events",
+     "data": "q",
+     "window": "all",
+     "color": "c3",
+     "scale": "mag",
+     "base": 6,
+     "minR": 1.3,
+     "maxR": 14,
+     "title": "Earthquakes M6+"
+    }
+   ],
+   "countryLabels": true
+  }
+ ]
+}

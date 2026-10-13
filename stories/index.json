@@ -320,5 +320,26 @@
   "title": "How COVID-19 spread",
   "hook": "From one city in December 2019 to almost every country on Earth in three months.",
   "file": "stories/covid-spread.json"
+ },
+ {
+  "id": "earthquakes",
+  "cat": "Planet",
+  "title": "Where the Earth breaks",
+  "hook": "Every big earthquake since 1900 lies on a few narrow lines: the edges of the plates.",
+  "file": "stories/earthquakes.json"
+ },
+ {
+  "id": "counting-war",
+  "cat": "Geopolitics",
+  "title": "Counting war",
+  "hook": "Researchers in Uppsala log every deadly clash they can verify. Here is what their records show for Ukraine, Syria and Sudan.",
+  "file": "stories/counting-war.json"
+ },
+ {
+  "id": "borders-in-time",
+  "cat": "Geopolitics",
+  "title": "Borders through time",
+  "hook": "Most of today's borders are younger than your grandparents. Watch empires break apart.",
+  "file": "stories/borders-in-time.json"
  }
 ]

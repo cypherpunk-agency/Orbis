@@ -183,6 +183,24 @@ const SOURCES = {
     url: "https://ourworldindata.org/coronavirus", use: "commercial", redistribute: true,
     credit: "Our World in Data, based on WHO COVID-19 dashboard data"
   },
+  "usgs-quakes": {
+    name: "USGS earthquake catalogue", what: "Earthquakes of magnitude 6 and above, 1900–2025 (ANSS Comprehensive Catalog; pre-1973 events largely from ISC-GEM)", tier: "layer",
+    licence: "US public domain + ISC-GEM CC BY-SA 3.0", licenceUrl: "https://www.isc.ac.uk/iscgem/download.php",
+    url: "https://earthquake.usgs.gov/fdsnws/event/1/", use: "commercial", redistribute: true,
+    credit: "Source: U.S. Geological Survey, ANSS ComCat; ISC-GEM Global Instrumental Earthquake Catalogue © ISC and GEM Foundation, CC BY-SA 3.0"
+  },
+  "ucdp-ged": {
+    name: "UCDP conflict events", what: "Organised-violence events (at least one death) by 0.25° cell and month: Ukraine, Syria, Sudan (GED 26.1 + Candidate events to Aug 2026)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://ucdp.uu.se/downloads/", use: "commercial", redistribute: true,
+    credit: "Source: UCDP GED 26.1 (Davies, Pettersson & Öberg 2026; Sundberg & Melander 2013) and UCDP Candidate Events (Hegre et al. 2020)"
+  },
+  cshapes: {
+    name: "CShapes 2.0", what: "Historical state borders and dependent territories, 1886–2019 (snapshots for 15 dates)", tier: "layer",
+    licence: "CC BY-NC-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    url: "https://icr.ethz.ch/data/cshapes/", use: "noncommercial", redistribute: true,
+    credit: "CShapes 2.0: Schvitz, Rüegger, Girardin, Cederman, Weidmann, Gleditsch (2022), ETH Zurich ICR; simplified snapshots by Orbis, CC BY-NC-SA 4.0"
+  },
   "orbis-schematic": {
     name: "Orbis schematic routes", what: "Pipelines, sea lanes and facility locations drawn by Orbis from public reporting; approximate", tier: "layer",
     licence: "Own work", licenceUrl: "", url: "", use: "commercial", redistribute: true,
