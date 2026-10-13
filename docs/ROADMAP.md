@@ -2,6 +2,8 @@
 
 Status: limits of the current build, story backlog, and suggested technical path.
 
+All sources must be commercially licensed; see [LICENSING.md](LICENSING.md).
+
 ## Current technical limits
 
 ### Geometry
@@ -34,9 +36,8 @@ This needs two different capabilities, built as separate layers.
 
 ### 1. Borders that change over time (years)
 - **Data:**
-  - **CShapes 2.0** covers country borders from 1886 to 2019, with start and end dates. Academic and free.
-  - **historical-basemaps** (aourednik, on GitHub) has snapshots back to antiquity. Quality varies before 1800.
-  - **Thenmap** covers borders from 1945 onward.
+  - **OpenHistoricalMap** (CC0 by default) is the preferred source. Filter out features tagged CC BY-SA.
+  - Excluded for licensing (see `LICENSING.md`): CShapes 2.0 (non-commercial), historical-basemaps (GPL-3.0), Thenmap (no stated licence).
 - **What we'd add:** the year slider swaps in the borders valid for that year, instead of recolouring today's shapes. Countries cross-fade or reshape between snapshots.
 - **Stories this unlocks:**
   - Austria-Hungary falls apart, 1914–1923 (strong local hook for a Vienna-based project).
@@ -49,9 +50,10 @@ This needs two different capabilities, built as separate layers.
 
 ### 2. Front lines inside a war (days or weeks)
 - **Data for Ukraine:**
-  - **ISW / Critical Threats** publish daily assessments of who controls what. Reuse terms need checking.
-  - **DeepStateMap**, a Ukrainian volunteer project tracking the front daily. Widely used; licensing and political perspective both need checking.
-  - **UCDP** (Uppsala Conflict Data Program) lists conflict events with locations and is openly licensed. **ACLED** is similar but has restrictive terms.
+  - **UCDP** (CC BY 4.0) for located conflict events: usable now.
+  - **DeepStateMap** tracks the front daily. Commercial data use needs their written approval; political perspective also needs weighing.
+  - **ISW / Critical Threats** need written permission beyond brief excerpts. **ACLED** needs a paid corporate licence.
+  - Without a licensed front-line source, front lines must be drawn in-house from open reporting, with sources cited per date.
 - **What we'd add:**
   - detailed geometry and a detailed map engine for these scenes
   - a date scrubber with annotated events
@@ -133,6 +135,6 @@ The timeline-plus-colouring feature already handles "rights and change over time
 
 ## Suggested order
 1. **Data pipeline with sources.** Prerequisite for going public.
-2. **Borders over time (CShapes).** Big impact, moderate effort; unlocks a whole category including Austria-Hungary.
+2. **Borders over time (OpenHistoricalMap).** Big impact, moderate effort; unlocks a whole category including Austria-Hungary.
 3. **Deep-zoom engine and front lines.** Ukraine as the flagship story.
 4. **Cartograms.** A second signature moment.
