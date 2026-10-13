@@ -113,7 +113,7 @@ function arr(v,kind){ if(!v) return []; if(typeof v==="string") return resolveRe
 function routePath(r){ let p=typeof r.path==="string"?resolveRef(r.path):r.path; if(r.until!=null) p=p.slice(0,r.until+1); return p; }
 function layers(){
   const s=scene||{};
-  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:s.highlight||[],symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null};
+  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null};
   Object.assign(L.fills,s.fills||{});
   L.groups=(s.groups||[]).slice();
   if(s.choro) L.choro=s.choro;
@@ -495,7 +495,8 @@ function tap(x,y){
   if(!f&&gridHtml){ tip.innerHTML="<b>"+d3.format(".1f")(Math.abs(ll[1]))+"°"+(ll[1]>=0?"N":"S")+" "+d3.format(".1f")(Math.abs(ll[0]))+"°"+(ll[0]>=0?"E":"W")+"</b>"+gridHtml;
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
   if(!f){hideTip();return;}
-  if(L.flows.length||focus){ focus=focus===f.id?null:f.id; L=layers(); el.legend.innerHTML=legendHTML(); render(); }
+  if(L.pairs&&L.pairs.has(f.id)&&L.pairs.from!==f.id){ pairFrom=f.id; markDirty(); L=layers(); Ldirty=false; el.legend.innerHTML=legendHTML(); describe(); render(); }
+  else if(L.flows.length||focus){ focus=focus===f.id?null:f.id; L=layers(); el.legend.innerHTML=legendHTML(); render(); }
   let html="<b>"+esc(nameOf(f.id))+"</b>"+gridHtml;
   if(L.choro){const v=L.cdata[f.id]; html+="<span>"+(v==null?t("No data"):esc(String(L.choro.fmt?L.choro.fmt(v):v)))+"</span>";}
   L.vals.forEach(lv=>{const v=lv.values[f.id]; if(v!=null) html+="<span>"+esc(lv.title)+": "+esc(lv.fmt(v))+"</span>";});
@@ -606,6 +607,12 @@ function pointValues(ly,d,y){
   return d.points.filter(p=>p[ly.field]&&p[ly.field][pi]!=null).map(p=>({id:p.id,name:p.name,at:p.at,v:p[ly.field][pi]}));
 }
 const LAYER={
+  pairs(ly,d,y,L){ // country × country matrix: colour every country by its value with one chosen country (tap picks another)
+    const from=(pairFrom&&d.values[pairFrom])?pairFrom:ly.from, row=d.values[from]; if(!row) return;
+    const v={}; d.countries.forEach((c,i)=>{ if(c!==from&&row[i]!=null&&byId.has(c)) v[c]=row[i]; });
+    L.choro={title:(ly.title||d.label||"").replace("{name}",nameOf(from)),fmt:fmtOf(ly.fmt),log:ly.log,reverse:ly.reverse,values:v,nodata:ly.nodataLabel,
+      vmin:ly.vmin,vmax:ly.vmax,diverging:ly.diverging,mid:ly.mid||0};
+    L.fills[from]=ly.fromColor||"c2"; L.highlight.push(from); L.pairs={from,has:id=>!!d.values[id]}; },
   choropleth(ly,d,y,L){ const v={}; Object.entries(valuesOf(ly,d,y)).forEach(([k,x])=>{ if(byId.has(k)) v[k]=x; });  // only countries the map can colour
     L.choro={title:ly.title+(ly.showYear===false?"":" · "+ylab(y)),fmt:fmtOf(ly.fmt),log:ly.log,reverse:ly.reverse,values:v,nodata:ly.nodataLabel,
       vmin:ly.vmin,vmax:ly.vmax,diverging:ly.diverging,mid:ly.mid||0}; },
@@ -706,7 +713,7 @@ const LAYER={
   points(ly,d,y,L){ (d.points[ly.set]||[]).filter(x=>!ly.only||ly.only.includes(x.name)).forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.forceColor?ly.color:(x.color||ly.color),r:x.r||ly.r||4.5})); }
 };
 // tapping a country in a flows scene shows only that country's flows
-let focus=null;
+let focus=null, pairFrom=null;   // tapped country: flows filter / pairs origin
 // a scene "switch" (e.g. pick a commodity) fills {placeholders} in its layers, chart and text
 let switchIdx=0;
 const switchOpt=()=>scene&&scene.switch?scene.switch.options[switchIdx]:null;
@@ -908,6 +915,7 @@ function legendHTML(){
   if(s.legend) h+=s.legend.map(l=>chip(l.color,l.label)).join("");
   else if(L&&L.groups.length) h+=L.groups.map(g=>chip(g.color,g.label)).join("");
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · "+t(k.qty?"line width = tonnes":"line width = value")));
+  if(L&&L.pairs) h+=`<span class="chip">${esc(t("Tap a country to see its ties"))}</span>`;
   if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?esc(t("Showing {x} only · tap it again for all",{x:nameOf(focus)})):esc(t("Tap a country to see only its flows"))}</span>`;
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · "+t("country size = amount"));
@@ -988,7 +996,7 @@ function showScene(i, fly=true){
   el.blocs.hidden=true; el.steps.hidden=false; el.notes.hidden=false;
   if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.years.length-1;}
   else el.tl.hidden=true;
-  markDirty(); focus=null; switchIdx=(scene.switch&&scene.switch.start)||0; cartoStart=performance.now(); renderSwitch();
+  markDirty(); focus=null; pairFrom=null; switchIdx=(scene.switch&&scene.switch.start)||0; cartoStart=performance.now(); renderSwitch();
   frame=null; setFrame(); L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderMedia(); renderTools(); describe();
   el.dots.innerHTML=st.scenes.map((s,j)=>`<button class="dot" aria-label="${t("Scene")} ${j+1}: ${esc(s.title)}" ${j===ci?'aria-current="step"':""}></button>`).join("");
   [...el.dots.children].forEach((b,j)=>b.onclick=()=>showScene(j));

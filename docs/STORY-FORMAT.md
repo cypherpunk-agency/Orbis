@@ -77,6 +77,7 @@ Colours: `c1` blue, `c2` magenta, `c3` amber, `c4` teal, `c5` violet, `muted` gr
 | `regions` | series keyed by admin-1 ids | States/provinces of one country: `country` (ISO3; geometry in `data/geo/admin1/<ISO3>.json`), `series`, `year`, `log`, `mult`, `labels: true`, `title`, `fmt` |
 | `raster` | grid descriptor (`data/grids/*.json`) | A lon/lat grid image: `frame` (a frame label, or `"t"` for the timeline), `opacity`, `title`, `fmt` (e.g. `degc`, `ppkm2`). Tap shows the value. |
 | `particles` | vector grid (`data/grids/wind.json`) | Animated streaks following a u/v field: `count`, `speed`, `color` |
+| `pairs` | matrix | Pick a country: every other country is coloured by its value with `from` (ISO3), which is filled and outlined; tapping another country makes it the origin. `title` may use `{name}` for the origin's name; `log`, `fmt`, `vmin`/`vmax`, `fromColor` |
 | `categories` | sets | One colour per category: `set`, `colors: { "yes": "c4", "no": "c2" }`, optional `names: { "yes": "…" }` to override the dataset labels (with a switch over sets, `names: { "<set>": { … } }`) |
 
 ## Dataset shapes
@@ -109,6 +110,12 @@ Flow rows are `[from, to, value, quantity_or_null]`, sorted by value.
 ```json
 { "source": "…", "lines": { "routes": [ { "name": "…", "status": "operating", "path": [[lon, lat], …], "labelAt": 2 } ] },
   "points": { "ports": [ { "name": "…", "at": [lon, lat] } ] } }
+```
+
+**Matrix** (pairs): one row per origin, values in the order of `countries` (`null` = no data):
+```json
+{ "source": "…", "asOf": "…", "label": "Social connectedness", "units": "…", "countries": ["AFG", "ALB", …],
+  "values": { "DEU": [12.1, 40.3, …], … } }
 ```
 
 **Sets** (since, categories):
