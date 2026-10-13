@@ -1,0 +1,370 @@
+{
+  "id": "tw-china",
+  "cat": "Economics",
+  "title": "The China spiral",
+  "hook": "In ten days of April 2025 the US and China raised tariffs on each other to 145% and 125%. How the spiral started, how it was unwound, and what rare earths had to do with it.",
+  "updated": "2026-10-13",
+  "notes": "US tariffs on China: executive orders 14195, 14228, 14257, 14259, 14266, 14298, 14334, 14357, 14358 and 14389, Proclamation 11012 and USTR notice 2026-15181 (Federal Register). Only tariffs introduced since 2025 are counted; the Section 301 tariffs of 2018–19 (7.5–25% on about two-thirds of imports from China, up to 100% on some goods since 2024) and Section 232 sector tariffs apply on top. China's tariffs on US goods: announcements of the State Council Tariff Commission (April and May 2025; 2025 No. 9 and No. 10 of 5 November 2025). China's line stops on 20 February 2026: we found no official notice changing its 10% after the US Supreme Court ruling, so its later level is not shown. Rare earths: MOFCOM and customs announcement 2025 No. 18 (4 April 2025); MOFCOM announcements 2025 No. 61 and 62 (9 October 2025), suspended until 10 November 2026 by announcement No. 70 (7 November 2025). Summit outcomes: White House fact sheets and MOFCOM statements, which differ in places (for example on farm purchases and rare earths). The September 2026 extension of the truce to 10 January 2027 was announced by US Treasury Secretary Bessent; China had not confirmed it in the sources checked. Trade values: US Census Bureau, 2024.",
+  "data": {
+    "c": "data/tradewar/tw_china.json"
+  },
+  "sources": [
+    "us-fedreg",
+    "whitehouse",
+    "us-census",
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "The biggest imbalance",
+      "text": "In 2024 the US bought about $440 billion of goods from China and sold it about $143 billion. No other country's trade with the US was so lopsided in dollars. The first tariffs of Trump's second term, ordered on 1 February 2025, targeted China, Canada and Mexico; only China's escalated into triple digits.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -178,
+          38
+        ],
+        "zoom": 1.8
+      },
+      "highlight": [
+        "USA",
+        "CHN"
+      ],
+      "fills": {
+        "USA": "c1",
+        "CHN": "c2"
+      },
+      "routes": [
+        {
+          "path": [
+            [
+              116,
+              33
+            ],
+            [
+              145,
+              38
+            ],
+            [
+              180,
+              42
+            ],
+            [
+              -150,
+              42
+            ],
+            [
+              -120,
+              39
+            ],
+            [
+              -98,
+              38
+            ]
+          ],
+          "color": "c2",
+          "width": 9,
+          "flow": true,
+          "label": "$440 bn of goods to the US",
+          "labelAt": 2
+        },
+        {
+          "path": [
+            [
+              -98,
+              36
+            ],
+            [
+              -120,
+              35
+            ],
+            [
+              -150,
+              36
+            ],
+            [
+              180,
+              35
+            ],
+            [
+              145,
+              31
+            ],
+            [
+              116,
+              30
+            ]
+          ],
+          "color": "c1",
+          "width": 3,
+          "flow": true,
+          "label": "$143 bn to China",
+          "labelAt": 3
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "US imports from China, 2024"
+        },
+        {
+          "color": "c1",
+          "label": "US exports to China, 2024"
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "It starts with fentanyl",
+      "text": "On 4 February 2025 the US added 10% to all goods from China, Hong Kong and Macau, citing the flow of fentanyl. A month later it doubled the rate to 20%. China answered with targeted tariffs of 10–15% on US coal, gas, oil, farm machinery, cars and then farm goods, but not yet on everything.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -178,
+          38
+        ],
+        "zoom": 1.8
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "c",
+          "series": "rate",
+          "year": "t",
+          "showYear": false,
+          "title": "Extra tariff on goods from each country (US on China, China on US)",
+          "fmt": "pct",
+          "vmin": 0,
+          "vmax": 145
+        }
+      ],
+      "timeline": {
+        "format": "date",
+        "years": [
+          20250101,
+          20250204,
+          20250304
+        ],
+        "start": 20250304,
+        "captions": {
+          "20250101": "Before the new tariffs (older Section 301 tariffs from 2018–19 already apply).",
+          "20250204": "US: +10% on all goods from China. China targets US energy, farm machinery and cars from 10 February.",
+          "20250304": "US: +20%. China targets US farm goods from 10 March."
+        }
+      },
+      "countryLabels": true
+    },
+    {
+      "title": "Ten days in April",
+      "text": "The 2 April 'reciprocal' tariffs put another 34% on China. Beijing matched it with 34% on all US goods; Washington raised its rate to 84%, then 125%; Beijing followed to 84% and 125%. By 12 April Chinese goods paid 145% in new US tariffs and US goods 125% in China. Shipments between the two largest economies plunged.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -178,
+          38
+        ],
+        "zoom": 1.8
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "c",
+          "series": "rate",
+          "year": "t",
+          "showYear": false,
+          "title": "Extra tariff on goods from each country (US on China, China on US)",
+          "fmt": "pct",
+          "vmin": 0,
+          "vmax": 145
+        }
+      ],
+      "timeline": {
+        "format": "date",
+        "years": [
+          20250304,
+          20250405,
+          20250409,
+          20250410,
+          20250412
+        ],
+        "start": 20250412,
+        "captions": {
+          "20250304": "20% fentanyl tariff in force.",
+          "20250405": "The 10% baseline adds to it: 30%. China announces 34% on all US goods.",
+          "20250409": "US reciprocal rate on China: 84%, so 104% in total.",
+          "20250410": "US: 125% + 20% = 145%. China's 84% on all US goods takes effect.",
+          "20250412": "China raises its tariff to 125% and says it will ignore further US increases."
+        }
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "c",
+          "series": "rate",
+          "countries": [
+            "USA",
+            "CHN"
+          ],
+          "title": "Extra tariff on goods from China (US tariff) and from the US (China's tariff), %",
+          "fmt": "pct",
+          "labels": {
+            "CHN": "US tariff on China",
+            "USA": "China's tariff on the US"
+          }
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "China's other weapon",
+      "text": "On 4 April 2025 China also required export licences for seven rare earths, including dysprosium and terbium, which go into magnets for cars, wind turbines and weapons. China mines most of the world's rare earths and refines nearly all heavy ones. Shipments slumped and some carmakers outside China halted lines. In October China widened the rules to foreign products with traces of Chinese rare earths.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          105,
+          35
+        ],
+        "zoom": 1.6
+      },
+      "fills": {
+        "CHN": "c3"
+      },
+      "highlight": [
+        "CHN"
+      ],
+      "points": [
+        {
+          "at": [
+            109.97,
+            41.78
+          ],
+          "label": "Bayan Obo, the largest rare-earth mine",
+          "color": "c2",
+          "r": 5
+        }
+      ],
+      "legend": [
+        {
+          "color": "c3",
+          "label": "Export licences for rare earths since 4 April 2025"
+        }
+      ]
+    },
+    {
+      "title": "Truce in Geneva, deal in Busan",
+      "text": "After talks in Geneva, both sides cut their rates on 14 May 2025: the US to 30%, China to 10%, suspending the rest for 90 days. At a meeting in Busan on 30 October, Presidents Trump and Xi agreed a one-year truce: the US halved its fentanyl tariff, for 20% in total, and China paused its October rare-earth rules for a year, dropped its farm tariffs and resumed soybean purchases.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -178,
+          38
+        ],
+        "zoom": 1.8
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "c",
+          "series": "rate",
+          "year": "t",
+          "showYear": false,
+          "title": "Extra tariff on goods from each country (US on China, China on US)",
+          "fmt": "pct",
+          "vmin": 0,
+          "vmax": 145
+        }
+      ],
+      "timeline": {
+        "format": "date",
+        "years": [
+          20250412,
+          20250514,
+          20251110
+        ],
+        "start": 20251110,
+        "captions": {
+          "20250412": "Peak: 145% and 125%.",
+          "20250514": "Geneva: US 30%, China 10%; 24 points suspended for 90 days, later extended.",
+          "20251110": "After Busan: US 20%. Suspension of the extra 24 points extended to 10 November 2026."
+        }
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "c",
+          "series": "rate",
+          "countries": [
+            "USA",
+            "CHN"
+          ],
+          "title": "Extra tariff on goods from China (US tariff) and from the US (China's tariff), %",
+          "fmt": "pct",
+          "labels": {
+            "CHN": "US tariff on China",
+            "USA": "China's tariff on the US"
+          }
+        }
+      ],
+      "countryLabels": true
+    },
+    {
+      "title": "After the court",
+      "text": "When the Supreme Court struck down the emergency tariffs in February 2026, the 20% on Chinese goods gave way to a 10% surcharge, and from 24 July to a 12.5% 'forced labour' tariff, on top of the older tariffs from 2018. Trump visited Beijing in May 2026; the sides agreed a 'Board of Trade' to negotiate tariff cuts on $30 billion of goods each way. In September, US Treasury Secretary Bessent said the truce would run to 10 January 2027; China had not confirmed it.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -178,
+          38
+        ],
+        "zoom": 1.8
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "c",
+          "series": "rate",
+          "year": "t",
+          "showYear": false,
+          "title": "Extra tariff on goods from China since 2025 (China's own rate after Feb 2026 not confirmed); darkest 25% or more",
+          "fmt": "pct",
+          "vmin": 0,
+          "vmax": 25
+        }
+      ],
+      "timeline": {
+        "format": "date",
+        "years": [
+          20251110,
+          20260224,
+          20260724,
+          20261013
+        ],
+        "start": 20261013,
+        "captions": {
+          "20251110": "Busan truce: 20% on Chinese goods, 10% on US goods.",
+          "20260224": "Emergency tariffs end; a 10% surcharge applies to all countries.",
+          "20260724": "Section 301 'forced labour' tariff on China: 12.5%.",
+          "20261013": "As of 13 October 2026. China's own rate after February 2026 is not confirmed."
+        }
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "c",
+          "series": "rate",
+          "countries": [
+            "USA",
+            "CHN"
+          ],
+          "title": "Extra tariff on goods from China (US tariff) and from the US (China's tariff), %",
+          "fmt": "pct",
+          "labels": {
+            "CHN": "US tariff on China",
+            "USA": "China's tariff on the US"
+          }
+        }
+      ],
+      "countryLabels": true
+    }
+  ]
+}

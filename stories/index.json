@@ -341,5 +341,61 @@
   "title": "Borders through time",
   "hook": "Most of today's borders are younger than your grandparents. Watch empires break apart.",
   "file": "stories/borders-in-time.json"
+ },
+ {
+  "id": "tw-liberation-day",
+  "cat": "Economics",
+  "title": "Liberation Day",
+  "hook": "On 2 April 2025 the US put a tariff on almost every country, from 10% to 50%. Where the numbers came from, what actually applied, and what is left after the courts.",
+  "file": "stories/tw-liberation-day.json"
+ },
+ {
+  "id": "tw-china",
+  "cat": "Economics",
+  "title": "The China spiral",
+  "hook": "In ten days of April 2025 the US and China raised tariffs on each other to 145% and 125%. How the spiral started, how it was unwound, and what rare earths had to do with it.",
+  "file": "stories/tw-china.json"
+ },
+ {
+  "id": "tw-sectors",
+  "cat": "Economics",
+  "title": "Steel, cars, chips",
+  "hook": "One product at a time, the US has put national-security tariffs on metals, cars, wood, medicine and chips. Here is where those goods come from.",
+  "file": "stories/tw-sectors.json"
+ },
+ {
+  "id": "tw-deals",
+  "cat": "Economics",
+  "title": "Deal or retaliate",
+  "hook": "Faced with US tariffs, most countries negotiated, two hit back and a few were singled out for punishment. Who did what, and what it got them.",
+  "file": "stories/tw-deals.json"
+ },
+ {
+  "id": "tw-courts",
+  "cat": "Economics",
+  "title": "Tariffs on trial",
+  "hook": "Small businesses sued, and the Supreme Court struck down the biggest tariffs of 2025. Within months, most of them were back under other laws.",
+  "file": "stories/tw-courts.json"
+ },
+ {
+  "id": "tw-rerouted",
+  "cat": "Economics",
+  "title": "Trade takes a detour",
+  "hook": "Tariffs cut what America buys from China by almost half. The goods now come from Mexico, Taiwan, Vietnam and Thailand instead.",
+  "file": "stories/tw-rerouted.json"
+ },
+ {
+  "id": "tw-bill",
+  "cat": "Economics",
+  "title": "Who pays the tariffs",
+  "hook": "US customs revenue quadrupled in 2025. The bill landed mostly on American companies and shoppers, and then a court ordered much of it paid back.",
+  "file": "stories/tw-bill.json"
+ },
+ {
+  "id": "tw-balance",
+  "cat": "Economics",
+  "title": "The deficit that would not shrink",
+  "hook": "Tariffs were meant to close America's trade gap. The deficit with China shrank, but the overall gap barely moved: it shifted to Vietnam, Taiwan and Mexico.",
+  "file": "stories/tw-balance.json"
  }
 ]

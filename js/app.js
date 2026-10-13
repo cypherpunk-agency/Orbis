@@ -504,7 +504,7 @@ function tap(x,y){
   tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px";
   clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500);
 }
-const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 function f0(ll){ return feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll)); }
 
@@ -590,7 +590,7 @@ const lastYear=d=>d.years?d.years[d.years.length-1]:null;
 // values per country for a layer spec at a year: EIA-style series or BACI-style trade totals
 // index of year y in a series dataset; with "step": true a value holds until the next listed date
 // a year as the scene timeline shows it ("2 Apr 2025" for date timelines)
-const ylab=y=>scene&&scene.timeline&&scene.timeline.years.includes(+y)?scene.timeline.label(+y):y;
+const ylab=y=>scene&&scene.timeline&&scene.timeline.years.includes(+y)?scene.timeline.label(+y):/^\d{8}$/.test(String(y))?fmtDate(y):y;
 function yearIndex(d,y){ let i=d.years.indexOf(+y); if(i<0&&d.step){ i=-1; d.years.forEach((v,j)=>{ if(v<=+y) i=j; }); } return i; }
 function valuesOf(ly,d,y){
   const out={};
@@ -728,9 +728,9 @@ function renderMedia(){
       // x positions: plain years, or yyyymm / yyyymmdd numbers (dataset "format": "month" | "date") as fractional years
       const fm=d.format, xv=y=>fm==="month"?Math.floor(y/100)+(y%100-1)/12:fm==="date"?Math.floor(y/1e4)+(Math.floor(y/100)%100-1)/12+(y%100-1)/365:y;
       const mon=LANG==="de"?["Jan.","Feb.","März","Apr.","Mai","Juni","Juli","Aug.","Sept.","Okt.","Nov.","Dez."]:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-      const ylb=y=>fm==="month"?mon[y%100-1]+" "+Math.floor(y/100):fm==="date"?fmtDate(y):y;
+      const ylb=y=>fm==="month"?mon[y%100-1]+" "+Math.floor(y/100):fm==="date"?fmtDate(y):String(y);
       const sr=d.series[x.series], ys0=d.years, ys=ys0.map(xv), w=330, h=120, pad=[8,46,18,4];
-      const lines=(x.countries||[]).map((c,i)=>({c,col:col(["c1","c2","c3","c4","c5"][i%5]),pts:ys.map((y,j)=>[y,sr.values[c]?sr.values[c][j]:null]).filter(p=>p[1]!=null)})).filter(l=>l.pts.length);
+      const lines=(x.countries||[]).map((c,i)=>({c,label:x.labels&&x.labels[c],col:col(["c1","c2","c3","c4","c5"][i%5]),pts:ys.map((y,j)=>[y,sr.values[c]?sr.values[c][j]:null]).filter(p=>p[1]!=null)})).filter(l=>l.pts.length);
       const all=lines.flatMap(l=>l.pts); if(!all.length) return "";
       const sx=d3.scaleLinear().domain(d3.extent(ys)).range([pad[3],w-pad[1]]), sy=d3.scaleLinear().domain([Math.min(0,d3.min(all,p=>p[1])),d3.max(all,p=>p[1])]).nice().range([h-pad[2],pad[0]]);
       const f=fmtOf(x.fmt), ln=d3.line().x(p=>sx(p[0])).y(p=>sy(p[1]));
@@ -1066,7 +1066,7 @@ function openCampaign(id){
   $("campGo").onclick=()=>{ const i=storyIndex(nextId); if(i>=0) openStory(i, done(nextId)||!r[nextId]?0:Math.min(r[nextId][0],r[nextId][1])-1); };
   [...el.camp.querySelectorAll(".camp-list button")].forEach(b=>b.onclick=()=>openStory(storyIndex(b.dataset.id)));
   L=layers(); el.legend.innerHTML=legendHTML(); renderData(); renderTools(); describe();
-  history.replaceState(null,"","#c/"+cp.id); flyTo(scene.view); sheet.scrollTop=0; render();
+  history.replaceState(null,"","#c/"+cp.id); syncMode(scene.view.mode); spin=false; flyTo(scene.view); sheet.scrollTop=0; render();
 }
 
 // ---------- table of contents ----------

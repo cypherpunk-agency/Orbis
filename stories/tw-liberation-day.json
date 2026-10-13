@@ -1,0 +1,249 @@
+{
+ "id": "tw-liberation-day",
+ "cat": "Economics",
+ "title": "Liberation Day",
+ "hook": "On 2 April 2025 the US put a tariff on almost every country, from 10% to 50%. Where the numbers came from, what actually applied, and what is left after the courts.",
+ "updated": "2026-10-13",
+ "notes": "Rates: the headline extra US tariff on most goods of each country on each date, from the executive orders, proclamations and USTR notices in the Federal Register (document numbers in the dataset note); CBP messages (CSMS 64649265, 67834313, 67844987) for when collection started and stopped. Country-wide measures only: sector tariffs under Section 232 (steel, aluminium, copper, cars, trucks, lumber, medicines, chips and more), the older Section 301 tariffs on China and many product exemptions are not shown; most goods from Canada and Mexico enter tariff-free under the USMCA. For the EU from August 2025 and for Japan, South Korea and Switzerland the rate includes the normal duty ('all-in'). Hong Kong and Macau take China's rates. Russia, Belarus, Cuba and North Korea were never under the reciprocal tariffs and are not shown. Formula: USTR, 'Reciprocal Tariff Calculations' (2025); re-computed here with US Census 2024 trade data as published in March 2025. It reproduces 55 of the 57 Annex I rates exactly; Japan (24%) and Vietnam (46%) are one point above the formula. The White House chart shown on 2 April listed a few places, such as Saint Pierre and Miquelon, that are not in the signed annex; this story follows the Federal Register text. Court: Learning Resources, Inc. v. Trump, US Supreme Court, 20 February 2026 (6–3). Refunds of IEEPA duties were still unresolved in the sources checked (October 2026).",
+ "data": {
+  "r": "data/tradewar/tw_rates.json"
+ },
+ "sources": [
+  "us-fedreg",
+  "ustr",
+  "us-cbp",
+  "us-census",
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "A tariff for almost everyone",
+   "text": "On 2 April 2025, a day the White House called 'Liberation Day', President Trump announced 'reciprocal' tariffs. Executive Order 14257 set 10% for every country and higher rates for 57 partners, the EU counted as one: 20% for the EU, 24% for Japan, 34% for China, up to 50% for Lesotho. Canada and Mexico were left out; since March their goods outside the USMCA trade pact already paid 25% 'fentanyl' tariffs.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "announced",
+     "year": 20250402,
+     "showYear": false,
+     "title": "Tariff announced on 2 April 2025",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 50
+    }
+   ],
+   "chart": {
+    "data": "r",
+    "series": "announced",
+    "year": 20250402,
+    "top": 8,
+    "title": "Highest announced rates",
+    "period": "2 April 2025",
+    "fmt": "pct",
+    "color": "c2"
+   }
+  },
+  {
+   "title": "How the numbers were made",
+   "text": "The rates did not measure other countries' tariffs. The trade office took the 2024 US goods deficit with each partner and divided it by US imports from that partner; the order then halved the result, with 10% as the floor. China, in the figures published in March 2025: the US bought $439 billion and sold $144 billion, a gap of 67% of imports, so 34%. The EU: 39%, so 20%. Countries the US sells more to than it buys from, like Australia or the UK, got the 10% floor.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "deficit",
+     "year": 20250402,
+     "showYear": false,
+     "title": "US goods deficit as % of US imports from the country, 2024",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 100,
+     "nodataLabel": "US surplus or no data"
+    }
+   ],
+   "highlight": [
+    "CHN",
+    "VNM",
+    "LSO",
+    "KHM"
+   ]
+  },
+  {
+   "title": "One day, then a pause",
+   "text": "The 10% floor took effect on 5 April. The higher rates started at 12:01 a.m. on 9 April. That afternoon, with markets falling, the President paused them for 90 days, from 10 April: everyone went back to 10%, except China. After each side retaliated, the US charged China 125% plus the 20% fentanyl tariff: 145%. Drag the slider.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "rate",
+     "year": "t",
+     "showYear": false,
+     "title": "Extra US tariff in force (darkest: 50% or more)",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 50
+    }
+   ],
+   "timeline": {
+    "format": "date",
+    "years": [
+     20250402,
+     20250405,
+     20250409,
+     20250410
+    ],
+    "start": 20250409,
+    "captions": {
+     "20250402": "Announced. Only the fentanyl tariffs on Canada, Mexico and China are in force.",
+     "20250405": "The 10% baseline applies to almost all imports.",
+     "20250409": "The country rates apply for one day; China's reciprocal rate rises to 84% (104% in total).",
+     "20250410": "Paused for 90 days: 10% for all, but 125% (145% in total) for China."
+    }
+   }
+  },
+  {
+   "title": "The August map",
+   "text": "The pause ended on 7 August 2025 with a new list. Partners with deals got 15% (EU, Japan, South Korea), 19–20% (much of Southeast Asia) or 10% (UK). Switzerland, with no deal, got 39%. Brazil paid 50% after a separate 40% penalty, Canada 35% on goods outside the USMCA. From 27 August India also paid 50%, half of it a penalty for buying Russian oil.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "rate",
+     "year": 20250827,
+     "showYear": false,
+     "title": "Extra US tariff, 27 August 2025",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 50
+    }
+   ],
+   "chart": {
+    "data": "r",
+    "series": "rate",
+    "year": 20250827,
+    "top": 10,
+    "title": "Highest rates",
+    "period": "27 August 2025",
+    "fmt": "pct",
+    "color": "c2"
+   }
+  },
+  {
+   "title": "Deals, cuts and a court",
+   "text": "Rates kept moving. China's new tariffs fell to 20% after the Trump–Xi meeting in Busan, Switzerland's to 15% after a deal in November 2025, India's to 25% in February 2026. Then, on 20 February 2026, the Supreme Court ruled 6–3 that the emergency law behind all these tariffs does not allow tariffs at all. Collection stopped on 24 February; a 10% surcharge for all took over. Press play.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "rate",
+     "year": "t",
+     "showYear": false,
+     "title": "Extra US tariff in force",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 50
+    }
+   ],
+   "timeline": {
+    "format": "date",
+    "years": [
+     20250807,
+     20250827,
+     20251110,
+     20251114,
+     20260207,
+     20260224
+    ],
+    "start": 20250807,
+    "captions": {
+     "20250807": "New country rates take effect.",
+     "20250827": "India: +25% for buying Russian oil, 50% in total.",
+     "20251110": "China: fentanyl tariff cut from 20% to 10% after the Busan meeting.",
+     "20251114": "Switzerland and Liechtenstein: 15% under a framework deal.",
+     "20260207": "India: the Russian-oil penalty ends; 25% remains.",
+     "20260224": "After the Supreme Court ruling: a 10% surcharge under Section 122 replaces all emergency tariffs."
+    }
+   }
+  },
+  {
+   "title": "What is left",
+   "text": "The surcharge could last only 150 days, to 24 July 2026. Since then the trade office has charged 10% or 12.5% on 60 economies it says fail to ban goods made with forced labour, and Brazil 37.5%. More than 130 countries and territories on this map now pay no country-wide extra tariff. Sector tariffs on steel, cars, medicines and more, not shown here, still apply to everyone.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "rate",
+     "year": "t",
+     "showYear": false,
+     "title": "Extra US tariff in force",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 50
+    }
+   ],
+   "timeline": {
+    "format": "date",
+    "years": [
+     20260224,
+     20260722,
+     20260724,
+     20261013
+    ],
+    "start": 20261013,
+    "captions": {
+     "20260224": "Section 122 surcharge: 10% on goods from every country.",
+     "20260722": "Brazil: a new 25% tariff under Section 301.",
+     "20260724": "The surcharge expires. Section 301 'forced labour' tariffs of 10% or 12.5% start for 60 economies.",
+     "20261013": "As of 13 October 2026."
+    }
+   }
+  }
+ ]
+}

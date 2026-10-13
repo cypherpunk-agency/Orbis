@@ -46,6 +46,9 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `usitc` | USITC Table 1: imports, duties collected, ratio 1891–2025 (`data/tradewar/tariff_long.json`) | Layer | US public domain (17 USC 105) | Commercial | "Source: U.S. International Trade Commission" |
 | `us-fedreg` | Federal Register proclamations, executive orders and USTR notices on tariffs, hand-compiled with citations (`data/tradewar/legal.json`, tariff-rate datasets) | Layer | US government work, public domain | Commercial | "Source: Federal Register" |
 | `us-courts` | Court opinions quoted in the trade-war series | Layer | US government work, public domain | Commercial | Court names |
+| `ustr` | USTR reciprocal-tariff methodology, Section 301 notices, deal announcements (`data/tradewar/tw_rates.json`, `tw_deals.json`) | Layer | US government work, public domain | Commercial | "Source: USTR" |
+| `whitehouse` | White House fact sheets and joint statements on trade deals (`data/tradewar/tw_deals.json`) | Layer | US government work, public domain | Commercial | "Source: whitehouse.gov" |
+| `us-cbp` | CBP CSMS messages on tariff collection dates | Layer | US government work, public domain | Commercial | "Source: U.S. Customs and Border Protection" |
 | `kummu-gdp` | Kummu et al. 2025 subnational GDP per capita (PPP), Zenodo 18429133 (`data/regions/india_gdp.json`) | Layer | CC BY 4.0 | Commercial | Cite paper (Sci Data 12:178) and Zenodo record |
 | `gcp-co2` | Global Carbon Budget 2025 national fossil CO2, 1950–2024, per person, cumulative since 1850 (`data/statistics/co2.json`) | Layer | CC BY 4.0 | Commercial | "Global Carbon Project, Global Carbon Budget 2025"; dataset DOI |
 | `un-wpp` | UN World Population Prospects 2024, life expectancy 1950–2023 (`data/statistics/life-expectancy*.json`) | Layer | CC BY 3.0 IGO | Commercial | UN DESA Population Division (2024), WPP 2024 |

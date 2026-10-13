@@ -1,0 +1,276 @@
+{
+ "id": "tw-deals",
+ "cat": "Economics",
+ "title": "Deal or retaliate",
+ "hook": "Faced with US tariffs, most countries negotiated, two hit back and a few were singled out for punishment. Who did what, and what it got them.",
+ "updated": "2026-10-13",
+ "notes": "Responses and deal dates: hand-compiled from official announcements (White House fact sheets and joint statements, USTR press releases, Federal Register notices, Department of Finance Canada, China's State Council Tariff Commission); details and dates in the dataset note. A 'deal' here means a deal, framework or signed agreement on tariffs announced by both governments; most are frameworks rather than ratified treaties, and the Supreme Court ruling of 20 February 2026 overtook their tariff terms. Rates: headline extra US tariff on most goods of each country, from the Federal Register (see 'Liberation Day' for the method); sector tariffs and exemptions are not shown. For the EU, Japan, South Korea and Switzerland the 15% rates include the normal duty. Brazil's 40% penalty (Executive Order 14323) cited the prosecution of former president Jair Bolsonaro and Brazilian actions against US companies; it was lifted for beef, coffee, fruit and other farm goods from 20 November 2025 (Executive Order 14361). India's 25% penalty (Executive Order 14329) was removed from 7 February 2026 (Executive Order 14384); the 18% rate announced with India's framework on 6 February 2026 was not put in force before the emergency tariffs ended. EU countermeasures: Implementing Regulation (EU) 2025/1564, suspended; the Commission extended the suspension without an end date in July 2026 (news reports; Commission text not checked).",
+ "data": {
+  "d": "data/tradewar/tw_deals.json",
+  "r": "data/tradewar/tw_rates.json"
+ },
+ "sources": [
+  "whitehouse",
+  "ustr",
+  "us-fedreg",
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "Three ways to answer",
+   "text": "Most trading partners chose to negotiate. By October 2026, 20 partners plus the EU had a deal, framework or signed agreement with the US. Only China and Canada answered with tariffs of their own. Brazil got neither a deal nor relief, and the highest rate of all.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "d",
+     "set": "response",
+     "colors": {
+      "deal": "c1",
+      "retaliated": "c2",
+      "punished": "c3"
+     }
+    }
+   ]
+  },
+  {
+   "title": "The queue for a deal",
+   "text": "Britain was first, in May 2025, keeping its 10%. A rush followed before the 1 August deadline: Vietnam, Indonesia, the Philippines, Japan, the EU, South Korea and Pakistan. Southeast Asia and Switzerland came in the autumn, Latin American partners in November, Taiwan, India and Bangladesh in early 2026. Press play.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     40,
+     20
+    ],
+    "zoom": 1.1
+   },
+   "layers": [
+    {
+     "type": "since",
+     "data": "d",
+     "set": "deals",
+     "year": "t",
+     "color": "c1",
+     "title": "Covered by a deal with the US ({n}, EU members counted singly)"
+    }
+   ],
+   "timeline": {
+    "format": "month",
+    "years": [
+     202504,
+     202505,
+     202506,
+     202507,
+     202508,
+     202509,
+     202510,
+     202511,
+     202512,
+     202601,
+     202602,
+     202603,
+     202604,
+     202605,
+     202606,
+     202607,
+     202608,
+     202609,
+     202610
+    ],
+    "start": 202610,
+    "captions": {
+     "202505": "UK: Economic Prosperity Deal (8 May).",
+     "202507": "Vietnam, Indonesia, the Philippines, Japan, the EU, South Korea, Pakistan.",
+     "202510": "Kuala Lumpur: Malaysia, Cambodia, Thailand (Vietnam's framework text follows).",
+     "202511": "Switzerland and Liechtenstein; Argentina, Ecuador, Guatemala, El Salvador.",
+     "202601": "Taiwan.",
+     "202602": "India (interim framework) and Bangladesh.",
+     "202607": "Jordan."
+    }
+   }
+  },
+  {
+   "title": "What a deal was worth",
+   "text": "A deal usually bought a lower rate, not a zero. In August 2025 the EU, Japan and South Korea settled at 15%, Vietnam at 20% and most of Southeast Asia at 19%. In return, partners pledged to cut their own tariffs, buy US energy, aircraft or farm goods, or invest in the US: $550 billion from Japan and $350 billion from South Korea, by the White House's count.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     60,
+     25
+    ],
+    "zoom": 1.3
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "rate",
+     "year": 20250807,
+     "showYear": false,
+     "title": "Extra US tariff, 7 August 2025",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 50
+    }
+   ],
+   "highlight": [
+    "JPN",
+    "KOR",
+    "VNM",
+    "IDN",
+    "PHL",
+    "THA",
+    "MYS",
+    "KHM",
+    "GBR",
+    "DEU",
+    "FRA",
+    "ITA",
+    "ESP",
+    "POL"
+   ]
+  },
+  {
+   "title": "The two who hit back",
+   "text": "China matched every US step in April 2025, up to 125%. Canada put 25% on C$30 billion of US goods in March 2025, then dropped most of it on 1 September 2025, keeping steel, aluminium and cars. When the US hit Canadian dairy, drinks and cars with 50% in August 2026, Canada answered again: 15–50% on US goods from 8 September. The EU prepared tariffs on €93 billion of US goods but has kept them suspended.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     30
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "d",
+     "set": "response",
+     "colors": {
+      "retaliated": "c2"
+     }
+    }
+   ],
+   "highlight": [
+    "CHN",
+    "CAN"
+   ],
+   "countryLabels": true
+  },
+  {
+   "title": "Singled out",
+   "text": "Three partners faced rates far above their peers. Brazil, which buys more from the US than it sells, got a 40% penalty on top of 10% in August 2025 over the prosecution of former president Bolsonaro. India paid 25% plus 25% for buying Russian oil: 50%. Switzerland got 39%, more than the EU's 15%.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "rate",
+     "year": 20250827,
+     "showYear": false,
+     "title": "Extra US tariff, 27 August 2025",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 50
+    }
+   ],
+   "highlight": [
+    "BRA",
+    "IND",
+    "CHE"
+   ],
+   "countryLabels": true
+  },
+  {
+   "title": "How the punishments ended",
+   "text": "Switzerland got 15% under a framework in November 2025. India's oil penalty ended on 7 February 2026 after it promised to stop buying Russian oil; its deal promised 18%, but the Supreme Court ended the emergency tariffs first. Brazil's penalty fell with them, but in July 2026 the US put a new 25% on Brazil under a different law. Drag the slider.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "rate",
+     "year": "t",
+     "showYear": false,
+     "title": "Extra US tariff in force",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 50
+    }
+   ],
+   "timeline": {
+    "format": "date",
+    "years": [
+     20250827,
+     20251114,
+     20260207,
+     20260224,
+     20260724
+    ],
+    "start": 20250827,
+    "captions": {
+     "20250827": "Brazil 50%, India 50%, Switzerland 39%.",
+     "20251114": "Switzerland: 15%.",
+     "20260207": "India: Russian-oil penalty lifted, 25%.",
+     "20260224": "Emergency tariffs end: 10% for all.",
+     "20260724": "Brazil: 25% (Section 301) + 12.5% = 37.5%; India 10%; Switzerland 12.5% (including normal duties)."
+    }
+   },
+   "highlight": [
+    "BRA",
+    "IND",
+    "CHE"
+   ]
+  },
+  {
+   "title": "Where things stand",
+   "text": "As of 13 October 2026, deal partners pay 10–12.5% under the new 'forced labour' tariffs, and the EU, Japan, South Korea, Switzerland and Taiwan have that capped to include normal duties. Brazil pays 37.5%. With Canada, the fight has moved to dairy, drinks and cars, with US import bans on some Canadian goods since 29 September 2026.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "rate",
+     "year": 20261013,
+     "showYear": false,
+     "title": "Extra US tariff, 13 October 2026",
+     "fmt": "pct",
+     "vmin": 0,
+     "vmax": 50
+    }
+   ],
+   "highlight": [
+    "BRA",
+    "CAN"
+   ]
+  }
+ ]
+}

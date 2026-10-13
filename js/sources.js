@@ -132,7 +132,7 @@ const SOURCES = {
   },
   "us-treasury-fiscal": {
     name: "US Treasury Fiscal Data", what: "Monthly Treasury Statement: customs duties and total federal receipts, monthly, 2017–2026", tier: "layer",
-    licence: "US public domain (open data, commercial use allowed)", licenceUrl: "https://fiscaldata.treasury.gov/about-us/",
+    licence: "US public domain", licenceUrl: "https://fiscaldata.treasury.gov/about-us/",
     url: "https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/", use: "commercial", redistribute: true,
     credit: "Source: U.S. Department of the Treasury, Bureau of the Fiscal Service, Monthly Treasury Statement"
   },
@@ -147,6 +147,24 @@ const SOURCES = {
     licence: "US government work (public domain)", licenceUrl: "https://www.usa.gov/government-copyright",
     url: "https://www.supremecourt.gov/opinions/slipopinion/25", use: "commercial", redistribute: true,
     credit: "Supreme Court of the United States; U.S. Court of Appeals for the Federal Circuit; U.S. Court of International Trade"
+  },
+  ustr: {
+    name: "Office of the US Trade Representative", what: "Reciprocal tariff methodology (2025), Section 301 notices and trade-agreement press releases", tier: "layer",
+    licence: "US government work (public domain)", licenceUrl: "https://www.usa.gov/government-copyright",
+    url: "https://ustr.gov/", use: "commercial", redistribute: true,
+    credit: "Source: USTR"
+  },
+  whitehouse: {
+    name: "The White House", what: "Fact sheets and joint statements on trade deals and summits (2025–26)", tier: "layer",
+    licence: "US government work (public domain)", licenceUrl: "https://www.usa.gov/government-copyright",
+    url: "https://www.whitehouse.gov/", use: "commercial", redistribute: true,
+    credit: "Source: whitehouse.gov"
+  },
+  "us-cbp": {
+    name: "US Customs and Border Protection", what: "CSMS guidance on when tariffs were collected and stopped", tier: "layer",
+    licence: "US government work (public domain)", licenceUrl: "https://www.usa.gov/government-copyright",
+    url: "https://www.cbp.gov/trade/automated/cargo-systems-messaging-service", use: "commercial", redistribute: true,
+    credit: "Source: U.S. Customs and Border Protection, CSMS"
   },
   usitc: {
     name: "US International Trade Commission", what: "US imports for consumption, duties collected and ratio of duties to value, 1891–2025 (Table 1)", tier: "layer",

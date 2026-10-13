@@ -1,1 +1,112 @@
-[]
+[
+ {
+  "id": "trade-war",
+  "title": "America's trade war",
+  "hook": "Since 2025 the United States has raised tariffs on almost every country. Eight chapters on what changed, who answered how, and who pays.",
+  "intro": "In 2025 the United States raised its tariffs higher than at any time since the 1930s: first on its neighbours and China, then on almost every country at once, then on whole industries. This series follows it chapter by chapter, and is updated as the story moves.",
+  "updated": "2026-10-13",
+  "scene": {
+   "view": {
+    "mode": "equal",
+    "center": [
+     -20,
+     20
+    ],
+    "zoom": 1
+   },
+   "fills": {
+    "USA": "c2"
+   }
+  },
+  "chapters": [
+   "tw-liberation-day",
+   "tw-china",
+   "tw-sectors",
+   "tw-deals",
+   "tw-courts",
+   "tw-rerouted",
+   "tw-bill",
+   "tw-balance"
+  ],
+  "dates": [
+   {
+    "d": 20250204,
+    "t": "US adds 10% on all goods from China (fentanyl emergency)"
+   },
+   {
+    "d": 20250304,
+    "t": "25% on Canada and Mexico outside the USMCA; China raised to 20%"
+   },
+   {
+    "d": 20250312,
+    "t": "Steel and aluminium tariffs: 25%"
+   },
+   {
+    "d": 20250402,
+    "t": "'Liberation Day': reciprocal tariffs announced for almost every country"
+   },
+   {
+    "d": 20250403,
+    "t": "Car tariffs: 25%"
+   },
+   {
+    "d": 20250410,
+    "t": "90-day pause: 10% for all; China 145%"
+   },
+   {
+    "d": 20250514,
+    "t": "Geneva truce: US–China rates cut to 30% and 10%"
+   },
+   {
+    "d": 20250528,
+    "t": "Court of International Trade rules the emergency tariffs unlawful"
+   },
+   {
+    "d": 20250604,
+    "t": "Steel and aluminium tariffs doubled to 50%"
+   },
+   {
+    "d": 20250807,
+    "t": "New country rates: 15% for the EU, Japan and South Korea; 39% Switzerland"
+   },
+   {
+    "d": 20250827,
+    "t": "India: 50% including a penalty for buying Russian oil"
+   },
+   {
+    "d": 20250829,
+    "t": "Federal Circuit upholds the ruling, 7–4"
+   },
+   {
+    "d": 20251030,
+    "t": "Trump and Xi meet in Busan: one-year truce"
+   },
+   {
+    "d": 20251105,
+    "t": "Supreme Court hears the case"
+   },
+   {
+    "d": 20260220,
+    "t": "Supreme Court: the emergency law does not allow tariffs (6–3)"
+   },
+   {
+    "d": 20260224,
+    "t": "Emergency tariffs end; 10% surcharge for 150 days"
+   },
+   {
+    "d": 20260420,
+    "t": "Customs opens its refund system"
+   },
+   {
+    "d": 20260724,
+    "t": "Surcharge expires; Section 301 'forced labour' tariffs on 60 economies"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-13",
+    "t": "Series published."
+   }
+  ]
+ }
+]
