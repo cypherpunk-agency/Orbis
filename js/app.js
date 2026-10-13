@@ -227,7 +227,7 @@ modeBtns.forEach(b=>b.onclick=()=>{const want=b.dataset.mode; const k=curKind();
 // ---------- panel ----------
 const $=id=>document.getElementById(id);
 const el={kicker:$("sKicker"),title:$("sTitle"),text:$("sText"),legend:$("sLegend"),tl:$("sTimeline"),slider:$("tlSlider"),year:$("tlYear"),play:$("tlPlay"),cap:$("tlCaption"),
-  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps")};
+  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData")};
 let si=-1, ci=0, tlIdx=0, playing=null;
 const explore={bloc:null};
 
@@ -241,6 +241,36 @@ function legendHTML(){
     h+=`<div class="ramp"><div class="ramp-title">${esc(s.choro.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(String(f(d3.min(v))))}</span><span>${esc(String(f(d3.max(v))))}</span></div><div class="ramp-na"><i style="background:${C.nodata}"></i>${s.choro.data==="POWER"?"Near-universal access":"No data"}</div></div>`;}
   return h;
 }
+// ---------- data and licences ----------
+const useCls=u=>u==="noncommercial"?"nc":u==="permission"?"perm":"";
+function sourceIds(){
+  // story- and scene-level sources, then the base map, which every view shows
+  const ids=[];
+  if(si>=0){ const st=STORIES[si]; ids.push(...(st.sources||["editorial"]), ...((scene&&scene.sources)||[])); }
+  ids.push("naturalearth");
+  return [...new Set(ids)].filter(id=>SOURCES[id]);
+}
+function renderData(){
+  el.data.innerHTML='<span class="dl">Data</span>'+sourceIds().map(id=>{const s=SOURCES[id];
+    return `<button class="src ${useCls(s.use)}" data-src="${id}" title="${esc(USE_LABEL[s.use])}"><b>${esc(s.name)}</b>${esc(s.licence)}</button>`;}).join("")+
+    '<button id="licAll">All licences</button>';
+  [...el.data.querySelectorAll("[data-src]")].forEach(b=>b.onclick=()=>openLic(b.dataset.src));
+  $("licAll").onclick=()=>openLic();
+}
+const lic=$("lic");
+function openLic(focusId){
+  const tiers=[["base","Base map and engine (commercial use required)"],["layer","Story layers"]];
+  $("licList").innerHTML=tiers.map(([t,h])=>`<section class="lic-tier"><h2>${h}</h2>`+
+    Object.entries(SOURCES).filter(([,s])=>s.tier===t).map(([id,s])=>`<div class="lic-item" id="lic-${id}"><span class="n">${esc(s.name)}</span><span class="w">${esc(s.what)}</span>
+      <span class="l"><span>${s.licenceUrl?`<a href="${esc(s.licenceUrl)}" target="_blank" rel="noopener">${esc(s.licence)}</a>`:esc(s.licence)}</span>
+      <span class="lic-use ${useCls(s.use)}">${esc(USE_LABEL[s.use])}</span>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">Source</a>`:""}</span>
+      <span class="w">${esc(s.credit)}</span></div>`).join("")+`</section>`).join("");
+  lic.hidden=false; $("licClose").focus({preventScroll:true});
+  if(focusId){const n=$("lic-"+focusId); if(n) n.scrollIntoView({block:"center"});}
+}
+function closeLic(){ lic.hidden=true; }
+$("licClose").onclick=closeLic;
+
 function chip(c,t){return `<span class="chip"><i style="background:${col(c)}"></i>${esc(t)}</span>`;}
 
 function setFrame(){
@@ -268,7 +298,7 @@ function showScene(i, fly=true){
   el.prev.disabled=ci===0 && si===0;
   el.prev.textContent=ci===0?"Previous story":"Back";
   const lastS=ci===st.scenes.length-1; el.next.textContent=lastS?(si<STORIES.length-1?"Next story":"All stories"):"Next";
-  el.notesBody.textContent=st.notes; el.notes.open=false;
+  el.notesBody.textContent=st.notes; el.notes.open=false; renderData();
   history.replaceState(null,"","#"+st.id+"/"+(ci+1));
   syncMode(scene.view.mode); spin=false;
   if(fly) flyTo(scene.view);
@@ -283,7 +313,7 @@ function openExplore(){
   el.kicker.textContent="Explore"; el.title.textContent="The political map";
   el.text.textContent="Drag to turn the world, pinch or scroll to zoom, tap a country to see its name. Show a group of countries:";
   el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=false;
-  renderBlocs(); el.legend.innerHTML=legendHTML(); history.replaceState(null,"","#explore");
+  renderBlocs(); renderData(); el.legend.innerHTML=legendHTML(); history.replaceState(null,"","#explore");
   syncMode(curKind()); render();
 }
 function renderBlocs(){
@@ -309,6 +339,7 @@ $("collapse").onclick=()=>{ sheet.classList.toggle("collapsed"); $("collapse").s
 
 document.addEventListener("keydown",e=>{
   if(e.target.tagName==="INPUT") return;
+  if(!lic.hidden){ if(e.key==="Escape") closeLic(); return; }
   if(!toc.hidden){ if(e.key==="Escape") closeToc(); return; }
   if(si<0) return;
   if(e.key==="ArrowRight") el.next.click(); else if(e.key==="ArrowLeft"&&!el.prev.disabled) el.prev.click();

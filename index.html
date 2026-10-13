@@ -44,7 +44,14 @@
     <button id="next" class="btn">Next</button>
   </nav>
   <details id="sNotes" class="collapsible"><summary>Sources and notes</summary><p id="sNotesBody"></p></details>
+  <div id="sData" class="collapsible" aria-label="Data and licences"></div>
 </section>
+
+<div id="lic" hidden role="dialog" aria-label="Data and licences">
+  <div class="toc-head"><h1>Data and licences</h1><button id="licClose">Close</button></div>
+  <p class="toc-lede">The base map and engine only use material licensed for commercial use. Story layers may use other licences; each one is labelled where it appears.</p>
+  <div id="licList"></div>
+</div>
 
 <div id="toc" hidden role="dialog" aria-label="Stories">
   <div class="toc-head"><h1>Stories on a turning world</h1><button id="tocClose">Close</button></div>
@@ -54,6 +61,7 @@
 </div>
 
 <script src="data/world.js"></script>
+<script src="js/sources.js"></script>
 <script src="js/stories.js"></script>
 <script src="js/app.js"></script>
 </body>
