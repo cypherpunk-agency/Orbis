@@ -2,7 +2,7 @@
 
 Status: limits of the current build, story backlog, and suggested technical path.
 
-All sources must be commercially licensed; see [LICENSING.md](LICENSING.md).
+Base data must allow commercial use; story layers may use any licence that lets us publish the files in an open repository (two-tier rule in `CLAUDE.md`, details in [LICENSING.md](LICENSING.md)).
 
 ## Current technical limits
 
