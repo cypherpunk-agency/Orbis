@@ -1,6 +1,6 @@
 # Orbis
 
-Stories on a turning world: 49 short, guided map stories about power, money, numbers and people, each one moving an interactive globe/flat map.
+Stories on a turning world: 57 short, guided map stories, including the 8-chapter series *America's trade war*, about power, money, numbers and people, each one moving an interactive globe/flat map.
 
 Static site, no build step. Open `index.html` through any static server:
 
@@ -29,7 +29,7 @@ Scenes declare layers instead of code (choropleth, symbols, spikes, cartogram, f
 
 See [docs/FRAMEWORK.md](docs/FRAMEWORK.md) for the framework plan, [docs/ROADMAP.md](docs/ROADMAP.md) for limits and the story backlog, and [docs/LICENSING.md](docs/LICENSING.md) for the licence policy (`node tools/check-licences.js`).
 
-Deep links: `#<story-id>/<scene>` (e.g. `#map-lies/2`), `#explore`, `#quiz`, `#city`, `#@stories/<file>.json` (unlisted story), `#@draft` (editor preview). Add `?embed=1` for a chrome-less embed and `?lang=de` for German.
+Deep links: `#<story-id>/<scene>` (e.g. `#map-lies/2`), `#c/<series-id>` (e.g. `#c/trade-war`), `#explore`, `#quiz`, `#city`, `#@stories/<file>.json` (unlisted story), `#@draft` (editor preview). Add `?embed=1` for a chrome-less embed and `?lang=de` for German.
 
 Tests: `sh tools/test-all.sh` screenshots every scene of every story (needs `npm install` in `tools/`).
 
