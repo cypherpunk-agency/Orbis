@@ -1556,7 +1556,24 @@ function openToc(focus=true){ toc.hidden=false; layout(); $("tocBtn").setAttribu
 function closeToc(){ toc.hidden=true; $("tocBtn").setAttribute("aria-expanded","false"); spin=false; layout(); }
 
 // collapse sheet
-$("collapse").onclick=()=>{ sheet.classList.toggle("collapsed"); $("collapse").setAttribute("aria-expanded",String(!sheet.classList.contains("collapsed"))); requestAnimationFrame(layout); };
+function setCollapsed(on){ sheet.classList.toggle("collapsed",on); if(!on) sheet.scrollTop=0; requestAnimationFrame(layout); }
+$("collapse").onclick=e=>{ e.stopPropagation(); setCollapsed(!sheet.classList.contains("collapsed")); };
+new MutationObserver(()=>$("collapse").setAttribute("aria-expanded",String(!sheet.classList.contains("collapsed")))).observe(sheet,{attributes:true,attributeFilter:["class"]});
+// phone: tap the collapsed bar to open it; swipe the sheet down to tuck it into a bar, swipe the bar up to open it
+sheet.addEventListener("click",e=>{ if(sheet.classList.contains("collapsed")&&innerWidth<820) setCollapsed(false); });
+let sd=null;
+sheet.addEventListener("touchstart",e=>{
+  if(innerWidth>=820||e.touches.length!==1||e.target.closest("input,select,textarea,#sChart,#sMedia")){ sd=null; return; }
+  sd={y0:e.touches[0].clientY,dy:0,top:sheet.scrollTop<=0,on:false};
+},{passive:true});
+sheet.addEventListener("touchmove",e=>{ if(!sd) return;
+  sd.dy=e.touches[0].clientY-sd.y0;
+  if(!sheet.classList.contains("collapsed")&&sd.top&&sd.dy>0){ e.preventDefault(); sd.on=true; sheet.style.transition="none"; sheet.style.transform="translateY("+sd.dy+"px)"; }
+},{passive:false});
+function endSheetDrag(){ if(!sd) return; const {dy,on}=sd; sd=null;
+  sheet.style.transition=""; sheet.style.transform="";
+  if(on&&dy>60) setCollapsed(true); else if(sheet.classList.contains("collapsed")&&dy<-30) setCollapsed(false); }
+sheet.addEventListener("touchend",endSheetDrag); sheet.addEventListener("touchcancel",()=>{ sd=null; sheet.style.transition=""; sheet.style.transform=""; });
 
 document.addEventListener("keydown",e=>{
   if(e.target.tagName==="INPUT") return;
