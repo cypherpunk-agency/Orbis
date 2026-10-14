@@ -636,5 +636,81 @@
     "t": "Series published with four chapters."
    }
   ]
+ },
+ {
+  "id": "colonialism",
+  "title": "European colonialism",
+  "hook": "From 1500 to 1975 eight European states built and lost empires that covered a third of the world's land. Chapters on how they grew, how long they lasted and how they ended.",
+  "intro": "Spain and Portugal began it in the 1500s; Britain, France and the Netherlands followed; Belgium, Germany and Italy joined at the end of the 19th century. This series maps the colonial empires from their first conquests to the last territories the UN still lists, using historical borders from historical-basemaps and CShapes, and colonial dates from the COLDAT dataset.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     10
+    ],
+    "zoom": 1
+   }
+  },
+  "chapters": [
+   "col-empires",
+   "colonies",
+   "col-decolonisation"
+  ],
+  "dates": [
+   {
+    "d": 15210813,
+    "t": "Fall of Tenochtitlan: Spain conquers the Aztec Empire"
+   },
+   {
+    "d": 18841115,
+    "t": "Berlin Conference opens"
+   },
+   {
+    "d": 18850226,
+    "t": "General Act of Berlin signed"
+   },
+   {
+    "d": 19470815,
+    "t": "India and Pakistan independent"
+   },
+   {
+    "d": 19601214,
+    "t": "UN Resolution 1514 on decolonisation"
+   },
+   {
+    "d": 19740425,
+    "t": "Carnation Revolution in Lisbon"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series started: Empires on the map, How long were you a colony?, Decolonisation"
+   }
+  ],
+  "coming": [
+   {
+    "title": "The Atlantic world",
+    "hook": "The transatlantic slave trade: where millions of people were taken from, and where to."
+   },
+   {
+    "title": "The scramble for Africa",
+    "hook": "1880 to 1914: the Berlin Conference and the partition of a continent."
+   },
+   {
+    "title": "Trading companies",
+    "hook": "The Dutch VOC and the British East India Company: merchants who ruled."
+   },
+   {
+    "title": "The British Raj",
+    "hook": "How a trading company's conquests became an empire."
+   },
+   {
+    "title": "Legacies",
+    "hook": "Borders drawn in Europe, and the languages the empires left behind."
+   }
+  ]
  }
 ]

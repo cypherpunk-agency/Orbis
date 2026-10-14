@@ -586,5 +586,19 @@
   "title": "Who rules the world",
   "hook": "Democracies and autocracies are almost even again. See how the world got here since 1900, and how its 196 states are governed.",
   "file": "stories/governments.json"
+ },
+ {
+  "id": "col-empires",
+  "cat": "Geopolitics",
+  "title": "Empires on the map, 1500–1945",
+  "hook": "In 1500 no European state ruled land beyond Europe. Around 1900 eight of them ruled about a third of the world's land. How the colonial empires grew, century by century.",
+  "file": "stories/col-empires.json"
+ },
+ {
+  "id": "col-decolonisation",
+  "cat": "Geopolitics",
+  "title": "Decolonisation",
+  "hook": "In 1945 European powers still ruled a quarter of the world's land. Thirty years later almost nothing was left. The waves of independence, and the 17 territories the UN still lists.",
+  "file": "stories/col-decolonisation.json"
  }
 ]
