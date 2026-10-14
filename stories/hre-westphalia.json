@@ -9,7 +9,8 @@
   "hb": "data/history/hre-outline.json",
   "k": "data/history/hre-circles.json",
   "t": "data/history/hre-territories-1500s.json",
-  "ev": "data/history/hre-events-westphalia.json"
+  "ev": "data/history/hre-events-westphalia.json",
+  "shep": "data/overlays/hre-1648-shepherd.json"
  },
  "sources": [
   "editorial"
@@ -59,7 +60,7 @@
   },
   {
    "title": "The peace of 1648",
-   "text": "Treaties signed at Münster and Osnabrück ended the war on 24 October 1648. Calvinists got the same rights as Lutherans, and princes could ally with foreign powers. Sweden took Western Pomerania and Bremen; France kept Metz, Toul and Verdun and Habsburg rights in Alsace. The Swiss and the Dutch were recognised as outside the Empire.",
+   "text": "Treaties signed at Münster and Osnabrück ended the war on 24 October 1648. Calvinists got the same rights as Lutherans, and princes could ally with foreign powers. Sweden took Western Pomerania and Bremen; France kept Metz, Toul and Verdun and Habsburg rights in Alsace. The Swiss and the Dutch were recognised as outside the Empire. Slide the old map in to see the patchwork as an atlas of 1923 drew it.",
    "view": {
     "mode": "globe",
     "center": [
@@ -70,6 +71,12 @@
    },
    "modernBorders": false,
    "layers": [
+    {
+     "type": "overlay",
+     "data": "shep",
+     "opacity": 0.6,
+     "title": "Shepherd's map of Central Europe about 1648 (1923)"
+    },
     {
      "type": "shapes",
      "data": "hb",

@@ -1,0 +1,19 @@
+{
+ "source": "shepherd-1648-utexas",
+ "asOf": "1648",
+ "note": "Control points: city dots (Wikidata coordinates, CC0) plus three graticule crossings on the map (exact integer lon/lat). Dropped after the fit: Dresden (16 px residual, dot ambiguous) and Leipzig (12 px). Mean residual about 5 px; the map's own placement of towns limits accuracy to roughly 5 km. Output box is the scan frame; the polynomial is only constrained inside the control points (roughly lon 2-17, lat 46-55); far edges are extrapolated.",
+ "title": "Central Europe about 1648 (Shepherd, Historical Atlas 1926 ed., plate 122-123)",
+ "retrieved": "2026-10-14",
+ "image": "data/overlays/hre-1648-shepherd.webp",
+ "bbox": [
+  0.5,
+  44.7,
+  23.9,
+  55.4
+ ],
+ "fit": {
+  "order": 2,
+  "gcps": 15,
+  "meanErrorPx": 4.0
+ }
+}

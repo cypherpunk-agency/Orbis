@@ -268,6 +268,12 @@ const SOURCES = {
     url: "https://www.wikidata.org", use: "commercial", redistribute: true,
     credit: "Wikidata (CC0)"
   },
+  "shepherd-1648-utexas": {
+    name: "Shepherd, Historical Atlas (1923): Central Europe about 1648", what: "Scanned plate, georeferenced by Orbis (15 control points, ~5 km accuracy)", tier: "layer",
+    licence: "Public domain", licenceUrl: "https://maps.lib.utexas.edu/maps/faq.html",
+    url: "https://maps.lib.utexas.edu/maps/historical/history_shepherd_1923.html", use: "commercial", redistribute: true,
+    credit: "William R. Shepherd, Historical Atlas (1923/1926); scan: University of Texas Libraries"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",
