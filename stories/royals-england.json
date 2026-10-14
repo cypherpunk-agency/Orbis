@@ -1,0 +1,851 @@
+{
+ "id": "royals-england",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "Kings and queens of England and Britain",
+ "hook": "From Alfred to Charles III: about 60 monarchs, 14 house names, one crown that passed by birth, marriage and battle.",
+ "notes": "Monarchs and houses: Wikipedia, 'List of English monarchs' and 'List of British monarchs', checked against Wikidata (CC0; differences: Æthelstan counted from 924 by Wikipedia and from 927 by Wikidata, Harold Harefoot 1035/1037, William III's joint reign from 1689). The count of about 60 monarchs includes Lady Jane Grey and leaves out disputed claimants (Matilda, Louis of France, Edgar Ætheling) and the Lord Protectors Oliver and Richard Cromwell. Alfred is counted from 871, when he became king of Wessex; England was one kingdom from 927. Lancaster and York were branches of the Plantagenets; Windsor is the 1917 name of the Saxe-Coburg and Gotha line. Lands of the crowns: historical-basemaps (A. Ourednik, GPL-3.0), one map per snapshot year, approximate (they draw all of Ireland under the English crown from 1500 and leave out Normandy and Calais). Dates before 1752 are Julian in English sources; cards show both. Event facts: the Wikipedia article named on each card.",
+ "data": {
+  "m": "data/history/royals-england.json",
+  "ev": "data/history/royals-cards-england.json",
+  "r": "data/history/royals-realms.json"
+ },
+ "sources": [
+  "editorial",
+  "wikidata"
+ ],
+ "scenes": [
+  {
+   "title": "From Wessex to Windsor",
+   "text": "Alfred became king of Wessex in 871. Since then about 60 kings and queens have reigned over England and later Britain, under 14 house names. The crown passed by birth and marriage, but also by invasion, rebellion and act of parliament. Move the slider through 1,150 years.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -1.0,
+     52.0
+    ],
+    "zoom": 4.8
+   },
+   "timeline": {
+    "years": [
+     871,
+     927,
+     1016,
+     1066,
+     1154,
+     1399,
+     1485,
+     1603,
+     1649,
+     1660,
+     1689,
+     1707,
+     1714,
+     1801,
+     1837,
+     1901,
+     1917,
+     1936,
+     2022
+    ],
+    "start": 2022,
+    "spacing": "time",
+    "playSpeed": 1400
+   },
+   "stamp": "Monarchs to {t} · Wikipedia lists, checked with Wikidata",
+   "layers": [
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 150
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Ruling houses of England and Britain, 871–2026",
+     "from": 871,
+     "to": 2026,
+     "ticks": [
+      1066,
+      1485,
+      1603,
+      1714,
+      1917
+     ],
+     "items": [
+      {
+       "row": "Wessex",
+       "from": 871,
+       "to": 1013,
+       "color": "c6",
+       "label": "Wessex"
+      },
+      {
+       "row": "Wessex",
+       "from": 1014,
+       "to": 1016,
+       "color": "c6"
+      },
+      {
+       "row": "Wessex",
+       "from": 1042,
+       "to": 1066,
+       "color": "c6"
+      },
+      {
+       "row": "Denmark",
+       "from": 1013,
+       "to": 1014,
+       "color": "c7",
+       "label": "Denmark"
+      },
+      {
+       "row": "Denmark",
+       "from": 1016,
+       "to": 1042,
+       "color": "c7"
+      },
+      {
+       "row": "Godwin",
+       "from": 1066,
+       "to": 1067,
+       "color": "muted",
+       "label": "Godwin"
+      },
+      {
+       "row": "Normandy",
+       "from": 1066,
+       "to": 1135,
+       "color": "c5",
+       "label": "Normandy"
+      },
+      {
+       "row": "Blois",
+       "from": 1135,
+       "to": 1154,
+       "color": "muted",
+       "label": "Blois"
+      },
+      {
+       "row": "Plantagenet",
+       "from": 1154,
+       "to": 1399,
+       "color": "c2",
+       "label": "Plantagenet"
+      },
+      {
+       "row": "Lancaster",
+       "from": 1399,
+       "to": 1461,
+       "color": "c7",
+       "label": "Lancaster"
+      },
+      {
+       "row": "Lancaster",
+       "from": 1470,
+       "to": 1471,
+       "color": "c7"
+      },
+      {
+       "row": "York",
+       "from": 1461,
+       "to": 1470,
+       "color": "c1",
+       "label": "York"
+      },
+      {
+       "row": "York",
+       "from": 1471,
+       "to": 1485,
+       "color": "c1"
+      },
+      {
+       "row": "Tudor",
+       "from": 1485,
+       "to": 1603,
+       "color": "c4",
+       "label": "Tudor"
+      },
+      {
+       "row": "Stuart",
+       "from": 1603,
+       "to": 1649,
+       "color": "c3",
+       "label": "Stuart"
+      },
+      {
+       "row": "Stuart",
+       "from": 1660,
+       "to": 1688,
+       "color": "c3"
+      },
+      {
+       "row": "Stuart",
+       "from": 1689,
+       "to": 1694,
+       "color": "c3"
+      },
+      {
+       "row": "Stuart",
+       "from": 1702,
+       "to": 1714,
+       "color": "c3"
+      },
+      {
+       "label": "No king (Commonwealth)",
+       "row": "No king",
+       "from": 1649,
+       "to": 1660,
+       "color": "muted"
+      },
+      {
+       "row": "Orange",
+       "from": 1689,
+       "to": 1702,
+       "color": "c8",
+       "label": "Orange"
+      },
+      {
+       "row": "Hanover",
+       "from": 1714,
+       "to": 1901,
+       "color": "c5",
+       "label": "Hanover"
+      },
+      {
+       "row": "Saxe-Coburg",
+       "from": 1901,
+       "to": 1917,
+       "color": "c6",
+       "label": "Saxe-Coburg"
+      },
+      {
+       "row": "Windsor",
+       "from": 1917,
+       "to": 2026,
+       "color": "c2",
+       "label": "Windsor"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "1066: three kings in one year",
+   "text": "Edward the Confessor died childless in January 1066. Harold Godwinson took the crown, beat a Norwegian invasion at Stamford Bridge in September, and was killed at Hastings 19 days later. William of Normandy was crowned on Christmas Day. Norman lords replaced most of the English nobility.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -0.5,
+     52.0
+    ],
+    "zoom": 7
+   },
+   "timeline": {
+    "years": [
+     10660111,
+     10661001,
+     10661020,
+     10661231
+    ],
+    "format": "date",
+    "calendar": "julian",
+    "start": 10661020,
+    "captions": {
+     "10660111": "Edward the Confessor dies",
+     "10661001": "Stamford Bridge",
+     "10661020": "Hastings",
+     "10661231": "William crowned"
+    }
+   },
+   "layers": [
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 1
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "The crown around 1066",
+     "from": 978,
+     "to": 1154,
+     "ticks": [
+      1066
+     ],
+     "items": [
+      {
+       "row": "Wessex",
+       "from": 978,
+       "to": 1013,
+       "color": "c6",
+       "label": "Wessex"
+      },
+      {
+       "row": "Wessex",
+       "from": 1014,
+       "to": 1016,
+       "color": "c6"
+      },
+      {
+       "row": "Wessex",
+       "from": 1042,
+       "to": 1066,
+       "color": "c6"
+      },
+      {
+       "row": "Denmark",
+       "from": 1013,
+       "to": 1014,
+       "color": "c7",
+       "label": "Denmark"
+      },
+      {
+       "row": "Denmark",
+       "from": 1016,
+       "to": 1042,
+       "color": "c7"
+      },
+      {
+       "row": "Godwin",
+       "from": 1066,
+       "to": 1067,
+       "color": "muted",
+       "label": "Godwin"
+      },
+      {
+       "row": "Normandy",
+       "from": 1066,
+       "to": 1135,
+       "color": "c5",
+       "label": "Normandy"
+      },
+      {
+       "row": "Blois",
+       "from": 1135,
+       "to": 1154,
+       "color": "muted",
+       "label": "Blois"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Kings of England, lords in France",
+   "text": "Henry II, the first Plantagenet, inherited Anjou and Normandy and married into Aquitaine: he ruled more of France than the French king did. John lost Normandy in 1204, Gascony fell in 1453 and Calais, the last foothold, in 1558. The borders here are approximate, one map per snapshot year.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -1.5,
+     49.0
+    ],
+    "zoom": 4.6
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1000,
+     1200,
+     1300,
+     1500
+    ],
+    "start": 1200,
+    "spacing": "time",
+    "playSpeed": 1600
+   },
+   "stamp": "Borders around {t} · historical-basemaps (GPL-3.0), approximate",
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "r",
+     "year": "t",
+     "groups": [
+      "england",
+      "scotland"
+     ]
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 120
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Houses, 1066–1558",
+     "from": 1066,
+     "to": 1558,
+     "ticks": [
+      1154,
+      1399,
+      1485
+     ],
+     "items": [
+      {
+       "row": "Normandy",
+       "from": 1066,
+       "to": 1135,
+       "color": "c5",
+       "label": "Normandy"
+      },
+      {
+       "row": "Blois",
+       "from": 1135,
+       "to": 1154,
+       "color": "muted",
+       "label": "Blois"
+      },
+      {
+       "row": "Plantagenet",
+       "from": 1154,
+       "to": 1399,
+       "color": "c2",
+       "label": "Plantagenet"
+      },
+      {
+       "row": "Lancaster",
+       "from": 1399,
+       "to": 1461,
+       "color": "c7",
+       "label": "Lancaster"
+      },
+      {
+       "row": "Lancaster",
+       "from": 1470,
+       "to": 1471,
+       "color": "c7"
+      },
+      {
+       "row": "York",
+       "from": 1461,
+       "to": 1470,
+       "color": "c1",
+       "label": "York"
+      },
+      {
+       "row": "York",
+       "from": 1471,
+       "to": 1485,
+       "color": "c1"
+      },
+      {
+       "row": "Tudor",
+       "from": 1485,
+       "to": 1558,
+       "color": "c4",
+       "label": "Tudor"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "1485: the Tudors",
+   "text": "Lancaster and York, two branches of the Plantagenets, fought for the crown for 30 years: the Wars of the Roses. At Bosworth in 1485 Henry Tudor killed Richard III and married Elizabeth of York. His son Henry VIII broke with Rome in 1534 and made himself head of the English church.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -1.5,
+     52.3
+    ],
+    "zoom": 6.5
+   },
+   "timeline": {
+    "years": [
+     1415,
+     1461,
+     1471,
+     1485,
+     1534,
+     1558,
+     1603
+    ],
+    "start": 1485,
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 30
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Lancaster, York and Tudor",
+     "from": 1399,
+     "to": 1603,
+     "ticks": [
+      1485
+     ],
+     "items": [
+      {
+       "row": "Plantagenet",
+       "from": 1399,
+       "to": 1399,
+       "color": "c2",
+       "label": "Plantagenet"
+      },
+      {
+       "row": "Lancaster",
+       "from": 1399,
+       "to": 1461,
+       "color": "c7",
+       "label": "Lancaster"
+      },
+      {
+       "row": "Lancaster",
+       "from": 1470,
+       "to": 1471,
+       "color": "c7"
+      },
+      {
+       "row": "York",
+       "from": 1461,
+       "to": 1470,
+       "color": "c1",
+       "label": "York"
+      },
+      {
+       "row": "York",
+       "from": 1471,
+       "to": 1485,
+       "color": "c1"
+      },
+      {
+       "row": "Tudor",
+       "from": 1485,
+       "to": 1603,
+       "color": "c4",
+       "label": "Tudor"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "One king, then one kingdom",
+   "text": "In 1603 James VI of Scotland inherited England from his cousin Elizabeth I: one king, two kingdoms. Parliament beheaded his son Charles I in 1649 and ruled without a king until 1660. In 1688 it replaced James II with his daughter Mary and her Dutch husband William. In 1707 England and Scotland became one Kingdom of Great Britain, joined by Ireland in 1801.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -4.5,
+     54.5
+    ],
+    "zoom": 5.2
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1600,
+     1700,
+     1715,
+     1815
+    ],
+    "start": 1700,
+    "spacing": "time",
+    "playSpeed": 1600,
+    "captions": {
+     "1600": "Separate crowns",
+     "1700": "Same king since 1603",
+     "1715": "Great Britain since 1707",
+     "1815": "United Kingdom since 1801"
+    }
+   },
+   "stamp": "Borders around {t} · historical-basemaps (GPL-3.0), approximate",
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "r",
+     "year": "t"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 100,
+     "kinds": [
+      "crown",
+      "law",
+      "war"
+     ]
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Tudor to Hanover",
+     "from": 1485,
+     "to": 1837,
+     "ticks": [
+      1603,
+      1707,
+      1714
+     ],
+     "items": [
+      {
+       "row": "Tudor",
+       "from": 1485,
+       "to": 1603,
+       "color": "c4",
+       "label": "Tudor"
+      },
+      {
+       "row": "Stuart",
+       "from": 1603,
+       "to": 1649,
+       "color": "c3",
+       "label": "Stuart"
+      },
+      {
+       "row": "Stuart",
+       "from": 1660,
+       "to": 1688,
+       "color": "c3"
+      },
+      {
+       "row": "Stuart",
+       "from": 1689,
+       "to": 1694,
+       "color": "c3"
+      },
+      {
+       "row": "Stuart",
+       "from": 1702,
+       "to": 1714,
+       "color": "c3"
+      },
+      {
+       "label": "No king (Commonwealth)",
+       "row": "No king",
+       "from": 1649,
+       "to": 1660,
+       "color": "muted"
+      },
+      {
+       "row": "Orange",
+       "from": 1689,
+       "to": 1702,
+       "color": "c8",
+       "label": "Orange"
+      },
+      {
+       "row": "Hanover",
+       "from": 1714,
+       "to": 1837,
+       "color": "c5",
+       "label": "Hanover"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "1714: a German king",
+   "text": "To keep Catholics off the throne, the Act of Settlement of 1701 passed the crown to Sophia of Hanover and her heirs. Her son George, Elector of Hanover, became king in 1714, and Britain and Hanover shared a ruler for 123 years. The link broke in 1837: Hanover did not accept a queen, so Victoria's uncle became its king.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     4.5,
+     52.6
+    ],
+    "zoom": 5.2
+   },
+   "timeline": {
+    "years": [
+     1701,
+     1714,
+     1801,
+     1837
+    ],
+    "start": 1714,
+    "spacing": "time"
+   },
+   "fills": {
+    "GBR": "c5",
+    "IRL": "c5"
+   },
+   "points": [
+    {
+     "at": [
+      -0.13,
+      51.5
+     ],
+     "label": "London",
+     "color": "c5",
+     "r": 4
+    },
+    {
+     "at": [
+      9.73,
+      52.37
+     ],
+     "label": "",
+     "color": "c5",
+     "r": 3
+    }
+   ],
+   "routes": [
+    {
+     "path": [
+      [
+       -0.13,
+       51.5
+      ],
+      [
+       9.73,
+       52.37
+      ]
+     ],
+     "color": "c5",
+     "width": 2,
+     "dash": true
+    }
+   ],
+   "layers": [
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 40
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Stuart to Windsor",
+     "from": 1660,
+     "to": 2026,
+     "ticks": [
+      1714,
+      1837,
+      1917
+     ],
+     "items": [
+      {
+       "row": "Stuart",
+       "from": 1660,
+       "to": 1688,
+       "color": "c3",
+       "label": "Stuart"
+      },
+      {
+       "row": "Stuart",
+       "from": 1689,
+       "to": 1694,
+       "color": "c3"
+      },
+      {
+       "row": "Stuart",
+       "from": 1702,
+       "to": 1714,
+       "color": "c3"
+      },
+      {
+       "row": "Orange",
+       "from": 1689,
+       "to": 1702,
+       "color": "c8",
+       "label": "Orange"
+      },
+      {
+       "row": "Hanover",
+       "from": 1714,
+       "to": 1901,
+       "color": "c5",
+       "label": "Hanover"
+      },
+      {
+       "row": "Saxe-Coburg",
+       "from": 1901,
+       "to": 1917,
+       "color": "c6",
+       "label": "Saxe-Coburg"
+      },
+      {
+       "row": "Windsor",
+       "from": 1917,
+       "to": 2026,
+       "color": "c2",
+       "label": "Windsor"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "1917: the Windsors",
+   "text": "Victoria's son Edward VII took his father's house name, Saxe-Coburg and Gotha. In 1917, with Britain at war with Germany, George V renamed the house after Windsor Castle. Edward VIII abdicated in 1936; Elizabeth II reigned for 70 years, longer than any other British monarch. Her son became Charles III in 2022.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -2.0,
+     53.8
+    ],
+    "zoom": 5.4
+   },
+   "timeline": {
+    "years": [
+     1901,
+     1917,
+     1936,
+     1952,
+     2022
+    ],
+    "start": 1917,
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 25
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Hanover to Windsor",
+     "from": 1837,
+     "to": 2026,
+     "ticks": [
+      1917
+     ],
+     "items": [
+      {
+       "row": "Hanover",
+       "from": 1837,
+       "to": 1901,
+       "color": "c5",
+       "label": "Hanover"
+      },
+      {
+       "row": "Saxe-Coburg",
+       "from": 1901,
+       "to": 1917,
+       "color": "c6",
+       "label": "Saxe-Coburg"
+      },
+      {
+       "row": "Windsor",
+       "from": 1917,
+       "to": 2026,
+       "color": "c2",
+       "label": "Windsor"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

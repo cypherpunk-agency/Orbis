@@ -878,7 +878,7 @@ const LAYER={
       // "countNote": {"US-DC": "DC"} keeps an id out of the count and names it instead ("19 states + DC")
       const cn=ly.countNote||{}, keys=Object.keys(ly.colors).map(c=>{ const ids=Object.keys(cats).filter(id=>cats[id]===c);
         return {label:lab(c),color:ly.colors[c],n:ids.filter(id=>!cn[id]).length,extra:ids.filter(id=>cn[id]).map(id=>cn[id])}; }).filter(k=>k.n||k.extra.length);
-      L.regions.push({R,vals:cats,colorOf,cat:true,keys,unit:ly.unit||"",shadeNote:sh&&(ly.shadeLabel||t("Lighter = closer result")),
+      L.regions.push({R,vals:cats,colorOf,cat:true,keys,counts:ly.counts,unit:ly.unit||"",shadeNote:sh&&(ly.shadeLabel||t("Lighter = closer result")),
         title:ly.title?ly.title+" · "+ylab(y):ylab(y),labels:ly.labels,
         tipOf:id=>code[id]!=null&&s0.codes&&s0.codes[code[id]]?(s0.codes[code[id]].label||code[id])+" · "+ylab(y):cats[id]==null?t("No data"):lab(cats[id])+(share[id]!=null?" · "+(ly.shareFmt?fmtOf(ly.shareFmt)(share[id]):share[id].toFixed(1)+"%"):"")+" · "+ylab(y)});
       return; }
@@ -1184,7 +1184,7 @@ function legendHTML(){
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · "+t("country size = amount"));
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · ${t("circle area = amount")}</span></span>`;
-  if(L) L.regions.filter(rg=>rg.cat).forEach(rg=>{ h+=`<div class="ramp-title">${esc(rg.title)}</div>`+rg.keys.map(k=>chip(k.color,k.label+": "+k.n+(rg.unit?" "+(k.n===1&&/s$/.test(rg.unit)?rg.unit.slice(0,-1):rg.unit):"")+k.extra.map(x=>" + "+x).join(""))).join("")+(rg.shadeNote?`<span class="chip">${esc(rg.shadeNote)}</span>`:""); });
+  if(L) L.regions.filter(rg=>rg.cat).forEach(rg=>{ h+=`<div class="ramp-title">${esc(rg.title)}</div>`+rg.keys.map(k=>chip(k.color,rg.counts===false?k.label:k.label+": "+k.n+(rg.unit?" "+(k.n===1&&/s$/.test(rg.unit)?rg.unit.slice(0,-1):rg.unit):"")+k.extra.map(x=>" + "+x).join(""))).join("")+(rg.shadeNote?`<span class="chip">${esc(rg.shadeNote)}</span>`:""); });
   if(L) L.regions.filter(rg=>!rg.cat).forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(q=>(rg.ramp||C.seq)(q)).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(rg.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(rg.fmt(rg.lo))}</span><span>${esc(rg.fmt(rg.hi))}</span></div></div>`; });
   if(L&&L.pov) h+=`<span class="chip"><i style="background:none;border:1.5px dashed ${C.accent}"></i>${esc(t("Disputed areas, drawn as seen from {x}",{x:nameOf(L.pov.viewIso)}))}</span>`;

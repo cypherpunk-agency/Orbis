@@ -551,5 +551,33 @@
   "title": "1806: the end of the Empire",
   "hook": "In 1789 some 200 lords ruled Germany's towns. Eighteen years later Napoleon had redrawn the map, and the thousand-year Empire was gone.",
   "file": "stories/hre-end.json"
+ },
+ {
+  "id": "royals-england",
+  "cat": "Geopolitics",
+  "title": "Kings and queens of England and Britain",
+  "hook": "From Alfred to Charles III: about 60 monarchs, 14 house names, one crown that passed by birth, marriage and battle.",
+  "file": "stories/royals-england.json"
+ },
+ {
+  "id": "royals-europe",
+  "cat": "Geopolitics",
+  "title": "Europe's ruling houses",
+  "hook": "Habsburgs, Bourbons, Romanovs and Coburgs: who held Europe's crowns from 1500 to today, and how a handful of families ran a continent.",
+  "file": "stories/royals-europe.json"
+ },
+ {
+  "id": "royals-cousins",
+  "cat": "Geopolitics",
+  "title": "The grandmother of Europe",
+  "hook": "By 1914 the grandchildren of Queen Victoria and of Denmark's Christian IX sat on half of Europe's thrones, and then went to war with each other.",
+  "file": "stories/royals-cousins.json"
+ },
+ {
+  "id": "royals-today",
+  "cat": "Geopolitics",
+  "title": "Where monarchies remain",
+  "hook": "43 countries still have a king, queen, emperor, emir, sultan or pope as head of state. In most the monarch reigns; in a few the monarch still rules.",
+  "file": "stories/royals-today.json"
  }
 ]

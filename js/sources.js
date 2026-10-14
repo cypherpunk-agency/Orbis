@@ -262,6 +262,12 @@ const SOURCES = {
     url: "https://www.research-collection.ethz.ch/handle/20.500.11850/472583", use: "noncommercial", redistribute: true,
     credit: "Ramona Roller, 'Spatio-temporal data on territories of the Holy Roman Empire', ETH Zurich, 2021 (CC BY-NC-SA 4.0); derived file stays CC BY-NC-SA"
   },
+  wikidata: {
+    name: "Wikidata", what: "Structured facts (monarchs, reign dates, royal houses) queried via SPARQL", tier: "layer",
+    licence: "CC0 1.0", licenceUrl: "https://www.wikidata.org/wiki/Wikidata:Licensing",
+    url: "https://www.wikidata.org", use: "commercial", redistribute: true,
+    credit: "Wikidata (CC0)"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",

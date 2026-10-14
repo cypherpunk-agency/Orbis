@@ -518,5 +518,123 @@
     "t": "Series published with four chapters."
    }
   ]
+ },
+ {
+  "id": "ruling-houses",
+  "title": "Ruling houses of Europe",
+  "hook": "Habsburgs, Bourbons, Windsors: how a few families held Europe's crowns for five centuries, and where their heirs still reign.",
+  "intro": "For most of its history Europe was ruled by families. Crowns passed by birth, marriage, election and war, and a handful of houses ended up on most of the continent's thrones. This series starts with the kings and queens of England and Britain, follows Europe's ruling houses from 1500 to today, shows how Queen Victoria's and Christian IX's grandchildren went to war with each other in 1914, and maps the 43 monarchies that remain.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     8,
+     50
+    ],
+    "zoom": 2.8
+   },
+   "modernBorders": false
+  },
+  "chapters": [
+   "royals-england",
+   "royals-europe",
+   "royals-cousins",
+   "royals-today"
+  ],
+  "coming": [
+   {
+    "title": "The Spanish succession",
+    "hook": "How the death of one childless king in 1700 set Europe at war for 13 years."
+   },
+   {
+    "title": "Habsburg marriages",
+    "hook": "'Let others wage war; you, happy Austria, marry': the matches that built an empire."
+   },
+   {
+    "title": "The fall of the monarchies, 1917–1918",
+    "hook": "Four empires and dozens of German thrones gone in two years."
+   },
+   {
+    "title": "Scotland's kings",
+    "hook": "From Kenneth MacAlpin to the Union of the Crowns."
+   }
+  ],
+  "dates": [
+   {
+    "d": 871,
+    "t": "Alfred becomes king of Wessex"
+   },
+   {
+    "d": 10661020,
+    "t": "Battle of Hastings (14 Oct 1066, Julian)"
+   },
+   {
+    "d": 14850831,
+    "t": "Bosworth: Henry Tudor takes the crown (22 Aug 1485, Julian)"
+   },
+   {
+    "d": 1516,
+    "t": "Charles of Habsburg inherits Spain"
+   },
+   {
+    "d": 16030403,
+    "t": "Union of the Crowns: James VI of Scotland becomes James I of England (24 Mar 1603, Julian)"
+   },
+   {
+    "d": 16130303,
+    "t": "Michael Romanov elected tsar (21 Feb 1613, Julian)"
+   },
+   {
+    "d": 1700,
+    "t": "Charles II of Spain dies; the crown goes to a Bourbon"
+   },
+   {
+    "d": 17070512,
+    "t": "Acts of Union: Kingdom of Great Britain (1 May 1707, Julian)"
+   },
+   {
+    "d": 17140812,
+    "t": "George I of Hanover becomes king (1 Aug 1714, Julian)"
+   },
+   {
+    "d": 18041202,
+    "t": "Napoleon crowns himself emperor"
+   },
+   {
+    "d": 18710118,
+    "t": "German Empire proclaimed at Versailles"
+   },
+   {
+    "d": 19140801,
+    "t": "Germany declares war on Russia"
+   },
+   {
+    "d": 19170315,
+    "t": "Nicholas II abdicates (2 Mar 1917, Julian)"
+   },
+   {
+    "d": 19170717,
+    "t": "The British royal house becomes Windsor"
+   },
+   {
+    "d": 19181109,
+    "t": "Wilhelm II's abdication announced"
+   },
+   {
+    "d": 20220908,
+    "t": "Charles III becomes king"
+   },
+   {
+    "d": 20260828,
+    "t": "Haakon VIII becomes king of Norway"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series published with four chapters."
+   }
+  ]
  }
 ]
