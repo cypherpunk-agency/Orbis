@@ -194,17 +194,28 @@ function selMap(){ const m=new Map(); Object.entries(L.fills).forEach(([k,c])=>m
 const SELC={key:null,geo:null};
 function selGeoms(m){ const key=[...m].join(); if(SELC.key===key) return SELC.geo; const by=new Map(); m.forEach((c,id)=>{ if(!by.has(c)) by.set(c,new Set()); by.get(c).add(id); });
   SELC.key=key; SELC.geo=[...by].map(([c,ids])=>({c,g:topojson.merge(WORLD,WORLD.objects.countries.geometries.filter(g=>ids.has(g.id)))})); return SELC.geo; }
+// round 2 of the preview: the highlight is derived from the map's own tones (a lit, pastel version), borders always kept
+//  E lit: selected countries lighter, in a soft version of their colour · F line: unchanged fill, one refined outline
+//  G lit + lift: E with a soft shadow under the set · H quiet base: other countries plain land, selection in soft colour
+const pastel=c=>d3.interpolateLab(col(c),(C.dark||onDark)?"#E8EDEB":"#FFFFFF")((C.dark||onDark)?0.42:0.5);
+const lit=(base,c)=>d3.interpolateLab(base,pastel(c))(0.72);
+function selUnder(){ if(SEL!=="G") return; const m=selMap(); if(!m.size) return;
+  selGeoms(m).forEach(({g})=>{ ctx.save(); ctx.beginPath(); path(g); ctx.shadowColor="rgba(0,0,0,.42)"; ctx.shadowBlur=14; ctx.shadowOffsetY=4; ctx.fillStyle=C.land; ctx.fill(); ctx.restore(); }); }
 function drawSelection(){ if(!SEL) return; const m=selMap(); if(!m.size) return; const dark=C.dark||onDark;
-  if(SEL==="B"){ ctx.beginPath(); feats.forEach(f=>{ if(!m.has(f.id)) path(geom(f)); }); ctx.fillStyle=dark?"rgba(8,16,24,.55)":"rgba(255,255,255,.6)"; ctx.fill(); return; }
-  const G=selGeoms(m);
-  if(SEL==="A"){ G.forEach(({c,g})=>{ ctx.beginPath(); path(g); ctx.lineJoin="round"; ctx.strokeStyle=dark?"rgba(8,16,24,.6)":"rgba(255,255,255,.85)"; ctx.lineWidth=4.5; ctx.stroke(); ctx.strokeStyle=c; ctx.lineWidth=2; ctx.stroke(); }); }
-  if(SEL==="C"){ G.forEach(({c,g})=>{ ctx.save(); ctx.beginPath(); path(g); ctx.lineJoin="round"; ctx.shadowColor=c; ctx.shadowBlur=10; ctx.strokeStyle=c; ctx.lineWidth=2.6; ctx.stroke(); ctx.restore(); }); }
-  if(SEL==="D"){ G.forEach(({c,g})=>{ ctx.save(); ctx.beginPath(); path(g); ctx.shadowColor="rgba(0,0,0,.55)"; ctx.shadowBlur=16; ctx.shadowOffsetY=5; ctx.fillStyle=c; ctx.fill(); ctx.restore();
-    ctx.beginPath(); path(g); ctx.strokeStyle=dark?"rgba(236,242,244,.7)":"#fff"; ctx.lineWidth=1.2; ctx.stroke(); }); }
+  if(SEL==="F"||SEL==="H"){ selGeoms(m).forEach(({c,g})=>{ ctx.beginPath(); path(g); ctx.lineJoin="round";
+    ctx.strokeStyle=SEL==="F"?pastel(c):d3.interpolateLab(pastel(c),dark?"#FFFFFF":"#1D2A30")(0.35); ctx.lineWidth=SEL==="F"?2:1.3; ctx.stroke(); }); }
 }
 function fillFor(f,i,ras){
+  if(!SEL) return fillBase(f,i,ras);
+  const id=f.id, sc=L.fills[id]||(L.gmap.get(id)&&L.gmap.get(id).color)||(L.highlight.includes(id)?"accent":null), on=sc&&!hidden(sc);
+  if(SEL==="F") return on&&(L.fills[id]||L.gmap.get(id))?(L.political?C.tints[tint[i]]:C.land):fillBase(f,i,ras);
+  if(SEL==="H"){ if(!on) return L.choro?fillBase(f,i,ras):(ras?null:C.land); return L.choro&&!L.fills[id]&&!L.gmap.get(id)?lit(fillBase(f,i,ras),"#FFFFFF"):pastel(sc); }
+  if(!on) return fillBase(f,i,ras);
+  const base=(L.fills[id]||L.gmap.get(id))?(L.political?C.tints[tint[i]]:C.land):fillBase(f,i,ras);
+  return lit(base, L.fills[id]||L.gmap.get(id)?sc:"#FFFFFF");
+}
+function fillBase(f,i,ras){
   const id=f.id;
-  if(SEL==="A"||SEL==="C"){ const c=L.fills[id]||(L.gmap.get(id)&&L.gmap.get(id).color); if(c&&!hidden(c)){ if(SEL==="A") return d3.interpolateRgb(C.land,col(c))(0.5); return L.political?C.tints[tint[i]]:C.land; } }
   if(L.fills[id]&&!hidden(L.fills[id])) return col(L.fills[id]);
   const g=L.gmap.get(id); if(g&&!hidden(g.color)) return g.tint?d3.interpolateRgb(C.land,col(g.color))(g.tint):col(g.color);  // tint: 0..1 toward the colour, for a light highlight
   if(L.choro){const v=L.cdata[id]; return v==null?(ras?null:C.nodata):L.color(v);}
@@ -457,6 +468,7 @@ function draw(){
   else if(L.carto) drawCartogram(ras);
   else{
     if(ras) ctx.globalAlpha=0.72;
+    selUnder();
     for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(geom(feats[i]));ctx.fillStyle=fc;ctx.fill();}
     // story/scene "pov": disputed areas drawn as part of the country that view assigns them to (e.g. "UA": Crimea with Ukraine)
     if(L.povView) L.povView.areas.forEach(a=>{ const o=L.povView.owner(a);
