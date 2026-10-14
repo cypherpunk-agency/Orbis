@@ -214,7 +214,8 @@ function fillFor(f,i,ras){
   const base=(L.fills[id]||L.gmap.get(id))?(L.political?C.tints[tint[i]]:C.land):fillBase(f,i,ras);
   return lit(base, L.fills[id]||L.gmap.get(id)?sc:"#FFFFFF");
 }
-const FILL_K={4:0.5,5:0.33}[new URLSearchParams(location.search).get("pal")]||1;  // preview: story fills as a tint over the land
+// story fills and blocs are drawn as a tint over the land, not as a flat poster colour (Daylight Atlas palette)
+const FILL_K=0.4;
 const mild=(c,i)=>FILL_K<1?d3.interpolateLab(L.political?C.tints[tint[i]]:C.land,col(c))(FILL_K):col(c);
 function fillBase(f,i,ras){
   const id=f.id;
@@ -1802,20 +1803,6 @@ document.addEventListener("keydown",e=>{
 applyStaticStrings();
 if(new URLSearchParams(location.search).get("embed")){ document.body.classList.add("embed"); const of=$("openFull"); of.hidden=false;
   const u=new URL(location.href); u.searchParams.delete("embed"); of.href=u.toString(); }
-// palette preview (?pal=1|2|3): candidate map palettes for the dark theme, for design review only
-const PALS={
- 1:{space:"#0D1B24",ocean:"#1E3A4C",land:"#4B5452",t0:"#55605A",t1:"#5A5A64",t2:"#625A56",t3:"#556066",t4:"#5E6052",border:"#7E8C8C",nodata:"#3B4648",muted:"#6E7676",
-    c1:"#7BA7D9",c2:"#D98C6E",c3:"#D9B65E",c4:"#6BB3A6",c5:"#A994D1",c6:"#9DBF7A",c7:"#CF7F8E",c8:"#B89A7A",s0:"#3B4648",s1:"#8C6E5A",s2:"#D9935F",s3:"#F6D79A"},
- 2:{space:"#0A1620",ocean:"#14324A",land:"#3E4D57",t0:"#43535D",t1:"#3F4C5A",t2:"#47525A",t3:"#3D5058",t4:"#4A5258",border:"#7A8C99",nodata:"#33424C",muted:"#66737C",
-    c1:"#8EC1E8",c2:"#F0B86E",c3:"#A7D6A1",c4:"#EE9D8A",c5:"#BFAEE8",c6:"#78C8C2",c7:"#E7A9C9",c8:"#D3C2A0",s0:"#2A3F55",s1:"#5E6E7E",s2:"#B9A26A",s3:"#F5D86A"},
- // 4/5: "Daylight Atlas" — today's brightness, Atlas's neutral matched base, Earth's muted categories, a quiet data ramp;
- // story fills and blocs drawn as a mild tint over the land (4: about half strength, 5: about a third)
- 4:{space:"#0E1E2A",ocean:"#22506B",land:"#505D5B",t0:"#56625C",t1:"#5A5E66",t2:"#625E59",t3:"#566468",t4:"#5E6356",border:"#84928F",nodata:"#46524F",muted:"#76807D",
-    c1:"#7398BA",c2:"#BE7E64",c3:"#C6A35E",c4:"#62A195",c5:"#9789B4",c6:"#8AA266",c7:"#BC8994",c8:"#A38B6E",s0:"#505D5B",s1:"#8A7564",s2:"#BC8B66",s3:"#E2C394"},
- 3:{space:"#111B1F",ocean:"#20363F",land:"#4A4D45",t0:"#525447",t1:"#4F4F4C",t2:"#56504A",t3:"#4B524E",t4:"#535247",border:"#80847A",nodata:"#3A3F3B",muted:"#6E7069",
-    c1:"#5C8DB8",c2:"#C0694A",c3:"#D2A447",c4:"#4F9A8C",c5:"#8E73B0",c6:"#7E9A55",c7:"#C47A8A",c8:"#9C7B5B",s0:"#34403F",s1:"#6E6A4E",s2:"#B98A45",s3:"#EBC77A"}};
-PALS[5]=PALS[4];
-{ const pal=PALS[new URLSearchParams(location.search).get("pal")]; if(pal) Object.entries(pal).forEach(([k,v])=>document.documentElement.style.setProperty("--"+k,v)); }
 readColors();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{readColors();if(scene||si<0)el.legend.innerHTML=legendHTML();render();});
 new ResizeObserver(()=>layout()).observe(sheet);
