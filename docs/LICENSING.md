@@ -48,6 +48,10 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `unhcr` | UNHCR refugee statistics, end-year stocks 2000–2025 (`data/people/refugees*.json`) | Layer | CC BY-IGO 3.0 (UNHCR's HDX dataset) | Commercial | "UNHCR Refugee Population Statistics Database" |
 | `iom-mmp` | IOM Missing Migrants Project 2014–2024 (`data/events/missing-migrants.json`) | Layer | CC BY-IGO 3.0 (IOM's HDX dataset) | Commercial | "IOM Missing Migrants Project" |
 | `niva-netmigration` | Niva et al. 2023 net migration 2000–2019, Zenodo 7997134 (`data/grids/netmigration*`, `data/people/net-migration*.json`) | Layer | CC BY 4.0 | Commercial | "Niva et al. (2023), Nature Human Behaviour" |
+| `undp-hdr` | UNDP Human Development Report 2025 composite indices, 1990–2023 (`data/atlas/HDR.*.json`) | Layer | CC BY 3.0 IGO | Commercial | "Source: UNDP, Human Development Report 2025" |
+| `pwt` | Penn World Table 11.0, 1950–2023 (`data/atlas/PWT.*.json`) | Layer | CC BY 4.0 | Commercial | "Feenstra, Inklaar and Timmer, Penn World Table 11.0, GGDC" |
+| `ember` | Ember yearly electricity data, 1985–2025 (`data/atlas/EMBER.*.json`); demand per person uses World Bank population (`wb-wdi`) | Layer | CC BY 4.0 | Commercial | "Source: Ember" |
+| `unesco-uis` | UNESCO UIS public data API, February 2026 release (`data/atlas/UIS.*.json`) | Layer | CC BY-SA 4.0 (share-alike) | Story layer only, shown with the NC badge like other share-alike data | "Source: UNESCO Institute for Statistics" |
 | `ghsl-pop` | GHSL GHS-POP R2023A population grid, epoch 2025, aggregated to 2048×1024 density (`data/grids/popdensity*`) | Layer | CC BY 4.0 (EC Decision 2011/833/EU) | Commercial | "European Commission, JRC: GHS-POP R2023A"; changes indicated |
 | `nasa-gistemp` | NASA GISTEMP v4 temperature anomaly, decadal means 1880s–2020s + 2025 (`data/grids/warming*`) | Layer | NASA open data (no restrictions) | Commercial | "GISTEMP Team, 2026, NASA GISS" + Lenssen et al. 2024 |
 | `noaa-gfs` | NOAA GFS 250 hPa winds, 2026-10-13 12 UTC (`data/grids/wind*`) | Layer | US public domain | Commercial | "NOAA/NCEP GFS"; no implied endorsement |

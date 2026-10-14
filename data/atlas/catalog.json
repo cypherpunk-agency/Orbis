@@ -220,6 +220,63 @@
    "definition": "Female population is the percentage of the population that is female. Population is based on the de facto definition of population, which counts all residents regardless of legal status or citizenship."
   },
   {
+   "id": "HDR.HDI",
+   "name": "Human Development Index (0–1)",
+   "long": "Human Development Index (0–1) (UNDP Human Development Report 2025)",
+   "topic": "People",
+   "fmt": "d3:.3f",
+   "units": "Index (0–1)",
+   "source": "undp-hdr",
+   "licence": "CC BY 3.0 IGO",
+   "tier": "commercial",
+   "years": [
+    1990,
+    2023
+   ],
+   "countries": 193,
+   "recent": 193,
+   "file": "data/atlas/HDR.HDI.json",
+   "definition": "The Human Development Index is a summary measure of a long and healthy life, access to knowledge and a decent standard of living: the geometric mean of normalized indices for life expectancy, years of schooling and gross national income per person."
+  },
+  {
+   "id": "HDR.IHDI",
+   "name": "Inequality-adjusted HDI (0–1)",
+   "long": "Inequality-adjusted HDI (0–1) (UNDP Human Development Report 2025)",
+   "topic": "People",
+   "fmt": "d3:.3f",
+   "units": "Index (0–1)",
+   "source": "undp-hdr",
+   "licence": "CC BY 3.0 IGO",
+   "tier": "commercial",
+   "years": [
+    2010,
+    2023
+   ],
+   "countries": 170,
+   "recent": 169,
+   "file": "data/atlas/HDR.IHDI.json",
+   "definition": "The inequality-adjusted Human Development Index discounts each dimension of the HDI by how unequally it is shared across the population. Where there is no inequality it equals the HDI; the gap is the loss to inequality."
+  },
+  {
+   "id": "HDR.GII",
+   "name": "Gender Inequality Index (0–1, lower is more equal)",
+   "long": "Gender Inequality Index (0–1, lower is more equal) (UNDP Human Development Report 2025)",
+   "topic": "People",
+   "fmt": "d3:.3f",
+   "units": "Index (0–1)",
+   "source": "undp-hdr",
+   "licence": "CC BY 3.0 IGO",
+   "tier": "commercial",
+   "years": [
+    1990,
+    2023
+   ],
+   "countries": 172,
+   "recent": 172,
+   "file": "data/atlas/HDR.GII.json",
+   "definition": "The Gender Inequality Index measures the disadvantage of women in reproductive health (maternal mortality, adolescent births), empowerment (seats in parliament, secondary education) and the labour market. 0 means women and men fare equally, 1 means women fare as badly as possible."
+  },
+  {
    "id": "SP.DYN.LE00.IN",
    "name": "Life expectancy (years)",
    "long": "Life expectancy at birth, total (years)",
@@ -828,6 +885,123 @@
    "definition": "The percentage of population ages 25 and over that attained or completed Bachelor's or equivalent."
   },
   {
+   "id": "HDR.EYS",
+   "name": "Expected years of schooling",
+   "long": "Expected years of schooling (UNDP Human Development Report 2025)",
+   "topic": "Education",
+   "fmt": "num",
+   "units": "Years",
+   "source": "undp-hdr",
+   "licence": "CC BY 3.0 IGO",
+   "tier": "commercial",
+   "years": [
+    1990,
+    2023
+   ],
+   "countries": 195,
+   "recent": 195,
+   "file": "data/atlas/HDR.EYS.json",
+   "definition": "Expected years of schooling is the number of years of schooling a child of school entrance age can expect to receive if today's age-specific enrolment rates hold throughout the child's life."
+  },
+  {
+   "id": "HDR.MYS",
+   "name": "Mean years of schooling, adults",
+   "long": "Mean years of schooling, adults (UNDP Human Development Report 2025)",
+   "topic": "Education",
+   "fmt": "num",
+   "units": "Years",
+   "source": "undp-hdr",
+   "licence": "CC BY 3.0 IGO",
+   "tier": "commercial",
+   "years": [
+    1990,
+    2023
+   ],
+   "countries": 193,
+   "recent": 193,
+   "file": "data/atlas/HDR.MYS.json",
+   "definition": "Mean years of schooling is the average number of years of education received by people aged 25 and older."
+  },
+  {
+   "id": "PWT.HC",
+   "name": "Human capital index (PWT)",
+   "long": "Human capital index (PWT) (Penn World Table 11.0 (Feenstra)",
+   "topic": "Education",
+   "fmt": "num",
+   "units": "Index",
+   "source": "pwt",
+   "licence": "CC BY 4.0",
+   "tier": "commercial",
+   "years": [
+    1950,
+    2023
+   ],
+   "countries": 145,
+   "recent": 145,
+   "file": "data/atlas/PWT.HC.json",
+   "definition": "Human capital index of the Penn World Table, based on average years of schooling and an assumed rate of return to education. It runs from 1 (no schooling) to about 4."
+  },
+  {
+   "id": "UIS.CR.3",
+   "name": "Finish upper secondary school (%)",
+   "long": "Finish upper secondary school (%) (UNESCO Institute for Statistics (UIS))",
+   "topic": "Education",
+   "fmt": "pct",
+   "units": "% of age group",
+   "source": "unesco-uis",
+   "licence": "CC BY-SA 4.0",
+   "tier": "noncommercial",
+   "years": [
+    1996,
+    2024
+   ],
+   "countries": 167,
+   "recent": 69,
+   "file": "data/atlas/UIS.CR.3.json",
+   "definition": "Completion rate, upper secondary education: share of people aged 3–5 years above the intended age for the last grade of upper secondary school who have completed that grade (UNESCO UIS, from household surveys).",
+   "note": "share-alike"
+  },
+  {
+   "id": "UIS.ROFST.1.CP",
+   "name": "Out-of-school children, primary age (%)",
+   "long": "Out-of-school children, primary age (%) (UNESCO Institute for Statistics (UIS))",
+   "topic": "Education",
+   "fmt": "pct",
+   "units": "% of primary-age children",
+   "source": "unesco-uis",
+   "licence": "CC BY-SA 4.0",
+   "tier": "noncommercial",
+   "years": [
+    1970,
+    2025
+   ],
+   "countries": 212,
+   "recent": 163,
+   "file": "data/atlas/UIS.ROFST.1.CP.json",
+   "definition": "Out-of-school rate for children of primary school age: share of children of official primary school age who are not enrolled in primary or secondary education (UNESCO UIS).",
+   "note": "share-alike"
+  },
+  {
+   "id": "UIS.RESDEN.INHAB.TFTE",
+   "name": "Researchers per million people",
+   "long": "Researchers per million people (UNESCO Institute for Statistics (UIS))",
+   "topic": "Education",
+   "fmt": "int",
+   "units": "Researchers (FTE) per million inhabitants",
+   "source": "unesco-uis",
+   "licence": "CC BY-SA 4.0",
+   "tier": "noncommercial",
+   "years": [
+    1996,
+    2024
+   ],
+   "countries": 146,
+   "recent": 94,
+   "file": "data/atlas/UIS.RESDEN.INHAB.TFTE.json",
+   "definition": "Researchers in full-time equivalents per million inhabitants (UNESCO UIS research and development statistics).",
+   "note": "share-alike"
+  },
+  {
    "id": "NY.GDP.MKTP.CD",
    "name": "GDP (US$)",
    "long": "GDP (current US$)",
@@ -1265,6 +1439,63 @@
    "definition": "Net official development assistance (ODA) per capita consists of disbursements of loans made on concessional terms (net of repayments of principal) and grants by official agencies of the members of the Development Assistance Committee (DAC), by multilateral institutions, and by non-DAC countries to promote economic development and welfare in countries and territories in the DAC list of ODA recipients; and is calculated by dividing net ODA received by the midyear population estimate. It includes loans with a grant element of at least 25 percent (calculated at a rate of discount of 10 percent)."
   },
   {
+   "id": "PWT.LABSH",
+   "name": "Labour share of GDP (%)",
+   "long": "Labour share of GDP (%) (Penn World Table 11.0 (Feenstra)",
+   "topic": "Economy",
+   "fmt": "pct",
+   "units": "% of GDP at current national prices",
+   "source": "pwt",
+   "licence": "CC BY 4.0",
+   "tier": "commercial",
+   "years": [
+    1950,
+    2023
+   ],
+   "countries": 140,
+   "recent": 140,
+   "file": "data/atlas/PWT.LABSH.json",
+   "definition": "Share of labour compensation in GDP at current national prices, including an estimate of the labour income of the self-employed (Penn World Table)."
+  },
+  {
+   "id": "PWT.AVH",
+   "name": "Hours worked per worker a year",
+   "long": "Hours worked per worker a year (Penn World Table 11.0 (Feenstra)",
+   "topic": "Economy",
+   "fmt": "int",
+   "units": "Hours per year",
+   "source": "pwt",
+   "licence": "CC BY 4.0",
+   "tier": "commercial",
+   "years": [
+    1950,
+    2023
+   ],
+   "countries": 130,
+   "recent": 130,
+   "file": "data/atlas/PWT.AVH.json",
+   "definition": "Average annual hours worked by persons engaged (employees and self-employed), from the Penn World Table."
+  },
+  {
+   "id": "PWT.PL_GDPO",
+   "name": "Price level of GDP (USA = 1)",
+   "long": "Price level of GDP (USA = 1) (Penn World Table 11.0 (Feenstra)",
+   "topic": "Economy",
+   "fmt": "num",
+   "units": "Ratio (USA 2021 = 1)",
+   "source": "pwt",
+   "licence": "CC BY 4.0",
+   "tier": "commercial",
+   "years": [
+    1950,
+    2023
+   ],
+   "countries": 185,
+   "recent": 185,
+   "file": "data/atlas/PWT.PL_GDPO.json",
+   "definition": "Price level of output-side GDP at current PPPs relative to the exchange rate (PPP divided by exchange rate), with the price level of the United States in 2021 set to 1 (Penn World Table). Below 1 means goods and services cost less than in the US at market exchange rates."
+  },
+  {
    "id": "EN.GHG.CO2.PC.CE.AR5",
    "name": "CO₂ per person (t)",
    "long": "Carbon dioxide (CO2) emissions excluding LULUCF per capita (t CO2e/capita)",
@@ -1453,6 +1684,120 @@
    "recent": 200,
    "file": "data/atlas/EN.ATM.PM25.MC.M3.json",
    "definition": "Population-weighted exposure to ambient PM2.5 pollution is defined as the average level of exposure of a nation's population to concentrations of suspended particles measuring less than 2.5 microns in aerodynamic diameter, which are capable of penetrating deep into the respiratory tract and causing severe health damage. Exposure is calculated by weighting mean annual concentrations of PM2.5 by population in both urban and rural areas."
+  },
+  {
+   "id": "HDR.PHDI",
+   "name": "Planetary-pressures-adjusted HDI (0–1)",
+   "long": "Planetary-pressures-adjusted HDI (0–1) (UNDP Human Development Report 2025)",
+   "topic": "Environment",
+   "fmt": "d3:.3f",
+   "units": "Index (0–1)",
+   "source": "undp-hdr",
+   "licence": "CC BY 3.0 IGO",
+   "tier": "commercial",
+   "years": [
+    1990,
+    2023
+   ],
+   "countries": 156,
+   "recent": 156,
+   "file": "data/atlas/HDR.PHDI.json",
+   "definition": "The planetary pressures-adjusted Human Development Index lowers the HDI by a country's carbon dioxide emissions and material footprint per person. Where pressures on the planet are zero it equals the HDI."
+  },
+  {
+   "id": "EMBER.CLEAN",
+   "name": "Low-carbon electricity (%)",
+   "long": "Low-carbon electricity (%) (Ember)",
+   "topic": "Environment",
+   "fmt": "pct",
+   "units": "% of generation",
+   "source": "ember",
+   "licence": "CC BY 4.0",
+   "tier": "commercial",
+   "years": [
+    1985,
+    2025
+   ],
+   "countries": 205,
+   "recent": 203,
+   "file": "data/atlas/EMBER.CLEAN.json",
+   "definition": "Share of electricity generated from low-carbon sources: nuclear plus renewables (hydro, wind, solar, bioenergy and other renewables), as a percentage of total generation (Ember)."
+  },
+  {
+   "id": "EMBER.WINDSOLAR",
+   "name": "Wind and solar electricity (%)",
+   "long": "Wind and solar electricity (%) (Ember)",
+   "topic": "Environment",
+   "fmt": "pct",
+   "units": "% of generation",
+   "source": "ember",
+   "licence": "CC BY 4.0",
+   "tier": "commercial",
+   "years": [
+    1985,
+    2025
+   ],
+   "countries": 205,
+   "recent": 203,
+   "file": "data/atlas/EMBER.WINDSOLAR.json",
+   "definition": "Share of electricity generated by wind and solar power, as a percentage of total generation (Ember)."
+  },
+  {
+   "id": "EMBER.COAL",
+   "name": "Coal electricity (%)",
+   "long": "Coal electricity (%) (Ember)",
+   "topic": "Environment",
+   "fmt": "pct",
+   "units": "% of generation",
+   "source": "ember",
+   "licence": "CC BY 4.0",
+   "tier": "commercial",
+   "years": [
+    1985,
+    2025
+   ],
+   "countries": 205,
+   "recent": 203,
+   "file": "data/atlas/EMBER.COAL.json",
+   "definition": "Share of electricity generated by coal, as a percentage of total generation (Ember). Countries where Ember lists no coal generation are shown as 0."
+  },
+  {
+   "id": "EMBER.CO2INT",
+   "name": "Carbon intensity of electricity (gCO₂e/kWh)",
+   "long": "Carbon intensity of electricity (gCO₂e/kWh) (Ember)",
+   "topic": "Environment",
+   "fmt": "int",
+   "units": "gCO2e per kWh",
+   "source": "ember",
+   "licence": "CC BY 4.0",
+   "tier": "commercial",
+   "years": [
+    1985,
+    2025
+   ],
+   "countries": 205,
+   "recent": 203,
+   "file": "data/atlas/EMBER.CO2INT.json",
+   "definition": "Lifecycle greenhouse gas emissions per kilowatt-hour of electricity generated, in grams of CO₂ equivalent (Ember)."
+  },
+  {
+   "id": "EMBER.DEMAND.PC",
+   "name": "Electricity use per person (MWh)",
+   "long": "Electricity use per person (MWh) (Ember)",
+   "topic": "Environment",
+   "fmt": "num",
+   "units": "MWh per person",
+   "source": "ember",
+   "licence": "CC BY 4.0",
+   "tier": "commercial",
+   "years": [
+    1985,
+    2025
+   ],
+   "countries": 200,
+   "recent": 198,
+   "file": "data/atlas/EMBER.DEMAND.PC.json",
+   "definition": "Electricity demand (generation plus net imports) per person, in megawatt-hours a year: Ember demand divided by World Bank population (WDI SP.POP.TOTL, CC BY 4.0)."
   }
  ],
  "skipped": [
@@ -1479,6 +1824,14 @@
   {
    "id": "RQ.EST",
    "why": "WGI moved to the World Bank archive (source 57); licence of the current WGI release still to check"
+  },
+  {
+   "id": "VDEM.POLYARCHY",
+   "why": "V-Dem v16 electoral democracy index: download form requires an email address"
+  },
+  {
+   "id": "VDEM.LIBDEM",
+   "why": "V-Dem v16 liberal democracy index: download form requires an email address"
   }
  ]
 }

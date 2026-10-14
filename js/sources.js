@@ -172,6 +172,30 @@ const SOURCES = {
     url: "https://zenodo.org/records/7997134", use: "commercial", redistribute: true,
     credit: "Niva et al. (2023), Nature Human Behaviour 7: 2023–2037; aggregated to 10′ by Orbis"
   },
+  "undp-hdr": {
+    name: "UNDP Human Development Report", what: "HDR 2025 composite indices time series for the country atlas: HDI, inequality-adjusted HDI, Gender Inequality Index, planetary-pressures-adjusted HDI, expected and mean years of schooling", tier: "layer",
+    licence: "CC BY 3.0 IGO", licenceUrl: "https://creativecommons.org/licenses/by/3.0/igo/",
+    url: "https://hdr.undp.org/data-center/documentation-and-downloads", use: "commercial", redistribute: true,
+    credit: "Source: UNDP, Human Development Report 2025 (CC BY 3.0 IGO)"
+  },
+  pwt: {
+    name: "Penn World Table 11.0", what: "Human capital index, labour share, average hours worked and GDP price level for the country atlas", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://www.rug.nl/ggdc/productivity/pwt/", use: "commercial", redistribute: true,
+    credit: "Source: Feenstra, Inklaar and Timmer, Penn World Table 11.0, Groningen Growth and Development Centre (CC BY 4.0)"
+  },
+  ember: {
+    name: "Ember yearly electricity data", what: "Electricity mix for the country atlas: low-carbon, wind and solar, and coal shares; carbon intensity; demand per person (divided by World Bank population)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://ember-energy.org/data/yearly-electricity-data/", use: "commercial", redistribute: true,
+    credit: "Source: Ember, Yearly Electricity Data (CC BY 4.0)"
+  },
+  "unesco-uis": {
+    name: "UNESCO Institute for Statistics", what: "Upper-secondary completion rate, primary out-of-school rate and researchers per million for the country atlas (UIS public data API)", tier: "layer",
+    licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    url: "https://uis.unesco.org/", use: "noncommercial", redistribute: true,
+    credit: "Source: UNESCO Institute for Statistics (CC BY-SA 4.0; share-alike, so kept out of the base tier)"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",
