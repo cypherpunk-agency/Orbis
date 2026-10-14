@@ -96,14 +96,16 @@ let projectionSnapshot=null;
 const path=d3.geoPath(proj,ctx);
 let W=0,H=0,DPR=1;
 const sheet=document.getElementById("sheet"), topbar=document.getElementById("topbar"), toc=document.getElementById("toc");
+let sheetDrag=null; // phone sheet drag in progress (see "the sheet follows the finger")
 function layout(){
+  if(sheetDrag) return; // re-laid out when the drag settles
   if(projectionSnapshot&&(W!==innerWidth||H!==innerHeight||DPR!==Math.min(2,devicePixelRatio||1))) settle();
   W=innerWidth;H=innerHeight;DPR=Math.min(2,devicePixelRatio||1);
   canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+"px";canvas.style.height=H+"px";
   const tb=topbar.getBoundingClientRect(), sh=sheet.getBoundingClientRect();
   const desktop=W>=820;
   if(desktop){F.x=sh.right+8;F.y=tb.bottom;F.w=W-F.x-8;F.h=H-F.y-8;}
-  else{const tc=toc.hidden?null:toc.getBoundingClientRect(); F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,(tc?tc.top:sh.top)-F.y);}
+  else{const tc=toc.hidden?null:toc.getBoundingClientRect(); F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,(tc?tc.top:H-sheet.offsetHeight)-F.y);}
   S.globe=Math.min(F.w,F.h)/2*0.9;
   ["equal","mercator"].forEach(k=>S[k]=Math.min(F.w/BOUNDS[k][0],F.h/BOUNDS[k][1])*0.96);
   render();
@@ -1598,21 +1600,48 @@ function closeToc(){ toc.hidden=true; $("tocBtn").setAttribute("aria-expanded","
 function setCollapsed(on){ sheet.classList.toggle("collapsed",on); if(!on) sheet.scrollTop=0; requestAnimationFrame(layout); }
 $("collapse").onclick=e=>{ e.stopPropagation(); setCollapsed(!sheet.classList.contains("collapsed")); };
 new MutationObserver(()=>$("collapse").setAttribute("aria-expanded",String(!sheet.classList.contains("collapsed")))).observe(sheet,{attributes:true,attributeFilter:["class"]});
-// phone: tap the collapsed bar to open it; swipe the sheet down to tuck it into a bar, swipe the bar up to open it
-sheet.addEventListener("click",e=>{ if(sheet.classList.contains("collapsed")&&innerWidth<820) setCollapsed(false); });
-let sd=null;
+// phone: the sheet follows the finger. Drag the handle or the collapsed bar up/down, or pull the text down from its top;
+// on release it settles open or tucked into a one-line bar (by position and flick speed).
+sheet.addEventListener("click",e=>{ if(sheet.classList.contains("collapsed")&&innerWidth<820&&!sheetDrag) setCollapsed(false); });
+function dragStart(y){
+  const fromBar=sheet.classList.contains("collapsed"), bar=fromBar?sheet.offsetHeight:0;
+  if(fromBar){ sheet.classList.remove("collapsed"); sheet.scrollTop=0; }
+  const h=sheet.offsetHeight, room=Math.max(1,h-(bar||64)), off0=fromBar?room:0;
+  sheetDrag={y0:y,off0,off:off0,room,last:y,t:performance.now(),v:0,moved:false,fromBar};
+  sheet.style.transition="none"; sheet.style.transform=`translateY(${off0}px)`;
+}
+function dragMove(y){ const d=sheetDrag; if(!d) return;
+  if(Math.abs(y-d.y0)>4) d.moved=true;
+  const now=performance.now(); d.v=0.7*(y-d.last)/Math.max(8,now-d.t)+0.3*d.v; d.last=y; d.t=now;
+  d.off=clamp(d.off0+y-d.y0,0,d.room); sheet.style.transform=`translateY(${d.off}px)`;
+}
+function dragEnd(){ const d=sheetDrag; if(!d) return;
+  if(!d.moved){ sheetDrag=null; sheet.style.transition=""; sheet.style.transform=""; if(d.fromBar) sheet.classList.add("collapsed"); return; }
+  const close=d.v>0.4||(d.v>-0.4&&d.off>d.room/2);
+  sheet.style.transition="transform .22s ease-out"; sheet.style.transform=`translateY(${close?d.room:0}px)`;
+  let done=false; const fin=()=>{ if(done) return; done=true; sheet.style.transition="none"; sheet.style.transform="";
+    sheetDrag=null; setCollapsed(close); requestAnimationFrame(()=>{ sheet.style.transition=""; }); };
+  sheet.addEventListener("transitionend",fin,{once:true}); setTimeout(fin,300);
+}
+// handle and collapsed bar: pointer events (touch-action:none in CSS, so the browser never takes the gesture)
+sheet.addEventListener("pointerdown",e=>{
+  if(innerWidth>=820||sheetDrag||!(sheet.classList.contains("collapsed")||e.target.closest(".handle"))) return;
+  sheet.setPointerCapture(e.pointerId); dragStart(e.clientY);
+  const mv=ev=>dragMove(ev.clientY), up=()=>{ sheet.removeEventListener("pointermove",mv); sheet.removeEventListener("pointerup",up); sheet.removeEventListener("pointercancel",up); dragEnd(); };
+  sheet.addEventListener("pointermove",mv); sheet.addEventListener("pointerup",up); sheet.addEventListener("pointercancel",up);
+});
+// text area: a downward pull that starts with the text scrolled to the top drags the sheet
+let pull=null;
 sheet.addEventListener("touchstart",e=>{
-  if(innerWidth>=820||e.touches.length!==1||e.target.closest("input,select,textarea,#sChart,#sMedia")){ sd=null; return; }
-  sd={y0:e.touches[0].clientY,dy:0,top:sheet.scrollTop<=0,on:false};
+  pull=null; if(innerWidth>=820||sheetDrag||e.touches.length!==1||sheet.classList.contains("collapsed")||e.target.closest(".handle,input,select,textarea,#sChart,#sMedia")) return;
+  pull={y0:e.touches[0].clientY,top:sheet.scrollTop<=0,on:false};
 },{passive:true});
-sheet.addEventListener("touchmove",e=>{ if(!sd) return;
-  sd.dy=e.touches[0].clientY-sd.y0;
-  if(!sheet.classList.contains("collapsed")&&sd.top&&sd.dy>0){ e.preventDefault(); sd.on=true; sheet.style.transition="none"; sheet.style.transform="translateY("+sd.dy+"px)"; }
+sheet.addEventListener("touchmove",e=>{ if(!pull) return; const y=e.touches[0].clientY;
+  if(!pull.on){ if(!pull.top||y<=pull.y0+4){ if(y<pull.y0-4) pull=null; return; } pull.on=true; dragStart(pull.y0); }
+  if(e.cancelable) e.preventDefault(); dragMove(y);
 },{passive:false});
-function endSheetDrag(){ if(!sd) return; const {dy,on}=sd; sd=null;
-  sheet.style.transition=""; sheet.style.transform="";
-  if(on&&dy>60) setCollapsed(true); else if(sheet.classList.contains("collapsed")&&dy<-30) setCollapsed(false); }
-sheet.addEventListener("touchend",endSheetDrag); sheet.addEventListener("touchcancel",()=>{ sd=null; sheet.style.transition=""; sheet.style.transform=""; });
+sheet.addEventListener("touchend",()=>{ if(pull&&pull.on) dragEnd(); pull=null; });
+sheet.addEventListener("touchcancel",()=>{ if(pull&&pull.on) dragEnd(); pull=null; });
 
 document.addEventListener("keydown",e=>{
   if(e.target.tagName==="INPUT") return;
