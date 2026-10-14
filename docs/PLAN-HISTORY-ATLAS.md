@@ -2,7 +2,7 @@
 
 What we want to tell next, what the engine and data are missing, and the order to build it in. Companion files: [DATA-CATALOG.md](DATA-CATALOG.md) (where data comes from), [STORY-FORMAT.md](STORY-FORMAT.md) (how stories are written), [LICENSING.md](LICENSING.md) (what we may use).
 
-Status 14 October 2026: engine features built: F1 calendars, F2 shapes over time, F3 control areas and fronts, F4 dated movements, F5 event cards, F6 historical names, F7 map overlays (+ warp tool), F8 before/after swipe, F9 pick a country, F10 regions spanning countries, F11 categories over time, F12 stacked area and Gantt charts, F14 country atlas (World Bank base tier), F17 overlapping memberships, F18 group outlines. Open: F13 scheduled refresh (needs decision 3), F15 density grids (done per story in build scripts), F16 detailed Europe (deferred: historical shapes carry their own detail). Phase A stories are being built; licence checks for the history, conflict and indicator sources are done (section 3).
+Status 14 October 2026 (end of build session): engine features built: F1 calendars, F2 shapes over time, F3 control areas and fronts, F4 dated movements, F5 event cards, F6 historical names, F7 map overlays (+ warp tool), F8 before/after swipe, F9 pick a country, F10 regions spanning countries, F11 categories over time, F12 stacked area and Gantt charts, F14 country atlas, F15 density grids (per story in build scripts), F17 overlapping memberships, F18 group outlines; plus border views (de facto / UN, dashed contested borders), licence badges, small multiples, `pov`, timeline spacing and the elections explorer UI. Declined: F13 scheduled refresh. Deferred: F16 detailed Europe. Phases A and E are done; B, C, D and G are partly done; F is not started. See "Where we stand" in section 5.
 
 ## Summary
 
@@ -106,6 +106,26 @@ Licence check completed 14 October 2026 (details and quotes in [DATA-CATALOG.md]
 
 Each phase ends as before: browser check of every scene, `node tools/check-licences.js`, push.
 
+### Where we stand (14 October 2026)
+
+| Phase | State | Shipped | Still to do |
+|---|---|---|---|
+| A: data stories | Done | Whales, launches, Roman roads, colonies, refugees, countryside (instead of fleets), friends, fame, night lights, empty skies | Distant-water fleets (needs a usable Global Fishing Watch licence) |
+| B: Rome | Partly done | Roman roads, rise, frontier, fall | Cities of the empire · Rome's eastern rival · What is left |
+| B: United States | Partly done | Expansion, land cessions, the Union, elections, US abroad | Thirteen colonies · Rails and the frontier · Nations of immigrants · Lewis and Clark |
+| C: Ukraine | Partly done | 2014, the long front, 2022, refugees | Grain and the Black Sea · Fire along the front · Where things stand |
+| C: World War II | Not started | — | Whole series (data and features ready) |
+| D: Holy Roman Empire | Partly done | Origins, patchwork, Westphalia (Shepherd overlay), the end | Emperors and electors · The Empire in 1648, territory by territory (needs tracing) · What came after |
+| D: European Union | Not started | — | Whole series (data and features ready) |
+| E: Country atlas | Done | Atlas with base, NC and share-alike tiers; governments story | — |
+| F: Conflicts now | Not started | — | *Wars now* series, refreshed by hand |
+| G: Ruling houses | Partly done | England/Britain, Europe, Victoria's cousins, today | The Spanish succession · Habsburg marriages · The fall of the monarchies, 1917–1918 · Scotland's kings |
+| G: Colonialism | Partly done | Empires, colonies, decolonisation | The Atlantic world · The scramble for Africa · Trading companies · The British Raj · Legacies |
+| G: History of Asia | Not started | — | Scouting and series (candidate chapters below) |
+| Elections explorer | Partly done | UI (`#elections`), build script | Data (see below) |
+
+The "still to do" chapters are listed as `coming` in `stories/campaigns.json` and show in each series' chapter list.
+
 **Phase A: ten data stories** (from the catalogue's top list)
 - Engine: F9 pick a country, F15 density grids, F8 before/after.
 - Stories: Where the whales were · The launch explosion · Who your friends are · All roads lead to Rome · How long were you a colony? · Lights out, lights on · The sky went quiet · Where fame was born · Refugees stay close · Distant-water fleets (or Leaving the countryside if Global Fishing Watch needs a login we can't use).
@@ -131,8 +151,8 @@ Each phase ends as before: browser check of every scene, `node tools/check-licen
 - Series: *Wars now*: one chapter per major active conflict, plus an overview map; refreshed weekly.
 
 **Phase G: more history series** (requested 14 October 2026)
-- *European colonialism* (in progress): empires over time, the Atlantic world, the scramble for Africa, decolonisation.
-- *Ruling houses of Europe* (in progress): English and British monarchs, Europe's dynasties, Victoria's grandchildren, today's monarchies.
+- *European colonialism* (partly done): see the table above.
+- *Ruling houses of Europe* (partly done): see the table above.
 - *World War II* and *the European Union*: next, data and features ready (section 3).
 - *HRE territories 1648* (open): the Shepherd 1648 plate is georeferenced and shipped as an overlay; tracing its territories into polygons (docs/briefs/HRE-TRACING.md) is not done — a colour-segmentation attempt was promising for large territories only.
 - *History of Asia* (next after those): candidate chapters — China's dynasties (Qin to Qing, with the dynastic cycle as a Gantt), the Mongol Empire (fastest-growing land empire; moves and shapes over time), the Silk Roads and Indian Ocean trade (routes, ports), Mughal and Maratha India, Japan from Tokugawa to Meiji, Southeast Asia's maritime states (Srivijaya, Majapahit, Malacca), the Ottoman and Safavid empires, colonial Asia and independence (1945–1975), the partition of India (1947). Data to scout: historical-basemaps (GPL) for outlines, Wikidata (CC0) for rulers and dynasties, CHGIS (China Historical GIS: check licence), Pleiades/ToposText for ancient places, Old World Trade Routes (ORBIS, CC BY), Seshat (check licence), HYDE population (licence to re-check).
@@ -161,6 +181,8 @@ Nothing over ~1 MB per file in git; big rasters are pre-cut or fetched at runtim
 ## 7. Decisions for you
 
 1. ~~Ukraine control of territory~~ **Decided (14 Oct 2026):** Wikipedia's settlement control points (CC BY-SA 4.0, story layer), labelled as volunteer-edited, dated by page revision, with UCDP events alongside. Areas drawn from the points are an approximation and are marked as such.
-2. **Holy Roman Empire detail** (open): no openly licensed territory polygons exist. Options: trace outlines from public-domain maps; ETH Roller polygons (NC-SA, auto-generated); Imperial Circles (HistoGIS, treat as NC) + city-by-ruler points (Princes & Townspeople, CC0) + warped scans for the patchwork.
+2. ~~Holy Roman Empire detail~~ **Decided:** combine Princes & Townspeople cities (CC0), the outer outline, ETH Zürich territories (NC) and the Imperial Circles (HistoGIS, NC), plus the Shepherd 1648 overlay. Tracing 1648 territories from public-domain maps is still open (docs/briefs/HRE-TRACING.md).
+5. ~~Borders~~ **Decided:** both views: Natural Earth de facto and a UN-recognised view, contested borders dashed.
+6. **Production deploy:** only when the work is declared done.
 3. ~~Scheduled refresh~~ **Decided: no.** Data that changes (conflicts now, Ukraine) is refreshed by running the build scripts by hand; every view shows its "as of" date.
 4. ~~Atlas non-commercial tier~~ **Decided:** the atlas is an optional layer, so non-commercial and share-alike indicators are included with an "NC" badge; only terms that restrict redistribution (or are unclear) exclude an indicator.
