@@ -31,6 +31,8 @@
           "data": "history",
           "set": "war",
           "country": "USA",
+          "year": 1861,
+          "title": "State affiliations",
           "colors": {
             "confederacy": "c2",
             "border": "c3",

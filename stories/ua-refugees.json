@@ -12,9 +12,9 @@
     "notes": "data/history/ukraine/ua-refugees.json",
     "violence": "data/events/conflict-ukraine.json",
     "stocks": "data/people/refugees.json",
-    "flows": "data/people/refugees-flows.json"
+    "flows": "data/history/ukraine/refugee-stock-links.json"
   },
-  "notes": "Fixed editorial cutoff: 14 October 2026. This is not a live map. The modern Natural Earth basemap provides orientation; its border conventions do not establish legal recognition, sovereignty or military control. Cards are selected approximate locators. UCDP events are incidents of organized violence with at least one death, aggregated into 0.25-degree cells by start month. Event locations are coded approximations; country-only/unlocated records are omitted. Only records assigned to Ukraine are shown, excluding Russia. GED 26.1 covers through December 2025; Candidate 26.0.8 extends through August 2026 and is preliminary. Circles measure events, not territory, troop strength or civilian deaths. Annual series: UNHCR Refugee Population Statistics, refugees under its mandate plus other people needing international protection, excluding asylum seekers and IDPs. Annual flow pairs at least 5,000 are stocks, not migration routes. Russia coverage break documented in https://www.unhcr.org/sites/default/files/2025-06/global-trends-report-2024.pdf . Separate operational estimate https://www.unhcr.org/sites/default/files/2026-01/unhcr-2025-emergencies-and-protracted-crises-impact-report.pdf .",
+  "notes": "Fixed editorial cutoff: 14 October 2026. This is not a live map. The modern Natural Earth basemap provides orientation; its border conventions do not establish legal recognition, sovereignty or military control. Cards are selected approximate locators. UCDP events are incidents of organized violence with at least one death, aggregated into 0.25-degree cells by start month. Event locations are coded approximations; country-only/unlocated records are omitted. Only records assigned to Ukraine are shown, excluding Russia. GED 26.1 covers through December 2025; Candidate 26.0.8 extends through August 2026 and is preliminary. Circles measure events, not territory, troop strength or civilian deaths. Annual series: UNHCR Refugee Population Statistics, refugees under its mandate plus other people needing international protection, excluding asylum seekers and IDPs. Annual flow pairs at least 5,000 are stocks, not migration routes. Country tooltip host stocks are Ukraine-origin only; origin totals retain all destinations, while host pairs below the source threshold are absent, not zero. Russia coverage break documented in https://www.unhcr.org/sites/default/files/2025-06/global-trends-report-2024.pdf . Separate operational estimate https://www.unhcr.org/sites/default/files/2026-01/unhcr-2025-emergencies-and-protracted-crises-impact-report.pdf .",
   "scenes": [
     {
       "title": "Across borders",
@@ -42,7 +42,9 @@
           "fmt": "int",
           "from": [
             "UKR"
-          ]
+          ],
+          "outLabel": "originating here (all destinations)",
+          "inLabel": "hosted here (Ukraine origin only)"
         }
       ],
       "sources": [
@@ -74,7 +76,9 @@
           "fmt": "int",
           "from": [
             "UKR"
-          ]
+          ],
+          "outLabel": "originating here (all destinations)",
+          "inLabel": "hosted here (Ukraine origin only)"
         }
       ],
       "timeline": {

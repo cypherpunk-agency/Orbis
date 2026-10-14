@@ -8,10 +8,13 @@ if(!id)throw Error('Provide a story ID');
 const file=id.startsWith('@stories/')?id.slice(1):'stories/'+id+'.json';
 const st=JSON.parse(fs.readFileSync(file,'utf8'));
 const b=await chromium.launch({executablePath:process.env.ORBIS_BROWSER,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
-const report={id,views:[],errors:[]};
+// These checks exercise controls. Motion is checked separately in review-navigation.
+const report={id,motion:'reduced',stepNavigation:'keyboard',views:[],errors:[]};
+let activePage=null;
 try{
 for(const viewport of [{width:1280,height:800},{width:390,height:844}]){
- const p=await b.newPage({viewport});const events=[];
+ const p=await b.newPage({viewport,reducedMotion:'reduce'});const events=[];
+ activePage=p;p.setDefaultTimeout(30000);p.setDefaultNavigationTimeout(30000);
  p.on('pageerror',e=>events.push(e.message));p.on('response',r=>{if(r.status()>=400)events.push(r.status()+' '+r.url())});
  const view={viewport,scenes:[],embed:false};report.views.push(view);
  for(let i=0;i<st.scenes.length;i++){
@@ -24,7 +27,7 @@ for(const viewport of [{width:1280,height:800},{width:390,height:844}]){
     await p.locator('#tlSlider').evaluate((e,v)=>{e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}))},v);
     const label=await p.locator('#tlYear').innerText();if(!label||label.includes('undefined'))throw Error('Missing timeline label');item.timeline.push({index:v,label});
    }
-   if(max>0){await p.locator('#tlPlay').click();await p.waitForTimeout(1800);item.playValue=Number(await p.locator('#tlSlider').inputValue());
+   if(max>0){await p.locator('#tlSlider').evaluate(e=>{e.value=0;e.dispatchEvent(new Event('input',{bubbles:true}))});await p.locator('#tlPlay').click();await p.waitForFunction(()=>Number(document.querySelector('#tlSlider').value)>0);item.playValue=Number(await p.locator('#tlSlider').inputValue());
     if(item.playValue<1)throw Error('Timeline Play did not advance');if((await p.locator('#tlPlay').innerText())==='Pause')await p.locator('#tlPlay').click();}
   }
   const card=p.locator('#sLegend button[data-ci]');item.cards=await card.count();
@@ -37,12 +40,13 @@ for(const viewport of [{width:1280,height:800},{width:390,height:844}]){
    if(!before||!after||after.x<=before.x)throw Error('Swipe keyboard control did not move');item.swipeKeyboard=true;
   }
   await p.locator('#sNotes summary').click();if(!(await p.locator('#sNotesBody').innerText()).trim())throw Error('Missing notes');
-  if(i+1<st.scenes.length){await p.locator('#next').click();await p.waitForFunction(title=>document.querySelector('#sTitle')?.textContent===title,st.scenes[i+1].title);await p.locator('#prev').click();await p.waitForFunction(title=>document.querySelector('#sTitle')?.textContent===title,sc.title);}
+  // The all-scene/campaign suites cover mouse navigation. Check keyboard steps here.
+  if(i+1<st.scenes.length){await p.locator('#next').focus();await p.keyboard.press('Enter');await p.waitForFunction(title=>document.querySelector('#sTitle')?.textContent===title,st.scenes[i+1].title);await p.locator('#prev').focus();await p.keyboard.press('Enter');await p.waitForFunction(title=>document.querySelector('#sTitle')?.textContent===title,sc.title);}
   const horizontal=await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2);if(horizontal)throw Error('Page overflows horizontally');
  }
  await p.goto((process.env.ORBIS_BASE_URL||'http://127.0.0.1:8765/')+'?embed=1#'+id+'/1');await p.waitForFunction(title=>document.querySelector('#sTitle')?.textContent===title,st.scenes[0].title);
  view.embed=await p.locator('body').evaluate(e=>e.classList.contains('embed'));if(!view.embed)throw Error('Embed mode absent');
  report.errors.push(...events.map(e=>viewport.width+': '+e));await p.close();
 }
-}catch(e){report.errors.push(e.message)}finally{await b.close();fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');}
+}catch(e){report.errors.push(e.message);if(activePage){report.errorState={url:activePage.url()};try{report.errorState.title=await activePage.locator('#sTitle').innerText({timeout:1000});await activePage.screenshot({path:out.replace(/\.json$/,'-error.png'),timeout:5000});}catch{}}}finally{await b.close();fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');}
 console.log(JSON.stringify({id,views:report.views.length,errors:report.errors}));if(report.errors.length)process.exitCode=1;

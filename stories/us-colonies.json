@@ -120,6 +120,8 @@
           "data": "history",
           "set": "original",
           "country": "USA",
+          "year": 1783,
+          "title": "Treaty states on modern outlines",
           "colors": {
             "original": "c4"
           }

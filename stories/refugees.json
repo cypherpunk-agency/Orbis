@@ -3,7 +3,7 @@
  "cat": "People",
  "title": "Refugees stay close",
  "hook": "At the end of 2025, about 65% of refugees lived in a country bordering their own.",
- "notes": "Refugees: UNHCR Refugee Population Statistics, end-year stocks to the end of 2025 (also published on HDX under CC BY-IGO). 'Refugees' here are refugees under UNHCR's mandate plus 'other people in need of international protection' (mostly Venezuelans in Latin America). Not included: asylum seekers, people displaced inside their own country, and about 6 million Palestine refugees under UNRWA's mandate. Flows show origin–asylum pairs of at least 5,000 people. A neighbour is a country with a shared land border on the map. In 2024 UNHCR stopped listing about 1.2 million Ukrainians in Russia, so Ukraine's share in neighbouring countries drops from 2024. This is a statistical coverage break, not evidence that those people left Russia (UNHCR Global Trends 2024, https://www.unhcr.org/sites/default/files/2025-06/global-trends-report-2024.pdf). UNHCR documents large-scale Afghan returns and deportations from Iran and Pakistan in its 2025 recap, https://data.unhcr.org/en/documents/details/121254. Per 1,000 residents uses UN World Population Prospects 2024 (2025 projected), for countries with over 1 million people. Deaths: IOM Missing Migrants Project, incidents 2014–2024 as published on HDX (CC BY-IGO), dead and missing combined; the counts are a minimum, because many deaths are never recorded.",
+ "notes": "Refugees: UNHCR Refugee Population Statistics, end-year stocks to the end of 2025 (also published on HDX under CC BY-IGO). 'Refugees' here are refugees under UNHCR's mandate plus 'other people in need of international protection' (mostly Venezuelans in Latin America). Not included: asylum seekers, people displaced inside their own country, and about 6 million Palestine refugees under UNRWA's mandate. Flows show origin–asylum pairs of at least 5,000 people. A neighbour is a country with a shared land border on the map. In 2024 UNHCR stopped listing about 1.2 million Ukrainians in Russia, so Ukraine's share in neighbouring countries drops from 2024. This is a statistical coverage break, not evidence that those people left Russia (UNHCR Global Trends 2024, https://www.unhcr.org/sites/default/files/2025-06/global-trends-report-2024.pdf). UNHCR documents large-scale Afghan returns and deportations from Iran and Pakistan in its 2025 recap, https://data.unhcr.org/en/documents/details/121254. Per 1,000 residents uses UN World Population Prospects 2024 (2025 projected), for countries with over 1 million people. Deaths: IOM Missing Migrants Project, incidents 2014–2024 as published on HDX (CC BY-IGO), dead and missing combined; the counts are a minimum, because many deaths are never recorded. Country tooltip totals cover all origins and destinations; the selected-origin stock links are a separate filtered view.",
  "data": {
   "r": "data/people/refugees.json",
   "f": "data/people/refugees-flows.json",
@@ -187,7 +187,9 @@
      "color": "c2",
      "maxW": 12,
      "title": "Refugees, end of 2025",
-     "fmt": "int"
+     "fmt": "int",
+     "outLabel": "originating here (all destinations)",
+     "inLabel": "hosted here (all origins)"
     }
    ]
   },

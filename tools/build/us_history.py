@@ -43,6 +43,9 @@ SUPPLEMENT={
  'us-civil-war':[N+'civilwar/facts.htm',N+'apco/learn/historyculture/surrender-events-after-appomattox.htm'],
  'us-frontier':[N+'im/ncpn/bpd-gosp.htm'],
 }
+# Explicit display dates retained from the reviewed chapters; these are not retrieval dates.
+SCENE_WHEN={'us-colonies': {'Jamestown: a river foothold': '1607', 'A declaration in Philadelphia': '1776', 'Thirteen names, an international treaty': '1783'}, 'us-expansion': {'Louisiana: the Mississippi gateway': '1803', 'Texas and the Mexican cession': '1845–1848', 'An agreement on Oregon': '1846', 'Beyond the contiguous mainland': '1867'}, 'us-indigenous-land': {'Removal from the Southeast': '1830', 'A treaty without national consent': '1835', 'Forced west in 1838–1839': '1838–1839', 'Allotment fragmented collective lands': '1887'}, 'us-statehood': {'Ratifying the original union': '1787', 'California: admission after acquisition': '1850', 'Alaska: purchase, territory, state': 'Jan 1959', 'Hawaii: the fiftieth state': 'Aug 1959'}, 'us-civil-war': {'State affiliation was not control': 'Late 1861', 'War begins at a harbour fort': '12 Apr 1861', 'Emancipation had a geographic limit': '1863', 'Appomattox was one surrender': '9 Apr 1865'}, 'us-frontier': {'Surveyed land, federal promises': '1862', 'A Nebraska homestead': '1863', 'Two construction fronts meet': 'May 1869', 'Chinese workers built the western connection': '10 May 1869'}, 'us-immigration': {'Nineteenth-century Atlantic migration': '19th century', 'Ellis Island: the Atlantic gateway': '1892–1954', 'Exclusion shaped the Pacific crossing': '1882', 'Angel Island: entry and detention': '1910–1940'}, 'us-elections': {'1860: four candidates, a sectional map': '1860', 'New Jersey breaks a simple winner map': '1860', '2020: two tickets, two split states': '2020', 'Districts inside statewide outlines': '2020', 'The two noncontiguous states': '2020'}, 'us-abroad': {'1898: a Pacific expansion': '1898', 'A Caribbean acquisition': '1898', 'Hawaii: annexation before statehood': '1898', '1949: an Atlantic alliance': '1949'}}
+
 def chapter(id,title,hook,rows,extras=None):
  # Each row: heading, text, approximate point, event year/date, citation URL, camera.
  items=[];scenes=[]
@@ -54,13 +57,15 @@ def chapter(id,title,hook,rows,extras=None):
  st={'id':id,'cat':'Geopolitics','title':title,'hook':hook,'updated':'2026-10-14','notes':COMMON+' Sources by scene: '+ '; '.join(row[0]+': '+row[4] for row in rows), 'data':{'history':f'data/history/usa/{id}.json'},'sources':['editorial','naturalearth'],'scenes':scenes}
  if id in SUPPLEMENT:st['notes']+=' Supplementary date/location evidence: '+'; '.join(SUPPLEMENT[id])+'.'
  if extras:extras(st,data)
+ for scene in st['scenes']:
+  if scene['title'] in SCENE_WHEN.get(id,{}):scene['when']=SCENE_WHEN[id][scene['title']]
  write(OUT/(id+'.json'),data);write(R/'stories'/(id+'.json'),st)
  return st,data
 east={'mode':'globe','center':[-76,38],'zoom':5}
 def colonies(st,d):
  original='NH MA RI CT NY NJ PA DE MD VA NC SC GA'.split()
  d['sets']={'original':{'label':'Original states on modern outlines','values':{'US-'+x:'original' for x in original},'labels':{'original':'Original state (modern outline)'}}}
- st['scenes'][3]['layers'].append({'type':'categories','data':'history','set':'original','country':'USA','colors':{'original':'c4'}})
+ st['scenes'][3]['layers'].append({'type':'categories','data':'history','set':'original','country':'USA','year':1783,'title':'Treaty states on modern outlines','colors':{'original':'c4'}})
  st['scenes'][3]['text']+=' The coloured shapes locate their modern successor states; colonial claims extended beyond these outlines.'
 chapter('us-colonies','Thirteen colonies','An Atlantic strip becomes an independent union.',[
  ('Jamestown: a river foothold','English settlers established Jamestown in 1607 on the James River, within Powhatan country. Its coastal location connected the settlement to Atlantic shipping.',[-76.76,37.21],1607,N+'jame/learn/historyculture/a-short-history-of-jamestown.htm',east),
@@ -98,7 +103,7 @@ def war(st,d):
  conf='SC MS FL AL GA LA TX VA AR NC TN'.split();border='DE MD KY MO'.split();union='CA CT IL IN IA ME MA MI MN NH NJ NY OH OR PA RI VT WI KS'.split()
  vals={**{'US-'+x:'confederacy' for x in conf},**{'US-'+x:'border' for x in border},**{'US-'+x:'union' for x in union}}
  d['sets']={'war':{'label':'State affiliations, late 1861','values':vals,'labels':{'confederacy':'Seceded states','border':'Slave states remaining in Union','union':'Other Union states'}}}
- st['scenes'][0]['layers']=[{'type':'categories','data':'history','set':'war','country':'USA','colors':{'confederacy':'c2','border':'c3','union':'c1'}}]
+ st['scenes'][0]['layers']=[{'type':'categories','data':'history','set':'war','country':'USA','year':1861,'title':'State affiliations','colors':{'confederacy':'c2','border':'c3','union':'c1'}}]
  st['scenes'][0]['view']={'mode':'globe','center':[-99,39],'zoom':2.7}
  st['notes']+=' Affiliations follow NPS Civil War facts and Border States; modern outlines are reference geometry. West Virginia is omitted because it was part of Virginia in 1861. Affiliations are not military-control polygons; Kentucky and Missouri had rival Confederate governments.'
 chapter('us-civil-war','The Civil War split','Secession, slavery and military geography divided the union.',[
