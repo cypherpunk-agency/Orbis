@@ -6,12 +6,14 @@
   "updated": "2026-10-14",
   "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Pearl Harbor brings the United States into the war: https://www.nps.gov/wwii/learn/historyculture/pearl-harbor.htm; 2. Midway: a battle around an atoll: https://www.history.navy.mil/content/history/museums/nmusn/explore/photography/wwii/wwii-pacific/turning-the-japanese-tide/1942-june-battle-of-midway.html; 3. Guadalcanal opens a southern campaign: https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/b/battle-of-guadalcanal.html; 4. Command areas crossed the date line: https://maps.lib.utexas.edu/maps/historical/history_ww2.html; 5. Okinawa: fighting close to Japan: https://www.history.navy.mil/content/history/museums/nmusn/explore/photography/wwii/wwii-pacific/okinawa.html Army atlas source/title/date and credit: https://maps.lib.utexas.edu/maps/historical/history_ww2.html. Pacific boundaries divide Allied command areas, not Japanese occupation. Original scan used without a geographic warp; provisional wide-area polynomial fit was rejected as too inaccurate. Map anchors are rounded locations from the scan’s named geography.",
   "data": {
-    "events": "data/history/ww2/ww2-pacific.json"
+    "events": "data/history/ww2/ww2-pacific.json",
+    "borders": "data/history/ww2/borders-names.json"
   },
   "sources": [
     "editorial",
     "naturalearth",
-    "us-army-atlas"
+    "us-army-atlas",
+    "cshapes"
   ],
   "scenes": [
     {
@@ -27,7 +29,14 @@
         "zoom": 3
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -55,7 +64,14 @@
         "zoom": 3
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -83,7 +99,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -111,7 +134,15 @@
         "zoom": 1.3
       },
       "modernBorders": false,
-      "layers": [],
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
+      "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        }
+      ],
       "sources": [
         "editorial",
         "us-army-atlas"
@@ -171,7 +202,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",

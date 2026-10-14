@@ -82,7 +82,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -110,7 +117,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -138,7 +152,14 @@
         "zoom": 3.2
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",

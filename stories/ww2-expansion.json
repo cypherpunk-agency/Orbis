@@ -7,12 +7,14 @@
   "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Poland is attacked from two sides: https://encyclopedia.ushmm.org/content/en/article/invasion-of-poland-fall-1939; 2. Two dated occupation cases: https://en.natmus.dk/historical-knowledge/denmark/german-occupation-1940-1945/; 3. France’s defeat did not create one uniform regime: https://encyclopedia.ushmm.org/content/en/article/france; 4. An atlas of the western advance: https://maps.lib.utexas.edu/maps/historical/history_ww2.html; 5. From the beachhead to the Rhine: https://history.army.mil/Research/Reference-Topics/Army-Campaigns/Brief-Summaries/World-War-II/World-War-II-European-African-Middle-Eastern-Theater/; 6. Bornholm complicates a national liberation date: https://natmus.dk/historisk-viden/danmark/besaettelsestiden-1940-1945/besaettelsen-kort-fortalt/befrielsen/ Nordic snapshot dates: https://en.natmus.dk/historical-knowledge/denmark/german-occupation-1940-1945/; https://natmus.dk/historisk-viden/danmark/besaettelsestiden-1940-1945/besaettelsen-kort-fortalt/befrielsen/; https://encyclopedia.ushmm.org/content/en/article/norway; https://www.regjeringen.no/en/the-government/previous-governments/regjeringer-siden-1814/historiske-regjeringer/norways-governments-1940-1945/the-chief-officers-in-oslo-may-1945/id438698/. Colours classify the countries at national scale on modern reference outlines, not every locality, island, troop position or front. Bornholm is an explicit exception to Denmark’s main liberation date. Western milestones: https://history.army.mil/Research/Reference-Topics/Army-Campaigns/Brief-Summaries/World-War-II/World-War-II-European-African-Middle-Eastern-Theater/; https://www.first.army.mil/History/This-Day-in-First-Army-History/March/. Waypoints are rounded locations of dated events; connectors and interpolated positions are schematic, not one unit’s march. Army scan: https://maps.lib.utexas.edu/maps/historical/history_ww2.html; overview warp mean4.42px/max6.38px across11 city points; original arrows have different dates and do not describe one simultaneous front.",
   "data": {
     "events": "data/history/ww2/ww2-expansion.json",
-    "atlas": "data/history/ww2/northern-europe-overlay.json"
+    "atlas": "data/history/ww2/northern-europe-overlay.json",
+    "borders": "data/history/ww2/borders-names.json"
   },
   "sources": [
     "editorial",
     "naturalearth",
-    "us-army-atlas"
+    "us-army-atlas",
+    "cshapes"
   ],
   "scenes": [
     {
@@ -28,7 +30,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -113,7 +122,14 @@
         "zoom": 4.5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -141,7 +157,14 @@
         "zoom": 8
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "overlay",
           "data": "atlas",
@@ -165,7 +188,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "moves",
           "data": "events",
@@ -200,7 +230,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",

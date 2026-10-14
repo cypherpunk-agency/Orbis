@@ -6,11 +6,13 @@
   "updated": "2026-10-14",
   "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. London: the sustained Blitz begins: https://historicengland.org.uk/whats-new/features/blitz-stories/england-under-attack/; 2. Coventry: destruction and a surviving ruin: https://www.coventrycathedral.org.uk/locations/the-ruins; 3. Dresden: an Allied attack: https://www.dhm.de/lemo/kapitel/zweiter-weltkrieg/kriegsverlauf/dresden; 4. Hiroshima: an atomic bombing: https://www.archives.gov/news/topics/hiroshima-nagasaki-75; 5. Nagasaki: a second atomic bombing: https://www.archives.gov/news/topics/hiroshima-nagasaki-75 Nagasaki terrain and damage context: Manhattan Engineer District, The Atomic Bombings of Hiroshima and Nagasaki (1946), chapter 9, https://www.atomicarchive.com/resources/documents/med/med_chp9.html (primary report transcription; no numerical damage claims imported).",
   "data": {
-    "events": "data/history/ww2/ww2-bombing.json"
+    "events": "data/history/ww2/ww2-bombing.json",
+    "borders": "data/history/ww2/borders-names.json"
   },
   "sources": [
     "editorial",
-    "naturalearth"
+    "naturalearth",
+    "cshapes"
   ],
   "scenes": [
     {
@@ -26,7 +28,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -54,7 +63,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -82,7 +98,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -110,7 +133,14 @@
         "zoom": 4.5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -138,7 +168,14 @@
         "zoom": 4.5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",

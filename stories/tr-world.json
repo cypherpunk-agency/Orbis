@@ -5,11 +5,13 @@
  "hook": "Straits, alliances, Cyprus, Europe and Syria in a dated regional history.",
  "updated": "2026-10-14",
  "sources": [
-  "editorial"
+  "editorial",
+  "cshapes"
  ],
  "notes": "Original Orbis factual annotations, not copied source prose. Locations are approximate city/site locators, not surveyed footprints. Historical geometry fallback: cited located events and places; no empire, ethnic or control polygons are inferred. Source coverage ends 2025-12-08. Editorial cutoff: 14 October 2026. References by scene: Scenes 1-2: https://www.nato.int/cps/en/natohq/declassified_191048.htm ; Scene 3 (1974): https://unficyp.unmissions.org/en/events-summer-1974 ; Scene 3 (1983): https://digitallibrary.un.org/record/58970?v=pdf ; Scene 4: https://www.auswaertiges-amt.de/de/aussenpolitik/anwerbeabkommen/2493338 ; Scene 5: https://www.consilium.europa.eu/en/policies/turkiye/ ; Scene 6: https://www.unhcr.org/tr/en/news/press-releases/unhcr-historic-return-displaced-syrians-presents-opportunity-and-urgent",
  "data": {
-  "events": "data/history/turkey/world.json"
+  "events": "data/history/turkey/world.json",
+  "states": "data/history/borders.json"
  },
  "scenes": [
   {
@@ -24,7 +26,6 @@
     ],
     "zoom": 6
    },
-   "modernBorders": false,
    "layers": [],
    "points": [
     {
@@ -93,7 +94,14 @@
     "zoom": 7
    },
    "modernBorders": false,
+   "stamp": "Borders as of 1 Jan 1975 · CShapes 2.0 (legal states, not occupation)",
    "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": 1975,
+     "labels": false
+    },
     {
      "type": "cards",
      "data": "events",
@@ -139,7 +147,15 @@
     "zoom": 3
    },
    "modernBorders": false,
-   "layers": [],
+   "stamp": "Borders as of 1 Jul 1960 · CShapes 2.0",
+   "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": 1960,
+     "labels": false
+    }
+   ],
    "points": [
     {
      "at": [
@@ -173,7 +189,14 @@
     "zoom": 3
    },
    "modernBorders": false,
+   "stamp": "Borders: latest CShapes 2.0 snapshot at or before {t}",
    "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": "t",
+     "labels": false
+    },
     {
      "type": "cards",
      "data": "events",
@@ -226,7 +249,6 @@
     ],
     "zoom": 6
    },
-   "modernBorders": false,
    "layers": [],
    "points": [
     {

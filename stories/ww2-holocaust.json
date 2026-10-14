@@ -6,11 +6,13 @@
   "updated": "2026-10-14",
   "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Warsaw: forced confinement: https://encyclopedia.ushmm.org/content/en/article/warsaw; 2. Babyn Yar: murder outside the camps: https://encyclopedia.ushmm.org/content/en/article/kiev-and-babi-yar; 3. Auschwitz-Birkenau: a killing centre: https://encyclopedia.ushmm.org/content/en/article/auschwitz; 4. Liberation did not erase the losses: https://www.nationalarchives.gov.uk/explore-the-collection/stories/report-on-the-liberation-of-bergen-belsen/ Overall Holocaust context and six-million Jewish victim total: https://encyclopedia.ushmm.org/content/en/article/introduction-to-the-holocaust. These are selected sites, not a complete site inventory or a casualty allocation. Static muted event points only; no animated pulses, decorative victim scaling, invented deportation routes or imported victim photographs.",
   "data": {
-    "events": "data/history/ww2/ww2-holocaust.json"
+    "events": "data/history/ww2/ww2-holocaust.json",
+    "borders": "data/history/ww2/borders-names.json"
   },
   "sources": [
     "editorial",
-    "naturalearth"
+    "naturalearth",
+    "cshapes"
   ],
   "scenes": [
     {
@@ -26,7 +28,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -54,7 +63,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -82,7 +98,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -110,7 +133,14 @@
         "zoom": 4.5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",

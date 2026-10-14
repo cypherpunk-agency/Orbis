@@ -928,7 +928,8 @@ const LAYER={
     L.events.push({pts:pick.map(e=>({at:[e[0],e[1]],r:r(e[3]),now:e[2]===t,v:e[3]})),color:ly.color||"c2",title:ly.title||d.vLabel,count:pick.length,fmt:fmtOf(ly.fmt)});
   },
   borders(ly,d,y,L){ // historical state borders: the latest snapshot at or before the year
-    const yrs=Object.keys(d.snapshots||d.files).map(Number).sort((a,b)=>a-b), yr=+y;
+    // a date slider passes yyyymmdd (or yyyymm): compare by its year
+    const yrs=Object.keys(d.snapshots||d.files).map(Number).sort((a,b)=>a-b), yr=+y>99999999?+y:+y>9999999?Math.floor(+y/1e4):+y>99999?Math.floor(+y/100):+y;
     const snap=yrs.filter(v=>v<=yr).pop()||yrs[0], H=histSnap(ly.data,d,snap); if(!H) return;
     L.hist={H,year:snap,labels:ly.labels!==false};
   },

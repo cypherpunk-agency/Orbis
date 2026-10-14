@@ -28,7 +28,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -151,7 +158,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
