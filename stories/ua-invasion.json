@@ -1,0 +1,130 @@
+{
+  "id": "ua-invasion",
+  "cat": "Geopolitics",
+  "title": "The invasion",
+  "hook": "February 2022 opened a much wider war.",
+  "updated": "2026-10-14",
+  "sources": [
+    "editorial",
+    "ucdp-ged"
+  ],
+  "data": {
+    "notes": "data/history/ukraine/ua-invasion.json",
+    "violence": "data/events/conflict-ukraine.json"
+  },
+  "notes": "Fixed editorial cutoff: 14 October 2026. This is not a live map. The modern Natural Earth basemap provides orientation; its border conventions do not establish legal recognition, sovereignty or military control. Cards are selected approximate locators. UCDP events are incidents of organized violence with at least one death, aggregated into 0.25-degree cells by start month. Event locations are coded approximations; country-only/unlocated records are omitted. Only records assigned to Ukraine are shown, excluding Russia. GED 26.1 covers through December 2025; Candidate 26.0.8 extends through August 2026 and is preliminary. Circles measure events, not territory, troop strength or civilian deaths. OHCHR context https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf paragraphs 31–32; UN resolution coverage https://press.un.org/en/2022/ga12407.doc.htm .",
+  "scenes": [
+    {
+      "title": "24 February 2022",
+      "text": "Russia’s full-scale attack widened the war across multiple fronts. Kyiv is an orientation point here; the next scene uses independently coded deadly incidents rather than invented arrows or occupied polygons.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          49
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "attack"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "The first months in the record",
+      "text": "Move from February to March and April 2022. Each circle counts deadly events assigned to a cell in that month. February begins with a partial invasion month; coded locations are sometimes approximate.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          34,
+          49
+        ],
+        "zoom": 5
+      },
+      "timeline": {
+        "years": [
+          202202,
+          202203,
+          202204
+        ],
+        "start": 202202,
+        "format": "month"
+      },
+      "layers": [
+        {
+          "type": "events",
+          "data": "violence",
+          "year": "t",
+          "window": 1,
+          "color": "muted",
+          "minR": 1.5,
+          "maxR": 10,
+          "vmax": 150,
+          "title": "UCDP deadly events / cell / month"
+        }
+      ],
+      "sources": [
+        "ucdp-ged"
+      ]
+    },
+    {
+      "title": "Mariupol",
+      "text": "A prolonged siege and intensive bombardment struck Mariupol. The locator marks the city discussed by OHCHR. It gives neither a casualty total nor a measured footprint of destruction.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          37.55,
+          47.1
+        ],
+        "zoom": 7
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "siege"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "An international response",
+      "text": "The UN General Assembly demanded an end to the invasion and withdrawal on 2 March 2022. The New York locator connects the military geography to the institution responding to it.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -73.97,
+          40.75
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "response"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "source": "editorial",
+  "asOf": "2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed.",
+  "kinds": {
+    "0": {
+      "label": "State affiliation was not control",
+      "color": "c1"
+    },
+    "1": {
+      "label": "War begins at a harbour fort",
+      "color": "c2"
+    },
+    "2": {
+      "label": "The border states complicate the split",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Emancipation had a geographic limit",
+      "color": "c4"
+    },
+    "4": {
+      "label": "Appomattox was one surrender",
+      "color": "c5"
+    }
+  },
+  "items": [
+    {
+      "title": "State affiliations",
+      "text": "Slavery was central to secession. This late-1861 affiliation map uses modern state outlines; it does not map occupation or unanimity. West Virginia is omitted because it was then part of Virginia.",
+      "at": [
+        -77,
+        38
+      ],
+      "date": 1861,
+      "kind": "0",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/anti/learn/historyculture/roadtoseccession.htm"
+    },
+    {
+      "title": "Fort Sumter",
+      "text": "Confederate forces opened fire on Fort Sumter on 12 April 1861. Charleston Harbour locates the attack that began the war; the point does not describe the later Union blockade.",
+      "at": [
+        -79.87,
+        32.75
+      ],
+      "date": 18610412,
+      "kind": "1",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/civilwar/search-battles-detail.htm?battleCode=SC001"
+    },
+    {
+      "title": "Missouri / St Louis",
+      "text": "Delaware, Maryland, Kentucky and Missouri retained slavery while remaining in the Union. Rival loyalties and fighting inside these states make a simple North–South colour divide misleading.",
+      "at": [
+        -90.2,
+        38.63
+      ],
+      "date": 1861,
+      "kind": "2",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/articles/the-border-states.htm"
+    },
+    {
+      "title": "Washington",
+      "text": "The Emancipation Proclamation of 1863 applied to areas in rebellion, with specified exemptions. It did not itself abolish slavery everywhere in the United States; Washington locates the issuing government.",
+      "at": [
+        -77.04,
+        38.9
+      ],
+      "date": 1863,
+      "kind": "3",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.archives.gov/milestone-documents/emancipation-proclamation"
+    },
+    {
+      "title": "Appomattox",
+      "text": "Lee surrendered the Army of Northern Virginia at Appomattox on 9 April 1865. The surrender was a major endpoint, but other Confederate armies surrendered later.",
+      "at": [
+        -78.8,
+        37.38
+      ],
+      "date": 18650409,
+      "kind": "4",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/appomattoxcourthouse"
+    }
+  ],
+  "sets": {
+    "war": {
+      "label": "State affiliations, late 1861",
+      "values": {
+        "US-SC": "confederacy",
+        "US-MS": "confederacy",
+        "US-FL": "confederacy",
+        "US-AL": "confederacy",
+        "US-GA": "confederacy",
+        "US-LA": "confederacy",
+        "US-TX": "confederacy",
+        "US-VA": "confederacy",
+        "US-AR": "confederacy",
+        "US-NC": "confederacy",
+        "US-TN": "confederacy",
+        "US-DE": "border",
+        "US-MD": "border",
+        "US-KY": "border",
+        "US-MO": "border",
+        "US-CA": "union",
+        "US-CT": "union",
+        "US-IL": "union",
+        "US-IN": "union",
+        "US-IA": "union",
+        "US-ME": "union",
+        "US-MA": "union",
+        "US-MI": "union",
+        "US-MN": "union",
+        "US-NH": "union",
+        "US-NJ": "union",
+        "US-NY": "union",
+        "US-OH": "union",
+        "US-OR": "union",
+        "US-PA": "union",
+        "US-RI": "union",
+        "US-VT": "union",
+        "US-WI": "union",
+        "US-KS": "union"
+      },
+      "labels": {
+        "confederacy": "Seceded states",
+        "border": "Slave states remaining in Union",
+        "union": "Other Union states"
+      }
+    }
+  }
+}

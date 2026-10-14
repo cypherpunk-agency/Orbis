@@ -1,0 +1,152 @@
+{
+  "id": "ww2-bombing",
+  "cat": "Geopolitics",
+  "title": "Bombing cities",
+  "hook": "Selected attacks brought destruction to urban populations.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. London: the sustained Blitz begins: https://historicengland.org.uk/whats-new/features/blitz-stories/england-under-attack/; 2. Coventry: destruction and a surviving ruin: https://www.coventrycathedral.org.uk/locations/the-ruins; 3. Dresden: an Allied attack: https://www.dhm.de/lemo/kapitel/zweiter-weltkrieg/kriegsverlauf/dresden; 4. Hiroshima: an atomic bombing: https://www.archives.gov/news/topics/hiroshima-nagasaki-75; 5. Nagasaki: a second atomic bombing: https://www.archives.gov/news/topics/hiroshima-nagasaki-75 Nagasaki terrain and damage context: Manhattan Engineer District, The Atomic Bombings of Hiroshima and Nagasaki (1946), chapter 9, https://www.atomicarchive.com/resources/documents/med/med_chp9.html (primary report transcription; no numerical damage claims imported).",
+  "data": {
+    "events": "data/history/ww2/ww2-bombing.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "London: the sustained Blitz begins",
+      "text": "The sustained Blitz on London began on 7 September 1940. Bombing damaged homes and infrastructure and killed civilians. The point locates London, without implying that all attacks struck one site or covered the entire city uniformly.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -1,
+          52
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19400907,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Coventry: destruction and a surviving ruin",
+      "text": "The Luftwaffe attacked Coventry on the night of 14 November 1940. The cathedral was destroyed; its ruins remain a witness to the raid. This point locates the city rather than an invented bomb-impact grid.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -1,
+          52
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19401114,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Dresden: an Allied attack",
+      "text": "British bombing on the night of 13–14 February 1945 devastated Dresden, followed by US attacks. Naming the attackers matters when mapping civilian destruction. This city point does not estimate a firestorm perimeter or select among disputed casualty totals.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          13,
+          51
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19450213,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Hiroshima: an atomic bombing",
+      "text": "The United States dropped an atomic bomb on Hiroshima on 6 August 1945. The National Archives documents destruction and large-scale loss of life. This point locates the city; it does not model a blast-radius circle or assign a precise death total.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          133,
+          34
+        ],
+        "zoom": 4.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19450806,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Nagasaki: a second atomic bombing",
+      "text": "The United States bombed Nagasaki on 9 August 1945. The two cities experienced different terrain and attack conditions. This chapter identifies the dates and cities without treating them as interchangeable casualty measurements.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          131,
+          33
+        ],
+        "zoom": 4.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19450809,
+          "kinds": [
+            "4"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

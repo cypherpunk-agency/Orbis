@@ -1,0 +1,170 @@
+{
+ "source": "editorial",
+ "asOf": "1928-11-01",
+ "retrieved": "2026-10-14",
+ "note": "Facts paraphrased and compiled by Orbis, with a source URL on every event. Locations are approximate city/region locators, not surveyed event or battle footprints. Textual factual references do not import source prose, photos or restricted datasets. Official national chronologies support dates, not every interpretation. Period labels are explanatory conventions, not official renaming dates.",
+ "kinds": {
+  "politics": {
+   "label": "Political event",
+   "color": "c1"
+  },
+  "war": {
+   "label": "Military event",
+   "color": "muted"
+  },
+  "people": {
+   "label": "People and displacement",
+   "color": "muted"
+  }
+ },
+ "items": [
+  {
+   "title": "Samsun: national struggle",
+   "date": 19190519,
+   "at": [
+    36.33,
+    41.29
+   ],
+   "text": "Mustafa Kemal arrived in Samsun on 19 May 1919.",
+   "source": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "url": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "kind": "war"
+  },
+  {
+   "title": "Sakarya campaign",
+   "date": 19210823,
+   "at": [
+    31.8,
+    39.5
+   ],
+   "text": "The Sakarya battle began on 23 August 1921. This point is an approximate campaign-region locator, not a mapped front.",
+   "source": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "url": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "kind": "war"
+  },
+  {
+   "title": "Dumlupınar campaign",
+   "date": 19220830,
+   "at": [
+    29.98,
+    38.85
+   ],
+   "text": "The decisive battle in the August offensive took place on 30 August 1922. Location is schematic.",
+   "source": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "url": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "kind": "war"
+  },
+  {
+   "title": "Turkish forces enter Smyrna",
+   "date": 19220909,
+   "at": [
+    27.14,
+    38.42
+   ],
+   "text": "Turkish forces entered Smyrna (İzmir today) on 9 September 1922.",
+   "source": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "url": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "kind": "war"
+  },
+  {
+   "title": "Compulsory exchange convention",
+   "date": 19230130,
+   "at": [
+    6.63,
+    46.52
+   ],
+   "text": "The convention prescribed transfers by nationality and religion and exempted specified Constantinople Greeks and Western Thrace Muslims.",
+   "source": "https://www.mfa.gov.tr/lausanne-peace-treaty-vi_-convention-concerning-the-exchange-of-greek-and-turkish-populations-signed-at-lausanne_.en.mfa",
+   "url": "https://www.mfa.gov.tr/lausanne-peace-treaty-vi_-convention-concerning-the-exchange-of-greek-and-turkish-populations-signed-at-lausanne_.en.mfa",
+   "kind": "people"
+  },
+  {
+   "title": "Treaty of Lausanne signed",
+   "date": 19230724,
+   "at": [
+    6.63,
+    46.52
+   ],
+   "text": "The peace treaty was signed on 24 July 1923. Its border provisions left the Iraq frontier for later settlement.",
+   "source": "https://www.mfa.gov.tr/lausanne-peace-treaty-part-i_-political-clauses.en.mfa",
+   "url": "https://www.mfa.gov.tr/lausanne-peace-treaty-part-i_-political-clauses.en.mfa",
+   "kind": "politics"
+  },
+  {
+   "title": "Ankara becomes the capital",
+   "date": 19231013,
+   "at": [
+    32.85,
+    39.93
+   ],
+   "text": "Ankara became the government centre on 13 October 1923.",
+   "source": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "url": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "kind": "politics"
+  },
+  {
+   "title": "Republic proclaimed",
+   "date": 19231029,
+   "at": [
+    32.85,
+    39.93
+   ],
+   "text": "The republic was proclaimed on 29 October 1923.",
+   "source": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "url": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "kind": "politics"
+  },
+  {
+   "title": "Caliphate abolished",
+   "date": 19240303,
+   "at": [
+    32.85,
+    39.93
+   ],
+   "text": "The caliphate was abolished on 3 March 1924.",
+   "source": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "url": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "kind": "politics"
+  },
+  {
+   "title": "New alphabet law",
+   "date": 19281101,
+   "at": [
+    32.85,
+    39.93
+   ],
+   "text": "The assembly adopted the new Turkish letters law on 1 November 1928.",
+   "source": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "url": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "kind": "politics"
+  }
+ ],
+ "places": [
+  {
+   "at": [
+    28.98,
+    41.01
+   ],
+   "names": [
+    {
+     "name": "Constantinople (Istanbul today)",
+     "from": 1800,
+     "to": 1929
+    }
+   ]
+  },
+  {
+   "at": [
+    32.85,
+    39.93
+   ],
+   "names": [
+    {
+     "name": "Ankara",
+     "from": 1800,
+     "to": 1929
+    }
+   ]
+  }
+ ]
+}

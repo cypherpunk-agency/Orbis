@@ -1,0 +1,222 @@
+{
+ "id": "eu-budget",
+ "cat": "Geopolitics",
+ "title": "Who pays and who receives",
+ "hook": "Compare a defined financing measure with ordinary and recovery expenditure.",
+ "updated": "2026-10-14",
+ "sources": [
+  "editorial"
+ ],
+ "notes": "Editorial cutoff 14 October 2026. Original Orbis narrative and factual locators. European Commission workbook 2000–2025 released 29 September 2026; Orbis subset and derived differences, CC BY 4.0. All charts show EUR million. Financing = own resources plus balances/adjustments minus customs. Spending = ordinary country expenditure plus country NGEU. Neither benefits of the single market nor household income can be inferred. Country sums reconcile to workbook EU27 allocation columns; do not compare country spending with the larger total containing earmarked/unallocated/non-EU amounts. References by scene: All scenes and numerical claims: https://commission.europa.eu/strategy-and-policy/eu-budget/long-term-eu-budget/2021-2027/spending-and-revenue_en ; Scene 5 institutional geography: https://european-union.europa.eu/principles-countries-history/eu-countries/belgium_en and https://european-union.europa.eu/principles-countries-history/eu-countries/luxembourg_en",
+ "data": {
+  "budget": "data/history/eu/budget.json"
+ },
+ "scenes": [
+  {
+   "title": "Who finances the budget",
+   "text": "In the Commission’s 2025 country data, Germany supplies about €29 billion in VAT/GNI/plastics financing including adjustments, with customs excluded. France follows at about €23 billion. The map and chart use that defined financing measure, rather than treating customs collected at ports as a national contribution.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "budget",
+     "series": "financing",
+     "year": 2025,
+     "fmt": "d3:,.0f",
+     "title": "Defined financing, EUR million"
+    }
+   ],
+   "chart": {
+    "data": "budget",
+    "series": "financing",
+    "year": 2025,
+    "title": "2025 financing, customs excluded (EUR million)",
+    "fmt": "d3:,.0f",
+    "top": 6,
+    "color": "c1"
+   }
+  },
+  {
+   "title": "Where spending is allocated",
+   "text": "Country-allocated ordinary spending and NextGenerationEU are separate parts of the Commission workbook. Switch between them, then their sum. In 2025 Italy’s combined allocation is about €23 billion. These nominal expenditure figures include administration; their geographic allocation is an accounting convention.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "budget",
+     "series": "{series}",
+     "year": 2025,
+     "fmt": "d3:,.0f",
+     "title": "{label}, EUR million"
+    }
+   ],
+   "chart": {
+    "data": "budget",
+    "series": "{series}",
+    "year": 2025,
+    "title": "{label} (EUR million)",
+    "fmt": "d3:,.0f",
+    "top": 6,
+    "color": "c1"
+   },
+   "switch": {
+    "label": "Allocated expenditure",
+    "options": [
+     {
+      "series": "ordinary",
+      "label": "Ordinary"
+     },
+     {
+      "series": "ngeu",
+      "label": "NGEU"
+     },
+     {
+      "series": "receipts",
+      "label": "Combined"
+     }
+    ]
+   }
+  },
+  {
+   "title": "Two sides of a defined cash comparison",
+   "text": "Subtract the defined financing measure from country-allocated expenditure including NGEU. In 2025 Germany is about €16 billion below its financing, while Poland is about €9 billion above. The signed map and switched charts show this arithmetic; it is not the Commission’s operating budgetary balance.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "budget",
+     "series": "difference",
+     "year": 2025,
+     "fmt": "d3:,.0f",
+     "title": "Expenditure minus financing, EUR million",
+     "diverging": true,
+     "mid": 0,
+     "vmin": -17000,
+     "vmax": 17000
+    }
+   ],
+   "chart": {
+    "data": "budget",
+    "series": "{side}",
+    "year": 2025,
+    "title": "{label} (EUR million)",
+    "fmt": "d3:,.0f",
+    "top": 6,
+    "color": "c1"
+   },
+   "switch": {
+    "label": "Show positive magnitudes",
+    "options": [
+     {
+      "side": "surplus",
+      "label": "Spending exceeds financing"
+     },
+     {
+      "side": "excess",
+      "label": "Financing exceeds spending"
+     }
+    ]
+   }
+  },
+  {
+   "title": "A year changes the picture",
+   "text": "Move through 2021–2025. Ordinary budgets, recovery spending and adjustments change the country allocations from year to year. The map holds one colour scale for the defined expenditure-minus-financing difference. A one-year cash difference does not describe the long-term value of EU membership.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "budget",
+     "series": "difference",
+     "year": "t",
+     "fmt": "d3:,.0f",
+     "title": "Expenditure minus financing, EUR million",
+     "diverging": true,
+     "mid": 0,
+     "vmin": -25000,
+     "vmax": 25000
+    }
+   ],
+   "timeline": {
+    "years": [
+     2021,
+     2025
+    ],
+    "start": 2021
+   }
+  },
+  {
+   "title": "Administrative geography matters",
+   "text": "Belgium and Luxembourg host EU institutions. In this 2025 definition their country-allocated spending exceeds financing. The Commission warns that geographic allocation is imperfect and expenditure can benefit several countries. Brussels and Luxembourg locate institutional centres; a positive balance is not a transfer into every resident’s household.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     5,
+     50
+    ],
+    "zoom": 5
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "budget",
+     "series": "difference",
+     "year": 2025,
+     "fmt": "d3:,.0f",
+     "title": "Defined difference, EUR million",
+     "diverging": true,
+     "mid": 0,
+     "vmin": -17000,
+     "vmax": 17000
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      4.35,
+      50.85
+     ],
+     "label": "Brussels",
+     "r": 4,
+     "color": "c3"
+    },
+    {
+     "at": [
+      6.13,
+      49.61
+     ],
+     "label": "Luxembourg",
+     "r": 4,
+     "color": "c3"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis, cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original factual annotations. Event URLs cite dates and claims; coordinates locate the named place approximately, not battlefield boundaries. BC dates use astronomical years (1 BC = 0).",
+  "kinds": {
+    "city": {
+      "label": "City",
+      "color": "c2"
+    },
+    "water": {
+      "label": "Water",
+      "color": "c3"
+    },
+    "frontier": {
+      "label": "Frontier",
+      "color": "c4"
+    },
+    "art": {
+      "label": "Art",
+      "color": "c1"
+    },
+    "east": {
+      "label": "East",
+      "color": "c5"
+    }
+  },
+  "items": [
+    {
+      "title": "Rome’s monuments",
+      "date": 2026,
+      "at": [
+        12.49,
+        41.89
+      ],
+      "text": "Forums, the Pantheon and imperial monuments remain embedded in Rome’s later city.",
+      "url": "https://whc.unesco.org/en/list/91/",
+      "source": "UNESCO, Historic Centre of Rome",
+      "kind": "city"
+    },
+    {
+      "title": "Pont du Gard",
+      "date": 2026,
+      "at": [
+        4.535,
+        43.947
+      ],
+      "text": "The aqueduct bridge preserves Roman hydraulic construction; UNESCO’s detailed statement dates the aqueduct to the middle of the first century.",
+      "url": "https://whc.unesco.org/en/list/344/",
+      "source": "UNESCO, Pont du Gard: Outstanding Universal Value",
+      "kind": "water"
+    },
+    {
+      "title": "Hadrian’s Wall survives",
+      "date": 2026,
+      "at": [
+        -2.33,
+        55.0
+      ],
+      "text": "Surviving wall, forts and civilian settlements make the frontier visible as archaeology.",
+      "url": "https://whc.unesco.org/en/list/430/",
+      "source": "UNESCO, Frontiers of the Roman Empire",
+      "kind": "frontier"
+    },
+    {
+      "title": "Ravenna’s mosaics",
+      "date": 2026,
+      "at": [
+        12.2,
+        44.42
+      ],
+      "text": "Ravenna’s monuments preserve late Roman and Byzantine religious and artistic history.",
+      "url": "https://whc.unesco.org/en/list/788/",
+      "source": "UNESCO, Early Christian Monuments of Ravenna",
+      "kind": "art"
+    },
+    {
+      "title": "Constantinople’s inheritance",
+      "date": 2026,
+      "at": [
+        28.98,
+        41.01
+      ],
+      "text": "The eastern Roman tradition forms part of Istanbul’s layered history; the city is not reduced to one ancient identity.",
+      "url": "https://www.metmuseum.org/essays/byzantium-ca-330-1453",
+      "source": "Met, Byzantium",
+      "kind": "east"
+    }
+  ]
+}

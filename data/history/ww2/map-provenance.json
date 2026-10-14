@@ -1,0 +1,180 @@
+{
+  "source": "us-army-atlas",
+  "asOf": "Historical dates stated per scan",
+  "retrieved": "2026-10-14",
+  "licence": "Public domain; US federal government cartography",
+  "licenceUrl": "https://maps.lib.utexas.edu/maps/faq.html",
+  "catalogue": "https://maps.lib.utexas.edu/maps/historical/history_ww2.html",
+  "maps": [
+    {
+      "id": "northern-europe",
+      "filename": "n-europe-1944-1945.jpg",
+      "url": "https://maps.lib.utexas.edu/maps/historical/n_europe_1944-1945.jpg",
+      "title": "US Army atlas: Northern Europe, June 1944\u2013May 1945",
+      "asOf": "1944-06 to 1945-05",
+      "bbox": [
+        -6,
+        46,
+        16,
+        55
+      ],
+      "order": 2,
+      "gcps": [
+        [
+          680.7,
+          488.5,
+          -0.128,
+          51.507
+        ],
+        [
+          933.5,
+          967.9,
+          2.352,
+          48.857
+        ],
+        [
+          2116.5,
+          254.0,
+          13.405,
+          52.52
+        ],
+        [
+          1160.1,
+          617.8,
+          4.352,
+          50.847
+        ],
+        [
+          1219.5,
+          348.9,
+          4.895,
+          52.367
+        ],
+        [
+          2011.2,
+          1039.9,
+          11.582,
+          48.135
+        ],
+        [
+          2286.9,
+          668.1,
+          14.437,
+          50.075
+        ],
+        [
+          405.0,
+          467.9,
+          -2.588,
+          51.455
+        ],
+        [
+          623.5,
+          892.4,
+          -0.37,
+          49.183
+        ],
+        [
+          151.0,
+          973.6,
+          -4.486,
+          48.39
+        ],
+        [
+          1243.6,
+          1233.3,
+          5.041,
+          47.322
+        ]
+      ],
+      "sha256": "ad157f239b7c8241dbe1fc3d67e11cbeb7190b0c1f686e6c752d4370f7a17229",
+      "originalSize": [
+        2343,
+        1302
+      ],
+      "fit": {
+        "order": 2,
+        "gcps": 11,
+        "meanErrorPx": 4.42,
+        "maxErrorPx": 6.38
+      }
+    },
+    {
+      "id": "pacific-areas",
+      "embedOnly": true,
+      "filename": "pacific-area-1942.jpg",
+      "url": "https://maps.lib.utexas.edu/maps/historical/pacific_area_1942.jpg",
+      "title": "US Army atlas: Pacific command areas, 1 August 1942",
+      "asOf": "1942-08-01",
+      "bbox": [
+        95,
+        -40,
+        242,
+        67
+      ],
+      "order": 2,
+      "gcps": [
+        [
+          642.1,
+          667.8,
+          139.76,
+          35.68
+        ],
+        [
+          1473.8,
+          907.5,
+          202.06,
+          21.35
+        ],
+        [
+          722.8,
+          1322.1,
+          147.18,
+          -9.44
+        ],
+        [
+          576.1,
+          1345.4,
+          130.84,
+          -12.46
+        ],
+        [
+          813.3,
+          1538.6,
+          153.03,
+          -27.47
+        ],
+        [
+          711.8,
+          1668.3,
+          144.96,
+          -37.81
+        ],
+        [
+          162.7,
+          1137.4,
+          103.82,
+          1.35
+        ],
+        [
+          1154.6,
+          788.9,
+          182.63,
+          28.2
+        ],
+        [
+          1070.2,
+          346.1,
+          173.19,
+          52.84
+        ]
+      ],
+      "sha256": "1758ad64ab37395b5e066b4dff53b003c4f8b2d6da7c396a6c0d4976a4c01f21",
+      "originalSize": [
+        2100,
+        1761
+      ],
+      "note": "Original scan used as panel media. Provisional georeferencing rejected (mean 21.78px, max44.5px); no geographic warp is used."
+    }
+  ]
+}

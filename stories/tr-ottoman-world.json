@@ -1,0 +1,260 @@
+{
+ "id": "tr-ottoman-world",
+ "cat": "People",
+ "title": "An Ottoman world",
+ "hook": "Capital cities, provincial production and surviving architecture connect a wider empire.",
+ "updated": "2026-10-14",
+ "sources": [
+  "editorial"
+ ],
+ "notes": "Original Orbis factual annotations, not copied source prose. Locations are approximate city/site locators, not surveyed footprints. Historical geometry fallback: cited located events and places; no empire, ethnic or control polygons are inferred. Source coverage ends 1574. Editorial cutoff: 14 October 2026. References by scene: Scene 1: https://whc.unesco.org/en/list/1452/ ; Scenes 2-4,6: https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600 ; Scene 5: https://www.metmuseum.org/essays/the-age-of-suleyman-the-magnificent-r-1520-1566 ; Scene 6 (surviving monuments): https://whc.unesco.org/en/list/356/",
+ "data": {
+  "events": "data/history/turkey/ottoman-world.json"
+ },
+ "scenes": [
+  {
+   "title": "A capital and its hinterland",
+   "text": "Bursa and nearby Cumalıkızık preserve the urban and rural setting of an early Ottoman capital. UNESCO treats the city and village together: the dynasty’s centre depended on a surrounding landscape, rather than an isolated palace.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     29.06,
+     40.19
+    ],
+    "zoom": 7
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      29.06,
+      40.19
+     ],
+     "label": "Bursa",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      29.17,
+      40.18
+     ],
+     "label": "Cumalıkızık",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "Constantinople changes hands",
+   "text": "The Ottomans captured Constantinople in 1453. The Met describes Mehmed II’s rebuilding programme and Hagia Sophia’s conversion into an imperial mosque. The city’s position joins the Black Sea approach and the Mediterranean world; the marker is a locator, not a siege reconstruction.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     28.98,
+     41.01
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": 1453,
+     "kinds": [
+      "history"
+     ],
+     "list": true,
+     "labels": false
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      28.98,
+      41.01
+     ],
+     "label": "Constantinople / Istanbul",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "An empire beyond Anatolia",
+   "text": "Selim I’s expansion added Mamluk Syria and Egypt to Ottoman rule. Cairo joins Istanbul on this map as a centre of an imperial world spanning several regions. The paired locations convey expansion without claiming precise sixteenth-century borders.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     32.5,
+     35.5
+    ],
+    "zoom": 4
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      28.98,
+      41.01
+     ],
+     "label": "Istanbul",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      31.24,
+      30.04
+     ],
+     "label": "Cairo",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "Production in several cities",
+   "text": "The Met identifies Iznik with ceramics, Bursa with silks, Cairo with carpets and Baghdad with book arts. These centres show the empire’s cultural geography extending beyond its capital. Equal-sized dots mark places, not a ranking of production.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     36,
+     35
+    ],
+    "zoom": 4
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      29.72,
+      40.43
+     ],
+     "label": "Iznik",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      29.06,
+      40.19
+     ],
+     "label": "Bursa",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      31.24,
+      30.04
+     ],
+     "label": "Cairo",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      44.36,
+      33.32
+     ],
+     "label": "Baghdad",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "Sinan’s architecture across two capitals",
+   "text": "Sinan designed Istanbul’s Süleymaniye complex in 1550–1557 and Edirne’s Selimiye in 1568–1574. Locate the two commissions on the timeline. Their separation shows patronage outside the imperial capital; dates refer to construction periods, not exact inauguration days.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     27.8,
+     41.2
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "kinds": [
+      "architecture"
+     ],
+     "list": true,
+     "labels": false
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      28.98,
+      41.01
+     ],
+     "label": "Istanbul",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      26.56,
+      41.68
+     ],
+     "label": "Edirne",
+     "color": "c3",
+     "r": 5
+    }
+   ],
+   "timeline": {
+    "years": [
+     1550,
+     1557,
+     1568,
+     1574
+    ],
+    "start": 1550
+   }
+  },
+  {
+   "title": "A layered inheritance",
+   "text": "The Met describes Ottoman art drawing on Byzantine, Persian and Mamluk traditions. Istanbul’s surviving Byzantine and Ottoman monuments make that layering visible in one city. Selected sites cannot show every community or province; the following chapter turns to institutions and the empire’s later pressures.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     28.98,
+     41.01
+    ],
+    "zoom": 7
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      28.98,
+      41.008
+     ],
+     "label": "Hagia Sophia",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      28.964,
+      41.016
+     ],
+     "label": "Süleymaniye",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  }
+ ]
+}

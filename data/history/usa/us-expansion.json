@@ -1,0 +1,125 @@
+{
+  "source": "editorial",
+  "asOf": "2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed. St Charles: 16 May 1804, direct Clark journal quotation on https://www.nps.gov/places/st-charles-historic-district.htm preferred over contradictory May 14 summary/chronology.",
+  "kinds": {
+    "0": {
+      "label": "Louisiana: the Mississippi gateway",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Across the continent",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Texas and the Mexican cession",
+      "color": "c3"
+    },
+    "3": {
+      "label": "An agreement on Oregon",
+      "color": "c4"
+    },
+    "4": {
+      "label": "Beyond the contiguous mainland",
+      "color": "c5"
+    }
+  },
+  "items": [
+    {
+      "title": "New Orleans",
+      "text": "The Louisiana Purchase treaty was signed in 1803. New Orleans locates the river port central to negotiations; this point does not stand for the purchase’s boundaries.",
+      "at": [
+        -90.07,
+        29.95
+      ],
+      "date": 1803,
+      "kind": "0",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.archives.gov/milestone-documents/louisiana-purchase-treaty"
+    },
+    {
+      "title": "Across the continent",
+      "text": "Lewis and Clark travelled west in 1804–1805. Move the dated slider through selected NPS-documented stops: St Charles, Rocheport, Three Forks and Cape Disappointment. The connecting route is schematic.",
+      "at": [
+        -90.48,
+        38.81
+      ],
+      "date": 1805,
+      "kind": "1",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/subjects/travellewisandclark/expedition-by-date.htm"
+    },
+    {
+      "title": "Santa Fe",
+      "text": "Texas entered the United States in 1845. The war with Mexico ended with the 1848 Treaty of Guadalupe Hidalgo and a major territorial cession; Santa Fe locates one affected region, not the whole cession.",
+      "at": [
+        -105.94,
+        35.69
+      ],
+      "date": 1848,
+      "kind": "2",
+      "source": "Federal record / historic-site account",
+      "url": "https://history.state.gov/milestones/1830-1860/texas-annexation"
+    },
+    {
+      "title": "Columbia mouth",
+      "text": "The Oregon Treaty of 1846 divided competing British and US claims in the Pacific Northwest. The point locates the Columbia mouth; it is not a treaty boundary.",
+      "at": [
+        -124,
+        46.25
+      ],
+      "date": 1846,
+      "kind": "3",
+      "source": "Federal record / historic-site account",
+      "url": "https://history.state.gov/milestones/1830-1860/oregon-territory"
+    },
+    {
+      "title": "Sitka / Alaska",
+      "text": "The United States purchased Alaska from Russia in 1867. The acquisition preceded statehood by decades and did not mean that Alaska Native peoples had sold their own rights.",
+      "at": [
+        -135.33,
+        57.05
+      ],
+      "date": 1867,
+      "kind": "4",
+      "source": "Federal record / historic-site account",
+      "url": "https://history.state.gov/milestones/1866-1898/alaska-purchase"
+    }
+  ],
+  "moves": {
+    "expedition": [
+      {
+        "name": "Lewis & Clark (schematic)",
+        "path": [
+          [
+            -90.48,
+            38.81,
+            18040516
+          ],
+          [
+            -92.57,
+            38.98,
+            18040607
+          ],
+          [
+            -111.5,
+            45.92,
+            18050725
+          ],
+          [
+            -124.06,
+            46.28,
+            18051115
+          ]
+        ],
+        "color": "c3",
+        "source": "https://www.nps.gov/subjects/travellewisandclark/expedition-by-date.htm",
+        "sources": [
+          "https://www.nps.gov/subjects/travellewisandclark/expedition-by-date.htm",
+          "https://www.nps.gov/places/st-charles-historic-district.htm"
+        ]
+      }
+    ]
+  }
+}

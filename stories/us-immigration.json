@@ -1,0 +1,126 @@
+{
+  "id": "us-immigration",
+  "cat": "Geopolitics",
+  "title": "Immigration waves",
+  "hook": "Atlantic and Pacific gateways reveal unequal access.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed. Sources by scene: Nineteenth-century Atlantic migration: https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/rise-of-industrial-america-1876-1900/immigration-to-united-states-1851-1900/; Ellis Island: the Atlantic gateway: https://www.archives.gov/dc/highlights/ellis-island-report; Exclusion shaped the Pacific crossing: https://www.archives.gov/milestone-documents/chinese-exclusion-act; Angel Island: entry and detention: https://www.nps.gov/places/u-s-immigration-station-angel-island.htm",
+  "data": {
+    "history": "data/history/usa/us-immigration.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "Nineteenth-century Atlantic migration",
+      "text": "Germany, Ireland and England were major sources of immigrants during the nineteenth century. The highlighted origin countries identify places described by the Library of Congress, without inventing counts or exact ship routes.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -35,
+          45
+        ],
+        "zoom": 2
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1880,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "fills": {
+        "DEU": "c1",
+        "IRL": "c3",
+        "GBR": "c4"
+      }
+    },
+    {
+      "title": "Ellis Island: the Atlantic gateway",
+      "text": "Ellis Island inspected immigrants entering through New York from 1892 to 1954. The island locates an inspection station; it cannot represent all arrivals or all immigrants’ final destinations.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -74,
+          40
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1892,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Exclusion shaped the Pacific crossing",
+      "text": "The Chinese Exclusion Act of 1882 barred Chinese labour immigration. The San Francisco point locates the Pacific gateway affected by federal exclusion, not the location where Congress enacted the law.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -140,
+          35
+        ],
+        "zoom": 2
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1882,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Angel Island: entry and detention",
+      "text": "Angel Island operated as an immigration station from 1910 to 1940. Many arrivals faced detention and interrogation; this Pacific history complicates a single story of welcome through New York.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -122,
+          38
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1910,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

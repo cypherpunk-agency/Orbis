@@ -1,0 +1,132 @@
+{
+  "id": "ua-snapshot",
+  "cat": "Geopolitics",
+  "title": "Where things stood at the cutoff",
+  "hook": "An October 2026 editorial cutoff with the observation windows kept visible.",
+  "updated": "2026-10-14",
+  "sources": [
+    "editorial",
+    "ucdp-ged",
+    "unhcr",
+    "nasa-ukraine-lights"
+  ],
+  "data": {
+    "notes": "data/history/ukraine/ua-snapshot.json",
+    "violence": "data/events/conflict-ukraine.json"
+  },
+  "notes": "Fixed editorial cutoff: 14 October 2026. This is not a live map. The modern Natural Earth basemap provides orientation; its border conventions do not establish legal recognition, sovereignty or military control. Cards are selected approximate locators. UCDP events are incidents of organized violence with at least one death, aggregated into 0.25-degree cells by start month. Event locations are coded approximations; country-only/unlocated records are omitted. Only records assigned to Ukraine are shown, excluding Russia. GED 26.1 covers through December 2025; Candidate 26.0.8 extends through August 2026 and is preliminary. Circles measure events, not territory, troop strength or civilian deaths. This is a reproducible set of source windows, not a territorial-control update. UCDP https://ucdp.uu.se/downloads/ ; operational displacement https://www.unhcr.org/sites/default/files/2026-01/unhcr-2025-emergencies-and-protracted-crises-impact-report.pdf ; imagery https://science.nasa.gov/earth/earth-observatory/tracking-night-lights-in-ukraine-150002/ .",
+  "scenes": [
+    {
+      "title": "Latest included events: August 2026",
+      "text": "This scene shows the latest month actually present in the shipped UCDP data. August 2026 Candidate records remain preliminary. There is no claim to locate today’s front or to cover incidents in September and October.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          34,
+          49
+        ],
+        "zoom": 5
+      },
+      "timeline": {
+        "years": [
+          202606,
+          202607,
+          202608
+        ],
+        "start": 202608,
+        "format": "month"
+      },
+      "layers": [
+        {
+          "type": "events",
+          "data": "violence",
+          "year": "t",
+          "window": 1,
+          "color": "muted",
+          "minR": 1.5,
+          "maxR": 10,
+          "vmax": 150,
+          "title": "UCDP deadly events / cell / month"
+        }
+      ],
+      "sources": [
+        "ucdp-ged"
+      ]
+    },
+    {
+      "title": "Observation dates differ",
+      "text": "A release can combine records with different dates. The annual displacement series stops in 2025; it cannot establish the number displaced at the October 2026 editorial cutoff.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          49
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "people"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Early images stay early",
+      "text": "The Kyiv light images remain a January-to-May 2022 comparison. Their date is part of their meaning; reusing them as a present-day energy map would hide years of subsequent change.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          30.52,
+          50.45
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "imagery"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "What this snapshot can establish",
+      "text": "The latest included event month is August 2026, the annual refugee window ends in 2025, and the imagery comparison ends in May 2022. Sources can be revised. These dated observations document selected aspects of the war, while leaving current control and unobserved events unresolved.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          49
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "events"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "source": "editorial",
+  "asOf": "Historical observation dates stated per event",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed.",
+  "kinds": {
+    "0": {
+      "label": "Warsaw",
+      "color": "muted"
+    },
+    "1": {
+      "label": "Babyn Yar",
+      "color": "muted"
+    },
+    "2": {
+      "label": "Auschwitz-Birkenau",
+      "color": "muted"
+    },
+    "3": {
+      "label": "Bergen-Belsen",
+      "color": "muted"
+    }
+  },
+  "items": [
+    {
+      "title": "Warsaw",
+      "text": "German authorities established the Warsaw ghetto in 1940 and sealed it in November. They confined Jewish residents under conditions that caused severe suffering and death. This point locates Warsaw; it does not reconstruct the ghetto wall.",
+      "date": 1940,
+      "at": [
+        21.01,
+        52.23
+      ],
+      "kind": "0",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/warsaw"
+    },
+    {
+      "title": "Babyn Yar",
+      "text": "On 29–30 September 1941, German SS and police units and their auxiliaries murdered Jews at the Babyn Yar ravine near Kyiv. The site demonstrates that genocide included mass shootings outside camp systems. The point is an approximate site location, not a grave boundary.",
+      "date": 19410930,
+      "at": [
+        30.45,
+        50.47
+      ],
+      "kind": "1",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/kiev-and-babi-yar"
+    },
+    {
+      "title": "Auschwitz-Birkenau",
+      "text": "In 1942 the SS operated a killing centre at Auschwitz-Birkenau in German-occupied Poland. Jews deported from across Europe were murdered there; other targeted groups also suffered and died in the Auschwitz complex. This point locates Birkenau, without drawing unsupported deportation tracks.",
+      "date": 1942,
+      "at": [
+        19.18,
+        50.03
+      ],
+      "kind": "2",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/auschwitz"
+    },
+    {
+      "title": "Bergen-Belsen",
+      "text": "British forces liberated Bergen-Belsen on 15 April 1945, finding survivors of catastrophic conditions. USHMM identifies six million Jewish victims of the Holocaust; Nazi Germany also persecuted and murdered millions of other victims. These selected locations cannot represent every person or place affected.",
+      "date": 19450415,
+      "at": [
+        9.91,
+        52.76
+      ],
+      "kind": "3",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.nationalarchives.gov.uk/explore-the-collection/stories/report-on-the-liberation-of-bergen-belsen/"
+    }
+  ]
+}

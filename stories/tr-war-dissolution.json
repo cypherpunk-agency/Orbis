@@ -1,0 +1,189 @@
+{
+ "id": "tr-war-dissolution",
+ "cat": "People",
+ "title": "War and dissolution",
+ "hook": "Gallipoli, the Armenian genocide and the political rupture between the imperial capital and Ankara.",
+ "notes": "Geometry: https://icr.ethz.ch/data/cshapes/ , CShapes 2.0 (Schvitz et al. 2022), CC BY-NC-SA 4.0. Dates: 1886-01-01, 1900-07-01, 1914-07-01, 1920-01-01, 1925-01-01. Shapes are legal-state snapshots, not occupation/front lines; dependencies and small changes are omitted. Orbis subsets remain CC BY-NC-SA. Event text is original factual annotation with citations; city/region locations are approximate locators. Dates are displayed in Gregorian form. Gallipoli: https://www.nam.ac.uk/explore/gallipoli . Armenian genocide and death-estimate range: https://encyclopedia.ushmm.org/content/en/article/the-armenian-genocide-1915-16-overview . Armistice and assembly: https://www.tbmm.gov.tr/history/ . Abolition: https://meb.gov.tr/ataturk/Hayati/Kronoloji .",
+ "sources": [
+  "editorial",
+  "cshapes"
+ ],
+ "data": {
+  "events": "data/history/turkey/war.json",
+  "borders": "data/history/turkey/snapshots.json"
+ },
+ "scenes": [
+  {
+   "title": "The state before the war",
+   "text": "The shaded territory is the Ottoman legal-state snapshot of 1 July 1914. The war brought fighting on several fronts, but a border dataset cannot tell us who occupied each place each month. The following scenes use located events rather than invented moving control areas.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     36,
+     36
+    ],
+    "zoom": 3.5
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "borders",
+     "year": 1914,
+     "inner": false,
+     "labels": false,
+     "opacity": 0.5
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      26.4,
+      40.25
+     ],
+     "label": "Dardanelles",
+     "r": 4,
+     "color": "muted"
+    }
+   ]
+  },
+  {
+   "title": "The Dardanelles",
+   "text": "Allied troops landed on the Gallipoli peninsula on 25 April 1915. Ottoman defenders prevented a breakthrough; the last Allied evacuation ended on 9 January 1916. The straits explain why this small peninsula mattered. The marker shows the campaign region, not a landing beach or a front line.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     26.4,
+     40.25
+    ],
+    "zoom": 12
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false,
+     "kinds": [
+      "war"
+     ]
+    }
+   ],
+   "timeline": {
+    "years": [
+     19150425,
+     19150810,
+     19160109
+    ],
+    "format": "date",
+    "start": 19150425
+   }
+  },
+  {
+   "title": "The Armenian genocide",
+   "text": "In 1915–1916, Ottoman authorities carried out massacres and deportations that destroyed Armenian communities. USHMM estimates at least 664,000 deaths and possibly 1.2 million. The marked Kharput and Syrian desert are documented places in that history, not a complete map of killings or a numerical distribution of victims.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     39,
+     37
+    ],
+    "zoom": 5
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      39.22,
+      38.7
+     ],
+     "label": "Kharput (near Elazığ today)",
+     "r": 4,
+     "color": "muted"
+    },
+    {
+     "at": [
+      40.14,
+      35.34
+     ],
+     "label": "Syrian desert region",
+     "r": 4,
+     "color": "muted"
+    }
+   ]
+  },
+  {
+   "title": "Two political centres",
+   "text": "The Armistice of Mudros was signed in October 1918. After the occupation of Constantinople and dissolution of its parliament, a new assembly opened in Ankara in April 1920. The two marked cities make the rupture visible; the map does not assign either government invented zones of control.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     31,
+     40
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false,
+     "kinds": [
+      "politics"
+     ]
+    },
+    {
+     "type": "places",
+     "data": "events",
+     "year": "t"
+    }
+   ],
+   "timeline": {
+    "years": [
+     19181030,
+     19200423
+    ],
+    "format": "date",
+    "start": 19200423
+   }
+  },
+  {
+   "title": "The dynasty loses sovereignty",
+   "text": "On 1 November 1922, the Ankara assembly abolished the sultanate. A political institution ended before the republic was formally proclaimed. The dated card locates the decision; the earlier border snapshots cannot stand in for the military and diplomatic settlement that followed.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     32.85,
+     39.93
+    ],
+    "zoom": 7
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false,
+     "kinds": [
+      "politics"
+     ]
+    }
+   ],
+   "timeline": {
+    "years": [
+     19221101
+    ],
+    "format": "date",
+    "start": 19221101
+   }
+  }
+ ]
+}

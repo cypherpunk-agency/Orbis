@@ -1,0 +1,149 @@
+{
+  "id": "us-civil-war",
+  "cat": "Geopolitics",
+  "title": "The Civil War split",
+  "hook": "Secession, slavery and military geography divided the union.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed. Sources by scene: State affiliation was not control: https://www.nps.gov/anti/learn/historyculture/roadtoseccession.htm; War begins at a harbour fort: https://www.nps.gov/civilwar/search-battles-detail.htm?battleCode=SC001; The border states complicate the split: https://www.nps.gov/articles/the-border-states.htm; Emancipation had a geographic limit: https://www.archives.gov/milestone-documents/emancipation-proclamation; Appomattox was one surrender: https://www.nps.gov/appomattoxcourthouse Supplementary date/location evidence: https://www.nps.gov/civilwar/facts.htm; https://www.nps.gov/apco/learn/historyculture/surrender-events-after-appomattox.htm. Affiliations follow NPS Civil War facts and Border States; modern outlines are reference geometry. West Virginia is omitted because it was part of Virginia in 1861. Affiliations are not military-control polygons; Kentucky and Missouri had rival Confederate governments.",
+  "data": {
+    "history": "data/history/usa/us-civil-war.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "State affiliation was not control",
+      "text": "Slavery was central to secession. This late-1861 affiliation map uses modern state outlines; it does not map occupation or unanimity. West Virginia is omitted because it was then part of Virginia.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -99,
+          39
+        ],
+        "zoom": 2.7
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "history",
+          "set": "war",
+          "country": "USA",
+          "colors": {
+            "confederacy": "c2",
+            "border": "c3",
+            "union": "c1"
+          }
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "War begins at a harbour fort",
+      "text": "Confederate forces opened fire on Fort Sumter on 12 April 1861. Charleston Harbour locates the attack that began the war; the point does not describe the later Union blockade.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -80,
+          33
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 18610412,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "The border states complicate the split",
+      "text": "Delaware, Maryland, Kentucky and Missouri retained slavery while remaining in the Union. Rival loyalties and fighting inside these states make a simple North–South colour divide misleading.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          39
+        ],
+        "zoom": 3.5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1861,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Emancipation had a geographic limit",
+      "text": "The Emancipation Proclamation of 1863 applied to areas in rebellion, with specified exemptions. It did not itself abolish slavery everywhere in the United States; Washington locates the issuing government.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -76,
+          38
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1863,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Appomattox was one surrender",
+      "text": "Lee surrendered the Army of Northern Virginia at Appomattox on 9 April 1865. The surrender was a major endpoint, but other Confederate armies surrendered later.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -76,
+          38
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 18650409,
+          "kinds": [
+            "4"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

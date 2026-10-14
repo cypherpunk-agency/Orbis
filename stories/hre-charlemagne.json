@@ -1,0 +1,133 @@
+{
+  "id": "hre-charlemagne",
+  "cat": "People",
+  "title": "Charlemagne",
+  "hook": "A Frankish ruler revived the western imperial title; later emperors inherited its symbolism.",
+  "updated": "2026-10-14",
+  "notes": "UNESCO Aachen supplies building and burial chronology; Habsburger glossary supplies 800; Met Ottonian Art supplies 936. No map of Charlemagne’s realm is inferred. Coordinates are approximate named-place locators, not imported surveyed points. Modern borders are hidden. Event cards contain claim-level citations. The later term Holy Roman Empire must not be projected unchanged onto Charlemagne’s Frankish realm.",
+  "sources": [
+    "editorial"
+  ],
+  "data": {
+    "events": "data/history/hre/hre-charlemagne.json"
+  },
+  "scenes": [
+    {
+      "title": "A palace north of the Alps",
+      "text": "Aachen was Charlemagne’s preferred residence. Its palatine chapel, begun around 790–800, placed a monumental court church north of the Alps.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          6.083,
+          50.775
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "palace"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "The imperial title at Rome",
+      "text": "In 800 Pope Leo III crowned Charlemagne emperor in Rome. Compare Rome with Aachen: the ceremony’s religious authority and the ruler’s favoured residence occupied different places.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10,
+          47
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "palace",
+            "coronation"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A ruler dies; a place persists",
+      "text": "Charlemagne’s burial at Aachen in 814 gave the chapel an enduring dynastic association. The map stays at the same place as the timeline moves beyond his lifetime.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          6.083,
+          50.775
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "palace",
+            "burial"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          800,
+          814
+        ],
+        "start": 814
+      }
+    },
+    {
+      "title": "A later dynasty takes the throne",
+      "text": "Otto I’s royal coronation at Aachen in 936 connected a Saxon ruler with a Carolingian site. The Holy Roman Empire’s origins are a process: the 800 revival and Otto’s later empire are distinguished.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          6.083,
+          50.775
+        ],
+        "zoom": 8
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "successors"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

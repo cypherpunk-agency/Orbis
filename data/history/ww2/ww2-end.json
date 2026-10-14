@@ -1,0 +1,74 @@
+{
+  "source": "editorial",
+  "asOf": "Historical observation dates stated per event",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed.",
+  "kinds": {
+    "0": {
+      "label": "Reims",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Berlin",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Washington",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Tokyo Bay",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "title": "Reims",
+      "text": "Germany’s unconditional military surrender was signed at Reims on 7 May 1945. The document provided for fighting to stop the following day. The point locates the signing, not the position of every remaining German unit.",
+      "date": 19450507,
+      "at": [
+        4.03,
+        49.26
+      ],
+      "kind": "0",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.archives.gov/milestone-documents/surrender-of-germany"
+    },
+    {
+      "title": "Berlin",
+      "text": "A further surrender document was signed in Berlin on 8 May 1945. The National Archives explains the importance of this act to the Soviet Union. Different ceremonies and time zones help explain different commemorative dates.",
+      "date": 19450508,
+      "at": [
+        13.4,
+        52.52
+      ],
+      "kind": "1",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.archives.gov/milestone-documents/surrender-of-germany"
+    },
+    {
+      "title": "Washington",
+      "text": "US President Truman announced Japan’s acceptance of surrender on 14 August 1945 in Washington. The date was already 15 August in Japan. The point locates the announcement and distinguishes it from the later formal signing.",
+      "date": 19450814,
+      "at": [
+        -77.04,
+        38.9
+      ],
+      "kind": "2",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.archives.gov/news/vj-day-75"
+    },
+    {
+      "title": "Tokyo Bay",
+      "text": "Japanese representatives signed the surrender instrument aboard USS Missouri in Tokyo Bay on 2 September 1945. That formal act followed the August announcement. A single endpoint does not mean that displacement, hunger and postwar violence ended immediately.",
+      "date": 19450902,
+      "at": [
+        139.75,
+        35.45
+      ],
+      "kind": "3",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.archives.gov/news/vj-day-75"
+    }
+  ]
+}

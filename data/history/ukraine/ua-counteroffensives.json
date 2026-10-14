@@ -1,0 +1,75 @@
+{
+  "source": "editorial",
+  "asOf": "Fixed historical references; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Selected factual annotations, no exhaustive event count",
+  "note": "Original paraphrases with primary citations. Coordinates approximate named city/region anchors, not footprints. A date may mark a reporting cutoff rather than the onset of an event; the card says which.",
+  "kinds": {
+    "north": {
+      "label": "North",
+      "color": "muted"
+    },
+    "east": {
+      "label": "East",
+      "color": "muted"
+    },
+    "south": {
+      "label": "South",
+      "color": "muted"
+    },
+    "aftermath": {
+      "label": "Aftermath",
+      "color": "muted"
+    }
+  },
+  "items": [
+    {
+      "title": "Northern withdrawal",
+      "date": 20220331,
+      "at": [
+        30.52,
+        50.45
+      ],
+      "text": "OHCHR records Russian withdrawal from the northern front by the end of March. This month-end marker is not an exact day for every settlement.",
+      "url": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "source": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "kind": "north"
+    },
+    {
+      "title": "Kharkiv region regained",
+      "date": 20221130,
+      "at": [
+        37.25,
+        49.19
+      ],
+      "text": "By the end of November 2022, OHCHR reports Ukraine had regained nearly all Kharkiv region. The point locates Izium within the region, not all territory recovered or a precise September handover.",
+      "url": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "source": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "kind": "east"
+    },
+    {
+      "title": "Kherson city",
+      "date": 20221111,
+      "at": [
+        32.62,
+        46.64
+      ],
+      "text": "Ukraine regained Kherson city on 11 November. A UN convoy arrived on 14 November, less than 72 hours afterward.",
+      "url": "https://ukraine.un.org/en/207300-ukraine-humanitarians-bring-water-food-medicines-and-other-essential-supplies-thousands",
+      "source": "https://ukraine.un.org/en/207300-ukraine-humanitarians-bring-water-food-medicines-and-other-essential-supplies-thousands",
+      "kind": "south"
+    },
+    {
+      "title": "Recovery work",
+      "date": 20231231,
+      "at": [
+        32.62,
+        46.64
+      ],
+      "text": "OHCHR describes restoration of services and mine clearance in formerly occupied areas through 2023. Control changing hands did not remove civilian needs.",
+      "url": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "source": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "kind": "aftermath"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "id": "hre-end",
+  "cat": "People",
+  "title": "Napoleon and the end",
+  "hook": "Reorganisation, a rival imperial title and the Rhine Confederation preceded the abdication.",
+  "updated": "2026-10-14",
+  "notes": "GHDI introduction for 1803, Habsburger House of Austria for 1804, primary abdication declaration for 1806. Napoleon’s pressure is explained through the Rhine union cited in the declaration; markers are political locators, not military movements. The declaration date uses Gregorian calendar. Coordinates are approximate named-place locators, not imported surveyed points. Modern borders are hidden. Event cards contain claim-level citations. The later term Holy Roman Empire must not be projected unchanged onto Charlemagne’s Frankish realm.",
+  "sources": [
+    "editorial"
+  ],
+  "data": {
+    "events": "data/history/hre/hre-end.json"
+  },
+  "scenes": [
+    {
+      "title": "Reorganisation from within",
+      "text": "The Final Recess of 1803 secularised church territories and reduced the number of independent imperial cities. Regensburg anchors the empire’s institutional setting; no speculative before-and-after borders are drawn.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12.1,
+          49.02
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "recess"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Two imperial titles",
+      "text": "In 1804 Francis adopted an Austrian imperial title while still Holy Roman Emperor. Vienna’s court therefore links two different offices, rather than a simple renaming of the same state.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16.37,
+          48.21
+        ],
+        "zoom": 8
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "austria"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Napoleon’s new political order",
+      "text": "The Rhine Confederation separated participating states from the imperial structure in 1806. The regional locator deliberately avoids drawing an uncited outline of its membership.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          8.5,
+          49.5
+        ],
+        "zoom": 7
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "rhine"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "An office is relinquished",
+      "text": "Francis’s declaration of 6 August 1806, issued at Vienna, laid down the imperial crown and released estates and servants from their obligations. The sequence ends with a primary document, not an invented map of a final front line.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          13,
+          49
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "recess",
+            "austria",
+            "rhine",
+            "abdication"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          1803,
+          1804,
+          1806
+        ],
+        "start": 1806
+      }
+    }
+  ]
+}

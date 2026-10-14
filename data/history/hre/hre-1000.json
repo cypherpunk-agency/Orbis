@@ -1,0 +1,129 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Dated events and approximate named-place coordinates in longitude/latitude degrees",
+  "note": "Original paraphrases linked to institutional histories and primary documents. Markers locate cities or regions, not territorial extent, exact ceremonies or front lines. Years are conventional historical years; dates before 1582 follow the historical Julian calendar unless noted.",
+  "kinds": {
+    "royal": {
+      "label": "Royal",
+      "color": "c1"
+    },
+    "imperial": {
+      "label": "Imperial",
+      "color": "c2"
+    },
+    "saxon": {
+      "label": "Saxon",
+      "color": "c3"
+    },
+    "church": {
+      "label": "Church",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "kind": "royal",
+      "title": "Aachen",
+      "date": 936,
+      "at": [
+        6.083,
+        50.775
+      ],
+      "text": "Otto I became king at Aachen in 936.",
+      "url": "https://www.metmuseum.org/essays/ottonian-art",
+      "source": "www.metmuseum.org"
+    },
+    {
+      "kind": "imperial",
+      "title": "Rome",
+      "date": 962,
+      "at": [
+        12.49,
+        41.89
+      ],
+      "text": "The pope invested Otto I with the imperial title in 962.",
+      "url": "https://www.metmuseum.org/essays/ottonian-art",
+      "source": "www.metmuseum.org"
+    },
+    {
+      "kind": "saxon",
+      "title": "Quedlinburg",
+      "date": 1000,
+      "at": [
+        11.15,
+        51.79
+      ],
+      "text": "Quedlinburg was a royal centre under the Saxon-Ottonian dynasty (919–1024); 1000 is a period anchor, not a founding date.",
+      "url": "https://whc.unesco.org/en/list/535/",
+      "source": "whc.unesco.org"
+    },
+    {
+      "kind": "church",
+      "title": "Hildesheim",
+      "date": 1000,
+      "at": [
+        9.95,
+        52.15
+      ],
+      "text": "Bishop Bernward’s Hildesheim commissioned major works informed by ancient imperial and Christian monuments. 1000 identifies the cultural period, not a precise commission date.",
+      "url": "https://www.metmuseum.org/essays/ottonian-art",
+      "source": "www.metmuseum.org"
+    }
+  ],
+  "places": [
+    {
+      "at": [
+        6.083,
+        50.775
+      ],
+      "names": [
+        {
+          "name": "Aachen",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        12.49,
+        41.89
+      ],
+      "names": [
+        {
+          "name": "Rome",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        11.15,
+        51.79
+      ],
+      "names": [
+        {
+          "name": "Quedlinburg",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        9.95,
+        52.15
+      ],
+      "names": [
+        {
+          "name": "Hildesheim",
+          "from": null,
+          "to": null
+        }
+      ]
+    }
+  ]
+}

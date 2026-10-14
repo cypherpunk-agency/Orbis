@@ -1,0 +1,246 @@
+{
+ "id": "tr-republic",
+ "cat": "People",
+ "title": "Making the republic",
+ "hook": "Treaty borders, compulsory population exchange and a new political centre in Ankara.",
+ "notes": "Geometry: https://icr.ethz.ch/data/cshapes/ , CShapes 2.0 (Schvitz et al. 2022), CC BY-NC-SA 4.0. Dates: 1886-01-01, 1900-07-01, 1914-07-01, 1920-01-01, 1925-01-01. Shapes are legal-state snapshots, not occupation/front lines; dependencies and small changes are omitted. Orbis subsets remain CC BY-NC-SA. Event text is original factual annotation with citations; city/region locations are approximate locators. Dates are displayed in Gregorian form. Treaty, especially articles 2–4 and 37–45: https://www.mfa.gov.tr/lausanne-peace-treaty-part-i_-political-clauses.en.mfa . Exchange convention articles 1–3: https://www.mfa.gov.tr/lausanne-peace-treaty-vi_-convention-concerning-the-exchange-of-greek-and-turkish-populations-signed-at-lausanne_.en.mfa . Capital, proclamation, caliphate and alphabet dates: https://meb.gov.tr/ataturk/Hayati/Kronoloji .",
+ "sources": [
+  "editorial",
+  "cshapes"
+ ],
+ "data": {
+  "events": "data/history/turkey/republic.json",
+  "borders": "data/history/turkey/snapshots.json"
+ },
+ "scenes": [
+  {
+   "title": "Another war after the armistice",
+   "text": "The national struggle of 1919–1922 fought over the future of Anatolia. Greek and Turkish forces confronted each other across western Anatolia: Sakarya in 1921, Dumlupınar and the Turkish entry into Smyrna (İzmir today) in 1922. The dated cards locate selected turning points, not continuous fronts or an exhaustive account of the war.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     31,
+     39
+    ],
+    "zoom": 5
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false,
+     "kinds": [
+      "war"
+     ]
+    }
+   ],
+   "timeline": {
+    "years": [
+     19190519,
+     19210823,
+     19220830,
+     19220909
+    ],
+    "format": "date",
+    "start": 19190519
+   }
+  },
+  {
+   "title": "Peace, with unfinished borders",
+   "text": "The Treaty of Lausanne was signed on 24 July 1923. It set out the Greek and Bulgarian frontiers and provisions concerning Syria, but left the Iraq frontier for later settlement. The shaded map is a 1 January 1925 observation, not a claim that every border question was settled at Lausanne.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     35,
+     38
+    ],
+    "zoom": 4
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "borders",
+     "year": 1925,
+     "inner": false,
+     "labels": false,
+     "opacity": 0.5
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      6.63,
+      46.52
+     ],
+     "label": "Lausanne",
+     "r": 4,
+     "color": "muted"
+    }
+   ]
+  },
+  {
+   "title": "People required to move",
+   "text": "The January 1923 convention prescribed compulsory transfers of Turkish nationals of Greek Orthodox religion and Greek nationals of Muslim religion. Specified Greeks of Constantinople and Muslims of Western Thrace were exempt. The marked places locate the specified exemptions; they are not deportation routes or measures of the numbers displaced.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     27,
+     39
+    ],
+    "zoom": 5
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      28.98,
+      41.01
+     ],
+     "label": "Constantinople: specified exemption",
+     "r": 4,
+     "color": "muted"
+    },
+    {
+     "at": [
+      25.3,
+      41.1
+     ],
+     "label": "Western Thrace: specified exemption",
+     "r": 4,
+     "color": "muted"
+    }
+   ],
+   "legend": [
+    {
+     "color": "muted",
+     "label": "Places named in the convention; no transfer routes shown"
+    }
+   ]
+  },
+  {
+   "title": "An inland capital",
+   "text": "Ankara became the government centre on 13 October 1923. The republic was proclaimed there on 29 October. Compare its inland position with Constantinople on the straits. Tap the cards for the dates; the change in capital was a political choice, not the movement of a population centre.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     31,
+     40.4
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false,
+     "kinds": [
+      "politics",
+      "people"
+     ]
+    },
+    {
+     "type": "places",
+     "data": "events",
+     "year": "t"
+    }
+   ],
+   "timeline": {
+    "years": [
+     19231013,
+     19231029
+    ],
+    "format": "date",
+    "start": 19231013
+   }
+  },
+  {
+   "title": "Changing institutions",
+   "text": "The republic’s proclamation did not finish its institutional transformation. The caliphate was abolished in March 1924; the new Turkish alphabet law followed in November 1928. These cards locate national decisions in Ankara. They do not imply that every region adopted reforms at the same pace.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     32.85,
+     39.93
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false,
+     "kinds": [
+      "politics"
+     ]
+    }
+   ],
+   "timeline": {
+    "years": [
+     19240303,
+     19281101
+    ],
+    "format": "date",
+    "start": 19240303
+   }
+  },
+  {
+   "title": "A state, not a complete identity map",
+   "text": "The 1925 snapshot outlines the state, not the languages, faiths or identities of everyone inside it. Lausanne also prescribed minority protections. Read the border and population-transfer scenes together: territorial settlement and the lives of communities are different parts of the making of the republic.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     35,
+     39
+    ],
+    "zoom": 4
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "borders",
+     "year": 1925,
+     "inner": false,
+     "labels": false,
+     "opacity": 0.5
+    },
+    {
+     "type": "places",
+     "data": "events",
+     "year": 1925
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      28.98,
+      41.01
+     ],
+     "label": "Istanbul",
+     "r": 4,
+     "color": "muted"
+    },
+    {
+     "at": [
+      32.85,
+      39.93
+     ],
+     "label": "Ankara",
+     "r": 4,
+     "color": "muted"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,190 @@
+{
+ "id": "eu-regions",
+ "cat": "Geopolitics",
+ "title": "Cohesion money and regions",
+ "hook": "Regional output contrasts with the geography of cohesion spending.",
+ "updated": "2026-10-14",
+ "sources": [
+  "editorial",
+  "eurostat"
+ ],
+ "notes": "Editorial cutoff 14 October 2026. Original Orbis narrative and factual locators. Approved fallback: sourced regional comparison chart and located reference symbols instead of imported NUTS polygons. Eurostat 2023 comparison frozen to its 11 February 2025 publication. Selected regions, not a complete regional rank; overseas regions omitted. CC BY 4.0; Orbis selected subset/reference locations; Eurostat is not responsible for these modifications. National 2025 cohesion expenditure and regional 2023 GDP are separate datasets and units; no regional spending allocation is invented. References by scene: Scenes 1-2,5: https://ec.europa.eu/eurostat/en/web/products-eurostat-news/w/ddn-20250211-2 ; Scene 3: https://cohesiondata.ec.europa.eu/stories/s/Outcome-of-2021-2027-programming-cohesion-policy/d6tf-zqvc/ ; https://ec.europa.eu/eurostat/en/web/regions/information-data/policy-context ; Scene 4: https://commission.europa.eu/strategy-and-policy/eu-budget/long-term-eu-budget/2021-2027/spending-and-revenue_en",
+ "data": {
+  "regions": "data/history/eu/regions.json",
+  "budget": "data/history/eu/budget.json"
+ },
+ "scenes": [
+  {
+   "title": "Regions differ inside the same union",
+   "text": "In Eurostat’s February 2025 release of 2023 NUTS 2 data, Eastern and Midland Ireland has GDP per inhabitant of 244.7% of the EU average. Yuzhen Tsentralen in Bulgaria is at 41.3%. Regional reference symbols and the chart compare the same indicator; symbol area follows its value, not a city GDP reading.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "symbols",
+     "data": "regions",
+     "field": "gdp",
+     "period": "2023",
+     "labels": 0,
+     "maxR": 10,
+     "vmax": 250,
+     "title": "Selected regional GDP/head, EU27=100",
+     "fmt": "d3:.1f"
+    }
+   ],
+   "chart": {
+    "data": "regions",
+    "field": "gdp",
+    "period": "2023",
+    "title": "Selected NUTS2 GDP/head, EU27=100",
+    "fmt": "d3:.1f",
+    "top": 8
+   }
+  },
+  {
+   "title": "A capital and a lower-output region",
+   "text": "Praha reaches 192.8% of the EU average while Yuzhen Tsentralen reaches 41.3% in that same release. The highlighted reference places locate whole statistical regions. The comparison crosses countries and uses one observation year and unit; it does not compare municipal incomes.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     19.5,
+     46.5
+    ],
+    "zoom": 4
+   },
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      14.42,
+      50.08
+     ],
+     "label": "Praha · 192.8",
+     "r": 4,
+     "color": "c3"
+    },
+    {
+     "at": [
+      24.75,
+      42.14
+     ],
+     "label": "Yuzhen Tsentralen · 41.3",
+     "r": 4,
+     "color": "c3"
+    }
+   ]
+  },
+  {
+   "title": "Cohesion has a regional rule",
+   "text": "For 2021–2027, cohesion policy distinguishes less developed regions below 75% of EU-average GDP per head, transition regions from 75% to 100%, and more developed regions above 100%. These selected regions locate the question the policy addresses. Their 2023 values do not retroactively determine official 2021–2027 eligibility.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      14.42,
+      50.08
+     ],
+     "label": "Praha",
+     "r": 4,
+     "color": "c3"
+    },
+    {
+     "at": [
+      24.75,
+      42.14
+     ],
+     "label": "Yuzhen Tsentralen",
+     "r": 4,
+     "color": "c3"
+    }
+   ]
+  },
+  {
+   "title": "Money crosses into cohesion programmes",
+   "text": "The Commission’s 2025 ordinary-budget allocation for economic, social and territorial cohesion is about €7.1 billion in Poland and €3.2 billion in Italy. This is a country-level funding view beside the regional comparisons. It excludes separate NGEU allocations and does not assign every national euro to a particular region.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "budget",
+     "series": "cohesion",
+     "year": 2025,
+     "fmt": "d3:,.0f",
+     "title": "Ordinary cohesion allocation, EUR million"
+    }
+   ],
+   "chart": {
+    "data": "budget",
+    "series": "cohesion",
+    "year": 2025,
+    "title": "Country cohesion spending (EUR million)",
+    "fmt": "d3:,.0f",
+    "top": 6,
+    "color": "c1"
+   }
+  },
+  {
+   "title": "Output is not a household pay cheque",
+   "text": "Eurostat warns that commuting workers and multinational enterprises help explain very high regional GDP per inhabitant. Brussels and the Irish regions illustrate that issue. Read the GDP comparison alongside the funding definitions: both describe geographic accounting units, not the earnings of a typical family.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -1,
+     52
+    ],
+    "zoom": 4
+   },
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      4.35,
+      50.85
+     ],
+     "label": "Brussels",
+     "r": 4,
+     "color": "c3"
+    },
+    {
+     "at": [
+      -6.3,
+      53.35
+     ],
+     "label": "Eastern and Midland",
+     "r": 4,
+     "color": "c3"
+    },
+    {
+     "at": [
+      -8.47,
+      51.9
+     ],
+     "label": "Southern Ireland",
+     "r": 4,
+     "color": "c3"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,218 @@
+{
+ "id": "eu-brexit",
+ "cat": "Geopolitics",
+ "title": "Brexit",
+ "hook": "A vote, a notification, a withdrawal and a new border arrangement.",
+ "updated": "2026-10-14",
+ "sources": [
+  "editorial"
+ ],
+ "notes": "Editorial cutoff 14 October 2026. Original Orbis narrative and factual locators. Event cards use original factual annotations. Rounded vote shares come from official valid-vote totals. Country membership uses Gregorian dates; present-day country geometry is context. Institutional seats are locators, not mover routes. References by scene: Scenes 1-2: https://www.electoralcommission.org.uk/research-reports-and-data/our-reports-and-data-past-elections-and-referendums/results-and-turnout-eu-referendum ; Scenes 1,3-5: https://www.consilium.europa.eu/en/policies/the-eu-uk-withdrawal-agreement/",
+ "data": {
+  "memberships": "data/history/eu/memberships.json",
+  "events": "data/history/eu/brexit-events.json"
+ },
+ "scenes": [
+  {
+   "title": "The vote came before the departure",
+   "text": "The UK voted in June 2016 to leave, with about 52% of valid votes for Leave. Article 50 notification followed in March 2017. Step between the two cards: neither date itself removed the UK from membership. London and Brussels locate the institutional relationship.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     0,
+     52
+    ],
+    "zoom": 4
+   },
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false
+    }
+   ],
+   "timeline": {
+    "years": [
+     20160623,
+     20170329
+    ],
+    "start": 20160623,
+    "format": "date"
+   },
+   "points": [
+    {
+     "at": [
+      -0.12,
+      51.51
+     ],
+     "label": "London",
+     "r": 4,
+     "color": "c3"
+    },
+    {
+     "at": [
+      4.35,
+      50.85
+     ],
+     "label": "Brussels",
+     "r": 4,
+     "color": "c3"
+    }
+   ]
+  },
+  {
+   "title": "The referendum had regional contrasts",
+   "text": "The Electoral Commission’s official totals give Remain about 62% in Scotland and 56% in Northern Ireland. London also voted Remain. Edinburgh, Belfast and London locate these reporting areas; the dots are not ward-level results or a claim that everyone in each area voted alike.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -3,
+     55
+    ],
+    "zoom": 5
+   },
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      -3.19,
+      55.95
+     ],
+     "label": "Scotland / Edinburgh",
+     "r": 4,
+     "color": "c4"
+    },
+    {
+     "at": [
+      -5.93,
+      54.6
+     ],
+     "label": "Northern Ireland / Belfast",
+     "r": 4,
+     "color": "c4"
+    },
+    {
+     "at": [
+      -0.12,
+      51.51
+     ],
+     "label": "London",
+     "r": 4,
+     "color": "c4"
+    }
+   ]
+  },
+  {
+   "title": "One member leaves the set",
+   "text": "At midnight CET on 31 January 2020 the UK left. This day-based timeline switches membership on 1 February, following the withdrawal agreement’s entry into force. Compare the highlighted set before and after that instant: the EU changes from 28 members to 27.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     4,
+     52
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "since",
+     "data": "memberships",
+     "set": "eu",
+     "year": "t",
+     "color": "c1",
+     "title": "EU · {n} members"
+    }
+   ],
+   "timeline": {
+    "years": [
+     20200131,
+     20200201,
+     20201231
+    ],
+    "start": 20200131,
+    "format": "date"
+   }
+  },
+  {
+   "title": "An island creates a special border problem",
+   "text": "The withdrawal agreement and Windsor Framework aim to avoid a hard border on the island of Ireland. Northern Ireland remains part of the UK, while Ireland is an EU member. The paired locators show the island’s two jurisdictions; no checkpoint locations or customs routes are asserted.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -7,
+     54
+    ],
+    "zoom": 6
+   },
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      -5.93,
+      54.6
+     ],
+     "label": "Belfast",
+     "r": 4,
+     "color": "c3"
+    },
+    {
+     "at": [
+      -6.26,
+      53.35
+     ],
+     "label": "Dublin",
+     "r": 4,
+     "color": "c3"
+    }
+   ],
+   "highlight": [
+    "IRL",
+    "GBR"
+   ]
+  },
+  {
+   "title": "Institutions also move",
+   "text": "The European Medicines Agency moved from London to Amsterdam, and the European Banking Authority to Paris. The Council’s account links those relocations to withdrawal. The three city markers show where institutional seats changed; the financial settlement and future relationship continued beyond formal departure.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     2,
+     51
+    ],
+    "zoom": 5
+   },
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      -0.12,
+      51.51
+     ],
+     "label": "London",
+     "r": 4,
+     "color": "c3"
+    },
+    {
+     "at": [
+      4.9,
+      52.37
+     ],
+     "label": "Amsterdam",
+     "r": 4,
+     "color": "c3"
+    },
+    {
+     "at": [
+      2.35,
+      48.86
+     ],
+     "label": "Paris",
+     "r": 4,
+     "color": "c3"
+    }
+   ]
+  }
+ ]
+}

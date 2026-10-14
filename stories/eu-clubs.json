@@ -1,0 +1,179 @@
+{
+ "id": "eu-clubs",
+ "cat": "Geopolitics",
+ "title": "Euro, Schengen and opt-outs",
+ "hook": "Overlapping memberships explain why one European border map is insufficient.",
+ "updated": "2026-10-14",
+ "sources": [
+  "editorial"
+ ],
+ "notes": "Editorial cutoff 14 October 2026. Original Orbis narrative and factual locators. The Schengen dataset starts with a 1 January 2024 observation, not each country’s original accession date. Country status is illustrated on modern base geometry; special territorial applications, suspended acquis and temporary internal checks are not rendered as control areas. References by scene: Scenes 1,4-5: https://www.consilium.europa.eu/policies/schengen-area/ ; https://www.consilium.europa.eu/en/press/press-releases/2024/12/12/schengen-council-decides-to-lift-land-border-controls-with-bulgaria-and-romania/ ; Scene 2: https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260101~c830245e42.en.html ; https://european-union.europa.eu/principles-countries-history/eu-countries_en ; Scene 3: https://european-union.europa.eu/institutions-law-budget/euro/countries-using-euro_en",
+ "data": {
+  "memberships": "data/history/eu/memberships.json"
+ },
+ "scenes": [
+  {
+   "title": "Three maps occupy the same space",
+   "text": "EU membership, the euro and Schengen overlap, but they do not coincide. The crossing hatches show all three sets as of 14 October 2026. Schengen here means completed removal of internal land-border controls; temporary checks may still operate inside the area.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "hatch",
+     "data": "memberships",
+     "sets": [
+      "eu",
+      "euro",
+      "schengen"
+     ],
+     "year": 20261014,
+     "colors": {
+      "eu": "c1",
+      "euro": "c2",
+      "schengen": "c4"
+     },
+     "labels": {
+      "eu": "EU · {n}",
+      "euro": "Euro area · {n}",
+      "schengen": "Schengen · {n}"
+     }
+    }
+   ]
+  },
+  {
+   "title": "Bulgaria changes currency",
+   "text": "Bulgaria introduced the euro on 1 January 2026, becoming the euro area’s 21st member. Compare the area immediately before and after that date. Greece joined in 2001 and Croatia in 2023; euro adoption has its own timetable, separate from EU accession.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "since",
+     "data": "memberships",
+     "set": "euro",
+     "year": "t",
+     "color": "c2",
+     "title": "Euro area · {n} members"
+    }
+   ],
+   "timeline": {
+    "years": [
+     20251231,
+     20260101,
+     20261014
+    ],
+    "start": 20251231,
+    "format": "date"
+   }
+  },
+  {
+   "title": "An opt-out and unfinished adoptions",
+   "text": "Denmark has a treaty opt-out from adopting the euro. Czechia, Hungary, Poland, Romania and Sweden have not adopted it, but have no equivalent euro opt-out. Colours distinguish that legal difference among EU members at the cutoff.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "memberships",
+     "set": "euro_status",
+     "year": 20261014,
+     "colors": {
+      "euro": "c2",
+      "optout": "c3",
+      "notyet": "c1"
+     }
+    }
+   ]
+  },
+  {
+   "title": "Schengen reaches the eastern land borders",
+   "text": "Bulgaria and Romania entered the air/sea-control-free area in March 2024. Their remaining internal land checks were removed on 1 January 2025. This bounded timeline shows full land-border participation, so the two countries appear only at that final step.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "since",
+     "data": "memberships",
+     "set": "schengen",
+     "year": "t",
+     "color": "c4",
+     "title": "Full Schengen land participation · {n}"
+    }
+   ],
+   "timeline": {
+    "years": [
+     20240101,
+     20250101,
+     20261014
+    ],
+    "start": 20240101,
+    "format": "date"
+   }
+  },
+  {
+   "title": "Inside one club, outside another",
+   "text": "Ireland belongs to the EU and euro area but not Schengen; Cyprus’s internal controls have not yet been lifted. Norway, Iceland, Switzerland and Liechtenstein are in Schengen without EU membership. Switch the highlighted set to see those contrasts rather than treating Europe as one uniform border regime.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "since",
+     "data": "memberships",
+     "set": "{set}",
+     "year": 20261014,
+     "color": "{color}",
+     "title": "{label} · {n}"
+    }
+   ],
+   "switch": {
+    "label": "Compare membership",
+    "options": [
+     {
+      "set": "eu",
+      "color": "c1",
+      "label": "EU"
+     },
+     {
+      "set": "euro",
+      "color": "c2",
+      "label": "Euro"
+     },
+     {
+      "set": "schengen",
+      "color": "c4",
+      "label": "Schengen"
+     }
+    ]
+   }
+  }
+ ]
+}

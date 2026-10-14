@@ -1,0 +1,200 @@
+{
+  "id": "empty-skies",
+  "cat": "People",
+  "title": "The sky went quiet",
+  "hook": "Airlines flew far less in 2020. A fixed 2019–2021 comparison shows the collapse and the uneven return.",
+  "notes": "World Bank WDI IS.AIR.DPRT, original source International Civil Aviation Organization (ICAO) Civil Aviation Statistics and staff estimates: https://data.worldbank.org/indicator/IS.AIR.DPRT . Definition: domestic takeoffs and takeoffs abroad by carriers registered in the country. The map therefore locates an airline registration country, not the airport where every takeoff happened. Annual totals cover 2019, 2020 and 2021, not a monthly shutdown or real-time flight map. Counts include estimates and do not measure passengers. The World aggregate is the published WDI value, not a sum of countries with missing data. Percentages are calculated by Orbis against each country’s own known, non-zero 2019 baseline; nulls remain missing. Sources, licence metadata (CC BY-4.0), retrieval date and raw-response checksums are saved in the dataset; rounded figures in text derive from it. No new atlas indicator is added by this story.",
+  "sources": [
+    "wb-wdi"
+  ],
+  "data": {
+    "air": "data/people/empty-skies.json"
+  },
+  "scenes": [
+    {
+      "title": "Before the interruption",
+      "text": "In 2019, registered airlines worldwide made about 38 million takeoffs. The largest circles mark the countries where those carriers were registered. An American carrier’s takeoff abroad still belongs to the United States in this dataset. The map describes airline activity, not every aircraft in each country’s sky.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -15,
+          25
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "air",
+          "series": "departures",
+          "year": 2019,
+          "title": "Carrier takeoffs, 2019",
+          "fmt": "int",
+          "vmax": 10100000,
+          "maxR": 45,
+          "labels": 4
+        }
+      ],
+      "chart": {
+        "data": "air",
+        "series": "departures",
+        "year": 2019,
+        "title": "Registered-carrier takeoffs",
+        "fmt": "int",
+        "top": 6
+      }
+    },
+    {
+      "title": "The year the circles shrank",
+      "text": "In 2020, the reported world total fell to about 20 million takeoffs, roughly 47% below 2019. Move the timeline from the baseline to 2020 and then 2021. Circle area keeps the same scale throughout, so a smaller circle means less recorded activity rather than a changed legend.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -15,
+          25
+        ],
+        "zoom": 1
+      },
+      "timeline": {
+        "years": [
+          2019,
+          2020,
+          2021
+        ],
+        "start": 2020,
+        "captions": {
+          "2019": "Before: 2019",
+          "2020": "During: 2020",
+          "2021": "Early recovery: 2021"
+        }
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "air",
+          "series": "departures",
+          "year": "t",
+          "title": "Carrier takeoffs",
+          "fmt": "int",
+          "vmax": 10100000,
+          "maxR": 45,
+          "labels": 4
+        }
+      ],
+      "chart": {
+        "data": "air",
+        "series": "departures",
+        "year": "t",
+        "title": "Registered-carrier takeoffs",
+        "fmt": "int",
+        "top": 6
+      }
+    },
+    {
+      "title": "A sharp contraction in Europe",
+      "text": "In 2020, UK-registered carriers recorded about 29% of their 2019 takeoffs. Austria’s were at 37%, Turkey’s at 49%. These percentages compare each country with its own baseline. They do not rank closed airports, restrictions or passenger losses; the composition of each airline industry also matters.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          14,
+          48
+        ],
+        "zoom": 3.3
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "air",
+          "series": "baseline",
+          "year": 2020,
+          "title": "2020 takeoffs as % of 2019",
+          "fmt": "pct",
+          "vmin": 0,
+          "vmax": 150
+        }
+      ],
+      "highlight": [
+        "GBR",
+        "AUT",
+        "TUR"
+      ]
+    },
+    {
+      "title": "Recovery took different paths",
+      "text": "By 2021, the world total had recovered to about 24 million takeoffs, still well below 2019. US-registered carriers were at about 79% of their baseline, Turkey’s at 72%, and the UK’s at 27%. Switch years to compare the same measure; the colour scale is fixed and capped at 150%.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -15,
+          25
+        ],
+        "zoom": 1
+      },
+      "switch": {
+        "label": "Year",
+        "start": 1,
+        "options": [
+          {
+            "c": 2020,
+            "label": "2020"
+          },
+          {
+            "c": 2021,
+            "label": "2021"
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "air",
+          "series": "baseline",
+          "year": "{c}",
+          "title": "Takeoffs as % of 2019 (colour capped at 150%)",
+          "fmt": "pct",
+          "vmin": 0,
+          "vmax": 150
+        }
+      ],
+      "media": [
+        {
+          "type": "line",
+          "data": "air",
+          "series": "baseline",
+          "countries": [
+            "USA",
+            "GBR",
+            "TUR"
+          ],
+          "title": "Takeoffs as % of 2019",
+          "fmt": "pct"
+        }
+      ]
+    },
+    {
+      "title": "What the numbers leave out",
+      "text": "A takeoff is not a passenger: a near-empty flight and a full aircraft each count once. Cargo services also kept moving. Missing observations remain uncoloured. This three-year record shows a collapse and an early return in registered-carrier activity; it cannot explain every change in border policy or the experience of travellers.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          5,
+          25
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "air",
+          "series": "baseline",
+          "year": 2021,
+          "title": "2021 takeoffs as % of 2019",
+          "fmt": "pct",
+          "vmin": 0,
+          "vmax": 150,
+          "nodataLabel": "Missing observation or 2019 baseline"
+        }
+      ]
+    }
+  ]
+}

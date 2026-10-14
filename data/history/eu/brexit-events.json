@@ -1,0 +1,62 @@
+{
+ "source": "editorial",
+ "asOf": "2020-12-31",
+ "retrieved": "2026-10-14",
+ "note": "Original factual annotations and approximate city locators, not source prose or movements. Each card links primary evidence.",
+ "kinds": {
+  "brexit": {
+   "label": "Withdrawal timeline",
+   "color": "c2"
+  }
+ },
+ "items": [
+  {
+   "title": "UK referendum",
+   "date": 20160623,
+   "at": [
+    -0.12,
+    51.51
+   ],
+   "kind": "brexit",
+   "text": "UK valid-vote totals: Leave 17,410,742; Remain 16,141,241. Leave share is 51.89%, calculated from those official totals. London is a national institutional locator, not the result announcement site.",
+   "source": "UK Electoral Commission; Orbis summary",
+   "url": "https://www.electoralcommission.org.uk/research-reports-and-data/our-reports-and-data-past-elections-and-referendums/results-and-turnout-eu-referendum"
+  },
+  {
+   "title": "Article 50 notification",
+   "date": 20170329,
+   "at": [
+    4.35,
+    50.85
+   ],
+   "kind": "brexit",
+   "text": "The UK formally notified the European Council of its intention to leave on 29 March 2017.",
+   "source": "Council of the EU; Orbis summary",
+   "url": "https://www.consilium.europa.eu/en/policies/the-eu-uk-withdrawal-agreement/"
+  },
+  {
+   "title": "UK departure takes effect",
+   "date": 20200201,
+   "at": [
+    -0.12,
+    51.51
+   ],
+   "kind": "brexit",
+   "text": "Departure occurred at midnight CET on 31 January 2020; the withdrawal agreement entered into force on 1 February.",
+   "source": "Council of the EU; Orbis summary",
+   "url": "https://www.consilium.europa.eu/en/policies/the-eu-uk-withdrawal-agreement/"
+  },
+  {
+   "title": "Transition ends",
+   "date": 20201231,
+   "at": [
+    4.35,
+    50.85
+   ],
+   "kind": "brexit",
+   "text": "The withdrawal agreement transition period ran to 31 December 2020.",
+   "source": "Council of the EU; Orbis summary",
+   "url": "https://www.consilium.europa.eu/en/policies/the-eu-uk-withdrawal-agreement/"
+  }
+ ]
+}

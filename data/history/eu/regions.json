@@ -1,0 +1,99 @@
+{
+ "source": "eurostat",
+ "asOf": "2023-12-31",
+ "retrieved": "2026-10-14",
+ "note": "Source: Eurostat nama_10r_2gdp, 2023 observations frozen to the 11 February 2025 release https://ec.europa.eu/eurostat/en/web/products-eurostat-news/w/ddn-20250211-2 . CC BY 4.0; Orbis selected eight-region subset and approximate regional reference locations. Eurostat is not responsible for these modifications. GDP per inhabitant in PPS as percentage of EU27 average. Reference points are not regional geometry or values at that city; labels name entire NUTS2 regions. GDP is not household income; commuting/multinational effects matter. Overseas Mayotte/Guyane intentionally outside this selected mainland/northern-Aegean comparison; not an exhaustive rank.",
+ "periods": [
+  "2023"
+ ],
+ "points": [
+  {
+   "id": "IE06",
+   "name": "Eastern and Midland",
+   "at": [
+    -6.3,
+    53.35
+   ],
+   "gdp": [
+    244.7
+   ]
+  },
+  {
+   "id": "LU00",
+   "name": "Luxembourg",
+   "at": [
+    6.13,
+    49.61
+   ],
+   "gdp": [
+    236.8
+   ]
+  },
+  {
+   "id": "IE05",
+   "name": "Southern Ireland",
+   "at": [
+    -8.47,
+    51.9
+   ],
+   "gdp": [
+    224.7
+   ]
+  },
+  {
+   "id": "CZ01",
+   "name": "Praha",
+   "at": [
+    14.42,
+    50.08
+   ],
+   "gdp": [
+    192.8
+   ]
+  },
+  {
+   "id": "BE10",
+   "name": "Brussels",
+   "at": [
+    4.35,
+    50.85
+   ],
+   "gdp": [
+    190.6
+   ]
+  },
+  {
+   "id": "BG42",
+   "name": "Yuzhen Tsentralen",
+   "at": [
+    24.75,
+    42.14
+   ],
+   "gdp": [
+    41.3
+   ]
+  },
+  {
+   "id": "EL41",
+   "name": "Voreio Aigaio",
+   "at": [
+    26.56,
+    39.11
+   ],
+   "gdp": [
+    42.3
+   ]
+  },
+  {
+   "id": "BG31",
+   "name": "Severozapaden",
+   "at": [
+    24.6,
+    43.41
+   ],
+   "gdp": [
+    42.5
+   ]
+  }
+ ]
+}

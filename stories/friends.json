@@ -2,8 +2,8 @@
   "id": "friends",
   "cat": "People",
   "title": "Who your friends are",
-  "hook": "Facebook friendships trace old empires, migrant jobs and closed borders.",
-  "notes": "Meta Social Connectedness Index (SCI), country level, snapshot of 25 Jan 2026 (HDX release, CC0). The SCI measures how likely two Facebook users, one in each country, are to be friends. Here it is shown relative to the median of all country pairs: 100× means a hundred times as likely as a typical pair. Because it is a per-person measure, big countries (Brazil, Mexico, Turkey, the US) score lower than small ones with the same number of friendships. It only covers Facebook users: no data for China, Iran, North Korea, Syria, Cuba, Turkmenistan, Palestine and some small territories, and countries where few people use Facebook are less reliable.",
+  "hook": "Facebook friendship patterns connect countries through shared histories and migration ties.",
+  "notes": "Meta Social Connectedness Index (SCI), country level, snapshot of 25 Jan 2026 (HDX release, CC0). The SCI measures how likely two Facebook users, one in each country, are to be friends. Here it is shown relative to the median of all country pairs: 100× means a hundred times as likely as a typical pair. Because it is a per-person measure, big countries (Brazil, Mexico, Turkey, the US) score lower than small ones with the same number of friendships. It only covers Facebook users: no data for China, Iran, North Korea, Syria, Cuba, Turkmenistan, Palestine and some small territories, and countries where few people use Facebook are less reliable. Comparisons are descriptive: the index does not establish a causal effect of border policy and a multiple above one is still stronger than the median country pair.",
   "data": {
     "sci": "data/people/sci.json"
   },
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "title": "Borders as walls",
-      "text": "Closed or hostile borders cut friendships too.",
+      "title": "Neighbours, unequal ties",
+      "text": "Neighbouring countries can have very different Facebook ties. The index measures relative friendship likelihood; it does not isolate the effects of borders, language, migration or platform use.",
       "view": {
         "mode": "equal",
         "center": [
@@ -201,17 +201,17 @@
           {
             "c": "ARM",
             "label": "Armenia",
-            "text": "Armenia is well connected to Georgia (83×) and above all Russia (770×). Across its closed borders with Azerbaijan (4×) and Turkey (1.5×), there are hardly any friendships."
+            "text": "Among sampled Facebook users, Armenia is much more connected to Russia (770×) and Georgia (83×) than to Azerbaijan (4×) or Turkey (1.5×). Even those weaker ties exceed the typical pair. These are relative likelihoods, not counts of friendships or evidence of a single political cause."
           },
           {
             "c": "GRC",
             "label": "Greece",
-            "text": "Greeks are tightly linked to Cyprus (610×) and Albania (430×), and to Bulgaria (41×). Turkey, their large neighbour and old rival, scores just 4×."
+            "text": "Greece is tightly linked to Cyprus (610×) and Albania (430×), and less strongly to Bulgaria (41×) and Turkey (4×). Neighbourhood alone does not explain the differences: the index cannot separate migration, language and other influences."
           },
           {
             "c": "ISR",
             "label": "Israel",
-            "text": "Israel's ties to Egypt (4×) and Lebanon (9×) are weak; its strongest are with Russia (53×). Jordan (49×) is the exception. There is no data for Syria or the Palestinian territories."
+            "text": "Israel’s strongest recorded ties are with Russia (53×); Jordan (49×) is also close. Egypt (4×) and Lebanon (9×) score lower. There is no data for Syria or the Palestinian territories. These comparisons cover Facebook users, not all residents or their political views."
           }
         ]
       },

@@ -1,0 +1,86 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis, cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original factual annotations. Event URLs cite dates and claims; coordinates locate the named place approximately, not battlefield boundaries. BC dates use astronomical years (1 BC = 0).",
+  "kinds": {
+    "republic": {
+      "label": "Republic",
+      "color": "c2"
+    },
+    "augustus": {
+      "label": "Augustus",
+      "color": "c3"
+    },
+    "britain": {
+      "label": "Britain",
+      "color": "c4"
+    },
+    "trajan": {
+      "label": "Trajan",
+      "color": "c5"
+    }
+  },
+  "items": [
+    {
+      "title": "Republican Rome",
+      "date": -43,
+      "at": [
+        12.49,
+        41.89
+      ],
+      "text": "Caesar was assassinated in Rome in 44 BC after civil wars and conquest.",
+      "url": "https://www.metmuseum.org/essays/the-roman-republic",
+      "source": "Met, The Roman Republic",
+      "kind": "republic"
+    },
+    {
+      "title": "Augustus",
+      "date": -26,
+      "at": [
+        12.49,
+        41.89
+      ],
+      "text": "Octavian received the title Augustus in 27 BC.",
+      "url": "https://www.metmuseum.org/essays/the-roman-empire-27-b-c-393-a-d",
+      "source": "Met, The Roman Empire",
+      "kind": "augustus"
+    },
+    {
+      "title": "Britannia",
+      "date": 43,
+      "at": [
+        -0.13,
+        51.51
+      ],
+      "text": "Permanent Roman conquest of Britain began in AD 43. Londinium is a regional anchor, not the landing site.",
+      "url": "https://www.english-heritage.org.uk/visit/places/hadrians-wall/hadrians-wall-history-and-stories/history/",
+      "source": "English Heritage, History of Hadrian’s Wall",
+      "kind": "britain"
+    },
+    {
+      "title": "Dacia",
+      "date": 117,
+      "at": [
+        23.31,
+        45.62
+      ],
+      "text": "Trajan’s wars extended Roman power into Dacia. Sarmizegetusa locates the region; AD 117 is the end-of-reign snapshot, not its conquest date.",
+      "url": "https://www.metmuseum.org/essays/the-roman-empire-27-b-c-393-a-d",
+      "source": "Met, The Roman Empire: Trajan",
+      "kind": "trajan"
+    },
+    {
+      "title": "Parthian campaign",
+      "date": 117,
+      "at": [
+        44.58,
+        33.09
+      ],
+      "text": "Trajan also fought in Parthia. Ctesiphon anchors that eastern theatre; the marker is not a permanent-border claim.",
+      "url": "https://www.metmuseum.org/essays/the-roman-empire-27-b-c-393-a-d",
+      "source": "Met, The Roman Empire: Trajan",
+      "kind": "trajan"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "source": "editorial",
+  "asOf": "2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed.",
+  "kinds": {
+    "0": {
+      "label": "Ratifying the original union",
+      "color": "c1"
+    },
+    "1": {
+      "label": "California: admission after acquisition",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Alaska: purchase, territory, state",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Hawaii: the fiftieth state",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "title": "Delaware",
+      "text": "Delaware ratified the Constitution in 1787. Its position as the first state reflects ratification order; the state already existed before that constitutional decision.",
+      "at": [
+        -75.53,
+        39.16
+      ],
+      "date": 1787,
+      "kind": "0",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.senate.gov/states/DE/intro.htm"
+    },
+    {
+      "title": "California / Sacramento",
+      "text": "California became a state in 1850, after the Mexican cession of 1848. Admission brought representation in the federal union rather than a new international acquisition.",
+      "at": [
+        -121.49,
+        38.58
+      ],
+      "date": 1850,
+      "kind": "1",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.senate.gov/states/CA/intro.htm"
+    },
+    {
+      "title": "Alaska / Juneau",
+      "text": "Alaska joined the union in January 1959. The gap from the 1867 purchase shows why an acquisition map and a statehood map answer different questions.",
+      "at": [
+        -134.42,
+        58.3
+      ],
+      "date": 1959,
+      "kind": "2",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.senate.gov/states/AK/intro.htm"
+    },
+    {
+      "title": "Hawaii / Honolulu",
+      "text": "Hawaii became a state in August 1959. Its island geography places part of the union far beyond the contiguous mainland.",
+      "at": [
+        -157.86,
+        21.31
+      ],
+      "date": 1959,
+      "kind": "3",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.senate.gov/states/HI/intro.htm"
+    }
+  ]
+}

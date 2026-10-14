@@ -1,0 +1,121 @@
+{
+  "id": "us-statehood",
+  "cat": "Geopolitics",
+  "title": "Becoming states",
+  "hook": "Acquisition and admission are different dates.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed. Sources by scene: Ratifying the original union: https://www.senate.gov/states/DE/intro.htm; California: admission after acquisition: https://www.senate.gov/states/CA/intro.htm; Alaska: purchase, territory, state: https://www.senate.gov/states/AK/intro.htm; Hawaii: the fiftieth state: https://www.senate.gov/states/HI/intro.htm",
+  "data": {
+    "history": "data/history/usa/us-statehood.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "Ratifying the original union",
+      "text": "Delaware ratified the Constitution in 1787. Its position as the first state reflects ratification order; the state already existed before that constitutional decision.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -76,
+          38
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1787,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "California: admission after acquisition",
+      "text": "California became a state in 1850, after the Mexican cession of 1848. Admission brought representation in the federal union rather than a new international acquisition.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -119,
+          37
+        ],
+        "zoom": 4
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1850,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Alaska: purchase, territory, state",
+      "text": "Alaska joined the union in January 1959. The gap from the 1867 purchase shows why an acquisition map and a statehood map answer different questions.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -145,
+          60
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1959,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Hawaii: the fiftieth state",
+      "text": "Hawaii became a state in August 1959. Its island geography places part of the union far beyond the contiguous mainland.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -157,
+          25
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1959,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

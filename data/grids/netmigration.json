@@ -2,8 +2,8 @@
  "source": "niva-netmigration",
  "asOf": "2019",
  "retrieved": "2026-10-14",
- "note": "Niva et al. (2023), net migration 2000–2019: annual net-migration rates (5′ grid, estimated as reported population change minus births plus deaths) summed over 20 years, here averaged into 10′ cells weighted by population (GHS-POP 2025) and shown as % of residents. Positive = more people moved in than out. Clamped to ±50 %; cells with fewer than 1,000 residents left empty. The authors warn that single cells are noisy: read patterns, not pixels.",
- "units": "% of residents, 2000–2019",
+ "note": "Niva et al. (2023), net migration 2000–2019: annual net-migration rates (5′ grid, estimated as reported population change minus births plus deaths) summed over 20 years, here averaged into 10′ cells weighted by population (GHS-POP 2025) and shown as summed annual rates in percent. Positive = more people moved in than out. Clamped to ±50 %; cells with fewer than 1,000 residents left empty. The authors warn that single cells are noisy: read patterns, not pixels.",
+ "units": "summed annual rates in percent, 2000–2019",
  "grid": {
   "width": 2160,
   "height": 1080,

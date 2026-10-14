@@ -1,0 +1,50 @@
+{
+ "source": "nasa-night-change",
+ "asOf": "2016",
+ "retrieved": "2026-10-14",
+ "note": "NASA Black Marble 2012 and 2016 paired reprocessed colour composites, released 2017. Reduced from 13500x6750 to 4096x2048 and compressed to WebP by Orbis. Colour/display brightness is not calibrated radiance; no numeric pixel readings. Clouds, compositing, surface reflectance, lighting practices and observation coverage affect appearance. Compare broad patterns, not individual buildings or household electrification.",
+ "units": "NASA display imagery",
+ "grid": {
+  "width": 4096,
+  "height": 2048,
+  "bbox": [
+   -180,
+   -90,
+   180,
+   90
+  ]
+ },
+ "encoding": {
+  "type": "image"
+ },
+ "frames": {
+  "2012": "data/grids/night-light-change-2012.webp",
+  "2016": "data/grids/night-light-change-2016.webp"
+ },
+ "provenance": {
+  "2012": {
+   "url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/144000/144875/BlackMarble_2012_3km.jpg",
+   "sha256": "76428afb33e80d6112a8f0c110af4e5e52316e3a1858561a3b8c931779eca723",
+   "nativeSize": [
+    13500,
+    6750
+   ],
+   "outputSize": [
+    4096,
+    2048
+   ]
+  },
+  "2016": {
+   "url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/144000/144898/BlackMarble_2016_3km.jpg",
+   "sha256": "230aac448ae68c358be433dd518888cccb3a85ccf66f7b44326441c324ad6725",
+   "nativeSize": [
+    13500,
+    6750
+   ],
+   "outputSize": [
+    4096,
+    2048
+   ]
+  }
+ }
+}

@@ -30,6 +30,7 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{background:var(--space);color:var(--ink);font-family:var(--ui);overflow:hidden;-webkit-font-smoothing:antialiased}
 #map{position:fixed;inset:0;touch-action:none;display:block;cursor:grab}
 #map:active{cursor:grabbing}
+.projection-snapshot{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 

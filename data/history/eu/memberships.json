@@ -1,0 +1,169 @@
+{
+ "source": "editorial",
+ "asOf": "2026-10-14",
+ "retrieved": "2026-10-14",
+ "note": "Official EU country profiles and history; euro Bulgaria verified by ECB 2026-01-01 release; Schengen full land participation verified by Council 2024-12-12 decision. https://european-union.europa.eu/principles-countries-history/eu-countries_en ; https://www.consilium.europa.eu/policies/schengen-area/ ; https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260101~c830245e42.en.html . UK end is 1 February 2020 Gregorian date, departure at midnight CET on 31 January. EU/euro dates identify entry dates. Schengen is only a bounded snapshot series from 2024-01-01: that starting date is an observation, NOT the accession date of 27 already-participating countries. BGR/ROU enter the full-land-control-removal representation on 2025-01-01; air/sea controls were already removed in March 2024. Modern country geometry is contextual, not historical sovereign boundaries.",
+ "sets": {
+  "eu": {
+   "label": "EEC / EC / EU",
+   "members": {
+    "BEL": 19580101,
+    "DEU": 19580101,
+    "FRA": 19580101,
+    "ITA": 19580101,
+    "LUX": 19580101,
+    "NLD": 19580101,
+    "DNK": 19730101,
+    "IRL": 19730101,
+    "GRC": 19810101,
+    "ESP": 19860101,
+    "PRT": 19860101,
+    "AUT": 19950101,
+    "FIN": 19950101,
+    "SWE": 19950101,
+    "CYP": 20040501,
+    "CZE": 20040501,
+    "EST": 20040501,
+    "HUN": 20040501,
+    "LVA": 20040501,
+    "LTU": 20040501,
+    "MLT": 20040501,
+    "POL": 20040501,
+    "SVK": 20040501,
+    "SVN": 20040501,
+    "BGR": 20070101,
+    "ROU": 20070101,
+    "HRV": 20130701,
+    "GBR": [
+     19730101,
+     20200201
+    ]
+   }
+  },
+  "euro": {
+   "label": "Euro area",
+   "members": {
+    "AUT": 19990101,
+    "BEL": 19990101,
+    "DEU": 19990101,
+    "ESP": 19990101,
+    "FIN": 19990101,
+    "FRA": 19990101,
+    "IRL": 19990101,
+    "ITA": 19990101,
+    "LUX": 19990101,
+    "NLD": 19990101,
+    "PRT": 19990101,
+    "GRC": 20010101,
+    "SVN": 20070101,
+    "CYP": 20080101,
+    "MLT": 20080101,
+    "SVK": 20090101,
+    "EST": 20110101,
+    "LVA": 20140101,
+    "LTU": 20150101,
+    "HRV": 20230101,
+    "BGR": 20260101
+   }
+  },
+  "schengen": {
+   "label": "Schengen (full land-border participation)",
+   "members": {
+    "BEL": 20240101,
+    "DEU": 20240101,
+    "FRA": 20240101,
+    "ITA": 20240101,
+    "LUX": 20240101,
+    "NLD": 20240101,
+    "DNK": 20240101,
+    "GRC": 20240101,
+    "ESP": 20240101,
+    "PRT": 20240101,
+    "AUT": 20240101,
+    "FIN": 20240101,
+    "SWE": 20240101,
+    "CZE": 20240101,
+    "EST": 20240101,
+    "HUN": 20240101,
+    "LVA": 20240101,
+    "LTU": 20240101,
+    "MLT": 20240101,
+    "POL": 20240101,
+    "SVK": 20240101,
+    "SVN": 20240101,
+    "HRV": 20240101,
+    "ISL": 20240101,
+    "NOR": 20240101,
+    "CHE": 20240101,
+    "LIE": 20240101,
+    "BGR": 20250101,
+    "ROU": 20250101
+   }
+  },
+  "founders": {
+   "label": "Six founding states",
+   "values": {
+    "BEL": "member",
+    "DEU": "member",
+    "FRA": "member",
+    "ITA": "member",
+    "LUX": "member",
+    "NLD": "member"
+   }
+  },
+  "candidates": {
+   "label": "Candidate status, 14 October 2026",
+   "values": {
+    "MNE": "candidate",
+    "SRB": "candidate",
+    "ALB": "candidate",
+    "MKD": "candidate",
+    "BIH": "candidate",
+    "TUR": "candidate",
+    "UKR": "candidate",
+    "MDA": "candidate",
+    "GEO": "candidate"
+   },
+   "labels": {
+    "candidate": "EU candidate"
+   }
+  },
+  "euro_status": {
+   "label": "EU currency status, 14 October 2026",
+   "values": {
+    "BEL": "euro",
+    "DEU": "euro",
+    "FRA": "euro",
+    "ITA": "euro",
+    "LUX": "euro",
+    "NLD": "euro",
+    "DNK": "optout",
+    "IRL": "euro",
+    "GRC": "euro",
+    "ESP": "euro",
+    "PRT": "euro",
+    "AUT": "euro",
+    "FIN": "euro",
+    "SWE": "notyet",
+    "CYP": "euro",
+    "CZE": "notyet",
+    "EST": "euro",
+    "HUN": "notyet",
+    "LVA": "euro",
+    "LTU": "euro",
+    "MLT": "euro",
+    "POL": "notyet",
+    "SVK": "euro",
+    "SVN": "euro",
+    "BGR": "euro",
+    "ROU": "notyet",
+    "HRV": "euro"
+   },
+   "labels": {
+    "euro": "Euro area",
+    "optout": "Danish treaty opt-out",
+    "notyet": "EU member, euro not yet adopted"
+   }
+  }
+ }
+}

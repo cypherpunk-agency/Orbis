@@ -1,0 +1,98 @@
+{
+ "source": "editorial",
+ "asOf": "1908-07-23",
+ "retrieved": "2026-10-14",
+ "note": "Facts paraphrased and compiled by Orbis, with a source URL on every event. Locations are approximate city/region locators, not surveyed event or battle footprints. Textual factual references do not import source prose, photos or restricted datasets. Official national chronologies support dates, not every interpretation. Period labels are explanatory conventions, not official renaming dates.",
+ "kinds": {
+  "politics": {
+   "label": "Political event",
+   "color": "c1"
+  },
+  "war": {
+   "label": "Military event",
+   "color": "muted"
+  },
+  "people": {
+   "label": "People and displacement",
+   "color": "muted"
+  }
+ },
+ "items": [
+  {
+   "title": "Constitution promulgated",
+   "date": 18761223,
+   "at": [
+    28.98,
+    41.01
+   ],
+   "text": "The sultan promulgated the Kanun-i Esasi on 23 December 1876.",
+   "source": "https://www.tbmm.gov.tr/history/",
+   "url": "https://www.tbmm.gov.tr/history/",
+   "kind": "politics"
+  },
+  {
+   "title": "First parliament opens",
+   "date": 18770319,
+   "at": [
+    28.98,
+    41.01
+   ],
+   "text": "The first Ottoman parliament opened on 19 March 1877.",
+   "source": "https://www.tbmm.gov.tr/history/",
+   "url": "https://www.tbmm.gov.tr/history/",
+   "kind": "politics"
+  },
+  {
+   "title": "Parliament suspended",
+   "date": 18780214,
+   "at": [
+    28.98,
+    41.01
+   ],
+   "text": "Parliament was adjourned indefinitely on 14 February 1878.",
+   "source": "https://www.tbmm.gov.tr/history/",
+   "url": "https://www.tbmm.gov.tr/history/",
+   "kind": "politics"
+  },
+  {
+   "title": "Constitution restored",
+   "date": 19080723,
+   "at": [
+    22.94,
+    40.64
+   ],
+   "text": "The constitution was restored in July 1908 after a revolt by officers and troops in Macedonia. This marker locates that regional context, not one exact meeting.",
+   "source": "https://www.tbmm.gov.tr/history/",
+   "url": "https://www.tbmm.gov.tr/history/",
+   "kind": "politics"
+  }
+ ],
+ "places": [
+  {
+   "at": [
+    28.98,
+    41.01
+   ],
+   "names": [
+    {
+     "name": "Constantinople (Istanbul today)",
+     "from": 1800,
+     "to": 1929
+    }
+   ]
+  },
+  {
+   "at": [
+    32.85,
+    39.93
+   ],
+   "names": [
+    {
+     "name": "Ankara",
+     "from": 1800,
+     "to": 1929
+    }
+   ]
+  }
+ ]
+}

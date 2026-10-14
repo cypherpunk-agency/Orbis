@@ -1,0 +1,153 @@
+{
+  "id": "rome-fall",
+  "cat": "People",
+  "title": "The falls of Rome and Constantinople",
+  "hook": "AD 476 ended the western court; Constantinople followed a much longer, interrupted history.",
+  "updated": "2026-10-14",
+  "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. Met Roman Empire for AD 410 and 476; Met Byzantium and Byzantium: Faith and Power for 1204, 1261 and 1453. AD 476 marks western deposition and eastern continuity, not a boundary snapshot. Western deposition is conventionally associated with Ravenna; Roman institutions survived it.",
+  "data": {
+    "events": "data/history/rome/rome-fall.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Rome is not the western court",
+      "text": "Rome’s sack in AD 410 and the deposition at the western court in AD 476 were different events. Ravenna and Rome locate that distinction.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12.4,
+          43
+        ],
+        "zoom": 7
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "west"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          410,
+          476
+        ],
+        "start": 476,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "The East continues",
+      "text": "Imperial government persisted at Constantinople after AD 476. Its sixth-century world retained Roman law and classical culture alongside Christian imperial institutions.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          29,
+          41
+        ],
+        "zoom": 6
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "east"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Conquest, then restoration",
+      "text": "Constantinople fell to the Fourth Crusade in 1204; Byzantine imperial rule returned in 1261. Move the timeline to compare these changes at the same city.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          29,
+          41
+        ],
+        "zoom": 8
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "crusade",
+            "restoration"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          1204,
+          1261
+        ],
+        "start": 1261,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "A different endpoint",
+      "text": "In 1453 the Ottomans conquered Constantinople. The western deposition and eastern conquest were separated by centuries: one date cannot describe both histories.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          23,
+          42
+        ],
+        "zoom": 3
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "west",
+            "ottoman"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          476,
+          1453
+        ],
+        "start": 1453,
+        "era": true,
+        "calendar": "auc"
+      }
+    }
+  ]
+}

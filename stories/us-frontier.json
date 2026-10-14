@@ -1,0 +1,139 @@
+{
+  "id": "us-frontier",
+  "cat": "Geopolitics",
+  "title": "Railroads and the frontier",
+  "hook": "Infrastructure and federal land policy transformed the West.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed. Sources by scene: Surveyed land, federal promises: https://www.archives.gov/milestone-documents/homestead-act; A Nebraska homestead: https://www.nps.gov/articles/homestead-national-historical-park-s-landscape.htm; Two construction fronts meet: https://www.nps.gov/gosp/learn/historyculture/a-moment-in-time.htm; Chinese workers built the western connection: https://www.nps.gov/gosp/learn/historyculture/chinese-labor-and-the-iron-road.htm Supplementary date/location evidence: https://www.nps.gov/im/ncpn/bpd-gosp.htm.",
+  "data": {
+    "history": "data/history/usa/us-frontier.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "Surveyed land, federal promises",
+      "text": "The Homestead Act of 1862 offered qualifying settlers surveyed public land subject to residence and cultivation. Calling it public land reflected US law, not the absence of Indigenous societies.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          39
+        ],
+        "zoom": 3.5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1862,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A Nebraska homestead",
+      "text": "Daniel Freeman filed a claim in 1863 and settled near Beatrice, Nebraska. This located example shows the land policy at farm scale; it is not a map of all homestead claims.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          40
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1863,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Two construction fronts meet",
+      "text": "The Central Pacific and Union Pacific met at Promontory Summit in May 1869. The labelled points locate the meeting and the two construction approaches; any connecting lines are schematic, not surveyed railway geometry.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          39
+        ],
+        "zoom": 3.5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1869,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "points": [
+        {
+          "at": [
+            -121.49,
+            38.58
+          ],
+          "label": "Sacramento / Central Pacific",
+          "color": "c1"
+        },
+        {
+          "at": [
+            -95.94,
+            41.26
+          ],
+          "label": "Omaha / Union Pacific",
+          "color": "c2"
+        }
+      ]
+    },
+    {
+      "title": "Chinese workers built the western connection",
+      "text": "Chinese workers were essential to Central Pacific construction and placed the final rail at Promontory on 10 May 1869. Their work belongs in the story of infrastructure as well as immigration.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -116,
+          40
+        ],
+        "zoom": 4
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 18690510,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

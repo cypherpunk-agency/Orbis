@@ -1,0 +1,125 @@
+{
+  "id": "rome-legacy",
+  "cat": "People",
+  "title": "What remains",
+  "hook": "Infrastructure, city fabric and eastern Roman art survive in different forms and places.",
+  "updated": "2026-10-14",
+  "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. Present-day site anchors, reviewed 2026-10-14. UNESCO Rome, Pont du Gard, Frontiers and Ravenna; Met Byzantium. No population, modern ancestry, or language distribution is inferred from these monuments. Pont du Gard’s detailed UNESCO statement and site institution take precedence over the inconsistent short UNESCO summary.",
+  "data": {
+    "events": "data/history/rome/rome-legacy.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "An ancient city inside a later one",
+      "text": "Rome’s forums and imperial monuments sit within a city remade over centuries. The urban anchor shows persistence of place, not an unchanged population or government.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12.49,
+          41.89
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "city"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Water and settlement",
+      "text": "Near Nîmes, the Pont du Gard still reveals how Roman builders carried water across a valley. This site is an infrastructure example, not a map of the entire aqueduct.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          4.54,
+          43.95
+        ],
+        "zoom": 10
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "water"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A frontier becomes heritage",
+      "text": "Hadrian’s Wall survives as forts, walls and settlements. Its archaeology preserves encounters at an imperial edge, including the communities who lived around the garrisons.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -2.4,
+          55
+        ],
+        "zoom": 10
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "frontier"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "The eastern inheritance",
+      "text": "Ravenna and Constantinople preserve different parts of late Roman and Byzantine history. Comparing the sites prevents the empire’s cultural legacy from being collapsed into Rome alone.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          21,
+          43
+        ],
+        "zoom": 3
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "art",
+            "east"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "source": "editorial",
+  "asOf": "Historical observation dates stated per event",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed.",
+  "kinds": {
+    "0": {
+      "label": "Minsk",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Leningrad",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Stalingrad",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Berlin",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "title": "Minsk",
+      "text": "Nazi Germany and its allies attacked the Soviet Union on 22 June 1941. Minsk locates one part of the vast theatre; a point is not an invasion front. USHMM describes this as a war of annihilation against civilians as well as armies.",
+      "date": 19410622,
+      "at": [
+        27.56,
+        53.9
+      ],
+      "kind": "0",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front"
+    },
+    {
+      "title": "Leningrad",
+      "text": "German forces besieged Leningrad during the war. The siege subjected civilians to starvation and severe suffering. The city point locates the human geography of the siege; it does not delineate the encirclement.",
+      "date": 1941,
+      "at": [
+        30.32,
+        59.94
+      ],
+      "kind": "1",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/belagerung-von-leningrad"
+    },
+    {
+      "title": "Stalingrad",
+      "text": "The surviving German forces at Stalingrad surrendered between 31 January and 2 February 1943. Soviet armies then gained the initiative. The point uses the wartime name for today’s Volgograd, on the Volga River.",
+      "date": 19430202,
+      "at": [
+        44.52,
+        48.71
+      ],
+      "kind": "2",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front"
+    },
+    {
+      "title": "Berlin",
+      "text": "Soviet forces drove the German military back and captured Berlin in spring 1945. This located endpoint does not suggest that one uninterrupted route linked every eastern campaign. The intervening fighting and civilian devastation extended across a much larger region.",
+      "date": 1945,
+      "at": [
+        13.4,
+        52.52
+      ],
+      "kind": "3",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front"
+    }
+  ]
+}

@@ -108,5 +108,305 @@
     "t": "Series published."
    }
   ]
+ },
+ {
+  "id": "turkey-history",
+  "title": "Turkey: Anatolia, empire, republic",
+  "hook": "Seven chapters across Anatolia, the Ottoman world and the republic, with dated sources and explicit map limits.",
+  "intro": "This series follows Anatolia before the Ottomans, an imperial world, its collapse and the making and changing of the republic. It includes the Armenian genocide, compulsory population exchange and Kurdish histories. Contemporary material is a dated snapshot; each chapter states its coverage and mapping limits.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     34,
+     39
+    ],
+    "zoom": 3.5
+   },
+   "fills": {
+    "TUR": "c2"
+   }
+  },
+  "chapters": [
+   "tr-anatolia",
+   "tr-ottoman-world",
+   "tr-empire-pressure",
+   "tr-war-dissolution",
+   "tr-republic",
+   "tr-changing-republic",
+   "tr-world"
+  ],
+  "dates": [
+   {
+    "d": 18761223,
+    "t": "Ottoman constitution promulgated"
+   },
+   {
+    "d": 19080723,
+    "t": "Constitution restored"
+   },
+   {
+    "d": 19150425,
+    "t": "Gallipoli landings"
+   },
+   {
+    "d": 19181030,
+    "t": "Armistice of Mudros"
+   },
+   {
+    "d": 19221101,
+    "t": "Sultanate abolished"
+   },
+   {
+    "d": 19230130,
+    "t": "Compulsory population-exchange convention signed"
+   },
+   {
+    "d": 19230724,
+    "t": "Treaty of Lausanne signed"
+   },
+   {
+    "d": 19231029,
+    "t": "Republic proclaimed"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Initial three chapters added."
+   },
+   {
+    "d": "2026-10-14",
+    "t": "Four remaining chapters added, completing the seven-chapter reading order."
+   }
+  ]
+ },
+ {
+  "id": "roman-empire",
+  "title": "The Roman Empire",
+  "hook": "Conquest, roads, frontiers and the separate endings of Roman rule in West and East.",
+  "intro": "Seven chapters follow Rome and Carthage, imperial expansion, roads, shifting frontiers, division, western and eastern endpoints, and surviving places. Selected events and a nineteenth-century atlas interpretation provide historical geography with explicit source and precision limits.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     19,
+     40
+    ],
+    "zoom": 2.5
+   },
+   "modernBorders": false
+  },
+  "chapters": [
+   "rome-carthage",
+   "rome-expansion",
+   "roman-roads",
+   "rome-frontier",
+   "rome-split",
+   "rome-fall",
+   "rome-legacy"
+  ],
+  "dates": [
+   {
+    "d": -263,
+    "t": "First Punic War begins (264 BC)"
+   },
+   {
+    "d": -145,
+    "t": "Carthage destroyed (146 BC)"
+   },
+   {
+    "d": 122,
+    "t": "Hadrian’s Wall begins"
+   },
+   {
+    "d": 395,
+    "t": "Division after Theodosius I"
+   },
+   {
+    "d": 476,
+    "t": "Western deposition"
+   },
+   {
+    "d": 1453,
+    "t": "Constantinople conquered"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Seven reviewed chapters registered, reusing All roads lead to Rome."
+   }
+  ]
+ },
+ {
+  "id": "united-states",
+  "title": "The United States",
+  "hook": "Nine chapters on colonies, expansion, Indigenous dispossession, states, war, migration, elections and an overseas role.",
+  "intro": "Located events and cited schematic movements follow territorial acquisition and Indigenous land loss as separate histories. Modern state geography provides an explicitly disclosed comparison frame for statehood, Civil War categories and election results. The final chapter follows selected historical overseas acquisitions and NATO, with no current troop totals claimed.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     -98,
+     38
+    ],
+    "zoom": 2.5
+   }
+  },
+  "chapters": [
+   "us-colonies",
+   "us-expansion",
+   "us-indigenous-land",
+   "us-statehood",
+   "us-civil-war",
+   "us-frontier",
+   "us-immigration",
+   "us-elections",
+   "us-abroad"
+  ],
+  "dates": [],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Nine chapters registered; America abroad revised to sourced historical overseas acquisitions and NATO."
+   }
+  ]
+ },
+ {
+  "id": "european-union",
+  "title": "The European Union",
+  "hook": "Six chapters on enlargement, overlapping clubs, budget flows, regions, Brexit and candidates.",
+  "intro": "Dated membership maps trace enlargement and show how the EU, euro area and Schengen overlap. A defined 2021–2025 budget comparison distinguishes ordinary allocations, recovery spending and national financing. Selected regional GDP observations are separate from nationally allocated cohesion money. Modern outlines and region reference points have explicit geographic limits.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   }
+  },
+  "chapters": [
+   "eu-growth",
+   "eu-clubs",
+   "eu-budget",
+   "eu-regions",
+   "eu-brexit",
+   "eu-candidates"
+  ],
+  "dates": [],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Six reviewed chapters added, including dated memberships and fixed historical data windows."
+   }
+  ]
+ },
+ {
+  "id": "ukraine-war",
+  "title": "The war in Ukraine",
+  "hook": "Seven chapters from Crimea and Donbas through invasion, changing fighting, energy disruption and displacement.",
+  "intro": "Dated events and UCDP observations describe selected geographic patterns without reconstructing continuous fronts or asserting military control. The series distinguishes the UN account of legal status from the basemap’s orientation conventions. Its source windows stop in August 2026 for UCDP events, end-2025 for refugee stocks and May 2022 for the NASA Kyiv imagery; this is a dated account, not a live front map.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     33,
+     49
+    ],
+    "zoom": 5
+   }
+  },
+  "chapters": [
+   "ua-2014",
+   "ua-invasion",
+   "ua-counteroffensives",
+   "ua-front",
+   "ua-energy",
+   "ua-refugees",
+   "ua-snapshot"
+  ],
+  "dates": [],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Seven reviewed chapters added with explicit, separate observation windows."
+   }
+  ]
+ },
+ {
+  "id": "world-war-ii",
+  "title": "World War II",
+  "hook": "Eight chapters on the war’s geography, occupation, campaigns, civilian harm and aftermath.",
+  "intro": "Dated national occupation-status comparisons, diplomatic border observations, original cited event locators and selected campaign movement have distinct meanings. A cleared US Army atlas supplies a western overview; its Pacific scan describes Allied commands. Atrocity accounts use plain language and static, sourced locations rather than competitive or decorative animation.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     14,
+     49
+    ],
+    "zoom": 3
+   },
+   "modernBorders": false
+  },
+  "chapters": [
+   "ww2-before",
+   "ww2-expansion",
+   "ww2-east",
+   "ww2-pacific",
+   "ww2-holocaust",
+   "ww2-bombing",
+   "ww2-end",
+   "ww2-borders"
+  ],
+  "dates": [],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Complete scoped chapter order registered after chapter source and visual review."
+   }
+  ]
+ },
+ {
+  "id": "holy-roman-empire",
+  "title": "The Holy Roman Empire",
+  "hook": "Six chapters on imperial institutions, fragmented territories, Westphalia and dissolution.",
+  "intro": "The series connects selected imperial places and primary institutional texts with an explicitly coarse circa-1789 outline and selected Habsburg/Brandenburg holdings extracted from a creator-licensed reconstruction. A separately dated 1796 atlas scan supplies readable territorial patchwork. Neither source is a surveyed boundary or an exhaustive account of hundreds of imperial states.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     11,
+     49
+    ],
+    "zoom": 3
+   },
+   "modernBorders": false
+  },
+  "chapters": [
+   "hre-charlemagne",
+   "hre-1000",
+   "hre-patchwork",
+   "hre-westphalia",
+   "hre-end",
+   "hre-after"
+  ],
+  "dates": [],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Complete scoped chapter order registered after chapter source and visual review."
+   }
+  ]
  }
 ]

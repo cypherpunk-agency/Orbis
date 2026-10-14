@@ -1,0 +1,136 @@
+{
+  "source": "hre-reilly1796",
+  "asOf": "Map published 1796; historical cartographic portrayal",
+  "retrieved": "2026-10-14",
+  "title": "Reilly 1796: territorial divisions (approximate alignment)",
+  "image": "data/history/hre/reilly1796.webp",
+  "bbox": [
+    3,
+    44.5,
+    21,
+    55.5
+  ],
+  "url": "https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~278984~90052027",
+  "download": "https://www.davidrumsey.com/rumsey/download.pl?image=/162/11151021.jp2",
+  "sha256": "2c7bad5e0f9566d1fefaf283a321b3c459b3de014c6fe5ac80728756e69801bb",
+  "licence": "CC BY-NC-SA 3.0",
+  "credit": "David Rumsey Map Collection, David Rumsey Map Center, Stanford University Libraries",
+  "note": "Main map panel cropped; retained original hand colouring and names. Second-order inverse warp with nine approximate named-place/coast controls. This is cartographic interpretation, not exact sovereignty geometry. Fit residual measures control consistency only, not historical border accuracy. Close view retains only a regional part of the map.",
+  "gcps": [
+    {
+      "name": "Texel",
+      "pixel": [
+        4578.88,
+        2631.46
+      ],
+      "at": [
+        4.8,
+        53.05
+      ],
+      "residualPx": 79.2
+    },
+    {
+      "name": "Helgoland",
+      "pixel": [
+        6247.1,
+        1591.44
+      ],
+      "at": [
+        7.89,
+        54.18
+      ],
+      "residualPx": 208.6
+    },
+    {
+      "name": "Ruegen",
+      "pixel": [
+        8236.4,
+        963.24
+      ],
+      "at": [
+        13.4,
+        54.42
+      ],
+      "residualPx": 213.3
+    },
+    {
+      "name": "Gdansk",
+      "pixel": [
+        10679.400000000001,
+        1312.24
+      ],
+      "at": [
+        18.65,
+        54.35
+      ],
+      "residualPx": 80.1
+    },
+    {
+      "name": "Strasbourg",
+      "pixel": [
+        5297.820000000001,
+        5967.900000000001
+      ],
+      "at": [
+        7.75,
+        48.58
+      ],
+      "residualPx": 167.0
+    },
+    {
+      "name": "Basel",
+      "pixel": [
+        5228.02,
+        6624.02
+      ],
+      "at": [
+        7.59,
+        47.56
+      ],
+      "residualPx": 73.0
+    },
+    {
+      "name": "Lake Constance",
+      "pixel": [
+        6470.46,
+        6791.54
+      ],
+      "at": [
+        9.4,
+        47.6
+      ],
+      "residualPx": 309.3
+    },
+    {
+      "name": "Venice",
+      "pixel": [
+        7859.4800000000005,
+        7608.200000000001
+      ],
+      "at": [
+        12.34,
+        45.44
+      ],
+      "residualPx": 28.9
+    },
+    {
+      "name": "Trieste",
+      "pixel": [
+        8627.28,
+        7391.820000000001
+      ],
+      "at": [
+        13.77,
+        45.65
+      ],
+      "residualPx": 92.3
+    }
+  ],
+  "fit": {
+    "order": 2,
+    "gcps": 9,
+    "meanErrorPx": 139.1,
+    "maxErrorPx": 309.3
+  },
+  "units": "Historical cartographic image; not measured territorial area"
+}

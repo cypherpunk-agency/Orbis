@@ -10,14 +10,14 @@ Run: .cache/venv/py/bin/python tools/build/countryside.py   (numpy, pillow, rast
 Output:
   data/grids/netmigration.json + data/grids/netmigration-2000-2019.png
      the 5' grid (sum of annual net-migration rates, per 1,000 residents, 2000-2019) averaged into 10' cells,
-     weighted by population; shown as % of the population. Cells with fewer than 1,000 residents are left empty.
+     weighted by population; shown as summed annual rates in percent. Cells with fewer than 1,000 residents are left empty.
      Linear encoding, clamped to ±50 %, diverging palette (blue = net loss, red = net gain).
   data/people/net-migration.json   series by country:
-     nm20      national net migration 2000-2019, % of population (gpkg adm0 'netMgr_20yrsum' / 10)
+     nm20      national summed annual net migration rates 2000-2019, in percent (gpkg adm0 'netMgr_20yrsum' / 10)
      pop_loss  % of residents (GHS-POP 2025) living in 5' cells that lost people to migration over 2000-2019
      area_loss % of populated cells (>= 100 residents) that lost people to migration
   data/people/net-migration-adm1.json   provinces/states of CHN and USA (ids as in data/geo/admin1/<ISO3>.json):
-     nm20      net migration 2000-2019, % of population (gpkg adm1 'netMgr_20yrsum' / 10)"""
+     nm20      summed annual net migration rates 2000-2019, in percent (gpkg adm1 'netMgr_20yrsum' / 10)"""
 import os, json, sqlite3, datetime, unicodedata
 import numpy as np, rasterio
 from rasterio import features
@@ -69,9 +69,9 @@ desc = {
     "source": "niva-netmigration", "asOf": "2019", "retrieved": today,
     "note": "Niva et al. (2023), net migration 2000–2019: annual net-migration rates (5′ grid, estimated as reported population "
             "change minus births plus deaths) summed over 20 years, here averaged into 10′ cells weighted by population (GHS-POP 2025) "
-            "and shown as % of residents. Positive = more people moved in than out. Clamped to ±50 %; cells with fewer than 1,000 "
+            "and shown as summed annual rates in percent. Positive = more people moved in than out. Clamped to ±50 %; cells with fewer than 1,000 "
             "residents left empty. The authors warn that single cells are noisy: read patterns, not pixels.",
-    "units": "% of residents, 2000–2019",
+    "units": "summed annual rates in percent, 2000–2019",
     "grid": {"width": W, "height": H, "bbox": [-180, -90, 180, 90]},
     "encoding": {"type": "linear", "min": -LIM, "max": LIM, "nodata": 0},
     "palette": "diverging",
@@ -117,12 +117,12 @@ con = sqlite3.connect(os.path.join(C, "polyg_adm0_dataNetMgr.gpkg"))
 nm20 = {iso: [round(v / 10, 1)] for iso, v in con.execute('select iso3, netMgr_20yrsum from polyg_adm0_dataNetMgr') if v is not None and iso}
 ser = {
     "source": "niva-netmigration", "asOf": "2019", "retrieved": today,
-    "note": "Niva et al. (2023). nm20: national net migration 2000–2019 (sum of annual rates), % of population. pop_loss: share of "
+    "note": "Niva et al. (2023). nm20: national net migration 2000–2019 (sum of annual rates, with changing annual denominators), in percent. pop_loss: share of "
             "residents (GHS-POP 2025) living in 5′ cells with net out-migration over 2000–2019; area_loss: share of populated 5′ cells "
             "(at least 100 residents) with net out-migration. Countries over 1 million people. Country areas from Natural Earth 1:50m.",
     "years": [2019],
     "series": {
-        "nm20": {"label": "Net migration 2000–2019, % of population", "units": "%", "values": nm20},
+        "nm20": {"label": "Summed annual net migration rates, 2000–2019 (%)", "units": "%", "values": nm20},
         "pop_loss": {"label": "People living in places that lost residents to migration, 2000–2019", "units": "%", "values": pop_loss},
         "area_loss": {"label": "Populated places that lost residents to migration, 2000–2019", "units": "% of populated cells", "values": area_loss},
     },
@@ -146,10 +146,10 @@ for iso in ["CHN", "USA"]:
         if k in ids and v is not None: adm1[ids[k]] = [round(v / 10, 1)]
         else: print("unmatched", iso, name)
 ser1 = {"source": "niva-netmigration", "asOf": "2019", "retrieved": today,
-        "note": "Niva et al. (2023), adm1 polygons: net migration 2000–2019 (sum of annual rates per 1,000), shown as % of population. "
+        "note": "Niva et al. (2023), adm1 polygons: net migration 2000–2019 (sum of annual rates per 1,000), shown as summed annual rates in percent. "
                 "Chinese provinces and US states; ids match data/geo/admin1/.",
         "years": [2019],
-        "series": {"nm20": {"label": "Net migration 2000–2019, % of population", "units": "%", "values": adm1}}}
+        "series": {"nm20": {"label": "Summed annual net migration rates, 2000–2019 (%)", "units": "%", "values": adm1}}}
 p = os.path.join(root, "data/people/net-migration-adm1.json")
 json.dump(ser1, open(p, "w"), separators=(",", ":"), ensure_ascii=False)
 print("wrote", p, os.path.getsize(p))

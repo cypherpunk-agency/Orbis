@@ -1,0 +1,63 @@
+{
+  "source": "cshapes",
+  "asOf": "1938-01-01 and 1950-01-01 diplomatic snapshots",
+  "retrieved": "2026-10-14",
+  "note": "CShapes 2.0 (Schvitz, Rüegger, Girardin, Cederman, Weidmann, Gleditsch 2022, Journal of Conflict Resolution 66(1):144–61), ETH Zurich ICR, Gleditsch–Ward system, independent states and dependent territories (from the cshapes 2.0 R package distributed by ICR, which adds status and ruling state). Licence CC BY-NC-SA 4.0 (non-commercial, share-alike); derived snapshots (date filter, Visvalingam simplification, label points, ids) are by Orbis and are likewise licensed CC BY-NC-SA 4.0. Snapshot dates: 1886 = 1886-01-01, 1900 = 1900-07-01, 1914 = 1914-07-01, 1920 = 1920-01-01, 1925 = 1925-01-01, 1938 = 1938-01-01, 1945 = 1945-01-01, 1950 = 1950-01-01, 1960 = 1960-07-01, 1975 = 1975-01-01, 1990 = 1990-01-01, 1993 = 1993-07-01, 2000 = 2000-01-01, 2011 = 2011-01-01, 2019 = 2019-01-01. CShapes codes de jure borders and omits changes under 10,000 km²; areas not held by any state or dependency in CShapes (e.g. Antarctica, some unclaimed or undefined interiors) are absent. Dependencies carry status and owner. Ids are ISO3 of today's successor where the polity is essentially the same; otherwise short codes (AUH, USSR, OTT, YUG, CSK, BRD, DDR, RAJ, …) or ISO 3166-2 codes for former colonies that are today one subdivision (US-AK, AU-NSW). WWII display view: only ITA, TUR and 1938 DEU consolidated aliases are normalized to Italy, Turkey and Germany. Original labels are retained as sourceName; no geometry, codes, ownership, dates or numerical values change. Other source labels remain verbatim, including the distinct 1950 German states. Not a comprehensive audit of every upstream historical label.",
+  "files": {
+    "1938": "data/history/ww2/borders-names-1938.json",
+    "1950": "data/history/ww2/borders-names-1950.json"
+  },
+  "nameSources": {
+    "ITA": "https://history.state.gov/countries/italy/summary",
+    "TUR": "https://www.govinfo.gov/content/pkg/BILLS-115hres924ih/pdf/BILLS-115hres924ih.pdf",
+    "DEU": "https://history.state.gov/countries/germany"
+  },
+  "provenance": [
+    {
+      "snapshotDate": "1938-01-01",
+      "input": "data/history/borders-1938.json",
+      "sha256": "96866fc65000e88e3cbc9be2fd852a3284600addb11b04a655c9db5a9a4641ca",
+      "nameChanges": [
+        {
+          "id": "DEU",
+          "sourceName": "Germany (Prussia)",
+          "name": "Germany",
+          "source": "https://history.state.gov/countries/germany"
+        },
+        {
+          "id": "ITA",
+          "sourceName": "Italy/Sardinia",
+          "name": "Italy",
+          "source": "https://history.state.gov/countries/italy/summary"
+        },
+        {
+          "id": "TUR",
+          "sourceName": "Turkey (Ottoman Empire)",
+          "name": "Turkey",
+          "source": "https://www.govinfo.gov/content/pkg/BILLS-115hres924ih/pdf/BILLS-115hres924ih.pdf"
+        }
+      ],
+      "geometryUnchanged": true
+    },
+    {
+      "snapshotDate": "1950-01-01",
+      "input": "data/history/borders-1950.json",
+      "sha256": "64f3abb4f38628a94e0b3fae1d52ee4e22d7a459258055456ad1197d45b591d8",
+      "nameChanges": [
+        {
+          "id": "ITA",
+          "sourceName": "Italy/Sardinia",
+          "name": "Italy",
+          "source": "https://history.state.gov/countries/italy/summary"
+        },
+        {
+          "id": "TUR",
+          "sourceName": "Turkey (Ottoman Empire)",
+          "name": "Turkey",
+          "source": "https://www.govinfo.gov/content/pkg/BILLS-115hres924ih/pdf/BILLS-115hres924ih.pdf"
+        }
+      ],
+      "geometryUnchanged": true
+    }
+  ]
+}

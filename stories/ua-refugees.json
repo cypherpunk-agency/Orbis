@@ -1,0 +1,156 @@
+{
+  "id": "ua-refugees",
+  "cat": "Geopolitics",
+  "title": "Refugees and displacement",
+  "hook": "Separate measures for people abroad and people displaced within Ukraine.",
+  "updated": "2026-10-14",
+  "sources": [
+    "editorial",
+    "unhcr"
+  ],
+  "data": {
+    "notes": "data/history/ukraine/ua-refugees.json",
+    "violence": "data/events/conflict-ukraine.json",
+    "stocks": "data/people/refugees.json",
+    "flows": "data/people/refugees-flows.json"
+  },
+  "notes": "Fixed editorial cutoff: 14 October 2026. This is not a live map. The modern Natural Earth basemap provides orientation; its border conventions do not establish legal recognition, sovereignty or military control. Cards are selected approximate locators. UCDP events are incidents of organized violence with at least one death, aggregated into 0.25-degree cells by start month. Event locations are coded approximations; country-only/unlocated records are omitted. Only records assigned to Ukraine are shown, excluding Russia. GED 26.1 covers through December 2025; Candidate 26.0.8 extends through August 2026 and is preliminary. Circles measure events, not territory, troop strength or civilian deaths. Annual series: UNHCR Refugee Population Statistics, refugees under its mandate plus other people needing international protection, excluding asylum seekers and IDPs. Annual flow pairs at least 5,000 are stocks, not migration routes. Russia coverage break documented in https://www.unhcr.org/sites/default/files/2025-06/global-trends-report-2024.pdf . Separate operational estimate https://www.unhcr.org/sites/default/files/2026-01/unhcr-2025-emergencies-and-protracted-crises-impact-report.pdf .",
+  "scenes": [
+    {
+      "title": "Across borders",
+      "text": "The annual UNHCR series counts about 5.22 million Ukraine-origin refugees at the end of 2025. The lines connect origin and asylum countries; they measure stocks, not journeys or border crossings. Only pairs of at least 5,000 people are included.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          20,
+          51
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "flows",
+          "data": "flows",
+          "group": "ref",
+          "year": 2025,
+          "top": 12,
+          "color": "muted",
+          "vmax": 1500000,
+          "maxW": 10,
+          "title": "Ukraine-origin refugee stocks",
+          "fmt": "int",
+          "from": [
+            "UKR"
+          ]
+        }
+      ],
+      "sources": [
+        "unhcr"
+      ]
+    },
+    {
+      "title": "Before and after 2022",
+      "text": "The Ukraine-origin annual series rose sharply in 2022. Line widths retain one scale across years. Its fall in 2024 partly reflects UNHCR stopping the listing of roughly 1.2 million Ukrainians in Russia. It is a coverage break, not proof that those people moved away.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          25,
+          50
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "flows",
+          "data": "flows",
+          "group": "ref",
+          "year": "t",
+          "top": 12,
+          "color": "muted",
+          "vmax": 1500000,
+          "maxW": 10,
+          "title": "Ukraine-origin refugee stocks",
+          "fmt": "int",
+          "from": [
+            "UKR"
+          ]
+        }
+      ],
+      "timeline": {
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "start": 2021
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "stocks",
+          "series": "origin",
+          "countries": [
+            "UKR"
+          ],
+          "title": "Ukraine-origin refugees, annual stocks",
+          "fmt": "int"
+        }
+      ],
+      "sources": [
+        "unhcr"
+      ]
+    },
+    {
+      "title": "Displaced within the country",
+      "text": "Cross-border refugee data leaves out internal displacement. UNHCR’s year-end 2025 emergency report estimates 3.7 million internally displaced people. The national marker does not map their individual destinations.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          49
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "inside"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A stock is not a crossing",
+      "text": "A person can cross a border more than once, return temporarily, or be counted under different protection categories. The emergency report’s 5.9 million estimate and the annual series’ 5.22 million total are presented with their own coverage, rather than added or treated as interchangeable.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          49
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "definitions"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

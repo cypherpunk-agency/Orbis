@@ -1,0 +1,74 @@
+{
+  "source": "editorial",
+  "asOf": "Historical observation dates stated per event",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed.",
+  "kinds": {
+    "0": {
+      "label": "Europe: January1938",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Vienna",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Munich",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Moscow",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "title": "Europe: January1938",
+      "text": "CShapes records state boundaries on 1 January 1938. Austria and Czechoslovakia still appear separately. This is diplomatic geography before the year’s annexations, not a map of the eve of war in September 1939.",
+      "date": 1938,
+      "at": [
+        16,
+        51
+      ],
+      "kind": "0",
+      "source": "Primary record / specialist museum account",
+      "url": "https://icr.ethz.ch/data/cshapes/"
+    },
+    {
+      "title": "Vienna",
+      "text": "German troops entered Austria on 12 March 1938; the Anschluss law incorporated it into Nazi Germany the following day. Vienna locates the annexation. No new territorial polygon is inferred from this point.",
+      "date": 19380313,
+      "at": [
+        16.37,
+        48.21
+      ],
+      "kind": "1",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/nazi-territorial-aggression-the-anschluss"
+    },
+    {
+      "title": "Munich",
+      "text": "The agreement reached at Munich on 29–30 September 1938 allowed German annexation of the Sudetenland. The city point locates the negotiations; it does not draw the affected border districts.",
+      "date": 19380930,
+      "at": [
+        11.58,
+        48.14
+      ],
+      "kind": "2",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1933-1938/munich-agreement"
+    },
+    {
+      "title": "Moscow",
+      "text": "Germany and the Soviet Union signed their non-aggression pact on 23 August 1939. Its secret protocol divided spheres in eastern Europe and provided for Poland’s partition. The Moscow point locates the agreement, not its territorial clauses.",
+      "date": 19390823,
+      "at": [
+        37.62,
+        55.75
+      ],
+      "kind": "3",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis, cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original factual annotations. Event URLs cite dates and claims; coordinates locate the named place approximately, not battlefield boundaries. BC dates use astronomical years (1 BC = 0).",
+  "kinds": {
+    "hadrian": {
+      "label": "Hadrian",
+      "color": "c3"
+    },
+    "antonine": {
+      "label": "Antonine",
+      "color": "c4"
+    },
+    "continental": {
+      "label": "Continental",
+      "color": "c5"
+    }
+  },
+  "items": [
+    {
+      "title": "Hadrian’s Wall: west",
+      "date": 122,
+      "at": [
+        -3.22,
+        54.95
+      ],
+      "text": "Bowness-on-Solway marks the western end of the wall begun after Hadrian’s visit in AD 122.",
+      "url": "https://www.english-heritage.org.uk/visit/places/hadrians-wall/hadrians-wall-history-and-stories/history/",
+      "source": "English Heritage",
+      "kind": "hadrian"
+    },
+    {
+      "title": "Hadrian’s Wall: east",
+      "date": 122,
+      "at": [
+        -1.53,
+        54.99
+      ],
+      "text": "Wallsend marks the eastern end. Endpoint markers do not trace the wall’s surveyed course.",
+      "url": "https://www.english-heritage.org.uk/visit/places/hadrians-wall/hadrians-wall-history-and-stories/history/",
+      "source": "English Heritage",
+      "kind": "hadrian"
+    },
+    {
+      "title": "Antonine frontier",
+      "date": 142,
+      "at": [
+        -3.9,
+        55.98
+      ],
+      "text": "In the 140s Rome pushed north to the Forth–Clyde isthmus. AD 142 is the conventional start date, not an instantaneous completed line.",
+      "url": "https://whc.unesco.org/en/list/430/",
+      "source": "UNESCO, Frontiers of the Roman Empire",
+      "kind": "antonine"
+    },
+    {
+      "title": "Rhine frontier",
+      "date": 150,
+      "at": [
+        7.33,
+        50.49
+      ],
+      "text": "Rheinbrohl anchors the northern end of the Upper German–Raetian frontier, built in stages during the second century. AD 150 is a period anchor.",
+      "url": "https://whc.unesco.org/en/list/430/",
+      "source": "UNESCO, Frontiers of the Roman Empire",
+      "kind": "continental"
+    },
+    {
+      "title": "Danube frontier",
+      "date": 150,
+      "at": [
+        11.78,
+        48.82
+      ],
+      "text": "Bad Gögging to Iža was a fortified river frontier; this point locates its western segment. AD 150 is a period anchor.",
+      "url": "https://whc.unesco.org/en/list/1608/",
+      "source": "UNESCO, Danube Limes",
+      "kind": "continental"
+    }
+  ]
+}

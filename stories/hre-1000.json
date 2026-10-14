@@ -1,0 +1,132 @@
+{
+  "id": "hre-1000",
+  "cat": "People",
+  "title": "The empire around 1000",
+  "hook": "Saxon royal centres and Italian imperial coronation formed a geography spanning the Alps.",
+  "updated": "2026-10-14",
+  "notes": "Met Ottonian Art and UNESCO Quedlinburg. 1000 is a cultural-period snapshot. The map shows cited political/cultural centres, not speculative territory. Coordinates are approximate named-place locators, not imported surveyed points. Modern borders are hidden. Event cards contain claim-level citations. The later term Holy Roman Empire must not be projected unchanged onto Charlemagne’s Frankish realm.",
+  "sources": [
+    "editorial"
+  ],
+  "data": {
+    "events": "data/history/hre/hre-1000.json"
+  },
+  "scenes": [
+    {
+      "title": "Royal authority at Aachen",
+      "text": "In 936 Otto became king at Aachen. A long-used ceremonial centre helped connect a new dynasty to earlier imperial memory.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          6.083,
+          50.775
+        ],
+        "zoom": 8
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "royal"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Imperial authority at Rome",
+      "text": "Otto received the imperial title in Rome in 962. Move the timeline: Aachen’s royal anchor remains while the Roman imperial connection enters the map.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10,
+          47
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "royal",
+            "imperial"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          936,
+          962
+        ],
+        "start": 962
+      }
+    },
+    {
+      "title": "Saxon centres",
+      "text": "Quedlinburg belonged to the heartland of Saxon-Ottonian rulership. Around 1000, royal places and religious communities helped sustain government; this city anchor does not define an imperial border.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          11.15,
+          51.79
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "saxon"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Churches and imperial culture",
+      "text": "Hildesheim’s bronze monuments drew on ancient imperial and early Christian models. Compare this ecclesiastical centre with Quedlinburg in the previous scene: churches and royal sites sustained different parts of the northern imperial world.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          9.95,
+          52.15
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "church"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

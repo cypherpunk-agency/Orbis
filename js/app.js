@@ -92,10 +92,12 @@ function update(){
 
 // ---------- canvas ----------
 const canvas=document.getElementById("map"), ctx=canvas.getContext("2d");
+let projectionSnapshot=null;
 const path=d3.geoPath(proj,ctx);
 let W=0,H=0,DPR=1;
 const sheet=document.getElementById("sheet"), topbar=document.getElementById("topbar"), toc=document.getElementById("toc");
 function layout(){
+  if(projectionSnapshot) settle();
   W=innerWidth;H=innerHeight;DPR=Math.min(2,devicePixelRatio||1);
   canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+"px";canvas.style.height=H+"px";
   const tb=topbar.getBoundingClientRect(), sh=sheet.getBoundingClientRect();
@@ -156,7 +158,11 @@ function label(text,x,y,opts={}){
   ctx.font=size+"px 'Barlow Semi Condensed', 'Arial Narrow', sans-serif";
   ctx.textAlign=opts.align||"left";ctx.textBaseline="middle";
   // skip labels that would overlap one already drawn (earlier labels have priority)
-  const w=ctx.measureText(text).width, x0=opts.align==="center"?x-w/2:x, r=[x0-2,y-size/2-2,x0+w+2,y+size/2+2];
+  const w=ctx.measureText(text).width, offset=opts.align==="center"?w/2:opts.align==="right"?w:0;
+  if(w>F.w-8||x<F.x||x>F.x+F.w||y-size/2<F.y||y+size/2>F.y+F.h) return;
+  // Keep the complete label inside the map frame, especially on narrow screens.
+  x=clamp(x,F.x+4+offset,F.x+F.w-4-w+offset);
+  const x0=x-offset, r=[x0-2,y-size/2-2,x0+w+2,y+size/2+2];
   if(!opts.force && placed.some(q=>r[0]<q[2]&&r[2]>q[0]&&r[1]<q[3]&&r[3]>q[1])) return;
   placed.push(r);
   ctx.lineJoin="round";ctx.lineWidth=4;ctx.strokeStyle=onDark?"rgba(6,14,20,.85)":C.halo;ctx.strokeText(text,x,y);
@@ -183,8 +189,11 @@ function drawRaster(){
 }
 // historical border snapshots, decoded once (inline TopoJSON or one file per snapshot)
 const HIST={};
+// Aliases such as "atlas" and "borders" are local to a story. Cache the
+// declared dataset path so switching stories cannot reuse another dataset.
+const datasetKey=alias=>{ const st=si>=0?STORIES[si]:null; return st&&st.data&&st.data[alias]||alias; };
 function histSnap(alias,d,yr){
-  const key=alias+":"+yr; if(HIST[key]) return HIST[key].ready?HIST[key]:null;
+  const key=datasetKey(alias)+":"+yr; if(HIST[key]) return HIST[key].ready?HIST[key]:null;
   HIST[key]={ready:false};
   const done=t=>{ const o=t.objects.states||Object.values(t.objects)[0], fs=topojson.feature(t,o).features;
     const nb=topojson.neighbors(o.geometries), tn=new Array(fs.length).fill(0);
@@ -196,6 +205,7 @@ function histSnap(alias,d,yr){
 // shapes over time (any polygons with from/to dates: empires, provinces, occupied areas), decoded once per dataset
 const SHP={};
 function shapeSet(alias,d){
+  alias=datasetKey(alias);
   if(SHP[alias]) return SHP[alias].ready?SHP[alias]:null;
   SHP[alias]={ready:false};
   const done=t=>{ const o=t.objects.shapes||Object.values(t.objects)[0], fs=topojson.feature(t,o).features;
@@ -208,7 +218,7 @@ function shapeSet(alias,d){
 // historical map overlays: one georeferenced image per dataset, drawn as a raster patch over its lon/lat box
 const OVL={};
 function overlayTex(alias,d){
-  const name="ovl:"+alias; if(OVL[name]==="ready") return name; if(OVL[name]) return null;
+  const name="ovl:"+datasetKey(alias); if(OVL[name]==="ready") return name; if(OVL[name]) return null;
   OVL[name]="loading"; const img=new Image(); img.crossOrigin="anonymous";
   img.onload=()=>{ Raster.putPatch(name,img,d.bbox); OVL[name]="ready"; lateData(); };
   img.onerror=()=>{ console.warn("Overlay not loaded",d.image); };
@@ -216,13 +226,14 @@ function overlayTex(alias,d){
 }
 const ovAlpha={};   // opacity chosen with the slider, per overlay
 // is a dated item valid at time y? from inclusive, to exclusive, null = open
-// dates may be years (astronomical) or yyyymmdd; compare them in the scene timeline's unit
+// Dates may be years (astronomical) or yyyymmdd. A fixed date layer also
+// establishes date precision when the scene has no timeline.
 const isDateNum=n=>Math.abs(n)>=10000;
 const asYear=n=>isDateNum(n)?Math.trunc(n/10000):n;
-const tUnit=n=>n==null?n:(scene&&scene.timeline&&scene.timeline.isDate)?(isDateNum(n)?n:n*10000+Math.sign(n||1)*101):asYear(n);
-const validAt=(p,y)=>(p.from==null||tUnit(p.from)<=y)&&(p.to==null||y<tUnit(p.to));
+const tUnit=(n,at)=>n==null?n:((scene&&scene.timeline&&scene.timeline.isDate)||isDateNum(at))?(isDateNum(n)?n:n*10000+Math.sign(n||1)*101):asYear(n);
+const validAt=(p,y)=>(p.from==null||tUnit(p.from,y)<=y)&&(p.to==null||y<tUnit(p.to,y));
 // data that arrives after a scene opened: rebuild layers and the panel's legend
-function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML(); render(); }
+function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML(); render(); describe(); }
 // admin-1 geometry per country, loaded on demand
 const REG={};
 function regionGeo(iso){
@@ -237,6 +248,7 @@ function regionGeo(iso){
 // u/v wind field from an RGB PNG (R=u, G=v, 128 = 0)
 const VF={};
 function vectorField(alias,desc){
+  alias=datasetKey(alias);
   if(VF[alias]) return VF[alias].ready?VF[alias]:null;
   const G=VF[alias]={ready:false}, url=Object.values(desc.frames)[0], e=desc.encoding;
   const img=new Image(); img.onload=()=>{ const cv=document.createElement("canvas"); cv.width=img.width; cv.height=img.height;
@@ -320,11 +332,14 @@ function gridPalette(kind){
   return lut;
 }
 function gridFrame(alias,desc,label){
-  const key=alias+":"+label, url=desc.frames[label]; if(!url) return null;
+  const key=datasetKey(alias)+":"+label, url=desc.frames[label]; if(!url) return null;
   if(GRIDS[key]) return GRIDS[key];
   const G=GRIDS[key]={tex:"grid:"+key,ready:false};
   const img=new Image(); img.onload=()=>{
     const cv=document.createElement("canvas"); cv.width=img.width; cv.height=img.height; const g=cv.getContext("2d");
+    if(desc.encoding.type==="image"){
+      g.drawImage(img,0,0); Raster.put(G.tex,cv); G.ready=true; lateData(); return;
+    }
     g.drawImage(img,0,0); const id=g.getImageData(0,0,cv.width,cv.height), px=id.data, lut=gridPalette(desc.palette);
     G.w=cv.width; G.h=cv.height; G.bytes=new Uint8Array(cv.width*cv.height);
     for(let i=0;i<G.bytes.length;i++){ const b=px[i*4]; G.bytes[i]=b; px[i*4]=lut[b*4]; px[i*4+1]=lut[b*4+1]; px[i*4+2]=lut[b*4+2]; px[i*4+3]=b?lut[b*4+3]:0; }
@@ -476,12 +491,20 @@ function drawCartogram(ras){
 }
 
 // ---------- animation loop ----------
-let anim=null, spin=false, raf=null, last=0;
+let anim=null, inertia=null, spin=false, raf=null, last=0;
 function hasFlow(){return !reduce && L && (L.flows.length>0 || !!L.particles || L.routes.some(r=>r.flow));}
 function render(){ if(!raf) raf=requestAnimationFrame(tick); }
 function tick(now){
-  raf=null; const dt=last?Math.min(50,now-last):16; last=now; tNow=now; let more=false;
+  raf=null;const elapsed=last?Math.max(0,now-last):16,dt=Math.min(50,elapsed);last=now;tNow=now;let more=false;
   if(anim){const e=Math.min(1,(now-anim.start)/anim.dur);anim.step(d3.easeCubicInOut(e)); if(e>=1){anim.end();anim=null;}else more=true;}
+  else if(inertia&&!drag){
+    const decay=Math.exp(-elapsed/320),travel=320*(1-decay);
+    const lat=clamp(V.center[1]+inertia.y*travel,-85,85);
+    V.center=[((V.center[0]+inertia.x*travel+540)%360)-180,lat];
+    if(Math.abs(lat)===85) inertia.y=0;
+    inertia.x*=decay;inertia.y*=decay;
+    if(Math.hypot(inertia.x,inertia.y)<0.0001){inertia=null;scheduleDetail();describe();}else more=true;
+  }
   else if(spin&&!drag){V.center=[V.center[0]+dt*0.006,V.center[1]];more=true;}
   draw();
   if(L&&L.carto&&cartoEase()<1) more=true;
@@ -489,32 +512,62 @@ function tick(now){
 }
 function flyTo(t,dur=1600){
   const k0=curKind(), k1=t.mode, c0=V.center.slice(), z0=V.zoom, z1=t.zoom||1;
-  V.a=k0;V.b=k1;V.t=0;
+  inertia=null; finishProjectionFade();
+  const change=k0!==k1&&!reduce;
+  if(change){
+    // Crossfade valid projections instead of folding the back hemisphere
+    // into visible bands while interpolating raw projection coordinates.
+    draw();projectionSnapshot=document.createElement("canvas");
+    projectionSnapshot.className="projection-snapshot";projectionSnapshot.setAttribute("aria-hidden","true");
+    projectionSnapshot.camera={mode:k0,center:c0.slice(),zoom:z0};
+    projectionSnapshot.width=canvas.width;projectionSnapshot.height=canvas.height;
+    const frozen=projectionSnapshot.getContext("2d");
+    frozen.drawImage($("raster"),0,0);frozen.drawImage(canvas,0,0);canvas.after(projectionSnapshot);
+  }
+  V.a=V.b=k1;V.t=0;
   const gi=d3.geoInterpolate(c0,t.center), dist=d3.geoDistance(c0,t.center);
   if(reduce) dur=1;
   const dip=Math.min(1,dist/1.2)*(Math.max(z0,z1)>1.5?0.45:0.2);
   anim={start:performance.now(),dur,
-    step(e){V.center=gi(e);V.zoom=Math.exp(Math.log(z0)*(1-e)+Math.log(z1)*e)*(1-dip*Math.sin(Math.PI*e));V.t=k0===k1?0:e;},
-    end(){V.a=V.b=k1;V.t=0;V.center=t.center.slice();V.zoom=z1;scheduleDetail();}};
+    step(e){V.center=gi(e);V.zoom=Math.exp(Math.log(z0)*(1-e)+Math.log(z1)*e)*(1-dip*Math.sin(Math.PI*e));
+      if(change){projectionSnapshot.style.opacity=1-e;canvas.style.opacity=e;$("raster").style.opacity=e;}},
+    end(){V.center=t.center.slice();V.zoom=z1;finishProjectionFade();scheduleDetail();describe();}};
   render();
 }
-function settle(){ if(anim){anim=null;} const k=curKind(); V.a=V.b=k;V.t=0; }
+function finishProjectionFade(){if(projectionSnapshot){projectionSnapshot.remove();projectionSnapshot=null;}canvas.style.opacity="";$("raster").style.opacity="";}
+function settle(){
+  anim=null;inertia=null;
+  if(projectionSnapshot&&Number(projectionSnapshot.style.opacity||1)>=0.5){
+    const c=projectionSnapshot.camera;V.a=V.b=c.mode;V.t=0;V.center=c.center.slice();V.zoom=c.zoom;
+  }
+  finishProjectionFade();const k=curKind();V.a=V.b=k;V.t=0;syncMode(k);
+}
 
 // ---------- interaction ----------
 const ptrs=new Map(); let drag=null;
 canvas.addEventListener("pointerdown",e=>{canvas.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
-  if(ptrs.size===1)drag={x0:e.clientX,y0:e.clientY,moved:false};
-  else if(ptrs.size===2&&drag){const [p,q]=[...ptrs.values()];drag.pinch={d:Math.hypot(p.x-q.x,p.y-q.y),z:V.zoom};drag.moved=true;}
+  settle();
+  if(ptrs.size===1)drag={x0:e.clientX,y0:e.clientY,moved:false,last:performance.now(),vx:0,vy:0};
+  else if(ptrs.size===2&&drag){const [p,q]=[...ptrs.values()];drag.pinch={d:Math.hypot(p.x-q.x,p.y-q.y),z:V.zoom};drag.moved=true;drag.pinched=true;}
   spin=false;hideTip();});
 canvas.addEventListener("pointermove",e=>{const pr=ptrs.get(e.pointerId); if(!pr||!drag) return;
   const dx=e.clientX-pr.x, dy=e.clientY-pr.y; ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(ptrs.size===1){ if(Math.hypot(e.clientX-drag.x0,e.clientY-drag.y0)>5) drag.moved=true;
     if(drag.moved){settle();const s=S[curKind()]*V.zoom;const k=deg/s*(curKind()==="equal"?1.15:1);
+      const now=performance.now(),elapsed=Math.max(8,now-drag.last);
+      drag.vx=0.35*drag.vx-0.65*dx*k/elapsed;drag.vy=0.35*drag.vy+0.65*dy*k/elapsed;drag.last=now;
       V.center=[V.center[0]-dx*k, clamp(V.center[1]+dy*k,-85,85)];render();}}
   else if(ptrs.size===2&&drag.pinch){const [p,q]=[...ptrs.values()];settle();V.zoom=clamp(drag.pinch.z*Math.hypot(p.x-q.x,p.y-q.y)/drag.pinch.d,0.6,24);render();}
 });
 function endPtr(e){ if(!ptrs.has(e.pointerId)) return; ptrs.delete(e.pointerId);
-  if(ptrs.size===0){ if(drag&&!drag.moved) tap(e.clientX,e.clientY); drag=null; render(); scheduleDetail(); } }
+  if(ptrs.size===0){
+    if(e.type!=="pointercancel"&&drag){
+      if(!drag.moved)tap(e.clientX,e.clientY);
+      else if(!reduce&&!drag.pinched&&curKind()==="globe"&&performance.now()-drag.last<120)
+        inertia={x:clamp(drag.vx,-0.12,0.12),y:clamp(drag.vy,-0.08,0.08)};
+    }
+    drag=null;render();if(!inertia)scheduleDetail();
+  } }
 canvas.addEventListener("pointerup",endPtr);canvas.addEventListener("pointercancel",endPtr);
 canvas.addEventListener("wheel",e=>{e.preventDefault();settle();spin=false;V.zoom=clamp(V.zoom*Math.exp(-e.deltaY*0.0015),0.6,24);render();scheduleDetail();},{passive:false});
 document.getElementById("zin").onclick=()=>{settle();V.zoom=clamp(V.zoom*1.5,0.6,24);render();scheduleDetail();};
@@ -663,7 +716,7 @@ function pointValues(ly,d,y){
 const LAYER={
   cards(ly,d,y,L){ // dated events with a story card: tap a dot to read it; optional list in the panel
     const t=+y, w=ly.window, K=d.kinds||{};
-    const pick=(d.items||[]).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(e.date)<=t&&(!w||tUnit(e.date)>t-w))).sort((a,b)=>a.date-b.date);
+    const pick=(d.items||[]).filter(e=>!ly.kinds||ly.kinds.includes(e.kind)).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(e.date,t)<=t&&(!w||tUnit(e.date,t)>t-w))).sort((a,b)=>a.date-b.date);
     pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",label:ly.labels===false?null:e.title,card:e}));
     if(ly.list) L.cardList=(L.cardList||[]).concat(pick);
     Object.entries(K).forEach(([k,v])=>{ if(pick.some(e=>e.kind===k)&&!L.shapeKeys.some(x=>x.g==="card:"+k)) L.shapeKeys.push({g:"card:"+k,label:v.label||k,color:v.color||"c2"}); });
@@ -674,7 +727,7 @@ const LAYER={
   },
   moves(ly,d,y,L){ // routes whose points carry dates: drawn up to the timeline date, with a marker where the mover is
     const t=+y; (d.moves&&d.moves[ly.set]||[]).filter(m=>!ly.only||ly.only.includes(m.name)).forEach(m=>{
-      const P=m.path.map(p=>[p[0],p[1],tUnit(p[2])]), done=P.filter(p=>p[2]<=t); if(!done.length) return;
+      const P=m.path.map(p=>[p[0],p[1],tUnit(p[2],t)]), done=P.filter(p=>p[2]<=t); if(!done.length) return;
       const k=done.length, nx=P[k]; let pos=done[k-1].slice(0,2);
       if(nx&&nx[2]>done[k-1][2]){ const f=(t-done[k-1][2])/(nx[2]-done[k-1][2]); pos=d3.geoInterpolate(done[k-1].slice(0,2),nx.slice(0,2))(Math.min(1,f)); }
       const c=m.color||ly.color||"c1", finished=!nx;
@@ -778,6 +831,16 @@ const LAYER={
     const set0=d.sets[ly.set]; if(!set0) return;
     let set=set0; if(set0.byYear){ const ks=Object.keys(set0.byYear).map(Number).sort((a,b)=>a-b), k=ks.filter(v=>v<=+y).pop(); set=Object.assign({},set0,{values:k!=null?set0.byYear[k]:{}}); }
     const nm=ly.names&&(typeof ly.names[ly.set]==="object"?ly.names[ly.set]:ly.names); // story-side labels, e.g. translations
+    if(ly.country||ly.regionSet){
+      const R=regionGeo(ly.country||ly.regionSet); if(!R) return;
+      const vals=set.values||{}, names=nm||set.labels||{};
+      L.regions.push({R,vals,categorical:true,color:x=>col(ly.colors[x]||"muted"),
+        title:(ly.title||set.label||"Categories")+" · "+ylab(y),fmt:x=>names[x]||String(x),labels:ly.labels});
+      Object.entries(ly.colors).forEach(([cat,c])=>{
+        if(R.feats.some(f=>vals[f.id]===cat)) L.shapeKeys.push({g:"category:"+ly.data+":"+ly.set+":"+cat,label:names[cat]||cat,color:c});
+      });
+      return;
+    }
     Object.entries(ly.colors).forEach(([cat,c])=>L.groups.push({label:(nm&&nm[cat])||(set.labels&&set.labels[cat])||cat,color:c,
       ids:Object.entries(set.values).filter(([k,v])=>v===cat).map(([k])=>k)}));
   },
@@ -832,7 +895,7 @@ swipeH.addEventListener("pointerdown",e=>{ e.preventDefault(); e.stopPropagation
   const mv=ev=>{ swipeAt=clamp((ev.clientX-F.x)/F.w,0.02,0.98); placeSwipe(); render(); };
   const up=()=>{ swipeH.removeEventListener("pointermove",mv); swipeH.removeEventListener("pointerup",up); };
   swipeH.addEventListener("pointermove",mv); swipeH.addEventListener("pointerup",up); });
-swipeH.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft"||e.key==="ArrowRight"){ swipeAt=clamp(swipeAt+(e.key==="ArrowLeft"?-0.05:0.05),0.02,0.98); placeSwipe(); render(); } });
+swipeH.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft"||e.key==="ArrowRight"){ e.preventDefault(); e.stopPropagation(); swipeAt=clamp(swipeAt+(e.key==="ArrowLeft"?-0.05:0.05),0.02,0.98); placeSwipe(); render(); } });
 let focus=null, pairFrom=null;   // tapped country: flows filter / pairs origin
 // a scene "switch" (e.g. pick a commodity) fills {placeholders} in its layers, chart and text
 let switchIdx=0;
@@ -913,7 +976,7 @@ function renderSwitch(){
   if(!sw){ box.hidden=true; return; }
   box.innerHTML=`<span class="sw-label">${esc(sw.label||t("Show"))}</span>`+sw.options.map((o,i)=>`<button class="bloc" data-i="${i}" aria-pressed="${String(i===switchIdx)}">${esc(o.label)}</button>`).join("");
   [...box.querySelectorAll("button")].forEach(b=>b.onclick=()=>{ switchIdx=+b.dataset.i; cartoStart=performance.now()-900; renderSwitch();
-    const op=switchOpt(); el.text.textContent=op.text||scene.text; L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderData(); render(); });
+    const op=switchOpt(); el.text.textContent=op.text||scene.text; L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderData(); render(); describe(); });
   box.hidden=false;
   const op=switchOpt(); if(op&&op.text) el.text.textContent=op.text;
 }
@@ -963,7 +1026,7 @@ function renderTools(){
 // ---------- screen-reader description of what the map shows ----------
 function describe(){
   if(!L) return; const parts=[], top=(vals,f,n=3)=>Object.entries(vals||{}).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([k,v])=>nameOf(k)+" "+f(v)).join(", ");
-  const vw=(scene&&scene.view)||{mode:curKind(),center:V.center}, mode=vw.mode==="globe"?"Globe":"Flat map";
+  const vw={mode:curKind(),center:V.center}, mode=vw.mode==="globe"?"Globe":"Flat map";
   parts.push(mode+" centred near "+Math.round(vw.center[1])+"° latitude, "+Math.round(vw.center[0])+"° longitude.");
   if(L.symbols.some(x=>x.label)) parts.push("Circles: "+L.symbols.filter(x=>x.label).slice(0,4).map(x=>x.label).join(", ")+".");
   if(L.spikes.some(x=>x.label)) parts.push("Towers: "+L.spikes.filter(x=>x.label).slice(0,4).map(x=>x.label).join(", ")+".");
@@ -971,10 +1034,19 @@ function describe(){
   L.vals.forEach(v=>parts.push(v.title+"; largest: "+top(v.values,v.fmt)+"."));
   if(L.flows.length){ const f=L.flows.slice().sort((a,b)=>b.v-a.v).slice(0,3); parts.push("Lines show "+f[0].title+": "+f.map(x=>nameOf(x.a)+" to "+nameOf(x.b)+" "+x.fmt(x.v)).join("; ")+"."); }
   if(L.groups.length) L.groups.forEach(g=>parts.push(g.label+": "+g.ids.length+" countries highlighted."));
+  L.regions.forEach(rg=>{
+    if(rg.categorical){ const counts={}; rg.R.feats.forEach(f=>{const v=rg.vals[f.id]; if(v!=null) counts[rg.fmt(v)]=(counts[rg.fmt(v)]||0)+1;});
+      parts.push(rg.title+": "+Object.entries(counts).map(([name,n])=>n+" regions "+name).join(", ")+"; tap a region to read its category.");
+    } else parts.push("Regions coloured by "+rg.title+"; tap a region to read its value.");
+  });
   if(L.routes.length) parts.push(L.routes.length+" routes drawn"+(L.routes.some(r=>r.label)?": "+L.routes.filter(r=>r.label).slice(0,5).map(r=>r.label).join(", "):"")+".");
   if(L.points.length) parts.push("Places marked: "+L.points.filter(p=>p.label).slice(0,8).map(p=>p.label).join(", ")+".");
-  if(L.rasters.length) parts.push("A colour grid shows "+L.rasters.filter(r=>r.side!=="R").map(r=>r.title).join(", ")+(L.swipe?" (left: "+L.swipe.left+", right: "+L.swipe.right+")":"")+"; tap the map to read values.");
+  if(L.rasters.length) parts.push("Raster layers show "+L.rasters.filter(r=>r.side!=="R").map(r=>r.title).join(", ")+(L.swipe?" (left: "+L.swipe.left+", right: "+L.swipe.right+")":"")+(L.rasters.some(r=>r.desc.encoding.type!=="image")?"; tap the map to read grid values.":"; imagery is a visual comparison, not a numeric measurement."));
   if(L.hist) parts.push("Borders as of "+L.hist.year+".");
+  L.shapes.forEach(sh=>{ if(sh.feats.length) parts.push("Shapes at "+ylab(sh.year)+": "+sh.feats.length+" areas; "+
+    [...new Set(sh.feats.map(f=>f.properties.group))].map(g=>(sh.groups[g]&&sh.groups[g].label)||g).join(", ")+"."); });
+  if(L.overlays.length) parts.push("Map overlays: "+L.overlays.map(o=>o.title).join(", ")+"; adjust their opacity in the scene controls.");
+  if(L.hatches.length) parts.push("Hatched memberships: "+L.shapeKeys.filter(k=>k.g.startsWith("hatch:")).map(k=>k.label).join(", ")+"; overlaps show multiple memberships.");
   const txt=parts.join(" "); $("srDesc").textContent=txt; canvas.setAttribute("aria-label",(scene&&scene.title?scene.title+". ":"")+txt);
 }
 
@@ -1065,13 +1137,14 @@ function legendHTML(){
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · "+t("country size = amount"));
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · ${t("circle area = amount")}</span></span>`;
-  if(L) L.regions.forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(t=>C.seq(t)).join(",");
+  if(L) L.regions.filter(rg=>!rg.categorical).forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(t=>C.seq(t)).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(rg.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(rg.fmt(rg.lo))}</span><span>${esc(rg.fmt(rg.hi))}</span></div></div>`; });
   if(L&&L.pov) h+=`<span class="chip"><i style="background:none;border:1.5px dashed ${C.accent}"></i>${esc(t("Disputed areas, drawn as seen from {x}",{x:nameOf(L.pov.viewIso)}))}</span>`;
   if(L) L.events.forEach(E=>h+=chip(E.color,E.title+" · "+t("{n} shown",{n:d3.format(",")(E.count)})));
   if(L&&L.hist) h+=`<span class="chip">${esc(t("Borders as of {y}",{y:L.hist.year}))}</span>`;
   if(L&&L.particles) h+=`<span class="chip">${esc(t("Each streak is a parcel of air; bright = faster than 35 m/s"))}</span>`;
   if(L) L.rasters.filter(r=>r.side!=="R").forEach(r=>{ const e=r.desc.encoding, lut=gridPalette(r.desc.palette);
+    if(e.type==="image"){ h+=`<span class="chip">${esc(r.title)} · imagery, no numeric scale</span>`; return; }
     const stops=d3.range(1,256,25).map(i=>`rgb(${lut[i*4]},${lut[i*4+1]},${lut[i*4+2]})`).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(r.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(r.fmt(e.min))}</span><span>${esc(r.fmt(e.max))}</span></div></div>`; });
   const ch=L&&L.choro;
@@ -1116,16 +1189,17 @@ $("licClose").onclick=closeLic;
 function chip(c,t){return `<span class="chip"><i style="background:${col(c)}"></i>${esc(t)}</span>`;}
 
 function setFrame(){
+  hideTip();
   const t=scene&&scene.timeline; if(!t){frame=null;renderChart();return;}
   const y=t.years[tlIdx]; frame=t.frame(y,tlIdx); el.year.textContent=t.label(y); if(t.second){ const s2=document.createElement("small"); s2.className="tl-cal"; s2.textContent=t.second(y); el.year.append(s2); } el.slider.value=tlIdx;
   el.slider.setAttribute("aria-valuetext",String(t.label(y)));
   el.cap.textContent=frame.caption||""; el.cap.hidden=!frame.caption;
-  L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); if(scene.media&&scene.media.some(x=>x.type==="gantt")) renderMedia(); render();
+  L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); if(scene.media&&scene.media.some(x=>x.type==="gantt")) renderMedia(); render(); describe();
 }
 function stopPlay(){ if(playing){clearInterval(playing);playing=null;} el.play.textContent=t("Play"); el.play.setAttribute("aria-label",t("Play timeline")); }
-el.play.onclick=()=>{ if(playing){stopPlay();return;} const t=scene.timeline; if(tlIdx>=t.years.length-1) tlIdx=0;
+el.play.onclick=()=>{ if(playing){stopPlay();return;} const timeline=scene.timeline; if(tlIdx>=timeline.years.length-1) tlIdx=0;
   el.play.textContent=t("Pause"); el.play.setAttribute("aria-label",t("Pause timeline"));
-  playing=setInterval(()=>{ if(tlIdx>=t.years.length-1){stopPlay();return;} tlIdx++; setFrame(); }, t.years.length>30?(reduce?400:160):(reduce?1600:1100)); };
+  playing=setInterval(()=>{ if(tlIdx>=timeline.years.length-1){stopPlay();return;} tlIdx++; setFrame(); }, timeline.years.length>30?(reduce?400:160):(reduce?1600:1100)); };
 el.slider.oninput=()=>{stopPlay();tlIdx=+el.slider.value;setFrame();};
 
 function showScene(i, fly=true){

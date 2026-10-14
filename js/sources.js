@@ -101,7 +101,7 @@ const SOURCES = {
     credit: "Source: World Bank, International Debt Statistics (CC BY 4.0)"
   },
   "wb-wdi": {
-    name: "World Bank WDI", what: "World Development Indicators for the country atlas (only indicators whose metadata says CC BY 4.0; per-indicator original sources are named in each file)", tier: "layer",
+    name: "World Bank WDI", what: "World Development Indicators for the country atlas and aviation story (only indicators whose metadata says CC BY 4.0; per-indicator original sources are named in each file)", tier: "layer",
     licence: "CC BY 4.0", licenceUrl: "https://datacatalog.worldbank.org/public-licenses#cc-by",
     url: "https://datatopics.worldbank.org/world-development-indicators/", use: "commercial", redistribute: true,
     credit: "Source: World Bank, World Development Indicators (CC BY 4.0)"
@@ -227,7 +227,7 @@ const SOURCES = {
     credit: "NOAA/NCEP Global Forecast System; no NOAA endorsement implied"
   },
   eurostat: {
-    name: "Eurostat", what: "Regional population, GDP per inhabitant and Census 2021 country of birth for Austrian Bundesländer and German Länder (NUTS 1/2)", tier: "layer",
+    name: "Eurostat", what: "Regional population, GDP per inhabitant and Census 2021 country of birth for Austrian/German regions; selected EU NUTS 2 GDP/head PPS comparison for 2023", tier: "layer",
     licence: "CC BY 4.0 (Eurostat reuse policy)", licenceUrl: "https://ec.europa.eu/eurostat/help/copyright-notice",
     url: "https://ec.europa.eu/eurostat/data/database", use: "commercial", redistribute: true,
     credit: "Source: Eurostat (demo_r_d2jan, nama_10r_2gdp, cens_21cob_r3)"
@@ -356,8 +356,50 @@ const SOURCES = {
     licence: "Own work", licenceUrl: "", url: "", use: "commercial", redistribute: true,
     credit: "Drawn by Orbis; routes are schematic, not surveyed"
   },
+  "nasa-night-change": {
+    name: "NASA Black Marble change", what: "Paired reprocessed night-light display composites for 2012 and 2016; reduced and WebP-compressed by Orbis", tier: "layer",
+    licence: "NASA imagery (public use with credit)", licenceUrl: "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    url: "https://science.nasa.gov/earth/earth-observatory/earth-at-night/maps/", use: "commercial", redistribute: true,
+    credit: "NASA Earth Observatory / NASA GSFC: Black Marble 2012 and 2016; resized and compressed by Orbis. No NASA endorsement."
+  },
+  "hre-alphathon1789": {
+    name: "Holy Roman Empire reconstruction (c. 1789)", what: "Source-defined imperial outline and selected Habsburg/Brandenburg paths extracted from the creator's historical SVG; approximate coordinate transformation", tier: "layer",
+    licence: "CC BY-SA 3.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    url: "https://commons.wikimedia.org/wiki/File:Map_Holy_Roman_Empire_1789.svg", use: "commercial", redistribute: true,
+    credit: "Alphathon; revision by Fenn-O-maniC (2021), based on maix and Blank map of Europe contributors. Full retained attribution: data/history/hre/attribution.txt. Orbis extraction, simplification and approximate coordinate transformation; CC BY-SA 3.0."
+  },
+  "hre-reilly1796": {
+    name: "Reilly Germany map (1796)", what: "Approximate georeferenced view of Reilly/Benedicti's 1796 Karte von der Deutschland; historical atlas depiction of territorial divisions", tier: "layer",
+    licence: "CC BY-NC-SA 3.0", licenceUrl: "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+    url: "https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~278984~90052027", use: "noncommercial", redistribute: true,
+    credit: "Reilly / Benedicti (1796), Karte von der Deutschland. David Rumsey Map Collection, David Rumsey Map Center, Stanford University Libraries; approximate Orbis georeferencing and compression, CC BY-NC-SA 3.0."
+  },
+  "us-army-atlas": {
+    name: "US Army Center of Military History atlas maps", what: "Northern Europe 1944–1945 and Pacific Areas 1 August 1942 maps from American Military History (1989), scanned by University of Texas Libraries", tier: "layer",
+    licence: "Public domain (US federal government cartography)", licenceUrl: "https://maps.lib.utexas.edu/maps/faq.html",
+    url: "https://maps.lib.utexas.edu/maps/historical/history_ww2.html", use: "commercial", redistribute: true,
+    credit: "US Army Center of Military History; courtesy of the University of Texas Libraries, The University of Texas at Austin. Orbis georeferencing and compression; approximate historical atlas views."
+  },
+  "nasa-ukraine-lights": {
+    name: "NASA Kyiv night-light comparison", what: "Published monthly display composites for January, March and May 2022; WebP-compressed by Orbis", tier: "layer",
+    licence: "NASA imagery (public use with credit)", licenceUrl: "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    url: "https://science.nasa.gov/earth/earth-observatory/tracking-night-lights-in-ukraine-150002/", use: "commercial", redistribute: true,
+    credit: "NASA Earth Observatory / Joshua Stevens; Black Marble data courtesy Ranjay Shrestha / NASA GSFC; Orbis WebP compression. No NASA endorsement."
+  },
+  "eu-budget": {
+    name: "European Commission EU budget", what: "Selected spending and revenue observations from the EU budget 2000–2025 workbook; differences derived by Orbis", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://commission.europa.eu/legal-notice_en",
+    url: "https://commission.europa.eu/strategy-and-policy/eu-budget/long-term-eu-budget/2021-2027/spending-and-revenue_en", use: "commercial", redistribute: true,
+    credit: "European Commission, EU spending and revenue 2000–2025; Orbis subset and derived differences, CC BY 4.0."
+  },
+  "rome-mitchell1880": {
+    name: "Mitchell Roman Empire map (1880)", what: "Georeferenced and inset-masked atlas reconstruction of Rome at its greatest extent; approximate overview", tier: "layer",
+    licence: "CC BY-NC-SA 3.0", licenceUrl: "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+    url: "https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~30544~1140071", use: "noncommercial", redistribute: true,
+    credit: "S. Augustus Mitchell (1880), Map of the Roman Empire in its greatest extent. David Rumsey Map Collection, David Rumsey Map Center, Stanford University Libraries; warped, masked and compressed by Orbis, CC BY-NC-SA 3.0."
+  },
   editorial: {
-    name: "Orbis editorial figures", what: "Rounded figures typed into stories, cited in each story's notes", tier: "layer",
+    name: "Orbis editorial annotations", what: "Factual annotations and rounded figures compiled by Orbis, cited in scene, event or story notes", tier: "layer",
     licence: "Facts, cited per story", licenceUrl: "", url: "", use: "commercial", redistribute: true,
     credit: "Figures compiled by Orbis; sources in the notes"
   }

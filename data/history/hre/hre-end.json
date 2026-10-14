@@ -1,0 +1,129 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Dated events and approximate named-place coordinates in longitude/latitude degrees",
+  "note": "Original paraphrases linked to institutional histories and primary documents. Markers locate cities or regions, not territorial extent, exact ceremonies or front lines. Years are conventional historical years; dates before 1582 follow the historical Julian calendar unless noted.",
+  "kinds": {
+    "recess": {
+      "label": "Recess",
+      "color": "c1"
+    },
+    "austria": {
+      "label": "Austria",
+      "color": "c2"
+    },
+    "rhine": {
+      "label": "Rhine",
+      "color": "c3"
+    },
+    "abdication": {
+      "label": "Abdication",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "kind": "recess",
+      "title": "Regensburg",
+      "date": 1803,
+      "at": [
+        12.1,
+        49.02
+      ],
+      "text": "The 1803 Final Recess reorganised the empire, secularising ecclesiastical territories and mediatising many imperial cities. Regensburg locates its institutional setting.",
+      "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/introduction",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "austria",
+      "title": "Vienna",
+      "date": 1804,
+      "at": [
+        16.37,
+        48.21
+      ],
+      "text": "Francis assumed the title of Emperor of Austria in 1804, while still holding the older imperial office.",
+      "url": "https://www.habsburger.net/en/chapter/house-austria-habsburgs-and-empire",
+      "source": "www.habsburger.net"
+    },
+    {
+      "kind": "rhine",
+      "title": "Rhine Confederation",
+      "date": 1806,
+      "at": [
+        8.5,
+        49.5
+      ],
+      "text": "The formation of a separate union of Rhenish states was cited in Francis’s declaration ending his imperial office. This regional anchor is not a boundary or treaty-signing site.",
+      "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/ghdi:document-5355",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "abdication",
+      "title": "Vienna",
+      "date": 1806,
+      "at": [
+        16.37,
+        48.21
+      ],
+      "text": "On 6 August 1806 Francis II laid down the imperial crown and released imperial estates and servants from their obligations.",
+      "url": "https://germanhistorydocs.org/en/the-holy-roman-empire-1648-1815/ghdi:document-5355",
+      "source": "germanhistorydocs.org"
+    }
+  ],
+  "places": [
+    {
+      "at": [
+        12.1,
+        49.02
+      ],
+      "names": [
+        {
+          "name": "Regensburg",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        16.37,
+        48.21
+      ],
+      "names": [
+        {
+          "name": "Vienna",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        8.5,
+        49.5
+      ],
+      "names": [
+        {
+          "name": "Rhine Confederation",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        16.37,
+        48.21
+      ],
+      "names": [
+        {
+          "name": "Vienna",
+          "from": null,
+          "to": null
+        }
+      ]
+    }
+  ]
+}

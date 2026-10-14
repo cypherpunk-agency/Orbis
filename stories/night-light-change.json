@@ -1,0 +1,192 @@
+{
+  "id": "night-light-change",
+  "cat": "Planet",
+  "title": "Lights out, lights on",
+  "hook": "Two night-light maps, four years apart: Syria dims, northern India brightens, and the limits of reading the glow.",
+  "notes": "NASA Black Marble paired reprocessed 2012/2016 colour composites, released 2017: https://science.nasa.gov/earth/earth-observatory/earth-at-night/maps/ . Interpretations of Syria and northern India: https://science.nasa.gov/earth/earth-observatory/night-lights-change-in-the-middle-east-90100/ and https://svs.gsfc.nasa.gov/30919/ . Processing caveats: https://science.nasa.gov/earth/earth-observatory/night-light-maps-open-up-new-applications-90008/ . Original 13500×6750 images resized to 4096×2048 and compressed by Orbis; no calibrated radiance or numeric readings are inferred. Point locations are approximate city locators, not measurements of city-level change. This is a fixed 2012/2016 comparison, not a current power-outage monitor. NASA Earth Observatory / NASA GSFC; no endorsement.",
+  "sources": [
+    "nasa-night-change"
+  ],
+  "data": {
+    "lights": "data/grids/night-light-change.json"
+  },
+  "scenes": [
+    {
+      "title": "Two views of the same night",
+      "text": "These are NASA’s paired 2012 and 2016 night-light composites. Drag the divider: the left shows 2012, the right 2016. Bright clusters trace artificial light, but these processed colour images are not a direct measure of people, wealth or electricity use.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          15,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "lights",
+          "frame": "2012",
+          "compare": "2016",
+          "leftLabel": "2012 composite",
+          "rightLabel": "2016 composite",
+          "title": "Night lights, 2012 / 2016",
+          "opacity": 1
+        }
+      ]
+    },
+    {
+      "title": "Syria grows dark",
+      "text": "Around Aleppo, lights visible in 2012 are much dimmer in the 2016 composite. NASA links the broader loss of Syrian light to years of war and damage to infrastructure. The map cannot count deaths or distinguish every cause of darkness. Compare the city and its surroundings across the divider.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          37,
+          35.5
+        ],
+        "zoom": 10
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "lights",
+          "frame": "2012",
+          "compare": "2016",
+          "leftLabel": "2012 composite",
+          "rightLabel": "2016 composite",
+          "title": "Night lights, 2012 / 2016",
+          "opacity": 1
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            37.16,
+            36.2
+          ],
+          "label": "Aleppo",
+          "r": 4
+        },
+        {
+          "at": [
+            36.3,
+            33.51
+          ],
+          "label": "Damascus",
+          "r": 4
+        }
+      ]
+    },
+    {
+      "title": "A brighter northern India",
+      "text": "NASA’s comparison highlights new light across northern India between the two composites. Look along the densely settled plain south of the Himalayas. More visible light is a geographic observation: it does not tell us exactly how many homes gained reliable electricity, or which policy produced the change.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          79,
+          26
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "lights",
+          "frame": "2012",
+          "compare": "2016",
+          "leftLabel": "2012 composite",
+          "rightLabel": "2016 composite",
+          "title": "Night lights, 2012 / 2016",
+          "opacity": 1
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            77.2,
+            28.61
+          ],
+          "label": "Delhi",
+          "r": 4
+        },
+        {
+          "at": [
+            80.94,
+            26.85
+          ],
+          "label": "Lucknow",
+          "r": 4
+        }
+      ]
+    },
+    {
+      "title": "The network beneath the glow",
+      "text": "The Nile forms a narrow illuminated corridor through a much darker desert. Coastal cities and transport corridors produce other connected patterns. Move the divider to compare their appearance at the two dates. A dark landscape can still contain people and settlements: outdoor lighting is only one part of life.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          30,
+          27
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "lights",
+          "frame": "2012",
+          "compare": "2016",
+          "leftLabel": "2012 composite",
+          "rightLabel": "2016 composite",
+          "title": "Night lights, 2012 / 2016",
+          "opacity": 1
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            31.24,
+            30.04
+          ],
+          "label": "Cairo",
+          "r": 4
+        }
+      ]
+    },
+    {
+      "title": "A signal, with limits",
+      "text": "The composites select clear observations and combine many nights; they are not two photographs taken on matching evenings. Clouds, viewing conditions, surface reflectance and lighting practices affect the result. Use the date switch to inspect each full frame. For a quantitative change claim, return to calibrated radiance and its quality masks.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          20,
+          20
+        ],
+        "zoom": 1
+      },
+      "switch": {
+        "label": "Composite",
+        "start": 0,
+        "options": [
+          {
+            "c": 2012,
+            "label": "2012"
+          },
+          {
+            "c": 2016,
+            "label": "2016"
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "lights",
+          "frame": "{c}",
+          "title": "NASA night lights · {c}",
+          "opacity": 1
+        }
+      ]
+    }
+  ]
+}

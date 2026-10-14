@@ -1,0 +1,134 @@
+{
+  "id": "rome-frontier",
+  "cat": "People",
+  "title": "The frontier",
+  "hook": "Walls, rivers and forts made a frontier that moved and admitted traffic.",
+  "updated": "2026-10-14",
+  "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. English Heritage supplies wall history and endpoint names; UNESCO Frontiers of the Roman Empire and Danube Limes supply frontier context. AD 142 and AD 150 are conventional/period anchors as marked in cards, not precise construction dates.",
+  "data": {
+    "events": "data/history/rome/rome-frontier.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "A wall across Britain",
+      "text": "Hadrian’s Wall crossed northern Britain from Wallsend to Bowness-on-Solway. Its endpoints show how a fortified zone joined the Tyne and Solway coasts; they do not mark today’s Scottish border.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -2.3,
+          55
+        ],
+        "zoom": 12
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "hadrian"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "The frontier moves",
+      "text": "The Antonine frontier shifted north to the Forth–Clyde isthmus in the 140s. It was later abandoned in favour of Hadrian’s Wall. Move the timeline to see the northern anchor appear; earlier markers remain as archaeological context.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -3,
+          55.5
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "hadrian",
+            "antonine"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          122,
+          142
+        ],
+        "start": 142,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "Continental frontiers",
+      "text": "The Upper German–Raetian frontier joined the Rhine and Danube regions. Its second-century fortifications existed beside settlements and transport links, rather than a sealed national boundary.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10,
+          49
+        ],
+        "zoom": 7
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "continental"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A river system",
+      "text": "Along the Danube, forts, towers, roads and patrol fleets worked together. The Bad Gögging anchor locates UNESCO’s western segment; it represents a river-frontier system, not a fabricated empire polygon.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          14,
+          48
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "continental"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

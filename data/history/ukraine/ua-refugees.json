@@ -1,0 +1,43 @@
+{
+  "source": "editorial",
+  "asOf": "Fixed historical references; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Selected factual annotations, no exhaustive event count",
+  "note": "Original paraphrases with primary citations. Coordinates approximate named city/region anchors, not footprints. A date may mark a reporting cutoff rather than the onset of an event; the card says which.",
+  "kinds": {
+    "inside": {
+      "label": "Inside",
+      "color": "muted"
+    },
+    "definitions": {
+      "label": "Definitions",
+      "color": "muted"
+    }
+  },
+  "items": [
+    {
+      "title": "Displacement inside Ukraine",
+      "date": 20251231,
+      "at": [
+        30.52,
+        50.45
+      ],
+      "text": "UNHCR’s year-end 2025 emergency impact report estimates 3.7 million internally displaced people in Ukraine. Kyiv anchors the national estimate, not a count for the city.",
+      "url": "https://www.unhcr.org/sites/default/files/2026-01/unhcr-2025-emergencies-and-protracted-crises-impact-report.pdf",
+      "source": "https://www.unhcr.org/sites/default/files/2026-01/unhcr-2025-emergencies-and-protracted-crises-impact-report.pdf",
+      "kind": "inside"
+    },
+    {
+      "title": "Two measures of displacement",
+      "date": 20251231,
+      "at": [
+        30.52,
+        50.45
+      ],
+      "text": "The same emergency report gives 5.9 million refugees worldwide. This operational estimate differs from the 5.224 million in the annual population series used here; definitions, coverage and revisions differ.",
+      "url": "https://www.unhcr.org/sites/default/files/2026-01/unhcr-2025-emergencies-and-protracted-crises-impact-report.pdf",
+      "source": "https://www.unhcr.org/sites/default/files/2026-01/unhcr-2025-emergencies-and-protracted-crises-impact-report.pdf",
+      "kind": "definitions"
+    }
+  ]
+}

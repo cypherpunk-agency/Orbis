@@ -1,0 +1,166 @@
+{
+  "id": "ww2-borders",
+  "cat": "Geopolitics",
+  "title": "The postwar borders",
+  "hook": "Administrative decisions, changed states and displaced people.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Potsdam: administration before a final settlement: https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152; 2. Poland’s mapped extent shifts west: https://icr.ethz.ch/data/cshapes/; 3. Two German states appear: https://history.state.gov/countries/germany; 4. Changing borders also moved people: https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152 CShapes 2.0 diplomatic snapshots: 1 January 1938 and 1 January 1950, CC BY-NC-SA 4.0. They are not occupation zones, military control or a continuously updated front. German state formation: https://history.state.gov/countries/germany. Potsdam terms, including Polish administration pending final frontier settlement and population transfers: https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152. These are administrative/diplomatic meanings; the 1950 map must not be called a 1945 snapshot. Wrocław/Breslau context: https://www.wroclaw.pl/dla-mieszkanca/koniec-festung-breslau-poczatek-polskiego-wroclawia. Date-scoped display aliases: Italy/Sardinia becomes Italy; Turkey (Ottoman Empire) becomes Turkey; Germany (Prussia) becomes Germany in 1938. Original labels are retained as sourceName in the derived files; geometry and dates are unchanged. Name evidence: https://history.state.gov/countries/italy/summary; https://history.state.gov/countries/germany; https://www.govinfo.gov/content/pkg/BILLS-115hres924ih/pdf/BILLS-115hres924ih.pdf.",
+  "data": {
+    "events": "data/history/ww2/ww2-borders.json",
+    "borders": "data/history/ww2/borders-names.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth",
+    "cshapes"
+  ],
+  "scenes": [
+    {
+      "title": "Potsdam: administration before a final settlement",
+      "text": "The 1945 Potsdam agreement placed former German territory east of the Oder–western Neisse line under Polish administration pending a final frontier determination. The Potsdam point locates the decision; it is not a traced border line.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          51
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 1945,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Poland’s mapped extent shifts west",
+      "text": "Compare the CShapes diplomatic snapshots of 1 January 1938 and 1 January 1950. Poland’s mapped extent changes substantially. The dates are twelve years apart: these shapes do not reconstruct the intervening occupation or imply that every border question was settled in 1945.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          22,
+          52
+        ],
+        "zoom": 4.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": "{y}",
+          "labels": false
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "switch": {
+        "label": "Diplomatic snapshot",
+        "start": 0,
+        "options": [
+          {
+            "y": 1938,
+            "label": "1 Jan 1938"
+          },
+          {
+            "y": 1950,
+            "label": "1 Jan 1950"
+          }
+        ]
+      },
+      "points": [
+        {
+          "at": [
+            21,
+            52
+          ],
+          "label": "Poland",
+          "color": "muted",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "Two German states appear",
+      "text": "The Federal Republic and German Democratic Republic were established in 1949. This CShapes snapshot is dated 1 January 1950, showing the two states in diplomatic geography. It is not a map of the four Allied military occupation zones.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12,
+          51
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1950,
+          "labels": false
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "points": [
+        {
+          "at": [
+            7.1,
+            50.7
+          ],
+          "label": "Federal Republic",
+          "color": "muted",
+          "r": 3
+        },
+        {
+          "at": [
+            13.4,
+            52.5
+          ],
+          "label": "German Democratic Republic",
+          "color": "muted",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "Changing borders also moved people",
+      "text": "Potsdam provided for transfers of German populations from Poland, Czechoslovakia and Hungary and called for orderly, humane treatment. Forced displacement accompanied the postwar transformation. Wrocław, formerly Breslau, locates one city affected by that change; no population count is inferred from the point.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          17,
+          51
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 1945,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

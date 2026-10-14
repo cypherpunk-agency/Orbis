@@ -1,0 +1,151 @@
+{
+  "id": "ua-energy",
+  "cat": "Geopolitics",
+  "title": "Energy and night lights",
+  "hook": "Three dated Kyiv images, with limits on what darkness can tell us.",
+  "updated": "2026-10-14",
+  "sources": [
+    "editorial",
+    "nasa-ukraine-lights"
+  ],
+  "data": {
+    "notes": "data/history/ukraine/ua-energy.json",
+    "violence": "data/events/conflict-ukraine.json"
+  },
+  "notes": "Fixed editorial cutoff: 14 October 2026. This is not a live map. The modern Natural Earth basemap provides orientation; its border conventions do not establish legal recognition, sovereignty or military control. Cards are selected approximate locators. UCDP events are incidents of organized violence with at least one death, aggregated into 0.25-degree cells by start month. Event locations are coded approximations; country-only/unlocated records are omitted. Only records assigned to Ukraine are shown, excluding Russia. GED 26.1 covers through December 2025; Candidate 26.0.8 extends through August 2026 and is preliminary. Circles measure events, not territory, troop strength or civilian deaths. Imagery source https://science.nasa.gov/earth/earth-observatory/tracking-night-lights-in-ukraine-150002/ . January/March/May 2022 display composites are compressed to WebP without georeferencing. Source URLs and SHA256 hashes are in data/history/ukraine/lights.json. They have no calibrated radiance scale; do not infer population, damage or military control. Kakhovka https://ukraine.un.org/en/235545-potential-long-term-impact-destruction-kakhovka-dam .",
+  "scenes": [
+    {
+      "title": "January: a baseline",
+      "text": "January 2022 is the pre-invasion baseline in NASA’s Kyiv comparison. The inset is a display composite, with nighttime lights over Landsat context. It is not georeferenced onto the map.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          30.52,
+          50.45
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "lights"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "nasa-ukraine-lights"
+      ],
+      "media": [
+        {
+          "type": "image",
+          "src": "data/history/ukraine/kyiv-lights-202201.webp",
+          "alt": "NASA night-light display composite around Kyiv, 2022-01",
+          "caption": "Kyiv region • 2022-01 • display imagery",
+          "credit": "NASA Earth Observatory / Joshua Stevens; Black Marble: Ranjay Shrestha / NASA GSFC",
+          "licence": "NASA public-use imagery with credit",
+          "href": "https://science.nasa.gov/earth/earth-observatory/tracking-night-lights-in-ukraine-150002/"
+        }
+      ]
+    },
+    {
+      "title": "March: reduced lighting",
+      "text": "NASA’s March composite shows reduced lighting around Kyiv. A darker display cannot distinguish damaged supply, deliberate dimming and changes in activity on its own.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          30.52,
+          50.45
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "lights"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "nasa-ukraine-lights"
+      ],
+      "media": [
+        {
+          "type": "image",
+          "src": "data/history/ukraine/kyiv-lights-202203.webp",
+          "alt": "NASA night-light display composite around Kyiv, 2022-03",
+          "caption": "Kyiv region • 2022-03 • display imagery",
+          "credit": "NASA Earth Observatory / Joshua Stevens; Black Marble: Ranjay Shrestha / NASA GSFC",
+          "licence": "NASA public-use imagery with credit",
+          "href": "https://science.nasa.gov/earth/earth-observatory/tracking-night-lights-in-ukraine-150002/"
+        }
+      ]
+    },
+    {
+      "title": "May: some light returns",
+      "text": "NASA reports partial lighting recovery around Kyiv in May. This selected regional view does not establish national recovery, a count of returning people or a measure of intact infrastructure.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          30.52,
+          50.45
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "lights"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "nasa-ukraine-lights"
+      ],
+      "media": [
+        {
+          "type": "image",
+          "src": "data/history/ukraine/kyiv-lights-202205.webp",
+          "alt": "NASA night-light display composite around Kyiv, 2022-05",
+          "caption": "Kyiv region • 2022-05 • display imagery",
+          "credit": "NASA Earth Observatory / Joshua Stevens; Black Marble: Ranjay Shrestha / NASA GSFC",
+          "licence": "NASA public-use imagery with credit",
+          "href": "https://science.nasa.gov/earth/earth-observatory/tracking-night-lights-in-ukraine-150002/"
+        }
+      ]
+    },
+    {
+      "title": "Energy also depends on water",
+      "text": "The June 2023 Kakhovka disaster disrupted an interconnected water and energy system. Its location is shown separately from the 2022 light images: the observations describe different dates and different phenomena.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          47
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "dam"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

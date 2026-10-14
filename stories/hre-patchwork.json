@@ -1,0 +1,209 @@
+{
+  "id": "hre-patchwork",
+  "cat": "People",
+  "title": "The territorial patchwork",
+  "hook": "An elected monarchy joined many territorial authorities through shared institutions.",
+  "updated": "2026-10-14",
+  "notes": "Overlay: Reilly/Benedicti, Karte von der Deutschland, Vienna 1796, Rumsey 11151.021. Approximate georeferencing with city/coast controls; retained hand-coloured divisions are the mapmaker’s portrayal, not reconstructed polygons. Credit David Rumsey Map Collection, David Rumsey Map Center, Stanford University Libraries. Adaptation CC BY-NC-SA 3.0. Fine print is supplemented by readable modern annotations; a close view deliberately shows only part of the empire. Golden Bull primary text; UNESCO Regensburg. No count of territories or quantified border accuracy is claimed. Source-derived 1789 outline/selected holdings: Alphathon, revision Fenn-O-maniC, CC BY-SA 3.0; full base-map contributor attribution in data/history/hre/attribution.txt. Approximate projection inversion has mean 44 km/max 100 km coastal-control residual, suitable for overview only; historical border accuracy is not established by this fit. The original upload comment and embedded SVG title say 1789 despite a copied Commons summary saying 1279.  Coordinates are approximate named-place locators, not imported surveyed points. Modern borders are hidden. Event cards contain claim-level citations. The later term Holy Roman Empire must not be projected unchanged onto Charlemagne’s Frankish realm.",
+  "sources": [
+    "editorial",
+    "hre-reilly1796",
+    "hre-alphathon1789"
+  ],
+  "data": {
+    "events": "data/history/hre/hre-patchwork.json",
+    "atlas": "data/history/hre/reilly1796.json",
+    "territories": "data/history/hre/territories1789.json"
+  },
+  "scenes": [
+    {
+      "title": "Election is an institution",
+      "text": "The Golden Bull of 1356 specified electors and rules for choosing the King of the Romans. Frankfurt’s meeting role helps explain the empire as a political structure, not simply an emperor’s estate.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          8.68,
+          50.11
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "election"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A common meeting place",
+      "text": "From 1663, the Perpetual Diet sat at Regensburg. A shared assembly operated within an empire whose territorial rulers retained substantial authority.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12.1,
+          49.02
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "diet"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "An imperial outline, circa 1789",
+      "text": "The reconstructed map distinguishes imperial membership from possessions held outside the Empire. This source-derived outline is approximate: it describes the mapmaker’s circa-1789 interpretation, with coarse geographic alignment, rather than surveyed legal boundaries.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10.5,
+          50.5
+        ],
+        "zoom": 6
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "territories",
+          "year": 1789,
+          "groups": [
+            "empire"
+          ],
+          "opacity": 0.18,
+          "inner": false,
+          "labels": false
+        }
+      ],
+      "sources": [
+        "hre-alphathon1789"
+      ]
+    },
+    {
+      "title": "Dynasties crossed the imperial boundary",
+      "text": "The source names Habsburg imperial possessions and Brandenburg separately from those dynasties’ extra-imperial lands. Only the source’s within-empire paths are highlighted. The outer outline supplies context; these are selected holdings, not a complete list of imperial estates.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12.5,
+          50.5
+        ],
+        "zoom": 6
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "territories",
+          "year": 1789,
+          "groups": [
+            "habsburg",
+            "brandenburg"
+          ],
+          "opacity": 0.7,
+          "inner": false
+        },
+        {
+          "type": "shapes",
+          "data": "territories",
+          "year": 1789,
+          "groups": [
+            "empire"
+          ],
+          "opacity": 0.12,
+          "inner": false,
+          "labels": false
+        }
+      ],
+      "sources": [
+        "hre-alphathon1789"
+      ]
+    },
+    {
+      "title": "A dated patchwork",
+      "text": "Reilly’s map of Germany, published in Vienna in 1796, preserves a dense pattern of coloured administrative divisions. This archival portrayal provides the territorial fallback: it is a dated map, with approximate alignment, rather than invented modern polygons.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10.5,
+          50
+        ],
+        "zoom": 6
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "overlay",
+          "data": "atlas",
+          "opacity": 0.9
+        },
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "atlas"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial",
+        "hre-reilly1796"
+      ]
+    },
+    {
+      "title": "Look closer, keep the context",
+      "text": "The Rhine–Main area shows small divisions packed together. Mainz, Trier and Cologne were the Golden Bull’s spiritual electors; Frankfurt hosted elections. The city markers name institutional centres, not the extent of their lands. This 1796 regional view is later than the 1356 rules.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          7.8,
+          50.25
+        ],
+        "zoom": 16
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "overlay",
+          "data": "atlas",
+          "opacity": 0.9
+        },
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "electors"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial",
+        "hre-reilly1796"
+      ]
+    }
+  ]
+}

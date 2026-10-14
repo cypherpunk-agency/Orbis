@@ -1,0 +1,159 @@
+{
+  "id": "ua-front",
+  "cat": "Geopolitics",
+  "title": "The long front",
+  "hook": "A monthly event record follows an extended war without pretending to draw its front.",
+  "updated": "2026-10-14",
+  "sources": [
+    "editorial",
+    "ucdp-ged"
+  ],
+  "data": {
+    "notes": "data/history/ukraine/ua-front.json",
+    "violence": "data/events/conflict-ukraine.json"
+  },
+  "notes": "Fixed editorial cutoff: 14 October 2026. This is not a live map. The modern Natural Earth basemap provides orientation; its border conventions do not establish legal recognition, sovereignty or military control. Cards are selected approximate locators. UCDP events are incidents of organized violence with at least one death, aggregated into 0.25-degree cells by start month. Event locations are coded approximations; country-only/unlocated records are omitted. Only records assigned to Ukraine are shown, excluding Russia. GED 26.1 covers through December 2025; Candidate 26.0.8 extends through August 2026 and is preliminary. Circles measure events, not territory, troop strength or civilian deaths. Kakhovka consequences https://ukraine.un.org/en/235545-potential-long-term-impact-destruction-kakhovka-dam . UCDP window and country inclusion are preserved from the existing data build.",
+  "scenes": [
+    {
+      "title": "A record that keeps going",
+      "text": "The UCDP record extends beyond the 2022 turning points. Compare selected months from 2023 through 2025. The fixed circle scale counts deadly events; it cannot show which side controlled the ground.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          36,
+          48.5
+        ],
+        "zoom": 6
+      },
+      "timeline": {
+        "years": [
+          202301,
+          202306,
+          202312,
+          202406,
+          202412,
+          202506,
+          202512
+        ],
+        "start": 202301,
+        "format": "month"
+      },
+      "layers": [
+        {
+          "type": "events",
+          "data": "violence",
+          "year": "t",
+          "window": 1,
+          "color": "muted",
+          "minR": 1.5,
+          "maxR": 10,
+          "vmax": 150,
+          "title": "UCDP deadly events / cell / month"
+        }
+      ],
+      "sources": [
+        "ucdp-ged"
+      ]
+    },
+    {
+      "title": "The east in detail",
+      "text": "Zoom into eastern Ukraine and compare the same dated event cells. Multiple incidents can share a city or province anchor. Apparent concentration partly reflects coding and reporting, so these are not surveyed battlefield coordinates.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          37,
+          49
+        ],
+        "zoom": 6.5
+      },
+      "timeline": {
+        "years": [
+          202306,
+          202406,
+          202506,
+          202512
+        ],
+        "start": 202306,
+        "format": "month"
+      },
+      "layers": [
+        {
+          "type": "events",
+          "data": "violence",
+          "year": "t",
+          "window": 1,
+          "color": "muted",
+          "minR": 1.5,
+          "maxR": 10,
+          "vmax": 150,
+          "title": "UCDP deadly events / cell / month"
+        }
+      ],
+      "sources": [
+        "ucdp-ged"
+      ]
+    },
+    {
+      "title": "War reaches water systems",
+      "text": "The Kakhovka dam’s destruction in June 2023 affected communities on both sides of the river and people dependent on its reservoir. The site marker cannot substitute for a verified flood map.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          47
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "water"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "What an empty cell means",
+      "text": "No circle means no included record in that cell and month. It does not prove peace, civilian safety or one side’s control. Candidate months in 2026 are preliminary and can be revised.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          35,
+          49
+        ],
+        "zoom": 5
+      },
+      "timeline": {
+        "years": [
+          202601,
+          202604,
+          202608
+        ],
+        "start": 202601,
+        "format": "month"
+      },
+      "layers": [
+        {
+          "type": "events",
+          "data": "violence",
+          "year": "t",
+          "window": 1,
+          "color": "muted",
+          "minR": 1.5,
+          "maxR": 10,
+          "vmax": 150,
+          "title": "UCDP deadly events / cell / month"
+        }
+      ],
+      "sources": [
+        "ucdp-ged"
+      ]
+    }
+  ]
+}

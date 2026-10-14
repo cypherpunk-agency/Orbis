@@ -1,0 +1,153 @@
+{
+  "id": "ww2-before",
+  "cat": "Geopolitics",
+  "title": "Europe before the war",
+  "hook": "A diplomatic map and the decisions that unravelled it.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. A snapshot before the annexations: https://icr.ethz.ch/data/cshapes/; 2. Austria is annexed: https://encyclopedia.ushmm.org/content/en/article/nazi-territorial-aggression-the-anschluss; 3. Munich changes Czechoslovakia’s position: https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1933-1938/munich-agreement; 4. A pact made in Moscow: https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front CShapes 2.0 snapshot date 1 January 1938, before Anschluss and Munich. CC BY-NC-SA 4.0; it encodes diplomatic state/dependency boundaries and omits small changes. Later event scenes do not redraw those borders.",
+  "data": {
+    "events": "data/history/ww2/ww2-before.json",
+    "borders": "data/history/ww2/borders-names.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth",
+    "cshapes"
+  ],
+  "scenes": [
+    {
+      "title": "A snapshot before the annexations",
+      "text": "CShapes records state boundaries on 1 January 1938. Austria and Czechoslovakia still appear separately. This is diplomatic geography before the year’s annexations, not a map of the eve of war in September 1939.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          51
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "points": [
+        {
+          "at": [
+            13.4,
+            52.5
+          ],
+          "label": "Germany",
+          "color": "muted",
+          "r": 3
+        },
+        {
+          "at": [
+            14.5,
+            47.5
+          ],
+          "label": "Austria",
+          "color": "muted",
+          "r": 3
+        },
+        {
+          "at": [
+            18,
+            49.5
+          ],
+          "label": "Czechoslovakia",
+          "color": "muted",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "Austria is annexed",
+      "text": "German troops entered Austria on 12 March 1938; the Anschluss law incorporated it into Nazi Germany the following day. Vienna locates the annexation. No new territorial polygon is inferred from this point.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          48
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19380313,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Munich changes Czechoslovakia’s position",
+      "text": "The agreement reached at Munich on 29–30 September 1938 allowed German annexation of the Sudetenland. The city point locates the negotiations; it does not draw the affected border districts.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          51
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19380930,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A pact made in Moscow",
+      "text": "Germany and the Soviet Union signed their non-aggression pact on 23 August 1939. Its secret protocol divided spheres in eastern Europe and provided for Poland’s partition. The Moscow point locates the agreement, not its territorial clauses.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          29,
+          53
+        ],
+        "zoom": 3.2
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19390823,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

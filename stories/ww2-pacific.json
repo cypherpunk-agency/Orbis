@@ -1,0 +1,185 @@
+{
+  "id": "ww2-pacific",
+  "cat": "Geopolitics",
+  "title": "The Pacific",
+  "hook": "Island battles and command geography across a vast ocean.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Pearl Harbor brings the United States into the war: https://www.nps.gov/wwii/learn/historyculture/pearl-harbor.htm; 2. Midway: a battle around an atoll: https://www.history.navy.mil/content/history/museums/nmusn/explore/photography/wwii/wwii-pacific/turning-the-japanese-tide/1942-june-battle-of-midway.html; 3. Guadalcanal opens a southern campaign: https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/b/battle-of-guadalcanal.html; 4. Command areas crossed the date line: https://maps.lib.utexas.edu/maps/historical/history_ww2.html; 5. Okinawa: fighting close to Japan: https://www.history.navy.mil/content/history/museums/nmusn/explore/photography/wwii/wwii-pacific/okinawa.html Army atlas source/title/date and credit: https://maps.lib.utexas.edu/maps/historical/history_ww2.html. Pacific boundaries divide Allied command areas, not Japanese occupation. Original scan used without a geographic warp; provisional wide-area polynomial fit was rejected as too inaccurate. Map anchors are rounded locations from the scan’s named geography.",
+  "data": {
+    "events": "data/history/ww2/ww2-pacific.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth",
+    "us-army-atlas"
+  ],
+  "scenes": [
+    {
+      "title": "Pearl Harbor brings the United States into the war",
+      "text": "Japan attacked Pearl Harbor on 7 December 1941. The harbour in Hawaii was a major US naval base; the attack brought the United States into World War II. Hawaii was then a US territory, not yet a state.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -157,
+          24
+        ],
+        "zoom": 3
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19411207,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Midway: a battle around an atoll",
+      "text": "The June 1942 battle near Midway checked Japanese expansion in the central Pacific. The Navy identifies the main carrier battle on 4 June; the point locates the atoll rather than reconstructing fleets’ positions.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -174,
+          27
+        ],
+        "zoom": 3
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19420604,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Guadalcanal opens a southern campaign",
+      "text": "US Marines landed on Guadalcanal on 7 August 1942. The campaign combined land, sea and air fighting around the Solomon Islands. The point locates the island’s northern shore, not a landing beach perimeter.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          158,
+          -10
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19420807,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Command areas crossed the date line",
+      "text": "The Army’s map of 1 August 1942 divides Allied commands across the Pacific. It shows why Hawaii and Australia mattered as distant organising centres. These printed boundaries classify commands, not land occupied by Japan; the original scan is shown below.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          180,
+          0
+        ],
+        "zoom": 1.3
+      },
+      "modernBorders": false,
+      "layers": [],
+      "sources": [
+        "editorial",
+        "us-army-atlas"
+      ],
+      "media": [
+        {
+          "type": "image",
+          "src": "data/history/ww2/pacific-area-1942.jpg",
+          "alt": "US Army atlas map titled The Pacific Areas, 1 August 1942, showing Allied command boundaries across the ocean.",
+          "caption": "Command areas, 1 August 1942; not Japanese occupation. Original unwarped scan.",
+          "credit": "Courtesy of the University of Texas Libraries, The University of Texas at Austin; US Army Center of Military History.",
+          "licence": "Public domain",
+          "href": "data/history/ww2/pacific-area-1942.jpg"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            153.03,
+            -27.47
+          ],
+          "label": "Brisbane",
+          "color": "c4",
+          "r": 4
+        },
+        {
+          "at": [
+            -157.95,
+            21.36
+          ],
+          "label": "Pearl Harbor",
+          "color": "c1",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c1",
+          "label": "Hawaii reference anchor"
+        },
+        {
+          "color": "c4",
+          "label": "Australia reference anchor"
+        }
+      ]
+    },
+    {
+      "title": "Okinawa: fighting close to Japan",
+      "text": "US forces landed on Okinawa’s main island on 1 April 1945. The battle brought devastating combat to its civilian population as well as Japanese and Allied forces. No casualty estimate or occupation perimeter is inferred from this point.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          129,
+          28
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19450401,
+          "kinds": [
+            "4"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

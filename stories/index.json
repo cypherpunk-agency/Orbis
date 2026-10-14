@@ -275,8 +275,8 @@
  {
   "id": "us-abroad",
   "cat": "Geopolitics",
-  "title": "America's bases abroad",
-  "hook": "About 170,000 US troops serve abroad. Half of them are in just two countries.",
+  "title": "America abroad",
+  "hook": "From overseas acquisition to an Atlantic alliance.",
   "file": "stories/us-abroad.json"
  },
  {
@@ -430,21 +430,21 @@
   "id": "refugees",
   "cat": "People",
   "title": "Refugees stay close",
-  "hook": "Most of the world's 36 million refugees live in the country next door, not in the rich countries far away.",
+  "hook": "At the end of 2025, about 65% of refugees lived in a country bordering their own.",
   "file": "stories/refugees.json"
  },
  {
   "id": "countryside",
   "cat": "People",
   "title": "Leaving the countryside",
-  "hook": "Between 2000 and 2019 half the world's people lived in places that lost residents to migration, while cities and their suburbs filled up.",
+  "hook": "High-resolution estimates reveal places gaining and losing people through migration in 2000–2019.",
   "file": "stories/countryside.json"
  },
  {
   "id": "friends",
   "cat": "People",
   "title": "Who your friends are",
-  "hook": "Facebook friendships trace old empires, migrant jobs and closed borders.",
+  "hook": "Facebook friendship patterns connect countries through shared histories and migration ties.",
   "file": "stories/friends.json"
  },
  {
@@ -453,5 +453,355 @@
   "title": "Where fame was born",
   "hook": "Two million notable lives, from 3500 BC to 2018: where they began, and where they ended.",
   "file": "stories/fame.json"
+ },
+ {
+  "id": "night-light-change",
+  "cat": "Planet",
+  "title": "Lights out, lights on",
+  "hook": "Two night-light maps, four years apart: Syria dims, northern India brightens, and the limits of reading the glow.",
+  "file": "stories/night-light-change.json"
+ },
+ {
+  "id": "empty-skies",
+  "cat": "People",
+  "title": "The sky went quiet",
+  "hook": "Airlines flew far less in 2020. A fixed 2019–2021 comparison shows the collapse and the uneven return.",
+  "file": "stories/empty-skies.json"
+ },
+ {
+  "id": "tr-empire-pressure",
+  "cat": "People",
+  "title": "An empire under pressure",
+  "hook": "Constitutions, interrupted parliamentary rule and the changing geography of the late Ottoman state.",
+  "file": "stories/tr-empire-pressure.json"
+ },
+ {
+  "id": "tr-war-dissolution",
+  "cat": "People",
+  "title": "War and dissolution",
+  "hook": "Gallipoli, the Armenian genocide and the political rupture between the imperial capital and Ankara.",
+  "file": "stories/tr-war-dissolution.json"
+ },
+ {
+  "id": "tr-republic",
+  "cat": "People",
+  "title": "Making the republic",
+  "hook": "Treaty borders, compulsory population exchange and a new political centre in Ankara.",
+  "file": "stories/tr-republic.json"
+ },
+ {
+  "id": "tr-anatolia",
+  "cat": "People",
+  "title": "Anatolia before the Ottomans",
+  "hook": "Archaeological places reveal several histories of the same land.",
+  "file": "stories/tr-anatolia.json"
+ },
+ {
+  "id": "tr-ottoman-world",
+  "cat": "People",
+  "title": "An Ottoman world",
+  "hook": "Capital cities, provincial production and surviving architecture connect a wider empire.",
+  "file": "stories/tr-ottoman-world.json"
+ },
+ {
+  "id": "tr-changing-republic",
+  "cat": "People",
+  "title": "A changing republic",
+  "hook": "Urban growth, political interventions, migration and unequal regional experiences.",
+  "file": "stories/tr-changing-republic.json"
+ },
+ {
+  "id": "tr-world",
+  "cat": "People",
+  "title": "Turkey in the world",
+  "hook": "Straits, alliances, Cyprus, Europe and Syria in a dated regional history.",
+  "file": "stories/tr-world.json"
+ },
+ {
+  "id": "rome-carthage",
+  "cat": "People",
+  "title": "Rome and Carthage",
+  "hook": "A struggle for Sicily became a contest across the western Mediterranean.",
+  "file": "stories/rome-carthage.json"
+ },
+ {
+  "id": "rome-expansion",
+  "cat": "People",
+  "title": "Growth by conquest",
+  "hook": "Republican conquest became imperial rule, then reached Britain and the eastern theatres.",
+  "file": "stories/rome-expansion.json"
+ },
+ {
+  "id": "rome-frontier",
+  "cat": "People",
+  "title": "The frontier",
+  "hook": "Walls, rivers and forts made a frontier that moved and admitted traffic.",
+  "file": "stories/rome-frontier.json"
+ },
+ {
+  "id": "rome-split",
+  "cat": "People",
+  "title": "East and West",
+  "hook": "Several courts governed one Roman world before its western and eastern paths diverged.",
+  "file": "stories/rome-split.json"
+ },
+ {
+  "id": "rome-fall",
+  "cat": "People",
+  "title": "The falls of Rome and Constantinople",
+  "hook": "AD 476 ended the western court; Constantinople followed a much longer, interrupted history.",
+  "file": "stories/rome-fall.json"
+ },
+ {
+  "id": "rome-legacy",
+  "cat": "People",
+  "title": "What remains",
+  "hook": "Infrastructure, city fabric and eastern Roman art survive in different forms and places.",
+  "file": "stories/rome-legacy.json"
+ },
+ {
+  "id": "us-colonies",
+  "cat": "Geopolitics",
+  "title": "Thirteen colonies",
+  "hook": "An Atlantic strip becomes an independent union.",
+  "file": "stories/us-colonies.json"
+ },
+ {
+  "id": "us-expansion",
+  "cat": "Geopolitics",
+  "title": "Territorial expansion",
+  "hook": "Purchases, treaties and war moved US claims west.",
+  "file": "stories/us-expansion.json"
+ },
+ {
+  "id": "us-indigenous-land",
+  "cat": "Geopolitics",
+  "title": "Indigenous land loss",
+  "hook": "Treaties, forced removal and allotment changed landholding.",
+  "file": "stories/us-indigenous-land.json"
+ },
+ {
+  "id": "us-statehood",
+  "cat": "Geopolitics",
+  "title": "Becoming states",
+  "hook": "Acquisition and admission are different dates.",
+  "file": "stories/us-statehood.json"
+ },
+ {
+  "id": "us-civil-war",
+  "cat": "Geopolitics",
+  "title": "The Civil War split",
+  "hook": "Secession, slavery and military geography divided the union.",
+  "file": "stories/us-civil-war.json"
+ },
+ {
+  "id": "us-frontier",
+  "cat": "Geopolitics",
+  "title": "Railroads and the frontier",
+  "hook": "Infrastructure and federal land policy transformed the West.",
+  "file": "stories/us-frontier.json"
+ },
+ {
+  "id": "us-immigration",
+  "cat": "Geopolitics",
+  "title": "Immigration waves",
+  "hook": "Atlantic and Pacific gateways reveal unequal access.",
+  "file": "stories/us-immigration.json"
+ },
+ {
+  "id": "us-elections",
+  "cat": "Geopolitics",
+  "title": "The electoral map",
+  "hook": "Electoral allocations do not measure the popular vote.",
+  "file": "stories/us-elections.json"
+ },
+ {
+  "id": "eu-growth",
+  "cat": "Geopolitics",
+  "title": "From the Coal and Steel Community to the EU",
+  "hook": "Membership grows in waves; institutions change on a different timetable.",
+  "file": "stories/eu-growth.json"
+ },
+ {
+  "id": "eu-clubs",
+  "cat": "Geopolitics",
+  "title": "Euro, Schengen and opt-outs",
+  "hook": "Overlapping memberships explain why one European border map is insufficient.",
+  "file": "stories/eu-clubs.json"
+ },
+ {
+  "id": "eu-budget",
+  "cat": "Geopolitics",
+  "title": "Who pays and who receives",
+  "hook": "Compare a defined financing measure with ordinary and recovery expenditure.",
+  "file": "stories/eu-budget.json"
+ },
+ {
+  "id": "eu-regions",
+  "cat": "Geopolitics",
+  "title": "Cohesion money and regions",
+  "hook": "Regional output contrasts with the geography of cohesion spending.",
+  "file": "stories/eu-regions.json"
+ },
+ {
+  "id": "eu-brexit",
+  "cat": "Geopolitics",
+  "title": "Brexit",
+  "hook": "A vote, a notification, a withdrawal and a new border arrangement.",
+  "file": "stories/eu-brexit.json"
+ },
+ {
+  "id": "eu-candidates",
+  "cat": "Geopolitics",
+  "title": "Candidates and enlargement",
+  "hook": "Candidate status, active negotiations and stalled paths occupy different maps.",
+  "file": "stories/eu-candidates.json"
+ },
+ {
+  "id": "ua-2014",
+  "cat": "Geopolitics",
+  "title": "Crimea and Donbas",
+  "hook": "The war’s earlier geography and the people living across contested lines.",
+  "file": "stories/ua-2014.json"
+ },
+ {
+  "id": "ua-invasion",
+  "cat": "Geopolitics",
+  "title": "The invasion",
+  "hook": "February 2022 opened a much wider war.",
+  "file": "stories/ua-invasion.json"
+ },
+ {
+  "id": "ua-counteroffensives",
+  "cat": "Geopolitics",
+  "title": "Kyiv, Kharkiv and Kherson",
+  "hook": "Different turning points in 2022, with an aftermath that outlasted them.",
+  "file": "stories/ua-counteroffensives.json"
+ },
+ {
+  "id": "ua-front",
+  "cat": "Geopolitics",
+  "title": "The long front",
+  "hook": "A monthly event record follows an extended war without pretending to draw its front.",
+  "file": "stories/ua-front.json"
+ },
+ {
+  "id": "ua-energy",
+  "cat": "Geopolitics",
+  "title": "Energy and night lights",
+  "hook": "Three dated Kyiv images, with limits on what darkness can tell us.",
+  "file": "stories/ua-energy.json"
+ },
+ {
+  "id": "ua-refugees",
+  "cat": "Geopolitics",
+  "title": "Refugees and displacement",
+  "hook": "Separate measures for people abroad and people displaced within Ukraine.",
+  "file": "stories/ua-refugees.json"
+ },
+ {
+  "id": "ua-snapshot",
+  "cat": "Geopolitics",
+  "title": "Where things stood at the cutoff",
+  "hook": "An October 2026 editorial cutoff with the observation windows kept visible.",
+  "file": "stories/ua-snapshot.json"
+ },
+ {
+  "id": "ww2-before",
+  "cat": "Geopolitics",
+  "title": "Europe before the war",
+  "hook": "A diplomatic map and the decisions that unravelled it.",
+  "file": "stories/ww2-before.json"
+ },
+ {
+  "id": "ww2-expansion",
+  "cat": "Geopolitics",
+  "title": "Expansion and occupation",
+  "hook": "Invasion, national occupation and campaign maps describe different things.",
+  "file": "stories/ww2-expansion.json"
+ },
+ {
+  "id": "ww2-east",
+  "cat": "Geopolitics",
+  "title": "The Eastern Front",
+  "hook": "The German–Soviet war moved through cities and devastated populations.",
+  "file": "stories/ww2-east.json"
+ },
+ {
+  "id": "ww2-pacific",
+  "cat": "Geopolitics",
+  "title": "The Pacific",
+  "hook": "Island battles and command geography across a vast ocean.",
+  "file": "stories/ww2-pacific.json"
+ },
+ {
+  "id": "ww2-holocaust",
+  "cat": "Geopolitics",
+  "title": "The Holocaust",
+  "hook": "Ghettos, mass shootings, killing centres and liberation.",
+  "file": "stories/ww2-holocaust.json"
+ },
+ {
+  "id": "ww2-bombing",
+  "cat": "Geopolitics",
+  "title": "Bombing cities",
+  "hook": "Selected attacks brought destruction to urban populations.",
+  "file": "stories/ww2-bombing.json"
+ },
+ {
+  "id": "ww2-end",
+  "cat": "Geopolitics",
+  "title": "The end of the war",
+  "hook": "Surrender was announced, signed and implemented at different times.",
+  "file": "stories/ww2-end.json"
+ },
+ {
+  "id": "ww2-borders",
+  "cat": "Geopolitics",
+  "title": "The postwar borders",
+  "hook": "Administrative decisions, changed states and displaced people.",
+  "file": "stories/ww2-borders.json"
+ },
+ {
+  "id": "hre-charlemagne",
+  "cat": "People",
+  "title": "Charlemagne",
+  "hook": "A Frankish ruler revived the western imperial title; later emperors inherited its symbolism.",
+  "file": "stories/hre-charlemagne.json"
+ },
+ {
+  "id": "hre-1000",
+  "cat": "People",
+  "title": "The empire around 1000",
+  "hook": "Saxon royal centres and Italian imperial coronation formed a geography spanning the Alps.",
+  "file": "stories/hre-1000.json"
+ },
+ {
+  "id": "hre-patchwork",
+  "cat": "People",
+  "title": "The territorial patchwork",
+  "hook": "An elected monarchy joined many territorial authorities through shared institutions.",
+  "file": "stories/hre-patchwork.json"
+ },
+ {
+  "id": "hre-westphalia",
+  "cat": "People",
+  "title": "Westphalia",
+  "hook": "Two treaty cities ended the Thirty Years’ War; imperial institutions continued afterwards.",
+  "file": "stories/hre-westphalia.json"
+ },
+ {
+  "id": "hre-end",
+  "cat": "People",
+  "title": "Napoleon and the end",
+  "hook": "Reorganisation, a rival imperial title and the Rhine Confederation preceded the abdication.",
+  "file": "stories/hre-end.json"
+ },
+ {
+  "id": "hre-after",
+  "cat": "People",
+  "title": "What followed",
+  "hook": "The German Confederation created a new federal order; imperial places outlived the institution.",
+  "file": "stories/hre-after.json"
  }
 ]

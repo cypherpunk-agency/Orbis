@@ -1,0 +1,152 @@
+{
+  "id": "rome-carthage",
+  "cat": "People",
+  "title": "Rome and Carthage",
+  "hook": "A struggle for Sicily became a contest across the western Mediterranean.",
+  "updated": "2026-10-14",
+  "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. Polybius Histories 1, 3 and 15; Appian Punic Wars 127–135. These ancient narratives supply chronology. Zama and the Alpine crossing remain geographically uncertain.",
+  "data": {
+    "events": "data/history/rome/rome-carthage.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Across the water",
+      "text": "Italy and the African coast faced each other across Sicily. Polybius traces the first war to intervention on that island in 264 BC.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12,
+          38
+        ],
+        "zoom": 3.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "rivals",
+            "sicily"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          -263,
+          -240
+        ],
+        "start": -240,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "The war moves north",
+      "text": "Hannibal carried the next war from Iberia across the Alps into Italy in 218 BC. The map anchors his arrival in the Po valley and his victory at Cannae; it does not invent his disputed route.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          11,
+          43
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "hannibal"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          -217,
+          -215
+        ],
+        "start": -215,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "The decision in Africa",
+      "text": "At Zama in 202 BC, Scipio defeated Hannibal. Victory shifted the balance toward Rome, but Carthage survived the peace.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10.4,
+          36.8
+        ],
+        "zoom": 7
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "africa"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          -201,
+          -145
+        ],
+        "start": -145,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "A city destroyed",
+      "text": "In 146 BC another Roman army destroyed Carthage. Compare the African battle-region marker with the coastal city: conquest involved both armies in the field and the destruction of urban communities.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10,
+          36.7
+        ],
+        "zoom": 6
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "africa"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

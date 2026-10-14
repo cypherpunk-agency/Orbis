@@ -3,7 +3,7 @@
   "cat": "People",
   "title": "Where fame was born",
   "hook": "Two million notable lives, from 3500 BC to 2018: where they began, and where they ended.",
-  "notes": "Laouenan, Bhargava, Eymeoud, Gergaud, Plique and Wasmer (2022), 'A cross-verified database of notable people, 3500BC–2018AD', Scientific Data 9:290; data.sciencespo doi:10.21410/7E4/RDAG3O (codes: doi:10.21410/7E4/YLG6YR). The record's terms say CC BY-SA 4.0, the licence file shipped with it CC BY-NC-SA 4.0; we follow the stricter one. The database merges Wikipedia (7 language editions, plus others for counts) and Wikidata, so it counts people someone wrote about, not everyone who mattered: Europe and men are over-represented, and recent births are still being added. Of 2.29 million people, 1.65 million have both a birth year and a birthplace; these are mapped in 0.5° cells and counted per city when born within 25 km of a Natural Earth populated place (modern names). Eras are labelled by their first year. The centre of gravity is the average position of all birthplaces of an era. Born vs died uses only the 640,000 people with both places known. Gender shares count men and women with a recorded gender.",
+  "notes": "Laouenan, Bhargava, Eymeoud, Gergaud, Plique and Wasmer (2022), 'A cross-verified database of notable people, 3500BC–2018AD', Scientific Data 9:290; data.sciencespo doi:10.21410/7E4/RDAG3O (codes: doi:10.21410/7E4/YLG6YR). The record's terms say CC BY-SA 4.0, the licence file shipped with it CC BY-NC-SA 4.0; we follow the stricter one. The database merges Wikipedia (7 language editions, plus others for counts) and Wikidata, so it counts people someone wrote about, not everyone who mattered: Europe and men are over-represented, and recent births are still being added. Of 2.29 million people, 1.65 million have both a birth year and a birthplace; these are mapped in 0.5° cells and counted per city when born within 25 km of a Natural Earth populated place (modern names). Eras are labelled by their first year. The centre of gravity is the average position of all birthplaces of an era. Born vs died uses only the 633,000 people with both places known. Gender shares count men and women with a recorded gender. Citizenship comparisons use the database’s first recorded citizenship, not verified passports or a representative sample of the population.",
   "sources": [
     "naturalearth"
   ],
@@ -18,7 +18,7 @@
   "scenes": [
     {
       "title": "Two million lives",
-      "text": "Researchers combined Wikipedia and Wikidata into a list of 2.3 million notable people, from 3500 BC to 2018. For 1.65 million we know when and where they were born. The map glows where the record is thickest: Europe and North America. Two in three people born since 1950 hold a European, US or Canadian passport.",
+      "text": "Researchers combined Wikipedia and Wikidata into a list of 2.3 million notable people, from 3500 BC to 2018. For 1.65 million we know when and where they were born. The map glows where the record is thickest: Europe and North America. Among people born since 1950 with a recorded citizenship in this database, roughly two-thirds have a European, US or Canadian first citizenship.",
       "view": {
         "mode": "equal",
         "center": [
@@ -105,7 +105,7 @@
     },
     {
       "title": "The centre drifts west",
-      "text": "Average the birthplaces of each era and you get a centre of gravity. It starts in Anatolia, swings north of the Black Sea, pulled east by births in Asia, then crosses Europe: Bavaria in the 1300s, Belgium by 1700. As America fills up it moves into the Atlantic. Since 1975 it has turned back east, as Asia's share of births rises from 11% to 16%.",
+      "text": "Average the recorded birthplaces of each era and you get a centre of gravity. It starts in Anatolia, swings north of the Black Sea, then crosses Europe: Bavaria in the 1300s, Belgium by 1700. As American birthplaces enter the record it moves into the Atlantic, then east again among people born in 1975–2018. Separately, the share recorded with an Asian first citizenship rises from 11% for births in 1950–1974 to 16% in 1975–2018.",
       "view": {
         "mode": "equal",
         "center": [

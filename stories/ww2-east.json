@@ -1,0 +1,125 @@
+{
+  "id": "ww2-east",
+  "cat": "Geopolitics",
+  "title": "The Eastern Front",
+  "hook": "The German–Soviet war moved through cities and devastated populations.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. The invasion of the Soviet Union: https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front; 2. Leningrad: a city under siege: https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/belagerung-von-leningrad; 3. Stalingrad changes the initiative: https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front; 4. The advance reaches Berlin: https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front",
+  "data": {
+    "events": "data/history/ww2/ww2-east.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "The invasion of the Soviet Union",
+      "text": "Nazi Germany and its allies attacked the Soviet Union on 22 June 1941. Minsk locates one part of the vast theatre; a point is not an invasion front. USHMM describes this as a war of annihilation against civilians as well as armies.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          31,
+          53
+        ],
+        "zoom": 3.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19410622,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Leningrad: a city under siege",
+      "text": "German forces besieged Leningrad during the war. The siege subjected civilians to starvation and severe suffering. The city point locates the human geography of the siege; it does not delineate the encirclement.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          29,
+          58
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 1941,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Stalingrad changes the initiative",
+      "text": "The surviving German forces at Stalingrad surrendered between 31 January and 2 February 1943. Soviet armies then gained the initiative. The point uses the wartime name for today’s Volgograd, on the Volga River.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          42,
+          49
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19430202,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "The advance reaches Berlin",
+      "text": "Soviet forces drove the German military back and captured Berlin in spring 1945. This located endpoint does not suggest that one uninterrupted route linked every eastern campaign. The intervening fighting and civilian devastation extended across a much larger region.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          51
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 1945,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

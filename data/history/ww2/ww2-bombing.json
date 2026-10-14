@@ -1,0 +1,90 @@
+{
+  "source": "editorial",
+  "asOf": "Historical observation dates stated per event",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed.",
+  "kinds": {
+    "0": {
+      "label": "London",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Coventry",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Dresden",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Hiroshima",
+      "color": "c4"
+    },
+    "4": {
+      "label": "Nagasaki",
+      "color": "c5"
+    }
+  },
+  "items": [
+    {
+      "title": "London",
+      "text": "The sustained Blitz on London began on 7 September 1940. Bombing damaged homes and infrastructure and killed civilians. The point locates London, without implying that all attacks struck one site or covered the entire city uniformly.",
+      "date": 19400907,
+      "at": [
+        -0.13,
+        51.51
+      ],
+      "kind": "0",
+      "source": "Primary record / specialist museum account",
+      "url": "https://historicengland.org.uk/whats-new/features/blitz-stories/england-under-attack/"
+    },
+    {
+      "title": "Coventry",
+      "text": "The Luftwaffe attacked Coventry on the night of 14 November 1940. The cathedral was destroyed; its ruins remain a witness to the raid. This point locates the city rather than an invented bomb-impact grid.",
+      "date": 19401114,
+      "at": [
+        -1.51,
+        52.41
+      ],
+      "kind": "1",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.coventrycathedral.org.uk/locations/the-ruins"
+    },
+    {
+      "title": "Dresden",
+      "text": "British bombing on the night of 13–14 February 1945 devastated Dresden, followed by US attacks. Naming the attackers matters when mapping civilian destruction. This city point does not estimate a firestorm perimeter or select among disputed casualty totals.",
+      "date": 19450213,
+      "at": [
+        13.74,
+        51.05
+      ],
+      "kind": "2",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.dhm.de/lemo/kapitel/zweiter-weltkrieg/kriegsverlauf/dresden"
+    },
+    {
+      "title": "Hiroshima",
+      "text": "The United States dropped an atomic bomb on Hiroshima on 6 August 1945. The National Archives documents destruction and large-scale loss of life. This point locates the city; it does not model a blast-radius circle or assign a precise death total.",
+      "date": 19450806,
+      "at": [
+        132.46,
+        34.4
+      ],
+      "kind": "3",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.archives.gov/news/topics/hiroshima-nagasaki-75"
+    },
+    {
+      "title": "Nagasaki",
+      "text": "The United States bombed Nagasaki on 9 August 1945. The two cities experienced different terrain and attack conditions. This chapter identifies the dates and cities without treating them as interchangeable casualty measurements.",
+      "date": 19450809,
+      "at": [
+        129.87,
+        32.75
+      ],
+      "kind": "4",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.archives.gov/news/topics/hiroshima-nagasaki-75"
+    }
+  ]
+}

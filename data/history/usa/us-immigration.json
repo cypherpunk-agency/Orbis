@@ -1,0 +1,74 @@
+{
+  "source": "editorial",
+  "asOf": "2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed.",
+  "kinds": {
+    "0": {
+      "label": "Nineteenth-century Atlantic migration",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Ellis Island: the Atlantic gateway",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Exclusion shaped the Pacific crossing",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Angel Island: entry and detention",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "title": "New York",
+      "text": "Germany, Ireland and England were major sources of immigrants during the nineteenth century. The highlighted origin countries identify places described by the Library of Congress, without inventing counts or exact ship routes.",
+      "at": [
+        -74.04,
+        40.69
+      ],
+      "date": 1880,
+      "kind": "0",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/rise-of-industrial-america-1876-1900/immigration-to-united-states-1851-1900/"
+    },
+    {
+      "title": "Ellis Island",
+      "text": "Ellis Island inspected immigrants entering through New York from 1892 to 1954. The island locates an inspection station; it cannot represent all arrivals or all immigrants’ final destinations.",
+      "at": [
+        -74.04,
+        40.7
+      ],
+      "date": 1892,
+      "kind": "1",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.archives.gov/dc/highlights/ellis-island-report"
+    },
+    {
+      "title": "San Francisco",
+      "text": "The Chinese Exclusion Act of 1882 barred Chinese labour immigration. The San Francisco point locates the Pacific gateway affected by federal exclusion, not the location where Congress enacted the law.",
+      "at": [
+        -122.42,
+        37.77
+      ],
+      "date": 1882,
+      "kind": "2",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.archives.gov/milestone-documents/chinese-exclusion-act"
+    },
+    {
+      "title": "Angel Island",
+      "text": "Angel Island operated as an immigration station from 1910 to 1940. Many arrivals faced detention and interrogation; this Pacific history complicates a single story of welcome through New York.",
+      "at": [
+        -122.43,
+        37.87
+      ],
+      "date": 1910,
+      "kind": "3",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/places/u-s-immigration-station-angel-island.htm"
+    }
+  ]
+}

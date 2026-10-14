@@ -1,0 +1,125 @@
+{
+  "id": "hre-after",
+  "cat": "People",
+  "title": "What followed",
+  "hook": "The German Confederation created a new federal order; imperial places outlived the institution.",
+  "updated": "2026-10-14",
+  "notes": "GHDI German Federal Act (1815) for Frankfurt and the named free cities; Habsburger Congress of Vienna history for the new order; UNESCO Aachen and Regensburg for surviving heritage. Heritage locators are reviewed at cutoff, not a claim of current territorial sovereignty. Coordinates are approximate named-place locators, not imported surveyed points. Modern borders are hidden. Event cards contain claim-level citations. The later term Holy Roman Empire must not be projected unchanged onto Charlemagne’s Frankish realm.",
+  "sources": [
+    "editorial"
+  ],
+  "data": {
+    "events": "data/history/hre/hre-after.json"
+  },
+  "scenes": [
+    {
+      "title": "A settlement in Vienna",
+      "text": "In 1815 the Congress of Vienna created the German Confederation. It followed the dissolved empire but did not restore its imperial crown.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16.37,
+          48.21
+        ],
+        "zoom": 8
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "congress"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "The assembly moves to Frankfurt",
+      "text": "The 1815 Federal Act placed the confederal assembly at Frankfurt. Comparing Vienna with Frankfurt separates the diplomatic settlement from the new institution’s meeting place.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12,
+          49
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "congress",
+            "assembly"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Free cities in the new order",
+      "text": "The Federal Act lists Lübeck, Frankfurt, Bremen and Hamburg alongside member states. The northern city anchors show continuity of some urban political identities within a different federal arrangement.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          9.5,
+          53.4
+        ],
+        "zoom": 24
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "cities"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Buildings after institutions",
+      "text": "Aachen’s chapel and Regensburg’s old town preserve traces of earlier imperial life. These present-day heritage sites are not evidence that the empire’s political authority survives.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          9,
+          50
+        ],
+        "zoom": 6
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "heritage"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

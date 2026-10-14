@@ -1,0 +1,110 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis, cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original factual annotations. Event URLs cite dates and claims; coordinates locate the named place approximately, not battlefield boundaries. BC dates use astronomical years (1 BC = 0).",
+  "kinds": {
+    "rivals": {
+      "label": "Rivals",
+      "color": "c3"
+    },
+    "sicily": {
+      "label": "Sicily",
+      "color": "c4"
+    },
+    "hannibal": {
+      "label": "Hannibal",
+      "color": "c5"
+    },
+    "africa": {
+      "label": "Africa",
+      "color": "c3"
+    }
+  },
+  "items": [
+    {
+      "title": "Two rivals",
+      "date": -263,
+      "at": [
+        12.49,
+        41.89
+      ],
+      "text": "Rome and Carthage began their first war over Sicily in 264 BC.",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/1*.html",
+      "source": "Polybius, Histories 1.10–12",
+      "kind": "rivals"
+    },
+    {
+      "title": "Carthage",
+      "date": -263,
+      "at": [
+        10.32,
+        36.85
+      ],
+      "text": "Carthage was the African maritime power confronting Rome across the central Mediterranean.",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/1*.html",
+      "source": "Polybius, Histories 1",
+      "kind": "rivals"
+    },
+    {
+      "title": "Sicily surrendered",
+      "date": -240,
+      "at": [
+        12.43,
+        37.8
+      ],
+      "text": "The peace of 241 BC required Carthage to withdraw from Sicily; this marker locates the island, not the treaty signing.",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/1*.html",
+      "source": "Polybius, Histories 1.62–63",
+      "kind": "sicily"
+    },
+    {
+      "title": "Hannibal reaches Italy",
+      "date": -217,
+      "at": [
+        7.7,
+        45.0
+      ],
+      "text": "In 218 BC Hannibal crossed the Alps into Italy. This Po-valley anchor deliberately does not choose a disputed Alpine pass.",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/3*.html",
+      "source": "Polybius, Histories 3.50–56",
+      "kind": "hannibal"
+    },
+    {
+      "title": "Cannae",
+      "date": -215,
+      "at": [
+        16.13,
+        41.31
+      ],
+      "text": "Hannibal defeated Roman armies at Cannae in 216 BC.",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/3*.html",
+      "source": "Polybius, Histories 3.107–117",
+      "kind": "hannibal"
+    },
+    {
+      "title": "Zama region",
+      "date": -201,
+      "at": [
+        9.2,
+        36.1
+      ],
+      "text": "Scipio defeated Hannibal in 202 BC. Zama is located only at regional precision; the battlefield is debated.",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/15*.html",
+      "source": "Polybius, Histories 15.5–16",
+      "kind": "africa"
+    },
+    {
+      "title": "Carthage destroyed",
+      "date": -145,
+      "at": [
+        10.32,
+        36.85
+      ],
+      "text": "Roman forces destroyed Carthage in 146 BC; this was a later war, not the immediate outcome of Zama.",
+      "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0230%3Atext%3DPun.%3Achapter%3D20%3Asection%3D133",
+      "source": "Appian, Punic Wars 127–135",
+      "kind": "africa"
+    }
+  ]
+}

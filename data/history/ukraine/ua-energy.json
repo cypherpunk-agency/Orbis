@@ -1,0 +1,43 @@
+{
+  "source": "editorial",
+  "asOf": "Fixed historical references; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Selected factual annotations, no exhaustive event count",
+  "note": "Original paraphrases with primary citations. Coordinates approximate named city/region anchors, not footprints. A date may mark a reporting cutoff rather than the onset of an event; the card says which.",
+  "kinds": {
+    "lights": {
+      "label": "Lights",
+      "color": "muted"
+    },
+    "dam": {
+      "label": "Dam",
+      "color": "muted"
+    }
+  },
+  "items": [
+    {
+      "title": "NASA comparison (published)",
+      "date": 20220630,
+      "at": [
+        30.52,
+        50.45
+      ],
+      "text": "NASA published January, March and May 2022 composites around Kyiv. Selected cloud-free nights and Landsat context support the display comparison.",
+      "url": "https://science.nasa.gov/earth/earth-observatory/tracking-night-lights-in-ukraine-150002/",
+      "source": "https://science.nasa.gov/earth/earth-observatory/tracking-night-lights-in-ukraine-150002/",
+      "kind": "lights"
+    },
+    {
+      "title": "A hydropower system disrupted",
+      "date": 20230606,
+      "at": [
+        33.37,
+        46.77
+      ],
+      "text": "Kakhovka’s destruction affected water supply as well as the hydropower facility. The UN assessment distinguishes downstream flooding and upstream loss of water.",
+      "url": "https://ukraine.un.org/en/235545-potential-long-term-impact-destruction-kakhovka-dam",
+      "source": "https://ukraine.un.org/en/235545-potential-long-term-impact-destruction-kakhovka-dam",
+      "kind": "dam"
+    }
+  ]
+}

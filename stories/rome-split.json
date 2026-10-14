@@ -1,0 +1,149 @@
+{
+  "id": "rome-split",
+  "cat": "People",
+  "title": "East and West",
+  "hook": "Several courts governed one Roman world before its western and eastern paths diverged.",
+  "updated": "2026-10-14",
+  "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. Met, The Roman Empire (Tetrarchy, Constantine and Theodosius); UNESCO Ravenna for AD 402. Historical place-name change is tied to the AD 330 foundation; no claim of an instantaneous universal name replacement.",
+  "data": {
+    "events": "data/history/rome/rome-split.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Power shared",
+      "text": "Diocletian’s Tetrarchy shared imperial authority from AD 293. His later palace at Split gives a geographic anchor for the ruler; multiple emperors did not mean modern nation-states.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          17,
+          43
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "tetrarchy"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Byzantium becomes Constantinople",
+      "text": "Constantine’s capital stood on the Bosporus between Mediterranean and Black Sea routes. Move from AD 324 to AD 330 to watch the historical place-name change.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          29,
+          41
+        ],
+        "zoom": 7
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "places",
+          "data": "events",
+          "year": "t",
+          "color": "c3"
+        },
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "kinds": [
+            "capital"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          324,
+          330
+        ],
+        "start": 330,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "Two courts",
+      "text": "After Theodosius’s death in AD 395, western and eastern government passed to different sons. The city markers locate the two political worlds; they do not draw an exact partition line.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          21,
+          41
+        ],
+        "zoom": 3
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "division"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          330,
+          395
+        ],
+        "start": 395,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "Ravenna and Constantinople",
+      "text": "Ravenna became the western imperial seat in AD 402. Comparing it with Constantinople shows how Rome’s old centrality differed from the geography of late imperial government.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          21,
+          43
+        ],
+        "zoom": 3
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "ravenna",
+            "capital"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

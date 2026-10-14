@@ -1,0 +1,179 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Dated events and approximate named-place coordinates in longitude/latitude degrees",
+  "note": "Original paraphrases linked to institutional histories and primary documents. Markers locate cities or regions, not territorial extent, exact ceremonies or front lines. Years are conventional historical years; dates before 1582 follow the historical Julian calendar unless noted.",
+  "kinds": {
+    "congress": {
+      "label": "Congress",
+      "color": "c1"
+    },
+    "assembly": {
+      "label": "Assembly",
+      "color": "c2"
+    },
+    "cities": {
+      "label": "Cities",
+      "color": "c4"
+    },
+    "heritage": {
+      "label": "Heritage",
+      "color": "c1"
+    }
+  },
+  "items": [
+    {
+      "kind": "congress",
+      "title": "Vienna",
+      "date": 1815,
+      "at": [
+        16.37,
+        48.21
+      ],
+      "text": "The Congress of Vienna established the German Confederation within a wider European settlement.",
+      "url": "https://www.habsburger.net/en/chapter/new-ordering-europe-181415",
+      "source": "www.habsburger.net"
+    },
+    {
+      "kind": "assembly",
+      "title": "Frankfurt",
+      "date": 1815,
+      "at": [
+        8.68,
+        50.11
+      ],
+      "text": "The German Federal Act of 8 June 1815 designated Frankfurt as the seat of the federal assembly.",
+      "url": "https://germanhistorydocs.org/en/from-vormaerz-to-prussian-dominance-1815-1866/german-federal-act-june-8-1815",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "cities",
+      "title": "Hamburg",
+      "date": 1815,
+      "at": [
+        9.99,
+        53.55
+      ],
+      "text": "Hamburg was one of the four free cities joining the 1815 Confederation.",
+      "url": "https://germanhistorydocs.org/en/from-vormaerz-to-prussian-dominance-1815-1866/german-federal-act-june-8-1815",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "cities",
+      "title": "Bremen",
+      "date": 1815,
+      "at": [
+        8.8,
+        53.08
+      ],
+      "text": "Bremen was another of the four free cities joining the 1815 Confederation.",
+      "url": "https://germanhistorydocs.org/en/from-vormaerz-to-prussian-dominance-1815-1866/german-federal-act-june-8-1815",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "heritage",
+      "title": "Aachen’s surviving chapel",
+      "date": 2026,
+      "at": [
+        6.083,
+        50.775
+      ],
+      "text": "Aachen’s Carolingian chapel survives within a cathedral enlarged by later generations.",
+      "url": "https://whc.unesco.org/en/list/3/",
+      "source": "whc.unesco.org"
+    },
+    {
+      "kind": "heritage",
+      "title": "Regensburg’s old town",
+      "date": 2026,
+      "at": [
+        12.1,
+        49.02
+      ],
+      "text": "Regensburg preserves buildings linked to its imperial assembly and medieval trading history.",
+      "url": "https://whc.unesco.org/en/list/1155/",
+      "source": "whc.unesco.org"
+    }
+  ],
+  "places": [
+    {
+      "at": [
+        16.37,
+        48.21
+      ],
+      "names": [
+        {
+          "name": "Vienna",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        8.68,
+        50.11
+      ],
+      "names": [
+        {
+          "name": "Frankfurt",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        9.99,
+        53.55
+      ],
+      "names": [
+        {
+          "name": "Hamburg",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        8.8,
+        53.08
+      ],
+      "names": [
+        {
+          "name": "Bremen",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        6.083,
+        50.775
+      ],
+      "names": [
+        {
+          "name": "Aachen’s surviving chapel",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        12.1,
+        49.02
+      ],
+      "names": [
+        {
+          "name": "Regensburg’s old town",
+          "from": null,
+          "to": null
+        }
+      ]
+    }
+  ]
+}

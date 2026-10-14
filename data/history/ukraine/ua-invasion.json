@@ -1,0 +1,59 @@
+{
+  "source": "editorial",
+  "asOf": "Fixed historical references; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Selected factual annotations, no exhaustive event count",
+  "note": "Original paraphrases with primary citations. Coordinates approximate named city/region anchors, not footprints. A date may mark a reporting cutoff rather than the onset of an event; the card says which.",
+  "kinds": {
+    "attack": {
+      "label": "Attack",
+      "color": "muted"
+    },
+    "siege": {
+      "label": "Siege",
+      "color": "muted"
+    },
+    "response": {
+      "label": "Response",
+      "color": "muted"
+    }
+  },
+  "items": [
+    {
+      "title": "Full-scale attack",
+      "date": 20220224,
+      "at": [
+        30.52,
+        50.45
+      ],
+      "text": "Russia launched its full-scale armed attack on 24 February 2022. The Kyiv marker anchors the national event, not its only direction.",
+      "url": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "source": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "kind": "attack"
+    },
+    {
+      "title": "Mariupol siege",
+      "date": 20220531,
+      "at": [
+        37.55,
+        47.1
+      ],
+      "text": "OHCHR describes Mariupol as under siege for nearly three months, with intensive bombardment. May marks the end of this reporting interval, not an exact surrender date.",
+      "url": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "source": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "kind": "siege"
+    },
+    {
+      "title": "General Assembly response",
+      "date": 20220302,
+      "at": [
+        -73.97,
+        40.75
+      ],
+      "text": "On 2 March the General Assembly demanded Russia end the invasion and withdraw its military forces.",
+      "url": "https://press.un.org/en/2022/ga12407.doc.htm",
+      "source": "https://press.un.org/en/2022/ga12407.doc.htm",
+      "kind": "response"
+    }
+  ]
+}

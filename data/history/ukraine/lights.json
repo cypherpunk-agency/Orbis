@@ -1,0 +1,33 @@
+{
+  "source": "nasa-ukraine-lights",
+  "asOf": "2022-05",
+  "retrieved": "2026-10-14",
+  "title": "Kyiv night-light display composites, January/March/May 2022",
+  "url": "https://science.nasa.gov/earth/earth-observatory/tracking-night-lights-in-ukraine-150002/",
+  "credit": "NASA Earth Observatory / Joshua Stevens; Black Marble data courtesy Ranjay Shrestha / NASA GSFC",
+  "licence": "NASA imagery, public use with credit",
+  "note": "NASA selected cloud-free nights for monthly composites, with Landsat 9 near-infrared context. Display images retained without georeferencing; WebP compression by Orbis. Outdoor lighting may be intentionally dimmed. Light change is not a direct count of displaced people or damaged infrastructure; no front or territory control is inferred.",
+  "observations": [
+    {
+      "month": "202201",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/150000/150002/kyiv_bmhd_202201_lrg.jpg?crop=faces%2Cfocalpoint&fit=clip&h=921&w=1073",
+      "sha256": "2e2c53a209799a5896b8fd0ae0cddb5a66d3f5db4385394642939ab66af9d449",
+      "image": "data/history/ukraine/kyiv-lights-202201.webp",
+      "bytes": 439890
+    },
+    {
+      "month": "202203",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/150000/150002/kyiv_bmhd_202203_lrg.jpg?crop=faces%2Cfocalpoint&fit=clip&h=921&w=1073",
+      "sha256": "2358bc19da3568b114e93739a8d2e5da84d2e1b7400923e67f053ff88306c638",
+      "image": "data/history/ukraine/kyiv-lights-202203.webp",
+      "bytes": 436092
+    },
+    {
+      "month": "202205",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/150000/150002/kyiv_bmhd_202205_lrg.jpg?crop=faces%2Cfocalpoint&fit=clip&h=921&w=1073",
+      "sha256": "e7fdf699b86c2ccbd93bd98e6e79f6a2371d07e705a813f665de2b2226d3075d",
+      "image": "data/history/ukraine/kyiv-lights-202205.webp",
+      "bytes": 437472
+    }
+  ]
+}

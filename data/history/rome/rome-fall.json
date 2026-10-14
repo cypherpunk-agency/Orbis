@@ -1,0 +1,102 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis, cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original factual annotations. Event URLs cite dates and claims; coordinates locate the named place approximately, not battlefield boundaries. BC dates use astronomical years (1 BC = 0).",
+  "kinds": {
+    "west": {
+      "label": "West",
+      "color": "c3"
+    },
+    "east": {
+      "label": "East",
+      "color": "c4"
+    },
+    "crusade": {
+      "label": "Crusade",
+      "color": "c1"
+    },
+    "restoration": {
+      "label": "Restoration",
+      "color": "c5"
+    },
+    "ottoman": {
+      "label": "Ottoman",
+      "color": "c2"
+    }
+  },
+  "items": [
+    {
+      "title": "Rome sacked",
+      "date": 410,
+      "at": [
+        12.49,
+        41.89
+      ],
+      "text": "Alaric’s forces sacked Rome in AD 410.",
+      "url": "https://www.metmuseum.org/essays/the-roman-empire-27-b-c-393-a-d",
+      "source": "Met, The Roman Empire",
+      "kind": "west"
+    },
+    {
+      "title": "Western deposition",
+      "date": 476,
+      "at": [
+        12.2,
+        44.42
+      ],
+      "text": "Odoacer deposed Romulus Augustulus in AD 476. Ravenna locates the western court; this conventional endpoint did not end all Roman institutions.",
+      "url": "https://www.metmuseum.org/essays/the-roman-empire-27-b-c-393-a-d",
+      "source": "Met, The Roman Empire; UNESCO Ravenna",
+      "kind": "west"
+    },
+    {
+      "title": "Eastern survival",
+      "date": 476,
+      "at": [
+        28.98,
+        41.01
+      ],
+      "text": "Constantinople remained the seat of Roman imperial government. Justinian’s sixth-century rule belongs to this continuing eastern history.",
+      "url": "https://www.metmuseum.org/essays/byzantium-ca-330-1453",
+      "source": "Met, Byzantium",
+      "kind": "east"
+    },
+    {
+      "title": "Crusader conquest",
+      "date": 1204,
+      "at": [
+        28.98,
+        41.01
+      ],
+      "text": "The Fourth Crusade captured Constantinople in 1204 and established a Latin empire.",
+      "url": "https://www.metmuseum.org/essays/byzantium-ca-330-1453",
+      "source": "Met, Byzantium",
+      "kind": "crusade"
+    },
+    {
+      "title": "Imperial restoration",
+      "date": 1261,
+      "at": [
+        28.98,
+        41.01
+      ],
+      "text": "Constantinople returned to Byzantine imperial rule in 1261.",
+      "url": "https://www.metmuseum.org/exhibitions/listings/2004/byzantium-faith-and-power",
+      "source": "Met, Byzantium: Faith and Power",
+      "kind": "restoration"
+    },
+    {
+      "title": "Ottoman conquest",
+      "date": 1453,
+      "at": [
+        28.98,
+        41.01
+      ],
+      "text": "The Ottoman conquest of Constantinople in 1453 ended its Byzantine imperial government.",
+      "url": "https://www.metmuseum.org/essays/byzantium-ca-330-1453",
+      "source": "Met, Byzantium",
+      "kind": "ottoman"
+    }
+  ]
+}

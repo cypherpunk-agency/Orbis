@@ -1,0 +1,97 @@
+{
+  "source": "editorial",
+  "asOf": "2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed.",
+  "kinds": {
+    "0": {
+      "label": "Jamestown: a river foothold",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Plymouth: an inhabited shore",
+      "color": "c2"
+    },
+    "2": {
+      "label": "A declaration in Philadelphia",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Thirteen names, an international treaty",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "title": "Jamestown",
+      "text": "English settlers established Jamestown in 1607 on the James River, within Powhatan country. Its coastal location connected the settlement to Atlantic shipping.",
+      "at": [
+        -76.76,
+        37.21
+      ],
+      "date": 1607,
+      "kind": "0",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/jame/learn/historyculture/a-short-history-of-jamestown.htm"
+    },
+    {
+      "title": "Plymouth",
+      "text": "The land that became Plymouth Colony was Wampanoag land. The point locates Plymouth rather than outlining either Indigenous territory or a colonial claim.",
+      "at": [
+        -70.67,
+        41.96
+      ],
+      "date": 1620,
+      "kind": "1",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/rowi/learn/historyculture/wampanoag.htm"
+    },
+    {
+      "title": "Philadelphia",
+      "text": "In 1776 the Declaration of Independence announced separation from Britain. Philadelphia is the location of the congressional decision, not a frontier between armies.",
+      "at": [
+        -75.15,
+        39.95
+      ],
+      "date": 1776,
+      "kind": "2",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.archives.gov/founding-docs/declaration"
+    },
+    {
+      "title": "Original states",
+      "text": "The Treaty of Paris of 1783 named the thirteen states and recognised US independence. British recognition was a diplomatic act; it did not obtain Indigenous consent to the treaty’s western claims.",
+      "at": [
+        -74,
+        40
+      ],
+      "date": 1783,
+      "kind": "3",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.archives.gov/milestone-documents/treaty-of-paris"
+    }
+  ],
+  "sets": {
+    "original": {
+      "label": "Original states on modern outlines",
+      "values": {
+        "US-NH": "original",
+        "US-MA": "original",
+        "US-RI": "original",
+        "US-CT": "original",
+        "US-NY": "original",
+        "US-NJ": "original",
+        "US-PA": "original",
+        "US-DE": "original",
+        "US-MD": "original",
+        "US-VA": "original",
+        "US-NC": "original",
+        "US-SC": "original",
+        "US-GA": "original"
+      },
+      "labels": {
+        "original": "Original state (modern outline)"
+      }
+    }
+  }
+}

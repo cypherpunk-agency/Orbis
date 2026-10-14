@@ -1,0 +1,78 @@
+{
+  "source": "editorial",
+  "asOf": "Historical observation dates stated per event",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed.",
+  "kinds": {
+    "0": {
+      "label": "Pearl Harbor",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Midway",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Guadalcanal",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Pacific commands",
+      "color": "c4"
+    },
+    "4": {
+      "label": "Okinawa",
+      "color": "c5"
+    }
+  },
+  "items": [
+    {
+      "title": "Pearl Harbor",
+      "text": "Japan attacked Pearl Harbor on 7 December 1941. The harbour in Hawaii was a major US naval base; the attack brought the United States into World War II. Hawaii was then a US territory, not yet a state.",
+      "date": 19411207,
+      "at": [
+        -157.95,
+        21.36
+      ],
+      "kind": "0",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.nps.gov/wwii/learn/historyculture/pearl-harbor.htm"
+    },
+    {
+      "title": "Midway",
+      "text": "The June 1942 battle near Midway checked Japanese expansion in the central Pacific. The Navy identifies the main carrier battle on 4 June; the point locates the atoll rather than reconstructing fleets’ positions.",
+      "date": 19420604,
+      "at": [
+        -177.37,
+        28.21
+      ],
+      "kind": "1",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.history.navy.mil/content/history/museums/nmusn/explore/photography/wwii/wwii-pacific/turning-the-japanese-tide/1942-june-battle-of-midway.html"
+    },
+    {
+      "title": "Guadalcanal",
+      "text": "US Marines landed on Guadalcanal on 7 August 1942. The campaign combined land, sea and air fighting around the Solomon Islands. The point locates the island’s northern shore, not a landing beach perimeter.",
+      "date": 19420807,
+      "at": [
+        160.05,
+        -9.42
+      ],
+      "kind": "2",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/b/battle-of-guadalcanal.html"
+    },
+    {
+      "title": "Okinawa",
+      "text": "US forces landed on Okinawa’s main island on 1 April 1945. The battle brought devastating combat to its civilian population as well as Japanese and Allied forces. No casualty estimate or occupation perimeter is inferred from this point.",
+      "date": 19450401,
+      "at": [
+        127.8,
+        26.5
+      ],
+      "kind": "4",
+      "source": "Primary record / specialist museum account",
+      "url": "https://www.history.navy.mil/content/history/museums/nmusn/explore/photography/wwii/wwii-pacific/okinawa.html"
+    }
+  ]
+}

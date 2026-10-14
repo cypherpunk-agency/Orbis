@@ -1,0 +1,249 @@
+{
+ "id": "tr-world",
+ "cat": "People",
+ "title": "Turkey in the world",
+ "hook": "Straits, alliances, Cyprus, Europe and Syria in a dated regional history.",
+ "updated": "2026-10-14",
+ "sources": [
+  "editorial"
+ ],
+ "notes": "Original Orbis factual annotations, not copied source prose. Locations are approximate city/site locators, not surveyed footprints. Historical geometry fallback: cited located events and places; no empire, ethnic or control polygons are inferred. Source coverage ends 2025-12-08. Editorial cutoff: 14 October 2026. References by scene: Scenes 1-2: https://www.nato.int/cps/en/natohq/declassified_191048.htm ; Scene 3 (1974): https://unficyp.unmissions.org/en/events-summer-1974 ; Scene 3 (1983): https://digitallibrary.un.org/record/58970?v=pdf ; Scene 4: https://www.auswaertiges-amt.de/de/aussenpolitik/anwerbeabkommen/2493338 ; Scene 5: https://www.consilium.europa.eu/en/policies/turkiye/ ; Scene 6: https://www.unhcr.org/tr/en/news/press-releases/unhcr-historic-return-displaced-syrians-presents-opportunity-and-urgent",
+ "data": {
+  "events": "data/history/turkey/world.json"
+ },
+ "scenes": [
+  {
+   "title": "The straits join two seas",
+   "text": "The Bosporus and Dardanelles connect the Black Sea through the Sea of Marmara to the Aegean. The 1936 Montreux Convention regulates passage through the straits. The markers locate those passages; they are not shipping-volume observations or a reconstructed vessel route.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     28,
+     40.6
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      29.06,
+      41.15
+     ],
+     "label": "Bosporus",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      26.42,
+      40.15
+     ],
+     "label": "Dardanelles",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "NATO’s southeastern flank",
+   "text": "Turkey and Greece joined NATO in February 1952. NATO’s history describes Turkey’s strategic position and land and sea bases as important to the alliance. The two country outlines identify the new members in present-day geometry; they do not reconstruct Cold War deployments.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     27,
+     39
+    ],
+    "zoom": 4
+   },
+   "modernBorders": true,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      32.85,
+      39.93
+     ],
+     "label": "Ankara",
+     "color": "c3",
+     "r": 5
+    }
+   ],
+   "highlight": [
+    "TUR",
+    "GRC"
+   ],
+   "fills": {
+    "TUR": "c1",
+    "GRC": "c1"
+   }
+  },
+  {
+   "title": "Cyprus: intervention and division",
+   "text": "UNFICYP records a Greek-officer-directed coup on 15 July 1974 and Turkish landings on 20 July. In 1983 the Security Council declared the northern secession legally invalid. Nicosia locates the divided island; this map draws no occupation boundary and does not settle competing political claims.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     33.36,
+     35.17
+    ],
+    "zoom": 7
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "kinds": [
+      "history"
+     ],
+     "list": true,
+     "labels": false
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      33.36,
+      35.17
+     ],
+     "label": "Nicosia",
+     "color": "c3",
+     "r": 5
+    }
+   ],
+   "timeline": {
+    "years": [
+     19740715,
+     19740720,
+     19831118
+    ],
+    "format": "date",
+    "start": 19740715
+   }
+  },
+  {
+   "title": "Work and family ties with Europe",
+   "text": "The 1961 recruitment agreement connected Turkey with West Germany through labour migration. Marking Bonn and Istanbul shows the international relationship’s geographic span. It represents neither every migrant’s origin nor present-day diaspora size; migration is part of international history as well as domestic change.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     21,
+     46
+    ],
+    "zoom": 3
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      7.1,
+      50.73
+     ],
+     "label": "Bonn",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      28.98,
+      41.01
+     ],
+     "label": "Istanbul",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "An EU relationship with several stages",
+   "text": "The Council of the EU records candidate status in 1999, the opening of accession talks in 2005 and their effective standstill in June 2018. Brussels and Ankara locate the institutional relationship. The dated cards explain the sequence; candidate status is not EU membership.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     20,
+     46
+    ],
+    "zoom": 3
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "kinds": [
+      "politics"
+     ],
+     "list": true,
+     "labels": false
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      4.35,
+      50.85
+     ],
+     "label": "Brussels",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      32.85,
+      39.93
+     ],
+     "label": "Ankara",
+     "color": "c3",
+     "r": 5
+    }
+   ],
+   "timeline": {
+    "years": [
+     1999,
+     2005,
+     2018
+    ],
+    "start": 1999
+   }
+  },
+  {
+   "title": "Syria: refuge and return",
+   "text": "UNHCR’s 8 December 2025 account describes growing demand for voluntary return from Syria’s neighbouring host countries. Turkey’s southern border is part of that regional displacement geography. Aleppo and Gaziantep are reference locations, not observed individual journeys. This dated source does not establish conditions or totals on 14 October 2026.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     37.3,
+     36.65
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      37.16,
+      36.2
+     ],
+     "label": "Aleppo",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      37.38,
+      37.07
+     ],
+     "label": "Gaziantep",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "ww2-holocaust",
+  "cat": "Geopolitics",
+  "title": "The Holocaust",
+  "hook": "Ghettos, mass shootings, killing centres and liberation.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Warsaw: forced confinement: https://encyclopedia.ushmm.org/content/en/article/warsaw; 2. Babyn Yar: murder outside the camps: https://encyclopedia.ushmm.org/content/en/article/kiev-and-babi-yar; 3. Auschwitz-Birkenau: a killing centre: https://encyclopedia.ushmm.org/content/en/article/auschwitz; 4. Liberation did not erase the losses: https://www.nationalarchives.gov.uk/explore-the-collection/stories/report-on-the-liberation-of-bergen-belsen/ Overall Holocaust context and six-million Jewish victim total: https://encyclopedia.ushmm.org/content/en/article/introduction-to-the-holocaust. These are selected sites, not a complete site inventory or a casualty allocation. Static muted event points only; no animated pulses, decorative victim scaling, invented deportation routes or imported victim photographs.",
+  "data": {
+    "events": "data/history/ww2/ww2-holocaust.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "Warsaw: forced confinement",
+      "text": "German authorities established the Warsaw ghetto in 1940 and sealed it in November. They confined Jewish residents under conditions that caused severe suffering and death. This point locates Warsaw; it does not reconstruct the ghetto wall.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          20,
+          52
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 1940,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Babyn Yar: murder outside the camps",
+      "text": "On 29–30 September 1941, German SS and police units and their auxiliaries murdered Jews at the Babyn Yar ravine near Kyiv. The site demonstrates that genocide included mass shootings outside camp systems. The point is an approximate site location, not a grave boundary.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          29,
+          51
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19410930,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Auschwitz-Birkenau: a killing centre",
+      "text": "In 1942 the SS operated a killing centre at Auschwitz-Birkenau in German-occupied Poland. Jews deported from across Europe were murdered there; other targeted groups also suffered and died in the Auschwitz complex. This point locates Birkenau, without drawing unsupported deportation tracks.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          19,
+          50
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 1942,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Liberation did not erase the losses",
+      "text": "British forces liberated Bergen-Belsen on 15 April 1945, finding survivors of catastrophic conditions. USHMM identifies six million Jewish victims of the Holocaust; Nazi Germany also persecuted and murdered millions of other victims. These selected locations cannot represent every person or place affected.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          11,
+          52
+        ],
+        "zoom": 4.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19450415,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

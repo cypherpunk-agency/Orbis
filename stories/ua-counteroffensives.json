@@ -1,0 +1,117 @@
+{
+  "id": "ua-counteroffensives",
+  "cat": "Geopolitics",
+  "title": "Kyiv, Kharkiv and Kherson",
+  "hook": "Different turning points in 2022, with an aftermath that outlasted them.",
+  "updated": "2026-10-14",
+  "sources": [
+    "editorial"
+  ],
+  "data": {
+    "notes": "data/history/ukraine/ua-counteroffensives.json",
+    "violence": "data/events/conflict-ukraine.json"
+  },
+  "notes": "Fixed editorial cutoff: 14 October 2026. This is not a live map. The modern Natural Earth basemap provides orientation; its border conventions do not establish legal recognition, sovereignty or military control. Cards are selected approximate locators. UCDP events are incidents of organized violence with at least one death, aggregated into 0.25-degree cells by start month. Event locations are coded approximations; country-only/unlocated records are omitted. Only records assigned to Ukraine are shown, excluding Russia. GED 26.1 covers through December 2025; Candidate 26.0.8 extends through August 2026 and is preliminary. Circles measure events, not territory, troop strength or civilian deaths. Control claims use https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf paragraphs 31–32 and 163, plus the dated UN convoy account https://ukraine.un.org/en/207300-ukraine-humanitarians-bring-water-food-medicines-and-other-essential-supplies-thousands . No daily control polygons or reclaimed-area measurements are supplied.",
+  "scenes": [
+    {
+      "title": "The northern front receded",
+      "text": "By the end of March 2022, Russian forces withdrew from the northern front. This turning point is located near Kyiv; a point cannot reconstruct the changing extent of control.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          30.5,
+          50.5
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "north"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "The Kharkiv region changed",
+      "text": "The 2022 counteroffensives returned nearly all Kharkiv region to Ukrainian control by November, according to OHCHR. Izium provides a regional anchor. This scene deliberately gives the report’s end-November assessment rather than a fabricated daily front.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          37,
+          49.3
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "east"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Kherson, 11 November",
+      "text": "Ukraine regained Kherson city in November. The UN’s first convoy arrived within days. The city’s recovery is distinct from the whole region: OHCHR describes recovered areas on the Dnipro’s right bank.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          32.62,
+          46.64
+        ],
+        "zoom": 6.5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "south"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "After control changed",
+      "text": "Returning public services, clearing mines and repairing homes were part of the aftermath. OHCHR’s account extends through December 2023; its reporting date should not be read as a current map of safety.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          32.62,
+          46.64
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "aftermath"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

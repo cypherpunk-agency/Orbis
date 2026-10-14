@@ -1,0 +1,27 @@
+{
+  "source": "editorial",
+  "asOf": "Fixed historical references; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Selected factual annotations, no exhaustive event count",
+  "note": "Original paraphrases with primary citations. Coordinates approximate named city/region anchors, not footprints. A date may mark a reporting cutoff rather than the onset of an event; the card says which.",
+  "kinds": {
+    "water": {
+      "label": "Water",
+      "color": "muted"
+    }
+  },
+  "items": [
+    {
+      "title": "Kakhovka dam destruction",
+      "date": 20230606,
+      "at": [
+        33.37,
+        46.77
+      ],
+      "text": "The destruction of the Kakhovka dam on 6 June 2023 flooded downstream communities and disrupted upstream water access. This locator is not a flood extent.",
+      "url": "https://ukraine.un.org/en/235545-potential-long-term-impact-destruction-kakhovka-dam",
+      "source": "https://ukraine.un.org/en/235545-potential-long-term-impact-destruction-kakhovka-dam",
+      "kind": "water"
+    }
+  ]
+}

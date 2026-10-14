@@ -1,0 +1,74 @@
+{
+  "source": "editorial",
+  "asOf": "2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed.",
+  "kinds": {
+    "0": {
+      "label": "1898: a Pacific expansion",
+      "color": "c1"
+    },
+    "1": {
+      "label": "A Caribbean acquisition",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Hawaii: annexation before statehood",
+      "color": "c3"
+    },
+    "3": {
+      "label": "1949: an Atlantic alliance",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "title": "Manila / Philippines",
+      "text": "The 1898 war with Spain led to the cession of Guam and the Philippines to the United States. The points locate the islands; they do not imply those places retained identical political status afterward.",
+      "at": [
+        121,
+        14.6
+      ],
+      "date": 1898,
+      "kind": "0",
+      "source": "Federal record / historic-site account",
+      "url": "https://history.state.gov/milestones/1866-1898/spanish-american-war"
+    },
+    {
+      "title": "Puerto Rico",
+      "text": "Spain also ceded Puerto Rico after the 1898 war. Cuba’s status followed a different path; it was not annexed by the United States under the peace treaty.",
+      "at": [
+        -66.1,
+        18.46
+      ],
+      "date": 1898,
+      "kind": "1",
+      "source": "Federal record / historic-site account",
+      "url": "https://history.state.gov/milestones/1866-1898/spanish-american-war"
+    },
+    {
+      "title": "Hawaii / Honolulu",
+      "text": "The United States annexed Hawaii in 1898, following the overthrow of Queen Liliuokalani in 1893. It became a state only in 1959; acquisition and admission are separate historical changes.",
+      "at": [
+        -157.86,
+        21.31
+      ],
+      "date": 1898,
+      "kind": "2",
+      "source": "Federal record / historic-site account",
+      "url": "https://history.state.gov/milestones/1866-1898/spanish-american-war"
+    },
+    {
+      "title": "Washington / signing",
+      "text": "The North Atlantic Treaty was signed in Washington in 1949. The alliance linked the United States and Canada with European partners. The map locates the signing and the Atlantic relationship, not a current map of military bases.",
+      "at": [
+        -77.04,
+        38.9
+      ],
+      "date": 1949,
+      "kind": "3",
+      "source": "Federal record / historic-site account",
+      "url": "https://history.state.gov/milestones/1945-1952/nato"
+    }
+  ]
+}

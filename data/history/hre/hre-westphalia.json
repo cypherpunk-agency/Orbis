@@ -1,0 +1,125 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Dated events and approximate named-place coordinates in longitude/latitude degrees",
+  "note": "Original paraphrases linked to institutional histories and primary documents. Markers locate cities or regions, not territorial extent, exact ceremonies or front lines. Years are conventional historical years; dates before 1582 follow the historical Julian calendar unless noted.",
+  "kinds": {
+    "talks": {
+      "label": "Talks",
+      "color": "c2"
+    },
+    "religion": {
+      "label": "Religion",
+      "color": "c3"
+    },
+    "continuity": {
+      "label": "Continuity",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "kind": "talks",
+      "title": "Münster",
+      "date": 1648,
+      "at": [
+        7.63,
+        51.96
+      ],
+      "text": "The imperial peace with France was concluded at Münster in 1648.",
+      "url": "https://www.habsburger.net/en/chapter/peace-last",
+      "source": "www.habsburger.net"
+    },
+    {
+      "kind": "talks",
+      "title": "Osnabrück",
+      "date": 1648,
+      "at": [
+        8.05,
+        52.28
+      ],
+      "text": "The imperial peace with Sweden was concluded at Osnabrück in 1648.",
+      "url": "https://www.habsburger.net/en/chapter/peace-last",
+      "source": "www.habsburger.net"
+    },
+    {
+      "kind": "religion",
+      "title": "Imperial religious settlement",
+      "date": 1648,
+      "at": [
+        12.1,
+        49.02
+      ],
+      "text": "The treaties set a religious and constitutional settlement within the Empire; Regensburg is an institutional locator, not a signing location.",
+      "url": "https://germanhistorydocs.org/en/from-the-reformations-to-the-thirty-years-war-1500-1648/peace-treaties-of-westphalia-october-14-24-1648",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "continuity",
+      "title": "Regensburg’s continuing Diet",
+      "date": 1663,
+      "at": [
+        12.1,
+        49.02
+      ],
+      "text": "The Perpetual Diet began in 1663, demonstrating imperial institutions continued after the peace.",
+      "url": "https://whc.unesco.org/en/list/1155/",
+      "source": "whc.unesco.org"
+    }
+  ],
+  "places": [
+    {
+      "at": [
+        7.63,
+        51.96
+      ],
+      "names": [
+        {
+          "name": "Münster",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        8.05,
+        52.28
+      ],
+      "names": [
+        {
+          "name": "Osnabrück",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        12.1,
+        49.02
+      ],
+      "names": [
+        {
+          "name": "Imperial religious settlement",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        12.1,
+        49.02
+      ],
+      "names": [
+        {
+          "name": "Regensburg’s continuing Diet",
+          "from": null,
+          "to": null
+        }
+      ]
+    }
+  ]
+}

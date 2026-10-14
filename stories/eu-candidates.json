@@ -1,0 +1,145 @@
+{
+ "id": "eu-candidates",
+ "cat": "Geopolitics",
+ "title": "Candidates and enlargement",
+ "hook": "Candidate status, active negotiations and stalled paths occupy different maps.",
+ "updated": "2026-10-14",
+ "sources": [
+  "editorial"
+ ],
+ "notes": "Editorial cutoff 14 October 2026. Original Orbis narrative and factual locators. Status snapshot verified from official Council pages on 14 October 2026; negotiations scene uses a named 14 July 2026 event. Country categories do not imply recognized borders, occupation control or an accession forecast. References by scene: Scenes 1-2: https://www.consilium.europa.eu/en/topics/eu-enlargement/ ; Scene 3: https://www.consilium.europa.eu/en/press/news/20260714-four-accession-conferences-in-one-day/ ; Scene 4: https://www.consilium.europa.eu/en/policies/turkiye/ and https://www.consilium.europa.eu/en/policies/georgia/ ; Scene 5: https://www.consilium.europa.eu/en/policies/how-enlargement-works/",
+ "data": {
+  "memberships": "data/history/eu/memberships.json",
+  "outline": "data/history/eu/union-outline.json"
+ },
+ "scenes": [
+  {
+   "title": "Candidates surround the union",
+   "text": "The Council lists nine candidate countries at this 14 October 2026 cutoff: Albania, Bosnia and Herzegovina, Georgia, Moldova, Montenegro, North Macedonia, Serbia, Turkey and Ukraine. Their colour denotes candidate status alone. It does not guarantee accession or show a ranking of progress.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     25,
+     45
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "memberships",
+     "set": "candidates",
+     "colors": {
+      "candidate": "c3"
+     }
+    }
+   ]
+  },
+  {
+   "title": "The Western Balkans",
+   "text": "Albania, Bosnia and Herzegovina, Montenegro, North Macedonia and Serbia are candidates. Kosovo has applied but is not listed as a candidate. These are different procedural statuses; the map’s Kosovo geometry follows the base map and does not settle the dispute over recognition.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     20,
+     43
+    ],
+    "zoom": 5
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "memberships",
+     "set": "candidates",
+     "colors": {
+      "candidate": "c3"
+     }
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      21.16,
+      42.66
+     ],
+     "label": "Kosovo: applicant",
+     "r": 4,
+     "color": "muted"
+    }
+   ]
+  },
+  {
+   "title": "Ukraine and Moldova move through negotiations",
+   "text": "The EU held accession conferences with Ukraine, Moldova, Montenegro and Albania on 14 July 2026. The Council described the Ukraine and Moldova conferences as opening the external-relations cluster. The highlighted candidates are part of an active negotiating process, not already members.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     29,
+     48
+    ],
+    "zoom": 4
+   },
+   "layers": [],
+   "highlight": [
+    "UKR",
+    "MDA"
+   ],
+   "fills": {
+    "UKR": "c3",
+    "MDA": "c3"
+   }
+  },
+  {
+   "title": "Candidate status can coexist with a halt",
+   "text": "The Council describes Turkey’s accession negotiations as effectively at a standstill since June 2018 and Georgia’s process as de facto halted in 2024. Both remain on its candidate list. Candidate colour must therefore be read separately from the state of negotiations.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     36,
+     42
+    ],
+    "zoom": 4
+   },
+   "layers": [],
+   "highlight": [
+    "TUR",
+    "GEO"
+   ],
+   "fills": {
+    "TUR": "c5",
+    "GEO": "c5"
+   }
+  },
+  {
+   "title": "Accession requires more than geography",
+   "text": "The Copenhagen criteria concern institutions, rights, economic capacity and the implementation of EU law. Completing negotiations leads to an accession treaty requiring approval and ratification. The union outline and the candidate colours show the institutional geography at the cutoff; proximity alone does not determine admission.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "outline",
+     "year": 20261014,
+     "inner": false,
+     "labels": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "categories",
+     "data": "memberships",
+     "set": "candidates",
+     "colors": {
+      "candidate": "c3"
+     }
+    }
+   ],
+   "modernBorders": false
+  }
+ ]
+}

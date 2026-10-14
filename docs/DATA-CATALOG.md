@@ -35,7 +35,7 @@ Portals, catalogues and publishers to search. Licences are set per dataset in al
 | [Illinois Data Bank](https://databank.illinois.edu) | Cline Center coups | Per dataset | JSON endpoint failed | — | — | — |
 | [Global Data Lab](https://globaldatalab.org) | Subnational HDI | Custom: non-profit only | Free download | — | Yearly | Medium–high |
 
-The history, conflict and indicator sources named in the [history and atlas plan](PLAN-HISTORY-ATLAS.md) were checked in October 2026: see [the licence check below](#licence-check-history-conflicts-and-indicators-october-2026). Still to scout: national statistics offices.
+The history, conflict and indicator sources named in the [consolidated roadmap](ROADMAP.md) were checked in October 2026: see [the licence check below](#licence-check-history-conflicts-and-indicators-october-2026). Still to scout: national statistics offices.
 
 ## Candidate datasets
 

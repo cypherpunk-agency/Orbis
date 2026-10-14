@@ -1,0 +1,155 @@
+{
+  "id": "us-expansion",
+  "cat": "Geopolitics",
+  "title": "Territorial expansion",
+  "hook": "Purchases, treaties and war moved US claims west.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed. Sources by scene: Louisiana: the Mississippi gateway: https://www.archives.gov/milestone-documents/louisiana-purchase-treaty; Across the continent: https://www.nps.gov/subjects/travellewisandclark/expedition-by-date.htm; Texas and the Mexican cession: https://history.state.gov/milestones/1830-1860/texas-annexation; An agreement on Oregon: https://history.state.gov/milestones/1830-1860/oregon-territory; Beyond the contiguous mainland: https://history.state.gov/milestones/1866-1898/alaska-purchase Supplementary date/location evidence: https://www.nps.gov/sitk/learn/historyculture/voices_of_change.htm; https://www.archives.gov/milestone-documents/check-for-the-purchase-of-alaska. Movement stops/dates: https://www.nps.gov/subjects/travellewisandclark/expedition-by-date.htm. Connecting segments are schematic, not surveyed trails; marker position between dated stops is interpolated. St Charles arrival uses 16 May 1804 from Clark’s journal quoted at https://www.nps.gov/places/st-charles-historic-district.htm ; this detailed source conflicts with its own May 14 summary and the short expedition chronology. The journal quotation is preferred for this waypoint.",
+  "data": {
+    "history": "data/history/usa/us-expansion.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "Louisiana: the Mississippi gateway",
+      "text": "The Louisiana Purchase treaty was signed in 1803. New Orleans locates the river port central to negotiations; this point does not stand for the purchase’s boundaries.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          39
+        ],
+        "zoom": 3.5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1803,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Across the continent",
+      "text": "Lewis and Clark travelled west in 1804–1805. Move the dated slider through selected NPS-documented stops: St Charles, Rocheport, Three Forks and Cape Disappointment. The connecting route is schematic.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          39
+        ],
+        "zoom": 3.5
+      },
+      "layers": [
+        {
+          "type": "moves",
+          "data": "history",
+          "set": "expedition",
+          "year": "t",
+          "labels": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          18040516,
+          18040607,
+          18050725,
+          18051115
+        ],
+        "format": "date",
+        "start": 18051115
+      }
+    },
+    {
+      "title": "Texas and the Mexican cession",
+      "text": "Texas entered the United States in 1845. The war with Mexico ended with the 1848 Treaty of Guadalupe Hidalgo and a major territorial cession; Santa Fe locates one affected region, not the whole cession.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          39
+        ],
+        "zoom": 3.5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1848,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "An agreement on Oregon",
+      "text": "The Oregon Treaty of 1846 divided competing British and US claims in the Pacific Northwest. The point locates the Columbia mouth; it is not a treaty boundary.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -98,
+          39
+        ],
+        "zoom": 3.5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1846,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Beyond the contiguous mainland",
+      "text": "The United States purchased Alaska from Russia in 1867. The acquisition preceded statehood by decades and did not mean that Alaska Native peoples had sold their own rights.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -147,
+          58
+        ],
+        "zoom": 3
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1867,
+          "kinds": [
+            "4"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

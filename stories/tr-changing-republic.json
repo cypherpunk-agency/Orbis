@@ -1,0 +1,306 @@
+{
+ "id": "tr-changing-republic",
+ "cat": "People",
+ "title": "A changing republic",
+ "hook": "Urban growth, political interventions, migration and unequal regional experiences.",
+ "updated": "2026-10-14",
+ "sources": [
+  "editorial"
+ ],
+ "notes": "Original Orbis factual annotations, not copied source prose. Locations are approximate city/site locators, not surveyed footprints. Historical geometry fallback: cited located events and places; no empire, ethnic or control polygons are inferred. Source coverage ends 2025. Editorial cutoff: 14 October 2026. References by scene: Scenes 1-2: https://www.tbmm.gov.tr/history/ ; Scene 3 (cities): https://www.worldbank.org/en/country/turkey/publication/turkey-urbanization-review ; Scene 3 (urban series): https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS?locations=TR ; Scene 4: https://www.auswaertiges-amt.de/de/aussenpolitik/anwerbeabkommen/2493338 ; Scene 5: https://www.ohchr.org/Documents/Countries/TR/OHCHR_South-East_TurkeyReport_10March2017.pdf ; corroborating UN library report https://unric.org/en/wp-content/uploads/sites/15/2018/12/libnews-march2017.pdf ; Scene 6: https://cdn.osce.org/sites/default/files/f/documents/9/4/397046_0.pdf ; Scene 7: https://earthquake.usgs.gov/earthquakes/eventpage/us6000jllz/executive",
+ "data": {
+  "events": "data/history/turkey/changing-republic.json",
+  "urban": "data/history/turkey/urban.json"
+ },
+ "scenes": [
+  {
+   "title": "Political power in Ankara",
+   "text": "The parliament’s history records the military coup of 27 May 1960, the arrest of the prime minister and other leaders, and the suspension of the Assembly. The capital locator marks national institutions; it does not imply that the consequences were confined to Ankara.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     32.85,
+     39.93
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": 1960,
+     "kinds": [
+      "politics"
+     ],
+     "list": true,
+     "labels": false
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      32.85,
+      39.93
+     ],
+     "label": "Ankara",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "Interventions and constitutions",
+   "text": "The parliament describes the military memorandum of 1971 and the coup of September 1980. The timeline locates these national turning points in Ankara. Events appear cumulatively; a point represents the decision-making centre, not a map of political support or violence.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     32.85,
+     39.93
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "kinds": [
+      "politics"
+     ],
+     "list": true,
+     "labels": false
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      32.85,
+      39.93
+     ],
+     "label": "Ankara",
+     "color": "c3",
+     "r": 5
+    }
+   ],
+   "timeline": {
+    "years": [
+     1960,
+     1971,
+     1980
+    ],
+    "start": 1960
+   }
+  },
+  {
+   "title": "A country becomes more urban",
+   "text": "The cached World Bank urban-share series rises from about 23% in 1960 to 89% in 2024 under its national definitions. The line shows the national series; Istanbul, Ankara and İzmir locate major cities discussed in the World Bank urbanization review. The dots do not contain city populations.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     31.2,
+     39.8
+    ],
+    "zoom": 5
+   },
+   "modernBorders": true,
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "urban",
+     "series": "v",
+     "year": "t",
+     "vmin": 0,
+     "vmax": 100,
+     "fmt": "pct",
+     "title": "Urban share (%)"
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      28.98,
+      41.01
+     ],
+     "label": "Istanbul",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      32.85,
+      39.93
+     ],
+     "label": "Ankara",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      27.14,
+      38.42
+     ],
+     "label": "Izmir",
+     "color": "c3",
+     "r": 5
+    }
+   ],
+   "media": [
+    {
+     "type": "line",
+     "data": "urban",
+     "series": "v",
+     "countries": [
+      "TUR"
+     ],
+     "title": "Turkey: urban share, national definitions",
+     "fmt": "pct"
+    }
+   ],
+   "timeline": {
+    "years": [
+     1960,
+     2024
+    ],
+    "start": 1960
+   }
+  },
+  {
+   "title": "Labour migration beyond the border",
+   "text": "The 1961 recruitment agreement enabled regulated labour migration from Turkey to West Germany. Bonn locates the German agreement’s political setting, and Istanbul locates Turkey schematically. These dots are country-side reference points, not a claim that migrants all followed one route or came from one city.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     21,
+     46
+    ],
+    "zoom": 3
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      28.98,
+      41.01
+     ],
+     "label": "Istanbul",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      7.1,
+      50.73
+     ],
+     "label": "Bonn",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "Kurdish communities and conflict in the southeast",
+   "text": "OHCHR’s March 2017 report describes destruction, displacement and alleged human-rights violations in predominantly Kurdish southeastern towns during July 2015–December 2016, including Diyarbakır and Nusaybin. These are selected reported places, not an ethnic boundary, casualty surface or current conflict map. Its findings concern that specific window.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     40.7,
+     37.7
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      40.23,
+      37.91
+     ],
+     "label": "Diyarbakir",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      41.22,
+      37.07
+     ],
+     "label": "Nusaybin",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "A different executive system",
+   "text": "The 2017 constitutional amendments changed the republic from a parliamentary to a presidential system. OSCE’s report on the 2018 elections describes implementation of that change. Ankara remains the institutional centre on this map; no regional voting pattern can be inferred from that single point.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     32.85,
+     39.93
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      32.85,
+      39.93
+     ],
+     "label": "Ankara",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  },
+  {
+   "title": "Earthquakes across a national boundary",
+   "text": "On 6 February 2023, USGS recorded a magnitude 7.8 earthquake near the Syria–Turkey border. Its epicentre lies near the southeastern cities already discussed. The point marks the USGS epicentre; the city dots provide context, without asserting a damage footprint or a casualty estimate.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     37.2,
+     37.5
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [],
+   "points": [
+    {
+     "at": [
+      37.032,
+      37.226
+     ],
+     "label": "M7.8 epicentre",
+     "color": "c2",
+     "r": 5
+    },
+    {
+     "at": [
+      37.38,
+      37.07
+     ],
+     "label": "Gaziantep",
+     "color": "c3",
+     "r": 5
+    },
+    {
+     "at": [
+      37.16,
+      36.2
+     ],
+     "label": "Aleppo",
+     "color": "c3",
+     "r": 5
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+  "source": "us-army-atlas",
+  "asOf": "1944-06 to 1945-05",
+  "retrieved": "2026-10-14",
+  "title": "US Army atlas: Northern Europe, June 1944\u2013May 1945",
+  "image": "data/history/ww2/northern-europe-overlay.webp",
+  "bbox": [
+    -6,
+    46,
+    16,
+    55
+  ],
+  "note": "US Army Center of Military History, American Military History (1989), scanned by University of Texas Libraries. Courtesy of the University of Texas Libraries, The University of Texas at Austin. Overview polynomial georeferencing from rounded named-place control points; not for local military-control inference. Original scan and GCPs retained alongside this descriptor. Original arrows summarize campaign advances across June 1944\u2013May 1945; they are not one simultaneous front.",
+  "fit": {
+    "order": 2,
+    "gcps": 11,
+    "meanErrorPx": 4.42,
+    "maxErrorPx": 6.38
+  },
+  "sourceUrl": "https://maps.lib.utexas.edu/maps/historical/n_europe_1944-1945.jpg",
+  "original": "data/history/ww2/n-europe-1944-1945.jpg"
+}

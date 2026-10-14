@@ -1,0 +1,141 @@
+{
+  "id": "rome-expansion",
+  "cat": "People",
+  "title": "Growth by conquest",
+  "hook": "Republican conquest became imperial rule, then reached Britain and the eastern theatres.",
+  "updated": "2026-10-14",
+  "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. Met: The Roman Republic and The Roman Empire; English Heritage for AD 43. Historical geometry fallback: georeferenced Mitchell 1880 map, inset removed; its provincial divisions and colouring are retained as historical cartography, not authoritative boundaries. Credit: David Rumsey Map Collection, David Rumsey Map Center, Stanford Libraries. Adaptation CC BY-NC-SA 3.0.",
+  "data": {
+    "events": "data/history/rome/rome-expansion.json",
+    "atlas": "data/history/rome/mitchell1880.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "Conquest before emperors",
+      "text": "The republic acquired territory by war and diplomacy. Its final civil wars culminated in Caesar’s dictatorship and assassination in 44 BC.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12.5,
+          41.9
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "republic"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A new kind of ruler",
+      "text": "In 27 BC Octavian became Augustus. Move the timeline from the republican crisis to imperial rule: power changed at Rome before the empire’s outer geography stopped changing.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12.5,
+          41.9
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "republic",
+            "augustus"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          -43,
+          -26
+        ],
+        "start": -26,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "Across a channel, beyond a river",
+      "text": "Britain’s conquest began in AD 43. Under Trajan, war extended into Dacia and Parthia. These widely separated anchors show theatres of expansion rather than implying a continuous surveyed border.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          20,
+          43
+        ],
+        "zoom": 2.3
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": "t",
+          "list": true,
+          "kinds": [
+            "britain",
+            "trajan"
+          ]
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          43,
+          117
+        ],
+        "start": 117,
+        "era": true,
+        "calendar": "auc"
+      }
+    },
+    {
+      "title": "How an atlas imagined the empire",
+      "text": "Mitchell’s 1880 atlas reconstructed Rome at its greatest extent. The cleared historical overlay offers an empire-wide view; it is a nineteenth-century interpretation with approximate georeferencing, not an exact AD 117 boundary. Adjust its opacity to compare coastlines.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          19,
+          40
+        ],
+        "zoom": 2.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "overlay",
+          "data": "atlas",
+          "opacity": 0.8
+        }
+      ],
+      "sources": [
+        "rome-mitchell1880"
+      ]
+    }
+  ]
+}

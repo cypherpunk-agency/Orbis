@@ -1,0 +1,132 @@
+{
+  "id": "us-indigenous-land",
+  "cat": "Geopolitics",
+  "title": "Indigenous land loss",
+  "hook": "Treaties, forced removal and allotment changed landholding.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed. Sources by scene: Removal from the Southeast: https://www.nps.gov/trte/learn/historyculture/index.htm; A treaty without national consent: https://www.nps.gov/articles/trailoftears.htm; Forced west in 1838–1839: https://www.nps.gov/trte/learn/historyculture/index.htm; Allotment fragmented collective lands: https://www.archives.gov/milestone-documents/dawes-act Supplementary date/location evidence: https://www.cherokee.gov/about-the-nation/remember-the-removal/our-journey/.",
+  "data": {
+    "history": "data/history/usa/us-indigenous-land.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "Removal from the Southeast",
+      "text": "Congress passed the Indian Removal Act in 1830. The NPS describes forced displacement from southeastern homelands to land west of the Mississippi; this chapter locates events instead of inventing a continental land-loss surface.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -88,
+          36
+        ],
+        "zoom": 4
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1830,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A treaty without national consent",
+      "text": "The Treaty of New Echota of 1835 ceded Cherokee lands east of the Mississippi. The NPS explains that the signatories did not represent the Cherokee national government and that many Cherokee protested.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -85,
+          35
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1835,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Forced west in 1838–1839",
+      "text": "Federal troops and militia expelled Cherokee people in 1838. Detachments used several routes; the forced relocation ended in 1839. The two points locate a departure area and Indian Territory, not a single precise trail.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -90,
+          36
+        ],
+        "zoom": 4
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1839,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "points": [
+        {
+          "at": [
+            -94.97,
+            35.91
+          ],
+          "label": "Tahlequah",
+          "color": "c2",
+          "r": 5
+        }
+      ]
+    },
+    {
+      "title": "Allotment fragmented collective lands",
+      "text": "The Dawes Act of 1887 authorised reservation land allotment to individuals. Its assimilation policy weakened collective landholding; the Washington point locates the federal law, not a reservation or a quantified area lost.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -76,
+          38
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1887,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

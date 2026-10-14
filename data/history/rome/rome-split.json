@@ -1,0 +1,106 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis, cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original factual annotations. Event URLs cite dates and claims; coordinates locate the named place approximately, not battlefield boundaries. BC dates use astronomical years (1 BC = 0).",
+  "kinds": {
+    "tetrarchy": {
+      "label": "Tetrarchy",
+      "color": "c2"
+    },
+    "capital": {
+      "label": "Capital",
+      "color": "c3"
+    },
+    "division": {
+      "label": "Division",
+      "color": "c1"
+    },
+    "ravenna": {
+      "label": "Ravenna",
+      "color": "c5"
+    }
+  },
+  "items": [
+    {
+      "title": "Shared government",
+      "date": 293,
+      "at": [
+        16.44,
+        43.51
+      ],
+      "text": "Diocletian established the Tetrarchy in AD 293. Split locates his later palace, not the exact place this arrangement was proclaimed.",
+      "url": "https://www.metmuseum.org/essays/the-roman-empire-27-b-c-393-a-d",
+      "source": "Met, The Roman Empire",
+      "kind": "tetrarchy"
+    },
+    {
+      "title": "Constantinople",
+      "date": 330,
+      "at": [
+        28.98,
+        41.01
+      ],
+      "text": "Constantine founded his new capital at Byzantium in AD 330.",
+      "url": "https://www.metmuseum.org/essays/the-roman-empire-27-b-c-393-a-d",
+      "source": "Met, The Roman Empire",
+      "kind": "capital"
+    },
+    {
+      "title": "Western court",
+      "date": 395,
+      "at": [
+        12.49,
+        41.89
+      ],
+      "text": "After Theodosius died in AD 395, his sons ruled western and eastern portions. Rome is a western urban anchor, not a claim that it was the sole court residence.",
+      "url": "https://www.metmuseum.org/essays/the-roman-empire-27-b-c-393-a-d",
+      "source": "Met, The Roman Empire",
+      "kind": "division"
+    },
+    {
+      "title": "Eastern court",
+      "date": 395,
+      "at": [
+        28.98,
+        41.01
+      ],
+      "text": "Arcadius ruled in the East after Theodosius’s death.",
+      "url": "https://www.metmuseum.org/essays/the-roman-empire-27-b-c-393-a-d",
+      "source": "Met, The Roman Empire",
+      "kind": "division"
+    },
+    {
+      "title": "Ravenna",
+      "date": 402,
+      "at": [
+        12.2,
+        44.42
+      ],
+      "text": "Ravenna became the seat of the Western Roman Empire in AD 402.",
+      "url": "https://whc.unesco.org/en/list/788/",
+      "source": "UNESCO, Early Christian Monuments of Ravenna",
+      "kind": "ravenna"
+    }
+  ],
+  "places": [
+    {
+      "at": [
+        28.98,
+        41.01
+      ],
+      "names": [
+        {
+          "name": "Byzantium",
+          "from": null,
+          "to": 330
+        },
+        {
+          "name": "Constantinople",
+          "from": 330,
+          "to": 1453
+        }
+      ]
+    }
+  ]
+}

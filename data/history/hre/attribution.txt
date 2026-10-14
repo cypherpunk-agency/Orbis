@@ -1,0 +1,23 @@
+Source: https://commons.wikimedia.org/wiki/File:Map_Holy_Roman_Empire_1789.svg
+Adaptation: sampled source paths, compound-ring handling, union, approximate georeferencing and simplification by Orbis, 2026-10-14. CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/
+Historical-map author Alphathon; 2021 revision Fenn-O-maniC. Full embedded source attribution follows:
+
+A map of the Holy Roman Empire within Europe, circa 1789. This map is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license (https://creativecommons.org/licenses/by-sa/3.0/) by the wikimedia user "Alphathon" (http://commons.wikimedia.org/wiki/User:Alphathon), and is based upon "Blank map of Europe.svg" (http://commons.wikimedia.org/wiki/File:Blank_map_of_Europe.svg), the details of which follow:
+
+A blank Map of Europe. Every country has an id which is its ISO-3166-1-ALPHA2 code in lower case.
+Members of the EU have a class="eu", countries in europe (which I found turkey to be but russia not) have a class="europe".
+Certain countries are further subdivided the United Kingdom has gb-gbn for Great Britain and gb-nir for Northern Ireland. Russia is divided into ru-kgd for the Kaliningrad Oblast and ru-main for the Main body of Russia. There is the additional grouping #xb for the "British Islands" (the UK with its Crown Dependencies - Jersey, Guernsey and the Isle of Man)
+
+Contributors.
+Original Image: (http://commons.wikimedia.org/wiki/Image:Europe_countries.svg) Júlio Reis (http://commons.wikimedia.org/wiki/User:Tintazul).
+Recolouring and tagging with country codes: Marian "maix" Sigler (http://commons.wikimedia.org/wiki/User:Maix)
+Improved geographical features: http://commons.wikimedia.org/wiki/User:W!B:
+Updated to reflect dissolution of Serbia & Montenegro: http://commons.wikimedia.org/wiki/User:Zirland
+Updated to include British Crown Dependencies as seperate entities and regroup them as "British Islands", with some simplifications to the XML and CSS: James Hardy (http://commons.wikimedia.org/wiki/User:MrWeeble)
+Validated (http://commons.wikimedia.org/wiki/User:CarolSpears)
+Changed the country code of Serbia to RS per http://en.wikipedia.org/wiki/Serbian_country_codes and the file http://www.iso.org/iso/iso3166_en_code_lists.txt (http://commons.wikimedia.org/wiki/User:TimothyBourke)
+Uploaded on behalf of User:Checkit, direct complaints to him plox: 'Moved countries out of the "outlines" group, removed "outlines" style class, remove separate style information for Russia' (http://commons.wikimedia.org/wiki/User:Collard)
+Updated various coastlines and boarders and added various islands not previously shown (details follow). Added Kosovo and Northern Cyprus as disputed territories. Moved major lakes to their own object and added more. List of updated boarders/coastlines: British Isles (+ added Isle of Wight, Skye, various smaller islands), the Netherlands, Germany, Czech Republic, Denmark, Sweden, Finland, Poland, Kaliningrad Oblast of the Russian Federation (and minor tweaks to Lithuania), Ukraine, Moldova (minor), Romania, Bulgaria, Turkey, Greece, F.Y.R. Macedonia, Serbia, Bosnia and Herzegovina, Montenegro, Albania, Croatia, Italy (mainland and Sicily), Malta (http://commons.wikimedia.org/wiki/User:Alphathon).
+Added Bornholm (http://commons.wikimedia.org/wiki/User:Heb)
+
+Released under CreativeCommons Attribution ShareAlike (http://creativecommons.org/licenses/by-sa/2.5/).

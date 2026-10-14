@@ -1,0 +1,129 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Dated events and approximate named-place coordinates in longitude/latitude degrees",
+  "note": "Original paraphrases linked to institutional histories and primary documents. Markers locate cities or regions, not territorial extent, exact ceremonies or front lines. Years are conventional historical years; dates before 1582 follow the historical Julian calendar unless noted.",
+  "kinds": {
+    "palace": {
+      "label": "Palace",
+      "color": "c1"
+    },
+    "coronation": {
+      "label": "Coronation",
+      "color": "c2"
+    },
+    "burial": {
+      "label": "Burial",
+      "color": "c3"
+    },
+    "successors": {
+      "label": "Successors",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "kind": "palace",
+      "title": "Aachen",
+      "date": 800,
+      "at": [
+        6.083,
+        50.775
+      ],
+      "text": "Charlemagne made Aachen his preferred residence; the surviving palatine chapel was built around 790–800.",
+      "url": "https://whc.unesco.org/en/list/3/",
+      "source": "whc.unesco.org"
+    },
+    {
+      "kind": "coronation",
+      "title": "Rome",
+      "date": 800,
+      "at": [
+        12.49,
+        41.89
+      ],
+      "text": "Pope Leo III crowned Charlemagne emperor in Rome in 800. This marker locates the city, not a surveyed ceremony site.",
+      "url": "https://www.habsburger.net/en/glossary/holy-roman-empire",
+      "source": "www.habsburger.net"
+    },
+    {
+      "kind": "burial",
+      "title": "Aachen: burial",
+      "date": 814,
+      "at": [
+        6.083,
+        50.775
+      ],
+      "text": "Charlemagne was buried at Aachen in 814.",
+      "url": "https://whc.unesco.org/en/list/3/",
+      "source": "whc.unesco.org"
+    },
+    {
+      "kind": "successors",
+      "title": "Otto’s Aachen",
+      "date": 936,
+      "at": [
+        6.083,
+        50.775
+      ],
+      "text": "Otto I was crowned king at Aachen in 936; this was a later Saxon dynasty, not Charlemagne’s own reign.",
+      "url": "https://www.metmuseum.org/essays/ottonian-art",
+      "source": "www.metmuseum.org"
+    }
+  ],
+  "places": [
+    {
+      "at": [
+        6.083,
+        50.775
+      ],
+      "names": [
+        {
+          "name": "Aachen",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        12.49,
+        41.89
+      ],
+      "names": [
+        {
+          "name": "Rome",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        6.083,
+        50.775
+      ],
+      "names": [
+        {
+          "name": "Aachen: burial",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        6.083,
+        50.775
+      ],
+      "names": [
+        {
+          "name": "Otto’s Aachen",
+          "from": null,
+          "to": null
+        }
+      ]
+    }
+  ]
+}

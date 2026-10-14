@@ -1,0 +1,85 @@
+{
+  "source": "rome-mitchell1880",
+  "title": "Mitchell’s 1880 reconstruction (approximate)",
+  "asOf": "1880 interpretation of greatest extent",
+  "retrieved": "2026-10-14",
+  "image": "data/history/rome/mitchell1880.webp",
+  "bbox": [
+    -12,
+    27,
+    48,
+    59
+  ],
+  "licence": "CC BY-NC-SA 3.0",
+  "credit": "David Rumsey Map Collection, David Rumsey Map Center, Stanford Libraries",
+  "url": "https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~30544~1140071",
+  "note": "Main panel only; Greek inset masked. Second-order warp using ten approximate city/coast anchors. A nineteenth-century reconstruction, not a surveyed AD 117 border. Accuracy is suitable for overview only; coastlines do not align exactly.",
+  "fit": {
+    "order": 2,
+    "gcps": 10,
+    "meanErrorPx": 51.7,
+    "maxErrorPx": 109.6
+  },
+  "gcps": [
+    [
+      1659.8057142857142,
+      1752.0171428571427,
+      -0.13,
+      51.51
+    ],
+    [
+      771.2228571428572,
+      2904.66,
+      -9.14,
+      38.72
+    ],
+    [
+      1064.6228571428571,
+      3177.102857142857,
+      -5.35,
+      36.14
+    ],
+    [
+      2464.56,
+      2661.557142857143,
+      12.49,
+      41.89
+    ],
+    [
+      2242.4142857142856,
+      3059.7428571428572,
+      10.32,
+      36.85
+    ],
+    [
+      3302.845714285714,
+      2544.197142857143,
+      28.98,
+      41.01
+    ],
+    [
+      3667.5,
+      3571.097142857143,
+      29.92,
+      31.2
+    ],
+    [
+      3311.2285714285713,
+      3177.102857142857,
+      25.13,
+      35.34
+    ],
+    [
+      1957.3971428571429,
+      2347.2,
+      5.37,
+      43.3
+    ],
+    [
+      3864.4971428571425,
+      3143.5714285714284,
+      32.88,
+      34.69
+    ]
+  ]
+}

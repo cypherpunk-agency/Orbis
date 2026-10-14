@@ -1,0 +1,187 @@
+{
+ "id": "eu-growth",
+ "cat": "Geopolitics",
+ "title": "From the Coal and Steel Community to the EU",
+ "hook": "Membership grows in waves; institutions change on a different timetable.",
+ "updated": "2026-10-14",
+ "sources": [
+  "editorial"
+ ],
+ "notes": "Editorial cutoff 14 October 2026. Original Orbis narrative and factual locators. Modern country geometry only. West Germany joined the founding communities; current Germany is shown as a geographic locator. Overseas territories and treaty territorial exceptions are not depicted in detail. References by scene: Scenes 1-2: https://european-union.europa.eu/principles-countries-history/history-eu/1945-59_en ; Scene 3: https://european-union.europa.eu/principles-countries-history/history-eu/1970-79_en and https://european-union.europa.eu/principles-countries-history/history-eu/1980-89_en ; Scene 4: https://european-union.europa.eu/principles-countries-history/history-eu/1990-99_en ; Scene 5: https://european-union.europa.eu/principles-countries-history/history-eu/2000-09_en and https://european-union.europa.eu/principles-countries-history/history-eu/2010-19_en ; Scene 6: https://european-union.europa.eu/principles-countries-history/eu-countries_en ; https://www.consilium.europa.eu/en/policies/the-eu-uk-withdrawal-agreement/",
+ "data": {
+  "memberships": "data/history/eu/memberships.json",
+  "outline": "data/history/eu/union-outline.json"
+ },
+ "scenes": [
+  {
+   "title": "Coal and steel before the EU",
+   "text": "Six governments signed the Coal and Steel treaty in 1951; it entered into force in 1952. France, West Germany, Italy and the Benelux countries began sharing institutions. Highlighted present-day countries locate those six participants; Germany’s modern outline is not its 1952 border.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "memberships",
+     "set": "founders",
+     "colors": {
+      "member": "c1"
+     }
+    }
+   ]
+  },
+  {
+   "title": "Rome widens the project",
+   "text": "The treaties signed in Rome in 1957 created the European Economic Community and Euratom, effective from January 1958. The map locates the same six participants and the treaty-signing city. Economic cooperation broadened without adding a new member at that moment.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "since",
+     "data": "memberships",
+     "set": "eu",
+     "year": 19580101,
+     "color": "c1",
+     "title": "EEC · {n} participants"
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      12.5,
+      41.9
+     ],
+     "label": "Rome",
+     "r": 4,
+     "color": "c3"
+    }
+   ]
+  },
+  {
+   "title": "Northwest, then the Mediterranean",
+   "text": "Denmark, Ireland and the United Kingdom joined in 1973, Greece in 1981, and Spain and Portugal in 1986. Step through the accession dates to see the membership geography spread. These are membership colours on today’s reference map, not historical sovereignty snapshots.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "since",
+     "data": "memberships",
+     "set": "eu",
+     "year": "t",
+     "color": "c1",
+     "title": "European Communities · {n} members"
+    }
+   ],
+   "timeline": {
+    "years": [
+     19730101,
+     19810101,
+     19860101
+    ],
+    "start": 19730101,
+    "format": "date"
+   }
+  },
+  {
+   "title": "The union and another enlargement",
+   "text": "The Maastricht Treaty entered into force in November 1993, creating the European Union. Austria, Finland and Sweden joined in January 1995. Compare membership before and after that enlargement: a treaty change and a membership change are different steps.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "since",
+     "data": "memberships",
+     "set": "eu",
+     "year": "t",
+     "color": "c1",
+     "title": "EU · {n} members"
+    }
+   ],
+   "timeline": {
+    "years": [
+     19931101,
+     19950101
+    ],
+    "start": 19931101,
+    "format": "date"
+   }
+  },
+  {
+   "title": "The eastern enlargement",
+   "text": "Ten countries joined on 1 May 2004; Bulgaria and Romania followed in 2007, Croatia in July 2013. The timeline follows the resulting membership changes. Malta and Cyprus remind us that the 2004 wave extended beyond continental central and eastern Europe.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "since",
+     "data": "memberships",
+     "set": "eu",
+     "year": "t",
+     "color": "c1",
+     "title": "EU · {n} members"
+    }
+   ],
+   "timeline": {
+    "years": [
+     20040501,
+     20070101,
+     20130701
+    ],
+    "start": 20040501,
+    "format": "date"
+   }
+  },
+  {
+   "title": "Twenty-seven at the cutoff",
+   "text": "The United Kingdom left in 2020. At the 14 October 2026 cutoff the union has 27 members. This merged outer outline uses modern Natural Earth geometry; it shows the selected members together while hiding their internal lines, not a reconstruction of earlier European borders.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13,
+     50
+    ],
+    "zoom": 3
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "outline",
+     "year": 20261014,
+     "inner": false,
+     "labels": false,
+     "opacity": 0.18
+    }
+   ],
+   "modernBorders": false
+  }
+ ]
+}

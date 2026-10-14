@@ -1,0 +1,86 @@
+{
+ "source": "editorial",
+ "asOf": "1574",
+ "retrieved": "2026-10-14",
+ "note": "Original Orbis factual annotations, not copied source prose. Locations are approximate city/site locators, not surveyed footprints. Historical geometry fallback: cited located events and places; no empire, ethnic or control polygons are inferred. Source coverage ends 1574. Editorial cutoff: 14 October 2026. References by scene: Scene 1: https://whc.unesco.org/en/list/1452/ ; Scenes 2-4,6: https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600 ; Scene 5: https://www.metmuseum.org/essays/the-age-of-suleyman-the-magnificent-r-1520-1566 ; Scene 6 (surviving monuments): https://whc.unesco.org/en/list/356/",
+ "kinds": {
+  "history": {
+   "label": "Selected historical event",
+   "color": "c3"
+  },
+  "architecture": {
+   "label": "Construction period endpoint",
+   "color": "c4"
+  },
+  "politics": {
+   "label": "National political decision",
+   "color": "c1"
+  },
+  "people": {
+   "label": "People and communities",
+   "color": "c4"
+  }
+ },
+ "items": [
+  {
+   "title": "Constantinople taken",
+   "date": 1453,
+   "at": [
+    28.98,
+    41.01
+   ],
+   "text": "The Ottoman conquest made former Byzantine Constantinople the imperial capital.",
+   "url": "https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "history"
+  },
+  {
+   "title": "Süleymaniye construction begins",
+   "date": 1550,
+   "at": [
+    28.964,
+    41.016
+   ],
+   "text": "The Met dates the Istanbul mosque complex to 1550–1557.",
+   "url": "https://www.metmuseum.org/essays/the-age-of-suleyman-the-magnificent-r-1520-1566",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "architecture"
+  },
+  {
+   "title": "Süleymaniye construction period ends",
+   "date": 1557,
+   "at": [
+    28.964,
+    41.016
+   ],
+   "text": "End of the construction period given by the Met.",
+   "url": "https://www.metmuseum.org/essays/the-age-of-suleyman-the-magnificent-r-1520-1566",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "architecture"
+  },
+  {
+   "title": "Selimiye construction begins",
+   "date": 1568,
+   "at": [
+    26.559,
+    41.678
+   ],
+   "text": "The Met dates Sinan’s Edirne commission to 1568–1574.",
+   "url": "https://www.metmuseum.org/essays/the-age-of-suleyman-the-magnificent-r-1520-1566",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "architecture"
+  },
+  {
+   "title": "Selimiye construction period ends",
+   "date": 1574,
+   "at": [
+    26.559,
+    41.678
+   ],
+   "text": "End of the construction period given by the Met.",
+   "url": "https://www.metmuseum.org/essays/the-age-of-suleyman-the-magnificent-r-1520-1566",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "architecture"
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+  "source": "editorial",
+  "asOf": "Historical observation dates stated per event",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed.",
+  "kinds": {
+    "0": {
+      "label": "Potsdam",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Poland",
+      "color": "c2"
+    },
+    "2": {
+      "label": "German states",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Wrocław / Breslau",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "title": "Potsdam",
+      "text": "The 1945 Potsdam agreement placed former German territory east of the Oder–western Neisse line under Polish administration pending a final frontier determination. The Potsdam point locates the decision; it is not a traced border line.",
+      "date": 1945,
+      "at": [
+        13.06,
+        52.41
+      ],
+      "kind": "0",
+      "source": "Primary record / specialist museum account",
+      "url": "https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152"
+    },
+    {
+      "title": "Poland",
+      "text": "Compare the CShapes diplomatic snapshots of 1 January 1938 and 1 January 1950. Poland’s mapped extent changes substantially. The dates are twelve years apart: these shapes do not reconstruct the intervening occupation or imply that every border question was settled in 1945.",
+      "date": 1950,
+      "at": [
+        21,
+        52
+      ],
+      "kind": "1",
+      "source": "Primary record / specialist museum account",
+      "url": "https://icr.ethz.ch/data/cshapes/"
+    },
+    {
+      "title": "German states",
+      "text": "The Federal Republic and German Democratic Republic were established in 1949. This CShapes snapshot is dated 1 January 1950, showing the two states in diplomatic geography. It is not a map of the four Allied military occupation zones.",
+      "date": 1950,
+      "at": [
+        11,
+        52
+      ],
+      "kind": "2",
+      "source": "Primary record / specialist museum account",
+      "url": "https://history.state.gov/countries/germany"
+    },
+    {
+      "title": "Wrocław / Breslau",
+      "text": "Potsdam provided for transfers of German populations from Poland, Czechoslovakia and Hungary and called for orderly, humane treatment. Forced displacement accompanied the postwar transformation. Wrocław, formerly Breslau, locates one city affected by that change; no population count is inferred from the point.",
+      "date": 1945,
+      "at": [
+        17.04,
+        51.11
+      ],
+      "kind": "3",
+      "source": "Primary record / specialist museum account",
+      "url": "https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152"
+    }
+  ]
+}

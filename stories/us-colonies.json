@@ -1,0 +1,130 @@
+{
+  "id": "us-colonies",
+  "cat": "Geopolitics",
+  "title": "Thirteen colonies",
+  "hook": "An Atlantic strip becomes an independent union.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed. Sources by scene: Jamestown: a river foothold: https://www.nps.gov/jame/learn/historyculture/a-short-history-of-jamestown.htm; Plymouth: an inhabited shore: https://www.nps.gov/rowi/learn/historyculture/wampanoag.htm; A declaration in Philadelphia: https://www.archives.gov/founding-docs/declaration; Thirteen names, an international treaty: https://www.archives.gov/milestone-documents/treaty-of-paris Supplementary date/location evidence: https://www.nps.gov/jame/faqs.htm.",
+  "data": {
+    "history": "data/history/usa/us-colonies.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "Jamestown: a river foothold",
+      "text": "English settlers established Jamestown in 1607 on the James River, within Powhatan country. Its coastal location connected the settlement to Atlantic shipping.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -76,
+          38
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1607,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Plymouth: an inhabited shore",
+      "text": "The land that became Plymouth Colony was Wampanoag land. The point locates Plymouth rather than outlining either Indigenous territory or a colonial claim.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -76,
+          38
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1620,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A declaration in Philadelphia",
+      "text": "In 1776 the Declaration of Independence announced separation from Britain. Philadelphia is the location of the congressional decision, not a frontier between armies.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -76,
+          38
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1776,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Thirteen names, an international treaty",
+      "text": "The Treaty of Paris of 1783 named the thirteen states and recognised US independence. British recognition was a diplomatic act; it did not obtain Indigenous consent to the treaty’s western claims. The coloured shapes locate their modern successor states; colonial claims extended beyond these outlines.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -76,
+          38
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "history",
+          "year": 1783,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        },
+        {
+          "type": "categories",
+          "data": "history",
+          "set": "original",
+          "country": "USA",
+          "colors": {
+            "original": "c4"
+          }
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "source": "editorial",
+  "asOf": "Historical observation dates stated per event",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed.",
+  "kinds": {
+    "0": {
+      "label": "Warsaw",
+      "color": "c1"
+    },
+    "1": {
+      "label": "Nordic occupation",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Paris",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Western Europe",
+      "color": "c4"
+    },
+    "4": {
+      "label": "Allied milestones",
+      "color": "c5"
+    },
+    "5": {
+      "label": "Bornholm",
+      "color": "c1"
+    }
+  },
+  "items": [
+    {
+      "title": "Warsaw",
+      "text": "Germany invaded Poland on 1 September 1939; the Soviet Union invaded from the east on 17 September. The Warsaw point locates the country’s capital, without inventing a partition or a daily front.",
+      "date": 19390917,
+      "at": [
+        21.01,
+        52.23
+      ],
+      "kind": "0",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/invasion-of-poland-fall-1939"
+    },
+    {
+      "title": "Nordic occupation",
+      "text": "Denmark surrendered on 9 April 1940; Norway fought until 10 June. Follow national occupation status through Denmark’s main liberation date, 5 May 1945, and Norway’s capitulation, 8 May. Modern outlines are reference geography; Bornholm is an exception to Denmark’s main date.",
+      "date": 19400610,
+      "at": [
+        10,
+        61
+      ],
+      "kind": "1",
+      "source": "Primary record / specialist museum account",
+      "url": "https://en.natmus.dk/historical-knowledge/denmark/german-occupation-1940-1945/"
+    },
+    {
+      "title": "Paris",
+      "text": "Germany defeated France in June 1940. Occupied areas and the Vichy regime had different administrative arrangements. Paris locates the capital; this point does not fill all of France as one continuous occupied area.",
+      "date": 1940,
+      "at": [
+        2.35,
+        48.86
+      ],
+      "kind": "2",
+      "source": "Primary record / specialist museum account",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/france"
+    },
+    {
+      "title": "Western Europe",
+      "text": "The US Army’s Northern Europe atlas combines arrows dated from June 1944 to May 1945. Its geography is warped approximately onto this map for overview reading. Use opacity to compare; the arrows are a campaign summary, not one dated front.",
+      "date": 1945,
+      "at": [
+        5,
+        50
+      ],
+      "kind": "3",
+      "source": "Primary record / specialist museum account",
+      "url": "https://maps.lib.utexas.edu/maps/historical/history_ww2.html"
+    },
+    {
+      "title": "Allied milestones",
+      "text": "Use the dated slider to follow selected Allied milestones: Normandy on 6 June 1944, Paris on 25 August and Remagen on 7 March 1945. The joining line is schematic; it does not identify a single army’s route.",
+      "date": 1945,
+      "at": [
+        2,
+        49
+      ],
+      "kind": "4",
+      "source": "Primary record / specialist museum account",
+      "url": "https://history.army.mil/Research/Reference-Topics/Army-Campaigns/Brief-Summaries/World-War-II/World-War-II-European-African-Middle-Eastern-Theater/"
+    },
+    {
+      "title": "Bornholm",
+      "text": "The Danish National Museum notes that Bornholm experienced Soviet bombardment during Denmark’s liberation. A country-level status colour cannot settle this island’s local control history. The point identifies the exception rather than drawing an unsupported control polygon.",
+      "date": 1945,
+      "at": [
+        14.92,
+        55.12
+      ],
+      "kind": "5",
+      "source": "Primary record / specialist museum account",
+      "url": "https://natmus.dk/historisk-viden/danmark/besaettelsestiden-1940-1945/besaettelsen-kort-fortalt/befrielsen/"
+    }
+  ],
+  "sets": {
+    "nordic": {
+      "label": "Selected national occupation status",
+      "byYear": {
+        "19400409": {
+          "DNK": "occupied",
+          "NOR": "fighting"
+        },
+        "19400610": {
+          "DNK": "occupied",
+          "NOR": "occupied"
+        },
+        "19450505": {
+          "DNK": "liberated",
+          "NOR": "occupied"
+        },
+        "19450508": {
+          "DNK": "liberated",
+          "NOR": "liberated"
+        }
+      },
+      "labels": {
+        "occupied": "German occupation (national status)",
+        "fighting": "Invasion; fighting continues",
+        "liberated": "Main liberation/capitulation date"
+      }
+    }
+  },
+  "occupationEvidence": [
+    {
+      "country": "DNK",
+      "from": 19400409,
+      "to": 19450505,
+      "urls": [
+        "https://en.natmus.dk/historical-knowledge/denmark/german-occupation-1940-1945/",
+        "https://natmus.dk/historisk-viden/danmark/besaettelsestiden-1940-1945/besaettelsen-kort-fortalt/befrielsen/"
+      ],
+      "precision": "National status; Bornholm exception not mapped as a control polygon."
+    },
+    {
+      "country": "NOR",
+      "from": 19400610,
+      "to": 19450508,
+      "urls": [
+        "https://encyclopedia.ushmm.org/content/en/article/norway",
+        "https://www.regjeringen.no/en/the-government/previous-governments/regjeringer-siden-1814/historiske-regjeringer/norways-governments-1940-1945/the-chief-officers-in-oslo-may-1945/id438698/"
+      ],
+      "precision": "Surrender/occupation at national scale, not every island or local troop position."
+    }
+  ],
+  "moves": {
+    "west": [
+      {
+        "name": "Allied milestones (schematic)",
+        "path": [
+          [
+            -0.87,
+            49.37,
+            19440606
+          ],
+          [
+            2.35,
+            48.86,
+            19440825
+          ],
+          [
+            7.23,
+            50.58,
+            19450307
+          ]
+        ],
+        "color": "c1"
+      }
+    ]
+  },
+  "movementEvidence": [
+    {
+      "at": [
+        -0.87,
+        49.37
+      ],
+      "date": 19440606,
+      "place": "Normandy beachhead area",
+      "url": "https://history.army.mil/Research/Reference-Topics/Army-Campaigns/Brief-Summaries/World-War-II/World-War-II-European-African-Middle-Eastern-Theater/"
+    },
+    {
+      "at": [
+        2.35,
+        48.86
+      ],
+      "date": 19440825,
+      "place": "Paris",
+      "url": "https://history.army.mil/Research/Reference-Topics/Army-Campaigns/Brief-Summaries/World-War-II/World-War-II-European-African-Middle-Eastern-Theater/"
+    },
+    {
+      "at": [
+        7.23,
+        50.58
+      ],
+      "date": 19450307,
+      "place": "Remagen bridge",
+      "url": "https://www.first.army.mil/History/This-Day-in-First-Army-History/March/"
+    }
+  ]
+}

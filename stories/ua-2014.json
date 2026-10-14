@@ -1,0 +1,117 @@
+{
+  "id": "ua-2014",
+  "cat": "Geopolitics",
+  "title": "Crimea and Donbas",
+  "hook": "The war’s earlier geography and the people living across contested lines.",
+  "updated": "2026-10-14",
+  "sources": [
+    "editorial"
+  ],
+  "data": {
+    "notes": "data/history/ukraine/ua-2014.json",
+    "violence": "data/events/conflict-ukraine.json"
+  },
+  "notes": "Fixed editorial cutoff: 14 October 2026. This is not a live map. The modern Natural Earth basemap provides orientation; its border conventions do not establish legal recognition, sovereignty or military control. Cards are selected approximate locators. UCDP events are incidents of organized violence with at least one death, aggregated into 0.25-degree cells by start month. Event locations are coded approximations; country-only/unlocated records are omitted. Only records assigned to Ukraine are shown, excluding Russia. GED 26.1 covers through December 2025; Candidate 26.0.8 extends through August 2026 and is preliminary. Circles measure events, not territory, troop strength or civilian deaths. 2014 legal context: https://press.un.org/en/2014/ga11493.doc.htm . Detention study: https://ukraine.ohchr.org/en/arbitrary-detention-torture-and-ill-treatment-context-armed-conflict-EN . Historical context: https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf paragraphs 29–32.",
+  "scenes": [
+    {
+      "title": "Crimea, March 2014",
+      "text": "A referendum under Russian occupation did not change the UN’s recognition of Ukraine’s territorial integrity. The point locates Crimea; it does not shade annexation as lawful sovereignty.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          34,
+          45
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "crimea"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Conflict in the east",
+      "text": "Donetsk and Luhansk became central to an armed conflict that preceded February 2022. These regional anchors locate the places addressed by OHCHR; they do not draw the changing line of contact.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          38,
+          49
+        ],
+        "zoom": 6
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "donbas"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "A war before the full-scale war",
+      "text": "OHCHR’s historical context records eight years of hostilities before the 2022 attack. A chapter beginning in 2022 alone would leave this history out.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          37,
+          49
+        ],
+        "zoom": 5.5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "continuity"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Rights did not stop at a line",
+      "text": "OHCHR documented arbitrary detention and ill-treatment involving Government actors and armed groups. Its 2014–2021 study examines accountability as well as abuse; a map of military geography cannot tell that whole story.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          37,
+          49
+        ],
+        "zoom": 5.5
+      },
+      "layers": [
+        {
+          "type": "cards",
+          "data": "notes",
+          "kinds": [
+            "rights"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

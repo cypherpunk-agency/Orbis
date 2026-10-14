@@ -1,0 +1,210 @@
+{
+ "id": "tr-empire-pressure",
+ "cat": "People",
+ "title": "An empire under pressure",
+ "hook": "Constitutions, interrupted parliamentary rule and the changing geography of the late Ottoman state.",
+ "notes": "Geometry: https://icr.ethz.ch/data/cshapes/ , CShapes 2.0 (Schvitz et al. 2022), CC BY-NC-SA 4.0. Dates: 1886-01-01, 1900-07-01, 1914-07-01, 1920-01-01, 1925-01-01. Shapes are legal-state snapshots, not occupation/front lines; dependencies and small changes are omitted. Orbis subsets remain CC BY-NC-SA. Event text is original factual annotation with citations; city/region locations are approximate locators. Dates are displayed in Gregorian form. Constitution articles 7, 8, 11, 17: https://en.wikisource.org/wiki/Ottoman_constitution_of_1876 . Parliamentary dates and restoration: https://www.tbmm.gov.tr/history/ .",
+ "sources": [
+  "editorial",
+  "cshapes"
+ ],
+ "data": {
+  "events": "data/history/turkey/reform.json",
+  "borders": "data/history/turkey/snapshots.json"
+ },
+ "scenes": [
+  {
+   "title": "An empire beyond Anatolia",
+   "text": "This is the Ottoman state as mapped on 1 January 1886. Its shape reaches beyond Anatolia into southeastern Europe and the Arab provinces. It is a legal-border snapshot, not a map of every community, dependency or degree of imperial authority.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     34,
+     37
+    ],
+    "zoom": 3.5
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "borders",
+     "year": 1886,
+     "inner": false,
+     "labels": false,
+     "opacity": 0.5
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      28.98,
+      41.01
+     ],
+     "label": "Constantinople (Istanbul today)",
+     "r": 4,
+     "color": "muted"
+    },
+    {
+     "at": [
+      22.94,
+      40.64
+     ],
+     "label": "Salonika (Thessaloniki today)",
+     "r": 4,
+     "color": "muted"
+    }
+   ]
+  },
+  {
+   "title": "What did Ottoman mean?",
+   "text": "The 1876 constitution called the empire’s subjects Ottomans regardless of religion. It also made Islam the state religion and preserved substantial powers for the sultan. Those legal promises help explain the ambition of reform; they do not establish that every community experienced equal treatment.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     29,
+     41
+    ],
+    "zoom": 8
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "places",
+     "data": "events",
+     "year": "t"
+    },
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false
+    }
+   ],
+   "timeline": {
+    "years": [
+     18761223,
+     18770319,
+     18780214
+    ],
+    "format": "date",
+    "start": 18761223
+   }
+  },
+  {
+   "title": "A parliament, briefly",
+   "text": "Parliament opened in March 1877, then was adjourned indefinitely in February 1878. Follow the dated cards in the imperial capital. A constitution and a parliament did not by themselves make the sultan answerable to an enduring elected legislature.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     29,
+     41
+    ],
+    "zoom": 7
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "places",
+     "data": "events",
+     "year": "t"
+    },
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false
+    }
+   ],
+   "timeline": {
+    "years": [
+     18761223,
+     18770319,
+     18780214
+    ],
+    "format": "date",
+    "start": 18780214
+   }
+  },
+  {
+   "title": "The constitution returns",
+   "text": "In July 1908, officers and troops associated with the constitutional movement forced the restoration of the constitution. Macedonia was a centre of the revolt; the marked Salonika locates that setting. The map’s borders are the earlier 1900 snapshot, not a newly invented 1908 boundary.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     27,
+     41
+    ],
+    "zoom": 5
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "borders",
+     "year": 19000701,
+     "inner": false,
+     "labels": false,
+     "opacity": 0.5
+    },
+    {
+     "type": "cards",
+     "data": "events",
+     "year": "t",
+     "list": true,
+     "labels": false
+    },
+    {
+     "type": "places",
+     "data": "events",
+     "year": "t"
+    }
+   ],
+   "timeline": {
+    "years": [
+     19080723
+    ],
+    "format": "date",
+    "start": 19080723
+   }
+  },
+  {
+   "title": "The state contracts",
+   "text": "Compare three observations: 1 January 1886, 1 July 1900 and 1 July 1914. The Ottoman state loses much of its European extent while retaining Anatolia and territories farther south. These are selected legal snapshots held between observations, not a continuous reconstruction of every treaty or battle.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     33,
+     37
+    ],
+    "zoom": 3.5
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "borders",
+     "year": "t",
+     "inner": false,
+     "labels": false,
+     "opacity": 0.5
+    }
+   ],
+   "timeline": {
+    "years": [
+     1886,
+     1900,
+     1914
+    ],
+    "start": 1886,
+    "captions": {
+     "1886": "Snapshot: 1 January 1886",
+     "1900": "Snapshot: 1 July 1900",
+     "1914": "Snapshot: 1 July 1914"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,139 @@
+{
+  "id": "hre-westphalia",
+  "cat": "People",
+  "title": "Westphalia",
+  "hook": "Two treaty cities ended the Thirty Years’ War; imperial institutions continued afterwards.",
+  "updated": "2026-10-14",
+  "notes": "Overlay: Reilly/Benedicti, Karte von der Deutschland, Vienna 1796, Rumsey 11151.021. Approximate georeferencing with city/coast controls; retained hand-coloured divisions are the mapmaker’s portrayal, not reconstructed polygons. Credit David Rumsey Map Collection, David Rumsey Map Center, Stanford University Libraries. Adaptation CC BY-NC-SA 3.0. Fine print is supplemented by readable modern annotations; a close view deliberately shows only part of the empire. Westphalia primary treaty text and Habsburger peace history; UNESCO Regensburg. Calendar note: the primary treaties are dated 14/24 October 1648 (Julian/Gregorian); scene years avoid silently selecting one day style. Coordinates are approximate named-place locators, not imported surveyed points. Modern borders are hidden. Event cards contain claim-level citations. The later term Holy Roman Empire must not be projected unchanged onto Charlemagne’s Frankish realm.",
+  "sources": [
+    "editorial",
+    "hre-reilly1796"
+  ],
+  "data": {
+    "events": "data/history/hre/hre-westphalia.json",
+    "atlas": "data/history/hre/reilly1796.json"
+  },
+  "scenes": [
+    {
+      "title": "Two cities, related negotiations",
+      "text": "Münster and Osnabrück hosted the peace settlements with France and Sweden in 1648. Their proximity makes Westphalia a concrete diplomatic geography, not the name of a single signing table.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          7.85,
+          52.12
+        ],
+        "zoom": 24
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "talks"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Religion and imperial law",
+      "text": "The treaties addressed confessional rights and relations among imperial estates. The institutional anchor at Regensburg locates the empire’s assembly world; it does not mark where the treaties were signed.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10,
+          51
+        ],
+        "zoom": 6
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "talks",
+            "religion"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Peace did not dissolve the empire",
+      "text": "Regensburg’s Perpetual Diet began in 1663 and continued until 1806. Moving beyond 1648 makes the continuing institutional geography visible.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12.1,
+          49.02
+        ],
+        "zoom": 9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [
+            "religion",
+            "continuity"
+          ],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          1648,
+          1663
+        ],
+        "start": 1663
+      }
+    },
+    {
+      "title": "A much later territorial view",
+      "text": "The 1796 Reilly map shows the empire’s territorial complexity long after Westphalia. It is expressly not a map of the 1648 settlement and cannot be used to read off its immediate border changes.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          10.5,
+          50
+        ],
+        "zoom": 6
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "overlay",
+          "data": "atlas",
+          "opacity": 0.9
+        },
+        {
+          "type": "cards",
+          "data": "events",
+          "kinds": [],
+          "list": true,
+          "year": "t"
+        }
+      ],
+      "sources": [
+        "editorial",
+        "hre-reilly1796"
+      ]
+    }
+  ]
+}

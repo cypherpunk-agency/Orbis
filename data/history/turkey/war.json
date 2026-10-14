@@ -1,0 +1,110 @@
+{
+ "source": "editorial",
+ "asOf": "1922-11-01",
+ "retrieved": "2026-10-14",
+ "note": "Facts paraphrased and compiled by Orbis, with a source URL on every event. Locations are approximate city/region locators, not surveyed event or battle footprints. Textual factual references do not import source prose, photos or restricted datasets. Official national chronologies support dates, not every interpretation. Period labels are explanatory conventions, not official renaming dates.",
+ "kinds": {
+  "politics": {
+   "label": "Political event",
+   "color": "c1"
+  },
+  "war": {
+   "label": "Military event",
+   "color": "muted"
+  },
+  "people": {
+   "label": "People and displacement",
+   "color": "muted"
+  }
+ },
+ "items": [
+  {
+   "title": "Gallipoli landings",
+   "date": 19150425,
+   "at": [
+    26.4,
+    40.25
+   ],
+   "text": "British Empire and French troops landed on the Ottoman-held peninsula on 25 April 1915. Last Allied withdrawals ended on 9 January 1916.",
+   "source": "https://www.nam.ac.uk/explore/gallipoli",
+   "url": "https://www.nam.ac.uk/explore/gallipoli",
+   "kind": "war"
+  },
+  {
+   "title": "Armenian genocide, 1915–1916",
+   "date": 1915,
+   "at": [
+    39.22,
+    38.7
+   ],
+   "text": "USHMM describes massacres and lethal deportations across Ottoman provinces. Its overview gives a death estimate of at least 664,000 and possibly 1.2 million. The point locates Kharput as a documented example, not all victims.",
+   "source": "https://encyclopedia.ushmm.org/content/en/article/the-armenian-genocide-1915-16-overview",
+   "url": "https://encyclopedia.ushmm.org/content/en/article/the-armenian-genocide-1915-16-overview",
+   "kind": "people"
+  },
+  {
+   "title": "Armistice of Mudros",
+   "date": 19181030,
+   "at": [
+    28.98,
+    41.01
+   ],
+   "text": "The armistice was signed on 30 October 1918. This marker locates the Ottoman capital affected by the settlement, not the signing site.",
+   "source": "https://www.tbmm.gov.tr/history/",
+   "url": "https://www.tbmm.gov.tr/history/",
+   "kind": "politics"
+  },
+  {
+   "title": "Assembly opens in Ankara",
+   "date": 19200423,
+   "at": [
+    32.85,
+    39.93
+   ],
+   "text": "The new assembly opened in Ankara on 23 April 1920.",
+   "source": "https://www.tbmm.gov.tr/history/",
+   "url": "https://www.tbmm.gov.tr/history/",
+   "kind": "politics"
+  },
+  {
+   "title": "Sultanate abolished",
+   "date": 19221101,
+   "at": [
+    32.85,
+    39.93
+   ],
+   "text": "The assembly abolished the sultanate on 1 November 1922.",
+   "source": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "url": "https://meb.gov.tr/ataturk/Hayati/Kronoloji",
+   "kind": "politics"
+  }
+ ],
+ "places": [
+  {
+   "at": [
+    28.98,
+    41.01
+   ],
+   "names": [
+    {
+     "name": "Constantinople (Istanbul today)",
+     "from": 1800,
+     "to": 1929
+    }
+   ]
+  },
+  {
+   "at": [
+    32.85,
+    39.93
+   ],
+   "names": [
+    {
+     "name": "Ankara",
+     "from": 1800,
+     "to": 1929
+    }
+   ]
+  }
+ ]
+}

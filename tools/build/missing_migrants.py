@@ -23,6 +23,7 @@ for r in csv.DictReader(open(src, encoding="utf-8")):
     v = num(r["total_dead_and_missing"])
     if v <= 0: continue
     y = int(r["reported_date"][:4])
+    if not 2014 <= y <= 2024: continue  # preserve this chapter's declared observation window
     lat, lon = (float(x) for x in r["location_coodinates"].split(","))
     n_inc += 1
     by_year[y] += v; by_route[r["migration_route"] or "(no route given)"] += v; by_region[r["region"]] += v

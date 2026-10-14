@@ -1,0 +1,179 @@
+{
+  "source": "editorial",
+  "asOf": "Historical synthesis; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Dated events and approximate named-place coordinates in longitude/latitude degrees",
+  "note": "Original paraphrases linked to institutional histories and primary documents. Markers locate cities or regions, not territorial extent, exact ceremonies or front lines. Years are conventional historical years; dates before 1582 follow the historical Julian calendar unless noted.",
+  "kinds": {
+    "election": {
+      "label": "Election",
+      "color": "c1"
+    },
+    "diet": {
+      "label": "Diet",
+      "color": "c2"
+    },
+    "electors": {
+      "label": "Electors",
+      "color": "c5"
+    },
+    "atlas": {
+      "label": "Atlas",
+      "color": "c1"
+    }
+  },
+  "items": [
+    {
+      "kind": "election",
+      "title": "Frankfurt",
+      "date": 1356,
+      "at": [
+        8.68,
+        50.11
+      ],
+      "text": "The Golden Bull required electors to meet at Frankfurt and regulated majority election of a King of the Romans.",
+      "url": "https://germanhistorydocs.org/en/from-the-reformations-to-the-thirty-years-war-1500-1648/the-golden-bull-1356",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "diet",
+      "title": "Regensburg",
+      "date": 1663,
+      "at": [
+        12.1,
+        49.02
+      ],
+      "text": "Regensburg hosted the Perpetual Imperial Diet from 1663 to 1806.",
+      "url": "https://whc.unesco.org/en/list/1155/",
+      "source": "whc.unesco.org"
+    },
+    {
+      "kind": "electors",
+      "title": "Mainz",
+      "date": 1356,
+      "at": [
+        8.27,
+        50.0
+      ],
+      "text": "The Archbishop of Mainz was one of the three spiritual electors named in the Golden Bull; the marker locates the city, not his territorial possessions.",
+      "url": "https://germanhistorydocs.org/en/from-the-reformations-to-the-thirty-years-war-1500-1648/the-golden-bull-1356",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "electors",
+      "title": "Trier",
+      "date": 1356,
+      "at": [
+        6.64,
+        49.76
+      ],
+      "text": "The Archbishop of Trier was a spiritual elector under the Golden Bull; city location does not trace his possessions.",
+      "url": "https://germanhistorydocs.org/en/from-the-reformations-to-the-thirty-years-war-1500-1648/the-golden-bull-1356",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "electors",
+      "title": "Cologne",
+      "date": 1356,
+      "at": [
+        6.96,
+        50.94
+      ],
+      "text": "The Archbishop of Cologne was a spiritual elector under the Golden Bull; the named see is not mapped as a territorial polygon.",
+      "url": "https://germanhistorydocs.org/en/from-the-reformations-to-the-thirty-years-war-1500-1648/the-golden-bull-1356",
+      "source": "germanhistorydocs.org"
+    },
+    {
+      "kind": "atlas",
+      "title": "Reilly’s Germany",
+      "date": 1796,
+      "at": [
+        10.5,
+        50
+      ],
+      "text": "Reilly’s 1796 atlas depicts administrative divisions and hand-coloured territories. Its colouring is historical cartography, not a modern authoritative sovereignty database.",
+      "url": "https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~278984~90052027",
+      "source": "www.davidrumsey.com"
+    }
+  ],
+  "places": [
+    {
+      "at": [
+        8.68,
+        50.11
+      ],
+      "names": [
+        {
+          "name": "Frankfurt",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        12.1,
+        49.02
+      ],
+      "names": [
+        {
+          "name": "Regensburg",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        8.27,
+        50.0
+      ],
+      "names": [
+        {
+          "name": "Mainz",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        6.64,
+        49.76
+      ],
+      "names": [
+        {
+          "name": "Trier",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        6.96,
+        50.94
+      ],
+      "names": [
+        {
+          "name": "Cologne",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "at": [
+        10.5,
+        50
+      ],
+      "names": [
+        {
+          "name": "Reilly’s Germany",
+          "from": null,
+          "to": null
+        }
+      ]
+    }
+  ]
+}

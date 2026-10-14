@@ -1,0 +1,215 @@
+{
+  "id": "ww2-expansion",
+  "cat": "Geopolitics",
+  "title": "Expansion and occupation",
+  "hook": "Invasion, national occupation and campaign maps describe different things.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Poland is attacked from two sides: https://encyclopedia.ushmm.org/content/en/article/invasion-of-poland-fall-1939; 2. Two dated occupation cases: https://en.natmus.dk/historical-knowledge/denmark/german-occupation-1940-1945/; 3. France’s defeat did not create one uniform regime: https://encyclopedia.ushmm.org/content/en/article/france; 4. An atlas of the western advance: https://maps.lib.utexas.edu/maps/historical/history_ww2.html; 5. From the beachhead to the Rhine: https://history.army.mil/Research/Reference-Topics/Army-Campaigns/Brief-Summaries/World-War-II/World-War-II-European-African-Middle-Eastern-Theater/; 6. Bornholm complicates a national liberation date: https://natmus.dk/historisk-viden/danmark/besaettelsestiden-1940-1945/besaettelsen-kort-fortalt/befrielsen/ Nordic snapshot dates: https://en.natmus.dk/historical-knowledge/denmark/german-occupation-1940-1945/; https://natmus.dk/historisk-viden/danmark/besaettelsestiden-1940-1945/besaettelsen-kort-fortalt/befrielsen/; https://encyclopedia.ushmm.org/content/en/article/norway; https://www.regjeringen.no/en/the-government/previous-governments/regjeringer-siden-1814/historiske-regjeringer/norways-governments-1940-1945/the-chief-officers-in-oslo-may-1945/id438698/. Colours classify the countries at national scale on modern reference outlines, not every locality, island, troop position or front. Bornholm is an explicit exception to Denmark’s main liberation date. Western milestones: https://history.army.mil/Research/Reference-Topics/Army-Campaigns/Brief-Summaries/World-War-II/World-War-II-European-African-Middle-Eastern-Theater/; https://www.first.army.mil/History/This-Day-in-First-Army-History/March/. Waypoints are rounded locations of dated events; connectors and interpolated positions are schematic, not one unit’s march. Army scan: https://maps.lib.utexas.edu/maps/historical/history_ww2.html; overview warp mean4.42px/max6.38px across11 city points; original arrows have different dates and do not describe one simultaneous front.",
+  "data": {
+    "events": "data/history/ww2/ww2-expansion.json",
+    "atlas": "data/history/ww2/northern-europe-overlay.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth",
+    "us-army-atlas"
+  ],
+  "scenes": [
+    {
+      "title": "Poland is attacked from two sides",
+      "text": "Germany invaded Poland on 1 September 1939; the Soviet Union invaded from the east on 17 September. The Warsaw point locates the country’s capital, without inventing a partition or a daily front.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          51
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19390917,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Two dated occupation cases",
+      "text": "Denmark surrendered on 9 April 1940; Norway fought until 10 June. Follow national occupation status through Denmark’s main liberation date, 5 May 1945, and Norway’s capitulation, 8 May. Modern outlines are reference geography; Bornholm is an exception to Denmark’s main date.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          12,
+          60
+        ],
+        "zoom": 3.5
+      },
+      "modernBorders": true,
+      "layers": [
+        {
+          "type": "categories",
+          "data": "events",
+          "set": "nordic",
+          "year": "t",
+          "colors": {
+            "occupied": "c2",
+            "fighting": "c3",
+            "liberated": "c4"
+          }
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "countryLabels": true,
+      "timeline": {
+        "years": [
+          19400409,
+          19400610,
+          19450505,
+          19450508
+        ],
+        "format": "date",
+        "start": 19400610,
+        "captions": {
+          "19400409": "Denmark surrenders; Norway continues fighting",
+          "19400610": "Norway surrenders",
+          "19450505": "Denmark’s main liberation date; Bornholm exception",
+          "19450508": "German capitulation in Norway"
+        }
+      },
+      "points": [
+        {
+          "at": [
+            12.57,
+            55.68
+          ],
+          "label": "Copenhagen",
+          "color": "muted",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "France’s defeat did not create one uniform regime",
+      "text": "Germany defeated France in June 1940. Occupied areas and the Vichy regime had different administrative arrangements. Paris locates the capital; this point does not fill all of France as one continuous occupied area.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          3,
+          49
+        ],
+        "zoom": 4.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 1940,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "An atlas of the western advance",
+      "text": "The US Army’s Northern Europe atlas combines arrows dated from June 1944 to May 1945. Its geography is warped approximately onto this map for overview reading. Use opacity to compare; the arrows are a campaign summary, not one dated front.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          5,
+          50.5
+        ],
+        "zoom": 8
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "overlay",
+          "data": "atlas",
+          "opacity": 0.88,
+          "title": "Army atlas: June 1944–May 1945 (overview)"
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "From the beachhead to the Rhine",
+      "text": "Use the dated slider to follow selected Allied milestones: Normandy on 6 June 1944, Paris on 25 August and Remagen on 7 March 1945. The joining line is schematic; it does not identify a single army’s route.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          3,
+          50
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "moves",
+          "data": "events",
+          "set": "west",
+          "year": "t",
+          "labels": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ],
+      "timeline": {
+        "years": [
+          19440606,
+          19440825,
+          19450307
+        ],
+        "format": "date",
+        "start": 19450307
+      }
+    },
+    {
+      "title": "Bornholm complicates a national liberation date",
+      "text": "The Danish National Museum notes that Bornholm experienced Soviet bombardment during Denmark’s liberation. A country-level status colour cannot settle this island’s local control history. The point identifies the exception rather than drawing an unsupported control polygon.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          13,
+          55.5
+        ],
+        "zoom": 5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 1945,
+          "kinds": [
+            "5"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "ww2-end",
+  "cat": "Geopolitics",
+  "title": "The end of the war",
+  "hook": "Surrender was announced, signed and implemented at different times.",
+  "updated": "2026-10-14",
+  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Reims: Germany signs surrender: https://www.archives.gov/milestone-documents/surrender-of-germany; 2. Berlin: a second signing: https://www.archives.gov/milestone-documents/surrender-of-germany; 3. An announcement reaches the public: https://www.archives.gov/news/vj-day-75; 4. Tokyo Bay: the formal Japanese surrender: https://www.archives.gov/news/vj-day-75",
+  "data": {
+    "events": "data/history/ww2/ww2-end.json"
+  },
+  "sources": [
+    "editorial",
+    "naturalearth"
+  ],
+  "scenes": [
+    {
+      "title": "Reims: Germany signs surrender",
+      "text": "Germany’s unconditional military surrender was signed at Reims on 7 May 1945. The document provided for fighting to stop the following day. The point locates the signing, not the position of every remaining German unit.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          6,
+          50
+        ],
+        "zoom": 4.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19450507,
+          "kinds": [
+            "0"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Berlin: a second signing",
+      "text": "A further surrender document was signed in Berlin on 8 May 1945. The National Archives explains the importance of this act to the Soviet Union. Different ceremonies and time zones help explain different commemorative dates.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          51
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19450508,
+          "kinds": [
+            "1"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "An announcement reaches the public",
+      "text": "US President Truman announced Japan’s acceptance of surrender on 14 August 1945 in Washington. The date was already 15 August in Japan. The point locates the announcement and distinguishes it from the later formal signing.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -78,
+          39
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19450814,
+          "kinds": [
+            "2"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    },
+    {
+      "title": "Tokyo Bay: the formal Japanese surrender",
+      "text": "Japanese representatives signed the surrender instrument aboard USS Missouri in Tokyo Bay on 2 September 1945. That formal act followed the August announcement. A single endpoint does not mean that displacement, hunger and postwar violence ended immediately.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          140,
+          35
+        ],
+        "zoom": 4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "cards",
+          "data": "events",
+          "year": 19450902,
+          "kinds": [
+            "3"
+          ],
+          "list": true
+        }
+      ],
+      "sources": [
+        "editorial"
+      ]
+    }
+  ]
+}

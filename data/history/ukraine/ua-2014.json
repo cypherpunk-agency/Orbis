@@ -1,0 +1,87 @@
+{
+  "source": "editorial",
+  "asOf": "Fixed historical references; editorial cutoff 2026-10-14",
+  "retrieved": "2026-10-14",
+  "units": "Selected factual annotations, no exhaustive event count",
+  "note": "Original paraphrases with primary citations. Coordinates approximate named city/region anchors, not footprints. A date may mark a reporting cutoff rather than the onset of an event; the card says which.",
+  "kinds": {
+    "crimea": {
+      "label": "Crimea",
+      "color": "muted"
+    },
+    "donbas": {
+      "label": "Donbas",
+      "color": "muted"
+    },
+    "continuity": {
+      "label": "Continuity",
+      "color": "muted"
+    },
+    "rights": {
+      "label": "Rights",
+      "color": "muted"
+    }
+  },
+  "items": [
+    {
+      "title": "Crimea referendum",
+      "date": 20140316,
+      "at": [
+        34.1,
+        44.95
+      ],
+      "text": "The UN General Assembly declared the 16 March referendum invalid in its 27 March resolution, reaffirming Ukraine’s internationally recognized territorial integrity.",
+      "url": "https://press.un.org/en/2014/ga11493.doc.htm",
+      "source": "https://press.un.org/en/2014/ga11493.doc.htm",
+      "kind": "crimea"
+    },
+    {
+      "title": "Donetsk",
+      "date": 20140414,
+      "at": [
+        37.8,
+        48.02
+      ],
+      "text": "OHCHR’s eastern-Ukraine detention study begins on 14 April 2014 and covers Government actors and armed groups in Donetsk and Luhansk areas. This is the study window, not a claimed start date for every incident.",
+      "url": "https://ukraine.ohchr.org/en/arbitrary-detention-torture-and-ill-treatment-context-armed-conflict-EN",
+      "source": "https://ukraine.ohchr.org/en/arbitrary-detention-torture-and-ill-treatment-context-armed-conflict-EN",
+      "kind": "donbas"
+    },
+    {
+      "title": "Luhansk",
+      "date": 20140414,
+      "at": [
+        39.3,
+        48.57
+      ],
+      "text": "The same OHCHR report addresses arbitrary detention and ill-treatment by multiple actors through April 2021.",
+      "url": "https://ukraine.ohchr.org/en/arbitrary-detention-torture-and-ill-treatment-context-armed-conflict-EN",
+      "source": "https://ukraine.ohchr.org/en/arbitrary-detention-torture-and-ill-treatment-context-armed-conflict-EN",
+      "kind": "donbas"
+    },
+    {
+      "title": "Eight years before the invasion",
+      "date": 20211231,
+      "at": [
+        37.8,
+        48.02
+      ],
+      "text": "OHCHR describes hostilities over control in eastern Ukraine during the eight years preceding the full-scale attack. This year-end locator summarizes the period rather than a new battle.",
+      "url": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "source": "https://ukraine.un.org/sites/default/files/2024-04/2024-03-20-OHCHR-Report-Occupation-Aftermath-en.pdf",
+      "kind": "continuity"
+    },
+    {
+      "title": "Human rights across the divide",
+      "date": 20210430,
+      "at": [
+        36.23,
+        49.99
+      ],
+      "text": "OHCHR’s study includes case studies of detention by the Security Service of Ukraine in Kharkiv and an armed-group detention facility in Donetsk. Protection obligations apply to every actor.",
+      "url": "https://ukraine.ohchr.org/en/arbitrary-detention-torture-and-ill-treatment-context-armed-conflict-EN",
+      "source": "https://ukraine.ohchr.org/en/arbitrary-detention-torture-and-ill-treatment-context-armed-conflict-EN",
+      "kind": "rights"
+    }
+  ]
+}

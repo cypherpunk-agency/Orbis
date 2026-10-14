@@ -1,0 +1,98 @@
+{
+ "source": "editorial",
+ "asOf": "2025-12-08",
+ "retrieved": "2026-10-14",
+ "note": "Original Orbis factual annotations, not copied source prose. Locations are approximate city/site locators, not surveyed footprints. Historical geometry fallback: cited located events and places; no empire, ethnic or control polygons are inferred. Source coverage ends 2025-12-08. Editorial cutoff: 14 October 2026. References by scene: Scenes 1-2: https://www.nato.int/cps/en/natohq/declassified_191048.htm ; Scene 3 (1974): https://unficyp.unmissions.org/en/events-summer-1974 ; Scene 3 (1983): https://digitallibrary.un.org/record/58970?v=pdf ; Scene 4: https://www.auswaertiges-amt.de/de/aussenpolitik/anwerbeabkommen/2493338 ; Scene 5: https://www.consilium.europa.eu/en/policies/turkiye/ ; Scene 6: https://www.unhcr.org/tr/en/news/press-releases/unhcr-historic-return-displaced-syrians-presents-opportunity-and-urgent",
+ "kinds": {
+  "history": {
+   "label": "Selected historical event",
+   "color": "c3"
+  },
+  "architecture": {
+   "label": "Construction period endpoint",
+   "color": "c4"
+  },
+  "politics": {
+   "label": "National political decision",
+   "color": "c1"
+  },
+  "people": {
+   "label": "People and communities",
+   "color": "c4"
+  }
+ },
+ "items": [
+  {
+   "title": "Coup against the Cyprus government",
+   "date": 19740715,
+   "at": [
+    33.36,
+    35.17
+   ],
+   "text": "UNFICYP describes the National Guard coup under the direction of Greek officers.",
+   "url": "https://unficyp.unmissions.org/en/events-summer-1974",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "history"
+  },
+  {
+   "title": "Turkish forces land",
+   "date": 19740720,
+   "at": [
+    33.32,
+    35.33
+   ],
+   "text": "UNFICYP records Turkish landings on the northern coast of Cyprus.",
+   "url": "https://unficyp.unmissions.org/en/events-summer-1974",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "history"
+  },
+  {
+   "title": "Security Council resolution 541",
+   "date": 19831118,
+   "at": [
+    33.36,
+    35.17
+   ],
+   "text": "The Security Council considered the northern declaration of secession legally invalid and called for its withdrawal. Nicosia is an island locator, not the adoption site.",
+   "url": "https://digitallibrary.un.org/record/58970?v=pdf",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "history"
+  },
+  {
+   "title": "EU candidate status",
+   "date": 1999,
+   "at": [
+    32.85,
+    39.93
+   ],
+   "text": "The Helsinki European Council granted Turkey candidate status in December 1999. Ankara is the candidate country’s capital, not the meeting site.",
+   "url": "https://www.consilium.europa.eu/en/policies/turkiye/",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "politics"
+  },
+  {
+   "title": "EU accession negotiations",
+   "date": 2005,
+   "at": [
+    4.35,
+    50.85
+   ],
+   "text": "Accession negotiations opened on 3 October 2005.",
+   "url": "https://www.consilium.europa.eu/en/policies/turkiye/",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "politics"
+  },
+  {
+   "title": "Negotiations at a standstill",
+   "date": 2018,
+   "at": [
+    4.35,
+    50.85
+   ],
+   "text": "The Council described negotiations as effectively at a standstill in June 2018.",
+   "url": "https://www.consilium.europa.eu/en/policies/turkiye/",
+   "source": "Primary institutional reference; original Orbis annotation",
+   "kind": "politics"
+  }
+ ]
+}

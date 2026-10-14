@@ -1,0 +1,74 @@
+{
+  "source": "editorial",
+  "asOf": "2026-10-14",
+  "retrieved": "2026-10-14",
+  "note": "Original Orbis factual synthesis; linked federal records and historic-site accounts, checked 14 October 2026. Points locate places approximately, not territorial extents. Modern national/state outlines are reference geography, never reconstructed historical borders. No archival images or source prose redistributed.",
+  "kinds": {
+    "0": {
+      "label": "Surveyed land, federal promises",
+      "color": "c1"
+    },
+    "1": {
+      "label": "A Nebraska homestead",
+      "color": "c2"
+    },
+    "2": {
+      "label": "Two construction fronts meet",
+      "color": "c3"
+    },
+    "3": {
+      "label": "Chinese workers built the western connection",
+      "color": "c4"
+    }
+  },
+  "items": [
+    {
+      "title": "Homestead site / Nebraska",
+      "text": "The Homestead Act of 1862 offered qualifying settlers surveyed public land subject to residence and cultivation. Calling it public land reflected US law, not the absence of Indigenous societies.",
+      "at": [
+        -96.82,
+        40.29
+      ],
+      "date": 1862,
+      "kind": "0",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.archives.gov/milestone-documents/homestead-act"
+    },
+    {
+      "title": "Beatrice",
+      "text": "Daniel Freeman filed a claim in 1863 and settled near Beatrice, Nebraska. This located example shows the land policy at farm scale; it is not a map of all homestead claims.",
+      "at": [
+        -96.82,
+        40.29
+      ],
+      "date": 1863,
+      "kind": "1",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/articles/homestead-national-historical-park-s-landscape.htm"
+    },
+    {
+      "title": "Promontory Summit",
+      "text": "The Central Pacific and Union Pacific met at Promontory Summit in May 1869. The labelled points locate the meeting and the two construction approaches; any connecting lines are schematic, not surveyed railway geometry.",
+      "at": [
+        -112.55,
+        41.62
+      ],
+      "date": 1869,
+      "kind": "2",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/gosp/learn/historyculture/a-moment-in-time.htm"
+    },
+    {
+      "title": "Promontory Summit",
+      "text": "Chinese workers were essential to Central Pacific construction and placed the final rail at Promontory on 10 May 1869. Their work belongs in the story of infrastructure as well as immigration.",
+      "at": [
+        -112.55,
+        41.62
+      ],
+      "date": 18690510,
+      "kind": "3",
+      "source": "Federal record / historic-site account",
+      "url": "https://www.nps.gov/gosp/learn/historyculture/chinese-labor-and-the-iron-road.htm"
+    }
+  ]
+}

@@ -28,7 +28,7 @@ python3 -m http.server 8000   # then http://localhost:8000
 
 Scenes declare layers instead of code (choropleth, symbols, spikes, cartogram, flows, lines, points, since, categories, regions, raster, particles, events, historical borders, point-of-view borders), plus timelines, switches, charts and panel media. Full reference: [docs/STORY-FORMAT.md](docs/STORY-FORMAT.md).
 
-See [docs/FRAMEWORK.md](docs/FRAMEWORK.md) for the framework plan, [docs/ROADMAP.md](docs/ROADMAP.md) for limits and the story backlog, and [docs/LICENSING.md](docs/LICENSING.md) for the licence policy (`node tools/check-licences.js`).
+See [docs/FRAMEWORK.md](docs/FRAMEWORK.md) for the framework plan, [docs/ROADMAP.md](docs/ROADMAP.md) for the current delivery order, planned series and remaining work, and [docs/LICENSING.md](docs/LICENSING.md) for the licence policy (`node tools/check-licences.js`).
 
 Deep links: `#<story-id>/<scene>` (e.g. `#map-lies/2`), `#c/<series-id>` (e.g. `#c/trade-war`), `#atlas[/<indicator>]` (country atlas, e.g. `#atlas/SP.DYN.LE00.IN`), `#explore`, `#quiz`, `#city`, `#@stories/<file>.json` (unlisted story), `#@draft` (editor preview). Add `?embed=1` for a chrome-less embed.
 
