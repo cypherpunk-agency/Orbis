@@ -127,7 +127,7 @@ Each phase ends as before: browser check of every scene, `node tools/check-licen
 - Data: commercially usable indicators (World Bank CC BY, OWID-own, UN sources as cleared) plus non-commercial or share-alike ones (WHO, V-Dem, IMF), labelled "NC". Only terms that restrict redistribution exclude an indicator.
 
 **Phase F: conflicts now**
-- Engine: F13 scheduled refresh (needs GitHub Actions on the repository).
+- Engine: F13 scheduled refresh: declined; refresh by hand with the build scripts, "as of" date on every view.
 - Series: *Wars now*: one chapter per major active conflict, plus an overview map; refreshed weekly.
 
 **Continuous: scouting.** Each phase adds what it finds to the catalogue; ideas that need no new features go straight to stories.
@@ -147,7 +147,7 @@ Nothing over ~1 MB per file in git; big rasters are pre-cut or fetched at runtim
 
 ## 7. Decisions for you
 
-1. **Ukraine control of territory**: use Wikipedia's map data (CC BY-SA, allowed as a story layer, quality varies) or ask DeepStateMap/ISW for written permission (better data, takes time)? Default: Wikipedia data, labelled, with UCDP events alongside. The licence check found the Wikipedia module holds ~1,000 settlement control points (extractable) but no front-line polygon; DeepStateMap allows credited screenshots only.
-2. **Holy Roman Empire detail**: confirmed that no openly licensed territory polygons exist (best: ETH Roller, CC BY-NC-SA, auto-generated). If no open vector data exists, accept outlines traced from public-domain historical maps (cited per map), or keep the HRE series at the level of the Empire's outline plus major territories?
-3. **Scheduled refresh**: allow a GitHub Actions job to commit updated data to `master` weekly?
+1. ~~Ukraine control of territory~~ **Decided (14 Oct 2026):** Wikipedia's settlement control points (CC BY-SA 4.0, story layer), labelled as volunteer-edited, dated by page revision, with UCDP events alongside. Areas drawn from the points are an approximation and are marked as such.
+2. **Holy Roman Empire detail** (open): no openly licensed territory polygons exist. Options: trace outlines from public-domain maps; ETH Roller polygons (NC-SA, auto-generated); Imperial Circles (HistoGIS, treat as NC) + city-by-ruler points (Princes & Townspeople, CC0) + warped scans for the patchwork.
+3. ~~Scheduled refresh~~ **Decided: no.** Data that changes (conflicts now, Ukraine) is refreshed by running the build scripts by hand; every view shows its "as of" date.
 4. ~~Atlas non-commercial tier~~ **Decided:** the atlas is an optional layer, so non-commercial and share-alike indicators are included with an "NC" badge; only terms that restrict redistribution (or are unclear) exclude an indicator.
