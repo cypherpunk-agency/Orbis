@@ -553,9 +553,11 @@ async function ensureStory(i){
   const js=meta.file==="draft"?JSON.parse(localStorage.getItem("orbis-draft")||"null"):await loadJSON(meta.file), data={};
   await Promise.all(Object.entries(js.data||{}).map(async([k,u])=>{ data[k]=await loadJSON(u); }));
   js.scenes.forEach(sc=>{ const t=sc.timeline; if(t&&!t.frame){
-    const ys=!t.format&&t.years.length===2&&t.years[1]-t.years[0]>1?d3.range(t.years[0],t.years[1]+1):t.years;
-    const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):t.format==="date"?(y=>y%100+" "+MON[Math.floor(y/100)%100-1]+" "+Math.floor(y/10000)):(y=>y), lab=y=>(t.labels&&t.labels[y])||lab0(y);
-    sc.timeline={years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
+    // [a, b] = every year (or every `step` years) from a to b; years are astronomical (1 BC = 0)
+    const ys=!t.format&&t.years.length===2&&(t.step||t.years[1]-t.years[0]>1)?d3.range(t.years[0],t.years[1]+1,t.step||1):t.years;
+    const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):t.format==="date"?(y=>Cal.date(y)):(y=>Cal.year(y,t.era)), lab=y=>(t.labels&&t.labels[y])||lab0(y);
+    const second=t.calendar?(y=>Cal.other(y,t.calendar,t.format==="date")):null;
+    sc.timeline={years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,second,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
   const st=Object.assign({},js,{file:meta.file,_data:data},meta.id.startsWith("@")?{id:meta.id}:{}); STORIES[i]=st; return st;
 }
 const FMT={
@@ -992,7 +994,7 @@ function chip(c,t){return `<span class="chip"><i style="background:${col(c)}"></
 
 function setFrame(){
   const t=scene&&scene.timeline; if(!t){frame=null;renderChart();return;}
-  const y=t.years[tlIdx]; frame=t.frame(y,tlIdx); el.year.textContent=t.label(y); el.slider.value=tlIdx;
+  const y=t.years[tlIdx]; frame=t.frame(y,tlIdx); el.year.textContent=t.label(y); if(t.second){ const s2=document.createElement("small"); s2.className="tl-cal"; s2.textContent=t.second(y); el.year.append(s2); } el.slider.value=tlIdx;
   el.slider.setAttribute("aria-valuetext",String(t.label(y)));
   el.cap.textContent=frame.caption||""; el.cap.hidden=!frame.caption;
   L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); render();
@@ -1062,7 +1064,7 @@ function renderBlocs(){
   [...el.blocs.children].forEach(b=>b.onclick=()=>{explore.bloc=b.dataset.k||null;renderBlocs();L=layers();el.legend.innerHTML=legendHTML();render();});
 }
 
-const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MON=Cal.MON;
 // ---------- campaigns: a series of stories with a landing page, chapter order and reading progress ----------
 let CAMPAIGNS=[];
 const campaignOf=st=>st&&CAMPAIGNS.find(c=>c.chapters.includes(st.id.replace(/^@stories\/|\.json$/g,"")));
