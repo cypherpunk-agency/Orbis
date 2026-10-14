@@ -124,7 +124,10 @@ function layers(){
   L.political = scene ? !!s.political : !explore.bloc;
   L.countryLabels = scene ? !!s.countryLabels : true;
   compileLayers(s,L);
-  const pv=s.pov||(si>=0&&STORIES[si]&&STORIES[si].pov); if(pv){ const P=povAreas(); if(P) L.povView={view:pv,areas:P}; }
+  const pv=s.pov||(si>=0&&STORIES[si]&&STORIES[si].pov), P=povAreas();
+  if(P){ L.contested=P;
+    if(pv) L.povView={view:pv,areas:P,owner:a=>a.properties.o[pv]};
+    else if(BV.mode==="un"&&UNV) L.povView={view:"un",areas:P,owner:a=>{ const r=unRule(a); return r?r.owner:undefined; }}; }
   L.gmap=new Map(); L.groups.forEach(g=>g.ids.forEach(id=>L.gmap.set(id,g)));
   if(L.choro){const ch=L.choro,d=ch.values||DATA[ch.data],vals=Object.values(d);
     const lo=ch.vmin!=null?ch.vmin:d3.min(vals),hi=ch.vmax!=null?ch.vmax:d3.max(vals);
@@ -230,9 +233,15 @@ const validAt=(p,y)=>{ if(!isDateNum(y)&&onDateTl()) y=toDay(y); const u=isDateN
 function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML();
   if(scene&&scene.media&&scene.media.some(x=>x.type==="multiples")) renderMedia(); render(); }
 // disputed areas (data/geopolitics/pov.json), for the story/scene "pov" option
-let POVA=null;
+let POVA=null, UNV=null;
 function povAreas(){ if(POVA) return POVA.ready?POVA.areas:null; POVA={ready:false};
-  loadJSON("data/geopolitics/pov.json").then(d=>{ POVA={ready:true,areas:topojson.feature(d.areas,d.areas.objects.areas).features}; lateData(); }); return null; }
+  Promise.all([loadJSON("data/geopolitics/pov.json"),loadJSON("data/geopolitics/un-view.json").catch(()=>null)]).then(([d,u])=>{ UNV=u;
+    POVA={ready:true,areas:topojson.feature(d.areas,d.areas.objects.areas).features}; lateData(); }); return null; }
+// the UN view of a disputed area: an owner code, null (unresolved: drawn as disputed) or undefined (keep the de facto map)
+function unRule(a){ if(!UNV) return undefined; const p=a.properties, ow=Object.values(p.o||{});
+  return UNV.rules.find(r=>(r.name==null||r.name===p.name)&&(!r.owners||r.owners.every(c=>ow.includes(c)))); }
+// site-wide border view: "defacto" (Natural Earth, as controlled) or "un"; a story's "pov" overrides it
+const BV={mode:(()=>{ try{ return localStorage.getItem("orbis-borders")||"defacto"; }catch(e){ return "defacto"; } })()};
 // admin-1 geometry per country, loaded on demand
 const REG={};
 function regionGeo(iso){
@@ -364,9 +373,13 @@ function draw(){
     if(ras) ctx.globalAlpha=0.72;
     for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(geom(feats[i]));ctx.fillStyle=fc;ctx.fill();}
     // story/scene "pov": disputed areas drawn as part of the country that view assigns them to (e.g. "UA": Crimea with Ukraine)
-    if(L.povView) L.povView.areas.forEach(a=>{ const f=byId.get(a.properties.o[L.povView.view]); if(!f) return; const fc=fillFor(f,feats.indexOf(f),ras); if(!fc) return; ctx.beginPath(); path(a); ctx.fillStyle=fc; ctx.fill(); });
+    if(L.povView) L.povView.areas.forEach(a=>{ const o=L.povView.owner(a);
+      if(o===null&&L.povView.view==="un"){ ctx.beginPath(); path(a); ctx.fillStyle=C.nodata; ctx.fill(); return; }  // unresolved: neutral
+      const f=byId.get(o); if(!f) return; const fc=fillFor(f,feats.indexOf(f),ras); if(!fc) return; ctx.beginPath(); path(a); ctx.fillStyle=fc; ctx.fill(); });
     ctx.globalAlpha=1;
-    if(!(scene&&scene.modernBorders===false)){ ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke(); }
+    if(!(scene&&scene.modernBorders===false)){ ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke();
+      // contested areas: dashed outline, as on many web maps, whichever view is drawn
+      if(L.contested){ ctx.beginPath(); L.contested.forEach(a=>path(a)); ctx.setLineDash([2.5,2.5]); ctx.strokeStyle=onDark?"rgba(240,245,248,.7)":C.ink_soft; ctx.lineWidth=0.9; ctx.stroke(); ctx.setLineDash([]); } }
   }
   L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
     ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=C.paper; ctx.lineWidth=0.8; ctx.stroke(); });
@@ -388,7 +401,7 @@ function draw(){
     ctx.beginPath(); path(a); const idx=feats.findIndex(f=>f.id===o);
     ctx.fillStyle=o&&idx>=0?C.tints[tint[idx]]:C.nodata; ctx.fill();
     ctx.setLineDash([3,3]); ctx.strokeStyle=C.accent; ctx.lineWidth=1.3; ctx.stroke(); ctx.setLineDash([]); });
-  if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f)); if(L.povView) L.povView.areas.forEach(a=>{ if(a.properties.o[L.povView.view]===id) path(a); });});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
+  if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f)); if(L.povView) L.povView.areas.forEach(a=>{ if(L.povView.owner(a)===id) path(a); });});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
   // circles
   L.circles.forEach(c=>{const g=d3.geoCircle().center(c.center).radius(c.km/R_EARTH*deg).precision(1)();
     ctx.beginPath();path(g);ctx.globalAlpha=0.22;ctx.fillStyle=col(c.color);ctx.fill();ctx.globalAlpha=1;
@@ -569,7 +582,9 @@ function tap(x,y){
     tip.innerHTML=hf?"<b>"+esc(hf.properties.name||"")+"</b><span>"+esc(t("Borders of {y}",{y:L.hist.year}))+"</span>":"<span>"+esc(t("Not an independent state in {y}",{y:L.hist.year}))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
   let f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll));
-  if(L.povView){ const a=L.povView.areas.find(a=>d3.geoContains(a,ll)), o=a&&byId.get(a.properties.o[L.povView.view]); if(o) f=o; }
+  if(L.povView){ const a=L.povView.areas.find(a=>d3.geoContains(a,ll)), ow=a&&L.povView.owner(a), o=ow&&byId.get(ow); if(o) f=o;
+    else if(a&&ow===null&&L.povView.view==="un"){ const r=unRule(a); tip.innerHTML="<b>"+esc(a.properties.name)+"</b><span>"+esc(t("Disputed"))+(r&&r.basis?": "+esc(r.basis):"")+"</span>";
+      tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,5000); return; } }
   if(!f&&gridHtml){ tip.innerHTML="<b>"+d3.format(".1f")(Math.abs(ll[1]))+"°"+(ll[1]>=0?"N":"S")+" "+d3.format(".1f")(Math.abs(ll[0]))+"°"+(ll[0]>=0?"E":"W")+"</b>"+gridHtml;
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
   if(!f){hideTip();return;}
@@ -612,15 +627,20 @@ function setBasemap(m,user){
   if(!BASEMAPS[m]||(BASEMAPS[m].tex&&!Raster.ok)) m="political";
   if(user) BM.user=m;
   BM.mode=m; bmBtn.textContent=m==="political"?t("Map"):BASEMAPS[m].label;
-  [...bmMenu.children].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bm===m)));
+  [...bmMenu.querySelectorAll("[data-bm]")].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bm===m)));
   if(BASEMAPS[m].tex) Raster.load(m,BASEMAPS[m].tex,render);
   DETAIL.key=null; scheduleDetail();
   if(typeof renderData==="function"&&el) renderData(); render();
 }
 function closeBm(){ bmMenu.hidden=true; bmBtn.setAttribute("aria-expanded","false"); }
 bmBtn.onclick=e=>{ e.stopPropagation(); bmMenu.hidden=!bmMenu.hidden; bmBtn.setAttribute("aria-expanded",String(!bmMenu.hidden)); };
-[...bmMenu.children].forEach(b=>{ if(BASEMAPS[b.dataset.bm].tex&&!Raster.ok) b.disabled=true;
+[...bmMenu.querySelectorAll("[data-bm]")].forEach(b=>{ if(BASEMAPS[b.dataset.bm].tex&&!Raster.ok) b.disabled=true;
   b.onclick=()=>{ setBasemap(b.dataset.bm,true); closeBm(); }; });
+function setBorders(v){ BV.mode=v==="un"?"un":"defacto"; try{ localStorage.setItem("orbis-borders",BV.mode); }catch(e){}
+  [...bmMenu.querySelectorAll("[data-bv]")].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bv===BV.mode)));
+  if(typeof markDirty==="function"){ markDirty(); L=layers(); render(); } }
+[...bmMenu.querySelectorAll("[data-bv]")].forEach(b=>b.onclick=()=>{ setBorders(b.dataset.bv); closeBm(); });
+setTimeout(()=>[...bmMenu.querySelectorAll("[data-bv]")].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bv===BV.mode))),0);
 document.addEventListener("click",e=>{ if(!bmMenu.hidden&&!e.target.closest(".bm-wrap")) closeBm(); });
 
 // ---------- data-file stories and declarative layers ----------

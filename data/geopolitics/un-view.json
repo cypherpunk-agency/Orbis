@@ -1,0 +1,30 @@
+{
+ "source": "editorial",
+ "asOf": "2026-10-14",
+ "note": "UN view of disputed areas, applied to Natural Earth's disputed-area polygons (data/geopolitics/pov.json). Where UN resolutions affirm a state's territorial integrity, the area is drawn as part of that state; where the UN takes no position or the status is unresolved, the area is drawn as disputed. Areas not listed keep Natural Earth's de facto assignment. Rules apply in order; 'owners' means every listed code appears among the area's owners in some country's view.",
+ "rules": [
+  {"name": "Crimea", "owner": "UKR", "basis": "UN General Assembly resolution 68/262 (2014), territorial integrity of Ukraine"},
+  {"owners": ["UKR", "C02"], "owner": "UKR", "basis": "UN General Assembly resolution ES-11/4 (2022), annexation attempts invalid"},
+  {"owners": ["UKR", "C03"], "owner": "UKR", "basis": "UN General Assembly resolution ES-11/4 (2022), annexation attempts invalid"},
+  {"name": "Golan Heights", "owner": "SYR", "basis": "UN Security Council resolution 497 (1981)"},
+  {"name": "East Jerusalem", "owner": "PSE", "basis": "UN Security Council resolutions 478 (1980) and 2334 (2016): occupied Palestinian territory"},
+  {"name": "No Man's Land (Jerusalem)", "owner": null, "basis": "Status unresolved"},
+  {"name": "No Man's Land (Fort Latrun)", "owner": null, "basis": "Status unresolved"},
+  {"name": "Mount Scopus", "owner": null, "basis": "Status unresolved (1949 armistice enclave)"},
+  {"name": "Georgia", "owner": "GEO", "basis": "UN General Assembly resolutions on Abkhazia and South Ossetia (e.g. 62/249)"},
+  {"name": "Azerbaijan", "owner": "AZE", "basis": "UN Security Council resolutions 822, 853, 874, 884 (1993)"},
+  {"name": "N. Cyprus", "owner": "CYP", "basis": "UN Security Council resolutions 541 (1983) and 550 (1984)"},
+  {"name": "Somaliland", "owner": "SOM", "basis": "Not recognised by any UN member; part of Somalia"},
+  {"name": "Kosovo", "owner": null, "basis": "UN Security Council resolution 1244 (1999); the UN takes no position on its 2008 independence"},
+  {"name": "W. Sahara", "owner": null, "basis": "UN non-self-governing territory; status to be decided (MINURSO)"},
+  {"name": "Morocco", "owners": ["ESH"], "owner": null, "basis": "Part of Western Sahara, a UN non-self-governing territory"},
+  {"name": "Siachen Glacier", "owner": null, "basis": "Kashmir: UN Security Council resolution 47 (1948); status unresolved"},
+  {"owners": ["IND", "PAK"], "owner": null, "basis": "Kashmir: UN Security Council resolution 47 (1948); status unresolved"},
+  {"owners": ["IND", "CHN"], "owner": null, "basis": "India–China boundary: no agreed line; the UN takes no position"},
+  {"name": "Taiwan", "owner": null, "basis": "UN General Assembly resolution 2758 (1971) seats the PRC as China but does not settle Taiwan's status; drawn as disputed"},
+  {"name": "Russia", "owners": ["JPN"], "owner": null, "basis": "Southern Kurils / Northern Territories: no settlement; the UN takes no position"},
+  {"name": "Paracel Is.", "owner": null, "basis": "Disputed; the UN takes no position"},
+  {"name": "Spratly Is.", "owner": null, "basis": "Disputed; the UN takes no position"},
+  {"name": "Dokdo", "owner": null, "basis": "Disputed; the UN takes no position"}
+ ]
+}

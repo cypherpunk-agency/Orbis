@@ -29,7 +29,7 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 
 | Id | Source | Tier | Licence | Use | Credit |
 |---|---|---|---|---|---|
-| `naturalearth` | Natural Earth: 1:110m countries (`data/world.js`), 1:50m countries (`data/world50.json`), 1:10m admin-1 (`data/geo/admin1/`), disputed areas (`data/geopolitics/pov.json`), rivers (`data/geopolitics/rivers.json`), date line (`data/statistics/dateline.json`) | Base | Public domain | Commercial | Optional; "Made with Natural Earth" |
+| `naturalearth` | Natural Earth: 1:110m countries (`data/world.js`), 1:50m countries (`data/world50.json`), 1:10m admin-1 (`data/geo/admin1/`), disputed areas (`data/geopolitics/pov.json`; the UN view rules in `data/geopolitics/un-view.json` are Orbis editorial, citing UN resolutions), rivers (`data/geopolitics/rivers.json`), date line (`data/statistics/dateline.json`) | Base | Public domain | Commercial | Optional; "Made with Natural Earth" |
 | `d3` | D3 7.9.0 | Base | ISC | Commercial | Keep licence notice |
 | `topojson` | topojson-client 3.1.0 | Base | ISC | Commercial | Keep licence notice |
 | `fonts` | Source Serif 4, Barlow Semi Condensed | Base | SIL OFL 1.1 | Commercial | None for web use |

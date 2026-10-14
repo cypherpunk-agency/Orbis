@@ -290,3 +290,4 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .src.sa::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c4);flex:none}
 .lic-use.sa{color:var(--c4)}
 .lic-key{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 .85rem var(--ui);color:var(--ink-soft);margin:0 0 12px}
+#bmMenu .bm-h{font:600 .72rem var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding:10px 12px 2px;border-top:1px solid var(--rule);margin-top:4px}
