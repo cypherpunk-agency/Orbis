@@ -1,0 +1,474 @@
+{
+  "id": "roman-roads",
+  "cat": "People",
+  "title": "All roads lead to Rome",
+  "hook": "The Romans built about 300,000 km of roads, from Scotland to the Nile. A new atlas maps every one of them, and shows how few we can trace for certain.",
+  "notes": "Roads: Itiner-e static version 2024 (de Soto, Pažout, Brughmans et al., Zenodo 17122148, v1.3, CC BY 4.0; described in Scientific Data, 2025, doi:10.1038/s41597-025-06140-z). It covers the roads of the Roman Empire around 300 BC to AD 300 in 14,769 sections, drawn from atlases, excavation and survey reports and milestones. The network was never complete at any one moment: roads were built, rebuilt and abandoned over six centuries, so the map shows everything known, not one year. Lengths are the dataset's own; Orbis simplified the lines for display (tolerance about 2 km for main roads, 5 km for secondary roads). Certainty is Itiner-e's grade for how precisely the course is known: certain (within 50 m in mountains, 200 m in plains), conjectured (the road is known, its exact course less so) and hypothetical (not localised, desert tracks, or speculated). Named roads are the sections Itiner-e tags with that name; their length is the sum of those sections, which may not cover the whole ancient road. Building dates on the cards come from Itiner-e's construction field (the magistrate or emperor under whom a road was built), which is filled for about a fifth of the network; the Via Aemilia's entry reads '189–187 CE', a slip for BC (Livy 39.2 dates it to 187 BC). Distances in the reach scene are straight lines between the end points of the outermost sections. City locations: Pleiades gazetteer of ancient places (CC BY 3.0).",
+  "data": {
+    "main": "data/history/roman-roads.json",
+    "minor": "data/history/roman-roads-minor.json",
+    "named": "data/history/roman-roads-named.json"
+  },
+  "sources": [
+    "pleiades"
+  ],
+  "scenes": [
+    {
+      "title": "Out of Rome",
+      "text": "Rome's great roads fanned out from the city. The Via Appia ran south to Capua and on to Brundisium, the Flaminia crossed the Apennines to the Adriatic, the Aurelia followed the coast to the north-west. Itiner-e, a new digital atlas of Roman roads, maps almost 600 km of the Via Appia alone.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          13.4,
+          42.0
+        ],
+        "zoom": 8
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_conjectured",
+          "color": "muted",
+          "width": 0.6
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_conjectured",
+          "color": "muted",
+          "width": 1.1
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_certain",
+          "color": "muted",
+          "width": 1.1
+        },
+        {
+          "type": "lines",
+          "data": "named",
+          "set": "named",
+          "color": "c2",
+          "width": 2.6,
+          "forceColor": true,
+          "only": [
+            "Via Appia",
+            "Via Flaminia",
+            "Via Aurelia",
+            "Via Cassia",
+            "Via Salaria",
+            "Via Latina",
+            "Via Valeria",
+            "Via Aemilia",
+            "Via Popillia"
+          ]
+        },
+        {
+          "type": "points",
+          "data": "named",
+          "set": "cities",
+          "color": "c1",
+          "r": 4,
+          "only": [
+            "Rome",
+            "Capua",
+            "Brundisium",
+            "Mediolanum"
+          ]
+        },
+        {
+          "type": "points",
+          "data": "named",
+          "set": "roadLabels",
+          "color": "c2",
+          "only": [
+            "Via Appia",
+            "Via Flaminia",
+            "Via Aurelia",
+            "Via Cassia",
+            "Via Salaria",
+            "Via Latina",
+            "Via Aemilia",
+            "Via Popillia"
+          ]
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Roads named in Itiner-e"
+        },
+        {
+          "color": "muted",
+          "label": "Other Roman roads"
+        },
+        {
+          "color": "c1",
+          "label": "Cities (Pleiades)"
+        }
+      ]
+    },
+    {
+      "title": "300,000 kilometres of road",
+      "text": "Itiner-e counts about 300,000 km of Roman roads, enough to circle the Earth more than seven times. About 100,000 km were main roads; the other 200,000 km were secondary roads linking towns, mines, ports and forts.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          40
+        ],
+        "zoom": 2.1
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_conjectured",
+          "color": "c1",
+          "width": 0.5
+        },
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_certain",
+          "color": "c1",
+          "width": 0.5
+        },
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_hypothetical",
+          "color": "c1",
+          "width": 0.5
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_conjectured",
+          "color": "c2",
+          "width": 1.2
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_certain",
+          "color": "c2",
+          "width": 1.2
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_hypothetical",
+          "color": "c2",
+          "width": 1.2
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Main roads (about 100,000 km)"
+        },
+        {
+          "color": "c1",
+          "label": "Secondary roads (about 200,000 km)"
+        }
+      ]
+    },
+    {
+      "title": "From Scotland to the Nile",
+      "text": "The northernmost road in the atlas ends at Cramond, near Edinburgh; the southernmost, a desert track, at Primis on the Nile in today's Egypt, 4,700 km away as the crow flies. From the Atlantic cape west of Lisbon to Apsarus on the Black Sea coast of Georgia is 4,300 km.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          40
+        ],
+        "zoom": 1.9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_conjectured",
+          "color": "muted",
+          "width": 0.5
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_conjectured",
+          "color": "muted",
+          "width": 1
+        },
+        {
+          "type": "points",
+          "data": "named",
+          "set": "extremes",
+          "color": "c2",
+          "r": 5
+        }
+      ],
+      "routes": [
+        {
+          "path": [
+            [
+              -3.29,
+              55.98
+            ],
+            [
+              32.03,
+              22.69
+            ]
+          ],
+          "color": "c2",
+          "width": 1.6,
+          "dash": true,
+          "dist": true
+        },
+        {
+          "path": [
+            [
+              -9.45,
+              38.8
+            ],
+            [
+              41.57,
+              41.57
+            ]
+          ],
+          "color": "c2",
+          "width": 1.6,
+          "dash": true,
+          "dist": true
+        }
+      ]
+    },
+    {
+      "title": "Few roads are certain",
+      "text": "Only 3% of the network, about 8,000 km, is traced precisely enough to be called certain. Nine-tenths is conjectured: the road is known from milestones, itineraries or ruins, but its exact course is not. The last 7% is hypothetical, mostly desert tracks and roads that probably existed.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          16,
+          40
+        ],
+        "zoom": 2.1
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_conjectured",
+          "color": "c1",
+          "width": 0.5
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_conjectured",
+          "color": "c1",
+          "width": 0.9
+        },
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_hypothetical",
+          "color": "muted",
+          "width": 1,
+          "dash": true
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_hypothetical",
+          "color": "muted",
+          "width": 1.2,
+          "dash": true
+        },
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_certain",
+          "color": "c3",
+          "width": 2.2
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_certain",
+          "color": "c3",
+          "width": 2.6
+        }
+      ],
+      "legend": [
+        {
+          "color": "c3",
+          "label": "Certain: 3%"
+        },
+        {
+          "color": "c1",
+          "label": "Conjectured: 90%"
+        },
+        {
+          "color": "muted",
+          "label": "Hypothetical (dashed): 7%"
+        }
+      ]
+    },
+    {
+      "title": "Six centuries of building",
+      "text": "Itiner-e names the builder for about a fifth of the network. The first great road, the Via Appia, dates from 312 BC. Republican magistrates then pushed roads across Italy, the Balkans, Anatolia and Gaul; emperors carried them into the deserts of Arabia, Egypt and Syria. Move the timeline, or pick a road from the list.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          18,
+          39
+        ],
+        "zoom": 2.1
+      },
+      "modernBorders": false,
+      "timeline": {
+        "years": [
+          -311,
+          -240,
+          -219,
+          -186,
+          -147,
+          -145,
+          -131,
+          -128,
+          -117,
+          -5,
+          46,
+          111,
+          137,
+          293
+        ],
+        "start": 293,
+        "calendar": "auc"
+      },
+      "layers": [
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_conjectured",
+          "color": "muted",
+          "width": 0.4
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_conjectured",
+          "color": "muted",
+          "width": 0.9
+        },
+        {
+          "type": "cards",
+          "data": "named",
+          "year": "t",
+          "list": true
+        }
+      ]
+    },
+    {
+      "title": "Highways of the provinces",
+      "text": "Some roads carried one name across a whole province. The Via Egnatia crossed the Balkans; Itiner-e tags 1,200 km with its name. The Via Domitia linked Italy with Spain, Hadrian's road crossed Egypt's Eastern Desert, and in Britain Watling Street ran north-west from Londinium, while Dere Street led from Eboracum (York) into Scotland.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          15,
+          41
+        ],
+        "zoom": 2.4
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "lines",
+          "data": "minor",
+          "set": "minor_conjectured",
+          "color": "muted",
+          "width": 0.4
+        },
+        {
+          "type": "lines",
+          "data": "main",
+          "set": "main_conjectured",
+          "color": "muted",
+          "width": 0.9
+        },
+        {
+          "type": "lines",
+          "data": "named",
+          "set": "named",
+          "color": "c2",
+          "width": 2.4,
+          "forceColor": true,
+          "only": [
+            "Via Egnatia",
+            "Via Domitia",
+            "Via Hadriana",
+            "Via Claudia Augusta",
+            "Via Nova Traiana",
+            "Via Sebaste",
+            "Watling Street",
+            "Dere Street",
+            "Strata Diocletiana",
+            "Via Militaris",
+            "Via Agrippae"
+          ]
+        },
+        {
+          "type": "points",
+          "data": "named",
+          "set": "cities",
+          "color": "c1",
+          "r": 3.5,
+          "only": [
+            "Rome",
+            "Londinium",
+            "Eboracum",
+            "Tarraco",
+            "Carthage",
+            "Alexandria",
+            "Antioch",
+            "Byzantium",
+            "Thessalonica",
+            "Bostra"
+          ]
+        },
+        {
+          "type": "points",
+          "data": "named",
+          "set": "roadLabels",
+          "color": "c2",
+          "only": [
+            "Via Egnatia",
+            "Via Domitia",
+            "Via Hadriana",
+            "Via Claudia Augusta",
+            "Via Nova Traiana",
+            "Watling Street",
+            "Dere Street"
+          ]
+        }
+      ],
+      "legend": [
+        {
+          "color": "c2",
+          "label": "Named long-distance roads"
+        },
+        {
+          "color": "c1",
+          "label": "Cities (Pleiades)"
+        }
+      ]
+    }
+  ]
+}

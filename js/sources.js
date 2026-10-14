@@ -136,6 +136,24 @@ const SOURCES = {
     url: "https://planet4589.org/space/gcat/", use: "commercial", redistribute: true,
     credit: "Data from GCAT (J. McDowell, planet4589.org/space/gcat)"
   },
+  itinere: {
+    name: "Itiner-e", what: "Roads of the Roman Empire (static version 2024)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://doi.org/10.5281/zenodo.17122148", use: "commercial", redistribute: true,
+    credit: "Itiner-e: de Soto, Pažout, Brughmans et al. (2025), Zenodo 17122148"
+  },
+  pleiades: {
+    name: "Pleiades", what: "Gazetteer of ancient places (city locations)", tier: "layer",
+    licence: "CC BY 3.0", licenceUrl: "https://creativecommons.org/licenses/by/3.0/us/",
+    url: "https://pleiades.stoa.org/", use: "commercial", redistribute: true,
+    credit: "Pleiades gazetteer, pleiades.stoa.org"
+  },
+  coldat: {
+    name: "COLDAT (Colonial Dates Dataset)", what: "Start and end dates of European colonial rule", tier: "layer",
+    licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+    url: "https://doi.org/10.7910/DVN/T9SDEW", use: "commercial", redistribute: true,
+    credit: "Becker, Colonial Dates Dataset (COLDAT), Harvard Dataverse"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",

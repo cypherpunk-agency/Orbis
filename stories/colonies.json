@@ -1,0 +1,80 @@
+{
+  "id": "colonies",
+  "cat": "Rights",
+  "title": "How long were you a colony?",
+  "hook": "Cape Verde spent more than 500 years under Portugal, Iraq 15 under Britain. How long European empires ruled each country, and who ruled.",
+  "notes": "Data: Colonial Dates Dataset (COLDAT) V3, Bastian Becker, Harvard Dataverse, doi:10.7910/DVN/T9SDEW (CC0), which combines start and end dates from several scholarly datasets. We use its mean aggregation (the average date across sources); its alternative 'last date' rule gives later dates. Years = end year minus start year. Where several European powers ruled a country, overlapping years are counted once and gaps between them are left out; the 'longest colonizer' is the power with the most years. COLDAT covers only eight colonial powers: Belgium, Britain, France, Germany, Italy, the Netherlands, Portugal and Spain. It does not count rule by Russia, the Ottoman Empire, Japan, the United States, Denmark or Sweden, nor rule by Australia, New Zealand or South Africa (for example over Namibia, Samoa or Papua New Guinea after 1920). Ethiopia, Liberia, Ireland and South Sudan have no colonial dates in COLDAT. Countries are today's states; a colony counts when it made up at least 10% of a country's present territory, so early coastal forts can make a colonial era look long (Ghana's Portuguese years start with the fort of Elmina). The dates of independence are told in the story 'A world of new states'.",
+  "data": { "col": "data/rights/colonies.json" },
+  "scenes": [
+    {
+      "title": "Five centuries, or fifteen years",
+      "text": "European powers ruled 127 of today's countries at some point, according to the COLDAT dataset. The typical colony spent about a century under European rule. The spread is huge: Iraq was a British mandate for 15 years, Cape Verde a Portuguese colony for more than 500.",
+      "view": { "mode": "equal", "center": [10, 10], "zoom": 1 },
+      "layers": [
+        { "type": "choropleth", "data": "col", "series": "col_years", "year": 2023, "title": "Years under European colonial rule", "fmt": "yrs", "nodataLabel": "Not a colony of the eight powers in COLDAT" }
+      ]
+    },
+    {
+      "title": "The longest colonies",
+      "text": "The longest colonial eras began in the 15th and 16th centuries, on islands and coasts of the Atlantic. Portugal held Cape Verde from 1462 to 1975 and São Tomé and Príncipe for about 450 years. Belize and Jamaica passed from Spain to Britain and were ruled from Europe for more than 450 years.",
+      "view": { "mode": "globe", "center": [-35, 12], "zoom": 1.5 },
+      "layers": [
+        { "type": "choropleth", "data": "col", "series": "col_years", "year": 2023, "title": "Years under European colonial rule", "fmt": "yrs", "nodataLabel": "Not a colony of the eight powers in COLDAT" }
+      ],
+      "highlight": ["CPV", "STP", "BLZ", "JAM", "GHA"],
+      "chart": { "data": "col", "series": "col_years", "year": 2023, "top": 10, "title": "Longest under European rule", "fmt": "yrs", "color": "c2" }
+    },
+    {
+      "title": "Latin America: three centuries",
+      "text": "Spain and Portugal conquered most of the Americas in the 1500s and held them until the 1810s and 1820s. That makes the typical country in Latin America and the Caribbean a colony for about 300 years. Cuba stayed Spanish until 1898, after 387 years.",
+      "view": { "mode": "globe", "center": [-70, -2], "zoom": 1.45 },
+      "layers": [
+        { "type": "choropleth", "data": "col", "series": "col_years", "year": 2023, "title": "Years under European colonial rule", "fmt": "yrs", "nodataLabel": "Not a colony of the eight powers in COLDAT" }
+      ]
+    },
+    {
+      "title": "Africa: late and short, mostly",
+      "text": "Most of Africa was conquered only after about 1880 and was independent by the 1960s. The typical African country spent about 80 years under European rule, and 35 of the 51 dated here less than 100. The exceptions are old Portuguese, Dutch and British footholds on the coast: Angola about 400 years, South Africa 260.",
+      "view": { "mode": "globe", "center": [18, 2], "zoom": 1.85 },
+      "layers": [
+        { "type": "choropleth", "data": "col", "series": "col_years", "year": 2023, "title": "Years under European colonial rule", "fmt": "yrs", "nodataLabel": "Not a colony of the eight powers in COLDAT" }
+      ]
+    },
+    {
+      "title": "Who ruled longest",
+      "text": "Britain was the longest colonial ruler in 53 of today's countries, from the Caribbean to the Pacific. France was in 28, mostly in West and North Africa. Spain was in 24, almost all in the Americas, and Portugal in 9.",
+      "view": { "mode": "equal", "center": [10, 10], "zoom": 1 },
+      "layers": [
+        { "type": "categories", "data": "col", "set": "main", "colors": { "britain": "c1", "france": "c2", "spain": "c3", "portugal": "c4", "netherlands": "c5", "other": "muted" } }
+      ]
+    },
+    {
+      "title": "One empire at a time",
+      "text": "Pick a colonial power to see how long it ruled each country.",
+      "view": { "mode": "equal", "center": [10, 10], "zoom": 1 },
+      "switch": { "label": "Colonizer", "start": 0, "options": [
+        { "c": "britain", "label": "Britain", "text": "Britain ruled parts of 68 of today's countries, for about 85 years in a typical case. Its oldest colonies were in the Caribbean: St Kitts and Nevis 352 years, Antigua 342, Barbados 339." },
+        { "c": "france", "label": "France", "text": "France ruled 33 of today's countries. In most of its African colonies French rule lasted between about 40 and 110 years; Senegal, at 190 years, and Algeria, at 126, are the long exceptions." },
+        { "c": "spain", "label": "Spain", "text": "Spain ruled 26 of today's countries, for about 290 years in a typical case. Cuba, the Dominican Republic and the Philippines stayed Spanish for well over three centuries." },
+        { "c": "portugal", "label": "Portugal", "text": "Portugal ruled 11 of today's countries, and kept them the longest: Cape Verde 513 years, São Tomé and Príncipe about 450, Angola about 400. Brazil was Portuguese for 289 years." },
+        { "c": "netherlands", "label": "Netherlands", "text": "The Dutch ruled Indonesia for 331 years and Suriname for 322, by COLDAT's dates. They also held Guyana and the Cape, the start of today's South Africa." },
+        { "c": "belgium", "label": "Belgium", "text": "Belgium ruled the Congo for 75 years, first as King Leopold II's private colony, and Rwanda and Burundi for about 40 years after taking them from Germany." },
+        { "c": "germany", "label": "Germany", "text": "Germany's empire was short: it ruled parts of 12 of today's countries, from Namibia to Samoa, for 33 years at most. It lost all of them in the First World War." },
+        { "c": "italy", "label": "Italy", "text": "Italy ruled Eritrea for 55 years, and Somalia and Libya for about 30. Its 1936–41 occupation of Ethiopia is not counted as a colony in COLDAT." }
+      ] },
+      "layers": [
+        { "type": "choropleth", "data": "col", "series": "{c}_years", "year": 2023, "title": "Years under this power", "fmt": "yrs", "nodataLabel": "Not ruled by this power" }
+      ],
+      "chart": { "data": "col", "series": "{c}_years", "year": 2023, "top": 8, "title": "Longest under this power", "fmt": "yrs", "color": "c2" }
+    },
+    {
+      "title": "What these numbers leave out",
+      "text": "COLDAT counts only eight Western European empires. Japan's rule over Korea, America's over the Philippines, Russia's in Central Asia and the Ottoman Empire's in the Middle East are not in these numbers. Neither is South Africa's rule over Namibia or New Zealand's over Samoa, so their colonial eras look short here.",
+      "view": { "mode": "equal", "center": [30, 15], "zoom": 1.05 },
+      "layers": [
+        { "type": "choropleth", "data": "col", "series": "col_years", "year": 2023, "title": "Years under European colonial rule", "fmt": "yrs", "nodataLabel": "Not a colony of the eight powers in COLDAT" }
+      ],
+      "highlight": ["KOR", "PRK", "PHL", "KAZ", "UZB", "NAM", "WSM"]
+    }
+  ]
+}
