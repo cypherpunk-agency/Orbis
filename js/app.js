@@ -689,12 +689,13 @@ function pointValues(ly,d,y){
 }
 const DIVERGING=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
 const pickByYear=(o,y)=>{ if(!o) return null; const k=Object.keys(o).map(Number).sort((a,b)=>a-b).filter(v=>v<=+y).pop(); return k!=null?o[k]:null; };
-const d0=e=>Array.isArray(e.date)?e.date[0]:e.date;   // a date range [a, b] sorts and filters by its start
+const d0=e=>Array.isArray(e.date)?e.date[0]:e.date;
+const dKey=v=>isDateNum(v)?v:v*10000+Math.sign(v||1)*101;   // years and yyyymmdd dates on one scale for sorting   // a date range [a, b] sorts and filters by its start
 const ICONS={swords:"⚔",star:"★",flag:"⚑",anchor:"⚓",crown:"♛",cross:"✝"};
 const LAYER={
   cards(ly,d,y,L){ // dated events with a story card: tap a dot to read it; optional list in the panel
     const t=+y, K=d.kinds||{}, w=ly.window&&ly.window!=="all"&&scene&&scene.timeline&&scene.timeline.isDate?ly.window*10000:ly.window;  // window in years
-    const pick=(d.items||[]).filter(e=>!ly.kinds||ly.kinds.includes(e.kind)).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(d0(e))<=t&&(!w||tUnit(d0(e))>t-w))).sort((a,b)=>d0(a)-d0(b));
+    const pick=(d.items||[]).filter(e=>!ly.kinds||ly.kinds.includes(e.kind)).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(d0(e))<=t&&(!w||tUnit(d0(e))>t-w))).sort((a,b)=>dKey(d0(a))-dKey(d0(b)));
     pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",icon:K[e.kind]&&K[e.kind].icon,label:ly.labels===false?null:e.title,card:e,minZoom:ly.minZoom}));
     if(ly.list) L.cardList=(L.cardList||[]).concat(pick); L.kinds=Object.assign(L.kinds||{},K);
     Object.entries(K).forEach(([k,v])=>{ if(pick.some(e=>e.kind===k)&&!L.shapeKeys.some(x=>x.g==="card:"+k)) L.shapeKeys.push({g:"card:"+k,label:(ICONS[v.icon]?ICONS[v.icon]+" ":"")+(v.label||k),color:v.color||"c2"}); });

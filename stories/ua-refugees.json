@@ -1,0 +1,211 @@
+{
+ "id": "ua-refugees",
+ "cat": "People",
+ "title": "Refugees: millions leave, millions displaced",
+ "hook": "Within a year of the invasion, 5.7 million Ukrainians were refugees abroad and almost 6 million displaced at home. Most went west, to Germany and Poland; over a million were recorded in Russia.",
+ "updated": "2026-10-14",
+ "notes": "Refugees: UNHCR Refugee Population Statistics (api.unhcr.org, CC BY 4.0), end-year stocks for people from Ukraine: refugees under UNHCR's mandate, which for Ukrainians in Europe includes people with temporary protection, plus 'other people in need of international protection'; asylum seekers are not included. These are people still abroad at the end of each year, not everyone who ever left: many went home or moved on, and border crossings out of Ukraine were far higher. Countries that admit Ukrainians under other schemes are undercounted: the United States, for example, admitted many through humanitarian parole, which UNHCR does not count as refugees (UNHCR lists about 3,300 refugees from Ukraine there at the end of 2025). Russia: UNHCR lists 1.28 million refugees from Ukraine in Russia at the end of 2022 and 1.23 million at the end of 2023, but only about 6,900 at the end of 2024 and 5,500 at the end of 2025. The data do not say why; it reflects what Russia reports to UNHCR and should not be read as 1.2 million people leaving Russia. People displaced inside Ukraine: the figure UNHCR's database carries for Ukraine (based on IOM and IDMC estimates). Per 1,000 residents: host population from UN World Population Prospects 2024. Flows are drawn for host countries with at least 5,000 refugees from Ukraine (same UNHCR data, as built for Orbis's 'Refugees stay close'). 'Fastest-growing refugee crisis since the Second World War': UNHCR, as quoted in Wikipedia's 'Ukrainian refugee crisis' (retrieved 14 October 2026).",
+ "data": {
+  "ua": "data/people/ua-refugees.json",
+  "f": "data/people/refugees-flows.json"
+ },
+ "scenes": [
+  {
+   "title": "Six million in one year",
+   "text": "At the end of 2021, UNHCR counted fewer than 30,000 refugees from Ukraine. A year later there were 5.7 million, and almost 6 million more were displaced inside the country. UNHCR called it Europe's fastest-growing refugee crisis since the Second World War.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     22,
+     50
+    ],
+    "zoom": 4.5
+   },
+   "timeline": {
+    "years": [
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "start": 2022
+   },
+   "layers": [
+    {
+     "type": "symbols",
+     "data": "ua",
+     "series": "ref",
+     "year": "t",
+     "color": "c1",
+     "maxR": 40,
+     "vmax": 1300000,
+     "labels": 6,
+     "title": "Refugees from Ukraine, end of year",
+     "fmt": "int"
+    }
+   ],
+   "media": [
+    {
+     "type": "line",
+     "data": "ua",
+     "series": "total",
+     "countries": [
+      "UKR"
+     ],
+     "labels": {
+      "UKR": "Refugees from Ukraine abroad"
+     },
+     "title": "Refugees from Ukraine, end of year (UNHCR)",
+     "fmt": "int"
+    }
+   ]
+  },
+  {
+   "title": "Where they went",
+   "text": "At the end of 2025 Germany hosted 1.17 million refugees from Ukraine and Poland 970,000, followed by Czechia (390,000), the United Kingdom (270,000) and Spain (250,000). About 4.3 million of the 5.2 million lived in the European Union, most under its temporary protection scheme.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     18,
+     50
+    ],
+    "zoom": 4.5
+   },
+   "layers": [
+    {
+     "type": "flows",
+     "data": "f",
+     "group": "ref",
+     "year": 2025,
+     "from": [
+      "UKR"
+     ],
+     "top": 20,
+     "color": "c1",
+     "maxW": 14,
+     "title": "Refugees from Ukraine, end of 2025",
+     "fmt": "int"
+    }
+   ],
+   "chart": {
+    "data": "ua",
+    "series": "ref",
+    "year": 2025,
+    "top": 8,
+    "title": "Largest hosts, end of 2025",
+    "fmt": "int",
+    "color": "c1"
+   }
+  },
+  {
+   "title": "Close to home",
+   "text": "Relative to their size, Ukraine's small neighbours carry most. Moldova hosts about 50 refugees from Ukraine for every 1,000 residents, Czechia 37, Estonia 30, Poland 26 and Slovakia 25. Germany hosts 14.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     22,
+     50
+    ],
+    "zoom": 5.5
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "ua",
+     "series": "ref_per1000",
+     "year": 2025,
+     "title": "Refugees from Ukraine per 1,000 residents, end of 2025",
+     "fmt": "d3:.0f",
+     "nodataLabel": "Fewer than 1,000 refugees from Ukraine"
+    }
+   ],
+   "chart": {
+    "data": "ua",
+    "series": "ref_per1000",
+    "year": 2025,
+    "top": 8,
+    "title": "Per 1,000 residents, end of 2025",
+    "fmt": "d3:.0f",
+    "color": "c2"
+   }
+  },
+  {
+   "title": "The Russian figure",
+   "text": "UNHCR lists 1.3 million refugees from Ukraine in Russia at the end of 2022 and 1.2 million a year later. At the end of 2024 the same table shows fewer than 7,000. The data do not say why: the figures are what Russia reports, and the drop should not be read as 1.2 million departures.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     38,
+     53
+    ],
+    "zoom": 4
+   },
+   "switch": {
+    "label": "End of",
+    "start": 0,
+    "options": [
+     {
+      "y": 2022,
+      "label": "2022"
+     },
+     {
+      "y": 2023,
+      "label": "2023"
+     },
+     {
+      "y": 2024,
+      "label": "2024"
+     }
+    ]
+   },
+   "layers": [
+    {
+     "type": "symbols",
+     "data": "ua",
+     "series": "ref",
+     "year": "{y}",
+     "color": "c1",
+     "maxR": 40,
+     "vmax": 1300000,
+     "labels": 4,
+     "title": "Refugees from Ukraine, end of year",
+     "fmt": "int"
+    }
+   ]
+  },
+  {
+   "title": "Displaced at home",
+   "text": "Most Ukrainians who fled stayed inside Ukraine. UNHCR's database counts 5.9 million internally displaced at the end of 2022 and 3.7 million at the end of 2025, on top of 5.2 million refugees abroad: together about a fifth of the pre-war population.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     31,
+     49
+    ],
+    "zoom": 7
+   },
+   "media": [
+    {
+     "type": "line",
+     "data": "ua",
+     "series": "idp",
+     "countries": [
+      "UKR"
+     ],
+     "labels": {
+      "UKR": "Displaced inside Ukraine"
+     },
+     "title": "People displaced inside Ukraine, end of year (UNHCR)",
+     "fmt": "int"
+    }
+   ],
+   "countryLabels": true
+  }
+ ],
+ "sources": [
+  "unhcr",
+  "un-wpp"
+ ],
+ "pov": "UA"
+}

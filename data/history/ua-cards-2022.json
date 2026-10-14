@@ -1,0 +1,143 @@
+{
+"source": "editorial",
+"asOf": "2026-10-14",
+"retrieved": "2026-10-14",
+"kinds": {
+"military": {
+"label": "Fighting",
+"color": "c2",
+"icon": "swords"
+},
+"politics": {
+"label": "Politics and diplomacy",
+"color": "c5"
+},
+"civilian": {
+"label": "Civilian deaths",
+"color": "muted"
+}
+},
+"items": [
+{
+"title": "The invasion begins",
+"date": 20220224,
+"at": [
+30.2,
+50.58
+],
+"kind": "military",
+"text": "Russian forces cross into Ukraine from Russia, Belarus and Crimea. Helicopter-borne troops attack Hostomel airport near Kyiv.",
+"source": "Wikipedia: Northern front of the Russian invasion of Ukraine",
+"url": "https://en.wikipedia.org/wiki/Northern_front_of_the_Russian_invasion_of_Ukraine"
+},
+{
+"title": "Kherson occupied",
+"date": 20220302,
+"at": [
+32.62,
+46.64
+],
+"kind": "military",
+"text": "Russian forces begin the occupation of Kherson region; Kherson becomes the only regional capital they take in 2022.",
+"source": "Wikipedia: 2022 Kherson counteroffensive",
+"url": "https://en.wikipedia.org/wiki/2022_Kherson_counteroffensive"
+},
+{
+"title": "Zaporizhzhia nuclear plant",
+"date": 20220304,
+"at": [
+34.63,
+47.51
+],
+"kind": "military",
+"text": "Russian troops take Enerhodar and the Zaporizhzhia nuclear power plant, the largest in Europe.",
+"source": "Wikipedia: Battle of Enerhodar",
+"url": "https://en.wikipedia.org/wiki/Battle_of_Enerhodar"
+},
+{
+"title": "Bucha",
+"date": 20220401,
+"at": [
+30.21,
+50.54
+],
+"kind": "civilian",
+"text": "After Russian troops leave Bucha, evidence of the killing of civilians emerges. Local authorities recovered 458 bodies; the UN human rights office documented unlawful killings of at least 73 civilians there.",
+"source": "Wikipedia: Bucha massacre (OHCHR)",
+"url": "https://en.wikipedia.org/wiki/Bucha_massacre"
+},
+{
+"title": "Retreat from the north",
+"date": 20220405,
+"at": [
+31.29,
+51.49
+],
+"kind": "military",
+"text": "Unable to take Kyiv, Russia withdraws from Kyiv, Zhytomyr, Chernihiv and Sumy regions in late March and early April.",
+"source": "Wikipedia: Northern front of the Russian invasion of Ukraine",
+"url": "https://en.wikipedia.org/wiki/Northern_front_of_the_Russian_invasion_of_Ukraine"
+},
+{
+"title": "Mariupol falls",
+"date": 20220520,
+"at": [
+37.55,
+47.1
+],
+"kind": "military",
+"text": "The last Ukrainian defenders at the Azovstal steelworks surrender after a siege of almost three months. The UN confirmed 1,348 civilian deaths in the city and said the real toll was likely thousands higher.",
+"source": "Wikipedia: Siege of Mariupol",
+"url": "https://en.wikipedia.org/wiki/Siege_of_Mariupol"
+},
+{
+"title": "Kharkiv counteroffensive",
+"date": 20220906,
+"at": [
+36.84,
+49.46
+],
+"kind": "military",
+"text": "Ukraine breaks through in Kharkiv region. It retakes Balakliia on 8 September and Izium and Kupiansk on 10 September.",
+"source": "Wikipedia: 2022 Kharkiv counteroffensive",
+"url": "https://en.wikipedia.org/wiki/2022_Kharkiv_counteroffensive"
+},
+{
+"title": "Annexation claim",
+"date": 20220930,
+"at": [
+35.4,
+47.0
+],
+"kind": "politics",
+"text": "After referendums in occupied areas, Vladimir Putin announces the annexation of Donetsk, Luhansk, Kherson and Zaporizhzhia regions, including parts Russia does not hold. The UN General Assembly calls it invalid (143 in favour, 5 against).",
+"source": "Wikipedia: Russo-Ukrainian war (2022-present); UN General Assembly resolution ES-11/4",
+"url": "https://en.wikipedia.org/wiki/Russo-Ukrainian_war_(2022%E2%80%93present)"
+},
+{
+"title": "Lyman",
+"date": 20221001,
+"at": [
+37.8,
+48.99
+],
+"kind": "military",
+"text": "Ukraine retakes Lyman, ending the Kharkiv counteroffensive. In about a month it regained over 500 settlements and some 12,000 km².",
+"source": "Wikipedia: 2022 Kharkiv counteroffensive",
+"url": "https://en.wikipedia.org/wiki/2022_Kharkiv_counteroffensive"
+},
+{
+"title": "Kherson retaken",
+"date": 20221111,
+"at": [
+32.62,
+46.64
+],
+"kind": "military",
+"text": "Two days after Russia ordered its troops to withdraw across the Dnipro, Ukrainian forces enter Kherson city.",
+"source": "Wikipedia: 2022 Kherson counteroffensive",
+"url": "https://en.wikipedia.org/wiki/2022_Kherson_counteroffensive"
+}
+],
+"note": "The full-scale invasion and the 2022 counteroffensives. Hand-entered by Orbis; each card names the article or record it was checked against (Wikipedia articles as retrieved on 2026-10-14, text paraphrased). Dates are Gregorian. Built by tools/build/ua_events.py."
+}

@@ -220,6 +220,12 @@ const SOURCES = {
     url: "https://github.com/AWMC/geodata", use: "noncommercial", redistribute: true,
     credit: "Ancient World Mapping Center, UNC (AWMC geodata, ODbL 1.0); simplified by Orbis, derived data ODbL"
   },
+  "wp-ua-control": {
+    name: "Wikipedia Russo-Ukrainian war map", what: "Settlement control markers by revision (Module:Russo-Ukrainian war detailed map and overview map); volunteer-edited", tier: "layer",
+    licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    url: "https://en.wikipedia.org/wiki/Module:Russo-Ukrainian_war_detailed_map", use: "noncommercial", redistribute: true,
+    credit: "Wikipedia contributors, Module:Russo-Ukrainian war detailed map (CC BY-SA 4.0); areas approximated by Orbis"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",

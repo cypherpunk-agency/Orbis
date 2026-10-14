@@ -474,5 +474,26 @@
   "title": "The fall: West 476, East 1453",
   "hook": "The Roman Empire fell twice: in the West in 476, after barely 80 years on its own, and in the East a thousand years later.",
   "file": "stories/rome-fall.json"
+ },
+ {
+  "id": "ua-2014",
+  "cat": "Geopolitics",
+  "title": "2014: Crimea and Donbas",
+  "hook": "The war did not start in 2022. In 2014 Russia annexed Crimea and backed an armed uprising in the Donbas that killed some 14,000 people before the full invasion.",
+  "file": "stories/ua-2014.json"
+ },
+ {
+  "id": "ua-2022",
+  "cat": "Geopolitics",
+  "title": "2022: Invasion and counter-attack",
+  "hook": "Russia's full-scale invasion stalled outside Kyiv. Within nine months Ukraine had pushed it back from the north, from most of Kharkiv region and from Kherson.",
+  "file": "stories/ua-2022.json"
+ },
+ {
+  "id": "ua-refugees",
+  "cat": "People",
+  "title": "Refugees: millions leave, millions displaced",
+  "hook": "Within a year of the invasion, 5.7 million Ukrainians were refugees abroad and almost 6 million displaced at home. Most went west, to Germany and Poland; over a million were recorded in Russia.",
+  "file": "stories/ua-refugees.json"
  }
 ]

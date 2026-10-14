@@ -208,5 +208,112 @@
     "t": "Series started: four chapters (rise, roads, frontier, fall)."
    }
   ]
+ },
+ {
+  "id": "ukraine",
+  "title": "The war in Ukraine",
+  "hook": "From Crimea in 2014 to a front that has barely moved since 2022: the war chapter by chapter, with who controls what, who was displaced, and what it cost.",
+  "intro": "Russia's war against Ukraine began in 2014 with the annexation of Crimea and an armed uprising in the Donbas, and became a full-scale invasion on 24 February 2022. This series follows it chapter by chapter. Territorial control comes from the settlement markers of Wikipedia's volunteer-edited war map, dated by revision, and shaded areas drawn from those points are an approximation; every map says when it was last saved. It is updated by hand as the war moves.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     33,
+     48.5
+    ],
+    "zoom": 9
+   },
+   "highlight": [
+    "UKR"
+   ]
+  },
+  "chapters": [
+   "ua-2014",
+   "ua-2022",
+   "ua-refugees"
+  ],
+  "coming": [
+   {
+    "title": "Grain and the Black Sea",
+    "hook": "How Ukraine kept exporting grain through Odesa, with and without a deal."
+   },
+   {
+    "title": "Fire along the front",
+    "hook": "Satellite fire detections trace the burn belt of the front line, year by year."
+   },
+   {
+    "title": "Where things stand",
+    "hook": "The latest control map, the front and the talks, kept up to date."
+   }
+  ],
+  "dates": [
+   {
+    "d": 20140222,
+    "t": "Parliament removes President Yanukovych after the Maidan protests"
+   },
+   {
+    "d": 20140318,
+    "t": "Russia annexes Crimea"
+   },
+   {
+    "d": 20140412,
+    "t": "Armed unit from Russia seizes Sloviansk; war in the Donbas begins"
+   },
+   {
+    "d": 20140717,
+    "t": "MH17 shot down over separatist-held territory"
+   },
+   {
+    "d": 20150212,
+    "t": "Minsk II ceasefire agreed"
+   },
+   {
+    "d": 20220221,
+    "t": "Russia recognises the Donetsk and Luhansk 'republics'"
+   },
+   {
+    "d": 20220224,
+    "t": "Full-scale Russian invasion"
+   },
+   {
+    "d": 20220520,
+    "t": "Mariupol falls"
+   },
+   {
+    "d": 20220906,
+    "t": "Ukraine's Kharkiv counteroffensive begins"
+   },
+   {
+    "d": 20220930,
+    "t": "Russia announces annexation of four regions"
+   },
+   {
+    "d": 20221111,
+    "t": "Ukraine retakes Kherson"
+   },
+   {
+    "d": 20230520,
+    "t": "Russia takes most of Bakhmut"
+   },
+   {
+    "d": 20230606,
+    "t": "Kakhovka dam destroyed"
+   },
+   {
+    "d": 20240217,
+    "t": "Ukraine withdraws from Avdiivka"
+   },
+   {
+    "d": 20240806,
+    "t": "Ukraine enters Russia's Kursk region"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series launched with four chapters: 2014, 2022, the long front, refugees."
+   }
+  ]
  }
 ]

@@ -1,0 +1,107 @@
+{
+"source": "editorial",
+"asOf": "2026-10-14",
+"retrieved": "2026-10-14",
+"kinds": {
+"military": {
+"label": "Fighting",
+"color": "c2",
+"icon": "swords"
+},
+"energy": {
+"label": "Energy and dams",
+"color": "c3"
+}
+},
+"items": [
+{
+"title": "Bakhmut",
+"date": 20230520,
+"at": [
+38.0,
+48.6
+],
+"kind": "military",
+"text": "After months of assaults led by the Wagner Group, Russian forces take most of Bakhmut. Some military analysts call it the bloodiest battle since World War II.",
+"source": "Wikipedia: Battle of Bakhmut",
+"url": "https://en.wikipedia.org/wiki/Battle_of_Bakhmut"
+},
+{
+"title": "Kakhovka dam destroyed",
+"date": 20230606,
+"at": [
+33.37,
+46.78
+],
+"kind": "energy",
+"text": "The Russian-held Kakhovka dam is breached, flooding the lower Dnipro. Many experts concluded Russian forces likely blew it up; Russia denies this.",
+"source": "Wikipedia: Destruction of the Kakhovka Dam",
+"url": "https://en.wikipedia.org/wiki/Destruction_of_the_Kakhovka_Dam"
+},
+{
+"title": "Counteroffensive stalls",
+"date": 20230610,
+"at": [
+35.83,
+47.45
+],
+"kind": "military",
+"text": "Ukraine's summer offensive in Zaporizhzhia and Donetsk meets dense minefields and trenches. It retakes 14 villages, about 370 km².",
+"source": "Wikipedia: 2023 Ukrainian counteroffensive",
+"url": "https://en.wikipedia.org/wiki/2023_Ukrainian_counteroffensive",
+"circa": true
+},
+{
+"title": "Avdiivka",
+"date": 20240217,
+"at": [
+37.75,
+48.14
+],
+"kind": "military",
+"text": "Ukraine withdraws from Avdiivka, near Donetsk, after a four-month Russian offensive: Russia's largest gain since Bakhmut.",
+"source": "Wikipedia: Battle of Avdiivka (2023-2024)",
+"url": "https://en.wikipedia.org/wiki/Battle_of_Avdiivka_(2023%E2%80%932024)"
+},
+{
+"title": "Towards Pokrovsk",
+"date": 20240719,
+"at": [
+37.43,
+48.2
+],
+"kind": "military",
+"text": "Russian forces capture Prohres, north-west of Avdiivka, and push towards Pokrovsk, a road and rail hub of western Donetsk.",
+"source": "Wikipedia: Pokrovsk offensive",
+"url": "https://en.wikipedia.org/wiki/Pokrovsk_offensive"
+},
+{
+"title": "Ukraine enters Kursk",
+"date": 20240806,
+"at": [
+35.27,
+51.19
+],
+"kind": "military",
+"text": "Ukraine launches an incursion into Russia's Kursk region. By March 2025 most Ukrainian forces had been pushed out. (Fighting in Russia is not on the control map.)",
+"source": "Wikipedia: Kursk campaign",
+"url": "https://en.wikipedia.org/wiki/Kursk_campaign"
+},
+{
+"title": "Pokrovsk and Myrnohrad",
+"date": [
+20251101,
+20260228
+],
+"at": [
+37.18,
+48.28
+],
+"kind": "military",
+"text": "Russian forces enter Pokrovsk in November 2025 and are reported to have taken Pokrovsk and Myrnohrad in early 2026.",
+"source": "Wikipedia: Pokrovsk offensive",
+"url": "https://en.wikipedia.org/wiki/Pokrovsk_offensive"
+}
+],
+"note": "The long front, 2023 to 2026. Hand-entered by Orbis; each card names the article or record it was checked against (Wikipedia articles as retrieved on 2026-10-14, text paraphrased). Dates are Gregorian. Built by tools/build/ua_events.py."
+}

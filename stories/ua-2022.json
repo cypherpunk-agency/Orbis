@@ -1,0 +1,312 @@
+{
+ "id": "ua-2022",
+ "cat": "Geopolitics",
+ "title": "2022: Invasion and counter-attack",
+ "hook": "Russia's full-scale invasion stalled outside Kyiv. Within nine months Ukraine had pushed it back from the north, from most of Kharkiv region and from Kherson.",
+ "updated": "2026-10-14",
+ "notes": "Control of territory: Wikipedia, 'Module:Russo-Ukrainian war detailed map' (CC BY-SA 4.0, by Wikipedia contributors). The module marks about 550–800 settlements in 2022 as held by Ukraine, held by Russia, or contested; it is edited by volunteers from news reports and other maps, and is not an official or verified source. Each timeline step is one saved revision of the module, dated by the day it was saved (25 March, 10 April, 31 August, 5 October and 12 November 2022), so a step can lag events by days or weeks: Mariupol, for example, fell on 20 May but there is no step between April and August. Dots are the settlements as marked; shaded areas are an Orbis approximation, not a front-line map: every place takes the marker of the nearest listed settlement (Voronoi cells, clipped to Ukraine's internationally recognised borders), so the edges are only roughly where the front ran. Measured on this approximation, the area shaded as Russian-held was about 26% of Ukraine on 25 March 2022 and about 18% on 12 November 2022 (including Crimea and the areas held since 2014), in line with commonly reported estimates. Fighting inside Russia is not shown. Events: hand-entered cards, each checked against the Wikipedia article named on it (retrieved 14 October 2026). Kharkiv counteroffensive figures (over 500 settlements, about 12,000 km²) are as given in Wikipedia's article on it. Mariupol: the UN confirmed 1,348 civilian deaths and said the true toll was likely thousands higher; Ukrainian officials estimated about 25,000.",
+ "data": {
+  "ctl": "data/history/ua-control.json",
+  "pts": "data/history/ua-control-points.json",
+  "ev": "data/history/ua-cards-2022.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "24 February 2022",
+   "text": "Russia attacked from three sides: from Belarus towards Kyiv, from Russia towards Chernihiv, Sumy and Kharkiv, and from Crimea into the south, where it took Kherson and the Zaporizhzhia nuclear plant in the first week. The volunteer-edited Wikipedia map for 25 March shows the deepest advance: Russian forces on the edge of Kyiv and along the coast to Mariupol.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     32.5,
+     48.6
+    ],
+    "zoom": 9
+   },
+   "stamp": "Control as of 25 Mar 2022 · Wikipedia map module (volunteer-edited) · areas approximate",
+   "timeline": {
+    "years": [
+     20220224,
+     20220302,
+     20220304,
+     20220325
+    ],
+    "start": 20220325,
+    "format": "date",
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": 20220325,
+     "labels": false,
+     "outline": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2",
+     "inner": false
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2,
+     "year": 20220325
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "The retreat from Kyiv",
+   "text": "Russia's columns stalled north of Kyiv. In late March and early April it withdrew from Kyiv, Zhytomyr, Chernihiv and Sumy regions. In Bucha, Ukrainian authorities recovered 458 bodies; the UN human rights office documented unlawful killings of at least 73 civilians in the town.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     31.8,
+     50.9
+    ],
+    "zoom": 16
+   },
+   "stamp": "Control as of {t} · Wikipedia map module (volunteer-edited) · areas approximate",
+   "timeline": {
+    "years": [
+     20220325,
+     20220410
+    ],
+    "start": 20220325,
+    "format": "date",
+    "playSpeed": 1800
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": "t",
+     "labels": false,
+     "outline": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2",
+     "changes": "flash",
+     "inner": false
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "A land bridge to Crimea",
+   "text": "In the south, Russian forces linked Crimea with the Donbas. Mariupol held out under siege for almost three months until its last defenders surrendered at the Azovstal steelworks on 20 May. The UN confirmed 1,348 civilian deaths in the city and said the real toll was likely thousands higher.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     36.0,
+     47.0
+    ],
+    "zoom": 13
+   },
+   "stamp": "Control as of {t} · Wikipedia map module (volunteer-edited) · areas approximate",
+   "timeline": {
+    "years": [
+     20220410,
+     20220831
+    ],
+    "start": 20220831,
+    "format": "date"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": "t",
+     "labels": false,
+     "outline": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2",
+     "changes": "flash",
+     "inner": false
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Kharkiv: the breakthrough",
+   "text": "On 6 September Ukraine broke through Russian lines in Kharkiv region. Within a week it retook Balakliia, Izium and Kupiansk; on 1 October it took Lyman. By Wikipedia's account, more than 500 settlements and some 12,000 km² changed hands. Bright patches mark the areas that changed between the two map revisions.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     37.0,
+     49.3
+    ],
+    "zoom": 22
+   },
+   "stamp": "Control as of {t} · Wikipedia map module (volunteer-edited) · areas approximate",
+   "timeline": {
+    "years": [
+     20220831,
+     20221005
+    ],
+    "start": 20220831,
+    "format": "date",
+    "playSpeed": 1800
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": "t",
+     "labels": false,
+     "outline": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2",
+     "changes": "flash",
+     "inner": false
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Kherson",
+   "text": "On 30 September Russia announced the annexation of four Ukrainian regions, including parts it did not hold; the UN General Assembly called it invalid. Six weeks later, on 9 November, Russia ordered its troops out of Kherson and across the Dnipro. Ukrainian forces entered the city on 11 November.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     33.0,
+     46.9
+    ],
+    "zoom": 20
+   },
+   "stamp": "Control as of {t} · Wikipedia map module (volunteer-edited) · areas approximate",
+   "timeline": {
+    "years": [
+     20221005,
+     20221112
+    ],
+    "start": 20221005,
+    "format": "date",
+    "playSpeed": 1800
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": "t",
+     "labels": false,
+     "outline": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2",
+     "changes": "flash",
+     "inner": false
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Nine months",
+   "text": "Press Play to see 2022 in five map revisions. By the rough measure of these map points, Russia held about a quarter of Ukraine in late March and a little under a fifth by mid-November, including Crimea and the parts of the Donbas it had held since 2014. The front then settled for years.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     33.5,
+     48.6
+    ],
+    "zoom": 9
+   },
+   "stamp": "Control as of {t} · Wikipedia map module (volunteer-edited) · areas approximate",
+   "timeline": {
+    "years": [
+     20220325,
+     20220410,
+     20220831,
+     20221005,
+     20221112
+    ],
+    "start": 20221112,
+    "format": "date",
+    "spacing": "time",
+    "playSpeed": 1500
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": "t",
+     "labels": false,
+     "outline": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2",
+     "changes": "flash",
+     "inner": false
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2
+    }
+   ]
+  }
+ ],
+ "pov": "UA"
+}
