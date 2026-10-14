@@ -193,8 +193,8 @@ const SOURCES = {
   "unesco-uis": {
     name: "UNESCO Institute for Statistics", what: "Upper-secondary completion rate, primary out-of-school rate and researchers per million for the country atlas (UIS public data API)", tier: "layer",
     licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-    url: "https://uis.unesco.org/", use: "noncommercial", redistribute: true,
-    credit: "Source: UNESCO Institute for Statistics (CC BY-SA 4.0; share-alike, so kept out of the base tier)"
+    url: "https://uis.unesco.org/", use: "sharealike", redistribute: true,
+    credit: "Source: UNESCO Institute for Statistics (CC BY-SA 4.0)"
   },
   "meta-sci": {
     name: "Meta Social Connectedness Index (HDX)", what: "Facebook friendship ties between countries, Jan 2026 snapshot", tier: "layer",
@@ -207,6 +207,95 @@ const SOURCES = {
     licence: "CC BY-NC-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     url: "https://doi.org/10.21410/7E4/RDAG3O", use: "noncommercial", redistribute: true,
     credit: "Laouenan, Bhargava, Eymeoud, Gergaud, Plique & Wasmer (2022), A cross-verified database of notable people, Scientific Data 9:290 (CC BY-NC-SA 4.0)"
+  },
+  "historical-basemaps": {
+    name: "historical-basemaps (A. Ourednik)", what: "Approximate world borders, one map per century (500 BC – AD 1650 used)", tier: "layer",
+    licence: "GPL-3.0", licenceUrl: "https://github.com/aourednik/historical-basemaps/blob/master/LICENSE",
+    url: "https://github.com/aourednik/historical-basemaps", use: "sharealike", redistribute: true,
+    credit: "historical-basemaps by André Ourednik (GPL-3.0); simplified by Orbis, derived files GPL-3.0"
+  },
+  awmc: {
+    name: "AWMC geodata", what: "Roman state extent (60 BC, AD 117, AD 200) and frontier walls, after the Barrington Atlas", tier: "layer",
+    licence: "ODbL 1.0", licenceUrl: "https://opendatacommons.org/licenses/odbl/1-0/",
+    url: "https://github.com/AWMC/geodata", use: "sharealike", redistribute: true,
+    credit: "Ancient World Mapping Center, UNC (AWMC geodata, ODbL 1.0); simplified by Orbis, derived data ODbL"
+  },
+  "wp-ua-control": {
+    name: "Wikipedia Russo-Ukrainian war map", what: "Settlement control markers by revision (Module:Russo-Ukrainian war detailed map and overview map); volunteer-edited", tier: "layer",
+    licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    url: "https://en.wikipedia.org/wiki/Module:Russo-Ukrainian_war_detailed_map", use: "sharealike", redistribute: true,
+    credit: "Wikipedia contributors, Module:Russo-Ukrainian war detailed map (CC BY-SA 4.0); areas approximated by Orbis"
+  },
+  "newberry-ahcb": {
+    name: "Newberry Library, Atlas of Historical County Boundaries", what: "US historical state and territory boundaries 1783–2000 (generalized .01°)", tier: "layer",
+    licence: "Open access, any lawful purpose incl. commercial", licenceUrl: "https://publications.newberry.org/ahcb/download",
+    url: "https://publications.newberry.org/ahcb/", use: "commercial", redistribute: true,
+    credit: "Atlas of Historical County Boundaries, The Newberry Library"
+  },
+  "usfs-royce": {
+    name: "US Forest Service, Tribal Land Cessions in the United States", what: "Royce land cession areas 1784–1894 (2018 digitisation)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://catalog.data.gov/dataset/tribal-lands-ceded-to-the-united-states-feature-layer", use: "commercial", redistribute: true,
+    credit: "USDA Forest Service, Office of Tribal Relations, with NPS NAGPRA, EPA and C. Saunt; after C. C. Royce (1899)"
+  },
+  "medsl-president": {
+    name: "MIT Election Data and Science Lab", what: "U.S. President 1976–2024, state returns", tier: "layer",
+    licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+    url: "https://doi.org/10.7910/DVN/42MVDX", use: "commercial", redistribute: true,
+    credit: "MIT Election Data and Science Lab, U.S. President 1976–2024, Harvard Dataverse"
+  },
+  "princes-townspeople": {
+    name: "Princes and Townspeople (Cantoni, Mohr, Weigand)", what: "Rulers of 2,390 German towns by year, 1300–1807, and interpolated town areas (vols. 1–2)", tier: "layer",
+    licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+    url: "https://dataverse.harvard.edu/dataverse/princesandtownspeople", use: "commercial", redistribute: true,
+    credit: "Princes and Townspeople, Cantoni, Mohr and Weigand, Harvard Dataverse (doi:10.7910/DVN/GZPPVE, doi:10.7910/DVN/ZGSJED)"
+  },
+  "histogis-circles": {
+    name: "HistoGIS: Imperial Circles 1648 and 1792", what: "Imperial Circles of the Holy Roman Empire, traced from IEG-Maps; HistoGIS says CC BY 4.0, treated as CC BY-NC because the IEG-Maps source is non-commercial", tier: "layer",
+    licence: "CC BY-NC 4.0 (as treated)", licenceUrl: "https://creativecommons.org/licenses/by-nc/4.0/",
+    url: "https://histogis.acdh.oeaw.ac.at/shapes/source/detail/220", use: "noncommercial", redistribute: true,
+    credit: "Anna Piechl, HistoGIS (ACDH-CH, ÖAW), based on A. Kunz, 'Reichskreise 1648/1792', IEG-Maps, Mainz"
+  },
+  "eth-hre-territories": {
+    name: "ETH Zurich: territories of the Holy Roman Empire (Roller 2021)", what: "16th-century territories and confessions, traced by hand from a modern atlas; attributes from Wikipedia", tier: "layer",
+    licence: "CC BY-NC-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    url: "https://www.research-collection.ethz.ch/handle/20.500.11850/472583", use: "noncommercial", redistribute: true,
+    credit: "Ramona Roller, 'Spatio-temporal data on territories of the Holy Roman Empire', ETH Zurich, 2021 (CC BY-NC-SA 4.0); derived file stays CC BY-NC-SA"
+  },
+  wikidata: {
+    name: "Wikidata", what: "Structured facts (monarchs, reign dates, royal houses; form of government) queried via SPARQL", tier: "layer",
+    licence: "CC0 1.0", licenceUrl: "https://www.wikidata.org/wiki/Wikidata:Licensing",
+    url: "https://www.wikidata.org", use: "commercial", redistribute: true,
+    credit: "Wikidata (CC0)"
+  },
+  "shepherd-1648-utexas": {
+    name: "Shepherd, Historical Atlas (1923): Central Europe about 1648", what: "Scanned plate, georeferenced by Orbis (15 control points, ~5 km accuracy)", tier: "layer",
+    licence: "Public domain", licenceUrl: "https://maps.lib.utexas.edu/maps/faq.html",
+    url: "https://maps.lib.utexas.edu/maps/historical/history_shepherd_1923.html", use: "commercial", redistribute: true,
+    credit: "William R. Shepherd, Historical Atlas (1923/1926); scan: University of Texas Libraries"
+  },
+  vdem: {
+    name: "V-Dem", what: "Regimes of the World classification (Lührmann, Tannenberg & Lindberg 2018), V-Dem v16, 1900–2025, via Our World in Data", tier: "layer",
+    licence: "CC BY-SA 4.0", licenceUrl: "https://www.v-dem.net/data/the-v-dem-dataset/",
+    url: "https://ourworldindata.org/grapher/political-regime", use: "sharealike", redistribute: true,
+    credit: "V-Dem v16 (Coppedge et al. 2026), Regimes of the World; processed by Our World in Data; CC BY-SA 4.0"
+  },
+  "eog-vnl": {
+    name: "EOG VIIRS Nighttime Lights", what: "Annual night-time light (VNL V2, average_masked), 2012–2024, via the OpenGeoHub mirror on Zenodo", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://eogdata.mines.edu/products/vnl/", use: "commercial", redistribute: true,
+    credit: "This product was made utilizing VIIRS Nighttime Lights data produced by the Earth Observation Group, Payne Institute for Public Policy, Colorado School of Mines (mirror: Hengl, Zenodo 10.5281/zenodo.17294744)"
+  },
+  "opensky-covid": {
+    name: "OpenSky Network flight list", what: "Every flight seen by OpenSky's ADS-B receivers, 2019–2021 (COVID-19 dataset v21.12)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://zenodo.org/records/5815448", use: "commercial", redistribute: true,
+    credit: "OpenSky Network; Strohmeier, Olive, Lübbe, Schäfer, Lenders, ESSD 13, 2021"
+  },
+  ourairports: {
+    name: "OurAirports", what: "Airport codes and countries (used to place flights)", tier: "layer",
+    licence: "Public domain", licenceUrl: "https://ourairports.com/data/",
+    url: "https://ourairports.com/data/", use: "commercial", redistribute: true, credit: "OurAirports (optional)"
   },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
@@ -336,7 +425,7 @@ const SOURCES = {
   "usgs-quakes": {
     name: "USGS earthquake catalogue", what: "Earthquakes of magnitude 6 and above, 1900–2025 (ANSS Comprehensive Catalog; pre-1973 events largely from ISC-GEM)", tier: "layer",
     licence: "US public domain + ISC-GEM CC BY-SA 3.0", licenceUrl: "https://www.isc.ac.uk/iscgem/download.php",
-    url: "https://earthquake.usgs.gov/fdsnws/event/1/", use: "commercial", redistribute: true,
+    url: "https://earthquake.usgs.gov/fdsnws/event/1/", use: "sharealike", redistribute: true,
     credit: "Source: U.S. Geological Survey, ANSS ComCat; ISC-GEM Global Instrumental Earthquake Catalogue © ISC and GEM Foundation, CC BY-SA 3.0"
   },
   "ucdp-ged": {
@@ -365,7 +454,7 @@ const SOURCES = {
   "hre-alphathon1789": {
     name: "Holy Roman Empire reconstruction (c. 1789)", what: "Source-defined imperial outline and selected Habsburg/Brandenburg paths extracted from the creator's historical SVG; approximate coordinate transformation", tier: "layer",
     licence: "CC BY-SA 3.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
-    url: "https://commons.wikimedia.org/wiki/File:Map_Holy_Roman_Empire_1789.svg", use: "commercial", redistribute: true,
+    url: "https://commons.wikimedia.org/wiki/File:Map_Holy_Roman_Empire_1789.svg", use: "sharealike", redistribute: true,
     credit: "Alphathon; revision by Fenn-O-maniC (2021), based on maix and Blank map of Europe contributors. Full retained attribution: data/history/hre/attribution.txt. Orbis extraction, simplification and approximate coordinate transformation; CC BY-SA 3.0."
   },
   "hre-reilly1796": {
@@ -405,6 +494,29 @@ const SOURCES = {
   }
 };
 
-const USE_LABEL = { commercial: "Commercial use allowed", noncommercial: "Non-commercial only", permission: "Used with permission" };
+const USE_LABEL = { commercial: "Commercial use allowed", sharealike: "Share-alike: reuse under the same licence", noncommercial: "Non-commercial only", permission: "Used with permission" };
 
-if (typeof module !== "undefined") module.exports = { SOURCES, USE_LABEL };
+// licence elements shown as small badges, read from the licence text (a source may set "tags" to override)
+const LIC_TAGS = {
+  PD: "Public domain: no rights reserved",
+  CC0: "CC0: no rights reserved",
+  BY: "Attribution: credit the source",
+  SA: "Share-alike: adaptations must keep the same licence",
+  NC: "Non-commercial: no commercial use without permission",
+  ND: "No derivatives: shown unaltered",
+  PERM: "Used with written permission"
+};
+function licenceTags(s){
+  if (s.tags) return s.tags;
+  const L = String(s.licence || "").toUpperCase(), t = [];
+  if (/CC0/.test(L)) t.push("CC0");
+  else if (/PUBLIC DOMAIN|NO RESTRICTIONS|NASA OPEN DATA|GOVERNMENT WORK/.test(L)) t.push("PD");
+  if (/\bBY\b|ATTRIBUTION|IGO|ODBL/.test(L)) t.push("BY");
+  if (/\bNC\b|NON-COMMERCIAL|NONCOMMERCIAL/.test(L) || s.use === "noncommercial") t.push("NC");
+  if (/\bSA\b|SHARE-?ALIKE|GPL|ODBL/.test(L) || s.use === "sharealike") t.push("SA");
+  if (/\bND\b|NO DERIVATIVES/.test(L)) t.push("ND");
+  if (s.use === "permission") t.push("PERM");
+  return [...new Set(t)];
+}
+
+if (typeof module !== "undefined") module.exports = { SOURCES, USE_LABEL, LIC_TAGS, licenceTags };

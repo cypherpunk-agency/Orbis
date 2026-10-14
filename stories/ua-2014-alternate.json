@@ -1,0 +1,247 @@
+{
+ "id": "ua-2014-alternate",
+ "cat": "Geopolitics",
+ "title": "2014: Crimea and Donbas",
+ "hook": "The war did not start in 2022. In 2014 Russia annexed Crimea and backed an armed uprising in the Donbas that killed some 14,000 people before the full invasion.",
+ "updated": "2026-10-14",
+ "notes": "Events: hand-entered cards, each checked against the Wikipedia article named on the card (retrieved 14 October 2026) or the UN record it cites. Casualties 2014–2021: UN human rights office (OHCHR), 'Conflict-related civilian casualties in Ukraine', 27 January 2022: 14,200–14,400 killed from 6 April 2014 to 31 December 2021, including about 6,500 on the separatist side, 4,400 Ukrainian forces and 3,404 civilians; Ukraine's Museum of Military History later counted 4,535 Ukrainian service members killed by 23 February 2022, and other counts are higher. UN General Assembly resolution 68/262 (27 March 2014): 100 in favour, 11 against, 58 abstentions. Displacement: UNHCR Refugee Population Statistics (end-year stocks; internally displaced figure as carried in UNHCR's database, based on IOM and IDMC estimates). Shapes: Natural Earth 1:10m admin-1 outlines (public domain). Crimea and Sevastopol are shaded from the annexation treaty of 18 March 2014, though Russian forces controlled the peninsula from late February. The Donetsk and Luhansk regions are shaded lightly as context only: Russian-backed forces held roughly their eastern third, including both regional capitals, but no openly licensed map of the 2015–2022 line of contact was available, so it is not drawn. Names: Ukrainian spellings (Kyiv, Luhansk, Sloviansk).",
+ "data": {
+  "shp": "data/history/ua-2014.json",
+  "ev": "data/history/ua-cards-2014.json",
+  "dis": "data/people/ua-refugees.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "Kyiv, February 2014",
+   "text": "For three months, protesters filled Kyiv's Maidan after President Viktor Yanukovych refused to sign an association agreement with the European Union. In February, scores of them were killed by government forces. On 22 February 2014 Yanukovych left Kyiv and parliament removed him. Within days, the crisis moved to Crimea.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     31.5,
+     48.5
+    ],
+    "zoom": 9
+   },
+   "countryLabels": true,
+   "timeline": {
+    "years": [
+     20140222
+    ],
+    "format": "date"
+   },
+   "layers": [
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Crimea is annexed",
+   "text": "On 27 February 2014 armed men without insignia, later acknowledged as Russian special forces, seized Crimea's parliament. A referendum held under Russian control followed on 16 March, and on 18 March Russia annexed Crimea and Sevastopol. The UN General Assembly called the referendum invalid: 100 votes in favour, 11 against.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     34.3,
+     45.3
+    ],
+    "zoom": 22
+   },
+   "timeline": {
+    "years": [
+     20140222,
+     20140227,
+     20140316,
+     20140318,
+     20140327
+    ],
+    "start": 20140318,
+    "format": "date",
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "shp",
+     "year": "t",
+     "groups": [
+      "annexed"
+     ],
+     "labels": true,
+     "outline": false
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "War comes to the Donbas",
+   "text": "In April 2014 an armed unit led by a Russian citizen, Igor Girkin, crossed from Russia and seized Sloviansk. Separatists declared 'people's republics' in Donetsk and Luhansk. Ukraine's army pushed them back over the summer until Russian regular troops crossed the border in August and encircled Ukrainian forces at Ilovaisk.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     38.3,
+     48.4
+    ],
+    "zoom": 20
+   },
+   "timeline": {
+    "years": [
+     20140412,
+     20140717,
+     20140829
+    ],
+    "start": 20140829,
+    "format": "date",
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "shp",
+     "year": "t",
+     "labels": true,
+     "outline": false
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "MH17",
+   "text": "On 17 July 2014 a Buk missile shot down Malaysia Airlines Flight 17 over separatist-held territory, killing all 298 people on board. A Dutch-led investigation found the launcher came from Russia's 53rd Anti-Aircraft Missile Brigade and returned to Russia the next day. Russia denies involvement.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     38.5,
+     48.2
+    ],
+    "zoom": 24
+   },
+   "timeline": {
+    "years": [
+     20140717
+    ],
+    "format": "date"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "shp",
+     "year": "t",
+     "groups": [
+      "donbas"
+     ],
+     "labels": false,
+     "outline": false
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Minsk, and a frozen front",
+   "text": "Two agreements signed in Minsk, in September 2014 and February 2015, set ceasefires that never fully held: days after the second, Russian-backed forces took Debaltseve. The front then hardened into trenches. Until the end of 2021 the UN counted 14,200–14,400 dead, 3,404 of them civilians, most in the first year.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     32,
+     50
+    ],
+    "zoom": 6.5
+   },
+   "timeline": {
+    "years": [
+     20140905,
+     20150212,
+     20150218,
+     20211231
+    ],
+    "start": 20211231,
+    "format": "date",
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "shp",
+     "year": "t",
+     "labels": true,
+     "outline": false
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Two million displaced",
+   "text": "The Donbas war drove people from their homes on both sides of the front. UNHCR's database counts 1.8 million people displaced inside Ukraine at the end of 2016, and at the 2015 peak about 320,000 Ukrainian refugees abroad, almost all in Russia: together about two million people. Then, on 21 February 2022, Russia recognised the two 'republics'; three days later it invaded.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     33.5,
+     48.5
+    ],
+    "zoom": 9
+   },
+   "countryLabels": true,
+   "timeline": {
+    "years": [
+     20220221
+    ],
+    "format": "date"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "shp",
+     "year": "t",
+     "labels": false,
+     "outline": false
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t"
+    }
+   ],
+   "media": [
+    {
+     "type": "line",
+     "data": "dis",
+     "series": "idp",
+     "countries": [
+      "UKR"
+     ],
+     "labels": {
+      "UKR": "Displaced inside Ukraine"
+     },
+     "title": "People displaced inside Ukraine, end of year (UNHCR)",
+     "fmt": "int"
+    }
+   ]
+  }
+ ],
+ "pov": "UA"
+}

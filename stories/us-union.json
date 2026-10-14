@@ -1,0 +1,294 @@
+{
+ "id": "us-union",
+ "cat": "Geopolitics",
+ "title": "Joining and splitting the Union",
+ "hook": "Fifty states joined the Union one by one over 172 years. Eleven of them tried to leave it in 1860–61, and it took four years of war to bring them back.",
+ "notes": "Shapes: Newberry Library, Atlas of Historical County Boundaries (open access, commercial use allowed), simplified by Orbis. Statehood: the original 13 are dated by the day each ratified the Constitution, later states by their day of admission (Wikipedia, 'List of U.S. states by date of admission to the Union'; the admission dates match the Newberry atlas). Civil War: free and slave states as in 1860; secession dates are those of each state's ordinance of secession (Tennessee: its referendum of 8 June 1861); readmission dates are those listed in Wikipedia, 'Confederate States of America' (read October 2026). Each state is coloured whole: the map does not show Union-held parts of seceded states, Confederate claims to territories, or the Restored Government of Virginia. West Virginia, admitted in 1863 with a plan for gradual emancipation, is shown with the slave states that stayed in the Union. Death toll: Wikipedia, 'American Civil War' (19th-century estimate about 620,000; J. David Hacker's 2011 census-based estimate about 750,000, range 650,000–850,000; a 2024 recalculation from full census records about 698,000).",
+ "data": {
+  "u": "data/history/us-union.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "Fifty states, one by one",
+   "text": "Delaware ratified the Constitution first, on 7 December 1787; Hawaii became the 50th state on 21 August 1959. Half of today's states had joined by 1836. Play the timeline to watch them arrive.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -100,
+     41
+    ],
+    "zoom": 3
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1787,
+     1959
+    ],
+    "start": 1959,
+    "playSpeed": 300,
+    "captions": {
+     "1790": "Rhode Island, the last of the 13",
+     "1821": "Missouri",
+     "1836": "Arkansas: 25 states",
+     "1859": "Oregon",
+     "1896": "Utah",
+     "1912": "Arizona: 48 states",
+     "1959": "Alaska and Hawaii"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "u",
+     "year": "t",
+     "groups": [
+      "orig",
+      "e1821",
+      "e1859",
+      "e1896",
+      "e1959"
+     ],
+     "opacity": 0.6,
+     "labels": true
+    }
+   ],
+   "media": [
+    {
+     "type": "multiples",
+     "layer": 0,
+     "years": [
+      1790,
+      1821,
+      1859,
+      1896,
+      1912,
+      1959
+     ],
+     "title": "States in the Union"
+    }
+   ]
+  },
+  {
+   "title": "Free and slave, 1860",
+   "text": "When Abraham Lincoln was elected president on 6 November 1860, 18 states had abolished slavery and 15 still allowed it. Lincoln opposed letting slavery spread into the western territories.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -95,
+     39
+    ],
+    "zoom": 3.2
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     18601106
+    ],
+    "format": "date",
+    "start": 18601106,
+    "captions": {
+     "18601106": "Election day"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "u",
+     "year": "t",
+     "groups": [
+      "cw_free",
+      "cw_slave",
+      "cw_terr"
+     ],
+     "opacity": 0.6,
+     "labels": true
+    }
+   ]
+  },
+  {
+   "title": "Secession",
+   "text": "South Carolina voted to leave the Union on 20 December 1860, and six more states of the Deep South followed by 1 February. After Confederate guns fired on Fort Sumter in April 1861, four more seceded. Four slave states, Delaware, Maryland, Kentucky and Missouri, stayed in the Union.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -88,
+     35.5
+    ],
+    "zoom": 3.8
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     18601106,
+     18601220,
+     18610109,
+     18610110,
+     18610111,
+     18610119,
+     18610126,
+     18610201,
+     18610412,
+     18610417,
+     18610506,
+     18610520,
+     18610608
+    ],
+    "format": "date",
+    "start": 18610608,
+    "spacing": "time",
+    "captions": {
+     "18601106": "Lincoln elected",
+     "18601220": "South Carolina",
+     "18610109": "Mississippi",
+     "18610110": "Florida",
+     "18610111": "Alabama",
+     "18610119": "Georgia",
+     "18610126": "Louisiana",
+     "18610201": "Texas",
+     "18610412": "Fort Sumter",
+     "18610417": "Virginia",
+     "18610506": "Arkansas",
+     "18610520": "North Carolina",
+     "18610608": "Tennessee"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "u",
+     "year": "t",
+     "groups": [
+      "cw_free",
+      "cw_slave",
+      "cw_csa",
+      "cw_terr"
+     ],
+     "opacity": 0.6,
+     "labels": true,
+     "changes": "flash"
+    },
+    {
+     "type": "cards",
+     "data": "u"
+    }
+   ]
+  },
+  {
+   "title": "Four years of war",
+   "text": "The war lasted until Lee surrendered at Appomattox in April 1865. Estimates of soldiers' deaths range from about 620,000 to 850,000; a 2024 count from full census records puts them near 700,000. In December 1865 the Thirteenth Amendment abolished slavery in every state.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -84,
+     36.5
+    ],
+    "zoom": 3.8
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     18610608,
+     18630101,
+     18630620,
+     18630701,
+     18650409,
+     18651206
+    ],
+    "format": "date",
+    "start": 18650409,
+    "spacing": "time",
+    "captions": {
+     "18630101": "Emancipation Proclamation",
+     "18630620": "West Virginia admitted",
+     "18630701": "Gettysburg",
+     "18650409": "Appomattox",
+     "18651206": "Thirteenth Amendment"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "u",
+     "year": "t",
+     "groups": [
+      "cw_free",
+      "cw_slave",
+      "cw_union",
+      "cw_csa",
+      "cw_terr"
+     ],
+     "opacity": 0.6,
+     "labels": true
+    },
+    {
+     "type": "cards",
+     "data": "u",
+     "window": 3.0,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Back into the Union",
+   "text": "After the war each seceded state had to accept the end of slavery before Congress seated its members again. Tennessee came back first, in July 1866; Georgia was the last, in July 1870.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -86,
+     34
+    ],
+    "zoom": 3.8
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     18651206,
+     18660724,
+     18680622,
+     18680625,
+     18700127,
+     18700223,
+     18700330,
+     18700715
+    ],
+    "format": "date",
+    "start": 18700715,
+    "spacing": "time",
+    "captions": {
+     "18660724": "Tennessee",
+     "18680622": "Arkansas",
+     "18680625": "Florida, Alabama, Louisiana, the Carolinas",
+     "18700127": "Virginia",
+     "18700223": "Mississippi",
+     "18700330": "Texas",
+     "18700715": "Georgia"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "u",
+     "year": "t",
+     "groups": [
+      "cw_union",
+      "cw_csa",
+      "cw_back",
+      "cw_terr"
+     ],
+     "opacity": 0.6,
+     "labels": true,
+     "changes": "flash"
+    },
+    {
+     "type": "cards",
+     "data": "u",
+     "window": 5.0
+    }
+   ]
+  }
+ ]
+}

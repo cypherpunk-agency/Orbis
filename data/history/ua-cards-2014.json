@@ -1,0 +1,179 @@
+{
+"source": "editorial",
+"asOf": "2026-10-14",
+"retrieved": "2026-10-14",
+"kinds": {
+"military": {
+"label": "Fighting",
+"color": "c2",
+"icon": "swords"
+},
+"politics": {
+"label": "Politics and diplomacy",
+"color": "c5"
+},
+"civilian": {
+"label": "Civilian deaths",
+"color": "muted"
+}
+},
+"items": [
+{
+"title": "Yanukovych removed",
+"date": 20140222,
+"at": [
+30.524,
+50.45
+],
+"kind": "politics",
+"text": "After three months of protests on Kyiv's Maidan, President Viktor Yanukovych leaves Kyiv and parliament removes him from office.",
+"source": "Wikipedia: Revolution of Dignity",
+"url": "https://en.wikipedia.org/wiki/Revolution_of_Dignity"
+},
+{
+"title": "Crimea's parliament seized",
+"date": 20140227,
+"at": [
+34.1,
+44.95
+],
+"kind": "military",
+"text": "Armed men without insignia, later acknowledged as Russian special forces, seize Crimea's parliament and government buildings in Simferopol. The European Court of Human Rights later agreed that Russia controlled Crimea from this day.",
+"source": "Wikipedia: 2014 Russian annexation of Crimea (ECHR, Ukraine v. Russia re Crimea, 2021)",
+"url": "https://en.wikipedia.org/wiki/2014_Russian_annexation_of_Crimea"
+},
+{
+"title": "Referendum under occupation",
+"date": 20140316,
+"at": [
+34.1,
+44.95
+],
+"kind": "politics",
+"text": "A referendum on joining Russia is held in Crimea while Russian troops control the peninsula. Ukraine and most UN member states do not recognise it.",
+"source": "Wikipedia: 2014 Russian annexation of Crimea",
+"url": "https://en.wikipedia.org/wiki/2014_Russian_annexation_of_Crimea"
+},
+{
+"title": "Annexation treaty",
+"date": 20140318,
+"at": [
+33.52,
+44.6
+],
+"kind": "politics",
+"text": "Vladimir Putin signs a treaty in Moscow with the Russian-installed Crimean leaders, annexing Crimea and Sevastopol to Russia.",
+"source": "Wikipedia: 2014 Russian annexation of Crimea",
+"url": "https://en.wikipedia.org/wiki/2014_Russian_annexation_of_Crimea"
+},
+{
+"title": "UN: the referendum is invalid",
+"date": 20140327,
+"at": [
+32.0,
+45.9
+],
+"kind": "politics",
+"text": "The UN General Assembly affirms Ukraine's territorial integrity and calls the Crimean referendum invalid (resolution 68/262): 100 in favour, 11 against, 58 abstentions.",
+"source": "UN General Assembly resolution 68/262, 27 March 2014",
+"url": "https://en.wikipedia.org/wiki/United_Nations_General_Assembly_Resolution_68/262"
+},
+{
+"title": "Sloviansk seized",
+"date": 20140412,
+"at": [
+37.61,
+48.85
+],
+"kind": "military",
+"text": "An armed unit led by the Russian citizen Igor Girkin crosses from Russia and seizes Sloviansk. Separatists declare 'people's republics' in Donetsk and Luhansk; Ukraine answers with an 'anti-terrorist operation' on 15 April.",
+"source": "Wikipedia: War in Donbas",
+"url": "https://en.wikipedia.org/wiki/War_in_Donbas"
+},
+{
+"title": "MH17 shot down",
+"date": 20140717,
+"at": [
+38.64,
+48.14
+],
+"kind": "civilian",
+"text": "Malaysia Airlines Flight 17 is shot down over separatist-held territory; all 298 people on board are killed. A Dutch-led investigation found the Buk missile system came from Russia's 53rd Anti-Aircraft Missile Brigade.",
+"source": "Wikipedia: Malaysia Airlines Flight 17 (Joint Investigation Team, 2016)",
+"url": "https://en.wikipedia.org/wiki/Malaysia_Airlines_Flight_17"
+},
+{
+"title": "Ilovaisk",
+"date": 20140829,
+"at": [
+38.2,
+47.92
+],
+"kind": "military",
+"text": "Ukrainian forces that had entered Ilovaisk are encircled after Russian regular troops cross the border (24-26 August); many are killed as they withdraw on 29 August.",
+"source": "Wikipedia: Battle of Ilovaisk",
+"url": "https://en.wikipedia.org/wiki/Battle_of_Ilovaisk"
+},
+{
+"title": "Minsk Protocol",
+"date": 20140905,
+"at": [
+27.56,
+53.9
+],
+"kind": "politics",
+"text": "Ukraine, Russia and the OSCE, with the separatist leaders, sign a ceasefire in Minsk: OSCE monitoring, withdrawal of foreign fighters and heavy weapons, local elections under Ukrainian law. The ceasefire does not hold.",
+"source": "Wikipedia: Minsk agreements",
+"url": "https://en.wikipedia.org/wiki/Minsk_agreements"
+},
+{
+"title": "Minsk II",
+"date": 20150212,
+"at": [
+27.56,
+53.9
+],
+"kind": "politics",
+"text": "A second package of measures, brokered by France and Germany, sets a new ceasefire from 15 February 2015.",
+"source": "Wikipedia: Minsk agreements",
+"url": "https://en.wikipedia.org/wiki/Minsk_agreements"
+},
+{
+"title": "Debaltseve",
+"date": 20150218,
+"at": [
+38.41,
+48.34
+],
+"kind": "military",
+"text": "Despite the new ceasefire, Russian and Russian-backed forces take the rail hub of Debaltseve; Ukrainian troops withdraw on 18 February. It is the last major battle before the front freezes.",
+"source": "Wikipedia: Battle of Debaltseve",
+"url": "https://en.wikipedia.org/wiki/Battle_of_Debaltseve"
+},
+{
+"title": "14,200-14,400 dead",
+"date": 20211231,
+"at": [
+37.8,
+48.0
+],
+"kind": "civilian",
+"text": "The UN human rights office estimates 14,200-14,400 people were killed from April 2014 to the end of 2021: about 6,500 on the separatist side, 4,400 Ukrainian forces and 3,404 civilians. Most died in the first year.",
+"source": "OHCHR, Conflict-related civilian casualties in Ukraine, 27 January 2022 (via Wikipedia: Casualties of the Russo-Ukrainian war)",
+"url": "https://en.wikipedia.org/wiki/Casualties_of_the_Russo-Ukrainian_war"
+},
+{
+"title": "Russia recognises the 'republics'",
+"date": 20220221,
+"at": [
+39.31,
+48.57
+],
+"kind": "politics",
+"text": "Russia recognises the Donetsk and Luhansk 'people's republics' as independent states and announces it is sending troops. Three days later it invades Ukraine.",
+"source": "Wikipedia: War in Donbas",
+"url": "https://en.wikipedia.org/wiki/War_in_Donbas"
+}
+],
+"note": "Crimea and the war in Donbas, February 2014 to February 2022. Hand-entered by Orbis; each card names the article or record it was checked against (Wikipedia articles as retrieved on 2026-10-14, text paraphrased). Dates are Gregorian. Built by tools/build/ua_events.py."
+}

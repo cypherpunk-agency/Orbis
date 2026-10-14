@@ -1,0 +1,97 @@
+{
+"source": "editorial",
+"asOf": "2026-10-14",
+"retrieved": "2026-10-14",
+"note": "Event cards typed by Orbis from the cited Wikipedia articles. Dates are stored in the Gregorian calendar; cards marked Julian also show the date as their sources give it.",
+"kinds": {
+"rule": {
+"label": "Crowns and rulers",
+"color": "c5",
+"icon": "crown"
+},
+"war": {
+"label": "Wars and battles",
+"color": "c2",
+"icon": "swords"
+},
+"law": {
+"label": "Treaties and laws",
+"color": "c1",
+"icon": "flag"
+}
+},
+"items": [
+{
+"title": "France annexes the left bank",
+"date": 18010209,
+"at": [
+6.4966,
+48.5917
+],
+"kind": "law",
+"text": "In the Treaty of Lunéville the Emperor accepted France's border on the Rhine. The princes who lost land on the left bank were to be compensated inside the Empire.",
+"source": "Wikipedia, 'Treaty of Lunéville'",
+"url": "https://en.wikipedia.org/wiki/Treaty_of_Lun%C3%A9ville"
+},
+{
+"title": "The Imperial Recess",
+"date": 18030225,
+"at": [
+12.0974,
+49.0134
+],
+"kind": "law",
+"text": "A deputation of the Imperial Diet at Regensburg dissolved almost all church states and all but six of the 51 free imperial cities. In all, 112 imperial estates disappeared; their land went to 72 rulers, mostly Prussia, Bavaria, Württemberg and Baden.",
+"source": "Wikipedia, 'German mediatisation'",
+"url": "https://en.wikipedia.org/wiki/German_mediatisation"
+},
+{
+"title": "Battle of Austerlitz",
+"date": 18051202,
+"at": [
+16.7625,
+49.1278
+],
+"kind": "war",
+"text": "Napoleon defeated the Austrian and Russian armies in Moravia. In the Peace of Pressburg Austria gave up Tyrol and its lands in Swabia.",
+"source": "Wikipedia, 'Battle of Austerlitz'; 'Peace of Pressburg (1805)'",
+"url": "https://en.wikipedia.org/wiki/Battle_of_Austerlitz"
+},
+{
+"title": "Confederation of the Rhine",
+"date": 18060712,
+"at": [
+2.3522,
+48.8566
+],
+"kind": "law",
+"text": "Sixteen German states signed a treaty in Paris placing themselves under Napoleon's protection; on 1 August they declared that they had left the Empire.",
+"source": "Wikipedia, 'Confederation of the Rhine'",
+"url": "https://en.wikipedia.org/wiki/Confederation_of_the_Rhine"
+},
+{
+"title": "The Empire ends",
+"date": 18060806,
+"at": [
+16.3655,
+48.2083
+],
+"kind": "rule",
+"text": "In Vienna, Francis II laid down the imperial crown and declared the Empire dissolved. He kept the title Emperor of Austria, which he had taken in 1804.",
+"source": "Wikipedia, 'Dissolution of the Holy Roman Empire'",
+"url": "https://en.wikipedia.org/wiki/Dissolution_of_the_Holy_Roman_Empire"
+},
+{
+"title": "Kingdom of Westphalia",
+"date": 18070818,
+"at": [
+9.4797,
+51.3127
+],
+"kind": "rule",
+"text": "After defeating Prussia, Napoleon created a Kingdom of Westphalia for his brother Jérôme, with Kassel as its capital, from Hesse-Kassel, Brunswick and Prussian lands west of the Elbe.",
+"source": "Wikipedia, 'Kingdom of Westphalia'",
+"url": "https://en.wikipedia.org/wiki/Kingdom_of_Westphalia"
+}
+]
+}

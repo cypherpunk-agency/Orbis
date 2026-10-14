@@ -1,0 +1,300 @@
+{
+ "source": "editorial",
+ "asOf": "2026-10-14",
+ "retrieved": "2026-10-14",
+ "note": "Event cards typed by Orbis. Dates: astronomical years (1 BC = 0); ancient dates before 45 BC follow the Roman tradition and are given as years only. Each card names its source (an ancient author and/or the Wikipedia article).",
+ "kinds": {
+  "war": {
+   "label": "Battles and wars",
+   "color": "c2",
+   "icon": "swords"
+  },
+  "rule": {
+   "label": "Rulers and states",
+   "color": "c5",
+   "icon": "crown"
+  },
+  "city": {
+   "label": "Cities",
+   "color": "c1",
+   "icon": "star"
+  },
+  "wall": {
+   "label": "Frontier works",
+   "color": "c3",
+   "icon": "flag"
+  }
+ },
+ "items": [
+  {
+   "title": "Rome is founded",
+   "date": -752,
+   "at": [
+    12.49,
+    41.89
+   ],
+   "kind": "city",
+   "text": "Roman tradition dated the founding of the city to 753 BC. The Roman way of counting years 'from the founding of the city' (ab urbe condita, AUC) starts here; the date itself is legend, not record.",
+   "source": "Varro's date, via Livy 1; Wikipedia 'Founding of Rome'",
+   "url": "https://en.wikipedia.org/wiki/Founding_of_Rome",
+   "circa": true
+  },
+  {
+   "title": "The Republic",
+   "date": -508,
+   "at": [
+    12.49,
+    41.89
+   ],
+   "kind": "rule",
+   "text": "Romans expelled their last king and began to elect two consuls each year. The year 509 BC is the traditional date.",
+   "source": "Livy 2.1; Wikipedia 'Roman Republic'",
+   "url": "https://en.wikipedia.org/wiki/Roman_Republic",
+   "circa": true
+  },
+  {
+   "title": "Gauls sack Rome",
+   "date": -389,
+   "at": [
+    12.52,
+    42.05
+   ],
+   "kind": "war",
+   "text": "A Gallic army beat the Romans at the Allia river and sacked the city. Livy dates it to 390 BC, Polybius to 387 BC.",
+   "source": "Livy 5.37–43; Wikipedia 'Battle of the Allia'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_the_Allia"
+  },
+  {
+   "title": "First war with Carthage",
+   "date": [
+    -263,
+    -240
+   ],
+   "at": [
+    15.55,
+    38.19
+   ],
+   "kind": "war",
+   "text": "Rome and Carthage fought for 23 years over Sicily, mostly at sea. Rome won and made Sicily its first province outside Italy.",
+   "source": "Polybius 1; Wikipedia 'First Punic War'",
+   "url": "https://en.wikipedia.org/wiki/First_Punic_War"
+  },
+  {
+   "title": "Hannibal crosses the Alps",
+   "date": -217,
+   "at": [
+    6.9,
+    45.2
+   ],
+   "kind": "war",
+   "text": "Hannibal marched an army with war elephants from Carthago Nova in Spain over the Pyrenees and the Alps into Italy. The exact pass is still debated.",
+   "source": "Polybius 3; Wikipedia \"Hannibal's crossing of the Alps\"",
+   "url": "https://en.wikipedia.org/wiki/Hannibal%27s_crossing_of_the_Alps"
+  },
+  {
+   "title": "Cannae",
+   "date": -215,
+   "at": [
+    16.13,
+    41.31
+   ],
+   "kind": "war",
+   "text": "Hannibal encircled a much larger Roman army. Roman dead: about 48,000 according to Livy, 70,000 according to Polybius.",
+   "source": "Livy 22.49; Polybius 3.117; Wikipedia 'Battle of Cannae'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Cannae"
+  },
+  {
+   "title": "Zama",
+   "date": -201,
+   "at": [
+    9.29,
+    36.11
+   ],
+   "kind": "war",
+   "text": "Scipio defeated Hannibal in Africa. Carthage gave up Spain and its fleet, and needed Rome's permission to wage war.",
+   "source": "Polybius 15; Wikipedia 'Battle of Zama'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Zama"
+  },
+  {
+   "title": "Carthage destroyed",
+   "date": -145,
+   "at": [
+    10.32,
+    36.85
+   ],
+   "kind": "war",
+   "text": "After a three-year siege Rome razed Carthage and made its land the province of Africa. The same year Rome destroyed Corinth in Greece.",
+   "source": "Appian, Punica; Wikipedia 'Third Punic War'",
+   "url": "https://en.wikipedia.org/wiki/Third_Punic_War"
+  },
+  {
+   "title": "Pompey takes Syria",
+   "date": -63,
+   "at": [
+    36.18,
+    36.22
+   ],
+   "kind": "war",
+   "text": "Pompey ended the Seleucid kingdom and made Syria a Roman province.",
+   "source": "Wikipedia 'Roman Syria'",
+   "url": "https://en.wikipedia.org/wiki/Roman_Syria"
+  },
+  {
+   "title": "Caesar in Gaul",
+   "date": [
+    -57,
+    -49
+   ],
+   "at": [
+    4.5,
+    47.54
+   ],
+   "kind": "war",
+   "text": "Julius Caesar conquered Gaul in eight years of war; the siege of Alesia in 52 BC decided it.",
+   "source": "Caesar, Gallic War; Wikipedia 'Gallic Wars'",
+   "url": "https://en.wikipedia.org/wiki/Gallic_Wars"
+  },
+  {
+   "title": "Caesar murdered",
+   "date": -43,
+   "at": [
+    12.48,
+    41.9
+   ],
+   "kind": "rule",
+   "text": "Senators stabbed Caesar on the Ides of March, 44 BC, after he had made himself dictator for life.",
+   "source": "Suetonius, Divus Julius 82; Wikipedia 'Assassination of Julius Caesar'",
+   "url": "https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar"
+  },
+  {
+   "title": "Actium and Egypt",
+   "date": -30,
+   "at": [
+    20.74,
+    38.95
+   ],
+   "kind": "war",
+   "text": "Octavian's fleet beat Antony and Cleopatra at Actium. A year later Egypt became a Roman province.",
+   "source": "Plutarch, Antony; Wikipedia 'Battle of Actium'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Actium"
+  },
+  {
+   "title": "Augustus, first emperor",
+   "date": -26,
+   "at": [
+    12.49,
+    41.89
+   ],
+   "kind": "rule",
+   "text": "The Senate gave Octavian the name Augustus in 27 BC. Historians count the Empire from here.",
+   "source": "Cassius Dio 53; Wikipedia 'Augustus'",
+   "url": "https://en.wikipedia.org/wiki/Augustus"
+  },
+  {
+   "title": "Teutoburg Forest",
+   "date": 9,
+   "at": [
+    8.13,
+    52.41
+   ],
+   "kind": "war",
+   "text": "Germanic tribes under Arminius destroyed three Roman legions. Rome gave up the land between the Rhine and the Elbe.",
+   "source": "Cassius Dio 56; Wikipedia 'Battle of the Teutoburg Forest'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_the_Teutoburg_Forest"
+  },
+  {
+   "title": "Britain invaded",
+   "date": 43,
+   "at": [
+    1.07,
+    51.28
+   ],
+   "kind": "war",
+   "text": "Claudius sent four legions across the Channel; southern Britain became a province.",
+   "source": "Cassius Dio 60; Wikipedia 'Roman conquest of Britain'",
+   "url": "https://en.wikipedia.org/wiki/Roman_conquest_of_Britain"
+  },
+  {
+   "title": "Dacia and Arabia",
+   "date": 106,
+   "at": [
+    23.32,
+    45.67
+   ],
+   "kind": "war",
+   "text": "Trajan conquered Dacia (today's Romania) and annexed the Nabataean kingdom as the province of Arabia.",
+   "source": "Wikipedia \"Trajan's Dacian Wars\"",
+   "url": "https://en.wikipedia.org/wiki/Trajan%27s_Dacian_Wars"
+  },
+  {
+   "title": "Trajan reaches the Gulf",
+   "date": [
+    115,
+    116
+   ],
+   "at": [
+    44.58,
+    33.09
+   ],
+   "kind": "war",
+   "text": "Trajan took the Parthian capital Ctesiphon and reached the Persian Gulf. His successor Hadrian gave up Mesopotamia in 117.",
+   "source": "Cassius Dio 68; Wikipedia \"Trajan's Parthian campaign\"",
+   "url": "https://en.wikipedia.org/wiki/Trajan%27s_Parthian_campaign"
+  }
+ ],
+ "moves": {
+  "army": [
+   {
+    "name": "Hannibal",
+    "color": "c3",
+    "path": [
+     [
+      -0.99,
+      37.6,
+      -217.8
+     ],
+     [
+      0.6,
+      40.7,
+      -217.7
+     ],
+     [
+      2.6,
+      42.5,
+      -217.6
+     ],
+     [
+      4.6,
+      43.9,
+      -217.4
+     ],
+     [
+      6.9,
+      45.2,
+      -217.3
+     ],
+     [
+      7.68,
+      45.07,
+      -217.2
+     ],
+     [
+      9.6,
+      45.05,
+      -217.1
+     ],
+     [
+      12.1,
+      43.18,
+      -216.5
+     ],
+     [
+      16.13,
+      41.31,
+      -215.4
+     ]
+    ]
+   }
+  ]
+ }
+}

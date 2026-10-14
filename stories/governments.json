@@ -1,0 +1,299 @@
+{
+  "id": "governments",
+  "cat": "Geopolitics",
+  "title": "Who rules the world",
+  "hook": "Democracies and autocracies are almost even again. See how the world got here since 1900, and how its 196 states are governed.",
+  "notes": "Regimes: V-Dem v16 (March 2026) 'Regimes of the World' classification by Anna Lührmann, Marcus Tannenberg and Staffan I. Lindberg (2018), based on assessments by some 3,500 country experts, via Our World in Data (indicator 'Political regime', processed by OWID). V-Dem data are licensed CC BY-SA 4.0; the derived files here are shared under the same licence. Closed autocracy: no multi-party elections for the chief executive or legislature. Electoral autocracy: multi-party elections, but not free and fair. Electoral democracy: free and fair multi-party elections. Liberal democracy: in addition, rule of law and limits on the executive. Counts per year include every country or territory in the data with a code (colonies V-Dem codes, historical states such as East and West Germany, Kosovo, Somaliland) and leave out Palestine and Zanzibar; the 2025 figure covers 176. OWID fills some years before independence with the regime of the ruling or parent state. The map shows today's borders: Germany 1945–1990, Vietnam to 1975 and Yemen to 1990 show as no data because the country was divided. Forms of government (196 sovereign states as listed in Wikidata, October 2026): classified by fixed rules from Wikidata (CC0: basic form of government, office of the head of state, heads of state and government) and the CIA World Factbook 'Government type' (public domain, last edition early 2026); V-Dem's 2025 coding decides whether a monarch rules (no elected chief executive) and, together with a head of state from the military who took office in 2019 or later, marks military governments. Where Wikidata and the Factbook name different systems, the Factbook's term is used (12 states). The rules are listed in the dataset note and in tools/build/governments.py. Known gaps: Guinea-Bissau's army seized power in November 2025, after the sources were last updated, so it still shows as semi-presidential; Eritrea, run by one party without elections, shows as presidential because neither source calls it a one-party state; Switzerland's seven-member Federal Council fits none of the classes. Classifying regimes is contested: other coders (Freedom House, the Economist Intelligence Unit, Polity) draw the lines differently.",
+  "data": {
+    "reg": "data/politics/regimes.json",
+    "cnt": "data/politics/regime_counts.json",
+    "form": "data/politics/forms.json"
+  },
+  "sources": [
+    "vdem",
+    "wikidata",
+    "cia-factbook"
+  ],
+  "scenes": [
+    {
+      "title": "Almost even",
+      "text": "In 2025 V-Dem counted 87 democracies and 89 autocracies among the 176 countries and territories it rates. For the second year running autocracies outnumber democracies, for the first time since 2001. Only 31 countries are liberal democracies, with strong courts and limits on those in power.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "reg",
+          "set": "regime",
+          "year": 2025,
+          "colors": {
+            "3": "c1",
+            "2": "c4",
+            "1": "c3",
+            "0": "c2"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Waves and undertows",
+      "text": "In 1900 only 5 countries were democracies by V-Dem's standard. A first wave after the First World War reached 23 in 1929, then fascism and war pushed it back to 11 by 1942. The fall of dictatorships in southern Europe and Latin America and the end of the Cold War brought the big wave: 63 democracies in 1990, a peak of 95 in 2016. Press Play.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "reg",
+          "set": "regime",
+          "year": "t",
+          "colors": {
+            "3": "c1",
+            "2": "c4",
+            "1": "c3",
+            "0": "c2"
+          }
+        }
+      ],
+      "timeline": {
+        "years": [
+          1900,
+          2025
+        ],
+        "start": 1900,
+        "playSpeed": 350,
+        "captions": {
+          "1900": "5 democracies. Most of Africa and Asia is under colonial rule.",
+          "1920": "After the First World War: 17 democracies.",
+          "1929": "23 democracies, the high point between the wars.",
+          "1942": "Fascism and war: down to 11.",
+          "1950": "24 democracies after the war, among them Italy and Austria.",
+          "1960": "Decolonisation: many new states hold elections, few of them free.",
+          "1975": "Portugal, Greece and then Spain end their dictatorships.",
+          "1990": "The Cold War ends: 63 democracies.",
+          "2016": "The peak: 95 democracies.",
+          "2025": "87 democracies, 89 autocracies."
+        }
+      },
+      "media": [
+        {
+          "type": "line",
+          "data": "cnt",
+          "series": "count",
+          "countries": [
+            "dem",
+            "aut"
+          ],
+          "labels": {
+            "dem": "Democracies",
+            "aut": "Autocracies"
+          },
+          "title": "Countries by regime type (V-Dem)",
+          "fmt": "int"
+        }
+      ]
+    },
+    {
+      "title": "The last ten years",
+      "text": "Between 2015 and 2025, 15 countries slipped from democracy to autocracy in V-Dem's coding, among them India, Indonesia, Mexico, the Philippines and Hungary. Eight went the other way, including Malaysia, Armenia and The Gambia. Old democracies lost ground too: V-Dem moved Britain in 2024 and the United States in 2025 from liberal to electoral democracy.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "switch": {
+        "label": "Year",
+        "start": 1,
+        "options": [
+          {
+            "y": 2015,
+            "label": "2015"
+          },
+          {
+            "y": 2025,
+            "label": "2025"
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "reg",
+          "set": "regime",
+          "year": "{y}",
+          "colors": {
+            "3": "c1",
+            "2": "c4",
+            "1": "c3",
+            "0": "c2"
+          }
+        }
+      ],
+      "highlight": [
+        "IND",
+        "IDN",
+        "MEX",
+        "PHL",
+        "HUN",
+        "MYS",
+        "ARM",
+        "GMB",
+        "USA",
+        "GBR"
+      ]
+    },
+    {
+      "title": "How countries are run",
+      "text": "On paper, most of the world's 196 states are republics. In 71 the president runs the government, in 50 a prime minister answerable to parliament does, and in 14 the two share power, as in France. But the label says little about freedom: 38 of the 71 presidential republics are autocracies in V-Dem's coding.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "form",
+          "set": "form",
+          "colors": {
+            "pres": "c1",
+            "semi": "c5",
+            "parl": "c4",
+            "cmon": "c3",
+            "amon": "c7",
+            "onep": "c2",
+            "mil": "c6",
+            "theo": "c8",
+            "other": "muted"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Kings, emirs and sultans",
+      "text": "41 states have a monarch as head of state, and the Pope rules the Vatican. In 31, including Japan, Spain and the 15 realms where Charles III is king, an elected government governs. In 10 the monarch still rules: Saudi Arabia, the other Gulf states, Jordan, Morocco, Brunei and Eswatini.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "form",
+          "set": "form",
+          "colors": {
+            "cmon": "c3",
+            "amon": "c7",
+            "theo": "c8"
+          }
+        }
+      ]
+    },
+    {
+      "title": "One party, the army, the clergy",
+      "text": "Five communist parties rule alone: in China, Vietnam, Laos, North Korea and Cuba. Soldiers govern seven countries, six of them in Africa, most after coups since 2020. In Iran and Afghanistan clerics hold the final say.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "form",
+          "set": "form",
+          "colors": {
+            "onep": "c2",
+            "mil": "c6",
+            "theo": "c8",
+            "other": "muted"
+          }
+        }
+      ],
+      "highlight": [
+        "CUB",
+        "PRK",
+        "LAO",
+        "VNM"
+      ]
+    },
+    {
+      "title": "Who decides the labels",
+      "text": "Any such map is a judgement. V-Dem's regime types rest on thousands of expert ratings and a set threshold; other projects such as Freedom House or the Economist's Democracy Index draw the lines elsewhere. The forms of government here follow fixed rules applied to Wikidata and the CIA World Factbook, which can lag behind coups and new constitutions.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          15
+        ],
+        "zoom": 1
+      },
+      "switch": {
+        "label": "Map",
+        "start": 0,
+        "options": [
+          {
+            "d": "reg",
+            "s": "regime",
+            "label": "Regime (V-Dem)",
+            "col": {
+              "3": "c1",
+              "2": "c4",
+              "1": "c3",
+              "0": "c2"
+            }
+          },
+          {
+            "d": "form",
+            "s": "form",
+            "label": "Form of government",
+            "col": {
+              "pres": "c1",
+              "semi": "c5",
+              "parl": "c4",
+              "cmon": "c3",
+              "amon": "c7",
+              "onep": "c2",
+              "mil": "c6",
+              "theo": "c8",
+              "other": "muted"
+            }
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "categories",
+          "data": "{d}",
+          "set": "{s}",
+          "year": 2025,
+          "colors": "{col}"
+        }
+      ]
+    }
+  ]
+}

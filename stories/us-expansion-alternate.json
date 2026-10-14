@@ -1,0 +1,290 @@
+{
+ "id": "us-expansion-alternate",
+ "cat": "Geopolitics",
+ "title": "From sea to sea",
+ "hook": "In 1783 the United States ended at the Mississippi. By 1867 it reached from the Atlantic to the Pacific and the Arctic, bought, ceded, annexed and won in eleven steps.",
+ "notes": "Shapes: Newberry Library, Atlas of Historical County Boundaries (AHCB), US historical states and territories 1783–2000 (generalized .01°, open access, commercial use allowed), simplified by Orbis. Each acquisition shape is the land that first appears in the atlas's states and territories on the date of that acquisition; the atlas draws the Louisiana Purchase with its widest reading, since its western limits were never defined, and counts West Florida from 1804, when the United States first claimed it (the card gives the 1810–1812 occupation). Claims (the Oregon Country, shared with Britain from 1818 to 1846) and the independent Republic of Texas are not counted until they joined. Prices and areas on the cards are from the Wikipedia articles named on each card (read October 2026); square miles are converted at 2.59 km² each and rounded. The atlas covers today's fifty states only: Puerto Rico, Guam, the Philippines and other overseas territories are not on these maps.",
+ "data": {
+  "acq": "data/history/us-acquisitions.json",
+  "states": "data/history/us-states.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "The country in 1783",
+   "text": "When Britain recognised American independence in the Treaty of Paris of 1783, the new country stretched from the Atlantic to the Mississippi. Thirteen states claimed almost all of it; Vermont ran itself as an independent republic until it joined in 1791.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -82,
+     38
+    ],
+    "zoom": 4
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "states",
+     "year": 1783,
+     "labels": true,
+     "opacity": 0.6
+    },
+    {
+     "type": "cards",
+     "data": "acq",
+     "year": 1783,
+     "window": 1
+    }
+   ]
+  },
+  {
+   "title": "Doubled in one purchase",
+   "text": "In 1803 the United States bought Louisiana from France for $15 million: about 2.1 million km² west of the Mississippi, which nearly doubled the country. Nobody had fixed its western edge; the map shows the widest reading.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -95,
+     40
+    ],
+    "zoom": 3.2
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     17830903,
+     18030430
+    ],
+    "format": "date",
+    "start": 18030430,
+    "captions": {
+     "17830903": "Treaty of Paris",
+     "18030430": "Louisiana Purchase"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "acq",
+     "year": "t",
+     "changes": "flash",
+     "opacity": 0.6
+    },
+    {
+     "type": "cards",
+     "data": "acq"
+    }
+   ]
+  },
+  {
+   "title": "Borders drawn by treaty",
+   "text": "Treaties settled the edges. The United States took West Florida from Spain in 1810–1812, agreed the 49th parallel as the border with British Canada in 1818, and in 1819 Spain gave up Florida and drew a line with the United States across the continent.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -90,
+     37
+    ],
+    "zoom": 3.3
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     18030430,
+     18101210,
+     18181020,
+     18190222
+    ],
+    "format": "date",
+    "start": 18190222,
+    "captions": {
+     "18101210": "West Florida",
+     "18181020": "Treaty of 1818",
+     "18190222": "Adams–Onís Treaty"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "acq",
+     "year": "t",
+     "changes": "flash",
+     "opacity": 0.6
+    },
+    {
+     "type": "cards",
+     "data": "acq",
+     "window": 10.0
+    }
+   ]
+  },
+  {
+   "title": "To the Pacific",
+   "text": "Within three years the country reached the Pacific. It annexed Texas in 1845, split the Oregon Country with Britain in 1846, and took about 1.4 million km² from Mexico after the war of 1846–1848. A $10 million purchase in 1853 set today's border with Mexico.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -105,
+     38
+    ],
+    "zoom": 3.2
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     18190222,
+     18451229,
+     18460615,
+     18480202,
+     18531230
+    ],
+    "format": "date",
+    "start": 18531230,
+    "captions": {
+     "18451229": "Texas becomes a state",
+     "18460615": "Oregon Treaty",
+     "18480202": "Treaty of Guadalupe Hidalgo",
+     "18531230": "Gadsden Purchase"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "acq",
+     "year": "t",
+     "changes": "flash",
+     "opacity": 0.6
+    },
+    {
+     "type": "cards",
+     "data": "acq",
+     "window": 10.0
+    }
+   ]
+  },
+  {
+   "title": "Alaska and Hawaii",
+   "text": "Russia sold Alaska in 1867 for $7.2 million, about two cents an acre. In 1898 Congress annexed Hawaii, five years after its queen was overthrown. That same year the United States took Puerto Rico, Guam and the Philippines from Spain; they are not on this map, which shows today's fifty states.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -140,
+     40
+    ],
+    "zoom": 1.9
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     18531230,
+     18670330,
+     18980707
+    ],
+    "format": "date",
+    "start": 18980707,
+    "captions": {
+     "18670330": "Alaska Purchase",
+     "18980707": "Hawaii annexed"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "acq",
+     "year": "t",
+     "changes": "flash",
+     "opacity": 0.6
+    },
+    {
+     "type": "cards",
+     "data": "acq",
+     "window": 20.0
+    }
+   ]
+  },
+  {
+   "title": "Eleven steps",
+   "text": "Purchases, treaties, annexations and a war added land in eleven steps. Tap a card in the list to read how each piece came in.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -122,
+     44
+    ],
+    "zoom": 2.3
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "acq",
+     "year": 1898,
+     "opacity": 0.6,
+     "labels": true
+    },
+    {
+     "type": "cards",
+     "data": "acq",
+     "window": "all",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "States follow",
+   "text": "Organised territories (teal) went first; states (blue) followed as settlers arrived. Play the timeline to see the map fill in, from 1783 to Arizona's statehood in 1912 and Alaska's and Hawaii's in 1959.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -100,
+     41
+    ],
+    "zoom": 3
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1783,
+     1960
+    ],
+    "start": 1861,
+    "playSpeed": 350,
+    "captions": {
+     "1803": "Louisiana Purchase",
+     "1821": "Missouri becomes a state",
+     "1848": "Mexican Cession",
+     "1861": "Civil War begins",
+     "1890": "Idaho and Wyoming",
+     "1912": "Arizona, 48th state",
+     "1959": "Alaska and Hawaii"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "states",
+     "year": "t",
+     "labels": false,
+     "opacity": 0.6
+    }
+   ],
+   "media": [
+    {
+     "type": "multiples",
+     "layer": 0,
+     "years": [
+      1790,
+      1820,
+      1850,
+      1880,
+      1912,
+      1959
+     ],
+     "title": "States and territories"
+    }
+   ]
+  }
+ ]
+}

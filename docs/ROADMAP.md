@@ -328,3 +328,16 @@ The timeline-plus-colouring feature already handles "rights and change over time
 Keep D3 for the signature globe-to-flat scenes and the existing raster layer for imagery. Evaluate a separate MapLibre/PMTiles engine only when a concrete story needs street-level or detailed-front rendering; it is not a prerequisite for the Turkey first release. A custom WebGL vector renderer remains a larger long-term option.
 
 External dependencies retained from the completed build plan: real pipeline routes need a distributable Global Energy Monitor download; daily front-line data needs cleared terms or written permission; street-level imagery / OSM needs a hosting and licensing decision; an AI authoring assistant needs an API key and a server. Labels, accessibility, large-data performance and narrative media should be tested on actual new scenes rather than treated as blanket absent capabilities.
+
+
+## Additional backlog retained from the parallel history plan
+
+These candidates were retained when the parallel history plan was consolidated on 14 October 2026. They do not add acceptance requirements or chapters to the frozen M1-M8 release. Existing alternate stories and series remain available in the catalogue; investigate overlap before scheduling further work.
+
+- **Ruling houses:** the Spanish succession, Habsburg marriages, the collapse of monarchies in 1917-1918 and Scotland's kings.
+- **Colonialism:** the Atlantic slave trade, the scramble for Africa, trading companies, the British Raj and colonial legacies.
+- **History of Asia:** Chinese dynasties, the Mongol Empire, Silk Roads and Indian Ocean trade, Mughal and Maratha India, Tokugawa-to-Meiji Japan, Southeast Asian maritime states, Ottoman and Safavid empires, colonial Asia and independence, and the partition of India. Clear source terms and choose finite chapter scopes before importing new data.
+- **Additional historical depth:** Roman cities and Rome's eastern rival; Ukraine grain exports and fires along the front; emperors and electors; tracing the HRE's 1648 territories from a cleared map (see [the tracing brief](briefs/HRE-TRACING.md)).
+- **Elections explorer:** complete and verify the data build, replace unresolved Wikidata party IDs, correct the US latest-election selection, register any new sources and inspect country samples before registering the datasets. The explorer UI alone is not evidence that its data is complete.
+
+These are future candidates, not a second delivery plan. The finite milestone scope and completion evidence above remain authoritative.

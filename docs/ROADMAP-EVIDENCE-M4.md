@@ -69,3 +69,5 @@ All nine chapters are registered in manifest order. `node tools/review-campaigns
 ## Source-conflict correction
 
 Independent release review found an NPS conflict: the short chronology and St Charles page summary say 14 May, while the detailed page directly quotes Clark’s journal dated 16 May describing arrival. The first movement waypoint and its timeline now use 16 May 1804, with the direct quotation’s source and disagreement documented in builder/data/story notes. Other selected waypoint dates are unchanged. Targeted browser recheck follows below.
+
+The targeted `tools/review-interactions.mjs us-expansion .cache/roadmap-review/M4/us-expansion-source-correction.json` recheck passed both viewports with `errors: []`. The movement timeline starts at **16 May 1804** in both reports; timeline controls, cards, scene navigation, direct-link reloads and embed passed. The final merged-renderer sweep remains a separate pending gate.

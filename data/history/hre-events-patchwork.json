@@ -1,0 +1,88 @@
+{
+"source": "editorial",
+"asOf": "2026-10-14",
+"retrieved": "2026-10-14",
+"note": "Event cards typed by Orbis from the cited Wikipedia articles. Dates are stored in the Gregorian calendar; cards marked Julian also show the date as their sources give it.",
+"kinds": {
+"war": {
+"label": "Wars and battles",
+"color": "c2",
+"icon": "swords"
+},
+"law": {
+"label": "Treaties and laws",
+"color": "c1",
+"icon": "flag"
+},
+"faith": {
+"label": "Religion",
+"color": "c2",
+"icon": "cross"
+}
+},
+"items": [
+{
+"title": "The Golden Bull",
+"date": 1356,
+"at": [
+11.0767,
+49.4521
+],
+"kind": "law",
+"text": "Charles IV's Golden Bull, issued at Nuremberg and Metz, fixed who elected the king: seven prince-electors, three archbishops (Mainz, Cologne, Trier) and four secular princes (Bohemia, the Palatinate, Saxony, Brandenburg).",
+"source": "Wikipedia, 'Golden Bull of 1356'",
+"url": "https://en.wikipedia.org/wiki/Golden_Bull_of_1356"
+},
+{
+"title": "Luther's theses",
+"date": 15171110,
+"at": [
+12.6484,
+51.8664
+],
+"kind": "faith",
+"text": "Martin Luther, a monk and professor at Wittenberg in Electoral Saxony, published 95 theses against the sale of indulgences. Within a few decades many princes and most imperial cities had turned Protestant.",
+"source": "Wikipedia, 'Ninety-five Theses'; 'Reformation'",
+"url": "https://en.wikipedia.org/wiki/Ninety-five_Theses",
+"cal": "julian"
+},
+{
+"title": "Diet of Worms",
+"date": 15210428,
+"at": [
+8.3653,
+49.6341
+],
+"kind": "faith",
+"text": "Before Emperor Charles V and the princes, Luther refused to recant. The Edict of Worms outlawed him, but his prince, Frederick the Wise of Saxony, hid him at the Wartburg.",
+"source": "Wikipedia, 'Diet of Worms'",
+"url": "https://en.wikipedia.org/wiki/Diet_of_Worms",
+"cal": "julian"
+},
+{
+"title": "Peace of Augsburg",
+"date": 15551005,
+"at": [
+10.8978,
+48.3705
+],
+"kind": "law",
+"text": "Emperor and estates agreed that each prince chooses the faith of his land, Catholic or Lutheran: later summed up as 'cuius regio, eius religio'. Calvinists were not included.",
+"source": "Wikipedia, 'Peace of Augsburg'",
+"url": "https://en.wikipedia.org/wiki/Peace_of_Augsburg",
+"cal": "julian"
+},
+{
+"title": "Silesia goes to Prussia",
+"date": 17420728,
+"at": [
+17.0385,
+51.1079
+],
+"kind": "war",
+"text": "In 1740 Frederick II of Prussia invaded Habsburg Silesia. The Treaty of Berlin (28 July 1742) ceded almost all of it to Prussia, which kept it after two more wars.",
+"source": "Wikipedia, 'First Silesian War'; 'Treaty of Berlin (1742)'",
+"url": "https://en.wikipedia.org/wiki/Treaty_of_Berlin_(1742)"
+}
+]
+}

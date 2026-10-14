@@ -1,0 +1,408 @@
+{
+ "id": "royals-europe",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "Europe's ruling houses",
+ "hook": "Habsburgs, Bourbons, Romanovs and Coburgs: who held Europe's crowns from 1500 to today, and how a handful of families ran a continent.",
+ "notes": "Houses by crown: typed by Orbis from Wikipedia's lists of monarchs for each crown (see the dataset note). Map areas are today's countries, or groups of today's regions in the UK, Germany, Italy and Russia, standing for the crown seated there; real borders differed, often a lot. Each area takes the house of the crown that ruled its main city, from the year the change took effect; short occupations and rival claimants are mostly left out. 'Rest of Germany' (hundreds of small states) and the Papal States are grey until unification. Houses are grouped by family: Capetians (Valois, Bourbon, Orléans), Wettin (Saxony, Saxe-Coburg, Windsor), Oldenburg (with Glücksburg and Holstein-Gottorp). Ottoman vassal principalities (Wallachia, Moldavia) are shown with the Ottoman house. Event facts: the Wikipedia article named on each card. Map areas: Natural Earth.",
+ "data": {
+  "h": "data/history/royals-crowns.json",
+  "ev": "data/history/royals-cards-europe.json"
+ },
+ "sources": [
+  "editorial",
+  "naturalearth"
+ ],
+ "scenes": [
+  {
+   "title": "A continent of dynasties",
+   "text": "In 1500 almost every part of Europe belonged to a family. Valois kings ruled France, Tudors England, Jagiellons Poland, Bohemia and Hungary, and the Ottoman house of Osman the Balkans. Only a few city republics, the Swiss and the Pope's elected rule stood outside the hereditary game. Each area here stands for the crown seated in it.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     15,
+     50
+    ],
+    "zoom": 2.6
+   },
+   "modernBorders": false,
+   "stamp": "Ruling houses in {t} · Orbis from Wikipedia lists of monarchs",
+   "timeline": {
+    "years": [
+     1500
+    ],
+    "start": 1500
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "h",
+     "set": "crowns",
+     "year": "t",
+     "unit": "areas",
+     "title": "Ruling house",
+     "colors": {
+      "capet": "c1",
+      "habsburg": "c3",
+      "britain": "c7",
+      "hanover": "c8",
+      "wettin": "#3E9B4F",
+      "romanov": "c2",
+      "hohenzollern": "ink",
+      "wittelsbach": "c4",
+      "oldenburg": "c5",
+      "vasa": "s1",
+      "braganza": "s2",
+      "savoy": "s3",
+      "orange": "#EE8A2A",
+      "bonaparte": "#D8B630",
+      "osman": "c6",
+      "other": "muted",
+      "none": "s0"
+     }
+    }
+   ]
+  },
+  {
+   "title": "The Habsburg century",
+   "text": "Marriage, not war, made the Habsburgs. Charles of Habsburg inherited Spain, Naples and Sicily in 1516 having already inherited the Netherlands from his father, and was elected emperor in 1519. When Hungary's king fell at Mohács in 1526, his brother Ferdinand took Bohemia and Hungary. Spain's king added Portugal in 1580.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     15,
+     50
+    ],
+    "zoom": 2.6
+   },
+   "modernBorders": false,
+   "stamp": "Ruling houses in {t} · Orbis from Wikipedia lists of monarchs",
+   "timeline": {
+    "years": [
+     1500,
+     1516,
+     1526,
+     1535,
+     1556,
+     1580,
+     1600
+    ],
+    "start": 1580,
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "h",
+     "set": "crowns",
+     "year": "t",
+     "unit": "areas",
+     "title": "Ruling house",
+     "colors": {
+      "capet": "c1",
+      "habsburg": "c3",
+      "britain": "c7",
+      "hanover": "c8",
+      "wettin": "#3E9B4F",
+      "romanov": "c2",
+      "hohenzollern": "ink",
+      "wittelsbach": "c4",
+      "oldenburg": "c5",
+      "vasa": "s1",
+      "braganza": "s2",
+      "savoy": "s3",
+      "orange": "#EE8A2A",
+      "bonaparte": "#D8B630",
+      "osman": "c6",
+      "other": "muted",
+      "none": "s0"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 30
+    }
+   ]
+  },
+  {
+   "title": "1700: the Bourbons take Spain",
+   "text": "The last Spanish Habsburg, Charles II, died childless in 1700 and left his crowns to a grandson of Louis XIV. A 13-year war followed. At Utrecht the Bourbon Philip V kept Spain, while Austria's Habsburgs took Spain's lands in Italy and the Netherlands. In 1714 Britain's crown went to the house of Hanover.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     15,
+     50
+    ],
+    "zoom": 2.6
+   },
+   "modernBorders": false,
+   "stamp": "Ruling houses in {t} · Orbis from Wikipedia lists of monarchs",
+   "timeline": {
+    "years": [
+     1699,
+     1700,
+     1701,
+     1707,
+     1713,
+     1714,
+     1720
+    ],
+    "start": 1714,
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "h",
+     "set": "crowns",
+     "year": "t",
+     "unit": "areas",
+     "title": "Ruling house",
+     "colors": {
+      "capet": "c1",
+      "habsburg": "c3",
+      "britain": "c7",
+      "hanover": "c8",
+      "wettin": "#3E9B4F",
+      "romanov": "c2",
+      "hohenzollern": "ink",
+      "wittelsbach": "c4",
+      "oldenburg": "c5",
+      "vasa": "s1",
+      "braganza": "s2",
+      "savoy": "s3",
+      "orange": "#EE8A2A",
+      "bonaparte": "#D8B630",
+      "osman": "c6",
+      "other": "muted",
+      "none": "s0"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 15
+    }
+   ]
+  },
+  {
+   "title": "Napoleon's family business",
+   "text": "Napoleon crowned himself emperor in 1804 and handed out thrones: Naples and then Spain to his brother Joseph, Holland to Louis, Westphalia to Jérôme. By 1810 a Bonaparte or a French governor ruled from Amsterdam to Rome. After 1815 the old houses returned, but one of Napoleon's marshals, Bernadotte, kept Sweden.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     15,
+     50
+    ],
+    "zoom": 2.6
+   },
+   "modernBorders": false,
+   "stamp": "Ruling houses in {t} · Orbis from Wikipedia lists of monarchs",
+   "timeline": {
+    "years": [
+     1800,
+     1804,
+     1806,
+     1808,
+     1810,
+     1815,
+     1818
+    ],
+    "start": 1810,
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "h",
+     "set": "crowns",
+     "year": "t",
+     "unit": "areas",
+     "title": "Ruling house",
+     "colors": {
+      "capet": "c1",
+      "habsburg": "c3",
+      "britain": "c7",
+      "hanover": "c8",
+      "wettin": "#3E9B4F",
+      "romanov": "c2",
+      "hohenzollern": "ink",
+      "wittelsbach": "c4",
+      "oldenburg": "c5",
+      "vasa": "s1",
+      "braganza": "s2",
+      "savoy": "s3",
+      "orange": "#EE8A2A",
+      "bonaparte": "#D8B630",
+      "osman": "c6",
+      "other": "muted",
+      "none": "s0"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 15
+    }
+   ]
+  },
+  {
+   "title": "Kings for hire",
+   "text": "New states in the 1800s looked for kings among old families. Belgium chose a Saxe-Coburg prince in 1831, Greece a Bavarian in 1832 and a Dane in 1863, Romania a Hohenzollern in 1866, Bulgaria another Coburg in 1887, Norway a Danish prince in 1905. Savoy united Italy; Prussia's Hohenzollerns became German emperors in 1871. In 1914 only France, Switzerland and Portugal on this map were republics.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     15,
+     50
+    ],
+    "zoom": 2.6
+   },
+   "modernBorders": false,
+   "stamp": "Ruling houses in {t} · Orbis from Wikipedia lists of monarchs",
+   "timeline": {
+    "years": [
+     1815,
+     1831,
+     1863,
+     1866,
+     1871,
+     1887,
+     1905,
+     1914
+    ],
+    "start": 1914,
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "h",
+     "set": "crowns",
+     "year": "t",
+     "unit": "areas",
+     "title": "Ruling house",
+     "colors": {
+      "capet": "c1",
+      "habsburg": "c3",
+      "britain": "c7",
+      "hanover": "c8",
+      "wettin": "#3E9B4F",
+      "romanov": "c2",
+      "hohenzollern": "ink",
+      "wittelsbach": "c4",
+      "oldenburg": "c5",
+      "vasa": "s1",
+      "braganza": "s2",
+      "savoy": "s3",
+      "orange": "#EE8A2A",
+      "bonaparte": "#D8B630",
+      "osman": "c6",
+      "other": "muted",
+      "none": "s0"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 20
+    }
+   ]
+  },
+  {
+   "title": "The great fall",
+   "text": "The First World War ended the empires: the Romanovs fell in 1917, the Hohenzollerns and Habsburgs in November 1918, the Ottoman sultanate in 1922. Italy voted out the Savoys in 1946, and communist governments removed the kings of Bulgaria and Romania. Spain restored its Bourbons in 1975. Today's crowns are all in the west and north.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     15,
+     50
+    ],
+    "zoom": 2.6
+   },
+   "modernBorders": false,
+   "stamp": "Ruling houses in {t} · Orbis from Wikipedia lists of monarchs",
+   "timeline": {
+    "years": [
+     1914,
+     1918,
+     1922,
+     1939,
+     1947,
+     1975,
+     2026
+    ],
+    "start": 2026,
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "h",
+     "set": "crowns",
+     "year": "t",
+     "unit": "areas",
+     "title": "Ruling house",
+     "colors": {
+      "capet": "c1",
+      "habsburg": "c3",
+      "britain": "c7",
+      "hanover": "c8",
+      "wettin": "#3E9B4F",
+      "romanov": "c2",
+      "hohenzollern": "ink",
+      "wittelsbach": "c4",
+      "oldenburg": "c5",
+      "vasa": "s1",
+      "braganza": "s2",
+      "savoy": "s3",
+      "orange": "#EE8A2A",
+      "bonaparte": "#D8B630",
+      "osman": "c6",
+      "other": "muted",
+      "none": "s0"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 10
+    }
+   ],
+   "media": [
+    {
+     "type": "multiples",
+     "layer": 0,
+     "years": [
+      1500,
+      1650,
+      1800,
+      1914,
+      2026
+     ],
+     "title": "Five snapshots",
+     "extent": [
+      [
+       -11,
+       35
+      ],
+      [
+       42,
+       66
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

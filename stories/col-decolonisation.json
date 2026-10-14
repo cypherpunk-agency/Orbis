@@ -1,0 +1,431 @@
+{
+  "id": "col-decolonisation",
+  "cat": "Geopolitics",
+  "title": "Decolonisation",
+  "hook": "In 1945 European powers still ruled a quarter of the world's land. Thirty years later almost nothing was left. The waves of independence, and the 17 territories the UN still lists.",
+  "notes": "Borders: CShapes 2.0 (ETH Zurich, CC BY-NC-SA 4.0): colonies, protectorates, mandates and occupied territories of Britain, France, Spain, Portugal, the Netherlands, Belgium, Germany and Italy, status at the end of each year; dependencies of other states in grey. CShapes leaves out changes under about 10,000 km², so small islands vanish from the map early. Areas are computed by Orbis on the sphere as a share of the world's land outside Antarctica. Independence years in the text follow the story 'A world of new states' (CIA World Factbook). Resolution 1514: UN document A/RES/1514(XV), vote as given by Wikipedia ('Declaration on the Granting of Independence to Colonial Countries and Peoples'). Carnation Revolution: Wikipedia ('Carnation Revolution'). Non-self-governing territories: the UN list (un.org/dppa/decolonization/en/nsgt) as reproduced by Wikipedia ('United Nations list of non-self-governing territories'), October 2026; points mark their location, not their size.",
+  "data": {
+    "cs": "data/history/col-empires-cs.json",
+    "area": "data/history/col-area.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "1945: the empires still stand",
+      "text": "At the end of the Second World War the eight colonial powers still ruled about a quarter of the world's land, by CShapes borders. Britain alone held 16 million km², France 12 million, from West Africa to Indochina.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          30,
+          10
+        ],
+        "zoom": 1.05
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "cs",
+          "year": 1945,
+          "labels": false,
+          "inner": false
+        }
+      ],
+      "media": {
+        "type": "area",
+        "data": "area",
+        "series": "col_area",
+        "countries": [
+          "GBR",
+          "FRA",
+          "PRT",
+          "BEL",
+          "NLD",
+          "ESP",
+          "ITA"
+        ],
+        "labels": {
+          "GBR": "Britain",
+          "FRA": "France",
+          "PRT": "Portugal",
+          "BEL": "Belgium",
+          "NLD": "Netherlands",
+          "ESP": "Spain",
+          "ITA": "Italy"
+        },
+        "title": "Colonial land area, million km²",
+        "fmt": "num"
+      },
+      "stamp": "End of 1945 · CShapes 2.0"
+    },
+    {
+      "title": "Asia goes first",
+      "text": "Press Play. India and Pakistan became independent in 1947, Burma and Sri Lanka in 1948. Indonesia fought the Dutch until 1949, Vietnam the French until 1954. Malaya followed in 1957. Dashed edges mark what was lost.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          95,
+          15
+        ],
+        "zoom": 1.6
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "cs",
+          "year": "t",
+          "changes": true,
+          "inner": false,
+          "labels": false
+        }
+      ],
+      "timeline": {
+        "years": [
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957
+        ],
+        "start": 0,
+        "captions": {
+          "1947": "India and Pakistan.",
+          "1948": "Burma and Sri Lanka.",
+          "1949": "Indonesia.",
+          "1954": "France leaves Indochina.",
+          "1957": "Malaya."
+        }
+      },
+      "stamp": "Status at year end · CShapes 2.0"
+    },
+    {
+      "title": "Africa's decade",
+      "text": "Ghana became independent in 1957. In 1960 alone 17 African countries followed, most of them French colonies, with Nigeria, Somalia and the Congo. By the end of 1960 the colonial share of the world's land had fallen to about 8%, from 19% five years earlier.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          15,
+          3
+        ],
+        "zoom": 1.9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "cs",
+          "year": "t",
+          "changes": true,
+          "inner": false,
+          "labels": false
+        }
+      ],
+      "timeline": {
+        "years": [
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1961,
+          1962,
+          1963,
+          1964,
+          1965,
+          1966,
+          1968
+        ],
+        "start": 0,
+        "captions": {
+          "1956": "Sudan, Morocco and Tunisia.",
+          "1957": "Ghana.",
+          "1960": "17 African countries in one year.",
+          "1962": "Algeria, after eight years of war.",
+          "1964": "Malawi and Zambia.",
+          "1966": "Botswana and Lesotho."
+        }
+      },
+      "stamp": "Status at year end · CShapes 2.0"
+    },
+    {
+      "title": "The UN takes a side",
+      "text": "On 14 December 1960 the UN General Assembly declared that 'all peoples have the right to self-determination' and that colonialism should end quickly. Resolution 1514 passed 89 to 0. Nine states abstained, among them five colonial powers: Belgium, France, Portugal, Spain and Britain.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          20,
+          20
+        ],
+        "zoom": 1.05
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "cs",
+          "year": 1960,
+          "labels": false,
+          "inner": false
+        }
+      ],
+      "highlight": [
+        "AUS",
+        "BEL",
+        "DOM",
+        "FRA",
+        "PRT",
+        "ESP",
+        "ZAF",
+        "GBR",
+        "USA"
+      ],
+      "media": {
+        "type": "quote",
+        "text": "All peoples have the right to self-determination; by virtue of that right they freely determine their political status and freely pursue their economic, social and cultural development.",
+        "by": "UN General Assembly Resolution 1514 (XV), 14 December 1960, paragraph 2"
+      },
+      "stamp": "Outlined: abstained on Resolution 1514 · Colonies at end of 1960, CShapes 2.0"
+    },
+    {
+      "title": "Portugal holds on, then lets go",
+      "text": "Portugal fought a long colonial war against independence movements in Angola, Mozambique and Guinea-Bissau. After the Carnation Revolution in Lisbon on 25 April 1974 it gave them up: Guinea-Bissau in 1974, Mozambique, Cape Verde, São Tomé and Angola in 1975.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          15,
+          -5
+        ],
+        "zoom": 1.9
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "cs",
+          "year": "t",
+          "changes": true,
+          "inner": false,
+          "labels": false
+        }
+      ],
+      "timeline": {
+        "years": [
+          1965,
+          1970,
+          1973,
+          1974,
+          1975,
+          1976
+        ],
+        "start": 0,
+        "captions": {
+          "1974": "Revolution in Lisbon; Guinea-Bissau independent.",
+          "1975": "Mozambique, Cape Verde, São Tomé and Angola."
+        }
+      },
+      "stamp": "Status at year end · CShapes 2.0"
+    },
+    {
+      "title": "Seventeen territories left",
+      "text": "The UN still lists 17 'non-self-governing territories'. Ten are run by Britain, three by the United States, two by France and one by New Zealand. The largest, Western Sahara, has no administering power on the list; whether Morocco, which controls most of it, administers or occupies it is disputed.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -40,
+          5
+        ],
+        "zoom": 1.05
+      },
+      "points": [
+        {
+          "at": [
+            -12.9,
+            24.2
+          ],
+          "label": "Western Sahara",
+          "color": "muted",
+          "r": 6
+        },
+        {
+          "at": [
+            -5.35,
+            36.14
+          ],
+          "label": "Gibraltar",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -64.75,
+            32.3
+          ],
+          "label": "Bermuda",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -63.05,
+            18.22
+          ],
+          "label": "Anguilla",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -64.6,
+            18.43
+          ],
+          "label": "British Virgin Is.",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -81.25,
+            19.3
+          ],
+          "label": "Cayman Is.",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -62.19,
+            16.74
+          ],
+          "label": "Montserrat",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -71.8,
+            21.8
+          ],
+          "label": "Turks and Caicos",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -59.5,
+            -51.75
+          ],
+          "label": "Falkland Is. (Malvinas)",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -5.7,
+            -15.95
+          ],
+          "label": "St Helena",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -130.1,
+            -25.07
+          ],
+          "label": "Pitcairn",
+          "color": "c1",
+          "r": 4
+        },
+        {
+          "at": [
+            -64.9,
+            18.34
+          ],
+          "label": "US Virgin Is.",
+          "color": "c3",
+          "r": 4
+        },
+        {
+          "at": [
+            -170.7,
+            -14.3
+          ],
+          "label": "American Samoa",
+          "color": "c3",
+          "r": 4
+        },
+        {
+          "at": [
+            144.79,
+            13.44
+          ],
+          "label": "Guam",
+          "color": "c3",
+          "r": 4
+        },
+        {
+          "at": [
+            -149.5,
+            -17.6
+          ],
+          "label": "French Polynesia",
+          "color": "c2",
+          "r": 4
+        },
+        {
+          "at": [
+            165.6,
+            -21.3
+          ],
+          "label": "New Caledonia",
+          "color": "c2",
+          "r": 4
+        },
+        {
+          "at": [
+            -171.85,
+            -9.2
+          ],
+          "label": "Tokelau",
+          "color": "c4",
+          "r": 4
+        }
+      ],
+      "legend": [
+        {
+          "color": "c1",
+          "label": "Administered by Britain (10)"
+        },
+        {
+          "color": "c3",
+          "label": "United States (3)"
+        },
+        {
+          "color": "c2",
+          "label": "France (2)"
+        },
+        {
+          "color": "c4",
+          "label": "New Zealand (1)"
+        },
+        {
+          "color": "muted",
+          "label": "Western Sahara (no administering power listed)"
+        }
+      ],
+      "stamp": "UN list of non-self-governing territories, October 2026"
+    }
+  ]
+}

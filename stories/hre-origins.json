@@ -1,0 +1,325 @@
+{
+ "id": "hre-origins",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "An emperor in the West",
+ "hook": "On Christmas Day 800 a pope crowned a Frankish king emperor. Two centuries later his eastern heirs ruled an empire from the North Sea to Rome.",
+ "notes": "Outlines 800–1500: historical-basemaps by André Ourednik (GPL-3.0; one map per century or so, all borders marked approximate by the project; Orbis clipped and simplified them). Each outline is shown until the next one: the 900 map stands for 843–999, the 1000 map for 1000–1299. Areas (about 1.2 million km² in 800, 0.74 million in 1000, without Burgundy) computed by Orbis on an equal-area projection from these outlines, so they are rough. Event cards cite their Wikipedia articles. Dates before 1582 are Julian in the sources; Orbis stores them in the Gregorian calendar and the cards show both. The name: 'Holy Empire' (sacrum imperium) from 1157 under Frederick Barbarossa, 'Holy Roman Empire' from 1254 (Wikipedia, 'Holy Roman Empire'). Rulers' houses in the Gantt chart: Wikipedia, 'List of German monarchs'.",
+ "data": {
+  "hb": "data/history/hre-outline.json",
+  "ev": "data/history/hre-events-origins.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "Christmas Day, 800",
+   "text": "In St Peter's in Rome, Pope Leo III crowned Charlemagne, king of the Franks and of the Lombards, emperor. His realm reached from the Pyrenees to the Elbe and from the North Sea to central Italy: about 1.2 million km² on this map. The West had not had an emperor since 476.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     8,
+     47
+    ],
+    "zoom": 3.2
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 800,
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.15
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 800,
+     "groups": [
+      "empire",
+      "frankish"
+     ],
+     "opacity": 0.45
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": 800,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Split in three",
+   "text": "Charlemagne's grandsons divided the empire at Verdun in 843: West Francia became the core of France, East Francia the core of Germany, and a middle kingdom with the imperial title ran from Frisia to Italy. Drag the timeline from 800 to 900.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     8,
+     47
+    ],
+    "zoom": 3.2
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     800,
+     900
+    ],
+    "start": 900,
+    "captions": {
+     "800": "Charlemagne's empire",
+     "900": "After the Treaty of Verdun (843)"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.15
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "empire",
+      "france",
+      "francia",
+      "frankish",
+      "middle"
+     ],
+     "opacity": 0.45
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true,
+     "window": 120
+    }
+   ]
+  },
+  {
+   "title": "Otto the Great",
+   "text": "In 955 Otto I, king of East Francia, beat the Hungarian horsemen on the Lechfeld near Augsburg. In 962 the pope crowned him emperor in Rome. From then on the king elected in Germany could claim the imperial crown: historians usually date the Holy Roman Empire from 962.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     10.5,
+     46.5
+    ],
+    "zoom": 3.8
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     900,
+     1000
+    ],
+    "start": 1000,
+    "captions": {
+     "900": "East Francia, 900",
+     "1000": "The Empire, 1000"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.15
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "empire",
+      "france",
+      "francia",
+      "frankish",
+      "middle"
+     ],
+     "opacity": 0.45,
+     "changes": "flash"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true,
+     "window": 100
+    }
+   ]
+  },
+  {
+   "title": "The Empire around 1000",
+   "text": "Around 1000 the Empire joined two kingdoms, Germany and Italy, plus Bohemia, under one emperor: about 740,000 km² on this map. In 1033 Conrad II added a third kingdom, Burgundy, from Basel to Provence. It was not yet called 'Holy Roman': 'Holy Empire' appears in 1157, 'Holy Roman Empire' in 1254.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     10,
+     47
+    ],
+    "zoom": 3.4
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 1000,
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.15
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 1000,
+     "groups": [
+      "empire",
+      "france",
+      "francia",
+      "frankish"
+     ],
+     "opacity": 0.45
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": 1040,
+     "list": true,
+     "window": 60
+    }
+   ]
+  },
+  {
+   "title": "Kings from four houses",
+   "text": "The crown was elected, not inherited, but in practice it stayed in a few families: Carolingians, then Saxon Ottonians, Salians and the Staufer. Press play to see how the Empire's outline moved over eight and a half centuries; all these borders are rough reconstructions.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     10,
+     47
+    ],
+    "zoom": 3.2
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     800,
+     900,
+     1000,
+     1300,
+     1500,
+     1650
+    ],
+    "start": 800,
+    "spacing": "time",
+    "playSpeed": 1500
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.15
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "empire",
+      "frankish"
+     ],
+     "opacity": 0.45,
+     "changes": "flash"
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Ruling houses of the East Frankish and German kings",
+     "from": 800,
+     "to": 1260,
+     "items": [
+      {
+       "label": "Carolingians",
+       "from": 800,
+       "to": 911,
+       "color": "c5"
+      },
+      {
+       "label": "Ottonians (Saxony)",
+       "from": 919,
+       "to": 1024,
+       "color": "c2"
+      },
+      {
+       "label": "Salians",
+       "from": 1024,
+       "to": 1125,
+       "color": "c1"
+      },
+      {
+       "label": "Staufer (Hohenstaufen)",
+       "from": 1138,
+       "to": 1254,
+       "color": "c3"
+      }
+     ]
+    },
+    {
+     "type": "multiples",
+     "layer": 1,
+     "years": [
+      800,
+      1000,
+      1300,
+      1500,
+      1650
+     ],
+     "title": "The Empire's outline, 800–1650",
+     "extent": [
+      [
+       -4,
+       38
+      ],
+      [
+       22,
+       56
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

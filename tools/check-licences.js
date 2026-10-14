@@ -17,8 +17,11 @@ const errs = [];
 for (const [id, s] of Object.entries(SOURCES)) {
   for (const k of ["name", "what", "tier", "licence", "use", "credit"]) if (!s[k]) errs.push(`${id}: missing ${k}`);
   if (!["base", "layer"].includes(s.tier)) errs.push(`${id}: tier must be base or layer`);
-  if (!["commercial", "noncommercial", "permission"].includes(s.use)) errs.push(`${id}: unknown use "${s.use}"`);
-  if (s.tier === "base" && s.use !== "commercial") errs.push(`${id}: base data must allow commercial use`);
+  if (!["commercial", "sharealike", "noncommercial", "permission"].includes(s.use)) errs.push(`${id}: unknown use "${s.use}"`);
+  if (s.tier === "base" && s.use !== "commercial" && !(s.use === "sharealike" && s.signoff)) errs.push(`${id}: base data must allow commercial use (share-alike in the base needs a "signoff" note)`);
+  const L = String(s.licence || "").toUpperCase();
+  if (s.use === "commercial" && /\bNC\b|NON-COMMERCIAL|NONCOMMERCIAL/.test(L)) errs.push(`${id}: licence "${s.licence}" is non-commercial but use is "commercial"`);
+  if (s.use === "commercial" && /\bSA\b|SHARE-?ALIKE|GPL|ODBL/.test(L)) errs.push(`${id}: licence "${s.licence}" is share-alike but use is "commercial"`);
   if (s.redistribute !== true) errs.push(`${id}: must be publishable in a public repository`);
   if (s.use === "permission" && !s.grant) errs.push(`${id}: permission sources need a "grant" reference`);
   if (!doc.includes("`" + id + "`")) errs.push(`${id}: no row in docs/LICENSING.md register`);
@@ -59,9 +62,11 @@ if (fs.existsSync(path.join(root, "data/atlas/catalog.json"))) JSON.parse(read("
   if (!SOURCES[it.source]) errs.push(`atlas ${it.id}: unknown source "${it.source}"`);
   if (!fs.existsSync(path.join(root, it.file))) errs.push(`atlas ${it.id}: missing ${it.file}`);
   const L = String(it.licence || "").toUpperCase();
-  if (!["commercial", "noncommercial"].includes(it.tier)) errs.push(`atlas ${it.id}: tier must be commercial or noncommercial`);
-  if (it.tier === "commercial" && (L.includes("NC") || !(L.includes("CC BY") || L.includes("CC0")))) errs.push(`atlas ${it.id}: licence "${it.licence}" is not commercial`);
-  if (SOURCES[it.source] && it.tier === "noncommercial" && SOURCES[it.source].use === "commercial") errs.push(`atlas ${it.id}: non-commercial indicator under a commercial source id`);
+  if (!["commercial", "sharealike", "noncommercial"].includes(it.tier)) errs.push(`atlas ${it.id}: tier must be commercial, sharealike or noncommercial`);
+  if (it.tier !== "noncommercial" && /\bNC\b|NONCOMMERCIAL/.test(L)) errs.push(`atlas ${it.id}: licence "${it.licence}" is non-commercial`);
+  if (it.tier === "commercial" && /\bSA\b|SHARE-?ALIKE/.test(L)) errs.push(`atlas ${it.id}: licence "${it.licence}" is share-alike`);
+  if (it.tier === "commercial" && !(L.includes("CC BY") || L.includes("CC0"))) errs.push(`atlas ${it.id}: licence "${it.licence}" is not commercial`);
+  if (SOURCES[it.source] && it.tier !== "commercial" && SOURCES[it.source].use === "commercial") errs.push(`atlas ${it.id}: ${it.tier} indicator under a commercial source id`);
 });
 // basemap sources referenced by the engine
 const app = read("js/app.js");

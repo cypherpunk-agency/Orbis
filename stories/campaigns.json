@@ -408,5 +408,610 @@
     "t": "Complete scoped chapter order registered after chapter source and visual review."
    }
   ]
+ },
+ {
+  "id": "rome",
+  "title": "The Roman Empire",
+  "hook": "From a city on the Tiber to an empire of 5 million km², and two falls a thousand years apart. Chapters on conquest, roads, frontiers and the end.",
+  "intro": "Rome began as one small city-state in Italy. By AD 117 it ruled every coast of the Mediterranean, from Britain to Egypt. This series follows the Roman state on the map: how it grew by war, how roads tied it together, where it stopped and built walls, how it split in two, and how it fell, in the West in 476 and in the East in 1453. Borders before AD 500 are reconstructions and approximate; each chapter names its sources.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     16,
+     40
+    ],
+    "zoom": 2.2
+   },
+   "modernBorders": false
+  },
+  "chapters": [
+   "rome-rise",
+   "roman-roads",
+   "rome-frontier-alternate",
+   "rome-fall-alternate"
+  ],
+  "coming": [
+   {
+    "title": "Cities of the empire",
+    "hook": "Londinium, Lutetia, Colonia: how many days from Rome? Travel times on the Stanford ORBIS network."
+   },
+   {
+    "title": "Rome's eastern rival",
+    "hook": "Seven centuries of war with Parthia and Persia along the Euphrates."
+   },
+   {
+    "title": "What is left",
+    "hook": "Roads under motorways, Latin in five national languages, Roman names on today's map."
+   }
+  ],
+  "dates": [
+   {
+    "d": -752,
+    "t": "Traditional founding of Rome (753 BC)",
+    "circa": true
+   },
+   {
+    "d": -508,
+    "t": "Traditional founding of the Republic (509 BC)",
+    "circa": true
+   },
+   {
+    "d": -263,
+    "t": "First war with Carthage begins (264 BC)"
+   },
+   {
+    "d": -215,
+    "t": "Cannae (216 BC)"
+   },
+   {
+    "d": -145,
+    "t": "Carthage destroyed (146 BC)"
+   },
+   {
+    "d": -26,
+    "t": "Octavian becomes Augustus (27 BC)"
+   },
+   {
+    "d": 117,
+    "t": "Greatest extent under Trajan"
+   },
+   {
+    "d": 122,
+    "t": "Hadrian's Wall begun"
+   },
+   {
+    "d": 330,
+    "t": "Constantinople dedicated"
+   },
+   {
+    "d": 395,
+    "t": "Empire divided between East and West"
+   },
+   {
+    "d": 476,
+    "t": "Last western emperor deposed"
+   },
+   {
+    "d": 1204,
+    "t": "Fourth Crusade sacks Constantinople"
+   },
+   {
+    "d": 1453,
+    "t": "Ottomans take Constantinople"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series started: four chapters (rise, roads, frontier, fall)."
+   }
+  ]
+ },
+ {
+  "id": "ukraine",
+  "title": "The war in Ukraine",
+  "hook": "From Crimea in 2014 to a front that has barely moved since 2022: the war chapter by chapter, with who controls what, who was displaced, and what it cost.",
+  "intro": "Russia's war against Ukraine began in 2014 with the annexation of Crimea and an armed uprising in the Donbas, and became a full-scale invasion on 24 February 2022. This series follows it chapter by chapter. Territorial control comes from the settlement markers of Wikipedia's volunteer-edited war map, dated by revision, and shaded areas drawn from those points are an approximation; every map says when it was last saved. It is updated by hand as the war moves.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     33,
+     48.5
+    ],
+    "zoom": 9
+   },
+   "highlight": [
+    "UKR"
+   ]
+  },
+  "chapters": [
+   "ua-2014-alternate",
+   "ua-2022",
+   "ua-front-alternate",
+   "ua-refugees-alternate"
+  ],
+  "coming": [
+   {
+    "title": "Grain and the Black Sea",
+    "hook": "How Ukraine kept exporting grain through Odesa, with and without a deal."
+   },
+   {
+    "title": "Fire along the front",
+    "hook": "Satellite fire detections trace the burn belt of the front line, year by year."
+   },
+   {
+    "title": "Where things stand",
+    "hook": "The latest control map, the front and the talks, kept up to date."
+   }
+  ],
+  "dates": [
+   {
+    "d": 20140222,
+    "t": "Parliament removes President Yanukovych after the Maidan protests"
+   },
+   {
+    "d": 20140318,
+    "t": "Russia annexes Crimea"
+   },
+   {
+    "d": 20140412,
+    "t": "Armed unit from Russia seizes Sloviansk; war in the Donbas begins"
+   },
+   {
+    "d": 20140717,
+    "t": "MH17 shot down over separatist-held territory"
+   },
+   {
+    "d": 20150212,
+    "t": "Minsk II ceasefire agreed"
+   },
+   {
+    "d": 20220221,
+    "t": "Russia recognises the Donetsk and Luhansk 'republics'"
+   },
+   {
+    "d": 20220224,
+    "t": "Full-scale Russian invasion"
+   },
+   {
+    "d": 20220520,
+    "t": "Mariupol falls"
+   },
+   {
+    "d": 20220906,
+    "t": "Ukraine's Kharkiv counteroffensive begins"
+   },
+   {
+    "d": 20220930,
+    "t": "Russia announces annexation of four regions"
+   },
+   {
+    "d": 20221111,
+    "t": "Ukraine retakes Kherson"
+   },
+   {
+    "d": 20230520,
+    "t": "Russia takes most of Bakhmut"
+   },
+   {
+    "d": 20230606,
+    "t": "Kakhovka dam destroyed"
+   },
+   {
+    "d": 20240217,
+    "t": "Ukraine withdraws from Avdiivka"
+   },
+   {
+    "d": 20240806,
+    "t": "Ukraine enters Russia's Kursk region"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series launched with four chapters: 2014, 2022, the long front, refugees."
+   }
+  ]
+ },
+ {
+  "id": "ruling-houses",
+  "title": "Ruling houses of Europe",
+  "hook": "Habsburgs, Bourbons, Windsors: how a few families held Europe's crowns for five centuries, and where their heirs still reign.",
+  "intro": "For most of its history Europe was ruled by families. Crowns passed by birth, marriage, election and war, and a handful of houses ended up on most of the continent's thrones. This series starts with the kings and queens of England and Britain, follows Europe's ruling houses from 1500 to today, shows how Queen Victoria's and Christian IX's grandchildren went to war with each other in 1914, and maps the 43 monarchies that remain.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     8,
+     50
+    ],
+    "zoom": 2.8
+   },
+   "modernBorders": false
+  },
+  "chapters": [
+   "royals-england",
+   "royals-europe",
+   "royals-cousins",
+   "royals-today"
+  ],
+  "coming": [
+   {
+    "title": "The Spanish succession",
+    "hook": "How the death of one childless king in 1700 set Europe at war for 13 years."
+   },
+   {
+    "title": "Habsburg marriages",
+    "hook": "'Let others wage war; you, happy Austria, marry': the matches that built an empire."
+   },
+   {
+    "title": "The fall of the monarchies, 1917–1918",
+    "hook": "Four empires and dozens of German thrones gone in two years."
+   },
+   {
+    "title": "Scotland's kings",
+    "hook": "From Kenneth MacAlpin to the Union of the Crowns."
+   }
+  ],
+  "dates": [
+   {
+    "d": 871,
+    "t": "Alfred becomes king of Wessex"
+   },
+   {
+    "d": 10661020,
+    "t": "Battle of Hastings (14 Oct 1066, Julian)"
+   },
+   {
+    "d": 14850831,
+    "t": "Bosworth: Henry Tudor takes the crown (22 Aug 1485, Julian)"
+   },
+   {
+    "d": 1516,
+    "t": "Charles of Habsburg inherits Spain"
+   },
+   {
+    "d": 16030403,
+    "t": "Union of the Crowns: James VI of Scotland becomes James I of England (24 Mar 1603, Julian)"
+   },
+   {
+    "d": 16130303,
+    "t": "Michael Romanov elected tsar (21 Feb 1613, Julian)"
+   },
+   {
+    "d": 1700,
+    "t": "Charles II of Spain dies; the crown goes to a Bourbon"
+   },
+   {
+    "d": 17070512,
+    "t": "Acts of Union: Kingdom of Great Britain (1 May 1707, Julian)"
+   },
+   {
+    "d": 17140812,
+    "t": "George I of Hanover becomes king (1 Aug 1714, Julian)"
+   },
+   {
+    "d": 18041202,
+    "t": "Napoleon crowns himself emperor"
+   },
+   {
+    "d": 18710118,
+    "t": "German Empire proclaimed at Versailles"
+   },
+   {
+    "d": 19140801,
+    "t": "Germany declares war on Russia"
+   },
+   {
+    "d": 19170315,
+    "t": "Nicholas II abdicates (2 Mar 1917, Julian)"
+   },
+   {
+    "d": 19170717,
+    "t": "The British royal house becomes Windsor"
+   },
+   {
+    "d": 19181109,
+    "t": "Wilhelm II's abdication announced"
+   },
+   {
+    "d": 20220908,
+    "t": "Charles III becomes king"
+   },
+   {
+    "d": 20260828,
+    "t": "Haakon VIII becomes king of Norway"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series published with four chapters."
+   }
+  ]
+ },
+ {
+  "id": "colonialism",
+  "title": "European colonialism",
+  "hook": "From 1500 to 1975 eight European states built and lost empires that covered a third of the world's land. Chapters on how they grew, how long they lasted and how they ended.",
+  "intro": "Spain and Portugal began it in the 1500s; Britain, France and the Netherlands followed; Belgium, Germany and Italy joined at the end of the 19th century. This series maps the colonial empires from their first conquests to the last territories the UN still lists, using historical borders from historical-basemaps and CShapes, and colonial dates from the COLDAT dataset.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     10
+    ],
+    "zoom": 1
+   }
+  },
+  "chapters": [
+   "col-empires",
+   "colonies",
+   "col-decolonisation"
+  ],
+  "dates": [
+   {
+    "d": 15210813,
+    "t": "Fall of Tenochtitlan: Spain conquers the Aztec Empire"
+   },
+   {
+    "d": 18841115,
+    "t": "Berlin Conference opens"
+   },
+   {
+    "d": 18850226,
+    "t": "General Act of Berlin signed"
+   },
+   {
+    "d": 19470815,
+    "t": "India and Pakistan independent"
+   },
+   {
+    "d": 19601214,
+    "t": "UN Resolution 1514 on decolonisation"
+   },
+   {
+    "d": 19740425,
+    "t": "Carnation Revolution in Lisbon"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series started: Empires on the map, How long were you a colony?, Decolonisation"
+   }
+  ],
+  "coming": [
+   {
+    "title": "The Atlantic world",
+    "hook": "The transatlantic slave trade: where millions of people were taken from, and where to."
+   },
+   {
+    "title": "The scramble for Africa",
+    "hook": "1880 to 1914: the Berlin Conference and the partition of a continent."
+   },
+   {
+    "title": "Trading companies",
+    "hook": "The Dutch VOC and the British East India Company: merchants who ruled."
+   },
+   {
+    "title": "The British Raj",
+    "hook": "How a trading company's conquests became an empire."
+   },
+   {
+    "title": "Legacies",
+    "hook": "Borders drawn in Europe, and the languages the empires left behind."
+   }
+  ]
+ },
+ {
+  "id": "united-states-boundaries",
+  "title": "The United States: historical boundaries",
+  "hook": "How thirteen states on the Atlantic became fifty: land bought, ceded and taken, a Union split by war, and the electoral map today. Five chapters so far.",
+  "intro": "The United States grew from thirteen states on the Atlantic coast into a country spanning a continent and an ocean. This series maps that growth with dated state and territory boundaries from the Newberry Library's historical atlas, the federal map of Native land cessions, and presidential election returns: how the land was acquired, from whom, how the states joined and split, and how they vote.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     -100,
+     40
+    ],
+    "zoom": 2.4
+   },
+   "fills": {
+    "USA": "c1"
+   }
+  },
+  "chapters": [
+   "us-expansion-alternate",
+   "us-land-cessions",
+   "us-union",
+   "us-elections-alternate",
+   "us-abroad"
+  ],
+  "coming": [
+   {
+    "title": "Thirteen colonies",
+    "hook": "British, French, Spanish and Dutch claims before 1776, and the colonies that declared independence."
+   },
+   {
+    "title": "Rails and the frontier",
+    "hook": "How railroads and land grants opened the West, 1850-1890."
+   },
+   {
+    "title": "Nations of immigrants",
+    "hook": "Where Americans were born, decade by decade, from the census."
+   },
+   {
+    "title": "Lewis and Clark",
+    "hook": "The expedition across the Louisiana Purchase, day by day."
+   }
+  ],
+  "dates": [
+   {
+    "d": 17830903,
+    "t": "Treaty of Paris: Britain recognises American independence"
+   },
+   {
+    "d": 17871207,
+    "t": "Delaware is the first state to ratify the Constitution"
+   },
+   {
+    "d": 18030430,
+    "t": "Louisiana Purchase from France"
+   },
+   {
+    "d": 18300528,
+    "t": "Indian Removal Act"
+   },
+   {
+    "d": 18451229,
+    "t": "Texas becomes a state"
+   },
+   {
+    "d": 18480202,
+    "t": "Treaty of Guadalupe Hidalgo ends the war with Mexico"
+   },
+   {
+    "d": 18601220,
+    "t": "South Carolina secedes"
+   },
+   {
+    "d": 18610412,
+    "t": "Confederate forces fire on Fort Sumter"
+   },
+   {
+    "d": 18650409,
+    "t": "Lee surrenders at Appomattox"
+   },
+   {
+    "d": 18651206,
+    "t": "Thirteenth Amendment abolishes slavery"
+   },
+   {
+    "d": 18670330,
+    "t": "Alaska bought from Russia"
+   },
+   {
+    "d": 18710303,
+    "t": "Congress ends treaty-making with Native nations"
+   },
+   {
+    "d": 18980707,
+    "t": "Hawaii annexed"
+   },
+   {
+    "d": 19590821,
+    "t": "Hawaii becomes the 50th state"
+   },
+   {
+    "d": 20001212,
+    "t": "Bush v. Gore ends the Florida recount"
+   },
+   {
+    "d": 20241105,
+    "t": "Trump wins all seven swing states"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series launched with four chapters: territorial expansion, land cessions, statehood and the Civil War, presidential elections 1976-2024; 'America's bases abroad' added as the last chapter."
+   }
+  ]
+ },
+ {
+  "id": "holy-roman-empire-towns",
+  "title": "The Holy Roman Empire: towns and rulers",
+  "hook": "A thousand years, hundreds of lords, one emperor: how Charlemagne's crown became Europe's great patchwork, and how Napoleon ended it.",
+  "intro": "In 800 a pope crowned a Frankish king emperor in Rome. His eastern heirs built an empire that lasted until 1806: not a state like France, but hundreds of principalities, bishoprics and free cities under an elected emperor. This series follows it from Charlemagne to Napoleon, with the ruler of each of 2,390 German towns, year by year.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     10,
+     49
+    ],
+    "zoom": 3.4
+   },
+   "modernBorders": false
+  },
+  "chapters": [
+   "hre-origins",
+   "hre-patchwork-alternate",
+   "hre-westphalia-alternate",
+   "hre-end-alternate"
+  ],
+  "coming": [
+   {
+    "title": "Emperors and electors",
+    "hook": "Who chose the emperor, from the Golden Bull of 1356 to the last election in 1792."
+   },
+   {
+    "title": "The Empire in 1648, territory by territory",
+    "hook": "Traced from public-domain maps: the patchwork after Westphalia."
+   },
+   {
+    "title": "What came after",
+    "hook": "German Confederation, Germany and Austria, 1815–1871."
+   }
+  ],
+  "dates": [
+   {
+    "d": 8001229,
+    "t": "Charlemagne crowned emperor in Rome (25 Dec 800, Julian)"
+   },
+   {
+    "d": 9620207,
+    "t": "Otto I crowned emperor (2 Feb 962, Julian)"
+   },
+   {
+    "d": 1356,
+    "t": "Golden Bull fixes the seven electors"
+   },
+   {
+    "d": 15171110,
+    "t": "Luther's 95 theses (31 Oct 1517, Julian)"
+   },
+   {
+    "d": 15551005,
+    "t": "Peace of Augsburg (25 Sep 1555, Julian)"
+   },
+   {
+    "d": 16180523,
+    "t": "Defenestration of Prague: Thirty Years' War begins"
+   },
+   {
+    "d": 16481024,
+    "t": "Peace of Westphalia"
+   },
+   {
+    "d": 17000301,
+    "t": "Protestant estates adopt the 'improved calendar'"
+   },
+   {
+    "d": 18030225,
+    "t": "Imperial Recess abolishes church states and most free cities"
+   },
+   {
+    "d": 18060806,
+    "t": "Francis II dissolves the Empire"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series published with four chapters."
+   }
+  ]
  }
 ]

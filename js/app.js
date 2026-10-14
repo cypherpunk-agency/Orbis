@@ -50,8 +50,8 @@ feats.map((f,i)=>i).sort((a,b)=>nb[b].length-nb[a].length).forEach(i=>{
 let C={};
 function readColors(){
   const cs=getComputedStyle(document.documentElement);
-  ["ocean","land","border","grat","ink","halo","accent","paper","ink-soft","c1","c2","c3","c4","c5","muted","nodata","rim","t0","t1","t2","t3","t4","s0","s1","s2","s3"].forEach(k=>C[k]=cs.getPropertyValue("--"+k).trim());
-  C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.ink_soft=C["ink-soft"];
+  ["ocean","land","border","grat","ink","halo","accent","paper","ink-soft","c1","c2","c3","c4","c5","c6","c7","c8","muted","nodata","rim","t0","t1","t2","t3","t4","s0","s1","s2","s3"].forEach(k=>C[k]=cs.getPropertyValue("--"+k).trim());
+  C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.ink_soft=C["ink-soft"]; C.muted=C.muted||C.ink_soft;
   C.seq=d3.interpolateRgbBasis([C.s0,C.s1,C.s2,C.s3]);
 }
 const col = c => !c ? C.accent : (C[c] || c);
@@ -97,7 +97,7 @@ const path=d3.geoPath(proj,ctx);
 let W=0,H=0,DPR=1;
 const sheet=document.getElementById("sheet"), topbar=document.getElementById("topbar"), toc=document.getElementById("toc");
 function layout(){
-  if(projectionSnapshot) settle();
+  if(projectionSnapshot&&(W!==innerWidth||H!==innerHeight||DPR!==Math.min(2,devicePixelRatio||1))) settle();
   W=innerWidth;H=innerHeight;DPR=Math.min(2,devicePixelRatio||1);
   canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+"px";canvas.style.height=H+"px";
   const tb=topbar.getBoundingClientRect(), sh=sheet.getBoundingClientRect();
@@ -115,7 +115,7 @@ function arr(v,kind){ if(!v) return []; if(typeof v==="string") return resolveRe
 function routePath(r){ let p=typeof r.path==="string"?resolveRef(r.path):r.path; if(r.until!=null) p=p.slice(0,r.until+1); return p; }
 function layers(){
   const s=scene||{};
-  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[],overlays:[],hatches:[]};
+  const L={fills:{},groups:[],choro:null,routes:[],points:[],under:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[],overlays:[],hatches:[]};
   Object.assign(L.fills,s.fills||{});
   L.groups=(s.groups||[]).slice();
   if(s.choro) L.choro=s.choro;
@@ -126,11 +126,15 @@ function layers(){
   L.political = scene ? !!s.political : !explore.bloc;
   L.countryLabels = scene ? !!s.countryLabels : true;
   compileLayers(s,L);
+  const pv=s.pov||(si>=0&&STORIES[si]&&STORIES[si].pov), P=povAreas();
+  if(P){ L.contested=P;
+    if(pv) L.povView={view:pv,areas:P,owner:a=>a.properties.o[pv]};
+    else if(BV.mode==="un"&&UNV) L.povView={view:"un",areas:P,owner:a=>{ const r=unRule(a); return r?r.owner:undefined; }}; }
   L.gmap=new Map(); L.groups.forEach(g=>g.ids.forEach(id=>L.gmap.set(id,g)));
   if(L.choro){const ch=L.choro,d=ch.values||DATA[ch.data],vals=Object.values(d);
     const lo=ch.vmin!=null?ch.vmin:d3.min(vals),hi=ch.vmax!=null?ch.vmax:d3.max(vals);
     if(ch.diverging){ // blue below the midpoint, red above, symmetric so equal distances look equal
-      const m=ch.mid, r=Math.max(Math.abs(hi-m),Math.abs(m-lo))||1, dv=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
+      const m=ch.mid, r=Math.max(Math.abs(hi-m),Math.abs(m-lo))||1, dv=DIVERGING;
       L.color=v=>dv(clamp(0.5+(v-m)/(2*r),0,1)); L.ramp=dv;
     } else {
       const sc=ch.log?d3.scaleLog().domain([Math.max(lo,0.1),hi]):d3.scaleLinear().domain([lo,hi]);
@@ -231,9 +235,24 @@ const ovAlpha={};   // opacity chosen with the slider, per overlay
 const isDateNum=n=>Math.abs(n)>=10000;
 const asYear=n=>isDateNum(n)?Math.trunc(n/10000):n;
 const tUnit=(n,at)=>n==null?n:((scene&&scene.timeline&&scene.timeline.isDate)||isDateNum(at))?(isDateNum(n)?n:n*10000+Math.sign(n||1)*101):asYear(n);
-const validAt=(p,y)=>(p.from==null||tUnit(p.from,y)<=y)&&(p.to==null||y<tUnit(p.to,y));
+// a yyyymmdd date compares on the date scale even without a date timeline (a scene with a fixed "year": 18601106)
+const toDay=n=>isDateNum(n)?n:n*10000+Math.sign(n||1)*101;
+const onDateTl=()=>!!(scene&&scene.timeline&&scene.timeline.isDate);
+// a fixed plain year on a date timeline counts as 1 January of that year
+const validAt=(p,y)=>{ if(!isDateNum(y)&&onDateTl()) y=toDay(y); const u=isDateNum(y)?toDay:tUnit; return (p.from==null||u(p.from)<=y)&&(p.to==null||y<u(p.to)); };
 // data that arrives after a scene opened: rebuild layers and the panel's legend
-function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML(); render(); describe(); }
+function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML();
+  if(scene&&scene.media&&scene.media.some(x=>x.type==="multiples")) renderMedia(); render(); describe(); }
+// disputed areas (data/geopolitics/pov.json), for the story/scene "pov" option
+let POVA=null, UNV=null;
+function povAreas(){ if(POVA) return POVA.ready?POVA.areas:null; POVA={ready:false};
+  Promise.all([loadJSON("data/geopolitics/pov.json"),loadJSON("data/geopolitics/un-view.json").catch(()=>null)]).then(([d,u])=>{ UNV=u;
+    POVA={ready:true,areas:topojson.feature(d.areas,d.areas.objects.areas).features}; lateData(); }); return null; }
+// the UN view of a disputed area: an owner code, null (unresolved: drawn as disputed) or undefined (keep the de facto map)
+function unRule(a){ if(!UNV) return undefined; const p=a.properties, ow=Object.values(p.o||{});
+  return UNV.rules.find(r=>(r.name==null||r.name===p.name)&&(!r.owners||r.owners.every(c=>ow.includes(c)))); }
+// site-wide border view: "defacto" (Natural Earth, as controlled) or "un"; a story's "pov" overrides it
+const BV={mode:(()=>{ try{ return localStorage.getItem("orbis-borders")||"defacto"; }catch(e){ return "defacto"; } })()};
 // admin-1 geometry per country, loaded on demand
 const REG={};
 function regionGeo(iso){
@@ -368,17 +387,25 @@ function draw(){
   else{
     if(ras) ctx.globalAlpha=0.72;
     for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(geom(feats[i]));ctx.fillStyle=fc;ctx.fill();}
+    // story/scene "pov": disputed areas drawn as part of the country that view assigns them to (e.g. "UA": Crimea with Ukraine)
+    if(L.povView) L.povView.areas.forEach(a=>{ const o=L.povView.owner(a);
+      if(o===null&&L.povView.view==="un"){ ctx.beginPath(); path(a); ctx.fillStyle=C.nodata; ctx.fill(); return; }  // unresolved: neutral
+      const f=byId.get(o); if(!f) return; const fc=fillFor(f,feats.indexOf(f),ras); if(!fc) return; ctx.beginPath(); path(a); ctx.fillStyle=fc; ctx.fill(); });
     ctx.globalAlpha=1;
-    if(!(scene&&scene.modernBorders===false)){ ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke(); }
+    if(!(scene&&scene.modernBorders===false)){ ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke();
+      // contested areas: dashed outline, as on many web maps, whichever view is drawn
+      if(L.contested){ ctx.beginPath(); L.contested.forEach(a=>path(a)); ctx.setLineDash([2.5,2.5]); ctx.strokeStyle=onDark?"rgba(240,245,248,.7)":C.ink_soft; ctx.lineWidth=0.9; ctx.stroke(); ctx.setLineDash([]); } }
   }
-  L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id]; ctx.beginPath(); path(f); ctx.fillStyle=v==null?C.nodata:rg.color(v); ctx.fill(); });
+  L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
     ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=C.paper; ctx.lineWidth=0.8; ctx.stroke(); });
-  L.shapes.forEach(sh=>{ sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
+  L.shapes.forEach(sh=>{ sh.feats.forEach(f=>{ if(!sh.fill) return; const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
       ctx.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1;
       if(sh.inner){ ctx.strokeStyle=onDark?"rgba(255,255,255,.5)":C.paper; ctx.lineWidth=0.7; if(f.properties.uncertain) ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]); } });
     sh.outlines.forEach(o=>{ ctx.beginPath(); path(o.geom); ctx.strokeStyle=col(o.color); ctx.lineWidth=2; ctx.stroke(); });
     sh.lost.forEach(f=>{ ctx.beginPath(); path(f); ctx.setLineDash([4,3]); ctx.strokeStyle=C.ink; ctx.lineWidth=1.2; ctx.stroke(); ctx.setLineDash([]); });
-    sh.gained.forEach(f=>{ ctx.beginPath(); path(f); ctx.strokeStyle=C.ink; ctx.lineWidth=2.4; ctx.stroke(); });
+    const fl=sh.flash&&!reduce?clamp(1-(performance.now()-flashT)/700,0,1):0;
+    sh.gained.forEach(f=>{ ctx.beginPath(); path(f); if(fl>0){ const g=sh.groups[f.properties.group]; ctx.globalAlpha=0.9*fl; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1; }
+      ctx.strokeStyle=C.ink; ctx.lineWidth=2.4; ctx.stroke(); });
     if(sh.front){ ctx.beginPath(); path(sh.front); ctx.strokeStyle=col(sh.frontColor); ctx.lineWidth=3; ctx.stroke(); } });
   L.hatches.forEach(hh=>{ ctx.save(); ctx.beginPath(); hh.ids.forEach(id=>{ const f=byId.get(id); if(f) path(geom(f)); }); ctx.clip();
     const a=hh.angle*rad, R=Math.hypot(W,H), dx=Math.cos(a), dy=Math.sin(a), step=7; ctx.beginPath();
@@ -389,7 +416,7 @@ function draw(){
     ctx.beginPath(); path(a); const idx=feats.findIndex(f=>f.id===o);
     ctx.fillStyle=o&&idx>=0?C.tints[tint[idx]]:C.nodata; ctx.fill();
     ctx.setLineDash([3,3]); ctx.strokeStyle=C.accent; ctx.lineWidth=1.3; ctx.stroke(); ctx.setLineDash([]); });
-  if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f));});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
+  if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f)); if(L.povView) L.povView.areas.forEach(a=>{ if(L.povView.owner(a)===id) path(a); });});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
   // circles
   L.circles.forEach(c=>{const g=d3.geoCircle().center(c.center).radius(c.km/R_EARTH*deg).precision(1)();
     ctx.beginPath();path(g);ctx.globalAlpha=0.22;ctx.fillStyle=col(c.color);ctx.fill();ctx.globalAlpha=1;
@@ -398,11 +425,14 @@ function draw(){
   });
   // routes
   const labels=[];
+  // points drawn beneath lines (points layer "under": true): plain dots, no halo, no labels
+  L.under.forEach(pt=>{ if(pt.minZoom&&V.zoom<pt.minZoom) return; if(!visible(pt.at)) return; const xy=proj(pt.at); if(!xy) return;
+    ctx.beginPath(); ctx.arc(xy[0],xy[1],pt.r||3,0,2*Math.PI); ctx.fillStyle=col(pt.color||"c1"); ctx.fill(); });
   L.routes.forEach(r=>{const p=routePath(r); if(!p||p.length<2) return;
     const line={type:"LineString",coordinates:p};
     ctx.beginPath();path(line);ctx.strokeStyle=col(r.color);ctx.lineWidth=r.width||2;ctx.lineCap="round";
     if(r.dash)ctx.setLineDash([3,5]);
-    ctx.globalAlpha=r.flow?0.45:0.9;ctx.stroke();ctx.globalAlpha=1;ctx.setLineDash([]);
+    ctx.globalAlpha=r.alpha!=null?r.alpha:r.flow?0.45:0.9;ctx.stroke();ctx.globalAlpha=1;ctx.setLineDash([]);
     if(r.flow&&!reduce){ctx.beginPath();path(line);ctx.setLineDash([3,11]);ctx.lineDashOffset=-(tNow/45)%14;ctx.lineWidth=(r.width||2)+0.6;ctx.stroke();ctx.setLineDash([]);}
     if(r.label||r.dist){
       const at=r.labelAt!=null?p[r.labelAt]:p.length>2?p[Math.floor(p.length/2)]:d3.geoInterpolate(p[0],p[1])(0.5);
@@ -433,8 +463,13 @@ function draw(){
       if(sp.label) labels.push([sp.label,top[0],top[1]-11,{size:13,align:"center"}]);
     }); }
   // points
-  L.points.forEach(pt=>{ if(!visible(pt.at)) return; const xy=proj(pt.at); if(!xy) return;
-    ctx.beginPath();ctx.arc(xy[0],xy[1],pt.r||4,0,2*Math.PI);ctx.fillStyle=col(pt.color||"c1");ctx.fill();ctx.lineWidth=1.5;ctx.strokeStyle=C.halo;ctx.stroke();
+  L.points.forEach(pt=>{ if(pt.minZoom&&V.zoom<pt.minZoom) return; if(!visible(pt.at)) return; const xy=proj(pt.at); if(!xy) return; const r=pt.r||4;
+    if(pt.icon==="swords"){ // two crossed blades
+      ctx.lineCap="round"; ctx.beginPath(); ctx.moveTo(xy[0]-r,xy[1]-r); ctx.lineTo(xy[0]+r,xy[1]+r); ctx.moveTo(xy[0]+r,xy[1]-r); ctx.lineTo(xy[0]-r,xy[1]+r);
+      ctx.strokeStyle=C.halo; ctx.lineWidth=4.5; ctx.stroke(); ctx.strokeStyle=col(pt.color||"c1"); ctx.lineWidth=2.2; ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(xy[0]-r*0.55,xy[1]-r*0.05); ctx.lineTo(xy[0]-r*0.05,xy[1]-r*0.55); ctx.moveTo(xy[0]+r*0.55,xy[1]-r*0.05); ctx.lineTo(xy[0]+r*0.05,xy[1]-r*0.55); ctx.lineWidth=1.6; ctx.stroke(); }
+    else if(pt.hollow){ ctx.beginPath();ctx.arc(xy[0],xy[1],r,0,2*Math.PI);ctx.lineWidth=3.2;ctx.strokeStyle=C.halo;ctx.stroke();ctx.lineWidth=1.6;ctx.strokeStyle=col(pt.color||"c1");ctx.stroke(); }
+    else { ctx.beginPath();ctx.arc(xy[0],xy[1],r,0,2*Math.PI);ctx.fillStyle=col(pt.color||"c1");ctx.fill();ctx.lineWidth=r<3?0.8:1.5;ctx.strokeStyle=C.halo;ctx.stroke(); }
     if(pt.label) labels.push([pt.label,xy[0]+(pt.r||4)+5,xy[1],{size:13}]);
   });
   if(L.particles) drawParticles(L.particles);
@@ -448,7 +483,7 @@ function draw(){
       if(size<n.length*5.2) return; const at=f.properties.lx!=null?[f.properties.lx,f.properties.ly]:d3.geoCentroid(f); if(!visible(at)) return;
       const q=proj(at); if(q) labels.push([n,q[0],q[1],{align:"center",size:size>160?14:12}]); }); }
   L.regions.forEach(rg=>{ if(!rg.labels) return; rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], at=[f.properties.lx,f.properties.ly];
-    if(at[0]==null||!visible(at)) return; const p=proj(at); if(p) labels.push([f.properties.name+(v!=null?" "+rg.fmt(v):""),p[0],p[1],{align:"center",size:12}]); }); });
+    if(at[0]==null||!visible(at)) return; const p=proj(at); if(p) labels.push([f.properties.name+(v!=null&&!rg.cat?" "+rg.fmt(v):""),p[0],p[1],{align:"center",size:12}]); }); });
   if(L.pov) L.pov.areas.forEach(a=>{ let o=a.properties.o[L.pov.view]; if(o&&!NAMES.has(o)) o=null; if(L.pov.only&&!L.pov.only.includes(a.properties.name)) return;
     if(path.area(a)<400) return;  // skip slivers
     const c=d3.geoCentroid(a); if(!visible(c)) return; const p=proj(c); if(p) labels.push([o?nameOf(o):t("disputed"),p[0],p[1],{align:"center",size:12,color:C.accent}]); });
@@ -459,7 +494,11 @@ function draw(){
   labels.forEach(l=>label(...l));
   // rim
   ctx.beginPath();path(SPHERE);ctx.strokeStyle=C.rim;ctx.lineWidth=1;ctx.stroke();
+  // "as of" stamp (scene.stamp; {t} = the timeline step), bottom right of the map
+  const stp=stampText(); if(stp){ ctx.font="500 12px 'Barlow Semi Condensed', sans-serif"; ctx.textAlign="right"; ctx.textBaseline="bottom";
+    const sx=F.x+F.w-12, sy=F.y+F.h-10; ctx.lineWidth=3; ctx.strokeStyle=C.halo; ctx.strokeText(stp,sx,sy); ctx.fillStyle=onDark?"#D9E2E6":C.ink_soft; ctx.fillText(stp,sx,sy); ctx.textAlign="left"; ctx.textBaseline="alphabetic"; }
 }
+function stampText(){ if(!scene||!scene.stamp) return ""; const tl=scene.timeline, y=tl?tl.years[tlIdx]:null; return scene.stamp.replace("{t}",y!=null?String(tl.label(y)):""); }
 
 // ---------- country names ----------
 // largest countries first; a name is shown when the country is big enough on screen to hold it
@@ -580,7 +619,7 @@ function tap(x,y){
   const ll=proj.invert([x,y]); if(!ll||isNaN(ll[0])) return;
   if(curKind()==="globe"&&d3.geoDistance(ll,V.center)>Math.PI/2) return;
   for(const rg of L.regions){ const rf=rg.R.feats.find(f=>d3.geoContains(f,ll)); if(rf){ const v=rg.vals[rf.id];
-    tip.innerHTML="<b>"+esc(rf.properties.name)+"</b><span>"+esc(rg.title)+": "+(v==null?t("No data"):esc(rg.fmt(v)))+"</span>";
+    tip.innerHTML="<b>"+esc(rf.properties.name)+"</b><span>"+(rg.cat?esc(rg.tipOf(rf.id)):esc(rg.title)+": "+(v==null?t("No data"):esc(rg.fmt(v))))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; } }
   const sideAt=x<F.x+F.w*swipeAt?"L":"R";
   const gridHtml=L.rasters.filter(r=>!r.side||r.side===sideAt).map(r=>{ const G=r.G; if(!G.bytes) return "";
@@ -595,13 +634,17 @@ function tap(x,y){
   if(L.hist){ const hf=L.hist.H.feats.find(f=>d3.geoContains(f,ll));
     tip.innerHTML=hf?"<b>"+esc(hf.properties.name||"")+"</b><span>"+esc(t("Borders of {y}",{y:L.hist.year}))+"</span>":"<span>"+esc(t("Not an independent state in {y}",{y:L.hist.year}))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
-  const f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll));
+  let f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll));
+  if(L.povView){ const a=L.povView.areas.find(a=>d3.geoContains(a,ll)), ow=a&&L.povView.owner(a), o=ow&&byId.get(ow); if(o) f=o;
+    else if(a&&ow===null&&L.povView.view==="un"){ const r=unRule(a); tip.innerHTML="<b>"+esc(a.properties.name)+"</b><span>"+esc(t("Disputed"))+(r&&r.basis?": "+esc(r.basis):"")+"</span>";
+      tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,5000); return; } }
   if(!f&&gridHtml){ tip.innerHTML="<b>"+d3.format(".1f")(Math.abs(ll[1]))+"°"+(ll[1]>=0?"N":"S")+" "+d3.format(".1f")(Math.abs(ll[0]))+"°"+(ll[0]>=0?"E":"W")+"</b>"+gridHtml;
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
   if(!f){hideTip();return;}
   if(L.pairs&&L.pairs.has(f.id)&&L.pairs.from!==f.id){ pairFrom=f.id; markDirty(); L=layers(); Ldirty=false; el.legend.innerHTML=legendHTML(); describe(); render(); }
   else if(L.flows.length||focus){ focus=focus===f.id?null:f.id; L=layers(); el.legend.innerHTML=legendHTML(); render(); }
   if(si>=0&&STORIES[si].atlas) atlasProfile(f.id);
+  if(si>=0&&STORIES[si].elections) electionCard(f.id);
   let html="<b>"+esc(nameOf(f.id))+"</b>"+gridHtml;
   if(L.choro){const v=L.cdata[f.id]; html+="<span>"+(v==null?t("No data"):esc(String(L.choro.fmt?L.choro.fmt(v):v)))+"</span>";}
   L.vals.forEach(lv=>{const v=lv.values[f.id]; if(v!=null) html+="<span>"+esc(lv.title)+": "+esc(lv.fmt(v))+"</span>";});
@@ -637,15 +680,20 @@ function setBasemap(m,user){
   if(!BASEMAPS[m]||(BASEMAPS[m].tex&&!Raster.ok)) m="political";
   if(user) BM.user=m;
   BM.mode=m; bmBtn.textContent=m==="political"?t("Map"):BASEMAPS[m].label;
-  [...bmMenu.children].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bm===m)));
+  [...bmMenu.querySelectorAll("[data-bm]")].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bm===m)));
   if(BASEMAPS[m].tex) Raster.load(m,BASEMAPS[m].tex,render);
   DETAIL.key=null; scheduleDetail();
   if(typeof renderData==="function"&&el) renderData(); render();
 }
 function closeBm(){ bmMenu.hidden=true; bmBtn.setAttribute("aria-expanded","false"); }
 bmBtn.onclick=e=>{ e.stopPropagation(); bmMenu.hidden=!bmMenu.hidden; bmBtn.setAttribute("aria-expanded",String(!bmMenu.hidden)); };
-[...bmMenu.children].forEach(b=>{ if(BASEMAPS[b.dataset.bm].tex&&!Raster.ok) b.disabled=true;
+[...bmMenu.querySelectorAll("[data-bm]")].forEach(b=>{ if(BASEMAPS[b.dataset.bm].tex&&!Raster.ok) b.disabled=true;
   b.onclick=()=>{ setBasemap(b.dataset.bm,true); closeBm(); }; });
+function setBorders(v){ BV.mode=v==="un"?"un":"defacto"; try{ localStorage.setItem("orbis-borders",BV.mode); }catch(e){}
+  [...bmMenu.querySelectorAll("[data-bv]")].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bv===BV.mode)));
+  if(typeof markDirty==="function"){ markDirty(); L=layers(); render(); } }
+[...bmMenu.querySelectorAll("[data-bv]")].forEach(b=>b.onclick=()=>{ setBorders(b.dataset.bv); closeBm(); });
+setTimeout(()=>[...bmMenu.querySelectorAll("[data-bv]")].forEach(b=>b.setAttribute("aria-checked",String(b.dataset.bv===BV.mode))),0);
 document.addEventListener("click",e=>{ if(!bmMenu.hidden&&!e.target.closest(".bm-wrap")) closeBm(); });
 
 // ---------- data-file stories and declarative layers ----------
@@ -655,12 +703,14 @@ async function ensureStory(i){
   const meta=STORIES[i]; if(meta.scenes) return meta;
   const js=meta.file==="draft"?JSON.parse(localStorage.getItem("orbis-draft")||"null"):await loadJSON(meta.file), data={};
   await Promise.all(Object.entries(js.data||{}).map(async([k,u])=>{ data[k]=await loadJSON(u); }));
-  js.scenes.forEach(sc=>{ const t=sc.timeline; if(t&&!t.frame){
+  js.scenes.forEach(sc=>{ if(sc.media&&!Array.isArray(sc.media)) sc.media=[sc.media];  // one media item may be given as an object
+    const t=sc.timeline; if(t&&!t.frame){
     // [a, b] = every year (or every `step` years) from a to b; years are astronomical (1 BC = 0)
     const ys=!t.format&&t.years.length===2&&(t.step||t.years[1]-t.years[0]>1)?d3.range(t.years[0],t.years[1]+1,t.step||1):t.years;
     const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):t.format==="date"?(y=>Cal.date(y)):(y=>Cal.year(y,t.era)), lab=y=>(t.labels&&t.labels[y])||lab0(y);
     const second=t.calendar?(y=>Cal.other(y,t.calendar,t.format==="date")):null;
-    sc.timeline={isDate:t.format==="date",years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,second,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
+    sc.timeline={isDate:t.format==="date",years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,second,frame:y=>({year:y,caption:(t.captions||{})[y]}),
+      playSpeed:t.playSpeed,spacing:t.spacing==="time"}; } });
   const st=Object.assign({},js,{file:meta.file,_data:data},meta.id.startsWith("@")?{id:meta.id}:{}); STORIES[i]=st; return st;
 }
 const FMT={
@@ -683,6 +733,7 @@ const FMT={
   tpp:v=>d3.format(v<10?".1f":",.0f")(v)+" t",
   mil:v=>d3.format(",.0f")(v)+t(" M"),
   yrs:v=>d3.format(".0f")(v)+t(" yrs"),
+  yrs1:v=>d3.format(".1f")(v)+t(" yrs"),
   pct0:v=>d3.format(".0f")(v)+"%",
   usdB:v=>"$"+d3.format(",.0f")(v)+t(" B"),
   people:v=>v>=1e6?d3.format(".1f")(v/1e6)+t(" m"):d3.format(",.0f")(v),
@@ -713,17 +764,22 @@ function pointValues(ly,d,y){
   const pi=d.periods.indexOf(String(ly.period||y));
   return d.points.filter(p=>p[ly.field]&&p[ly.field][pi]!=null).map(p=>({id:p.id,name:p.name,at:p.at,v:p[ly.field][pi]}));
 }
+const DIVERGING=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
+const pickByYear=(o,y)=>{ if(!o) return null; const k=Object.keys(o).map(Number).sort((a,b)=>a-b).filter(v=>v<=+y).pop(); return k!=null?o[k]:null; };
+const d0=e=>Array.isArray(e.date)?e.date[0]:e.date;
+const dKey=v=>isDateNum(v)?v:v*10000+Math.sign(v||1)*101;   // years and yyyymmdd dates on one scale for sorting   // a date range [a, b] sorts and filters by its start
+const ICONS={swords:"⚔",star:"★",flag:"⚑",anchor:"⚓",crown:"♛",cross:"✝"};
 const LAYER={
   cards(ly,d,y,L){ // dated events with a story card: tap a dot to read it; optional list in the panel
-    const t=+y, w=ly.window, K=d.kinds||{};
-    const pick=(d.items||[]).filter(e=>!ly.kinds||ly.kinds.includes(e.kind)).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(e.date,t)<=t&&(!w||tUnit(e.date,t)>t-w))).sort((a,b)=>a.date-b.date);
-    pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",label:ly.labels===false?null:e.title,card:e}));
-    if(ly.list) L.cardList=(L.cardList||[]).concat(pick);
-    Object.entries(K).forEach(([k,v])=>{ if(pick.some(e=>e.kind===k)&&!L.shapeKeys.some(x=>x.g==="card:"+k)) L.shapeKeys.push({g:"card:"+k,label:v.label||k,color:v.color||"c2"}); });
+    const t=!isDateNum(+y)&&onDateTl()?toDay(+y):+y, K=d.kinds||{}, w=ly.window&&ly.window!=="all"&&scene&&scene.timeline&&scene.timeline.isDate?ly.window*10000:ly.window;  // window in years
+    const pick=(d.items||[]).filter(e=>!ly.kinds||ly.kinds.includes(e.kind)).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(d0(e),t)<=t&&(!w||tUnit(d0(e),t)>t-w))).sort((a,b)=>dKey(d0(a))-dKey(d0(b)));
+    pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",icon:K[e.kind]&&K[e.kind].icon,label:ly.labels===false?null:e.title,card:e,minZoom:ly.minZoom}));
+    if(ly.list) L.cardList=(L.cardList||[]).concat(pick); L.kinds=Object.assign(L.kinds||{},K);
+    Object.entries(K).forEach(([k,v])=>{ if(pick.some(e=>e.kind===k)&&!L.shapeKeys.some(x=>x.g==="card:"+k)) L.shapeKeys.push({g:"card:"+k,label:(ICONS[v.icon]?ICONS[v.icon]+" ":"")+(v.label||k),color:v.color||"c2"}); });
   },
   places(ly,d,y,L){ // places whose name depends on the date (Byzantium, Constantinople, Istanbul)
-    const t=+y; (d.places||[]).forEach(pl=>{ const n=(pl.names||[]).find(x=>validAt(x,t)); if(!n&&!pl.always) return;
-      L.points.push({at:pl.at,r:pl.r||3,color:ly.color||"muted",label:n?n.name:pl.name}); });
+    const t=+y; (d.places||[]).filter(pl=>!ly.only||ly.only.includes(pl.name)||(pl.names||[]).some(x=>ly.only.includes(x.name))).forEach(pl=>{ const n=(pl.names||[]).find(x=>validAt(x,t)); if(!n&&!pl.always) return;
+      L.points.push({at:pl.at,r:pl.r||3,color:ly.color||"muted",label:n?n.name:pl.name,minZoom:pl.minZoom!=null?pl.minZoom:ly.minZoom}); });
   },
   moves(ly,d,y,L){ // routes whose points carry dates: drawn up to the timeline date, with a marker where the mover is
     const t=+y; (d.moves&&d.moves[ly.set]||[]).filter(m=>!ly.only||ly.only.includes(m.name)).forEach(m=>{
@@ -741,17 +797,20 @@ const LAYER={
   shapes(ly,d,y,L){ // polygons valid at the timeline date, coloured by group; optional merged outline per group
     const S=shapeSet(ly.data,d); if(!S) return; const yr=+y, G=d.groups||{};
     const idx=S.feats.map((f,i)=>i).filter(i=>{ const p=S.feats[i].properties; return validAt(p,yr)&&(!ly.groups||ly.groups.includes(p.group)); });
-    const groups=[...new Set(idx.map(i=>S.feats[i].properties.group))];
+    const ord=ly.groups||Object.keys(G), groups=[...new Set(idx.map(i=>S.feats[i].properties.group))].sort((a,b)=>(ord.indexOf(a)+1||1e9)-(ord.indexOf(b)+1||1e9));
     const outlines=ly.outline===false?[]:groups.map(g=>({color:(G[g]&&G[g].color)||ly.color||"c2",
       geom:topojson.merge(S.topo,idx.filter(i=>S.feats[i].properties.group===g).map(i=>S.obj.geometries[i]))}));
     // changes since the previous timeline step: areas lost (dashed) and gained (bold edge)
     let lost=[], gained=[], front=null;
-    if(ly.changes&&scene&&scene.timeline){ const ys=scene.timeline.years, k=ys.indexOf(yr), py=k>0?ys[k-1]:null;
+    if((ly.changes||ly.flash)&&scene&&scene.timeline){ const ys=scene.timeline.years, k=ys.indexOf(yr), py=k>0?ys[k-1]:null;
       if(py!=null){ const was=new Set(S.feats.map((f,i)=>i).filter(i=>validAt(S.feats[i].properties,py)&&(!ly.groups||ly.groups.includes(S.feats[i].properties.group))));
         lost=[...was].filter(i=>!idx.includes(i)).map(i=>S.feats[i]); gained=idx.filter(i=>!was.has(i)).map(i=>S.feats[i]); } }
     // front: the shared edge between areas of different groups
     if(ly.front) front=topojson.mesh(S.topo,{type:"GeometryCollection",geometries:idx.map(i=>S.obj.geometries[i])},(a,b)=>a!==b&&a.properties.group!==b.properties.group);
-    L.shapes.push({lost,gained,front,frontColor:ly.frontColor||"c2",feats:idx.map(i=>S.feats[i]),groups:G,color:ly.color||"c2",opacity:ly.opacity==null?0.55:ly.opacity,
+    // dots: the source point of each area (properties.at), coloured by group; groups with "hollow": true draw as rings
+    if(ly.dots) idx.forEach(i=>{ const p=S.feats[i].properties, g=G[p.group]; if(p.at) L.points.push({at:p.at,r:ly.dotR||2.5,color:p.color||(g&&g.color)||ly.color||"c2",hollow:!!(g&&g.hollow),minZoom:ly.dotMinZoom}); });
+    const flash=ly.changes==="flash"||ly.flash;
+    L.shapes.push({lost,gained,front,flash,fill:ly.fill!==false,frontColor:ly.frontColor||"c2",feats:idx.map(i=>S.feats[i]),groups:G,color:ly.color||"c2",opacity:ly.opacity==null?(ly.dots&&ly.fill!==false?0.25:0.55):ly.opacity,
       labels:ly.labels!==false,inner:ly.inner!==false,outlines,title:ly.title,year:yr});
     groups.forEach(g=>{ if(!L.shapeKeys.some(k=>k.g===g)) L.shapeKeys.push({g,label:(G[g]&&G[g].label)||g,color:(G[g]&&G[g].color)||ly.color||"c2"}); });
   },
@@ -768,7 +827,10 @@ const LAYER={
     const items=Array.isArray(d.points)?pointValues(ly,d,y)
       :Object.entries(valuesOf(ly,d,y)).filter(([k,v])=>v>0&&ANCHOR.has(k)).map(([k,v])=>({id:k,name:nameOf(k),at:ANCHOR.get(k),v}));
     items.sort((a,b)=>b.v-a.v);
-    const vmax=ly.vmax||(items[0]&&items[0].v)||1, R=ly.maxR||40, f=fmtOf(ly.fmt), n=ly.labels==null?6:ly.labels, c=ly.color||"c3";
+    // "scale":"timeline": one size scale for every year, so circles grow and shrink over time instead of rescaling each frame
+    let gmax=null; if(ly.scale==="timeline"&&scene&&scene.timeline){ const k=JSON.stringify(ly); SYMMAX[k]=SYMMAX[k]||d3.max(scene.timeline.years,yy=>
+      d3.max(Array.isArray(d.points)?pointValues(ly,d,yy).map(x=>x.v):Object.values(valuesOf(ly,d,yy)))); gmax=SYMMAX[k]; }
+    const vmax=ly.vmax||gmax||(items[0]&&items[0].v)||1, R=ly.maxR||40, f=fmtOf(ly.fmt), n=ly.labels==null?6:ly.labels, c=ly.color||"c3";
     items.forEach((x,i)=>{ if(x.v<=0) return; L.symbols.push({at:x.at,r:Math.max(1.5,R*Math.sqrt(x.v/vmax)),color:c,label:i<n?x.name+" "+f(x.v):null}); });
     if(!Array.isArray(d.points)) L.vals.push({title:ly.title,values:Object.fromEntries(items.map(x=>[x.id,x.v])),fmt:f});
     if(ly.key!==false) L.sizeKey={color:c,title:ly.title};
@@ -788,11 +850,18 @@ const LAYER={
     const title=ly.title||g.label;
     L.flowKeys.push({color:c,title,qty:m===3});
     const fv=m===3?FMT.musd:f;  // totals are always values; quantity layers still show them in USD
-    L.vals.push({title:title+", exports",values:g.exports[y]||{},fmt:fv},{title:title+", imports",values:g.imports[y]||{},fmt:fv});
+    if(ly.totals!==false) L.vals.push({title:title+", "+(ly.outLabel||"exports"),values:g.exports[y]||{},fmt:fv},{title:title+", "+(ly.inLabel||"imports"),values:g.imports[y]||{},fmt:fv});
   },
-  lines(ly,d,y,L){ (d.lines[ly.set]||[]).filter(x=>!ly.only||ly.only.includes(x.name)).forEach(x=>L.routes.push({path:x.path,color:ly.forceColor?ly.color:(x.color||ly.color),width:x.width||ly.width||2.2,
+  lines(ly,d,y,L){ // lines with from/to follow the timeline; "labels":"once" labels only the longest piece of each name
+    const tl=scene&&scene.timeline, seen=new Map();
+    const live=x=>!tl||(x.from==null&&x.to==null)||validAt(x,+y);
+    // "fade": true keeps lines that are not (yet) valid as faint ghosts instead of hiding them
+    if(ly.fade) (d.lines[ly.set]||[]).filter(x=>(!ly.only||ly.only.includes(x.name))&&!live(x)).forEach(x=>L.routes.push({path:x.path,color:ly.fadeColor||"muted",width:Math.max(1.6,(x.width||ly.width||2.2)*0.8),alpha:0.6,dash:true}));
+    const ls=(d.lines[ly.set]||[]).filter(x=>(!ly.only||ly.only.includes(x.name))&&live(x));
+    if(ly.labels==="once") ls.forEach(x=>{ const b=seen.get(x.name); if(!b||x.path.length>b.path.length) seen.set(x.name,x); });
+    ls.forEach(x=>L.routes.push({path:x.path,color:ly.forceColor?ly.color:(x.color||ly.color),width:x.width||ly.width||2.2,
     dash:x.dash!=null?x.dash:(ly.dash!=null?ly.dash:!!x.status&&x.status!=="operating"),flow:ly.flow&&(!x.status||x.status==="operating"),
-    label:ly.labels?x.name:null,labelAt:x.labelAt,dist:x.dist||ly.dist,until:x.until!=null?x.until:ly.until})); },
+    label:ly.labels==="once"?(seen.get(x.name)===x?x.name:null):ly.labels?x.name:null,labelAt:x.labelAt,dist:x.dist||ly.dist,until:x.until!=null?x.until:ly.until})); },
   spikes(ly,d,y,L){
     const items=Object.entries(valuesOf(ly,d,y)).filter(([k,v])=>v>0&&ANCHOR.has(k)).sort((a,b)=>b[1]-a[1]);
     const vmax=ly.vmax||(items[0]&&items[0][1])||1, f=fmtOf(ly.fmt), n=ly.labels==null?5:ly.labels, c=ly.color||"c2";
@@ -831,16 +900,7 @@ const LAYER={
     const set0=d.sets[ly.set]; if(!set0) return;
     let set=set0; if(set0.byYear){ const ks=Object.keys(set0.byYear).map(Number).sort((a,b)=>a-b), k=ks.filter(v=>v<=+y).pop(); set=Object.assign({},set0,{values:k!=null?set0.byYear[k]:{}}); }
     const nm=ly.names&&(typeof ly.names[ly.set]==="object"?ly.names[ly.set]:ly.names); // story-side labels, e.g. translations
-    if(ly.country||ly.regionSet){
-      const R=regionGeo(ly.country||ly.regionSet); if(!R) return;
-      const vals=set.values||{}, names=nm||set.labels||{};
-      L.regions.push({R,vals,categorical:true,color:x=>col(ly.colors[x]||"muted"),
-        title:(ly.title||set.label||"Categories")+" · "+ylab(y),fmt:x=>names[x]||String(x),labels:ly.labels});
-      Object.entries(ly.colors).forEach(([cat,c])=>{
-        if(R.feats.some(f=>vals[f.id]===cat)) L.shapeKeys.push({g:"category:"+ly.data+":"+ly.set+":"+cat,label:names[cat]||cat,color:c});
-      });
-      return;
-    }
+    if(ly.country||ly.regionSet){ LAYER.regions(ly,d,y,L); return; }
     Object.entries(ly.colors).forEach(([cat,c])=>L.groups.push({label:(nm&&nm[cat])||(set.labels&&set.labels[cat])||cat,color:c,
       ids:Object.entries(set.values).filter(([k,v])=>v===cat).map(([k])=>k)}));
   },
@@ -857,11 +917,32 @@ const LAYER={
   },
   regions(ly,d,y,L){ // sub-national areas (admin-1) of one country, coloured by a series keyed by region id
     const R=regionGeo(ly.country||ly.regionSet); if(!R) return;
+    if(ly.set){ // categories per region (e.g. election winner), optionally shaded by a share: lighter = closer
+      const s0=d.sets&&d.sets[ly.set]; if(!s0) return;
+      // "changes": {id: [[year, code], ...]} with "codes": {code: {label, cat}}: the value is the last code at or before the year
+      let cats, code={};
+      if(s0.changes){ cats={}; const yy=tUnit(+y); Object.entries(s0.changes).forEach(([id,ch])=>{ let c=null; for(const [a,k] of ch){ if(tUnit(a)<=yy) c=k; else break; }
+          if(c!=null&&c!==""){ const cd=s0.codes&&s0.codes[c]; code[id]=c; if(cd&&cd.cat) cats[id]=cd.cat; } }); }
+      else cats=(s0.byYear?pickByYear(s0.byYear,y):s0.values)||{};
+      if(ly.only) Object.keys(cats).forEach(id=>{ if(!ly.only.includes(cats[id])) delete cats[id]; });
+      const share=(s0.shareByYear?pickByYear(s0.shareByYear,y):s0.share)||{}, sh=ly.shade;
+      const lab=c=>(ly.names&&ly.names[c])||(s0.labels&&s0.labels[c])||c;
+      const colorOf=id=>{ const c=cats[id]; if(c==null||!ly.colors[c]) return null; const base=col(ly.colors[c]);
+        if(!sh||share[id]==null) return base; return d3.interpolateRgb(C.paper,base)(0.3+0.7*clamp((share[id]-sh.min)/((sh.max-sh.min)||1),0,1)); };
+      // "countNote": {"US-DC": "DC"} keeps an id out of the count and names it instead ("19 states + DC")
+      const cn=ly.countNote||{}, keys=Object.keys(ly.colors).map(c=>{ const ids=Object.keys(cats).filter(id=>cats[id]===c);
+        return {label:lab(c),color:ly.colors[c],n:ids.filter(id=>!cn[id]).length,extra:ids.filter(id=>cn[id]).map(id=>cn[id])}; }).filter(k=>k.n||k.extra.length);
+      L.regions.push({R,vals:cats,colorOf,cat:true,keys,counts:ly.counts,unit:ly.unit||"",shadeNote:sh&&(ly.shadeLabel||t("Lighter = closer result")),
+        title:ly.title?ly.title+" · "+ylab(y):ylab(y),labels:ly.labels,
+        tipOf:id=>code[id]!=null&&s0.codes&&s0.codes[code[id]]?(s0.codes[code[id]].label||code[id])+" · "+ylab(y):cats[id]==null?t("No data"):lab(cats[id])+(share[id]!=null?" · "+(ly.shareFmt?fmtOf(ly.shareFmt)(share[id]):share[id].toFixed(1)+"%"):"")+" · "+ylab(y)});
+      return; }
     const sr=d.series[ly.series], i=yearIndex(d,y); if(!sr||i<0) return;
     const vals={}; Object.entries(sr.values).forEach(([k,a])=>{ if(a[i]!=null) vals[k]=a[i]*(ly.mult||1); });
-    const v=Object.values(vals), lo=d3.min(v), hi=d3.max(v);
-    const sc=ly.log?d3.scaleLog().domain([Math.max(lo,1e-9),hi]):d3.scaleLinear().domain([lo,hi]);
-    L.regions.push({R,vals,color:x=>C.seq(clamp(sc(x),0,1)),lo,hi,title:ly.title+" · "+ylab(y),fmt:fmtOf(ly.fmt),labels:ly.labels});
+    const v=Object.values(vals); let lo=ly.vmin!=null?ly.vmin:d3.min(v), hi=ly.vmax!=null?ly.vmax:d3.max(v), color, ramp=C.seq;
+    if(ly.diverging){ const m=ly.mid||0, r=Math.max(Math.abs(hi-m),Math.abs(m-lo))||1; color=x=>DIVERGING(clamp(0.5+(x-m)/(2*r),0,1)); ramp=DIVERGING; lo=m-r; hi=m+r; }
+    else { const sc=ly.log?d3.scaleLog().domain([Math.max(lo,1e-9),hi]):d3.scaleLinear().domain([lo,hi]);
+      color=x=>{ let q=clamp(sc(ly.log?Math.max(x,1e-9):x),0,1); if(ly.reverse) q=1-q; return C.seq(q); }; if(ly.reverse) ramp=q=>C.seq(1-q); }
+    L.regions.push({R,vals,color,ramp,lo,hi,title:ly.title+" · "+ylab(y),fmt:fmtOf(ly.fmt),labels:ly.labels});
   },
   pov(ly,d,y,L){ // disputed areas as one country sees them: filled with the owner's tint, outlined dashed
     if(!d._areas) d._areas=topojson.feature(d.areas,d.areas.objects.areas).features;
@@ -880,7 +961,8 @@ const LAYER={
     L.rasters.push(Object.assign({tex:G.tex,G,side:"L"},base),Object.assign({tex:G2.tex,G:G2,side:"R"},base));
     L.swipe={left:ly.leftLabel||lab,right:ly.rightLabel||String(ly.compare)};
   },
-  points(ly,d,y,L){ (d.points[ly.set]||[]).filter(x=>!ly.only||ly.only.includes(x.name)).forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.forceColor?ly.color:(x.color||ly.color),r:x.r||ly.r||4.5})); }
+  points(ly,d,y,L){ const tl=scene&&scene.timeline; (d.points[ly.set]||[]).filter(x=>(!ly.only||ly.only.includes(x.name))&&(!tl||(x.from==null&&x.to==null)||validAt(x,+y)))
+    .forEach(x=>(ly.under?L.under:L.points).push({at:x.at,label:ly.labels===false?null:x.name,color:ly.forceColor?ly.color:(x.color||ly.color),r:x.r||ly.r||4.5,minZoom:x.minZoom!=null?x.minZoom:ly.minZoom,icon:x.icon||ly.icon})); }
 };
 // tapping a country in a flows scene shows only that country's flows
 let swipeAt=0.5;   // before/after divider position, share of the map frame width
@@ -898,16 +980,36 @@ swipeH.addEventListener("pointerdown",e=>{ e.preventDefault(); e.stopPropagation
 swipeH.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft"||e.key==="ArrowRight"){ e.preventDefault(); e.stopPropagation(); swipeAt=clamp(swipeAt+(e.key==="ArrowLeft"?-0.05:0.05),0.02,0.98); placeSwipe(); render(); } });
 let focus=null, pairFrom=null;   // tapped country: flows filter / pairs origin
 // a scene "switch" (e.g. pick a commodity) fills {placeholders} in its layers, chart and text
-let switchIdx=0;
+let switchIdx=0; const SYMMAX={};
 const switchOpt=()=>scene&&scene.switch?scene.switch.options[switchIdx]:null;
+// a value that is exactly "{key}" takes the option's value with its type (number, boolean, list), so options can switch any setting
 function subst(o){ const op=switchOpt(); if(!op||o==null) return o;
-  return JSON.parse(JSON.stringify(o).replace(/\{(\w+)\}/g,(m,k)=>op[k]!=null?String(op[k]).replace(/["\\]/g,"\\$&"):m)); }
+  const walk=v=>{ if(typeof v==="string"){ const m=v.match(/^\{(\w+)\}$/); if(m&&op[m[1]]!=null) return op[m[1]];
+      return v.replace(/\{(\w+)\}/g,(x,k)=>op[k]!=null?String(op[k]):x); }
+    if(Array.isArray(v)) return v.map(walk); if(v&&typeof v==="object"){ const r={}; for(const k in v) r[k]=walk(v[k]); return r; } return v; };
+  return walk(o); }
 function compileLayers(s,L){
   const st=si>=0?STORIES[si]:null, D=(st&&st._data)||{};
   (subst(s.layers)||[]).forEach(ly=>{ const d=D[ly.data], fn=LAYER[ly.type]; if(!d||!fn) return;
     const y=(ly.year==null||ly.year==="t")?((frame&&frame.year!=null?frame.year:null)??(lastYear(d)||new Date().getFullYear())):ly.year;
     fn(ly,d,y,L); });
 }
+// small multiples: one tiny map per year for a layer of this scene (regions or shapes); tap one to jump the timeline there
+function multiples(x,st){
+  const ly0=(scene.layers||[])[x.layer||0], d=ly0&&st&&st._data&&st._data[ly0.data]; if(!d) return "";
+  const ly=subst(ly0), w=x.width||104, h=x.height||(ly.country==="USA"?68:80);
+  const cells=(x.years||[]).map(y=>{ const T={points:[],under:[],routes:[],regions:[],shapes:[],shapeKeys:[],vals:[],highlight:[],fills:{}}; LAYER[ly.type]&&LAYER[ly.type](ly,d,y,T);
+    let fs=[], colour=()=>null;
+    if(T.regions[0]){ const rg=T.regions[0]; fs=rg.R.feats; colour=f=>rg.cat?rg.colorOf(f.id):(rg.vals[f.id]==null?null:rg.color(rg.vals[f.id])); }
+    else if(T.shapes[0]){ const sh=T.shapes[0]; fs=sh.feats; colour=f=>{ const g=sh.groups[f.properties.group]; return col(f.properties.color||(g&&g.color)||sh.color); }; }
+    if(!fs.length) return "";
+    const fc={type:"FeatureCollection",features:fs}, pr=(ly.country==="USA"?d3.geoAlbersUsa():d3.geoMercator()).fitExtent([[2,2],[w-2,h-2]],x.extent?{type:"Feature",geometry:{type:"MultiPoint",coordinates:x.extent}}:fc), pa=d3.geoPath(pr);
+    const yi=scene.timeline?scene.timeline.years.indexOf(y):-1;
+    return `<button class="mult${yi===tlIdx?" on":""}" data-ti="${yi}"${yi<0?" disabled":""}><svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true">${fs.map(f=>{ const p=pa(f); return p?`<path d="${p}" fill="${colour(f)||C.nodata}" stroke="${C.paper}" stroke-width="0.4"/>`:""; }).join("")}</svg><span>${esc(scene.timeline?String(scene.timeline.label(y)):String(y))}</span></button>`; }).join("");
+  return `<figure class="md-mult"><figcaption>${esc(x.title||"")}</figcaption><div class="mult-grid">${cells}</div></figure>`;
+}
+document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest(".mult[data-ti]"); if(!b||b.disabled||!scene||!scene.timeline) return;
+  stopPlay(); tlIdx=+b.dataset.ti; setFrame(); });
 function renderMedia(){
   const m=scene&&scene.media, st=si>=0?STORIES[si]:null;
   if(!m||!m.length){ el.media.hidden=true; el.media.innerHTML=""; return; }
@@ -942,13 +1044,19 @@ function renderMedia(){
         stk.map((layer,i)=>`<path d="${ar(layer)}" fill="${col(["c1","c2","c3","c4","c5"][i%5])}" fill-opacity="0.85"><title>${esc((x.labels&&x.labels[layer.key])||nameOf(layer.key))}</title></path>`).join("")+
         `<text x="${pad[3]}" y="${h-3}" class="md-tick">${esc(Cal.year(ys[0]))}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${esc(Cal.year(ys[ys.length-1]))}</text></svg>`+
         `<p class="md-keys">${stk.map((layer,i)=>`<span class="chip"><i style="background:${col(["c1","c2","c3","c4","c5"][i%5])}"></i>${esc((x.labels&&x.labels[layer.key])||nameOf(layer.key))}</span>`).join("")}</p></figure>`; }
-    if(x.type==="gantt"){ // bars for reigns, terms, wars; a marker at the timeline date
-      const it=x.items||[]; if(!it.length) return ""; const w=330, rh=16, pad=[4,4,18,4], h=pad[0]+rh*it.length+pad[2];
+    if(x.type==="multiples") return multiples(x,st);
+    if(x.type==="gantt"){ // bars for reigns, terms, wars; a marker at the timeline date. Items with the same "row" share a line
+      const it=x.items||[]; if(!it.length) return "";
+      const rows=[]; it.forEach(i=>{ const key=i.row!=null?"r:"+i.row:"i:"+rows.length; let r=rows.find(r=>r.key===key); if(!r){ r={key,label:null,items:[]}; rows.push(r); } r.items.push(i); if(r.label==null&&i.label) r.label=i.label; });
+      const w=330, rh=16, pad=[4,4,18,4], h=pad[0]+rh*rows.length+pad[2];
       const lo=x.from!=null?x.from:d3.min(it,i=>asYear(i.from)), hi=x.to!=null?x.to:d3.max(it,i=>asYear(i.to!=null?i.to:i.from));
       const sx=d3.scaleLinear().domain([lo,hi]).range([pad[3]+110,w-pad[1]]), now=frame&&frame.year!=null?asYear(frame.year):null;
+      const span=i=>[asYear(i.from),asYear(i.to!=null?i.to:hi)], inside=i=>{ const [a,b]=span(i); return now!=null&&a<=now&&now<b; };
       return `<figure class="md-line"><figcaption>${esc(x.title||"")}</figcaption><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(x.title||"timeline")}">`+
-        it.map((i,k)=>{ const a=asYear(i.from), b=asYear(i.to!=null?i.to:hi), yy=pad[0]+k*rh; const on=now!=null&&a<=now&&now<b;
-          return `<text x="${pad[3]}" y="${yy+11}" class="md-tick"${on?' font-weight="600"':""}>${esc(i.label)}</text><rect x="${sx(a)}" y="${yy+3}" width="${Math.max(2,sx(b)-sx(a))}" height="${rh-6}" rx="2" fill="${col(i.color||x.color||"c1")}" fill-opacity="${now==null||on?0.9:0.35}"><title>${esc(i.label+": "+Cal.year(a)+"–"+(i.to!=null?Cal.year(b):""))}</title></rect>`; }).join("")+
+        (x.ticks||[]).filter(v=>v>=lo&&v<=hi).map(v=>`<line x1="${sx(v)}" x2="${sx(v)}" y1="${pad[0]}" y2="${h-pad[2]}" stroke="${C.rule||"#ccc"}" class="md-grid"/>`).join("")+
+        rows.map((r,k)=>{ const yy=pad[0]+k*rh, on=r.items.some(inside);
+          return `<text x="${pad[3]}" y="${yy+11}" class="md-tick"${on?' font-weight="600"':""}>${esc(r.label||"")}</text>`+r.items.map(i=>{ const [a,b]=span(i), o=inside(i);
+            return `<rect x="${sx(a)}" y="${yy+3}" width="${Math.max(2,sx(b)-sx(a))}" height="${rh-6}" rx="2" fill="${col(i.color||x.color||"c1")}" fill-opacity="${now==null||o?0.9:0.35}"><title>${esc((i.label||r.label||"")+": "+Cal.year(a)+"–"+(i.to!=null?Cal.year(b):""))}</title></rect>`; }).join(""); }).join("")+
         (now!=null&&now>=lo&&now<=hi?`<line x1="${sx(now)}" x2="${sx(now)}" y1="${pad[0]}" y2="${h-pad[2]+2}" stroke="${col("c2")}" stroke-width="1.5"/>`:"")+
         `<text x="${sx(lo)}" y="${h-3}" class="md-tick">${esc(Cal.year(lo))}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${esc(Cal.year(hi))}</text></svg></figure>`; }
     return ""; }).join("");
@@ -976,7 +1084,9 @@ function renderSwitch(){
   if(!sw){ box.hidden=true; return; }
   box.innerHTML=`<span class="sw-label">${esc(sw.label||t("Show"))}</span>`+sw.options.map((o,i)=>`<button class="bloc" data-i="${i}" aria-pressed="${String(i===switchIdx)}">${esc(o.label)}</button>`).join("");
   [...box.querySelectorAll("button")].forEach(b=>b.onclick=()=>{ switchIdx=+b.dataset.i; cartoStart=performance.now()-900; renderSwitch();
-    const op=switchOpt(); el.text.textContent=op.text||scene.text; L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderData(); render(); describe(); });
+    const op=switchOpt(); el.text.textContent=op.text||scene.text;
+    const vw=op.view||(sw.options.some(o=>o.view)?scene.view:null); if(vw){ const tv=Object.assign({},scene.view,vw); syncMode(tv.mode); flyTo(tv,1200); }
+    L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderData(); render(); describe(); });
   box.hidden=false;
   const op=switchOpt(); if(op&&op.text) el.text.textContent=op.text;
 }
@@ -987,7 +1097,7 @@ function composite(cv,g){ // raster + vector canvases plus a caption strip
   g.fillStyle=getComputedStyle(document.body).backgroundColor; g.fillRect(0,0,w,h);
   g.drawImage(document.getElementById("raster"),0,0,w,h); g.drawImage(canvas,0,0,w,h);
   const st=si>=0?STORIES[si]:null, title=st&&scene?st.title+" · "+scene.title:t("The world, your way");
-  const credit="Orbis · "+t("Data")+": "+sourceIds().map(id=>SOURCES[id].name).join(", ");
+  const credit="Orbis · "+t("Data")+": "+sourceIds().map(id=>SOURCES[id].name).join(", ")+(stampText()?" · "+stampText():"");
   const fs=Math.round(15*DPR); g.font=`600 ${fs*1.25}px 'Source Serif 4', Georgia, serif`;
   g.fillStyle="rgba(250,248,243,.92)"; g.fillRect(0,h-fs*4.2,w,fs*4.2);
   g.fillStyle="#1D2A30"; g.fillText(title,fs,h-fs*2.4); g.font=`${fs*0.85}px 'Barlow Semi Condensed', sans-serif`; g.fillStyle="#4C5B61"; g.fillText(credit,fs,h-fs*0.9);
@@ -1035,7 +1145,7 @@ function describe(){
   if(L.flows.length){ const f=L.flows.slice().sort((a,b)=>b.v-a.v).slice(0,3); parts.push("Lines show "+f[0].title+": "+f.map(x=>nameOf(x.a)+" to "+nameOf(x.b)+" "+x.fmt(x.v)).join("; ")+"."); }
   if(L.groups.length) L.groups.forEach(g=>parts.push(g.label+": "+g.ids.length+" countries highlighted."));
   L.regions.forEach(rg=>{
-    if(rg.categorical){ const counts={}; rg.R.feats.forEach(f=>{const v=rg.vals[f.id]; if(v!=null) counts[rg.fmt(v)]=(counts[rg.fmt(v)]||0)+1;});
+    if(rg.cat){ const counts=Object.fromEntries(rg.keys.map(k=>[k.label,k.n]));
       parts.push(rg.title+": "+Object.entries(counts).map(([name,n])=>n+" regions "+name).join(", ")+"; tap a region to read its category.");
     } else parts.push("Regions coloured by "+rg.title+"; tap a region to read its value.");
   });
@@ -1131,13 +1241,14 @@ function legendHTML(){
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · "+t(k.qty?"line width = tonnes":"line width = value")));
   if(L) L.overlays.forEach((o,i)=>{ h+=`<label class="ov-row"><span>${esc(o.title)}</span>`+(o.slider?`<input type="range" min="0" max="100" value="${Math.round(o.alpha*100)}" data-ov="${i}" aria-label="${esc(t("Opacity of {x}",{x:o.title}))}">`:"")+`</label>`; });
   if(L) L.shapeKeys.forEach(k=>h+=chip(k.color,k.label));
-  if(L&&L.cardList&&L.cardList.length) h+=`<ol class="card-list">${L.cardList.map((e,i)=>`<li><button data-ci="${i}"><span>${esc(e.cal==="julian"&&isDateNum(e.date)?Cal.other(e.date,"julian",true).replace(" (Julian)",""):fmtWhen(e.date))}</span>${esc(e.title)}</button></li>`).join("")}</ol>`;
+  if(L&&L.cardList&&L.cardList.length) h+=`<ol class="card-list">${L.cardList.map((e,i)=>`<li><button data-ci="${i}"><span>${esc(e.cal==="julian"&&isDateNum(e.date)?Cal.other(e.date,"julian",true).replace(" (Julian)",""):fmtWhen(e.date,e))}</span>${esc(((L.kinds&&L.kinds[e.kind]&&ICONS[L.kinds[e.kind].icon])?ICONS[L.kinds[e.kind].icon]+" ":"")+e.title)}</button></li>`).join("")}</ol>`;
   if(L&&L.pairs) h+=`<span class="chip">${esc(t("Tap a country to see its ties"))}</span>`;
   if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?esc(t("Showing {x} only · tap it again for all",{x:nameOf(focus)})):esc(t("Tap a country to see only its flows"))}</span>`;
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · "+t("country size = amount"));
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · ${t("circle area = amount")}</span></span>`;
-  if(L) L.regions.filter(rg=>!rg.categorical).forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(t=>C.seq(t)).join(",");
+  if(L) L.regions.filter(rg=>rg.cat).forEach(rg=>{ h+=`<div class="ramp-title">${esc(rg.title)}</div>`+rg.keys.map(k=>chip(k.color,rg.counts===false?k.label:k.label+": "+k.n+(rg.unit?" "+(k.n===1&&/s$/.test(rg.unit)?rg.unit.slice(0,-1):rg.unit):"")+k.extra.map(x=>" + "+x).join(""))).join("")+(rg.shadeNote?`<span class="chip">${esc(rg.shadeNote)}</span>`:""); });
+  if(L) L.regions.filter(rg=>!rg.cat).forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(q=>(rg.ramp||C.seq)(q)).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(rg.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(rg.fmt(rg.lo))}</span><span>${esc(rg.fmt(rg.hi))}</span></div></div>`; });
   if(L&&L.pov) h+=`<span class="chip"><i style="background:none;border:1.5px dashed ${C.accent}"></i>${esc(t("Disputed areas, drawn as seen from {x}",{x:nameOf(L.pov.viewIso)}))}</span>`;
   if(L) L.events.forEach(E=>h+=chip(E.color,E.title+" · "+t("{n} shown",{n:d3.format(",")(E.count)})));
@@ -1154,7 +1265,8 @@ function legendHTML(){
   return h;
 }
 // ---------- data and licences ----------
-const useCls=u=>u==="noncommercial"?"nc":u==="permission"?"perm":"";
+const useCls=u=>u==="noncommercial"?"nc":u==="sharealike"?"sa":u==="permission"?"perm":"";
+const tagHTML=s=>licenceTags(s).map(k=>`<i class="lt lt-${k.toLowerCase()}" title="${esc(t(LIC_TAGS[k]))}">${k}</i>`).join("");
 function sourceIds(){
   // story- and scene-level sources, then the base map, which every view shows
   const ids=[];
@@ -1167,7 +1279,7 @@ function sourceIds(){
 }
 function renderData(){
   el.data.innerHTML='<span class="dl">'+t("Data")+'</span>'+sourceIds().map(id=>{const s=SOURCES[id];
-    return `<button class="src ${useCls(s.use)}" data-src="${id}" title="${esc(t(USE_LABEL[s.use]))}"><b>${esc(s.name)}</b>${esc(s.licence)}</button>`;}).join("")+
+    return `<button class="src ${useCls(s.use)}" data-src="${id}" title="${esc(s.licence+" · "+t(USE_LABEL[s.use]))}"><b>${esc(s.name)}</b>${esc(s.licence)}<span class="lts">${tagHTML(s)}</span></button>`;}).join("")+
     '<button id="licAll">'+t("All licences")+'</button>';
   [...el.data.querySelectorAll("[data-src]")].forEach(b=>b.onclick=()=>openLic(b.dataset.src));
   $("licAll").onclick=()=>openLic();
@@ -1175,10 +1287,10 @@ function renderData(){
 const lic=$("lic");
 function openLic(focusId){
   const tiers=[["base",t("Base map and engine (commercial use required)")],["layer",t("Story layers")]];
-  $("licList").innerHTML=tiers.map(([t,h])=>`<section class="lic-tier"><h2>${h}</h2>`+
-    Object.entries(SOURCES).filter(([,s])=>s.tier===t).map(([id,s])=>`<div class="lic-item" id="lic-${id}"><span class="n">${esc(s.name)}</span><span class="w">${esc(s.what)}</span>
+  $("licList").innerHTML=`<p class="lic-key">${Object.entries(LIC_TAGS).map(([k,v])=>`<span><i class="lt lt-${k.toLowerCase()}">${k}</i> ${esc(t(v))}</span>`).join("")}</p>`+tiers.map(([tier,h])=>`<section class="lic-tier"><h2>${h}</h2>`+
+    Object.entries(SOURCES).filter(([,s])=>s.tier===tier).map(([id,s])=>`<div class="lic-item" id="lic-${id}"><span class="n">${esc(s.name)}</span><span class="w">${esc(s.what)}</span>
       <span class="l"><span>${s.licenceUrl?`<a href="${esc(s.licenceUrl)}" target="_blank" rel="noopener">${esc(s.licence)}</a>`:esc(s.licence)}</span>
-      <span class="lic-use ${useCls(s.use)}">${esc(t(USE_LABEL[s.use]))}</span>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${t("Source")}</a>`:""}</span>
+      <span class="lts">${tagHTML(s)}</span><span class="lic-use ${useCls(s.use)}">${esc(t(USE_LABEL[s.use]))}</span>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${t("Source")}</a>`:""}</span>
       <span class="w">${esc(s.credit)}</span></div>`).join("")+`</section>`).join("");
   lic.hidden=false; $("licClose").focus({preventScroll:true});
   if(focusId){const n=$("lic-"+focusId); if(n) n.scrollIntoView({block:"center"});}
@@ -1188,19 +1300,31 @@ $("licClose").onclick=closeLic;
 
 function chip(c,t){return `<span class="chip"><i style="background:${col(c)}"></i>${esc(t)}</span>`;}
 
+let flashT=-1e9;
+function flashLoop(){ render(); if(performance.now()-flashT<720) requestAnimationFrame(flashLoop); }
 function setFrame(){
   hideTip();
   const t=scene&&scene.timeline; if(!t){frame=null;renderChart();return;}
-  const y=t.years[tlIdx]; frame=t.frame(y,tlIdx); el.year.textContent=t.label(y); if(t.second){ const s2=document.createElement("small"); s2.className="tl-cal"; s2.textContent=t.second(y); el.year.append(s2); } el.slider.value=tlIdx;
+  const y=t.years[tlIdx]; frame=t.frame(y,tlIdx); el.year.textContent=t.label(y); if(t.second){ const s2=document.createElement("small"); s2.className="tl-cal"; s2.textContent=t.second(y); el.year.append(s2); } el.slider.value=sliderVal(tlIdx);
   el.slider.setAttribute("aria-valuetext",String(t.label(y)));
   el.cap.textContent=frame.caption||""; el.cap.hidden=!frame.caption;
-  L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); if(scene.media&&scene.media.some(x=>x.type==="gantt")) renderMedia(); render(); describe();
+  L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); if(scene.media&&scene.media.some(x=>x.type==="gantt"||x.type==="multiples")) renderMedia(); render(); describe();
+  if(L.shapes.some(sh=>sh.flash&&sh.gained.length)&&!reduce){ flashT=performance.now(); requestAnimationFrame(flashLoop); }
+  placeTicks();
 }
 function stopPlay(){ if(playing){clearInterval(playing);playing=null;} el.play.textContent=t("Play"); el.play.setAttribute("aria-label",t("Play timeline")); }
 el.play.onclick=()=>{ if(playing){stopPlay();return;} const timeline=scene.timeline; if(tlIdx>=timeline.years.length-1) tlIdx=0;
   el.play.textContent=t("Pause"); el.play.setAttribute("aria-label",t("Pause timeline"));
-  playing=setInterval(()=>{ if(tlIdx>=timeline.years.length-1){stopPlay();return;} tlIdx++; setFrame(); }, timeline.years.length>30?(reduce?400:160):(reduce?1600:1100)); };
-el.slider.oninput=()=>{stopPlay();tlIdx=+el.slider.value;setFrame();};
+  playing=setInterval(()=>{ if(tlIdx>=timeline.years.length-1){stopPlay();return;} tlIdx++; setFrame(); }, timeline.playSpeed||(timeline.years.length>30?(reduce?400:160):(reduce?1600:1100))); };
+// "spacing":"time": the slider runs over real time (uneven dates sit at their true distance) and snaps to the nearest step
+const tPos=(t,y)=>t.isDate?Cal.jdn(Math.trunc(y/10000),Math.floor(Math.abs(y)/100)%100,Math.abs(y)%100):y;
+function sliderIdx(v){ const t=scene.timeline; if(!t.spacing) return +v; const a=tPos(t,t.years[0]), b=tPos(t,t.years[t.years.length-1]), x=a+(b-a)*v/1000;
+  let best=0; t.years.forEach((y,i)=>{ if(Math.abs(tPos(t,y)-x)<Math.abs(tPos(t,t.years[best])-x)) best=i; }); return best; }
+function sliderVal(i){ const t=scene.timeline; if(!t.spacing) return i; const a=tPos(t,t.years[0]), b=tPos(t,t.years[t.years.length-1]); return Math.round(1000*(tPos(t,t.years[i])-a)/((b-a)||1)); }
+const ticksEl=document.createElement("div"); ticksEl.className="tl-ticks"; el.slider.after(ticksEl);
+function placeTicks(){ const t=scene&&scene.timeline; ticksEl.hidden=!(t&&t.spacing); if(!t||!t.spacing) return;
+  ticksEl.innerHTML=t.years.map((y,i)=>`<i style="left:${sliderVal(i)/10}%"></i>`).join(""); }
+el.slider.oninput=()=>{stopPlay();tlIdx=sliderIdx(el.slider.value);setFrame();};
 
 function showScene(i, fly=true){
   const st=STORIES[si]; ci=clamp(i,0,st.scenes.length-1); scene=st.scenes[ci]; stopPlay();
@@ -1213,7 +1337,7 @@ function showScene(i, fly=true){
   el.updated.hidden=!st.updated; if(st.updated) el.updated.textContent=t("Updated {d}",{d:fmtDate(st.updated)});
   markRead(st.id,ci,st.scenes.length);
   el.blocs.hidden=true; el.steps.hidden=false; el.notes.hidden=false;
-  if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.years.length-1;}
+  if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.spacing?1000:scene.timeline.years.length-1;}
   else el.tl.hidden=true;
   markDirty(); focus=null; pairFrom=null; switchIdx=(scene.switch&&scene.switch.start)||0; cartoStart=performance.now(); renderSwitch();
   frame=null; setFrame(); L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderMedia(); renderTools(); describe();
@@ -1263,10 +1387,12 @@ function renderBlocs(){
 
 const MON=Cal.MON;
 // ---------- event cards ----------
-const fmtWhen=n=>n==null?"":Math.abs(n)>=10000?Cal.date(n):Cal.year(n);
+const fmtWhen=(n,e)=>{ if(n==null) return ""; const one=v=>Math.abs(v)>=10000?Cal.date(v):Cal.year(v);
+  let s; if(Array.isArray(n)){ const [a,b]=n; s=Math.abs(a)>=10000||Math.abs(b)>=10000?one(a)+"–"+one(b):a<=0&&b<=0?(1-a)+"–"+Cal.year(b):a>0&&b>0?Cal.year(a)+"–"+b:one(a)+"–"+one(b); } else s=one(n);
+  return (e&&e.circa?"c. ":"")+s; };
 function openCard(e){
   const c=el.card; c.hidden=false;
-  c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(e.cal&&isDateNum(e.date)?Cal.other(e.date,e.cal,true):fmtWhen(e.date))}${e.place?" · "+esc(e.place):""}</p><h3>${esc(e.title)}</h3>`+
+  c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(e.cal&&isDateNum(e.date)?Cal.other(e.date,e.cal,true):fmtWhen(e.date,e))}${e.place?" · "+esc(e.place):""}</p><h3>${esc(e.title)}</h3>`+
     (e.image?`<figure><img src="${esc(e.image)}" alt="${esc(e.alt||"")}"><figcaption>${esc(e.credit||"")}</figcaption></figure>`:"")+
     (e.text?`<p>${esc(e.text)}</p>`:"")+(e.source?`<p class="card-src">${t("Source")}: ${e.url?`<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a>`:esc(e.source)}</p>`:"");
   c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
@@ -1308,7 +1434,7 @@ function renderAtlasPicker(){
   const list=ATLAS.indicators.filter(x=>q?(x.name+" "+(x.long||"")).toLowerCase().includes(q):x.topic===atlasState.topic);
   el.camp.innerHTML=`<div class="atl-topics">${ATLAS.topics.filter(tp=>ATLAS.indicators.some(x=>x.topic===tp)).map(tp=>`<button data-tp="${esc(tp)}" aria-pressed="${!q&&tp===atlasState.topic}">${esc(t(tp))}</button>`).join("")}</div>
     <input class="atl-q" type="search" placeholder="${esc(t("Search indicators"))}" value="${esc(atlasState.q)}" aria-label="${esc(t("Search indicators"))}">
-    <ul class="atl-list">${list.map(x=>`<li><button data-code="${esc(x.id)}" aria-current="${x.id===cur}"><span class="atl-n">${esc(x.name)}${x.tier==="noncommercial"?' <i class="nc-badge" title="Non-commercial licence: '+esc(x.licence)+'">NC</i>':""}</span><span>${x.years[0]}–${x.years[1]}</span></button></li>`).join("")||`<li class="atl-none">${t("No match")}</li>`}</ul>`;
+    <ul class="atl-list">${list.map(x=>`<li><button data-code="${esc(x.id)}" aria-current="${x.id===cur}"><span class="atl-n">${esc(x.name)}${x.tier!=="commercial"?' <i class="lt lt-'+(x.tier==="noncommercial"?"nc":"sa")+'" title="'+esc(x.licence+": "+t(LIC_TAGS[x.tier==="noncommercial"?"NC":"SA"]))+'">'+(x.tier==="noncommercial"?"NC":"SA")+'</i>':""}</span><span>${x.years[0]}–${x.years[1]}</span></button></li>`).join("")||`<li class="atl-none">${t("No match")}</li>`}</ul>`;
   el.camp.hidden=false;
   el.camp.querySelectorAll("[data-tp]").forEach(b=>b.onclick=()=>{ atlasState.topic=b.dataset.tp; atlasState.q=""; renderAtlasPicker(); });
   el.camp.querySelectorAll("[data-code]").forEach(b=>b.onclick=()=>openAtlas(b.dataset.code));
@@ -1324,6 +1450,55 @@ async function atlasProfile(id){
     return `<li><span>${esc(it.name)}</span><b>${esc(String(fmtOf(it.fmt)(a[j])))}</b><small>${d.years[j]} · ${all.indexOf(a[j])+1}${["th","st","nd","rd"][((all.indexOf(a[j])+1)%100>10&&(all.indexOf(a[j])+1)%100<14)?0:Math.min((all.indexOf(a[j])+1)%10,4)%4]||"th"} highest of ${all.length}</small></li>`; }));
   const c=el.card; c.hidden=false;
   c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(t("Country profile"))}</p><h3>${esc(nameOf(id))}</h3><ul class="atl-prof">${rows.filter(Boolean).join("")}</ul>`;
+  c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
+}
+// ---------- elections explorer: the latest national election everywhere; tap a country for its history ----------
+const ELX_BASE=new URLSearchParams(location.search).get("elx")||"data/elections/";
+const FAMILY={left:["Left","#B2182B"],"centre-left":["Centre-left","#E8829B"],centre:["Centre","#D9A21B"],liberal:["Liberal","#F2C230"],
+  "centre-right":["Centre-right","#4A90C2"],right:["Right","#1F3A93"],green:["Green","#3A9E4F"],regional:["Regional","#8E6CBF"],
+  independent:["Independent","#7F8C8D"],other:["Other","#A9B1B4"]};
+const ELX_MEASURES=[["family","Winner's party family"],["turnout","Turnout"],["share","Winner's vote share"],["age","Years since the last election"]];
+let ELX=null; const elxState={m:"family"};
+async function openElections(m){
+  if(!ELX){ try{ ELX=await loadJSON(ELX_BASE+"world.json"); }catch(e){ return openExplore(); } }
+  if(m&&ELX_MEASURES.some(x=>x[0]===m)) elxState.m=m;
+  const C0=ELX.countries||{}, now=new Date(), yrs=d=>(now-new Date(Math.floor(d/1e4),Math.floor(d/100)%100-1,d%100))/31557600000;
+  const val={}, fam={}; Object.entries(C0).forEach(([k,c])=>{ const l=c.last; if(!l) return;
+    if(l.family&&FAMILY[l.family]) fam[k]=l.family;
+    const v=elxState.m==="turnout"?l.turnout:elxState.m==="share"?l.share:elxState.m==="age"?(l.date?Math.round(yrs(l.date)*10)/10:null):null; if(v!=null) val[k]=v; });
+  const label=ELX_MEASURES.find(x=>x[0]===elxState.m)[1], src=[].concat(ELX.source||[]);
+  const d={source:src[0],years:[0],series:{v:{label,values:Object.fromEntries(Object.entries(val).map(([k,v])=>[k,[v]]))}},
+    sets:{fam:{labels:Object.fromEntries(Object.entries(FAMILY).map(([k,v])=>[k,v[0]])),values:fam}}};
+  const layer=elxState.m==="family"?{type:"categories",data:"e",set:"fam",colors:Object.fromEntries(Object.entries(FAMILY).filter(([k])=>Object.values(fam).includes(k)).map(([k,v])=>[k,v[1]]))}
+    :{type:"choropleth",data:"e",series:"v",year:0,title:label,showYear:false,fmt:elxState.m==="age"?"yrs1":"pct",reverse:elxState.m==="age"};
+  const sc={title:t("Elections"),text:t("The latest national election in each country. Tap a country for its election history."),view:{mode:"equal",center:[10,15],zoom:1},layers:[layer]};
+  const st={id:"@elections",cat:"Elections",title:t("Elections explorer"),hook:"",file:"elections",elections:true,sources:src.slice(1),
+    notes:(ELX.note||"")+(ELX.asOf?" As of "+ELX.asOf+".":""),scenes:[sc],_data:{e:d}};
+  let i=STORIES.findIndex(x=>x.id==="@elections"); if(i<0){ STORIES.push(st); i=STORIES.length-1; } else STORIES[i]=st;
+  const fly=si!==i; si=i; quiz.mode=null; closeToc(); sheet.classList.remove("collapsed");
+  showScene(0,fly); el.steps.hidden=true;
+  el.camp.innerHTML=`<div class="atl-topics">${ELX_MEASURES.map(([k,n])=>`<button data-em="${k}" aria-pressed="${k===elxState.m}">${esc(t(n))}</button>`).join("")}</div>`;
+  el.camp.hidden=false; el.camp.querySelectorAll("[data-em]").forEach(b=>b.onclick=()=>openElections(b.dataset.em));
+  history.replaceState(null,"","#elections/"+elxState.m);
+}
+async function electionCard(id){
+  const st=STORIES[si]; if(!st||!st.elections) return; const c=el.card, info=ELX.countries&&ELX.countries[id];
+  c.hidden=false; c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(t("Elections"))}</p><h3>${esc(nameOf(id))}</h3><p class="elx-none">${esc(info?t("Loading…"):t("No election data"))}</p>`;
+  c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
+  if(!info) return;
+  let D; try{ D=await loadJSON(ELX_BASE+id+".json"); }catch(e){ D={elections:[]}; }
+  if(STORIES[si]!==st||c.hidden) return;
+  const E=(D.elections||[]).slice().sort((a,b)=>b.date-a.date), pct=v=>v==null?"":(Math.round(v*10)/10)+"%";
+  const tl=E.filter(e=>e.turnout!=null).slice().reverse();
+  let spark=""; if(tl.length>2){ const w=300,h=60, sx=d3.scaleLinear().domain(d3.extent(tl,e=>Math.floor(e.date/1e4))).range([4,w-30]), sy=d3.scaleLinear().domain([Math.min(40,d3.min(tl,e=>e.turnout)),100]).range([h-14,4]);
+    spark=`<figure class="md-line"><figcaption>${esc(t("Turnout"))}</figcaption><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(t("Turnout over time"))}"><path d="${d3.line().x(e=>sx(Math.floor(e.date/1e4))).y(e=>sy(e.turnout))(tl)}" fill="none" stroke="${col("c1")}" stroke-width="2"/>`+
+      `<text x="4" y="${h-2}" class="md-tick">${Math.floor(tl[0].date/1e4)}</text><text x="${w-30}" y="${h-2}" class="md-tick" text-anchor="end">${Math.floor(tl[tl.length-1].date/1e4)}</text><text x="${w-26}" y="${sy(tl[tl.length-1].turnout)+4}" class="md-tick">${pct(tl[tl.length-1].turnout)}</text></svg></figure>`; }
+  const rows=E.slice(0,6).map(e=>{ const ps=(e.parties||[]).filter(p=>p.share!=null).slice(0,8), mx=d3.max(ps,p=>p.share)||1;
+    return `<li class="elx-e"><div class="elx-h"><b>${esc(fmtDate(e.date))}</b><span>${esc(t(e.type==="president"?"Presidential":"Parliamentary"))}${e.turnout!=null?" · "+esc(t("turnout"))+" "+pct(e.turnout):""}</span></div>`+
+      ps.map(p=>`<div class="ch-row"><span class="nm">${esc(p.name)}</span><span class="bar" style="width:${(p.share/mx*100).toFixed(1)}%;background:${(FAMILY[p.family]||FAMILY.other)[1]}"></span><span class="v">${pct(p.share)}${p.seats!=null?" · "+p.seats:""}</span></div>`).join("")+`</li>`; }).join("");
+  c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(t("Elections"))} · ${esc(t("{n} on record",{n:E.length}))}</p><h3>${esc(nameOf(id))}</h3>`+spark+
+    (rows?`<ol class="elx-list">${rows}</ol>`:`<p class="elx-none">${esc(t("Only the latest election is on record"))}: ${esc(info.last?fmtDate(info.last.date):"")}${info.last&&info.last.winner?" · "+esc(info.last.winner):""}</p>`)+
+    `<p class="md-keys">${Object.values(FAMILY).map(([n,cc])=>`<span class="chip"><i style="background:${cc}"></i>${esc(t(n))}</span>`).join("")}</p>`;
   c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
 }
 // ---------- campaigns: a series of stories with a landing page, chapter order and reading progress ----------
@@ -1349,9 +1524,9 @@ function openCampaign(id){
   const ch=cp.chapters.map(id=>[id,STORIES[storyIndex(id)]]).filter(x=>x[1]);
   const nextId=(ch.find(([id])=>!done(id))||ch[0]||[])[0], started=ch.some(([id])=>seen(id));
   el.camp.innerHTML=`<button class="btn camp-go" id="campGo">${t(started?"Continue":"Start")}${nextId&&started?": "+esc(STORIES[storyIndex(nextId)].title):""}</button>
-    <ol class="camp-list">${ch.map(([id,s],k)=>`<li class="${done(id)?"done":seen(id)?"seen":""}"><button data-id="${id}"><span class="camp-n">${done(id)?"✓":k+1}</span><span><b>${esc(s.title)}</b><span class="toc-hook">${esc(s.hook)}</span></span></button></li>`).join("")}</ol>
+    <ol class="camp-list">${ch.map(([id,s],k)=>`<li class="${done(id)?"done":seen(id)?"seen":""}"><button data-id="${id}"><span class="camp-n">${done(id)?"✓":k+1}</span><span><b>${esc(s.title)}</b><span class="toc-hook">${esc(s.hook)}</span></span></button></li>`).join("")}${(cp.coming||[]).map(x=>`<li class="coming"><div><span class="camp-n">·</span><span><b>${esc(x.title)}</b><span class="toc-hook">${esc(t("Coming"))}${x.hook?" · "+esc(x.hook):""}</span></span></div></li>`).join("")}</ol>
     <p class="camp-progress">${t("{n} of {m} read",{n:ch.filter(([id])=>done(id)).length,m:ch.length})}</p>`+
-    (cp.dates&&cp.dates.length?`<details class="camp-dates"><summary>${t("Key dates")}</summary><ul>${cp.dates.map(x=>`<li><span>${esc(fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"")+
+    (cp.dates&&cp.dates.length?`<details class="camp-dates"><summary>${t("Key dates")}</summary><ul>${cp.dates.map(x=>`<li><span>${esc(typeof x.d==="number"&&Math.abs(x.d)<10000||Array.isArray(x.d)?fmtWhen(x.d,x):(x.circa?"c. ":"")+fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"")+
     (cp.changelog&&cp.changelog.length?`<details class="camp-dates"><summary>${t("What changed")}</summary><ul>${cp.changelog.map(x=>`<li><span>${esc(fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"");
   el.camp.hidden=false;
   $("campGo").onclick=()=>{ const i=storyIndex(nextId); if(i>=0) openStory(i, done(nextId)||!r[nextId]?0:Math.min(r[nextId][0],r[nextId][1])-1); };
@@ -1372,8 +1547,8 @@ function buildToc(){
   $("tocCount").textContent=STORIES.length;
 }
 $("exploreBtn").onclick=openExplore;
-$("tocTools").innerHTML=`<button id="atlasBtn">${t("Country atlas")}</button><button id="quizBtn">${t("Quiz")}</button><button id="cityBtn">${t("Your city")}</button><a href="editor.html">${t("Write a story")}</a>`;
-$("atlasBtn").onclick=()=>openAtlas(); $("quizBtn").onclick=openQuiz; $("cityBtn").onclick=openCity;
+$("tocTools").innerHTML=`<button id="atlasBtn">${t("Country atlas")}</button><button id="elxBtn">${t("Elections")}</button><button id="quizBtn">${t("Quiz")}</button><button id="cityBtn">${t("Your city")}</button><a href="editor.html">${t("Write a story")}</a>`;
+$("atlasBtn").onclick=()=>openAtlas(); $("elxBtn").onclick=()=>openElections(); $("quizBtn").onclick=openQuiz; $("cityBtn").onclick=openCity;
 $("tocBtn").onclick=()=>toc.hidden?openToc():closeToc();
 $("tocClose").onclick=closeToc;
 function openToc(focus=true){ toc.hidden=false; layout(); $("tocBtn").setAttribute("aria-expanded","true"); stopPlay();
@@ -1415,6 +1590,7 @@ loadJSON("stories/index.json").then(list=>{ STORIES.unshift(...list.map(x=>Objec
   if(idx>=0) openStory(idx, Math.max(0,(+h[1]||1)-1));
   else if(h[0]==="c"&&h[1]) openCampaign(h[1]);
   else if(h[0]==="atlas") openAtlas(h[1]);
+  else if(h[0]==="elections") openElections(h[1]);
   else if(h[0]==="explore") openExplore();
   else if(h[0]==="quiz") openQuiz();
   else if(h[0]==="city") openCity();

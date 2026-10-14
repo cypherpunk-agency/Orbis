@@ -1,0 +1,301 @@
+{
+  "id": "col-empires",
+  "cat": "Geopolitics",
+  "title": "Empires on the map, 1500–1945",
+  "hook": "In 1500 no European state ruled land beyond Europe. Around 1900 eight of them ruled about a third of the world's land. How the colonial empires grew, century by century.",
+  "notes": "Borders 1500–1880: historical-basemaps by André Ourednik (GPL-3.0), snapshots 1500, 1530, 1650, 1715, 1783, 1815 and 1880; each holds until the next. They show claimed territory: in many colonies European control reached only coasts and a few inland areas, and forts and trading posts too small to draw are missing. Orbis corrected three errors (Quebec British from 1763, Louisiana Spanish 1762–1801, Río de la Plata independent in fact from 1810) and assigned Cape Colony, Ceylon, Belize and the Philippines to their rulers. The Dutch East Indies are drawn as the whole archipelago from 1650 (dashed): Dutch rule covered only parts of it until the late 19th century. Borders from 1886: CShapes 2.0 (ETH Zurich, CC BY-NC-SA 4.0), status at the end of each year; it counts self-governing dominions (Canada; Australia from 1901; New Zealand from 1907; South Africa from 1910) as independent, which is why Britain's area drops between 1900 and 1913. Areas are computed by Orbis on the sphere from unsimplified borders, as a share of the world's land outside Antarctica; the two sources draw differently, so treat them as orders of magnitude. Population shares are not computed: neither source has population. Only the eight powers in the COLDAT dataset are coloured; dependencies of the US, Japan, Denmark and others are grey from 1886, and earlier not shown. Dates in the text: Wikipedia, 'Spanish conquest of the Aztec Empire', 'Spanish conquest of the Inca Empire', 'Company rule in India', 'Congo Free State', 'German colonial empire', 'Italo-Turkish War'.",
+  "data": {
+    "hb": "data/history/col-empires-hb.json",
+    "cs": "data/history/col-empires-cs.json",
+    "area": "data/history/col-area.json"
+  },
+  "sources": [
+    "cshapes"
+  ],
+  "scenes": [
+    {
+      "title": "Four centuries in one map",
+      "text": "Press Play. Spain and Portugal took most of the Americas in the 1500s; the Dutch, British and French followed. After 1880 the empires spread across Africa and Asia. Newly gained land flashes.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          10
+        ],
+        "zoom": 1
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "changes": "flash",
+          "labels": false,
+          "inner": false
+        },
+        {
+          "type": "shapes",
+          "data": "cs",
+          "year": "t",
+          "changes": "flash",
+          "labels": false,
+          "inner": false
+        }
+      ],
+      "timeline": {
+        "years": [
+          1500,
+          1530,
+          1650,
+          1715,
+          1783,
+          1815,
+          1880,
+          1890,
+          1900,
+          1913,
+          1938
+        ],
+        "start": 0,
+        "spacing": "time",
+        "playSpeed": 1600,
+        "captions": {
+          "1500": "Europe before its empires.",
+          "1530": "Spain conquers Mexico and the Caribbean.",
+          "1650": "The Dutch arrive in Asia and Brazil.",
+          "1715": "Britain in North America and the Caribbean.",
+          "1783": "The United States has just won independence.",
+          "1815": "Most of Latin America is about to break away.",
+          "1880": "British India and Australia.",
+          "1890": "Africa is being divided.",
+          "1900": "The peak in area.",
+          "1913": "On the eve of the First World War.",
+          "1938": "The empires between the wars."
+        }
+      },
+      "stamp": "Borders approximate · historical-basemaps to 1880, CShapes from 1886"
+    },
+    {
+      "title": "The Iberian century",
+      "text": "Spain conquered the Aztec Empire in 1521 and the Inca Empire from 1532. By 1650 its viceroyalties of New Spain and Peru claimed about 7 million km², most of Central and South America. Portugal held the coast of Brazil.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -70,
+          5
+        ],
+        "zoom": 1.5
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "changes": "flash",
+          "inner": false
+        }
+      ],
+      "timeline": {
+        "years": [
+          1500,
+          1530,
+          1650
+        ],
+        "start": 1650,
+        "captions": {
+          "1530": "New Spain, Cuba and Hispaniola.",
+          "1650": "Spain and Portugal divide South America."
+        }
+      },
+      "stamp": "Claimed territory, approximate · historical-basemaps"
+    },
+    {
+      "title": "Trading companies in Asia",
+      "text": "In Asia Europeans came first as traders. The Dutch East India Company took Ceylon's coast and ports in Java and the Moluccas; this map draws the whole archipelago, which the Dutch ruled only by about 1900. Britain's East India Company won Bengal in the 1750s and much of India by 1815.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          95,
+          8
+        ],
+        "zoom": 1.7
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "changes": "flash",
+          "inner": false
+        }
+      ],
+      "timeline": {
+        "years": [
+          1650,
+          1715,
+          1783,
+          1815,
+          1880
+        ],
+        "start": 1783,
+        "captions": {
+          "1783": "East India Company rule in Bengal and Madras.",
+          "1815": "Company rule across much of India.",
+          "1880": "The British Raj, ruled from London since 1858."
+        }
+      },
+      "stamp": "Claimed territory, approximate · historical-basemaps"
+    },
+    {
+      "title": "Snapshots of four centuries",
+      "text": "The same eight colours across four snapshots. Tap a map to jump there.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          10
+        ],
+        "zoom": 1
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "labels": false,
+          "inner": false
+        }
+      ],
+      "timeline": {
+        "years": [
+          1530,
+          1650,
+          1783,
+          1880
+        ],
+        "start": 1880
+      },
+      "media": {
+        "type": "multiples",
+        "layer": 0,
+        "years": [
+          1530,
+          1650,
+          1783,
+          1880
+        ],
+        "title": "Colonial empires, 1530–1880",
+        "extent": [
+          [
+            -170,
+            -50
+          ],
+          [
+            180,
+            75
+          ]
+        ]
+      }
+    },
+    {
+      "title": "A third of the world's land",
+      "text": "By these maps the eight powers ruled about 26% of the world's land in 1783, before the Americas broke away, and about 35% in 1900, Britain alone 24 million km². After Australia and New Zealand became self-governing the total was still about 27% in 1938.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          10
+        ],
+        "zoom": 1
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "cs",
+          "year": 1900,
+          "labels": false,
+          "inner": false
+        }
+      ],
+      "media": {
+        "type": "area",
+        "data": "area",
+        "series": "col_area",
+        "countries": [
+          "GBR",
+          "FRA",
+          "ESP",
+          "PRT",
+          "NLD",
+          "BEL",
+          "DEU",
+          "ITA"
+        ],
+        "labels": {
+          "GBR": "Britain",
+          "FRA": "France",
+          "ESP": "Spain",
+          "PRT": "Portugal",
+          "NLD": "Netherlands",
+          "BEL": "Belgium",
+          "DEU": "Germany",
+          "ITA": "Italy"
+        },
+        "title": "Colonial land area, million km² (home countries excluded)",
+        "fmt": "num"
+      },
+      "stamp": "1900 · CShapes 2.0",
+      "sources": [
+        "historical-basemaps"
+      ]
+    },
+    {
+      "title": "Late empires: Belgium, Germany, Italy",
+      "text": "Three newer states joined late. Belgium's King Leopold II took the Congo as a personal possession in 1885; Belgium annexed it in 1908. Germany gained colonies in Africa and the Pacific from 1884 and lost all of them after 1918. Italy took Eritrea, Somalia and, from 1911, Libya.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          18,
+          5
+        ],
+        "zoom": 1.8
+      },
+      "modernBorders": false,
+      "layers": [
+        {
+          "type": "shapes",
+          "data": "cs",
+          "year": "t",
+          "changes": "flash",
+          "inner": false,
+          "groups": [
+            "belgium",
+            "germany",
+            "italy"
+          ]
+        }
+      ],
+      "timeline": {
+        "years": [
+          1886,
+          1890,
+          1900,
+          1913,
+          1920,
+          1938
+        ],
+        "start": 1913,
+        "captions": {
+          "1913": "German, Belgian and Italian Africa before 1914.",
+          "1920": "Germany's colonies are gone, split among the victors."
+        }
+      },
+      "stamp": "Status at year end · CShapes 2.0"
+    }
+  ]
+}

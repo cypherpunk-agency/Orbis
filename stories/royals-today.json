@@ -1,0 +1,448 @@
+{
+ "id": "royals-today",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "Where monarchies remain",
+ "hook": "43 countries still have a king, queen, emperor, emir, sultan or pope as head of state. In most the monarch reigns; in a few the monarch still rules.",
+ "notes": "Monarchies, their type and succession: Wikipedia, 'List of current monarchies' (read 14 Oct 2026), which counts 43 sovereign states with a monarch as head of state ('parliamentary' is shown here as constitutional; Wikipedia calls its categories approximate). Commonwealth realms: Wikipedia, 'Commonwealth realm'. Houses: the infobox of each monarch's Wikipedia article. Descent from Christian IX: Wikipedia, 'Christian IX'. Small states are marked with dots. Norway's Harald V died on 28 August 2026; his son reigns as Haakon VIII.",
+ "data": {
+  "t": "data/history/royals-today.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "43 monarchies",
+   "text": "Wikipedia's list counts 43 sovereign states with a monarch as head of state: 13 in Asia, 12 in Europe, 9 in the Americas, 6 in Oceania and 3 in Africa. In 28 of them the monarch reigns and parliament governs. Ten are mixed, with monarchs who keep real power, and five are absolute: Saudi Arabia, Oman, Brunei, Eswatini and the Vatican.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     20,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "t",
+     "set": "type",
+     "colors": {
+      "parl": "c1",
+      "semi": "c3",
+      "abs": "c2"
+     }
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      1.52,
+      42.51
+     ],
+     "label": "Andorra",
+     "color": "c1",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -61.8,
+      17.08
+     ],
+     "label": "Antigua and Barbuda",
+     "color": "c1",
+     "r": 3.5
+    },
+    {
+     "at": [
+      50.56,
+      26.07
+     ],
+     "label": "Bahrain",
+     "color": "c3",
+     "r": 3.5
+    },
+    {
+     "at": [
+      114.73,
+      4.54
+     ],
+     "label": "Brunei",
+     "color": "c2",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -61.68,
+      12.12
+     ],
+     "label": "Grenada",
+     "color": "c1",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -62.78,
+      17.3
+     ],
+     "label": "St Kitts and Nevis",
+     "color": "c1",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -60.98,
+      13.91
+     ],
+     "label": "St Lucia",
+     "color": "c1",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -61.2,
+      13.25
+     ],
+     "label": "St Vincent",
+     "color": "c1",
+     "r": 3.5
+    },
+    {
+     "at": [
+      9.55,
+      47.16
+     ],
+     "label": "Liechtenstein",
+     "color": "c3",
+     "r": 3.5
+    },
+    {
+     "at": [
+      7.42,
+      43.74
+     ],
+     "label": "Monaco",
+     "color": "c3",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -175.2,
+      -21.17
+     ],
+     "label": "Tonga",
+     "color": "c3",
+     "r": 3.5
+    },
+    {
+     "at": [
+      179.2,
+      -8.52
+     ],
+     "label": "Tuvalu",
+     "color": "c1",
+     "r": 3.5
+    },
+    {
+     "at": [
+      12.45,
+      41.9
+     ],
+     "label": "Vatican City",
+     "color": "c2",
+     "r": 3.5
+    },
+    {
+     "at": [
+      6.13,
+      49.61
+     ],
+     "label": "Luxembourg",
+     "color": "c1",
+     "r": 3.5
+    }
+   ]
+  },
+  {
+   "title": "One king, fifteen countries",
+   "text": "Charles III is king of 15 countries, the Commonwealth realms: Britain, Canada, Australia, New Zealand, Papua New Guinea and ten others, most of them in the Caribbean and the Pacific. Each has its own crown in law; governors-general act for him.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     20,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "t",
+     "set": "realms",
+     "colors": {
+      "realm": "c2"
+     }
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      -61.8,
+      17.08
+     ],
+     "label": "Antigua and Barbuda",
+     "color": "c2",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -61.68,
+      12.12
+     ],
+     "label": "Grenada",
+     "color": "c2",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -62.78,
+      17.3
+     ],
+     "label": "St Kitts and Nevis",
+     "color": "c2",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -60.98,
+      13.91
+     ],
+     "label": "St Lucia",
+     "color": "c2",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -61.2,
+      13.25
+     ],
+     "label": "St Vincent",
+     "color": "c2",
+     "r": 3.5
+    },
+    {
+     "at": [
+      179.2,
+      -8.52
+     ],
+     "label": "Tuvalu",
+     "color": "c2",
+     "r": 3.5
+    }
+   ]
+  },
+  {
+   "title": "Chosen, not born",
+   "text": "Not every crown is inherited. Cardinals elect the pope, ruler of the Vatican. Malaysia's nine hereditary state rulers choose a king from among themselves every five years. Andorra's two co-princes are France's elected president and the bishop of Urgell. In Saudi Arabia, the UAE, Jordan, Cambodia and Eswatini a royal council chooses or confirms the heir.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     50,
+     20
+    ],
+    "zoom": 1.4
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "t",
+     "set": "elect",
+     "colors": {
+      "elected": "c2",
+      "exofficio": "c5",
+      "council": "c3",
+      "heredit": "muted"
+     }
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      1.52,
+      42.51
+     ],
+     "label": "Andorra",
+     "color": "c5",
+     "r": 3.5
+    },
+    {
+     "at": [
+      12.45,
+      41.9
+     ],
+     "label": "Vatican City",
+     "color": "c2",
+     "r": 3.5
+    }
+   ]
+  },
+  {
+   "title": "Europe's twelve",
+   "text": "Twelve European states have a monarch. Ten crowns are hereditary, held by nine houses: Windsor, Bourbon, Glücksburg in Denmark and Norway, Bernadotte, Orange-Nassau, Belgium's Saxe-Coburg line, Nassau in Luxembourg, and the princely houses of Liechtenstein and Monaco. The pope and Andorra's co-princes hold office, not a family seat.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     6,
+     52
+    ],
+    "zoom": 3.4
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "t",
+     "set": "houses",
+     "colors": {
+      "windsor": "c2",
+      "bourbon": "c1",
+      "belgium": "#3E9B4F",
+      "orange": "#EE8A2A",
+      "nassau": "c3",
+      "glucksburg": "c5",
+      "bernadotte": "s1",
+      "liechtenstein": "c4",
+      "grimaldi": "c7",
+      "none": "muted"
+     }
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      1.52,
+      42.51
+     ],
+     "label": "Andorra",
+     "color": "muted",
+     "r": 3.5
+    },
+    {
+     "at": [
+      9.55,
+      47.16
+     ],
+     "label": "Liechtenstein",
+     "color": "c4",
+     "r": 3.5
+    },
+    {
+     "at": [
+      7.42,
+      43.74
+     ],
+     "label": "Monaco",
+     "color": "c7",
+     "r": 3.5
+    },
+    {
+     "at": [
+      12.45,
+      41.9
+     ],
+     "label": "Vatican City",
+     "color": "muted",
+     "r": 3.5
+    },
+    {
+     "at": [
+      6.13,
+      49.61
+     ],
+     "label": "Luxembourg",
+     "color": "c3",
+     "r": 3.5
+    }
+   ]
+  },
+  {
+   "title": "Where monarchs still rule",
+   "text": "Real royal power survives mostly around the Persian Gulf. The kings of Saudi Arabia and the sultans of Oman and Brunei make law themselves; in Kuwait, Qatar, Bahrain, the UAE, Jordan and Morocco parliaments or councils exist, but the monarch keeps most power.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     45,
+     25
+    ],
+    "zoom": 2.6
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "t",
+     "set": "type",
+     "colors": {
+      "semi": "c3",
+      "abs": "c2"
+     }
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      50.56,
+      26.07
+     ],
+     "label": "Bahrain",
+     "color": "c3",
+     "r": 3.5
+    },
+    {
+     "at": [
+      114.73,
+      4.54
+     ],
+     "label": "Brunei",
+     "color": "c2",
+     "r": 3.5
+    },
+    {
+     "at": [
+      9.55,
+      47.16
+     ],
+     "label": "Liechtenstein",
+     "color": "c3",
+     "r": 3.5
+    },
+    {
+     "at": [
+      7.42,
+      43.74
+     ],
+     "label": "Monaco",
+     "color": "c3",
+     "r": 3.5
+    },
+    {
+     "at": [
+      -175.2,
+      -21.17
+     ],
+     "label": "Tonga",
+     "color": "c3",
+     "r": 3.5
+    },
+    {
+     "at": [
+      12.45,
+      41.9
+     ],
+     "label": "Vatican City",
+     "color": "c2",
+     "r": 3.5
+    }
+   ]
+  }
+ ]
+}

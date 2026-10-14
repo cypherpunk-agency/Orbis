@@ -1,0 +1,315 @@
+{
+ "id": "royals-cousins",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "The grandmother of Europe",
+ "hook": "By 1914 the grandchildren of Queen Victoria and of Denmark's Christian IX sat on half of Europe's thrones, and then went to war with each other.",
+ "notes": "Family links: Wikipedia, 'Descendants of Queen Victoria', 'Queen Victoria' and 'Christian IX', and the article on each person for the years they held the throne. A country is coloured while a descendant (or the founder) is monarch or the monarch's spouse. Lines run from London or Copenhagen to the court of each descendant who reigned or was consort; dashed lines are grandsons who inherited through a daughter. Sides in 1914 are the war declarations of early August (Wikipedia, 'July Crisis'), drawn on today's countries. Event facts: the Wikipedia article named on each card.",
+ "data": {
+  "c": "data/history/royals-cousins.json",
+  "ev": "data/history/royals-cards-cousins.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "Victoria's grandchildren",
+   "text": "Queen Victoria married her nine children into Europe's royal families. By 1914 her grandchildren were German emperor, king of Britain, empress of Russia, and queens of Norway, Spain, Greece and Romania. Of her grandchildren, 34 lived to adulthood; her family links earned her the nickname 'grandmother of Europe'.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     12,
+     50
+    ],
+    "zoom": 2.7
+   },
+   "timeline": {
+    "years": [
+     1888,
+     1894,
+     1901,
+     1905,
+     1906,
+     1913,
+     1914
+    ],
+    "start": 1914,
+    "spacing": "time"
+   },
+   "stamp": "Thrones in {t} · Wikipedia family articles",
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "c",
+     "set": "thrones",
+     "year": "t",
+     "unit": "areas",
+     "title": "Throne",
+     "colors": {
+      "victoria": "c2",
+      "christian": "c1",
+      "both": "c5",
+      "fallen": "muted"
+     }
+    },
+    {
+     "type": "lines",
+     "data": "c",
+     "set": "victoria",
+     "year": "t",
+     "width": 2
+    },
+    {
+     "type": "points",
+     "data": "c",
+     "set": "courts",
+     "r": 3,
+     "color": "ink"
+    }
+   ]
+  },
+  {
+   "title": "Christian IX, father-in-law of Europe",
+   "text": "Denmark's Christian IX had less land and fewer children, but did almost as well. His daughter Alexandra became queen of Britain, Dagmar empress of Russia; his son George was elected king of Greece in 1863. Grandsons followed: Nicholas II in Russia, George V in Britain, Constantine I in Greece and Haakon VII in Norway.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     16,
+     51
+    ],
+    "zoom": 2.7
+   },
+   "timeline": {
+    "years": [
+     1863,
+     1881,
+     1894,
+     1901,
+     1905,
+     1910,
+     1913
+    ],
+    "start": 1913,
+    "spacing": "time"
+   },
+   "stamp": "Thrones in {t} · Wikipedia family articles",
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "c",
+     "set": "thrones",
+     "year": "t",
+     "unit": "areas",
+     "title": "Throne",
+     "colors": {
+      "victoria": "c2",
+      "christian": "c1",
+      "both": "c5",
+      "fallen": "muted"
+     }
+    },
+    {
+     "type": "lines",
+     "data": "c",
+     "set": "christian",
+     "year": "t",
+     "width": 2
+    },
+    {
+     "type": "points",
+     "data": "c",
+     "set": "courts",
+     "r": 3,
+     "color": "ink"
+    }
+   ]
+  },
+  {
+   "title": "1914: cousins at war",
+   "text": "George V and Wilhelm II were first cousins through Victoria. George V and Nicholas II were first cousins through Christian IX's daughters. In the last days of July 1914 'Willy' and 'Nicky' wired each other in English to stop the war. On 1 August Germany declared war on Russia; on 4 August Britain declared war on Germany.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     15,
+     52
+    ],
+    "zoom": 2.6
+   },
+   "timeline": {
+    "years": [
+     19140728,
+     19140801,
+     19140804
+    ],
+    "format": "date",
+    "start": 19140804
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "c",
+     "set": "war1914",
+     "unit": "areas",
+     "title": "Sides",
+     "colors": {
+      "allies": "c1",
+      "central": "c2"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 1
+    }
+   ],
+   "points": [
+    {
+     "at": [
+      -0.14,
+      51.5
+     ],
+     "label": "George V (Britain)",
+     "color": "ink",
+     "r": 4
+    },
+    {
+     "at": [
+      13.4,
+      52.52
+     ],
+     "label": "Wilhelm II (Germany)",
+     "color": "ink",
+     "r": 4
+    },
+    {
+     "at": [
+      30.31,
+      59.94
+     ],
+     "label": "Nicholas II (Russia)",
+     "color": "ink",
+     "r": 4
+    }
+   ],
+   "routes": [
+    {
+     "path": [
+      [
+       -0.14,
+       51.5
+      ],
+      [
+       13.4,
+       52.52
+      ]
+     ],
+     "color": "c5",
+     "width": 2,
+     "dash": true
+    },
+    {
+     "path": [
+      [
+       -0.14,
+       51.5
+      ],
+      [
+       30.31,
+       59.94
+      ]
+     ],
+     "color": "c5",
+     "width": 2,
+     "dash": true
+    },
+    {
+     "path": [
+      [
+       13.4,
+       52.52
+      ],
+      [
+       30.31,
+       59.94
+      ]
+     ],
+     "color": "c5",
+     "width": 2,
+     "dash": true
+    }
+   ]
+  },
+  {
+   "title": "The thrones fall",
+   "text": "The war destroyed two of the three cousins' thrones. Nicholas II abdicated in March 1917; the Bolsheviks shot him and his family in July 1918. Wilhelm II fled to the Netherlands in November 1918. George V kept his crown, and in 1917 dropped his German house name for Windsor.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     15,
+     52
+    ],
+    "zoom": 2.6
+   },
+   "timeline": {
+    "years": [
+     1914,
+     1917,
+     1918
+    ],
+    "start": 1918
+   },
+   "stamp": "Thrones in {t} · Wikipedia family articles",
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "c",
+     "set": "thrones",
+     "year": "t",
+     "unit": "areas",
+     "title": "Throne",
+     "colors": {
+      "victoria": "c2",
+      "christian": "c1",
+      "both": "c5",
+      "fallen": "muted"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 1
+    }
+   ]
+  },
+  {
+   "title": "Their heirs still reign",
+   "text": "Christian IX's line outlasted the empires. Six of Europe's ten hereditary monarchs today descend from him: the kings of Denmark, Britain, Belgium, Norway and Spain and the Grand Duke of Luxembourg.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     5,
+     52
+    ],
+    "zoom": 3.2
+   },
+   "layers": [
+    {
+     "type": "categories",
+     "data": "c",
+     "set": "heirs",
+     "colors": {
+      "yes": "c1",
+      "no": "muted"
+     }
+    }
+   ]
+  }
+ ]
+}

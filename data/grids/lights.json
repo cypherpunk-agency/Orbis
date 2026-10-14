@@ -1,0 +1,31 @@
+{
+ "source": "eog-vnl",
+ "asOf": "2024",
+ "retrieved": "2026-10-14",
+ "note": "EOG VIIRS Nighttime Lights V2 annual average_masked (via Zenodo 17294744). Mean radiance over each 5′ cell (≈ 9 km), land and water; cells below 0.6 nW/cm²/sr left blank, clamped at 60. The 2012 composite starts in April 2012, when VIIRS data begin; pixels capped at 3,277 (gas flares).",
+ "units": "nW/cm²/sr",
+ "grid": {
+  "width": 4320,
+  "height": 2160,
+  "bbox": [
+   -180,
+   -90,
+   180,
+   90
+  ]
+ },
+ "encoding": {
+  "type": "log",
+  "min": 0.6,
+  "max": 60.0,
+  "nodata": 0
+ },
+ "palette": "sequential",
+ "frames": {
+  "2012": "data/grids/lights-2012.png",
+  "2016": "data/grids/lights-2016.png",
+  "2021": "data/grids/lights-2021.png",
+  "2022": "data/grids/lights-2022.png",
+  "2024": "data/grids/lights-2024.png"
+ }
+}

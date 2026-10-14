@@ -63,12 +63,13 @@ TOPICS = {
 WGI = {"GE.EST", "RL.EST", "CC.EST", "VA.EST", "PV.EST", "RQ.EST"}
 
 def licence_tier(lic):
-    """'commercial' (CC BY / CC0), 'noncommercial' (open but NC or share-alike: allowed as a labelled layer), or None
+    """'commercial' (CC BY / CC0), 'sharealike' (CC BY-SA), 'noncommercial' (open but NC: allowed as a labelled layer), or None
     (redistribution restricted or terms unclear, e.g. SIPRI's limit on reproducing its data)."""
     L = (lic or "").upper().replace("-", " ")
     if "CC0" in L or "PUBLIC DOMAIN" in L: return "commercial"
     if "CC BY" in L or "CREATIVE COMMONS ATTRIBUTION" in L:
-        return "noncommercial" if ("NC" in L.split() or "NONCOMMERCIAL" in L.replace(" ", "") or " SA" in L or "SHAREALIKE" in L.replace(" ", "")) else "commercial"
+        if "NC" in L.split() or "NONCOMMERCIAL" in L.replace(" ", ""): return "noncommercial"
+        return "sharealike" if (" SA" in L or "SHAREALIKE" in L.replace(" ", "")) else "commercial"
     return None
 
 def get(url, tries=4):

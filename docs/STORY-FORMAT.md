@@ -152,6 +152,39 @@ Build with mapshaper: `node tools/node_modules/mapshaper/bin/mapshaper in.geojso
 ```
 `members` values are a start year, or `[start, end)`.
 
+## Series features (October 2026)
+
+Added for the history series; all optional.
+
+- **Scene `stamp`**: `"stamp": "Control as of {t} · Wikipedia (volunteer-edited)"`: small text bottom right of the map, also in saved images; `{t}` is the current timeline step.
+- **Timeline `spacing: "time"`**: uneven dates sit at their real distance on the slider (ticks mark each step). **`playSpeed`**: milliseconds per step when playing.
+- **Switch options**: a layer value that is exactly `"{key}"` takes the option's value with its type (number, boolean, list), e.g. `"diverging": "{div}"`. An option can carry `"view"` to fly elsewhere.
+- **`shapes`**: `"dots": true` draws each area's source point (`properties.at`) coloured by group (`dotR`, `dotMinZoom`); groups with `"hollow": true` draw rings. `"fill": false` hides the areas (dots only; areas stay tappable). `"changes": "flash"` (or `"flash": true`) briefly fills newly gained areas when the timeline moves (off with reduced motion).
+- **`regions` categories**: `{ "type":"regions", "country":"USA", "data":"a", "set":"pres", "year":"t", "colors":{"dem":"c1","rep":"c2"}, "shade":{"min":50,"max":70}, "unit":"states" }` with dataset `sets.pres = { labels, byYear:{year:{regionId:cat}}, shareByYear:{year:{regionId:number}} }` (or `values`/`share` without years). Lighter = smaller share. Legend chips count regions per category; tap shows "Ohio · Republican · 55.1% · 2024" (`shareFmt` to change the number format).
+- **Numeric `regions`**: `diverging`, `mid`, `vmin`, `vmax`, `reverse`, like `choropleth`.
+- **`lines` and `points`**: items with `from`/`to` follow the timeline. `lines` `"labels": "once"` labels only the longest piece of each name.
+- **`points`, `places`, `cards`**: `minZoom` (per layer or per item) hides them until the reader zooms in. `points` `icon` and card kinds `"icon"`: `swords` (drawn as crossed blades), and legend symbols `star`, `flag`, `anchor`, `crown`, `cross`.
+- **Card dates**: `"date": [a, b]` is a range ("760–740 BC"); `"circa": true` prefixes "c.". Ranges sort and filter by their start. Years are astronomical (1 BC = 0, so 760 BC = -759).
+- **`symbols` `"scale": "timeline"`**: one size scale across all timeline steps.
+- **`flows`**: `outLabel`/`inLabel` rename the per-country totals ("exports"/"imports"); `"totals": false` drops them.
+- **`lines` `"fade": true`**: lines not yet (or no longer) valid stay as faint dashed ghosts (`fadeColor`).
+- **Media `multiples`**: `{ "type":"multiples", "layer":0, "years":[1976,1992,2008,2024], "title":"..." }` draws one small map per year for that scene layer (`regions` or `shapes`; the US uses an Albers projection with Alaska and Hawaii inset; `extent` [[lon,lat],[lon,lat]] to frame others). Tap a map to jump the timeline there. A margin chart works with the existing `line` media over a series keyed by region id, with `labels` for names.
+- **`points` `"under": true`**: plain dots drawn beneath lines (no halo, no labels), e.g. forts under a wall. **`cards` `"kinds": ["war"]`** shows only those kinds.
+- **Date ranges**: the era is written once ("AD 100–260", "264–241 BC") and twice only across it ("27 BC–AD 14").
+- **`regions` change lists**: a set may instead give `"codes": {code: {"label", "cat"}}` and `"changes": {regionId: [[year, code], ...]}`; the value at a year is the last code at or before it (any year works), coloured by `codes[code].cat`, tap shows the code's label. `"only": ["church", ...]` colours just those categories.
+- **`places` `"only": [names]`**: keeps places whose name or any period name is listed (so "Constantinople" keeps "Istanbul" after 1453).
+- **`regions` `"countNote": {"US-DC": "DC"}`**: keeps an id out of the legend count and names it ("19 states + DC").
+- **`shapes` legend order** follows the dataset's `groups` order (or the layer's `groups` list).
+- **`cards` `window`** is always in years, also on `"format": "date"` timelines.
+- **Story or scene `"pov": "UA"`**: disputed areas from `data/geopolitics/pov.json` are filled, outlined and tapped as part of the country that view assigns them to (keys as in that file's `views`, e.g. "UA" puts Crimea with Ukraine). The base map otherwise follows Natural Earth's de facto borders.
+- **Gantt `row`**: items with the same `"row"` share one line (label from the first labelled item; each bar keeps its own tooltip); `"ticks": [1066, 1485]` draws faint guide lines.
+- **Border views**: the Map menu switches all maps between **As controlled** (Natural Earth's de facto borders, the default) and **UN view** (`data/geopolitics/un-view.json`: areas assigned per named UN resolutions, unresolved ones neutral grey; tap shows the basis). Contested areas are outlined dashed in both. A story's `pov` overrides the reader's choice.
+- **Series `coming`**: in `stories/campaigns.json`, `"coming": [{"title": "...", "hook": "..."}]` lists planned chapters, greyed and not clickable.
+
+## Elections explorer (`#elections`)
+
+Reads `data/elections/world.json` (`{source, asOf, note, countries: {ISO3: {last: {date, type, turnout, winner, family, share}, n}}}`) and, when a country is tapped, `data/elections/<ISO3>.json` (`{elections: [{date, type, turnout, parties: [{name, share, seats, family}]}]}`). Party families: left, centre-left, centre, liberal, centre-right, right, green, regional, independent, other. Measures: winner's family, turnout, winner's share, years since the last election.
+
 ## Formats (`fmt`)
 
 `int` (1,234), `num`, `dollar` ($6.22), `tpp` (tonnes/person), `mil` ("1,464 M"), `yrs`, `pct0`, `usd`, `eur`, `people`, `degc`, `ppkm2`, `d3:<format>` (any d3-format string, e.g. `d3:$.2f`), `kbd` thousand barrels/day → "1.2 m b/d", `mbd`, `bcm`, `bcfd`, `musd` (million USD → "$1.2 bn"), `busd` (billion USD → "$1.2 tn"), `t` (tonnes), `kt` (thousand tonnes), `kg`, `mt` (thousand tonnes → "Mt"), `pct` (value already in %), `bpp`, `m3pp`. Anything else: compact SI.

@@ -1,0 +1,28 @@
+{
+ "source": "eog-vnl",
+ "asOf": "2024",
+ "retrieved": "2026-10-14",
+ "note": "Ratio of mean radiance, later year ÷ earlier year, per 5′ cell (≈ 9 km) from EOG VNL V2 annual average_masked (via Zenodo 17294744). Frames: '2012–2024' = 2012→2024, '2021–2024' = 2021→2024. Shown where either year reaches 0.5 nW/cm²/sr; 0.1 is added to both years before dividing, so newly lit cells saturate at the top. Clamped to 0.1–10 (1 = no change). The 2012 composite starts in April 2012, when VIIRS data begin.",
+ "units": "light, later ÷ earlier year",
+ "grid": {
+  "width": 4320,
+  "height": 2160,
+  "bbox": [
+   -180,
+   -90,
+   180,
+   90
+  ]
+ },
+ "encoding": {
+  "type": "log",
+  "min": 0.1,
+  "max": 10.0,
+  "nodata": 0
+ },
+ "palette": "diverging",
+ "frames": {
+  "2012–2024": "data/grids/lights-change-2012-2024.png",
+  "2021–2024": "data/grids/lights-change-2021-2024.png"
+ }
+}

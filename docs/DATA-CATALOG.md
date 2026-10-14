@@ -215,6 +215,28 @@ Check level: P = read at the publisher's own page, file or API; S = secondary; U
 | USHMM, Arolsen Archives | Per item / no redistribution | — | Ask / ruled out for files | P |
 | Copernicus Sentinel-2, NASA GIBS HLS | Open | HLS tiles stop at zoom 12 | Base | P |
 
+### Ukraine war (checked 14 October 2026)
+
+| Source | Licence | Key terms | Verdict | Check |
+|---|---|---|---|---|
+| NASA FIRMS fires (VIIRS/MODIS) | NASA open data (CC0 unless marked) | Country CSV per year without login; cite "NASA FIRMS". Suomi NPP ends 2 Nov 2026: move to NOAA-20/21 products | Base | P |
+| OCHA COD-AB Ukraine (admin 1–3) | CC BY-IGO | Hromada boundaries | Base | P |
+| OCHA Ukraine HNO/HNRP (people in need) | CC BY | 2022–2026 | Base | P |
+| NRC front-line proximity by hromada | CC BY | Dec 2025 | Base | P |
+| WHO attacks on health care, Ukraine | CC BY | Weekly since 24 Feb 2022 | Base | P |
+| Black Sea Grain Initiative (UN JCC) | CC BY | Aug 2022 – Jul 2023, complete | Base | P |
+| OCHA civilian casualties 2016–2021 | CC BY | No open table for 2022+ (OHCHR site terms forbid redistribution) | Base (2016–21); quote 2022+ totals only | P |
+| data.gov.ua, Ukrstat | Open by law incl. commercial (link to source) / CC BY 4.0 | Martial law emptied most wartime series | Base (per dataset) | P |
+| UNOSAT Kakhovka flood, city damage | CC BY-SA (some CC BY-IGO) | Copernicus EMS has no public Ukraine activation | Story (SA) | P |
+| World Bank RDNA5 | Non-commercial reproduction | PDF tables only | Story (NC) | P |
+| Mediazona/BBC named Russian dead | CC BY-SA 4.0 | Regional aggregates only, never names | Story (SA) | P |
+| Air-raid sirens dataset (Vadimkin, GitHub) | MIT | Every alert since Mar 2022 | Story | P |
+| VIINA (Zhukov) | ODbL | Events usable; its control layer derives from ISW/DeepState | Story (events only) | P |
+| Insecurity Insight | CC BY-SA | Attacks on health and aid | Story (SA) | P |
+| IOM DTM Ukraine | Non-commercial, no redistribution | Unlike IOM Missing Migrants | No (ask IOM) | P |
+| KSE damage, Oryx, WarSpotting, alerts.in.ua, CSIS, Bellingcat TimeMap, Ukrenergo | All rights reserved / no licence | — | Ask | P/S |
+| UNESCO damaged cultural sites | Terms unread (blocked) | — | U | S |
+
 ### Conflicts now
 
 | Source | Licence | Key terms | Verdict | Check |

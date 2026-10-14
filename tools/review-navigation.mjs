@@ -37,7 +37,7 @@ for(const config of [{width:1280,height:800,colorScheme:'dark'},{width:390,heigh
  if(!config.reducedMotion){
   await p.locator('[data-mode="flat"]').click();await p.waitForTimeout(50);
   await p.setViewportSize({width:config.width===1280?390:1280,height:config.width===1280?844:800});
-  await p.waitForTimeout(200);
+  await p.waitForFunction(()=>document.querySelector('#map').style.width===innerWidth+'px');
   if(await p.locator('.projection-snapshot').count())throw Error('Resize retained a stretched projection snapshot');
   if(await p.locator('#map').evaluate(e=>getComputedStyle(e).opacity)!=='1')throw Error('Resize left map faded');
   await p.setViewportSize({width:config.width,height:config.height});await p.waitForTimeout(200);

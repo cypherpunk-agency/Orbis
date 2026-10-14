@@ -3,7 +3,7 @@
   --t0:#EDE3CC;--t1:#E0E5CC;--t2:#EBD8CF;--t3:#D9E1E3;--t4:#E6DCE6;
   --border:#8F897A;--grat:rgba(30,70,80,.14);--ink:#1D2A30;--ink-soft:#4C5B61;--halo:rgba(246,244,238,.92);
   --paper:#FAF8F3;--rule:#D8D2C4;--accent:#A8146F;
-  --c1:#23559E;--c2:#B5197A;--c3:#C27C0E;--c4:#0E7C86;--c5:#6B5BA8;--muted:#8A8F8C;--nodata:#E4E1D8;--rim:rgba(29,42,48,.35);
+  --c1:#23559E;--c2:#B5197A;--c3:#C27C0E;--c4:#0E7C86;--c5:#6B5BA8;--c6:#6E7F2A;--c7:#A23B2A;--c8:#7A5C3E;--muted:#8A8F8C;--nodata:#E4E1D8;--rim:rgba(29,42,48,.35);
   --s0:#F3E8CB;--s1:#E9A57C;--s2:#C2436E;--s3:#5E1349;
   --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
   --ui:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
@@ -14,14 +14,14 @@
   --t0:#34443F;--t1:#383E4A;--t2:#413A40;--t3:#2D4047;--t4:#3C4437;
   --border:#5E7176;--grat:rgba(180,220,230,.10);--ink:#E8EEF0;--ink-soft:#A9B7BC;--halo:rgba(12,26,36,.85);
   --paper:#132430;--rule:#2B3F4A;--accent:#F06AAE;
-  --c1:#5B8FE0;--c2:#E8559F;--c3:#E0A33A;--c4:#2EB3BC;--c5:#9C8CE0;--muted:#4A5357;--nodata:#25343A;--rim:rgba(180,220,230,.3);
+  --c1:#5B8FE0;--c2:#E8559F;--c3:#E0A33A;--c4:#2EB3BC;--c5:#9C8CE0;--c6:#A9BF5A;--c7:#E07A63;--c8:#C29B74;--muted:#4A5357;--nodata:#25343A;--rim:rgba(180,220,230,.3);
   --s0:#2F4247;--s1:#7C5A6C;--s2:#D04D85;--s3:#FFB3D6;}}
 :root[data-theme="dark"]{
   --space:#0C1A24;--ocean:#123047;--land:#2B3A40;
   --t0:#34443F;--t1:#383E4A;--t2:#413A40;--t3:#2D4047;--t4:#3C4437;
   --border:#5E7176;--grat:rgba(180,220,230,.10);--ink:#E8EEF0;--ink-soft:#A9B7BC;--halo:rgba(12,26,36,.85);
   --paper:#132430;--rule:#2B3F4A;--accent:#F06AAE;
-  --c1:#5B8FE0;--c2:#E8559F;--c3:#E0A33A;--c4:#2EB3BC;--c5:#9C8CE0;--muted:#4A5357;--nodata:#25343A;--rim:rgba(180,220,230,.3);
+  --c1:#5B8FE0;--c2:#E8559F;--c3:#E0A33A;--c4:#2EB3BC;--c5:#9C8CE0;--c6:#A9BF5A;--c7:#E07A63;--c8:#C29B74;--muted:#4A5357;--nodata:#25343A;--rim:rgba(180,220,230,.3);
   --s0:#2F4247;--s1:#7C5A6C;--s2:#D04D85;--s3:#FFB3D6;}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -267,3 +267,28 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .atl-prof small{grid-column:1/-1;color:var(--ink-soft);font-size:12px}
 .nc-badge{font:600 10px var(--ui);font-style:normal;color:var(--c3);border:1px solid var(--c3);border-radius:4px;padding:0 3px;vertical-align:1px}
 .atl-list button .atl-n{color:inherit;font-size:inherit;white-space:normal}
+.tl-ticks{position:relative;height:6px;margin:-6px 9px 4px}
+.tl-ticks i{position:absolute;top:0;width:1px;height:6px;background:var(--ink-soft);opacity:.55}
+.camp-list li.coming>div{display:flex;gap:10px;align-items:flex-start;padding:8px 6px;opacity:.55;cursor:default}
+.md-mult .mult-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px}
+.mult{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px;border:1px solid var(--rule);border-radius:6px;background:transparent;color:var(--ink);font:500 .8rem var(--ui);cursor:pointer}
+.mult svg{width:100%;height:auto}
+.mult.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.mult:disabled{cursor:default}
+.elx-list{list-style:none;margin:8px 0 0;padding:0}
+.elx-e{padding:6px 0;border-top:1px solid var(--rule)}
+.elx-h{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;margin:2px 0 6px;font:500 .9rem var(--ui)}
+.elx-h span{color:var(--ink-soft)}
+.elx-none{color:var(--ink-soft);font:500 .9rem var(--ui)}
+/* licence element badges: BY, SA, NC, ND, CC0, PD */
+.lts{display:inline-flex;gap:2px;margin-left:4px}
+.lt{font:600 9.5px/1.4 var(--ui);font-style:normal;letter-spacing:.02em;border:1px solid var(--rule);border-radius:3px;padding:0 3px;color:var(--ink-soft);vertical-align:1px}
+.lt-nc,.lt-perm{color:var(--c3);border-color:var(--c3)}
+.lt-sa{color:var(--c4);border-color:var(--c4)}
+.lt-nd{color:var(--c7);border-color:var(--c7)}
+.lt-cc0,.lt-pd{color:var(--c6);border-color:var(--c6)}
+.src.sa{border-color:var(--c4);color:var(--ink)}
+.src.sa::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c4);flex:none}
+.lic-use.sa{color:var(--c4)}
+.lic-key{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 .85rem var(--ui);color:var(--ink-soft);margin:0 0 12px}
+#bmMenu .bm-h{font:600 .72rem var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding:10px 12px 2px;border-top:1px solid var(--rule);margin-top:4px}

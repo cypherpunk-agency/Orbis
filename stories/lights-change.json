@@ -1,0 +1,275 @@
+{
+  "id": "lights-change",
+  "cat": "Planet",
+  "title": "Lights out, lights on, 2012–2024",
+  "hook": "Satellites see the world's night glow up by half in twelve years, except where war, crisis or thrift switched it off.",
+  "notes": "This product was made utilizing VIIRS Nighttime Lights (Annual VNL V2) data produced by the Earth Observation Group, Payne Institute for Public Policy, Colorado School of Mines (CC BY 4.0). Files from the open mirror by T. Hengl / OpenGeoHub (Zenodo 10.5281/zenodo.17294744, CC BY 4.0), 'average_masked' layers for 2012–2024 (that record's 2000–2011 layers are modelled and not used). Orbis summed radiance × area into 5′ cells (≈ 9 km) and into countries (Natural Earth 1:50m). Change maps divide one year by another. Totals for cities are boxes around them, not city limits: Kharkiv, Mariupol, Aleppo, Sanaa, Khartoum, Gaza (all of the Strip, and its northern part), Paris. The satellite passes at about 1:30 am local time, so it sees what stays lit after midnight. The 2012 composite starts in April 2012; world light grew 52% from 2012 to 2024 and 38% from 2013. Gas flares are not masked and the mirror caps pixels at 3,277 nW/cm²/sr; flaring countries such as Iraq and Iran jump in 2022, probably a processing change. Snow and processing also move single years (e.g. Ukraine 2021), so Ukraine's drop is measured against 2019–2021. Small countries with little light can show large percentage swings. France: Cerema study of 19,262 communes (July 2025), via Banque des Territoires.",
+  "data": {
+    "lights": "data/grids/lights.json",
+    "change": "data/grids/lights-change.json",
+    "countries": "data/planet/lights.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "A brighter planet",
+      "text": "Between 2012 and 2024, the light that satellites see on Earth at night grew by about half. Red marks places that shine brighter than in 2012, blue places that went dimmer. The red is everywhere: new roads, suburbs and villages connected to the grid.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          15,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "change",
+          "frame": "2012–2024",
+          "title": "Light in 2024 ÷ light in 2012",
+          "fmt": "d3:.1~f"
+        }
+      ]
+    },
+    {
+      "title": "Country by country",
+      "text": "Nearly nine in ten countries give off more light than in 2012. Among the larger ones, the deepest drops are in Yemen, Ukraine and Syria, all at war. Parts of Western Europe are dimmer too, led by France and the Netherlands. Press Play to watch it year by year.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          15,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "countries",
+          "series": "chg",
+          "year": "t",
+          "diverging": true,
+          "mid": 0,
+          "vmin": -100,
+          "vmax": 100,
+          "fmt": "pct0",
+          "title": "Change in night light since 2012 (colours stop at ±100%)"
+        }
+      ],
+      "timeline": {
+        "years": [
+          2013,
+          2024
+        ],
+        "start": 2024
+      }
+    },
+    {
+      "title": "West Africa lights up",
+      "text": "Some of the fastest growth is in West Africa. Ghana, Côte d'Ivoire and Senegal each give off about six times as much light as in 2012: red marks cells that got brighter. Nigeria, the region's giant, is about where it was in 2012.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -3,
+          10
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "change",
+          "frame": "2012–2024",
+          "title": "Light in 2024 ÷ light in 2012",
+          "fmt": "d3:.1~f"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            -0.19,
+            5.6
+          ],
+          "label": "Accra",
+          "r": 3
+        },
+        {
+          "at": [
+            -4.01,
+            5.33
+          ],
+          "label": "Abidjan",
+          "r": 3
+        },
+        {
+          "at": [
+            -17.45,
+            14.69
+          ],
+          "label": "Dakar",
+          "r": 3
+        },
+        {
+          "at": [
+            3.38,
+            6.52
+          ],
+          "label": "Lagos",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "Ukraine goes dark",
+      "text": "After Russia's invasion in February 2022, Ukraine gave off about two-thirds less light than in 2019–2021. Around Kharkiv and Mariupol, close to the fighting, nine-tenths of the light went out. By 2024 the country had won back only part of it.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33,
+          48.8
+        ],
+        "zoom": 8
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "lights",
+          "frame": "2021",
+          "compare": "2022",
+          "title": "Night light, nW/cm²/sr",
+          "fmt": "d3:.1~f"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            36.23,
+            49.99
+          ],
+          "label": "Kharkiv",
+          "r": 3
+        },
+        {
+          "at": [
+            37.55,
+            47.1
+          ],
+          "label": "Mariupol",
+          "r": 3
+        },
+        {
+          "at": [
+            30.52,
+            50.45
+          ],
+          "label": "Kyiv",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "Syria and Yemen",
+      "text": "Between 2012 and 2016, Syria lost about two-thirds of its light and Yemen even more. Aleppo and Sanaa, once among the brightest cities in the region, went more than 90% dark.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          40.5,
+          26
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "lights",
+          "frame": "2012",
+          "compare": "2016",
+          "title": "Night light, nW/cm²/sr",
+          "fmt": "d3:.1~f"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            37.16,
+            36.2
+          ],
+          "label": "Aleppo",
+          "r": 3
+        },
+        {
+          "at": [
+            44.21,
+            15.35
+          ],
+          "label": "Sanaa",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "Sudan and Gaza, 2023",
+      "text": "Two wars began in 2023. By 2024, Khartoum gave off about 70% less light than in 2022, after fighting broke out in April 2023. Gaza as a whole lost about 70% of its light, and the north of the Strip more than 90%.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          33.5,
+          23.5
+        ],
+        "zoom": 6.5
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "lights",
+          "frame": "2022",
+          "compare": "2024",
+          "title": "Night light, nW/cm²/sr",
+          "fmt": "d3:.1~f"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            32.53,
+            15.59
+          ],
+          "label": "Khartoum",
+          "r": 3
+        },
+        {
+          "at": [
+            34.45,
+            31.5
+          ],
+          "label": "Gaza",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "France switches off",
+      "text": "France gave off about a third less light in 2024 than in 2021, with no war: blue marks cells that got dimmer. The satellite passes at about 1:30 am, and thousands of French towns now turn off street lights in the middle of the night. About 30% of those switch-offs began in the energy crisis of late 2022.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          2.5,
+          46.6
+        ],
+        "zoom": 8
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "change",
+          "frame": "2021–2024",
+          "title": "Light in 2024 ÷ light in 2021",
+          "fmt": "d3:.1~f"
+        }
+      ]
+    }
+  ]
+}

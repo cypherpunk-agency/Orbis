@@ -1,0 +1,50 @@
+{
+"source": "editorial",
+"asOf": "2026-10-14",
+"retrieved": "2026-10-14",
+"kinds": {
+"energy": {
+"label": "Energy and dams",
+"color": "c3"
+}
+},
+"items": [
+{
+"title": "The grid becomes a target",
+"date": 20221010,
+"at": [
+30.52,
+50.45
+],
+"kind": "energy",
+"text": "Russia strikes power infrastructure across Ukraine with 84 cruise missiles and 24 drones. By 19 November about 10 million people were without electricity, according to President Zelenskyy.",
+"source": "Wikipedia: Russian strikes against Ukrainian infrastructure",
+"url": "https://en.wikipedia.org/wiki/Russian_strikes_against_Ukrainian_infrastructure"
+},
+{
+"title": "Kakhovka dam destroyed",
+"date": 20230606,
+"at": [
+33.37,
+46.78
+],
+"kind": "energy",
+"text": "The Russian-held Kakhovka dam is breached, flooding the lower Dnipro. Many experts concluded Russian forces likely blew it up; Russia denies this.",
+"source": "Wikipedia: Destruction of the Kakhovka Dam",
+"url": "https://en.wikipedia.org/wiki/Destruction_of_the_Kakhovka_Dam"
+},
+{
+"title": "Dams and power plants hit",
+"date": 20240322,
+"at": [
+35.08,
+47.87
+],
+"kind": "energy",
+"text": "A massive strike leaves more than a million people without power; missiles hit the Dnipro dam in Zaporizhzhia and Kharkiv's largest power plants. On 11 April the Trypilska plant near Kyiv is destroyed.",
+"source": "Wikipedia: Russian strikes against Ukrainian infrastructure",
+"url": "https://en.wikipedia.org/wiki/Russian_strikes_against_Ukrainian_infrastructure"
+}
+],
+"note": "Strikes on Ukraine's energy system and dams, October 2022 to 2024. Hand-entered by Orbis; each card names the article or record it was checked against (Wikipedia articles as retrieved on 2026-10-14, text paraphrased). Dates are Gregorian. Built by tools/build/ua_events.py."
+}

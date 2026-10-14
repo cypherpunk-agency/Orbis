@@ -1,0 +1,436 @@
+{
+ "id": "rome-fall-alternate",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "The fall: West 476, East 1453",
+ "hook": "The Roman Empire fell twice: in the West in 476, after barely 80 years on its own, and in the East a thousand years later.",
+ "notes": "Borders AD 400 – 1500: historical-basemaps by André Ourednik (GPL-3.0), one map per century plus 1279 and 1492; the project marks all of them as approximate, and a century map can lag events by decades. Orbis removed the AD 700 map's Sasanian Empire, which had fallen to the Arabs in 651. The AD 500 map labels a 'Western Roman Empire' in northern Gaul; Orbis relabelled it as the Domain of Soissons, the Roman rump state that lasted until 486. Dates: Wikipedia articles named on each card; the fall of Constantinople is 29 May 1453 in the Julian calendar used at the time, 7 June 1453 in the proleptic Gregorian calendar Orbis stores. Ancient and medieval casualty figures are left out: the sources disagree too widely. Kingdom and Republic dates in the chart are Roman tradition. 'Muslim states' groups the caliphates, emirates and sultanates of each map, including the Seljuks and Mamluks; the Ottomans are shown on their own.",
+ "data": {
+  "hb": "data/history/rome-hb-late.json",
+  "pl": "data/history/rome-places.json",
+  "ev": "data/history/rome-events-fall.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "The West breaks apart",
+   "text": "After 395 the Western Empire lasted only about 80 years. Goths, Vandals, Suebi and Franks settled inside its borders, the Visigoths sacked Rome in 410 and the Vandals took Carthage in 439. In 476 the general Odoacer deposed the last emperor in Ravenna, Romulus Augustulus, and did not name a new one. Step from AD 400 to 500.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     18,
+     40
+    ],
+    "zoom": 2.5
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     400,
+     500
+    ],
+    "start": 400,
+    "calendar": "auc",
+    "captions": {
+     "400": "AD 400",
+     "500": "AD 500: kingdoms instead of an empire"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "west",
+      "east",
+      "germanic",
+      "muslim",
+      "persia",
+      "ottoman"
+     ],
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 100,
+     "list": true
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Rome's states (traditional dates)",
+     "from": -752,
+     "to": 1500,
+     "items": [
+      {
+       "label": "Kingdom",
+       "from": -752,
+       "to": -508,
+       "color": "muted"
+      },
+      {
+       "label": "Republic",
+       "from": -508,
+       "to": -26,
+       "color": "c2"
+      },
+      {
+       "label": "Empire",
+       "from": -26,
+       "to": 395,
+       "color": "c2"
+      },
+      {
+       "label": "Western Empire",
+       "from": 395,
+       "to": 476,
+       "color": "c2"
+      },
+      {
+       "label": "Eastern Empire",
+       "from": 395,
+       "to": 1453,
+       "color": "c1"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Justinian strikes back",
+   "text": "The Eastern Empire did not accept the loss. Under Justinian its general Belisarius took back Africa from the Vandals in 533–534 and, after twenty years of war with the Ostrogoths, Italy. But the Lombards invaded Italy in 568: by 600 Constantinople held Ravenna, Rome, the south and the islands.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     18,
+     40
+    ],
+    "zoom": 2.5
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     500,
+     600
+    ],
+    "start": 600,
+    "calendar": "auc"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "west",
+      "east",
+      "germanic",
+      "muslim",
+      "persia",
+      "ottoman"
+     ],
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 100,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "The Arab conquests",
+   "text": "From 634 Arab armies took Syria, Palestine and Egypt within a decade; Carthage fell in 698. The empire was left with Anatolia, parts of the Balkans and southern Italy, a Greek-speaking state that historians later called Byzantine. Its people still called themselves Romans.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     25,
+     36
+    ],
+    "zoom": 2.4
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     600,
+     700
+    ],
+    "start": 700,
+    "calendar": "auc"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "west",
+      "east",
+      "germanic",
+      "muslim",
+      "persia",
+      "ottoman"
+     ],
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 100,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "A thousand years of Byzantium",
+   "text": "The Eastern Empire rose and fell for another seven centuries. It recovered the Balkans around 1000, lost most of Anatolia to the Seljuk Turks after Manzikert in 1071, and in 1204 was sacked by its fellow Christians of the Fourth Crusade. Press play.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     27,
+     40
+    ],
+    "zoom": 3.2
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     800,
+     900,
+     1000,
+     1100,
+     1200,
+     1279,
+     1300,
+     1400
+    ],
+    "start": 800,
+    "calendar": "auc",
+    "playSpeed": 1500
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "west",
+      "east",
+      "germanic",
+      "muslim",
+      "persia",
+      "ottoman"
+     ],
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "muted",
+     "only": [
+      "Constantinople",
+      "Roma",
+      "Ravenna",
+      "Alexandria",
+      "Antiochia",
+      "Hierosolyma",
+      "Athenae",
+      "Thessalonica"
+     ]
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 150,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Constantinople falls, 1453",
+   "text": "By 1400 the empire was little more than its capital. On 29 May 1453 the Ottoman sultan Mehmed II took Constantinople after a 53-day siege; the last emperor, Constantine XI, died in the fighting. The city became the Ottoman capital. Trebizond, the last Greek state claiming the Roman succession, fell in 1461.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     28,
+     40.5
+    ],
+    "zoom": 4.5
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1400,
+     1492
+    ],
+    "start": 1492,
+    "calendar": "auc",
+    "captions": {
+     "1400": "AD 1400",
+     "1492": "AD 1492"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "west",
+      "east",
+      "germanic",
+      "muslim",
+      "persia",
+      "ottoman"
+     ],
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "c2",
+     "only": [
+      "Constantinople"
+     ]
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 100,
+     "list": true
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Rome's states (traditional dates)",
+     "from": -752,
+     "to": 1500,
+     "items": [
+      {
+       "label": "Kingdom",
+       "from": -752,
+       "to": -508,
+       "color": "muted"
+      },
+      {
+       "label": "Republic",
+       "from": -508,
+       "to": -26,
+       "color": "c2"
+      },
+      {
+       "label": "Empire",
+       "from": -26,
+       "to": 395,
+       "color": "c2"
+      },
+      {
+       "label": "Western Empire",
+       "from": 395,
+       "to": 476,
+       "color": "c2"
+      },
+      {
+       "label": "Eastern Empire",
+       "from": 395,
+       "to": 1453,
+       "color": "c1"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

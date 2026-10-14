@@ -1,0 +1,361 @@
+{
+ "id": "ua-front-alternate",
+ "cat": "Geopolitics",
+ "title": "The long front, 2023–2026",
+ "hook": "After 2022 the front barely moved, at enormous cost. Russia advanced village by village through Donetsk while striking Ukraine's power grid from the air.",
+ "updated": "2026-10-14",
+ "notes": "Control of territory: Wikipedia, 'Module:Russo-Ukrainian war detailed map' and, from April 2024, 'Module:Russo-Ukrainian war overview map' which it extends (CC BY-SA 4.0, by Wikipedia contributors). About 800–1,030 settlements are marked as held by Ukraine, held by Russia or contested; the modules are edited by volunteers and are not an official or verified source. Each timeline step is one saved revision, dated by the day it was saved (12 Nov 2022, 1 Jun 2023, 29 Dec 2023, 27 May 2024, 27 Dec 2024, 30 Mar 2025, 28 Dec 2025, 7 Oct 2026). Edits became rare after spring 2025, so a step's date says when the map was last saved, not that every marker was checked that day; the overview module (large towns such as Pokrovsk) was last edited on 3 May 2026. Dots are the settlements as marked; shaded areas are an Orbis approximation (each place takes the marker of the nearest listed settlement, clipped to Ukraine's internationally recognised borders), not a front-line map. Measured on this approximation, the area shaded as Russian-held grows from about 18% of Ukraine in November 2022 to about 20% in 2025–26, including Crimea and the areas held since 2014; commonly reported estimates are similar. Fighting inside Russia (Kursk region, 2024–25) is not shown. Deaths recorded by UCDP: Uppsala Conflict Data Program, Georeferenced Event Dataset 26.1 (to December 2025) and preliminary Candidate events to August 2026; best estimates of deaths in events of organised violence coded to Ukraine: about 71,700 in 2022, 48,500 in 2023, 38,800 in 2024 and 26,800 in 2025. UCDP counts only deaths it can confirm from reports; it says the real toll is higher. Other estimates, as compiled in Wikipedia's 'Casualties of the Russo-Ukrainian war' (retrieved 14 October 2026): civilians killed in Ukraine verified by the UN human rights office (OHCHR), 17,257 to 23 September 2026 (OHCHR says the real number is higher); Russian forces killed, BBC News Russian and Mediazona estimate 484,000–591,000 to 9 October 2026 (276,113 confirmed by name); Ukrainian forces: 55,000 killed according to President Zelenskyy (BBC News, 5 February 2026); 96,821 killed and 97,938 missing confirmed by name by the volunteer UALosses project to 21 June 2026. Independent estimates are higher; both governments treat military losses as secret. Military losses are state secrets on both sides. Night lights: EOG VIIRS Nighttime Lights V2 annual composites (CC BY 4.0), as built for Orbis's 'Lights out, lights on' story; Ukraine's total uses Natural Earth country outlines, which leave Crimea out. Events: hand-entered cards, each checked against the Wikipedia article named on it.",
+ "data": {
+  "ctl": "data/history/ua-control.json",
+  "pts": "data/history/ua-control-points.json",
+  "ev": "data/history/ua-cards-front.json",
+  "ucdp": "data/events/conflict-ukraine-fatalities.json",
+  "lights": "data/grids/lights.json",
+  "lightsc": "data/planet/lights.json",
+  "en": "data/history/ua-cards-energy.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "A front that barely moves",
+   "text": "After Kherson, the front settled into a line of trenches, mines and drones running from the Russian border near Kharkiv to the Dnipro. Press Play: across eight revisions of the Wikipedia map, from November 2022 to October 2026, the red edge creeps west through Donetsk region, while elsewhere the line hardly shifts.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     34.5,
+     48.3
+    ],
+    "zoom": 10
+   },
+   "stamp": "Control as of {t} · Wikipedia map module (volunteer-edited) · areas approximate",
+   "timeline": {
+    "years": [
+     20221112,
+     20230601,
+     20231229,
+     20240527,
+     20241227,
+     20250330,
+     20251228,
+     20261007
+    ],
+    "start": 20221112,
+    "format": "date",
+    "spacing": "time",
+    "playSpeed": 1500
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": "t",
+     "labels": false,
+     "outline": false,
+     "inner": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2",
+     "changes": "flash"
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2
+    }
+   ]
+  },
+  {
+   "title": "Bakhmut, Avdiivka, Pokrovsk",
+   "text": "Russia's gains came town by town, each after months of fighting: Bakhmut in May 2023, Avdiivka in February 2024, then the push on Pokrovsk, which Russian forces entered in November 2025. Markers on the Wikipedia map turn red one after another across the Donetsk region.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     37.6,
+     48.4
+    ],
+    "zoom": 24
+   },
+   "stamp": "Control as of {t} · Wikipedia map module (volunteer-edited) · areas approximate",
+   "timeline": {
+    "years": [
+     20221112,
+     20230601,
+     20231229,
+     20240527,
+     20241227,
+     20250330,
+     20251228,
+     20261007
+    ],
+    "start": 20251228,
+    "format": "date",
+    "spacing": "time",
+    "playSpeed": 1500
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": "t",
+     "labels": false,
+     "outline": false,
+     "inner": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2",
+     "changes": "flash"
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "The 2023 counteroffensive",
+   "text": "In June 2023 Ukraine attacked in Zaporizhzhia and Donetsk regions, into minefields and prepared trenches. In the same week the Kakhovka dam on the Dnipro was breached, flooding the river's lower reaches. By the end of the year Ukraine had retaken 14 villages, about 370 km²: less than Russia took in 2023.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     35.3,
+     47.2
+    ],
+    "zoom": 22
+   },
+   "stamp": "Control as of {t} · Wikipedia map module (volunteer-edited) · areas approximate",
+   "timeline": {
+    "years": [
+     20230601,
+     20231229
+    ],
+    "start": 20230601,
+    "format": "date",
+    "playSpeed": 1800
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": "t",
+     "labels": false,
+     "outline": false,
+     "inner": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2",
+     "changes": "flash"
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Counting the dead",
+   "text": "Uppsala's UCDP has confirmed about 72,000 deaths in the fighting in 2022, 48,000 in 2023, 39,000 in 2024 and 27,000 in 2025, and says the real toll is higher. Estimates of soldiers killed go far beyond that: 484,000–591,000 Russian (BBC Russian and Mediazona, October 2026). For Ukraine, the government gave 55,000 killed (February 2026), while a volunteer project has named about 97,000 dead and 98,000 missing (June 2026). The UN has verified more than 17,000 civilian deaths (September 2026).",
+   "view": {
+    "mode": "globe",
+    "center": [
+     35,
+     48.4
+    ],
+    "zoom": 10
+   },
+   "timeline": {
+    "years": [
+     202202,
+     202203,
+     202204,
+     202205,
+     202206,
+     202207,
+     202208,
+     202209,
+     202210,
+     202211,
+     202212,
+     202301,
+     202302,
+     202303,
+     202304,
+     202305,
+     202306,
+     202307,
+     202308,
+     202309,
+     202310,
+     202311,
+     202312,
+     202401,
+     202402,
+     202403,
+     202404,
+     202405,
+     202406,
+     202407,
+     202408,
+     202409,
+     202410,
+     202411,
+     202412,
+     202501,
+     202502,
+     202503,
+     202504,
+     202505,
+     202506,
+     202507,
+     202508,
+     202509,
+     202510,
+     202511,
+     202512,
+     202601,
+     202602,
+     202603,
+     202604,
+     202605,
+     202606,
+     202607,
+     202608
+    ],
+    "start": 202202,
+    "format": "month",
+    "playSpeed": 400,
+    "captions": {
+     "202202": "24 February: the invasion begins.",
+     "202209": "Kharkiv counteroffensive.",
+     "202305": "Bakhmut falls.",
+     "202402": "Avdiivka falls.",
+     "202608": "Latest UCDP data: August 2026 (preliminary)."
+    }
+   },
+   "layers": [
+    {
+     "type": "events",
+     "data": "ucdp",
+     "year": "t",
+     "window": 1,
+     "color": "c2",
+     "minR": 1.5,
+     "maxR": 12,
+     "vmax": 800,
+     "title": "Deaths recorded by UCDP in the month"
+    }
+   ]
+  },
+  {
+   "title": "Strikes on the grid",
+   "text": "From October 2022 Russia struck Ukraine's power stations, substations and dams with missiles and drones, in waves timed for winter. Seen from space, Ukraine in 2022 gave off about a third of the light of 2019–2021; by 2024 it had recovered to less than half. Drag the divider to compare 2021 and 2024.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     32.5,
+     48.6
+    ],
+    "zoom": 14
+   },
+   "timeline": {
+    "years": [
+     20221010,
+     20230606,
+     20240322
+    ],
+    "start": 20240322,
+    "format": "date",
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "raster",
+     "data": "lights",
+     "frame": "2021",
+     "compare": "2024",
+     "leftLabel": "2021",
+     "rightLabel": "2024",
+     "title": "Night light, nW/cm²/sr",
+     "fmt": "d3:.1~f"
+    },
+    {
+     "type": "cards",
+     "data": "en",
+     "year": "t",
+     "list": true
+    }
+   ],
+   "media": [
+    {
+     "type": "line",
+     "data": "lightsc",
+     "series": "sol",
+     "countries": [
+      "UKR"
+     ],
+     "labels": {
+      "UKR": "Ukraine"
+     },
+     "title": "Ukraine's night light, all of the country (satellite, yearly)",
+     "fmt": "num"
+    }
+   ]
+  },
+  {
+   "title": "Where the line stands",
+   "text": "On the latest revision of the Wikipedia map, saved on 7 October 2026, Russia holds roughly a fifth of Ukraine, including Crimea, by the rough measure of these map points. Kupiansk and Kostiantynivka are marked contested. Tap a dot to see a settlement; the map is volunteer-edited and updated irregularly.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     35,
+     48.4
+    ],
+    "zoom": 10
+   },
+   "stamp": "Control as of 7 Oct 2026 · Wikipedia map module (volunteer-edited) · areas approximate",
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "ctl",
+     "year": 20261007,
+     "labels": false,
+     "outline": false,
+     "inner": false,
+     "opacity": 0.32,
+     "front": true,
+     "frontColor": "c2"
+    },
+    {
+     "type": "points",
+     "data": "pts",
+     "set": "settlements",
+     "labels": false,
+     "r": 2.2,
+     "year": 20261007
+    }
+   ]
+  }
+ ],
+ "pov": "UA"
+}

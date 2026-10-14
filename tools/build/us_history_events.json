@@ -1,0 +1,611 @@
+{
+ "_note": "Hand-typed facts for tools/build/us_history.py. Dates are Gregorian yyyymmdd. Each card cites its source; Wikipedia articles were read in October 2026.",
+ "acq_groups": {
+  "independence": {
+   "label": "Independence (1783 borders)",
+   "color": "c1"
+  },
+  "purchase": {
+   "label": "Bought",
+   "color": "c3"
+  },
+  "treaty": {
+   "label": "Treaty or boundary settlement",
+   "color": "c4"
+  },
+  "war": {
+   "label": "Ceded after a war",
+   "color": "c2"
+  },
+  "annex": {
+   "label": "Annexed",
+   "color": "c5"
+  }
+ },
+ "acquisitions": [
+  {
+   "name": "United States in 1783",
+   "label": "1783",
+   "from": 17830903,
+   "dates": [
+    17830903,
+    17910304
+   ],
+   "how": "independence",
+   "note": "Treaty of Paris, 3 Sep 1783"
+  },
+  {
+   "name": "Louisiana Purchase",
+   "label": "Louisiana Purchase",
+   "from": 18030430,
+   "dates": [
+    18030430,
+    18030430
+   ],
+   "how": "purchase",
+   "note": "Bought from France for $15 million"
+  },
+  {
+   "name": "West Florida",
+   "label": "W. Florida",
+   "from": 18101210,
+   "dates": [
+    18041001,
+    18041001
+   ],
+   "how": "annex",
+   "note": "Claimed from 1804, occupied 1810-1812"
+  },
+  {
+   "name": "Red River basin",
+   "label": "Red River",
+   "from": 18181020,
+   "dates": [
+    18181020,
+    18181020
+   ],
+   "how": "treaty",
+   "note": "Treaty of 1818 with Britain: 49th parallel"
+  },
+  {
+   "name": "Florida and the 1819 boundary",
+   "label": "Florida",
+   "from": 18190222,
+   "dates": [
+    18190222,
+    18190601
+   ],
+   "how": "treaty",
+   "note": "Adams-Onís Treaty with Spain"
+  },
+  {
+   "name": "Texas",
+   "label": "Texas",
+   "from": 18451229,
+   "dates": [
+    18451229,
+    18451229
+   ],
+   "how": "annex",
+   "note": "Annexed by joint resolution of Congress"
+  },
+  {
+   "name": "Oregon",
+   "label": "Oregon",
+   "from": 18460615,
+   "dates": [
+    18460615,
+    18460615
+   ],
+   "how": "treaty",
+   "note": "Oregon Treaty with Britain"
+  },
+  {
+   "name": "Mexican Cession",
+   "label": "Mexican Cession",
+   "from": 18480704,
+   "dates": [
+    18480704,
+    18480704
+   ],
+   "how": "war",
+   "note": "Treaty of Guadalupe Hidalgo"
+  },
+  {
+   "name": "Gadsden Purchase",
+   "label": "Gadsden",
+   "from": 18531230,
+   "dates": [
+    18531230,
+    18531230
+   ],
+   "how": "purchase",
+   "note": "Bought from Mexico for $10 million"
+  },
+  {
+   "name": "Alaska",
+   "label": "Alaska",
+   "from": 18670330,
+   "dates": [
+    18670330,
+    18670330
+   ],
+   "how": "purchase",
+   "note": "Bought from Russia for $7.2 million"
+  },
+  {
+   "name": "Hawaii",
+   "label": "Hawaii",
+   "from": 18980707,
+   "dates": [
+    18980707,
+    18980707
+   ],
+   "how": "annex",
+   "note": "Annexed by joint resolution of Congress"
+  }
+ ],
+ "acq_kinds": {
+  "card": {
+   "label": "Story cards: tap to read",
+   "color": "muted"
+  }
+ },
+ "acq_cards": [
+  {
+   "title": "Treaty of Paris",
+   "date": 17830903,
+   "at": [
+    -80.5,
+    37.5
+   ],
+   "kind": "card",
+   "text": "Britain recognised the independence of the United States in the Treaty of Paris, which ended the Revolutionary War. The new country reached from the Atlantic to the Mississippi, and from the Great Lakes to Spanish Florida.",
+   "source": "Wikipedia, 'Treaty of Paris (1783)'; Newberry Library AHCB"
+  },
+  {
+   "title": "The Louisiana Purchase",
+   "date": 18030430,
+   "at": [
+    -97.5,
+    41.5
+   ],
+   "kind": "card",
+   "text": "The United States bought Louisiana from France for $15 million, about 828,000 square miles (2.1 million km²). It nearly doubled the country. Its western limits were not clearly defined; France formally handed it over on 20 December 1803.",
+   "source": "Wikipedia, 'Louisiana Purchase'; Newberry Library AHCB"
+  },
+  {
+   "title": "West Florida",
+   "date": 18101210,
+   "at": [
+    -89.4,
+    30.8
+   ],
+   "kind": "card",
+   "text": "The United States claimed the Gulf coast between the Mississippi and the Perdido rivers as part of Louisiana; Spain disagreed. US forces took possession of the part west of the Pearl River on 10 December 1810, and the rest was added to Mississippi Territory in 1812.",
+   "source": "Wikipedia, 'Territorial evolution of the United States'; Newberry Library AHCB"
+  },
+  {
+   "title": "The 49th parallel",
+   "date": 18181020,
+   "at": [
+    -99,
+    47.8
+   ],
+   "kind": "card",
+   "text": "The Treaty of 1818 with Britain fixed the border along the 49th parallel from the Lake of the Woods to the Rocky Mountains. The Red River basin south of the line became American.",
+   "source": "Wikipedia, 'Treaty of 1818'; Newberry Library AHCB"
+  },
+  {
+   "title": "Florida from Spain",
+   "date": 18190222,
+   "at": [
+    -82.2,
+    28.8
+   ],
+   "kind": "card",
+   "text": "In the Adams-Onís Treaty, signed on 22 February 1819, Spain ceded Florida and the two countries drew their first boundary across the continent to the Pacific. It took effect in 1821.",
+   "source": "Wikipedia, 'Adams–Onís Treaty'; Newberry Library AHCB"
+  },
+  {
+   "title": "Texas joins",
+   "date": 18451229,
+   "at": [
+    -99.5,
+    31.5
+   ],
+   "kind": "card",
+   "text": "Texas had declared independence from Mexico in 1836. The United States annexed it by a joint resolution of Congress, and Texas became a state on 29 December 1845. Mexico had not recognised the loss, and war followed in 1846.",
+   "source": "Wikipedia, 'Texas annexation'; Newberry Library AHCB"
+  },
+  {
+   "title": "The Oregon Treaty",
+   "date": 18460615,
+   "at": [
+    -119.5,
+    45.5
+   ],
+   "kind": "card",
+   "text": "Britain and the United States had shared the Oregon Country since 1818. The Oregon Treaty of 15 June 1846 split it along the 49th parallel.",
+   "source": "Wikipedia, 'Oregon Treaty'; Newberry Library AHCB"
+  },
+  {
+   "title": "The Mexican Cession",
+   "date": 18480202,
+   "at": [
+    -115,
+    38.5
+   ],
+   "kind": "card",
+   "text": "The Treaty of Guadalupe Hidalgo, signed on 2 February 1848, ended the Mexican-American War. Mexico ceded about 529,000 square miles (1.4 million km²), today's California, Nevada and Utah and parts of four more states. The United States paid $15 million and took over $3.25 million of Mexican debts to American citizens.",
+   "source": "Wikipedia, 'Mexican Cession' and 'Treaty of Guadalupe Hidalgo'; Newberry Library AHCB"
+  },
+  {
+   "title": "The Gadsden Purchase",
+   "date": 18531230,
+   "at": [
+    -110.8,
+    32.3
+   ],
+   "kind": "card",
+   "text": "For $10 million the United States bought 29,640 square miles (77,000 km²) of southern Arizona and New Mexico, land suited to a southern railroad to the Pacific. It set today's border with Mexico.",
+   "source": "Wikipedia, 'Gadsden Purchase'; Newberry Library AHCB"
+  },
+  {
+   "title": "Alaska from Russia",
+   "date": 18670330,
+   "at": [
+    -152,
+    64.5
+   ],
+   "kind": "card",
+   "text": "Russia sold Alaska to the United States for $7.2 million, adding 586,412 square miles (1.5 million km²), about two cents an acre.",
+   "source": "Wikipedia, 'Alaska Purchase'; Newberry Library AHCB"
+  },
+  {
+   "title": "Hawaii annexed",
+   "date": 18980707,
+   "at": [
+    -157.5,
+    20.8
+   ],
+   "kind": "card",
+   "text": "Five years after Queen Liliʻuokalani was overthrown, Congress annexed Hawaii by joint resolution, signed by President McKinley on 7 July 1898. The queen protested that her throne had been taken illegally.",
+   "source": "Wikipedia, 'Newlands Resolution'; Newberry Library AHCB"
+  }
+ ],
+ "admission": {
+  "DE": 17871207,
+  "PA": 17871212,
+  "NJ": 17871218,
+  "GA": 17880102,
+  "CT": 17880109,
+  "MA": 17880206,
+  "MD": 17880428,
+  "SC": 17880523,
+  "NH": 17880621,
+  "VA": 17880625,
+  "NY": 17880726,
+  "NC": 17891121,
+  "RI": 17900529,
+  "VT": 17910304,
+  "KY": 17920601,
+  "TN": 17960601,
+  "OH": 18030301,
+  "LA": 18120430,
+  "IN": 18161211,
+  "MS": 18171210,
+  "IL": 18181203,
+  "AL": 18191214,
+  "ME": 18200315,
+  "MO": 18210810,
+  "AR": 18360615,
+  "MI": 18370126,
+  "FL": 18450303,
+  "TX": 18451229,
+  "IA": 18461228,
+  "WI": 18480529,
+  "CA": 18500909,
+  "MN": 18580511,
+  "OR": 18590214,
+  "KS": 18610129,
+  "WV": 18630620,
+  "NV": 18641031,
+  "NE": 18670301,
+  "CO": 18760801,
+  "ND": 18891102,
+  "SD": 18891102,
+  "MT": 18891108,
+  "WA": 18891111,
+  "ID": 18900703,
+  "WY": 18900710,
+  "UT": 18960104,
+  "OK": 19071116,
+  "NM": 19120106,
+  "AZ": 19120214,
+  "AK": 19590103,
+  "HI": 19590821
+ },
+ "_admission_source": "Original 13: date each ratified the Constitution; others: date of admission. Both from Wikipedia 'List of U.S. states by date of admission to the Union'; the admission dates equal the START_DATE of each state's first version in the Newberry AHCB.",
+ "civil_war": {
+  "seceded": {
+   "SC": 18601220,
+   "MS": 18610109,
+   "FL": 18610110,
+   "AL": 18610111,
+   "GA": 18610119,
+   "LA": 18610126,
+   "TX": 18610201,
+   "VA": 18610417,
+   "AR": 18610506,
+   "NC": 18610520,
+   "TN": 18610608
+  },
+  "readmitted": {
+   "TN": 18660724,
+   "AR": 18680622,
+   "FL": 18680625,
+   "AL": 18680625,
+   "LA": 18680625,
+   "NC": 18680625,
+   "SC": 18680625,
+   "VA": 18700127,
+   "MS": 18700223,
+   "TX": 18700330,
+   "GA": 18700715
+  },
+  "slave_union": [
+   "DE",
+   "MD",
+   "KY",
+   "MO",
+   "WV"
+  ],
+  "abolition": 18651206,
+  "notes": {
+   "cw_free": "Free state in the Union",
+   "cw_slave": "Slave state in the Union",
+   "cw_csa": "Seceded; part of the Confederacy",
+   "cw_back": "Readmitted to Congress",
+   "cw_terr": "Territory",
+   "cw_union": "State in the Union (slavery abolished)"
+  },
+  "_source": "Secession: dates of the ordinances of secession (Tennessee: referendum of 8 June 1861) and readmission dates, Wikipedia 'Confederate States of America' (infobox and list of states); Thirteenth Amendment ratified 6 Dec 1865, Wikipedia 'Reconstruction era'."
+ },
+ "union_groups": {
+  "orig": {
+   "label": "The original 13 (1787-1790)",
+   "color": "c1"
+  },
+  "e1821": {
+   "label": "Joined 1791-1821",
+   "color": "c4"
+  },
+  "e1859": {
+   "label": "Joined 1836-1859",
+   "color": "c3"
+  },
+  "e1896": {
+   "label": "Joined 1861-1896",
+   "color": "c2"
+  },
+  "e1959": {
+   "label": "Joined 1907-1959",
+   "color": "c5"
+  },
+  "cw_free": {
+   "label": "Free states",
+   "color": "c1"
+  },
+  "cw_union": {
+   "label": "Union states, slavery abolished",
+   "color": "c1"
+  },
+  "cw_slave": {
+   "label": "Slave states in the Union",
+   "color": "c3"
+  },
+  "cw_csa": {
+   "label": "Seceded: the Confederacy",
+   "color": "c2"
+  },
+  "cw_back": {
+   "label": "Readmitted to Congress",
+   "color": "c4"
+  },
+  "cw_terr": {
+   "label": "Territories",
+   "color": "muted"
+  }
+ },
+ "union_kinds": {
+  "politics": {
+   "label": "Politics and law",
+   "color": "c5"
+  },
+  "war": {
+   "label": "Battles",
+   "color": "c5",
+   "icon": "swords"
+  }
+ },
+ "union_cards": [
+  {
+   "title": "South Carolina secedes",
+   "date": 18601220,
+   "at": [
+    -79.93,
+    32.78
+   ],
+   "kind": "politics",
+   "text": "Six weeks after Abraham Lincoln won the presidential election, a convention in South Carolina voted to leave the Union. Six more states of the Deep South followed by 1 February 1861.",
+   "source": "Wikipedia, 'Confederate States of America'"
+  },
+  {
+   "title": "The Confederacy is formed",
+   "date": 18610208,
+   "at": [
+    -86.3,
+    32.38
+   ],
+   "kind": "politics",
+   "text": "Delegates of the seven seceded states formed the Confederate States of America at Montgomery, Alabama. Historians widely agree that preserving slavery was its principal aim.",
+   "source": "Wikipedia, 'Confederate States of America'"
+  },
+  {
+   "title": "Fort Sumter",
+   "date": 18610412,
+   "at": [
+    -79.87,
+    32.75
+   ],
+   "kind": "war",
+   "text": "Confederate forces fired on the federal fort in Charleston harbour, and the war began. Virginia, Arkansas, North Carolina and Tennessee seceded in the following eight weeks.",
+   "source": "Wikipedia, 'Confederate States of America'"
+  },
+  {
+   "title": "Emancipation Proclamation",
+   "date": 18630101,
+   "at": [
+    -77.04,
+    38.9
+   ],
+   "kind": "politics",
+   "text": "Lincoln declared enslaved people in the areas still in rebellion to be free. It did not cover the slave states that had stayed in the Union.",
+   "source": "Wikipedia, 'Emancipation Proclamation'"
+  },
+  {
+   "title": "West Virginia",
+   "date": 18630620,
+   "at": [
+    -80.6,
+    38.6
+   ],
+   "kind": "politics",
+   "text": "The north-western counties of Virginia, which had rejected secession, were admitted as the new state of West Virginia.",
+   "source": "Newberry Library AHCB; Wikipedia, 'Confederate States of America'"
+  },
+  {
+   "title": "Gettysburg and Vicksburg",
+   "date": 18630701,
+   "at": [
+    -77.23,
+    39.81
+   ],
+   "kind": "war",
+   "text": "In the first days of July 1863 the Union army turned back Lee's invasion of the North at Gettysburg, and Vicksburg on the Mississippi surrendered on 4 July.",
+   "source": "Wikipedia, 'Battle of Gettysburg' and 'Siege of Vicksburg'"
+  },
+  {
+   "title": "Surrender at Appomattox",
+   "date": 18650409,
+   "at": [
+    -78.8,
+    37.38
+   ],
+   "kind": "war",
+   "text": "General Robert E. Lee surrendered his army at Appomattox Court House. Most other Confederate forces surrendered by May 1865.",
+   "source": "Wikipedia, 'Confederate States of America'"
+  },
+  {
+   "title": "Slavery abolished",
+   "date": 18651206,
+   "at": [
+    -77.0,
+    38.2
+   ],
+   "kind": "politics",
+   "text": "The Thirteenth Amendment to the Constitution, abolishing slavery everywhere in the United States, was ratified.",
+   "source": "Wikipedia, 'Reconstruction era'"
+  },
+  {
+   "title": "Georgia readmitted",
+   "date": 18700715,
+   "at": [
+    -83.4,
+    32.7
+   ],
+   "kind": "politics",
+   "text": "Georgia was the last former Confederate state readmitted; its representatives took their seats in Congress in February 1871.",
+   "source": "Wikipedia, 'Confederate States of America' and 'Reconstruction era'"
+  }
+ ],
+ "cession_kinds": {
+  "treaty": {
+   "label": "Treaties",
+   "color": "c4"
+  },
+  "law": {
+   "label": "Laws and removals",
+   "color": "muted"
+  }
+ },
+ "cession_cards": [
+  {
+   "title": "Treaty of Greenville",
+   "date": 17950803,
+   "at": [
+    -84.63,
+    40.1
+   ],
+   "kind": "treaty",
+   "text": "After their defeat at Fallen Timbers in 1794, the nations of the Northwest Territory ceded most of what became Ohio. The treaty ended the Northwest Indian War.",
+   "source": "Wikipedia, 'Treaty of Greenville'; USFS Royce cessions"
+  },
+  {
+   "title": "Indian Removal Act",
+   "date": 18300528,
+   "at": [
+    -77.04,
+    38.9
+   ],
+   "kind": "law",
+   "text": "Congress authorised the President to exchange land west of the Mississippi for the homelands of nations in the East. About 60,000 Cherokee, Muscogee (Creek), Seminole, Chickasaw and Choctaw people were forced west in the years that followed.",
+   "source": "Wikipedia, 'Indian Removal Act' and 'Trail of Tears'"
+  },
+  {
+   "title": "Treaty of New Echota",
+   "date": 18351229,
+   "at": [
+    -84.93,
+    34.54
+   ],
+   "kind": "treaty",
+   "text": "A small Cherokee group signed away the nation's land in the Southeast. The Cherokee National Council never approved it and Principal Chief John Ross did not sign, but the Senate ratified it in 1836.",
+   "source": "Wikipedia, 'Treaty of New Echota'"
+  },
+  {
+   "title": "The Trail of Tears",
+   "date": 18380526,
+   "at": [
+    -85.3,
+    35.0
+   ],
+   "kind": "law",
+   "text": "The army began forcibly removing the Cherokee in May 1838. About 4,000 died on the way to Indian Territory, the figure the Cherokee Nation gives; other estimates run to 5,000.",
+   "source": "Wikipedia, 'Trail of Tears' (Cherokee Nation; Oxford Research Encyclopedia of American History)"
+  },
+  {
+   "title": "End of treaty-making",
+   "date": 18710303,
+   "at": [
+    -77.04,
+    38.9
+   ],
+   "kind": "law",
+   "text": "The Indian Appropriations Act of 1871 ended treaty-making: from then on, land was taken by acts of Congress and executive orders rather than by treaty.",
+   "source": "Wikipedia, 'Indian Appropriations Act'"
+  },
+  {
+   "title": "The Dawes Act",
+   "date": 18870208,
+   "at": [
+    -97.5,
+    35.5
+   ],
+   "kind": "law",
+   "text": "The General Allotment Act split reservations into private plots and sold the 'surplus'. Land held by Native Americans fell from about 138 million acres in 1887 to 48 million in 1934.",
+   "source": "Wikipedia, 'Dawes Act'"
+  }
+ ]
+}
