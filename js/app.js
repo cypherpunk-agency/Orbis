@@ -1420,7 +1420,7 @@ function openCampaign(id){
   el.camp.innerHTML=`<button class="btn camp-go" id="campGo">${t(started?"Continue":"Start")}${nextId&&started?": "+esc(STORIES[storyIndex(nextId)].title):""}</button>
     <ol class="camp-list">${ch.map(([id,s],k)=>`<li class="${done(id)?"done":seen(id)?"seen":""}"><button data-id="${id}"><span class="camp-n">${done(id)?"✓":k+1}</span><span><b>${esc(s.title)}</b><span class="toc-hook">${esc(s.hook)}</span></span></button></li>`).join("")}${(cp.coming||[]).map(x=>`<li class="coming"><div><span class="camp-n">·</span><span><b>${esc(x.title)}</b><span class="toc-hook">${esc(t("Coming"))}${x.hook?" · "+esc(x.hook):""}</span></span></div></li>`).join("")}</ol>
     <p class="camp-progress">${t("{n} of {m} read",{n:ch.filter(([id])=>done(id)).length,m:ch.length})}</p>`+
-    (cp.dates&&cp.dates.length?`<details class="camp-dates"><summary>${t("Key dates")}</summary><ul>${cp.dates.map(x=>`<li><span>${esc(fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"")+
+    (cp.dates&&cp.dates.length?`<details class="camp-dates"><summary>${t("Key dates")}</summary><ul>${cp.dates.map(x=>`<li><span>${esc(typeof x.d==="number"&&Math.abs(x.d)<10000||Array.isArray(x.d)?fmtWhen(x.d,x):(x.circa?"c. ":"")+fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"")+
     (cp.changelog&&cp.changelog.length?`<details class="camp-dates"><summary>${t("What changed")}</summary><ul>${cp.changelog.map(x=>`<li><span>${esc(fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"");
   el.camp.hidden=false;
   $("campGo").onclick=()=>{ const i=storyIndex(nextId); if(i>=0) openStory(i, done(nextId)||!r[nextId]?0:Math.min(r[nextId][0],r[nextId][1])-1); };
