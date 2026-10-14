@@ -358,12 +358,14 @@ function draw(){
   }
   L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
     ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=C.paper; ctx.lineWidth=0.8; ctx.stroke(); });
-  L.shapes.forEach(sh=>{ sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
+  L.shapes.forEach(sh=>{ sh.feats.forEach(f=>{ if(!sh.fill) return; const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
       ctx.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1;
       if(sh.inner){ ctx.strokeStyle=onDark?"rgba(255,255,255,.5)":C.paper; ctx.lineWidth=0.7; if(f.properties.uncertain) ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]); } });
     sh.outlines.forEach(o=>{ ctx.beginPath(); path(o.geom); ctx.strokeStyle=col(o.color); ctx.lineWidth=2; ctx.stroke(); });
     sh.lost.forEach(f=>{ ctx.beginPath(); path(f); ctx.setLineDash([4,3]); ctx.strokeStyle=C.ink; ctx.lineWidth=1.2; ctx.stroke(); ctx.setLineDash([]); });
-    sh.gained.forEach(f=>{ ctx.beginPath(); path(f); ctx.strokeStyle=C.ink; ctx.lineWidth=2.4; ctx.stroke(); });
+    const fl=sh.flash&&!reduce?clamp(1-(performance.now()-flashT)/700,0,1):0;
+    sh.gained.forEach(f=>{ ctx.beginPath(); path(f); if(fl>0){ const g=sh.groups[f.properties.group]; ctx.globalAlpha=0.9*fl; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1; }
+      ctx.strokeStyle=C.ink; ctx.lineWidth=2.4; ctx.stroke(); });
     if(sh.front){ ctx.beginPath(); path(sh.front); ctx.strokeStyle=col(sh.frontColor); ctx.lineWidth=3; ctx.stroke(); } });
   L.hatches.forEach(hh=>{ ctx.save(); ctx.beginPath(); hh.ids.forEach(id=>{ const f=byId.get(id); if(f) path(geom(f)); }); ctx.clip();
     const a=hh.angle*rad, R=Math.hypot(W,H), dx=Math.cos(a), dy=Math.sin(a), step=7; ctx.beginPath();
@@ -418,8 +420,13 @@ function draw(){
       if(sp.label) labels.push([sp.label,top[0],top[1]-11,{size:13,align:"center"}]);
     }); }
   // points
-  L.points.forEach(pt=>{ if(!visible(pt.at)) return; const xy=proj(pt.at); if(!xy) return;
-    ctx.beginPath();ctx.arc(xy[0],xy[1],pt.r||4,0,2*Math.PI);ctx.fillStyle=col(pt.color||"c1");ctx.fill();ctx.lineWidth=1.5;ctx.strokeStyle=C.halo;ctx.stroke();
+  L.points.forEach(pt=>{ if(pt.minZoom&&V.zoom<pt.minZoom) return; if(!visible(pt.at)) return; const xy=proj(pt.at); if(!xy) return; const r=pt.r||4;
+    if(pt.icon==="swords"){ // two crossed blades
+      ctx.lineCap="round"; ctx.beginPath(); ctx.moveTo(xy[0]-r,xy[1]-r); ctx.lineTo(xy[0]+r,xy[1]+r); ctx.moveTo(xy[0]+r,xy[1]-r); ctx.lineTo(xy[0]-r,xy[1]+r);
+      ctx.strokeStyle=C.halo; ctx.lineWidth=4.5; ctx.stroke(); ctx.strokeStyle=col(pt.color||"c1"); ctx.lineWidth=2.2; ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(xy[0]-r*0.55,xy[1]-r*0.05); ctx.lineTo(xy[0]-r*0.05,xy[1]-r*0.55); ctx.moveTo(xy[0]+r*0.55,xy[1]-r*0.05); ctx.lineTo(xy[0]+r*0.05,xy[1]-r*0.55); ctx.lineWidth=1.6; ctx.stroke(); }
+    else if(pt.hollow){ ctx.beginPath();ctx.arc(xy[0],xy[1],r,0,2*Math.PI);ctx.lineWidth=3.2;ctx.strokeStyle=C.halo;ctx.stroke();ctx.lineWidth=1.6;ctx.strokeStyle=col(pt.color||"c1");ctx.stroke(); }
+    else { ctx.beginPath();ctx.arc(xy[0],xy[1],r,0,2*Math.PI);ctx.fillStyle=col(pt.color||"c1");ctx.fill();ctx.lineWidth=r<3?0.8:1.5;ctx.strokeStyle=C.halo;ctx.stroke(); }
     if(pt.label) labels.push([pt.label,xy[0]+(pt.r||4)+5,xy[1],{size:13}]);
   });
   if(L.particles) drawParticles(L.particles);
@@ -444,7 +451,11 @@ function draw(){
   labels.forEach(l=>label(...l));
   // rim
   ctx.beginPath();path(SPHERE);ctx.strokeStyle=C.rim;ctx.lineWidth=1;ctx.stroke();
+  // "as of" stamp (scene.stamp; {t} = the timeline step), bottom right of the map
+  const stp=stampText(); if(stp){ ctx.font="500 12px 'Barlow Semi Condensed', sans-serif"; ctx.textAlign="right"; ctx.textBaseline="bottom";
+    const sx=F.x+F.w-12, sy=F.y+F.h-10; ctx.lineWidth=3; ctx.strokeStyle=C.halo; ctx.strokeText(stp,sx,sy); ctx.fillStyle=onDark?"#D9E2E6":C.ink_soft; ctx.fillText(stp,sx,sy); ctx.textAlign="left"; ctx.textBaseline="alphabetic"; }
 }
+function stampText(){ if(!scene||!scene.stamp) return ""; const tl=scene.timeline, y=tl?tl.years[tlIdx]:null; return scene.stamp.replace("{t}",y!=null?String(tl.label(y)):""); }
 
 // ---------- country names ----------
 // largest countries first; a name is shown when the country is big enough on screen to hold it
@@ -607,7 +618,8 @@ async function ensureStory(i){
     const ys=!t.format&&t.years.length===2&&(t.step||t.years[1]-t.years[0]>1)?d3.range(t.years[0],t.years[1]+1,t.step||1):t.years;
     const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):t.format==="date"?(y=>Cal.date(y)):(y=>Cal.year(y,t.era)), lab=y=>(t.labels&&t.labels[y])||lab0(y);
     const second=t.calendar?(y=>Cal.other(y,t.calendar,t.format==="date")):null;
-    sc.timeline={isDate:t.format==="date",years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,second,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
+    sc.timeline={isDate:t.format==="date",years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,second,frame:y=>({year:y,caption:(t.captions||{})[y]}),
+      playSpeed:t.playSpeed,spacing:t.spacing==="time"}; } });
   const st=Object.assign({},js,{file:meta.file,_data:data},meta.id.startsWith("@")?{id:meta.id}:{}); STORIES[i]=st; return st;
 }
 const FMT={
@@ -662,17 +674,19 @@ function pointValues(ly,d,y){
 }
 const DIVERGING=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
 const pickByYear=(o,y)=>{ if(!o) return null; const k=Object.keys(o).map(Number).sort((a,b)=>a-b).filter(v=>v<=+y).pop(); return k!=null?o[k]:null; };
+const d0=e=>Array.isArray(e.date)?e.date[0]:e.date;   // a date range [a, b] sorts and filters by its start
+const ICONS={swords:"⚔",star:"★",flag:"⚑",anchor:"⚓",crown:"♛",cross:"✝"};
 const LAYER={
   cards(ly,d,y,L){ // dated events with a story card: tap a dot to read it; optional list in the panel
     const t=+y, w=ly.window, K=d.kinds||{};
-    const pick=(d.items||[]).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(e.date)<=t&&(!w||tUnit(e.date)>t-w))).sort((a,b)=>a.date-b.date);
-    pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",label:ly.labels===false?null:e.title,card:e}));
-    if(ly.list) L.cardList=(L.cardList||[]).concat(pick);
-    Object.entries(K).forEach(([k,v])=>{ if(pick.some(e=>e.kind===k)&&!L.shapeKeys.some(x=>x.g==="card:"+k)) L.shapeKeys.push({g:"card:"+k,label:v.label||k,color:v.color||"c2"}); });
+    const pick=(d.items||[]).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(d0(e))<=t&&(!w||tUnit(d0(e))>t-w))).sort((a,b)=>d0(a)-d0(b));
+    pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",icon:K[e.kind]&&K[e.kind].icon,label:ly.labels===false?null:e.title,card:e,minZoom:ly.minZoom}));
+    if(ly.list) L.cardList=(L.cardList||[]).concat(pick); L.kinds=Object.assign(L.kinds||{},K);
+    Object.entries(K).forEach(([k,v])=>{ if(pick.some(e=>e.kind===k)&&!L.shapeKeys.some(x=>x.g==="card:"+k)) L.shapeKeys.push({g:"card:"+k,label:(ICONS[v.icon]?ICONS[v.icon]+" ":"")+(v.label||k),color:v.color||"c2"}); });
   },
   places(ly,d,y,L){ // places whose name depends on the date (Byzantium, Constantinople, Istanbul)
     const t=+y; (d.places||[]).forEach(pl=>{ const n=(pl.names||[]).find(x=>validAt(x,t)); if(!n&&!pl.always) return;
-      L.points.push({at:pl.at,r:pl.r||3,color:ly.color||"muted",label:n?n.name:pl.name}); });
+      L.points.push({at:pl.at,r:pl.r||3,color:ly.color||"muted",label:n?n.name:pl.name,minZoom:pl.minZoom!=null?pl.minZoom:ly.minZoom}); });
   },
   moves(ly,d,y,L){ // routes whose points carry dates: drawn up to the timeline date, with a marker where the mover is
     const t=+y; (d.moves&&d.moves[ly.set]||[]).filter(m=>!ly.only||ly.only.includes(m.name)).forEach(m=>{
@@ -695,12 +709,15 @@ const LAYER={
       geom:topojson.merge(S.topo,idx.filter(i=>S.feats[i].properties.group===g).map(i=>S.obj.geometries[i]))}));
     // changes since the previous timeline step: areas lost (dashed) and gained (bold edge)
     let lost=[], gained=[], front=null;
-    if(ly.changes&&scene&&scene.timeline){ const ys=scene.timeline.years, k=ys.indexOf(yr), py=k>0?ys[k-1]:null;
+    if((ly.changes||ly.flash)&&scene&&scene.timeline){ const ys=scene.timeline.years, k=ys.indexOf(yr), py=k>0?ys[k-1]:null;
       if(py!=null){ const was=new Set(S.feats.map((f,i)=>i).filter(i=>validAt(S.feats[i].properties,py)&&(!ly.groups||ly.groups.includes(S.feats[i].properties.group))));
         lost=[...was].filter(i=>!idx.includes(i)).map(i=>S.feats[i]); gained=idx.filter(i=>!was.has(i)).map(i=>S.feats[i]); } }
     // front: the shared edge between areas of different groups
     if(ly.front) front=topojson.mesh(S.topo,{type:"GeometryCollection",geometries:idx.map(i=>S.obj.geometries[i])},(a,b)=>a!==b&&a.properties.group!==b.properties.group);
-    L.shapes.push({lost,gained,front,frontColor:ly.frontColor||"c2",feats:idx.map(i=>S.feats[i]),groups:G,color:ly.color||"c2",opacity:ly.opacity==null?0.55:ly.opacity,
+    // dots: the source point of each area (properties.at), coloured by group; groups with "hollow": true draw as rings
+    if(ly.dots) idx.forEach(i=>{ const p=S.feats[i].properties, g=G[p.group]; if(p.at) L.points.push({at:p.at,r:ly.dotR||2.5,color:p.color||(g&&g.color)||ly.color||"c2",hollow:!!(g&&g.hollow),minZoom:ly.dotMinZoom}); });
+    const flash=ly.changes==="flash"||ly.flash;
+    L.shapes.push({lost,gained,front,flash,fill:ly.fill!==false,frontColor:ly.frontColor||"c2",feats:idx.map(i=>S.feats[i]),groups:G,color:ly.color||"c2",opacity:ly.opacity==null?(ly.dots&&ly.fill!==false?0.25:0.55):ly.opacity,
       labels:ly.labels!==false,inner:ly.inner!==false,outlines,title:ly.title,year:yr});
     groups.forEach(g=>{ if(!L.shapeKeys.some(k=>k.g===g)) L.shapeKeys.push({g,label:(G[g]&&G[g].label)||g,color:(G[g]&&G[g].color)||ly.color||"c2"}); });
   },
@@ -839,7 +856,8 @@ const LAYER={
     L.rasters.push(Object.assign({tex:G.tex,G,side:"L"},base),Object.assign({tex:G2.tex,G:G2,side:"R"},base));
     L.swipe={left:ly.leftLabel||lab,right:ly.rightLabel||String(ly.compare)};
   },
-  points(ly,d,y,L){ (d.points[ly.set]||[]).filter(x=>!ly.only||ly.only.includes(x.name)).forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.forceColor?ly.color:(x.color||ly.color),r:x.r||ly.r||4.5})); }
+  points(ly,d,y,L){ const tl=scene&&scene.timeline; (d.points[ly.set]||[]).filter(x=>(!ly.only||ly.only.includes(x.name))&&(!tl||(x.from==null&&x.to==null)||validAt(x,+y)))
+    .forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.forceColor?ly.color:(x.color||ly.color),r:x.r||ly.r||4.5,minZoom:x.minZoom!=null?x.minZoom:ly.minZoom,icon:x.icon||ly.icon})); }
 };
 // tapping a country in a flows scene shows only that country's flows
 let swipeAt=0.5;   // before/after divider position, share of the map frame width
@@ -952,7 +970,7 @@ function composite(cv,g){ // raster + vector canvases plus a caption strip
   g.fillStyle=getComputedStyle(document.body).backgroundColor; g.fillRect(0,0,w,h);
   g.drawImage(document.getElementById("raster"),0,0,w,h); g.drawImage(canvas,0,0,w,h);
   const st=si>=0?STORIES[si]:null, title=st&&scene?st.title+" · "+scene.title:t("The world, your way");
-  const credit="Orbis · "+t("Data")+": "+sourceIds().map(id=>SOURCES[id].name).join(", ");
+  const credit="Orbis · "+t("Data")+": "+sourceIds().map(id=>SOURCES[id].name).join(", ")+(stampText()?" · "+stampText():"");
   const fs=Math.round(15*DPR); g.font=`600 ${fs*1.25}px 'Source Serif 4', Georgia, serif`;
   g.fillStyle="rgba(250,248,243,.92)"; g.fillRect(0,h-fs*4.2,w,fs*4.2);
   g.fillStyle="#1D2A30"; g.fillText(title,fs,h-fs*2.4); g.font=`${fs*0.85}px 'Barlow Semi Condensed', sans-serif`; g.fillStyle="#4C5B61"; g.fillText(credit,fs,h-fs*0.9);
@@ -1087,7 +1105,7 @@ function legendHTML(){
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · "+t(k.qty?"line width = tonnes":"line width = value")));
   if(L) L.overlays.forEach((o,i)=>{ h+=`<label class="ov-row"><span>${esc(o.title)}</span>`+(o.slider?`<input type="range" min="0" max="100" value="${Math.round(o.alpha*100)}" data-ov="${i}" aria-label="${esc(t("Opacity of {x}",{x:o.title}))}">`:"")+`</label>`; });
   if(L) L.shapeKeys.forEach(k=>h+=chip(k.color,k.label));
-  if(L&&L.cardList&&L.cardList.length) h+=`<ol class="card-list">${L.cardList.map((e,i)=>`<li><button data-ci="${i}"><span>${esc(e.cal==="julian"&&isDateNum(e.date)?Cal.other(e.date,"julian",true).replace(" (Julian)",""):fmtWhen(e.date))}</span>${esc(e.title)}</button></li>`).join("")}</ol>`;
+  if(L&&L.cardList&&L.cardList.length) h+=`<ol class="card-list">${L.cardList.map((e,i)=>`<li><button data-ci="${i}"><span>${esc(e.cal==="julian"&&isDateNum(e.date)?Cal.other(e.date,"julian",true).replace(" (Julian)",""):fmtWhen(e.date,e))}</span>${esc(((L.kinds&&L.kinds[e.kind]&&ICONS[L.kinds[e.kind].icon])?ICONS[L.kinds[e.kind].icon]+" ":"")+e.title)}</button></li>`).join("")}</ol>`;
   if(L&&L.pairs) h+=`<span class="chip">${esc(t("Tap a country to see its ties"))}</span>`;
   if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?esc(t("Showing {x} only · tap it again for all",{x:nameOf(focus)})):esc(t("Tap a country to see only its flows"))}</span>`;
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
@@ -1144,18 +1162,30 @@ $("licClose").onclick=closeLic;
 
 function chip(c,t){return `<span class="chip"><i style="background:${col(c)}"></i>${esc(t)}</span>`;}
 
+let flashT=-1e9;
+function flashLoop(){ render(); if(performance.now()-flashT<720) requestAnimationFrame(flashLoop); }
 function setFrame(){
   const t=scene&&scene.timeline; if(!t){frame=null;renderChart();return;}
-  const y=t.years[tlIdx]; frame=t.frame(y,tlIdx); el.year.textContent=t.label(y); if(t.second){ const s2=document.createElement("small"); s2.className="tl-cal"; s2.textContent=t.second(y); el.year.append(s2); } el.slider.value=tlIdx;
+  const y=t.years[tlIdx]; frame=t.frame(y,tlIdx); el.year.textContent=t.label(y); if(t.second){ const s2=document.createElement("small"); s2.className="tl-cal"; s2.textContent=t.second(y); el.year.append(s2); } el.slider.value=sliderVal(tlIdx);
   el.slider.setAttribute("aria-valuetext",String(t.label(y)));
   el.cap.textContent=frame.caption||""; el.cap.hidden=!frame.caption;
   L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); if(scene.media&&scene.media.some(x=>x.type==="gantt")) renderMedia(); render();
+  if(L.shapes.some(sh=>sh.flash&&sh.gained.length)&&!reduce){ flashT=performance.now(); requestAnimationFrame(flashLoop); }
+  placeTicks();
 }
 function stopPlay(){ if(playing){clearInterval(playing);playing=null;} el.play.textContent=t("Play"); el.play.setAttribute("aria-label",t("Play timeline")); }
 el.play.onclick=()=>{ if(playing){stopPlay();return;} const t=scene.timeline; if(tlIdx>=t.years.length-1) tlIdx=0;
   el.play.textContent=t("Pause"); el.play.setAttribute("aria-label",t("Pause timeline"));
-  playing=setInterval(()=>{ if(tlIdx>=t.years.length-1){stopPlay();return;} tlIdx++; setFrame(); }, t.years.length>30?(reduce?400:160):(reduce?1600:1100)); };
-el.slider.oninput=()=>{stopPlay();tlIdx=+el.slider.value;setFrame();};
+  playing=setInterval(()=>{ if(tlIdx>=t.years.length-1){stopPlay();return;} tlIdx++; setFrame(); }, t.playSpeed||(t.years.length>30?(reduce?400:160):(reduce?1600:1100))); };
+// "spacing":"time": the slider runs over real time (uneven dates sit at their true distance) and snaps to the nearest step
+const tPos=(t,y)=>t.isDate?Cal.jdn(Math.trunc(y/10000),Math.floor(Math.abs(y)/100)%100,Math.abs(y)%100):y;
+function sliderIdx(v){ const t=scene.timeline; if(!t.spacing) return +v; const a=tPos(t,t.years[0]), b=tPos(t,t.years[t.years.length-1]), x=a+(b-a)*v/1000;
+  let best=0; t.years.forEach((y,i)=>{ if(Math.abs(tPos(t,y)-x)<Math.abs(tPos(t,t.years[best])-x)) best=i; }); return best; }
+function sliderVal(i){ const t=scene.timeline; if(!t.spacing) return i; const a=tPos(t,t.years[0]), b=tPos(t,t.years[t.years.length-1]); return Math.round(1000*(tPos(t,t.years[i])-a)/((b-a)||1)); }
+const ticksEl=document.createElement("div"); ticksEl.className="tl-ticks"; el.slider.after(ticksEl);
+function placeTicks(){ const t=scene&&scene.timeline; ticksEl.hidden=!(t&&t.spacing); if(!t||!t.spacing) return;
+  ticksEl.innerHTML=t.years.map((y,i)=>`<i style="left:${sliderVal(i)/10}%"></i>`).join(""); }
+el.slider.oninput=()=>{stopPlay();tlIdx=sliderIdx(el.slider.value);setFrame();};
 
 function showScene(i, fly=true){
   const st=STORIES[si]; ci=clamp(i,0,st.scenes.length-1); scene=st.scenes[ci]; stopPlay();
@@ -1168,7 +1198,7 @@ function showScene(i, fly=true){
   el.updated.hidden=!st.updated; if(st.updated) el.updated.textContent=t("Updated {d}",{d:fmtDate(st.updated)});
   markRead(st.id,ci,st.scenes.length);
   el.blocs.hidden=true; el.steps.hidden=false; el.notes.hidden=false;
-  if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.years.length-1;}
+  if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.spacing?1000:scene.timeline.years.length-1;}
   else el.tl.hidden=true;
   markDirty(); focus=null; pairFrom=null; switchIdx=(scene.switch&&scene.switch.start)||0; cartoStart=performance.now(); renderSwitch();
   frame=null; setFrame(); L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderMedia(); renderTools(); describe();
@@ -1218,10 +1248,12 @@ function renderBlocs(){
 
 const MON=Cal.MON;
 // ---------- event cards ----------
-const fmtWhen=n=>n==null?"":Math.abs(n)>=10000?Cal.date(n):Cal.year(n);
+const fmtWhen=(n,e)=>{ if(n==null) return ""; const one=v=>Math.abs(v)>=10000?Cal.date(v):Cal.year(v);
+  let s; if(Array.isArray(n)){ const [a,b]=n; s=Math.abs(a)<10000&&a<=0&&b<=0?(1-a)+"–"+Cal.year(b):one(a)+"–"+one(b); } else s=one(n);
+  return (e&&e.circa?"c. ":"")+s; };
 function openCard(e){
   const c=el.card; c.hidden=false;
-  c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(e.cal&&isDateNum(e.date)?Cal.other(e.date,e.cal,true):fmtWhen(e.date))}${e.place?" · "+esc(e.place):""}</p><h3>${esc(e.title)}</h3>`+
+  c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(e.cal&&isDateNum(e.date)?Cal.other(e.date,e.cal,true):fmtWhen(e.date,e))}${e.place?" · "+esc(e.place):""}</p><h3>${esc(e.title)}</h3>`+
     (e.image?`<figure><img src="${esc(e.image)}" alt="${esc(e.alt||"")}"><figcaption>${esc(e.credit||"")}</figcaption></figure>`:"")+
     (e.text?`<p>${esc(e.text)}</p>`:"")+(e.source?`<p class="card-src">${t("Source")}: ${e.url?`<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a>`:esc(e.source)}</p>`:"");
   c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
@@ -1304,7 +1336,7 @@ function openCampaign(id){
   const ch=cp.chapters.map(id=>[id,STORIES[storyIndex(id)]]).filter(x=>x[1]);
   const nextId=(ch.find(([id])=>!done(id))||ch[0]||[])[0], started=ch.some(([id])=>seen(id));
   el.camp.innerHTML=`<button class="btn camp-go" id="campGo">${t(started?"Continue":"Start")}${nextId&&started?": "+esc(STORIES[storyIndex(nextId)].title):""}</button>
-    <ol class="camp-list">${ch.map(([id,s],k)=>`<li class="${done(id)?"done":seen(id)?"seen":""}"><button data-id="${id}"><span class="camp-n">${done(id)?"✓":k+1}</span><span><b>${esc(s.title)}</b><span class="toc-hook">${esc(s.hook)}</span></span></button></li>`).join("")}</ol>
+    <ol class="camp-list">${ch.map(([id,s],k)=>`<li class="${done(id)?"done":seen(id)?"seen":""}"><button data-id="${id}"><span class="camp-n">${done(id)?"✓":k+1}</span><span><b>${esc(s.title)}</b><span class="toc-hook">${esc(s.hook)}</span></span></button></li>`).join("")}${(cp.coming||[]).map(x=>`<li class="coming"><div><span class="camp-n">·</span><span><b>${esc(x.title)}</b><span class="toc-hook">${esc(t("Coming"))}${x.hook?" · "+esc(x.hook):""}</span></span></div></li>`).join("")}</ol>
     <p class="camp-progress">${t("{n} of {m} read",{n:ch.filter(([id])=>done(id)).length,m:ch.length})}</p>`+
     (cp.dates&&cp.dates.length?`<details class="camp-dates"><summary>${t("Key dates")}</summary><ul>${cp.dates.map(x=>`<li><span>${esc(fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"")+
     (cp.changelog&&cp.changelog.length?`<details class="camp-dates"><summary>${t("What changed")}</summary><ul>${cp.changelog.map(x=>`<li><span>${esc(fmtDate(x.d))}</span><span>${esc(x.t)}</span></li>`).join("")}</ul></details>`:"");

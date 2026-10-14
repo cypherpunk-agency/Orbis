@@ -150,6 +150,23 @@ Build with mapshaper: `node tools/node_modules/mapshaper/bin/mapshaper in.geojso
 ```
 `members` values are a start year, or `[start, end)`.
 
+## Series features (October 2026)
+
+Added for the history series; all optional.
+
+- **Scene `stamp`**: `"stamp": "Control as of {t} · Wikipedia (volunteer-edited)"`: small text bottom right of the map, also in saved images; `{t}` is the current timeline step.
+- **Timeline `spacing: "time"`**: uneven dates sit at their real distance on the slider (ticks mark each step). **`playSpeed`**: milliseconds per step when playing.
+- **Switch options**: a layer value that is exactly `"{key}"` takes the option's value with its type (number, boolean, list), e.g. `"diverging": "{div}"`. An option can carry `"view"` to fly elsewhere.
+- **`shapes`**: `"dots": true` draws each area's source point (`properties.at`) coloured by group (`dotR`, `dotMinZoom`); groups with `"hollow": true` draw rings. `"fill": false` hides the areas (dots only; areas stay tappable). `"changes": "flash"` (or `"flash": true`) briefly fills newly gained areas when the timeline moves (off with reduced motion).
+- **`regions` categories**: `{ "type":"regions", "country":"USA", "data":"a", "set":"pres", "year":"t", "colors":{"dem":"c1","rep":"c2"}, "shade":{"min":50,"max":70}, "unit":"states" }` with dataset `sets.pres = { labels, byYear:{year:{regionId:cat}}, shareByYear:{year:{regionId:number}} }` (or `values`/`share` without years). Lighter = smaller share. Legend chips count regions per category; tap shows "Ohio · Republican · 55.1% · 2024" (`shareFmt` to change the number format).
+- **Numeric `regions`**: `diverging`, `mid`, `vmin`, `vmax`, `reverse`, like `choropleth`.
+- **`lines` and `points`**: items with `from`/`to` follow the timeline. `lines` `"labels": "once"` labels only the longest piece of each name.
+- **`points`, `places`, `cards`**: `minZoom` (per layer or per item) hides them until the reader zooms in. `points` `icon` and card kinds `"icon"`: `swords` (drawn as crossed blades), and legend symbols `star`, `flag`, `anchor`, `crown`, `cross`.
+- **Card dates**: `"date": [a, b]` is a range ("760–740 BC"); `"circa": true` prefixes "c.". Ranges sort and filter by their start. Years are astronomical (1 BC = 0, so 760 BC = -759).
+- **`symbols` `"scale": "timeline"`**: one size scale across all timeline steps.
+- **`flows`**: `outLabel`/`inLabel` rename the per-country totals ("exports"/"imports"); `"totals": false` drops them.
+- **Series `coming`**: in `stories/campaigns.json`, `"coming": [{"title": "...", "hook": "..."}]` lists planned chapters, greyed and not clickable.
+
 ## Formats (`fmt`)
 
 `int` (1,234), `num`, `dollar` ($6.22), `tpp` (tonnes/person), `mil` ("1,464 M"), `yrs`, `pct0`, `usd`, `eur`, `people`, `degc`, `ppkm2`, `d3:<format>` (any d3-format string, e.g. `d3:$.2f`), `kbd` thousand barrels/day → "1.2 m b/d", `mbd`, `bcm`, `bcfd`, `musd` (million USD → "$1.2 bn"), `busd` (billion USD → "$1.2 tn"), `t` (tonnes), `kt` (thousand tonnes), `kg`, `mt` (thousand tonnes → "Mt"), `pct` (value already in %), `bpp`, `m3pp`. Anything else: compact SI.
