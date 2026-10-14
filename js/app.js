@@ -128,7 +128,7 @@ function layers(){
   if(L.choro){const ch=L.choro,d=ch.values||DATA[ch.data],vals=Object.values(d);
     const lo=ch.vmin!=null?ch.vmin:d3.min(vals),hi=ch.vmax!=null?ch.vmax:d3.max(vals);
     if(ch.diverging){ // blue below the midpoint, red above, symmetric so equal distances look equal
-      const m=ch.mid, r=Math.max(Math.abs(hi-m),Math.abs(m-lo))||1, dv=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
+      const m=ch.mid, r=Math.max(Math.abs(hi-m),Math.abs(m-lo))||1, dv=DIVERGING;
       L.color=v=>dv(clamp(0.5+(v-m)/(2*r),0,1)); L.ramp=dv;
     } else {
       const sc=ch.log?d3.scaleLog().domain([Math.max(lo,0.1),hi]):d3.scaleLinear().domain([lo,hi]);
@@ -356,7 +356,7 @@ function draw(){
     ctx.globalAlpha=1;
     if(!(scene&&scene.modernBorders===false)){ ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke(); }
   }
-  L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id]; ctx.beginPath(); path(f); ctx.fillStyle=v==null?C.nodata:rg.color(v); ctx.fill(); });
+  L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
     ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=C.paper; ctx.lineWidth=0.8; ctx.stroke(); });
   L.shapes.forEach(sh=>{ sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
       ctx.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1;
@@ -433,7 +433,7 @@ function draw(){
       if(size<n.length*5.2) return; const at=f.properties.lx!=null?[f.properties.lx,f.properties.ly]:d3.geoCentroid(f); if(!visible(at)) return;
       const q=proj(at); if(q) labels.push([n,q[0],q[1],{align:"center",size:size>160?14:12}]); }); }
   L.regions.forEach(rg=>{ if(!rg.labels) return; rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], at=[f.properties.lx,f.properties.ly];
-    if(at[0]==null||!visible(at)) return; const p=proj(at); if(p) labels.push([f.properties.name+(v!=null?" "+rg.fmt(v):""),p[0],p[1],{align:"center",size:12}]); }); });
+    if(at[0]==null||!visible(at)) return; const p=proj(at); if(p) labels.push([f.properties.name+(v!=null&&!rg.cat?" "+rg.fmt(v):""),p[0],p[1],{align:"center",size:12}]); }); });
   if(L.pov) L.pov.areas.forEach(a=>{ let o=a.properties.o[L.pov.view]; if(o&&!NAMES.has(o)) o=null; if(L.pov.only&&!L.pov.only.includes(a.properties.name)) return;
     if(path.area(a)<400) return;  // skip slivers
     const c=d3.geoCentroid(a); if(!visible(c)) return; const p=proj(c); if(p) labels.push([o?nameOf(o):t("disputed"),p[0],p[1],{align:"center",size:12,color:C.accent}]); });
@@ -527,7 +527,7 @@ function tap(x,y){
   const ll=proj.invert([x,y]); if(!ll||isNaN(ll[0])) return;
   if(curKind()==="globe"&&d3.geoDistance(ll,V.center)>Math.PI/2) return;
   for(const rg of L.regions){ const rf=rg.R.feats.find(f=>d3.geoContains(f,ll)); if(rf){ const v=rg.vals[rf.id];
-    tip.innerHTML="<b>"+esc(rf.properties.name)+"</b><span>"+esc(rg.title)+": "+(v==null?t("No data"):esc(rg.fmt(v)))+"</span>";
+    tip.innerHTML="<b>"+esc(rf.properties.name)+"</b><span>"+(rg.cat?esc(rg.tipOf(rf.id)):esc(rg.title)+": "+(v==null?t("No data"):esc(rg.fmt(v))))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; } }
   const sideAt=x<F.x+F.w*swipeAt?"L":"R";
   const gridHtml=L.rasters.filter(r=>!r.side||r.side===sideAt).map(r=>{ const G=r.G; if(!G.bytes) return "";
@@ -660,6 +660,8 @@ function pointValues(ly,d,y){
   const pi=d.periods.indexOf(String(ly.period||y));
   return d.points.filter(p=>p[ly.field]&&p[ly.field][pi]!=null).map(p=>({id:p.id,name:p.name,at:p.at,v:p[ly.field][pi]}));
 }
+const DIVERGING=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
+const pickByYear=(o,y)=>{ if(!o) return null; const k=Object.keys(o).map(Number).sort((a,b)=>a-b).filter(v=>v<=+y).pop(); return k!=null?o[k]:null; };
 const LAYER={
   cards(ly,d,y,L){ // dated events with a story card: tap a dot to read it; optional list in the panel
     const t=+y, w=ly.window, K=d.kinds||{};
@@ -715,7 +717,10 @@ const LAYER={
     const items=Array.isArray(d.points)?pointValues(ly,d,y)
       :Object.entries(valuesOf(ly,d,y)).filter(([k,v])=>v>0&&ANCHOR.has(k)).map(([k,v])=>({id:k,name:nameOf(k),at:ANCHOR.get(k),v}));
     items.sort((a,b)=>b.v-a.v);
-    const vmax=ly.vmax||(items[0]&&items[0].v)||1, R=ly.maxR||40, f=fmtOf(ly.fmt), n=ly.labels==null?6:ly.labels, c=ly.color||"c3";
+    // "scale":"timeline": one size scale for every year, so circles grow and shrink over time instead of rescaling each frame
+    let gmax=null; if(ly.scale==="timeline"&&scene&&scene.timeline){ const k=JSON.stringify(ly); SYMMAX[k]=SYMMAX[k]||d3.max(scene.timeline.years,yy=>
+      d3.max(Array.isArray(d.points)?pointValues(ly,d,yy).map(x=>x.v):Object.values(valuesOf(ly,d,yy)))); gmax=SYMMAX[k]; }
+    const vmax=ly.vmax||gmax||(items[0]&&items[0].v)||1, R=ly.maxR||40, f=fmtOf(ly.fmt), n=ly.labels==null?6:ly.labels, c=ly.color||"c3";
     items.forEach((x,i)=>{ if(x.v<=0) return; L.symbols.push({at:x.at,r:Math.max(1.5,R*Math.sqrt(x.v/vmax)),color:c,label:i<n?x.name+" "+f(x.v):null}); });
     if(!Array.isArray(d.points)) L.vals.push({title:ly.title,values:Object.fromEntries(items.map(x=>[x.id,x.v])),fmt:f});
     if(ly.key!==false) L.sizeKey={color:c,title:ly.title};
@@ -735,11 +740,15 @@ const LAYER={
     const title=ly.title||g.label;
     L.flowKeys.push({color:c,title,qty:m===3});
     const fv=m===3?FMT.musd:f;  // totals are always values; quantity layers still show them in USD
-    L.vals.push({title:title+", exports",values:g.exports[y]||{},fmt:fv},{title:title+", imports",values:g.imports[y]||{},fmt:fv});
+    if(ly.totals!==false) L.vals.push({title:title+", "+(ly.outLabel||"exports"),values:g.exports[y]||{},fmt:fv},{title:title+", "+(ly.inLabel||"imports"),values:g.imports[y]||{},fmt:fv});
   },
-  lines(ly,d,y,L){ (d.lines[ly.set]||[]).filter(x=>!ly.only||ly.only.includes(x.name)).forEach(x=>L.routes.push({path:x.path,color:ly.forceColor?ly.color:(x.color||ly.color),width:x.width||ly.width||2.2,
+  lines(ly,d,y,L){ // lines with from/to follow the timeline; "labels":"once" labels only the longest piece of each name
+    const tl=scene&&scene.timeline, seen=new Map();
+    const ls=(d.lines[ly.set]||[]).filter(x=>(!ly.only||ly.only.includes(x.name))&&(!tl||(x.from==null&&x.to==null)||validAt(x,+y)));
+    if(ly.labels==="once") ls.forEach(x=>{ const b=seen.get(x.name); if(!b||x.path.length>b.path.length) seen.set(x.name,x); });
+    ls.forEach(x=>L.routes.push({path:x.path,color:ly.forceColor?ly.color:(x.color||ly.color),width:x.width||ly.width||2.2,
     dash:x.dash!=null?x.dash:(ly.dash!=null?ly.dash:!!x.status&&x.status!=="operating"),flow:ly.flow&&(!x.status||x.status==="operating"),
-    label:ly.labels?x.name:null,labelAt:x.labelAt,dist:x.dist||ly.dist,until:x.until!=null?x.until:ly.until})); },
+    label:ly.labels==="once"?(seen.get(x.name)===x?x.name:null):ly.labels?x.name:null,labelAt:x.labelAt,dist:x.dist||ly.dist,until:x.until!=null?x.until:ly.until})); },
   spikes(ly,d,y,L){
     const items=Object.entries(valuesOf(ly,d,y)).filter(([k,v])=>v>0&&ANCHOR.has(k)).sort((a,b)=>b[1]-a[1]);
     const vmax=ly.vmax||(items[0]&&items[0][1])||1, f=fmtOf(ly.fmt), n=ly.labels==null?5:ly.labels, c=ly.color||"c2";
@@ -794,11 +803,24 @@ const LAYER={
   },
   regions(ly,d,y,L){ // sub-national areas (admin-1) of one country, coloured by a series keyed by region id
     const R=regionGeo(ly.country||ly.regionSet); if(!R) return;
+    if(ly.set){ // categories per region (e.g. election winner), optionally shaded by a share: lighter = closer
+      const s0=d.sets&&d.sets[ly.set]; if(!s0) return;
+      const cats=(s0.byYear?pickByYear(s0.byYear,y):s0.values)||{}, share=(s0.shareByYear?pickByYear(s0.shareByYear,y):s0.share)||{}, sh=ly.shade;
+      const lab=c=>(ly.names&&ly.names[c])||(s0.labels&&s0.labels[c])||c;
+      const colorOf=id=>{ const c=cats[id]; if(c==null||!ly.colors[c]) return null; const base=col(ly.colors[c]);
+        if(!sh||share[id]==null) return base; return d3.interpolateRgb(C.paper,base)(0.3+0.7*clamp((share[id]-sh.min)/((sh.max-sh.min)||1),0,1)); };
+      const keys=Object.keys(ly.colors).map(c=>({label:lab(c),color:ly.colors[c],n:Object.values(cats).filter(v=>v===c).length})).filter(k=>k.n);
+      L.regions.push({R,vals:cats,colorOf,cat:true,keys,unit:ly.unit||"",shadeNote:sh&&(ly.shadeLabel||t("Lighter = closer result")),
+        title:ly.title?ly.title+" · "+ylab(y):ylab(y),labels:ly.labels,
+        tipOf:id=>cats[id]==null?t("No data"):lab(cats[id])+(share[id]!=null?" · "+(ly.shareFmt?fmtOf(ly.shareFmt)(share[id]):share[id].toFixed(1)+"%"):"")+" · "+ylab(y)});
+      return; }
     const sr=d.series[ly.series], i=yearIndex(d,y); if(!sr||i<0) return;
     const vals={}; Object.entries(sr.values).forEach(([k,a])=>{ if(a[i]!=null) vals[k]=a[i]*(ly.mult||1); });
-    const v=Object.values(vals), lo=d3.min(v), hi=d3.max(v);
-    const sc=ly.log?d3.scaleLog().domain([Math.max(lo,1e-9),hi]):d3.scaleLinear().domain([lo,hi]);
-    L.regions.push({R,vals,color:x=>C.seq(clamp(sc(x),0,1)),lo,hi,title:ly.title+" · "+ylab(y),fmt:fmtOf(ly.fmt),labels:ly.labels});
+    const v=Object.values(vals); let lo=ly.vmin!=null?ly.vmin:d3.min(v), hi=ly.vmax!=null?ly.vmax:d3.max(v), color, ramp=C.seq;
+    if(ly.diverging){ const m=ly.mid||0, r=Math.max(Math.abs(hi-m),Math.abs(m-lo))||1; color=x=>DIVERGING(clamp(0.5+(x-m)/(2*r),0,1)); ramp=DIVERGING; lo=m-r; hi=m+r; }
+    else { const sc=ly.log?d3.scaleLog().domain([Math.max(lo,1e-9),hi]):d3.scaleLinear().domain([lo,hi]);
+      color=x=>{ let q=clamp(sc(ly.log?Math.max(x,1e-9):x),0,1); if(ly.reverse) q=1-q; return C.seq(q); }; if(ly.reverse) ramp=q=>C.seq(1-q); }
+    L.regions.push({R,vals,color,ramp,lo,hi,title:ly.title+" · "+ylab(y),fmt:fmtOf(ly.fmt),labels:ly.labels});
   },
   pov(ly,d,y,L){ // disputed areas as one country sees them: filled with the owner's tint, outlined dashed
     if(!d._areas) d._areas=topojson.feature(d.areas,d.areas.objects.areas).features;
@@ -835,10 +857,14 @@ swipeH.addEventListener("pointerdown",e=>{ e.preventDefault(); e.stopPropagation
 swipeH.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft"||e.key==="ArrowRight"){ swipeAt=clamp(swipeAt+(e.key==="ArrowLeft"?-0.05:0.05),0.02,0.98); placeSwipe(); render(); } });
 let focus=null, pairFrom=null;   // tapped country: flows filter / pairs origin
 // a scene "switch" (e.g. pick a commodity) fills {placeholders} in its layers, chart and text
-let switchIdx=0;
+let switchIdx=0; const SYMMAX={};
 const switchOpt=()=>scene&&scene.switch?scene.switch.options[switchIdx]:null;
+// a value that is exactly "{key}" takes the option's value with its type (number, boolean, list), so options can switch any setting
 function subst(o){ const op=switchOpt(); if(!op||o==null) return o;
-  return JSON.parse(JSON.stringify(o).replace(/\{(\w+)\}/g,(m,k)=>op[k]!=null?String(op[k]).replace(/["\\]/g,"\\$&"):m)); }
+  const walk=v=>{ if(typeof v==="string"){ const m=v.match(/^\{(\w+)\}$/); if(m&&op[m[1]]!=null) return op[m[1]];
+      return v.replace(/\{(\w+)\}/g,(x,k)=>op[k]!=null?String(op[k]):x); }
+    if(Array.isArray(v)) return v.map(walk); if(v&&typeof v==="object"){ const r={}; for(const k in v) r[k]=walk(v[k]); return r; } return v; };
+  return walk(o); }
 function compileLayers(s,L){
   const st=si>=0?STORIES[si]:null, D=(st&&st._data)||{};
   (subst(s.layers)||[]).forEach(ly=>{ const d=D[ly.data], fn=LAYER[ly.type]; if(!d||!fn) return;
@@ -913,7 +939,9 @@ function renderSwitch(){
   if(!sw){ box.hidden=true; return; }
   box.innerHTML=`<span class="sw-label">${esc(sw.label||t("Show"))}</span>`+sw.options.map((o,i)=>`<button class="bloc" data-i="${i}" aria-pressed="${String(i===switchIdx)}">${esc(o.label)}</button>`).join("");
   [...box.querySelectorAll("button")].forEach(b=>b.onclick=()=>{ switchIdx=+b.dataset.i; cartoStart=performance.now()-900; renderSwitch();
-    const op=switchOpt(); el.text.textContent=op.text||scene.text; L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderData(); render(); });
+    const op=switchOpt(); el.text.textContent=op.text||scene.text;
+    const vw=op.view||(sw.options.some(o=>o.view)?scene.view:null); if(vw){ const tv=Object.assign({},scene.view,vw); syncMode(tv.mode); flyTo(tv,1200); }
+    L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); renderData(); render(); });
   box.hidden=false;
   const op=switchOpt(); if(op&&op.text) el.text.textContent=op.text;
 }
@@ -1065,7 +1093,8 @@ function legendHTML(){
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · "+t("country size = amount"));
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · ${t("circle area = amount")}</span></span>`;
-  if(L) L.regions.forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(t=>C.seq(t)).join(",");
+  if(L) L.regions.filter(rg=>rg.cat).forEach(rg=>{ h+=`<div class="ramp-title">${esc(rg.title)}</div>`+rg.keys.map(k=>chip(k.color,k.label+": "+k.n+(rg.unit?" "+rg.unit:""))).join("")+(rg.shadeNote?`<span class="chip">${esc(rg.shadeNote)}</span>`:""); });
+  if(L) L.regions.filter(rg=>!rg.cat).forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(q=>(rg.ramp||C.seq)(q)).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(rg.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(rg.fmt(rg.lo))}</span><span>${esc(rg.fmt(rg.hi))}</span></div></div>`; });
   if(L&&L.pov) h+=`<span class="chip"><i style="background:none;border:1.5px dashed ${C.accent}"></i>${esc(t("Disputed areas, drawn as seen from {x}",{x:nameOf(L.pov.viewIso)}))}</span>`;
   if(L) L.events.forEach(E=>h+=chip(E.color,E.title+" · "+t("{n} shown",{n:d3.format(",")(E.count)})));
