@@ -1,0 +1,277 @@
+{
+  "id": "launches",
+  "cat": "Statistics",
+  "title": "The launch explosion",
+  "hook": "For half a century the world launched 55 to 141 rockets a year. Since 2019 the number has more than tripled, and one company flies half of them.",
+  "notes": "GCAT, the General Catalog of Artificial Space Objects by Jonathan McDowell (planet4589.org/space/gcat), release 1.8.8, data update 13 October 2026, CC BY. Launches are orbital launch attempts from Earth, successful or not, including launches to the Moon and planets, by UTC calendar year 1957–2025; lunar ascents (Apollo, Luna, Chang'e) are excluded. 'Who launches' follows the country GCAT gives the rocket: USSR and Russia are one band; SpaceX is split from other US rockets; 'everyone else' includes Europe, Japan, India, Rocket Lab's Electron from New Zealand, Iran, Israel and the Koreas. Spaceports with several pad codes are merged (Cape Canaveral includes Kennedy Space Center; Mahia is Rocket Lab's New Zealand site). Satellites are payloads catalogued in orbit (failed launches excluded) by launch year; Starlink counts payloads named Starlink.",
+  "data": {
+    "l": "data/statistics/launches.json"
+  },
+  "scenes": [
+    {
+      "title": "Where rockets rise",
+      "text": "Since Sputnik in 1957, rockets have tried to reach orbit about 7,200 times. Three spaceports have hosted more than 1,300 launches each: Plesetsk in northern Russia, Baikonur in Kazakhstan and Cape Canaveral in Florida. Press Play to watch every year.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          25
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "l",
+          "field": "n",
+          "year": "t",
+          "color": "c1",
+          "title": "Orbital launch attempts per year",
+          "maxR": 26,
+          "vmax": 110,
+          "labels": 4,
+          "fmt": "int"
+        }
+      ],
+      "chart": {
+        "data": "l",
+        "field": "n",
+        "year": "t",
+        "top": 6,
+        "title": "Busiest spaceports",
+        "fmt": "int",
+        "color": "c1"
+      },
+      "timeline": {
+        "years": [
+          1957,
+          2025
+        ],
+        "start": 1967,
+        "captions": {
+          "1957": "Sputnik 1 launches from Baikonur.",
+          "1967": "141 launch attempts: the Cold War peak.",
+          "2004": "55 launch attempts: the quietest year since 1961.",
+          "2025": "329 launch attempts: a record."
+        }
+      }
+    },
+    {
+      "title": "The Soviet decades",
+      "text": "From the late 1960s the Soviet Union launched far more often than the United States: up to 108 rockets a year, in 1982. Many flew from Plesetsk in Russia's far north: 1,400 launches by 1991. With about 1,700 today, it is still the busiest spaceport in history.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          55,
+          50
+        ],
+        "zoom": 1.6
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "l",
+          "field": "cum",
+          "period": "1991",
+          "color": "c2",
+          "title": "Launch attempts 1957–1991",
+          "maxR": 36,
+          "vmax": 1700,
+          "labels": 4,
+          "fmt": "int"
+        }
+      ],
+      "media": [
+        {
+          "type": "area",
+          "data": "l",
+          "series": "who",
+          "countries": [
+            "RUS",
+            "USA",
+            "SPX",
+            "CHN",
+            "OTH"
+          ],
+          "labels": {
+            "SPX": "SpaceX",
+            "USA": "US (other)",
+            "RUS": "USSR / Russia",
+            "CHN": "China",
+            "OTH": "Everyone else"
+          },
+          "title": "Orbital launch attempts per year",
+          "fmt": "int"
+        }
+      ]
+    },
+    {
+      "title": "The quiet years",
+      "text": "After the Soviet Union collapsed, launches fell. From 2001 to 2017 the world managed only 55 to 92 launch attempts a year.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          25
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "l",
+          "field": "n",
+          "period": "2004",
+          "color": "c1",
+          "title": "Orbital launch attempts, 2004",
+          "maxR": 26,
+          "vmax": 110,
+          "labels": 4,
+          "fmt": "int"
+        }
+      ],
+      "media": [
+        {
+          "type": "line",
+          "data": "l",
+          "series": "total",
+          "countries": [
+            "ALL"
+          ],
+          "labels": {
+            "ALL": "World"
+          },
+          "title": "Orbital launch attempts per year, world",
+          "fmt": "int"
+        }
+      ]
+    },
+    {
+      "title": "SpaceX takes over",
+      "text": "In 2025 the world made a record 329 orbital launch attempts. SpaceX flew 170 of them, more than every other launcher combined, from Cape Canaveral, Vandenberg in California and Starbase in Texas. Russia, once the leader, launched 17 times.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          -100,
+          30
+        ],
+        "zoom": 2.6
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "l",
+          "field": "n",
+          "period": "2025",
+          "color": "c1",
+          "title": "Orbital launch attempts, 2025",
+          "maxR": 30,
+          "vmax": 110,
+          "labels": 4,
+          "fmt": "int"
+        }
+      ],
+      "media": [
+        {
+          "type": "area",
+          "data": "l",
+          "series": "who",
+          "countries": [
+            "RUS",
+            "USA",
+            "SPX",
+            "CHN",
+            "OTH"
+          ],
+          "labels": {
+            "SPX": "SpaceX",
+            "USA": "US (other)",
+            "RUS": "USSR / Russia",
+            "CHN": "China",
+            "OTH": "Everyone else"
+          },
+          "title": "Orbital launch attempts per year",
+          "fmt": "int"
+        }
+      ]
+    },
+    {
+      "title": "Satellites by the thousand",
+      "text": "Rockets now carry dozens of small satellites at once. In the 2010s about 270 satellites a year reached orbit; in 2025, 4,500 did, and 3,200 of them were SpaceX's Starlink. More than 60% of all satellites ever launched went up between 2020 and 2025.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -100,
+          30
+        ],
+        "zoom": 1.1
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "l",
+          "field": "n",
+          "period": "2025",
+          "color": "c1",
+          "title": "Orbital launch attempts, 2025",
+          "maxR": 26,
+          "vmax": 110,
+          "labels": 3,
+          "fmt": "int"
+        }
+      ],
+      "media": [
+        {
+          "type": "area",
+          "data": "l",
+          "series": "sats",
+          "countries": [
+            "SL",
+            "NSL"
+          ],
+          "labels": {
+            "SL": "Starlink",
+            "NSL": "All other satellites"
+          },
+          "title": "Satellites launched per year",
+          "fmt": "int"
+        }
+      ]
+    },
+    {
+      "title": "China's rise",
+      "text": "China is the second launch power. It made 92 launch attempts in 2025, up from 19 in 2015, from four inland and coastal spaceports and from ships in the Yellow Sea. Jiuquan, on the edge of the Gobi Desert, was the busiest with 33.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          108,
+          32
+        ],
+        "zoom": 3.2
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "l",
+          "field": "n",
+          "period": "2025",
+          "color": "c2",
+          "title": "Orbital launch attempts, 2025",
+          "maxR": 30,
+          "vmax": 110,
+          "labels": 10,
+          "fmt": "int"
+        }
+      ],
+      "chart": {
+        "data": "l",
+        "field": "n",
+        "period": "2025",
+        "top": 8,
+        "title": "Busiest spaceports",
+        "fmt": "int",
+        "color": "c2"
+      }
+    }
+  ]
+}

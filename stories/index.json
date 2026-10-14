@@ -397,5 +397,19 @@
   "title": "The deficit that would not shrink",
   "hook": "Tariffs were meant to close America's trade gap. The deficit with China shrank, but the overall gap barely moved: it shifted to Vietnam, Taiwan and Mexico.",
   "file": "stories/tw-balance.json"
+ },
+ {
+  "id": "whales",
+  "cat": "Planet",
+  "title": "Where the whales were",
+  "hook": "Half a million noon positions from American whaling logbooks show a fleet that chased whales into every ocean, then collapsed.",
+  "file": "stories/whales.json"
+ },
+ {
+  "id": "launches",
+  "cat": "Statistics",
+  "title": "The launch explosion",
+  "hook": "For half a century the world launched 55 to 141 rockets a year. Since 2019 the number has more than tripled, and one company flies half of them.",
+  "file": "stories/launches.json"
  }
 ]

@@ -1,0 +1,30 @@
+{
+ "source": "whalinghistory",
+ "asOf": "20250916",
+ "retrieved": "2026-10-14",
+ "note": "Logbook days on which whales of a species were struck (encounter type 'Strike'; the whale count NStruck is often blank or 0, so days are counted) per 2° cell, all years, from the American Offshore Whaling Logbook Data. Sperm 15,646, right 7,889, bowhead 2,047, humpback 1,186 strike days. Only voyages with transcribed logbooks are included. Clamped at 100 per cell.",
+ "units": "days with whales struck",
+ "grid": {
+  "width": 180,
+  "height": 90,
+  "bbox": [
+   -180,
+   -90,
+   180,
+   90
+  ]
+ },
+ "encoding": {
+  "type": "log",
+  "min": 1,
+  "max": 100,
+  "nodata": 0
+ },
+ "palette": "sequential",
+ "frames": {
+  "sperm": "data/grids/whales-sperm.png",
+  "right": "data/grids/whales-right.png",
+  "bowhead": "data/grids/whales-bowhead.png",
+  "humpback": "data/grids/whales-humpback.png"
+ }
+}

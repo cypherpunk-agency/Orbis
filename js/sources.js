@@ -124,6 +124,18 @@ const SOURCES = {
     url: "https://www.worldbank.org/en/publication/worldwide-governance-indicators", use: "noncommercial", redistribute: true,
     credit: "Source: World Bank, Worldwide Governance Indicators (licence per indicator)"
   },
+  whalinghistory: {
+    name: "Whaling History", what: "American Offshore Whaling Voyages and Logbook Data: voyages, home ports and logbook positions 1700s–1920s", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://whalinghistory.org/participate/download/", use: "commercial", redistribute: true,
+    credit: "American Offshore Whaling Voyages and Logbook Data, whalinghistory.org: New Bedford Whaling Museum, Nantucket Historical Association, Mystic Seaport Museum, Inc. (CC BY 4.0)"
+  },
+  gcat: {
+    name: "GCAT", what: "General Catalog of Artificial Space Objects: orbital launches, launch sites and satellites since 1957", tier: "layer",
+    licence: "CC BY", licenceUrl: "https://planet4589.org/space/gcat/",
+    url: "https://planet4589.org/space/gcat/", use: "commercial", redistribute: true,
+    credit: "Data from GCAT (J. McDowell, planet4589.org/space/gcat)"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",

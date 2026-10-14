@@ -1,0 +1,37 @@
+{
+ "source": "whalinghistory",
+ "asOf": "20250916",
+ "retrieved": "2026-10-14",
+ "note": "American Offshore Whaling Logbook Data (468,249 daily noon positions from 1,449 voyages, 1780s–1920s; compiled from the Maury abstracts, the Census of Marine Life and Townsend logbook transcriptions). Each 2° cell shows its share of all positions logged in that decade, so decades with few surviving logbooks are comparable with busy ones; frame '1910' covers 1910–1927, frame 'all' every position. Logbooks are a sample of voyages: most positions are from the 1830s–1850s.",
+ "units": "share of the decade's logbook positions",
+ "grid": {
+  "width": 180,
+  "height": 90,
+  "bbox": [
+   -180,
+   -90,
+   180,
+   90
+  ]
+ },
+ "encoding": {
+  "type": "log",
+  "min": 0.0001,
+  "max": 0.02,
+  "nodata": 0
+ },
+ "palette": "sequential",
+ "frames": {
+  "1820": "data/grids/whales-1820.png",
+  "1830": "data/grids/whales-1830.png",
+  "1840": "data/grids/whales-1840.png",
+  "1850": "data/grids/whales-1850.png",
+  "1860": "data/grids/whales-1860.png",
+  "1870": "data/grids/whales-1870.png",
+  "1880": "data/grids/whales-1880.png",
+  "1890": "data/grids/whales-1890.png",
+  "1900": "data/grids/whales-1900.png",
+  "1910": "data/grids/whales-1910.png",
+  "all": "data/grids/whales-all.png"
+ }
+}

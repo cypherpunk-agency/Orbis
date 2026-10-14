@@ -1,0 +1,262 @@
+{
+  "id": "whales",
+  "cat": "Planet",
+  "title": "Where the whales were",
+  "hook": "Half a million noon positions from American whaling logbooks show a fleet that chased whales into every ocean, then collapsed.",
+  "notes": "American Offshore Whaling Voyages (15,709 voyages, 1700s–1920s) and American Offshore Whaling Logbook Data (468,249 daily noon positions from 1,449 voyages), whalinghistory.org: New Bedford Whaling Museum, Nantucket Historical Association and Mystic Seaport Museum, CC BY 4.0. Logbook maps show each 2° cell's share of all positions logged in a decade; only about one voyage in ten has a transcribed logbook, and few survive after 1870, so the later decades rest on a few dozen voyages each (the 1910s frame covers 1910–1927). Species maps count logbook days on which a whale of that species was struck. Home ports are placed at the town centre by Orbis; 1,664 voyages from smaller or unknown ports are not shown. Oil landed counts the sperm oil and whale oil recorded for returning voyages, by year of return; voyages without recorded returns count as zero. The 1871 losses are the voyages the database marks as abandoned in the Arctic ice in September 1871; other accounts give 33 ships. The link between kerosene and the decline is general history, not part of the dataset.",
+  "data": {
+    "pos": "data/grids/whales.json",
+    "kill": "data/grids/whales-strikes.json",
+    "v": "data/history/whales.json"
+  },
+  "sources": [
+    "editorial"
+  ],
+  "scenes": [
+    {
+      "title": "A fleet in every ocean",
+      "text": "Whaling crews wrote down their position every day at noon. Researchers have transcribed about 468,000 of these positions from 1,449 American voyages. Together they cover almost every ocean, from the Atlantic to the Arctic. The brightest cells are the Pacific grounds and the stopover at Hawaii.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -160,
+          10
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "pos",
+          "frame": "all",
+          "title": "Share of all logbook positions",
+          "fmt": "d3:.2%"
+        }
+      ]
+    },
+    {
+      "title": "New Bedford's century",
+      "text": "The database lists about 15,700 American whaling voyages. Nantucket led until the 1810s. Then New Bedford took over: 4,700 voyages in all, more than any other port. In the 1880s and 1890s, San Francisco sent out the most ships, because the hunt had moved to the North Pacific. Press Play.",
+      "view": {
+        "mode": "mercator",
+        "center": [
+          -100,
+          39
+        ],
+        "zoom": 3.4
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "v",
+          "field": "voy",
+          "color": "c1",
+          "title": "Whaling voyages leaving per decade",
+          "maxR": 30,
+          "vmax": 950,
+          "labels": 4,
+          "fmt": "int"
+        }
+      ],
+      "chart": {
+        "data": "v",
+        "field": "voy",
+        "top": 6,
+        "title": "Voyages leaving per decade",
+        "fmt": "int",
+        "color": "c1"
+      },
+      "timeline": {
+        "years": [
+          1780,
+          1790,
+          1800,
+          1810,
+          1820,
+          1830,
+          1840,
+          1850,
+          1860,
+          1870,
+          1880,
+          1890,
+          1900,
+          1910,
+          1920
+        ],
+        "start": 1820,
+        "captions": {
+          "1810": "The 1810s: Nantucket still leads.",
+          "1820": "The 1820s: New Bedford overtakes Nantucket.",
+          "1850": "The 1850s: New Bedford's peak, about 950 voyages.",
+          "1880": "The 1880s: San Francisco leads."
+        }
+      }
+    },
+    {
+      "title": "The grounds move",
+      "text": "Each decade's map shows where its logbook positions fall. In the 1830s and 1840s the fleet spread across the Pacific, hunting sperm whales near the equator. From 1849 logbooks show ships north of the Bering Strait. Later decades rest on few surviving logbooks: by the 1890s, most positions lie in the Atlantic again.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -150,
+          10
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "pos",
+          "frame": "t",
+          "title": "Share of the decade's logbook positions",
+          "fmt": "d3:.2%"
+        }
+      ],
+      "timeline": {
+        "years": [
+          1820,
+          1830,
+          1840,
+          1850,
+          1860,
+          1870,
+          1880,
+          1890,
+          1900,
+          1910
+        ],
+        "start": 1830,
+        "captions": {
+          "1830": "342 voyages with logbooks: the Pacific sperm-whale grounds.",
+          "1840": "551 voyages: the busiest decade in the logbooks.",
+          "1850": "Into the Bering Sea, the Sea of Okhotsk and the Arctic.",
+          "1880": "Only 74 voyages with logbooks.",
+          "1910": "1910–1927: 18 voyages, mostly in the Atlantic."
+        }
+      }
+    },
+    {
+      "title": "Different whales, different seas",
+      "text": "Each species had its own grounds. Sperm whales, hunted for the finest oil, were struck mostly in warm waters. Right whales lived in colder seas. Bowheads were hunted in the Arctic and Hudson Bay.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -150,
+          10
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "kill",
+          "frame": "{c}",
+          "title": "Logbook days with a {c} whale struck",
+          "fmt": "int"
+        }
+      ],
+      "switch": {
+        "label": "Species",
+        "start": 0,
+        "options": [
+          {
+            "c": "sperm",
+            "label": "Sperm",
+            "text": "Sperm whales were the main prey: about 15,600 logbook days with a sperm whale struck, mostly in warm waters of the Pacific, Atlantic and Indian Oceans."
+          },
+          {
+            "c": "right",
+            "label": "Right",
+            "text": "Right whales were struck on about 7,900 logbook days, in cooler waters: off Brazil and Patagonia, in the South Atlantic and Indian Ocean, and in the North Pacific."
+          },
+          {
+            "c": "bowhead",
+            "label": "Bowhead",
+            "text": "Bowheads hardly appear in the logbooks before 1848. In the 1850s they made up a quarter of all strike days, almost all in the Bering Sea, the Sea of Okhotsk, the Arctic and Hudson Bay."
+          },
+          {
+            "c": "humpback",
+            "label": "Humpback",
+            "text": "Humpbacks were struck on about 1,200 logbook days, most of them between 1860 and 1890, when the fleet had fewer sperm and right whales to hunt."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Trapped in the ice",
+      "text": "The Arctic hunt was rich and dangerous. In September 1871 pack ice closed on the fleet off Alaska's northern coast. The crews escaped in small boats, but the database lists 24 ships abandoned in the ice, most of them near Point Belcher.",
+      "view": {
+        "mode": "globe",
+        "center": [
+          -170,
+          62
+        ],
+        "zoom": 2.4
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "kill",
+          "frame": "bowhead",
+          "title": "Logbook days with a bowhead struck",
+          "fmt": "int"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            -159.6,
+            70.8
+          ],
+          "label": "Point Belcher: ships abandoned, Sept 1871",
+          "color": "c2",
+          "r": 5
+        }
+      ]
+    },
+    {
+      "title": "The end of the hunt",
+      "text": "In the 1840s about 250 whaling voyages left American ports every year, and they brought home about 400,000 barrels of oil a year. After 1859 cheap kerosene from petroleum replaced whale oil in lamps. By the 1900s fewer than 30 voyages left each year, and the last ones sailed in the 1920s.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -150,
+          10
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "pos",
+          "frame": "1900",
+          "title": "Share of the 1900s logbook positions",
+          "fmt": "d3:.2%"
+        }
+      ],
+      "media": [
+        {
+          "type": "line",
+          "data": "v",
+          "series": "voyages",
+          "countries": [
+            "USA"
+          ],
+          "title": "Whaling voyages leaving US ports per year",
+          "fmt": "int"
+        },
+        {
+          "type": "line",
+          "data": "v",
+          "series": "oil",
+          "countries": [
+            "USA"
+          ],
+          "title": "Sperm and whale oil landed, thousand barrels per year",
+          "fmt": "int"
+        }
+      ]
+    }
+  ]
+}
