@@ -692,7 +692,7 @@ const LAYER={
     Object.entries(K).forEach(([k,v])=>{ if(pick.some(e=>e.kind===k)&&!L.shapeKeys.some(x=>x.g==="card:"+k)) L.shapeKeys.push({g:"card:"+k,label:(ICONS[v.icon]?ICONS[v.icon]+" ":"")+(v.label||k),color:v.color||"c2"}); });
   },
   places(ly,d,y,L){ // places whose name depends on the date (Byzantium, Constantinople, Istanbul)
-    const t=+y; (d.places||[]).forEach(pl=>{ const n=(pl.names||[]).find(x=>validAt(x,t)); if(!n&&!pl.always) return;
+    const t=+y; (d.places||[]).filter(pl=>!ly.only||ly.only.includes(pl.name)||(pl.names||[]).some(x=>ly.only.includes(x.name))).forEach(pl=>{ const n=(pl.names||[]).find(x=>validAt(x,t)); if(!n&&!pl.always) return;
       L.points.push({at:pl.at,r:pl.r||3,color:ly.color||"muted",label:n?n.name:pl.name,minZoom:pl.minZoom!=null?pl.minZoom:ly.minZoom}); });
   },
   moves(ly,d,y,L){ // routes whose points carry dates: drawn up to the timeline date, with a marker where the mover is
@@ -832,14 +832,20 @@ const LAYER={
     const R=regionGeo(ly.country||ly.regionSet); if(!R) return;
     if(ly.set){ // categories per region (e.g. election winner), optionally shaded by a share: lighter = closer
       const s0=d.sets&&d.sets[ly.set]; if(!s0) return;
-      const cats=(s0.byYear?pickByYear(s0.byYear,y):s0.values)||{}, share=(s0.shareByYear?pickByYear(s0.shareByYear,y):s0.share)||{}, sh=ly.shade;
+      // "changes": {id: [[year, code], ...]} with "codes": {code: {label, cat}}: the value is the last code at or before the year
+      let cats, code={};
+      if(s0.changes){ cats={}; const yy=tUnit(+y); Object.entries(s0.changes).forEach(([id,ch])=>{ let c=null; for(const [a,k] of ch){ if(tUnit(a)<=yy) c=k; else break; }
+          if(c!=null&&c!==""){ const cd=s0.codes&&s0.codes[c]; code[id]=c; if(cd&&cd.cat) cats[id]=cd.cat; } }); }
+      else cats=(s0.byYear?pickByYear(s0.byYear,y):s0.values)||{};
+      if(ly.only) Object.keys(cats).forEach(id=>{ if(!ly.only.includes(cats[id])) delete cats[id]; });
+      const share=(s0.shareByYear?pickByYear(s0.shareByYear,y):s0.share)||{}, sh=ly.shade;
       const lab=c=>(ly.names&&ly.names[c])||(s0.labels&&s0.labels[c])||c;
       const colorOf=id=>{ const c=cats[id]; if(c==null||!ly.colors[c]) return null; const base=col(ly.colors[c]);
         if(!sh||share[id]==null) return base; return d3.interpolateRgb(C.paper,base)(0.3+0.7*clamp((share[id]-sh.min)/((sh.max-sh.min)||1),0,1)); };
       const keys=Object.keys(ly.colors).map(c=>({label:lab(c),color:ly.colors[c],n:Object.values(cats).filter(v=>v===c).length})).filter(k=>k.n);
       L.regions.push({R,vals:cats,colorOf,cat:true,keys,unit:ly.unit||"",shadeNote:sh&&(ly.shadeLabel||t("Lighter = closer result")),
         title:ly.title?ly.title+" · "+ylab(y):ylab(y),labels:ly.labels,
-        tipOf:id=>cats[id]==null?t("No data"):lab(cats[id])+(share[id]!=null?" · "+(ly.shareFmt?fmtOf(ly.shareFmt)(share[id]):share[id].toFixed(1)+"%"):"")+" · "+ylab(y)});
+        tipOf:id=>code[id]!=null&&s0.codes&&s0.codes[code[id]]?(s0.codes[code[id]].label||code[id])+" · "+ylab(y):cats[id]==null?t("No data"):lab(cats[id])+(share[id]!=null?" · "+(ly.shareFmt?fmtOf(ly.shareFmt)(share[id]):share[id].toFixed(1)+"%"):"")+" · "+ylab(y)});
       return; }
     const sr=d.series[ly.series], i=yearIndex(d,y); if(!sr||i<0) return;
     const vals={}; Object.entries(sr.values).forEach(([k,a])=>{ if(a[i]!=null) vals[k]=a[i]*(ly.mult||1); });

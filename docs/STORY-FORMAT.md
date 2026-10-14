@@ -169,6 +169,8 @@ Added for the history series; all optional.
 - **Media `multiples`**: `{ "type":"multiples", "layer":0, "years":[1976,1992,2008,2024], "title":"..." }` draws one small map per year for that scene layer (`regions` or `shapes`; the US uses an Albers projection with Alaska and Hawaii inset; `extent` [[lon,lat],[lon,lat]] to frame others). Tap a map to jump the timeline there. A margin chart works with the existing `line` media over a series keyed by region id, with `labels` for names.
 - **`points` `"under": true`**: plain dots drawn beneath lines (no halo, no labels), e.g. forts under a wall. **`cards` `"kinds": ["war"]`** shows only those kinds.
 - **Date ranges**: the era is written once ("AD 100–260", "264–241 BC") and twice only across it ("27 BC–AD 14").
+- **`regions` change lists**: a set may instead give `"codes": {code: {"label", "cat"}}` and `"changes": {regionId: [[year, code], ...]}`; the value at a year is the last code at or before it (any year works), coloured by `codes[code].cat`, tap shows the code's label. `"only": ["church", ...]` colours just those categories.
+- **`places` `"only": [names]`**: keeps places whose name or any period name is listed (so "Constantinople" keeps "Istanbul" after 1453).
 - **Series `coming`**: in `stories/campaigns.json`, `"coming": [{"title": "...", "hook": "..."}]` lists planned chapters, greyed and not clickable.
 
 ## Elections explorer (`#elections`)
