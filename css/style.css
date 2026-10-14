@@ -244,3 +244,5 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .card-list li{border-top:1px solid var(--rule)}
 .card-list button{display:grid;grid-template-columns:7.5em 1fr;gap:8px;width:100%;text-align:left;background:none;border:0;padding:5px 0;color:var(--ink);font:14px/1.3 var(--ui);cursor:pointer}
 .card-list button span{color:var(--ink-soft);font-variant-numeric:tabular-nums}
+
+.md-keys{margin:4px 0 0;display:flex;flex-wrap:wrap;gap:4px 10px}

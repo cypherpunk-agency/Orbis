@@ -58,7 +58,7 @@ Chapters are ordinary stories listed in `stories/index.json`. They appear under 
 | `countryLabels` | `true` shows country names (default off in stories, on in Explore) |
 | `political` | `true` tints countries in political colours instead of plain land |
 | `sources` | Extra source ids for this scene |
-| `media` | Panel media: `{ "type": "image", "src", "alt", "caption", "credit", "licence", "href" }`, `{ "type": "quote", "text", "by" }`, `{ "type": "line", "data", "series", "countries": [ISO3…], "labels": { "ISO3": "line name" }, "title", "fmt" }` (dataset `"format": "month"` or `"date"` for yyyymm / yyyymmdd years). Images must be openly licensed and registered like any source. |
+| `media` | Panel media: `{ "type": "image", "src", "alt", "caption", "credit", "licence", "href" }`, `{ "type": "quote", "text", "by" }`, `{ "type": "line", "data", "series", "countries": [ISO3…], "labels": { "ISO3": "line name" }, "title", "fmt" }` (dataset `"format": "month"` or `"date"` for yyyymm / yyyymmdd years), `{ "type": "area", "data", "series", "countries": [ISO3…], "labels", "title", "fmt" }` (stacked area, one band per country), `{ "type": "gantt", "title", "items": [ { "label", "from", "to", "color" } ], "from", "to" }` (bars for reigns, terms, wars; a marker follows the timeline). Images must be openly licensed and registered like any source. |
 
 Colours: `c1` blue, `c2` magenta, `c3` amber, `c4` teal, `c5` violet, `muted` grey. They adapt to dark mode.
 

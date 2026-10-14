@@ -840,6 +840,26 @@ function renderMedia(){
         (lines.length>1?(()=>{ const lb=lines.map(l=>({l,y:sy(l.pts[l.pts.length-1][1])-5})).sort((a,b)=>a.y-b.y);
           for(let i=1;i<lb.length;i++) if(lb[i].y-lb[i-1].y<11) lb[i].y=lb[i-1].y+11;
           return lb.map(({l,y})=>`<text x="${sx(l.pts[l.pts.length-1][0])-2}" y="${Math.min(y,h-pad[2]-2)}" class="md-lab" fill="${l.col}" text-anchor="end">${esc(l.label||nameOf(l.c))}</text>`).join(""); })():"")+`</svg></figure>`; }
+    if(x.type==="area"){ const d=st&&st._data&&st._data[x.data]; if(!d||!d.series) return ""; // stacked area: one series, stacked by country
+      const sr=d.series[x.series]; if(!sr) return ""; const ys=d.years, w=330, h=130, pad=[8,46,18,4], keys=(x.countries||[]).filter(c=>sr.values[c]);
+      const rows=ys.map((y,j)=>{ const r={y}; keys.forEach(c=>r[c]=Math.max(0,sr.values[c][j]||0)); return r; });
+      const stk=d3.stack().keys(keys)(rows), top=d3.max(stk.length?stk[stk.length-1]:[],p=>p[1])||1;
+      const sx=d3.scaleLinear().domain(d3.extent(ys)).range([pad[3],w-pad[1]]), sy=d3.scaleLinear().domain([0,top]).nice().range([h-pad[2],pad[0]]), f=fmtOf(x.fmt);
+      const ar=d3.area().x(p=>sx(p.data.y)).y0(p=>sy(p[0])).y1(p=>sy(p[1]));
+      return `<figure class="md-line"><figcaption>${esc(x.title||sr.label)}</figcaption><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(x.title||sr.label)}">`+
+        sy.ticks(3).map(t=>`<line x1="${pad[3]}" x2="${w-pad[1]}" y1="${sy(t)}" y2="${sy(t)}" class="md-grid"/><text x="${w-pad[1]+4}" y="${sy(t)+4}" class="md-tick">${esc(f(t))}</text>`).join("")+
+        stk.map((layer,i)=>`<path d="${ar(layer)}" fill="${col(["c1","c2","c3","c4","c5"][i%5])}" fill-opacity="0.85"><title>${esc((x.labels&&x.labels[layer.key])||nameOf(layer.key))}</title></path>`).join("")+
+        `<text x="${pad[3]}" y="${h-3}" class="md-tick">${esc(Cal.year(ys[0]))}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${esc(Cal.year(ys[ys.length-1]))}</text></svg>`+
+        `<p class="md-keys">${stk.map((layer,i)=>`<span class="chip"><i style="background:${col(["c1","c2","c3","c4","c5"][i%5])}"></i>${esc((x.labels&&x.labels[layer.key])||nameOf(layer.key))}</span>`).join("")}</p></figure>`; }
+    if(x.type==="gantt"){ // bars for reigns, terms, wars; a marker at the timeline date
+      const it=x.items||[]; if(!it.length) return ""; const w=330, rh=16, pad=[4,4,18,4], h=pad[0]+rh*it.length+pad[2];
+      const lo=x.from!=null?x.from:d3.min(it,i=>asYear(i.from)), hi=x.to!=null?x.to:d3.max(it,i=>asYear(i.to!=null?i.to:i.from));
+      const sx=d3.scaleLinear().domain([lo,hi]).range([pad[3]+110,w-pad[1]]), now=frame&&frame.year!=null?asYear(frame.year):null;
+      return `<figure class="md-line"><figcaption>${esc(x.title||"")}</figcaption><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(x.title||"timeline")}">`+
+        it.map((i,k)=>{ const a=asYear(i.from), b=asYear(i.to!=null?i.to:hi), yy=pad[0]+k*rh; const on=now!=null&&a<=now&&now<b;
+          return `<text x="${pad[3]}" y="${yy+11}" class="md-tick"${on?' font-weight="600"':""}>${esc(i.label)}</text><rect x="${sx(a)}" y="${yy+3}" width="${Math.max(2,sx(b)-sx(a))}" height="${rh-6}" rx="2" fill="${col(i.color||x.color||"c1")}" fill-opacity="${now==null||on?0.9:0.35}"><title>${esc(i.label+": "+Cal.year(a)+"–"+(i.to!=null?Cal.year(b):""))}</title></rect>`; }).join("")+
+        (now!=null&&now>=lo&&now<=hi?`<line x1="${sx(now)}" x2="${sx(now)}" y1="${pad[0]}" y2="${h-pad[2]+2}" stroke="${col("c2")}" stroke-width="1.5"/>`:"")+
+        `<text x="${sx(lo)}" y="${h-3}" class="md-tick">${esc(Cal.year(lo))}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${esc(Cal.year(hi))}</text></svg></figure>`; }
     return ""; }).join("");
   el.media.hidden=false;
 }
@@ -1070,7 +1090,7 @@ function setFrame(){
   const y=t.years[tlIdx]; frame=t.frame(y,tlIdx); el.year.textContent=t.label(y); if(t.second){ const s2=document.createElement("small"); s2.className="tl-cal"; s2.textContent=t.second(y); el.year.append(s2); } el.slider.value=tlIdx;
   el.slider.setAttribute("aria-valuetext",String(t.label(y)));
   el.cap.textContent=frame.caption||""; el.cap.hidden=!frame.caption;
-  L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); render();
+  L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); if(scene.media&&scene.media.some(x=>x.type==="gantt")) renderMedia(); render();
 }
 function stopPlay(){ if(playing){clearInterval(playing);playing=null;} el.play.textContent=t("Play"); el.play.setAttribute("aria-label",t("Play timeline")); }
 el.play.onclick=()=>{ if(playing){stopPlay();return;} const t=scene.timeline; if(tlIdx>=t.years.length-1) tlIdx=0;
