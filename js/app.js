@@ -205,7 +205,11 @@ function shapeSet(alias,d){
   return null;
 }
 // is a dated item valid at time y? from inclusive, to exclusive, null = open
-const validAt=(p,y)=>(p.from==null||p.from<=y)&&(p.to==null||y<p.to);
+// dates may be years (astronomical) or yyyymmdd; compare them in the scene timeline's unit
+const isDateNum=n=>Math.abs(n)>=10000;
+const asYear=n=>isDateNum(n)?Math.trunc(n/10000):n;
+const tUnit=n=>n==null?n:(scene&&scene.timeline&&scene.timeline.isDate)?(isDateNum(n)?n:n*10000+Math.sign(n||1)*101):asYear(n);
+const validAt=(p,y)=>(p.from==null||tUnit(p.from)<=y)&&(p.to==null||y<tUnit(p.to));
 // data that arrives after a scene opened: rebuild layers and the panel's legend
 function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML(); render(); }
 // admin-1 geometry per country, loaded on demand
@@ -510,6 +514,8 @@ function tap(x,y){
     const x=Math.floor((ll[0]+180)/360*G.w)%G.w, y=Math.min(G.h-1,Math.floor((90-ll[1])/180*G.h)), v=gridDecode(r.desc,G.bytes[y*G.w+x]);
     return v==null?"":"<span>"+esc(r.title)+": "+esc(r.fmt(v))+"</span>"; }).join("");
   if(quiz.mode==="where"&&f0(ll)){ quizTap(f0(ll).id); return; }
+  const hit=L.points.filter(p=>p.card&&visible(p.at)).map(p=>{ const q=proj(p.at); return q?[Math.hypot(q[0]-x,q[1]-y),p]:null; }).filter(Boolean).sort((a,b)=>a[0]-b[0])[0];
+  if(hit&&hit[0]<14){ openCard(hit[1].card); return; }
   for(const sh of L.shapes){ const sf=sh.feats.slice().sort((a,b)=>a._a-b._a).find(f=>d3.geoContains(f,ll)); if(sf){ const p=sf.properties;
     tip.innerHTML="<b>"+esc(p.name||"")+"</b><span>"+esc([p.from!=null?Cal.year(p.from):"",p.to!=null?Cal.year(p.to):""].join("–"))+(p.note?" · "+esc(p.note):"")+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; } }
@@ -580,7 +586,7 @@ async function ensureStory(i){
     const ys=!t.format&&t.years.length===2&&(t.step||t.years[1]-t.years[0]>1)?d3.range(t.years[0],t.years[1]+1,t.step||1):t.years;
     const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):t.format==="date"?(y=>Cal.date(y)):(y=>Cal.year(y,t.era)), lab=y=>(t.labels&&t.labels[y])||lab0(y);
     const second=t.calendar?(y=>Cal.other(y,t.calendar,t.format==="date")):null;
-    sc.timeline={years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,second,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
+    sc.timeline={isDate:t.format==="date",years:ys,start:Math.max(0,t.start!=null?ys.indexOf(t.start):ys.length-1),label:lab,second,frame:y=>({year:y,caption:(t.captions||{})[y]})}; } });
   const st=Object.assign({},js,{file:meta.file,_data:data},meta.id.startsWith("@")?{id:meta.id}:{}); STORIES[i]=st; return st;
 }
 const FMT={
@@ -634,6 +640,26 @@ function pointValues(ly,d,y){
   return d.points.filter(p=>p[ly.field]&&p[ly.field][pi]!=null).map(p=>({id:p.id,name:p.name,at:p.at,v:p[ly.field][pi]}));
 }
 const LAYER={
+  cards(ly,d,y,L){ // dated events with a story card: tap a dot to read it; optional list in the panel
+    const t=+y, w=ly.window, K=d.kinds||{};
+    const pick=(d.items||[]).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(e.date)<=t&&(!w||tUnit(e.date)>t-w))).sort((a,b)=>a.date-b.date);
+    pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",label:ly.labels===false?null:e.title,card:e}));
+    if(ly.list) L.cardList=(L.cardList||[]).concat(pick);
+    Object.entries(K).forEach(([k,v])=>{ if(pick.some(e=>e.kind===k)&&!L.shapeKeys.some(x=>x.g==="card:"+k)) L.shapeKeys.push({g:"card:"+k,label:v.label||k,color:v.color||"c2"}); });
+  },
+  places(ly,d,y,L){ // places whose name depends on the date (Byzantium, Constantinople, Istanbul)
+    const t=+y; (d.places||[]).forEach(pl=>{ const n=(pl.names||[]).find(x=>validAt(x,t)); if(!n&&!pl.always) return;
+      L.points.push({at:pl.at,r:pl.r||3,color:ly.color||"muted",label:n?n.name:pl.name}); });
+  },
+  moves(ly,d,y,L){ // routes whose points carry dates: drawn up to the timeline date, with a marker where the mover is
+    const t=+y; (d.moves&&d.moves[ly.set]||[]).filter(m=>!ly.only||ly.only.includes(m.name)).forEach(m=>{
+      const P=m.path.map(p=>[p[0],p[1],tUnit(p[2])]), done=P.filter(p=>p[2]<=t); if(!done.length) return;
+      const k=done.length, nx=P[k]; let pos=done[k-1].slice(0,2);
+      if(nx&&nx[2]>done[k-1][2]){ const f=(t-done[k-1][2])/(nx[2]-done[k-1][2]); pos=d3.geoInterpolate(done[k-1].slice(0,2),nx.slice(0,2))(Math.min(1,f)); }
+      const c=m.color||ly.color||"c1", finished=!nx;
+      L.routes.push({path:done.map(p=>p.slice(0,2)).concat(finished?[]:[pos]),color:c,width:m.width||ly.width||2.5,dash:m.dash||false});
+      L.points.push({at:pos,r:finished?4:6,color:c,label:ly.labels===false?null:m.name}); });
+  },
   shapes(ly,d,y,L){ // polygons valid at the timeline date, coloured by group; optional merged outline per group
     const S=shapeSet(ly.data,d); if(!S) return; const yr=+y, G=d.groups||{};
     const idx=S.feats.map((f,i)=>i).filter(i=>{ const p=S.feats[i].properties; return validAt(p,yr)&&(!ly.groups||ly.groups.includes(p.group)); });
@@ -897,7 +923,7 @@ function describe(){
 const quiz={mode:null,score:0,streak:0,q:null};
 async function openQuiz(){
   si=-1; scene={layers:[],fills:{},political:true,view:{mode:"equal",center:[15,20],zoom:1}}; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
-  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true;
+  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true; el.card.hidden=true;
   history.replaceState(null,"","#quiz"); el.kicker.textContent=t("Quiz");
   const d=await loadJSON("data/energy/eia.json"); const i=d.years.indexOf(2024), pop=d.series.pop.values;
   quiz.pop=Object.entries(pop).filter(([k,v])=>v[i]>2000&&byId.has(k)).map(([k,v])=>[k,v[i]*1000]);
@@ -936,7 +962,7 @@ const HUBS=[["London",-0.13,51.51],["New York",-74.0,40.71],["Tokyo",139.69,35.6
   ["Lagos",3.38,6.52],["Sydney",151.21,-33.87],["Moscow",37.62,55.76],["Cairo",31.24,30.04],["Mexico City",-99.13,19.43],["Johannesburg",28.05,-26.2]];
 async function openCity(){
   si=-1; scene={layers:[],routes:[],points:[],countryLabels:true,political:true,view:{mode:"globe",center:[15,30],zoom:1}}; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
-  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true;
+  el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true; el.card.hidden=true;
   history.replaceState(null,"","#city"); el.kicker.textContent=t("Your city"); el.title.textContent=t("Find your city");
   el.text.textContent=t("How far is everything from where you are? Pick a city, or use your location.");
   const d=await loadJSON("data/geo/places.json"); const P=d.places;
@@ -960,7 +986,8 @@ function showCity(name,at){
 // ---------- panel ----------
 const $=id=>document.getElementById(id);
 const el={kicker:$("sKicker"),title:$("sTitle"),text:$("sText"),legend:$("sLegend"),tl:$("sTimeline"),slider:$("tlSlider"),year:$("tlYear"),play:$("tlPlay"),cap:$("tlCaption"),
-  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart"),sw:$("sSwitch"),media:$("sMedia"),camp:$("sCamp"),updated:$("sUpdated")};
+  prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart"),sw:$("sSwitch"),media:$("sMedia"),camp:$("sCamp"),updated:$("sUpdated"),card:$("sCard")};
+el.legend.addEventListener("click",e=>{ const b=e.target.closest("[data-ci]"); if(b&&L&&L.cardList){ const it=L.cardList[+b.dataset.ci]; if(it){ openCard(it); flyTo({mode:curKind(),center:it.at,zoom:Math.max(V.zoom,2)},900); } } });
 let si=-1, ci=0, tlIdx=0, playing=null;
 const explore={bloc:null};
 
@@ -971,6 +998,7 @@ function legendHTML(){
   else if(L&&L.groups.length) h+=L.groups.map(g=>chip(g.color,g.label)).join("");
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · "+t(k.qty?"line width = tonnes":"line width = value")));
   if(L) L.shapeKeys.forEach(k=>h+=chip(k.color,k.label));
+  if(L&&L.cardList&&L.cardList.length) h+=`<ol class="card-list">${L.cardList.map((e,i)=>`<li><button data-ci="${i}"><span>${esc(e.cal==="julian"&&isDateNum(e.date)?Cal.other(e.date,"julian",true).replace(" (Julian)",""):fmtWhen(e.date))}</span>${esc(e.title)}</button></li>`).join("")}</ol>`;
   if(L&&L.pairs) h+=`<span class="chip">${esc(t("Tap a country to see its ties"))}</span>`;
   if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?esc(t("Showing {x} only · tap it again for all",{x:nameOf(focus)})):esc(t("Tap a country to see only its flows"))}</span>`;
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
@@ -1041,7 +1069,7 @@ el.slider.oninput=()=>{stopPlay();tlIdx=+el.slider.value;setFrame();};
 
 function showScene(i, fly=true){
   const st=STORIES[si]; ci=clamp(i,0,st.scenes.length-1); scene=st.scenes[ci]; stopPlay();
-  const cp=campaignOf(st); el.camp.hidden=true;
+  const cp=campaignOf(st); el.camp.hidden=true; el.card.hidden=true;
   if(cp){ const k=cp.chapters.indexOf(st.id);
     el.kicker.innerHTML=`<button class="kick-camp" title="${esc(t("All chapters"))}">${esc(cp.title)}</button> · ${esc(t("Chapter {n} of {m}",{n:k+1,m:cp.chapters.length}))}: ${esc(st.title)}`;
     el.kicker.querySelector("button").onclick=()=>openCampaign(cp.id); }
@@ -1086,7 +1114,7 @@ async function openStory(i, scn=0){
   showScene(scn==="last"?STORIES[i].scenes.length-1:scn);
 }
 function openExplore(){
-  quiz.mode=null; si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true;
+  quiz.mode=null; si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true; el.card.hidden=true;
   el.kicker.textContent=t("Explore"); el.title.textContent=t("The world, your way");
   el.text.textContent=t("Drag to turn the world, pinch or scroll to zoom, tap a country to see its name. Switch between political, satellite and night views with the map button. Show a group of countries:");
   el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=false;
@@ -1099,6 +1127,16 @@ function renderBlocs(){
 }
 
 const MON=Cal.MON;
+// ---------- event cards ----------
+const fmtWhen=n=>n==null?"":Math.abs(n)>=10000?Cal.date(n):Cal.year(n);
+function openCard(e){
+  const c=el.card; c.hidden=false;
+  c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(e.cal&&isDateNum(e.date)?Cal.other(e.date,e.cal,true):fmtWhen(e.date))}${e.place?" · "+esc(e.place):""}</p><h3>${esc(e.title)}</h3>`+
+    (e.image?`<figure><img src="${esc(e.image)}" alt="${esc(e.alt||"")}"><figcaption>${esc(e.credit||"")}</figcaption></figure>`:"")+
+    (e.text?`<p>${esc(e.text)}</p>`:"")+(e.source?`<p class="card-src">${t("Source")}: ${e.url?`<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a>`:esc(e.source)}</p>`:"");
+  c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
+  c.scrollIntoView({block:"nearest"});
+}
 // ---------- campaigns: a series of stories with a landing page, chapter order and reading progress ----------
 let CAMPAIGNS=[];
 const campaignOf=st=>st&&CAMPAIGNS.find(c=>c.chapters.includes(st.id.replace(/^@stories\/|\.json$/g,"")));

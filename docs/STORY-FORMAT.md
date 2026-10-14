@@ -79,6 +79,9 @@ Colours: `c1` blue, `c2` magenta, `c3` amber, `c4` teal, `c5` violet, `muted` gr
 | `raster` | grid descriptor (`data/grids/*.json`) | A lon/lat grid image: `frame` (a frame label, or `"t"` for the timeline), `opacity`, `title`, `fmt` (e.g. `degc`, `ppkm2`). Tap shows the value. Before/after: add `compare` (a second frame label): `frame` shows left of a draggable divider, `compare` right; `leftLabel`/`rightLabel` name the sides. |
 | `particles` | vector grid (`data/grids/wind.json`) | Animated streaks following a u/v field: `count`, `speed`, `color` |
 | `shapes` | shapes over time | Polygons valid at the timeline date (`year: "t"` or a fixed year): empires, provinces, occupied areas. Coloured by `group` (colours and legend labels from the dataset's `groups`), each group outlined as one merged border (`outline: false` to skip), `labels` (default on), `inner: false` hides internal borders, `opacity`, `groups: [..]` to show only some. Tap shows name and dates. Pair with scene `"modernBorders": false` to hide today's borders. |
+| `cards` | event items | Dated points with a story card: dots appear once their `date` has passed on the timeline (`window: n` keeps only the last n years, `"all"` shows all); tap opens the card (title, date, text, image, source). `list: true` adds a clickable list in the panel. Colours per `kind` from the dataset's `kinds`. |
+| `places` | event items (`places`) | Labels whose name depends on the date: each place has `names: [{ "name", "from", "to" }]` |
+| `moves` | event items (`moves`) | Routes whose points carry dates `[lon, lat, date]`: drawn up to the timeline date, with a marker where the mover is (`set`, `only`, `color`, `width`, `labels`) |
 | `pairs` | matrix | Pick a country: every other country is coloured by its value with `from` (ISO3), which is filled and outlined; tapping another country makes it the origin. `title` may use `{name}` for the origin's name; `log`, `fmt`, `vmin`/`vmax`, `fromColor` |
 | `categories` | sets | One colour per category: `set`, `colors: { "yes": "c4", "no": "c2" }`, optional `names: { "yes": "…" }` to override the dataset labels (with a switch over sets, `names: { "<set>": { … } }`) |
 
@@ -121,6 +124,15 @@ Flow rows are `[from, to, value, quantity_or_null]`, sorted by value.
     { "type": "Polygon", "arcs": [[0]], "properties": { "name": "Gallia", "from": -50, "to": 476, "group": "rome" } } ] } }, "arcs": [ … ] } }
 ```
 Build with mapshaper: `node tools/node_modules/mapshaper/bin/mapshaper in.geojson -simplify 10% -rename-layers shapes -o out.json format=topojson`.
+
+**Event items** (cards, places, moves): dates are astronomical years or `yyyymmdd` (Gregorian; an item may say `"cal": "julian"` to show the Julian date its source uses):
+```json
+{ "source": "…", "asOf": "…", "kinds": { "war": { "label": "Battles", "color": "c2" } },
+  "items": [ { "title": "Caesar crosses the Rubicon", "date": -480110, "at": [12.4, 44.1], "kind": "war",
+               "text": "…", "source": "Suetonius, Divus Julius 31–33", "url": "…", "image": "…", "credit": "…", "alt": "…" } ],
+  "places": [ { "at": [28.98, 41.01], "names": [ { "name": "Byzantium", "from": -660, "to": 330 }, { "name": "Constantinople", "from": 330, "to": 1930 } ] } ],
+  "moves": { "army": [ { "name": "Hannibal", "color": "c3", "path": [[-0.98, 37.6, -218], [16.1, 41.3, -216]] } ] } }
+```
 
 **Matrix** (pairs): one row per origin, values in the order of `countries` (`null` = no data):
 ```json

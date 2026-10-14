@@ -229,3 +229,18 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .sw-l{right:10px}.sw-r{left:10px}
 
 .tl-cal{display:block;font:500 13px var(--ui);color:var(--ink-soft);margin-top:2px}
+
+/* event cards */
+.card{position:relative;border:1px solid var(--rule);border-radius:10px;padding:10px 12px;margin:8px 0;background:var(--paper)}
+.card h3{font:600 18px/1.25 var(--serif);margin:2px 0 6px;padding-right:24px}
+.card p{font:16px/1.45 var(--serif);margin:0 0 6px}
+.card .card-when{font:600 13px var(--ui);color:var(--accent);margin:0}
+.card .card-src{font:13px var(--ui);color:var(--ink-soft)}
+.card .card-src a{color:var(--accent)}
+.card img{max-width:100%;border-radius:6px}
+.card figcaption{font:12px var(--ui);color:var(--ink-soft)}
+.card-x{position:absolute;right:6px;top:4px;border:0;background:none;font-size:20px;color:var(--ink-soft);cursor:pointer;width:32px;height:32px}
+.card-list{list-style:none;margin:6px 0;padding:0;max-height:220px;overflow:auto}
+.card-list li{border-top:1px solid var(--rule)}
+.card-list button{display:grid;grid-template-columns:7.5em 1fr;gap:8px;width:100%;text-align:left;background:none;border:0;padding:5px 0;color:var(--ink);font:14px/1.3 var(--ui);cursor:pointer}
+.card-list button span{color:var(--ink-soft);font-variant-numeric:tabular-nums}
