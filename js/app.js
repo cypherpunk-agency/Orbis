@@ -83,6 +83,12 @@ const wGlobe=()=>(V.a==="globe"?1-V.t:0)+(V.b==="globe"?V.t:0);
 const curKind=()=>V.t<0.5?V.a:V.b;
 
 let moving=false;
+// story beats: the previous frame dissolves over the new one, so colours, outlines and labels fade instead of snapping
+const BEAT={c:document.createElement("canvas"),ms:380}; let beat=null;
+function beatFade(){ if(reduce||!canvas.width) return; snap(BEAT.c); beat={t0:null}; render(); }
+function beatStep(now){ if(beat.t0==null) beat.t0=now; const k=Math.min(1,(now-beat.t0)/BEAT.ms), e=k*k*(3-2*k);
+  if(k<1){ ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.globalAlpha=1-e; ctx.drawImage(BEAT.c,0,0); ctx.restore(); return true; }
+  beat=null; return false; }
 // when the map settles, the detailed outlines replace the light ones: cross-fade the two frames instead of a hard swap.
 // Both frames are drawn once and kept as images, so the fade itself costs only two image copies per frame.
 const FADE={lo:document.createElement("canvas"),hi:document.createElement("canvas"),ms:260}; let fade=null;
@@ -607,6 +613,7 @@ function tick(now){
   if(wasMoving&&!moving&&V.zoom>=2&&HI.byId&&!reduce) more=detailFadeStart(now)||more;
   else if(fade&&!moving&&fade.key===viewKey()) more=detailFadeStep(now)||more;
   else { fade=null; draw(); }
+  if(beat) more=beatStep(now)||more;
   if(L&&L.carto&&cartoEase()<1) more=true;
   if(more||hasFlow()) render(); else last=0;
 }
@@ -626,6 +633,8 @@ function flyTo(t,dur=1600){
   }
   V.a=V.b=k1;V.t=0;
   const gi=d3.geoInterpolate(c0,t.center), dist=d3.geoDistance(c0,t.center);
+  // same view as now: no flight (a flight would also switch to the light outlines for its duration)
+  if(!change&&dist<1e-4&&Math.abs(Math.log(z1/z0))<1e-3){ V.center=t.center.slice(); V.zoom=z1; anim=null; scheduleDetail(); describe(); render(); return; }
   if(reduce) dur=1;
   const dip=Math.min(1,dist/1.2)*(Math.max(z0,z1)>1.5?0.45:0.2);
   anim={start:performance.now(),dur,
@@ -1399,6 +1408,7 @@ el.slider.oninput=()=>{stopPlay();tlIdx=sliderIdx(el.slider.value);setFrame();};
 function sceneWhen(sc){ if(sc.when) return sc.when; const tl=sc.timeline; if(!tl||!tl.years||!tl.years.length) return "";
   const a=tl.label(tl.years[0]), b=tl.label(tl.years[tl.years.length-1]); return String(a)===String(b)?String(a):a+" – "+b; }
 function showScene(i, fly=true){
+  beatFade();
   const st=STORIES[si]; ci=clamp(i,0,st.scenes.length-1); scene=st.scenes[ci]; stopPlay();
   const cp=campaignOf(st); el.camp.hidden=true; el.card.hidden=true;
   // top: when the scene happens; bottom (#sUpdated): which story/series this is and when it was last edited
@@ -1448,7 +1458,7 @@ async function openStory(i, scn=0){
   showScene(scn==="last"?STORIES[i].scenes.length-1:scn);
 }
 function openExplore(){
-  explore.country=null; el.camp.innerHTML=""; campData=null; campTok++;
+  if(explore.country||scene) beatFade(); explore.country=null; el.camp.innerHTML=""; campData=null; campTok++;
   quiz.mode=null; si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true; el.card.hidden=true;
   el.kicker.textContent=t("Explore"); el.title.textContent=t("The world, your way");
   el.text.textContent=t("Drag to turn the world, pinch or scroll to zoom, tap a country for its key facts and the stories about it. Switch between political, satellite and night views with the map button. Show a group of countries:");
@@ -1466,7 +1476,7 @@ async function openCountry(id){
   try{ [C,A]=await Promise.all([loadJSON("data/countries.json"),ATLAS?Promise.resolve(ATLAS):loadJSON("data/atlas/catalog.json")]); ATLAS=ATLAS||A; }catch(e){ return; }
   if(tok!==countryTok||!inExplore()) return;
   const c=C.countries[id]||{f:[],s:[]};
-  explore.country=id; closeToc(); sheet.classList.remove("collapsed"); markDirty(); L=layers(); Ldirty=false;
+  beatFade(); explore.country=id; closeToc(); sheet.classList.remove("collapsed"); markDirty(); L=layers(); Ldirty=false;
   el.kicker.textContent=t("Country"); el.title.textContent=nameOf(id); el.text.textContent=""; el.blocs.hidden=true; el.card.hidden=true;
   const facts=c.f.map(([code,v,y,r,n])=>{ const it=ATLAS.indicators.find(x=>x.id===code); if(!it) return "";
     return `<li><span>${esc(t(FACT_LABEL[code]||it.name))}</span><b>${esc(String(fmtOf(it.fmt)(v)))}</b><small>${y} · ${esc(t("{r} of {n}",{r:ord(r),n}))}</small></li>`; }).join("");
@@ -1625,6 +1635,7 @@ async function openCampaign(id){
   const tok=++campTok; campData=null;
   if(cp.data){ const D={}; try{ await Promise.all(Object.entries(cp.data).map(async([k,u])=>{ D[k]=await loadJSON(u); })); }catch(e){}
     if(tok!==campTok) return; campData=D; }
+  beatFade();
   quiz.mode=null; si=-1; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
   scene=Object.assign({layers:[],political:true,view:{mode:"globe",center:[0,25],zoom:1}},cp.scene||{});
   markDirty(); el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true;
