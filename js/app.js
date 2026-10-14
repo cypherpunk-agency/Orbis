@@ -83,6 +83,16 @@ const wGlobe=()=>(V.a==="globe"?1-V.t:0)+(V.b==="globe"?V.t:0);
 const curKind=()=>V.t<0.5?V.a:V.b;
 
 let moving=false;
+// when the map settles, the detailed outlines replace the light ones: cross-fade the two frames instead of a hard swap.
+// Both frames are drawn once and kept as images, so the fade itself costs only two image copies per frame.
+const FADE={lo:document.createElement("canvas"),hi:document.createElement("canvas"),ms:260}; let fade=null;
+const viewKey=()=>[V.center[0],V.center[1],V.zoom,V.t,F.x,F.y,F.w,F.h,canvas.width].join();
+function snap(c){ if(c.width!==canvas.width||c.height!==canvas.height){ c.width=canvas.width; c.height=canvas.height; } const x=c.getContext("2d"); x.clearRect(0,0,c.width,c.height); x.drawImage(canvas,0,0); }
+function detailFadeStart(now){ snap(FADE.lo); draw(); snap(FADE.hi); fade={t0:now,key:viewKey()}; return detailFadeStep(now); }
+function detailFadeStep(now){ const k=Math.min(1,(now-fade.t0)/FADE.ms), e=k*k*(3-2*k);
+  ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.globalAlpha=1; ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(FADE.hi,0,0);
+  if(k<1){ ctx.globalAlpha=1-e; ctx.drawImage(FADE.lo,0,0); } ctx.restore();
+  if(k>=1){ fade=null; return false; } return true; }
 function update(){
   mutator(V.a,V.b,V.t);
   const wg=wGlobe(), c=V.center;
@@ -575,8 +585,10 @@ function tick(now){
     if(Math.hypot(inertia.x,inertia.y)<0.0001){inertia=null;scheduleDetail();describe();}else more=true;
   }
   else if(spin&&!drag){V.center=[V.center[0]+dt*0.006,V.center[1]];more=true;}
-  moving=!!((drag&&drag.moved)||anim||inertia||spin||sheetDrag);
-  draw();
+  const wasMoving=moving; moving=!!((drag&&drag.moved)||anim||inertia||spin||sheetDrag);
+  if(wasMoving&&!moving&&V.zoom>=2&&HI.byId&&!reduce) more=detailFadeStart(now)||more;
+  else if(fade&&!moving&&fade.key===viewKey()) more=detailFadeStep(now)||more;
+  else { fade=null; draw(); }
   if(L&&L.carto&&cartoEase()<1) more=true;
   if(more||hasFlow()) render(); else last=0;
 }
