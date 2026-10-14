@@ -239,13 +239,13 @@ const SOURCES = {
     credit: "USDA Forest Service, Office of Tribal Relations, with NPS NAGPRA, EPA and C. Saunt; after C. C. Royce (1899)"
   },
   "medsl-president": {
-    name: "MIT Election Data and Science Lab", what: "U.S. President 1976–2024, state returns", tier: "layer",
+    name: "MIT Election Data and Science Lab", what: "U.S. President 1976–2024, state returns (and the national popular vote in data/elections/)", tier: "layer",
     licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
     url: "https://doi.org/10.7910/DVN/42MVDX", use: "commercial", redistribute: true,
     credit: "MIT Election Data and Science Lab, U.S. President 1976–2024, Harvard Dataverse"
   },
   parlgov: {
-    name: "ParlGov (Döring & Manow)", what: "Lower-house election results in 37 EU/OECD democracies, 1945–2023 (2024 release)", tier: "layer",
+    name: "ParlGov (Döring & Manow)", what: "Lower-house election results in 37 EU/OECD democracies, 1945–2023 (2024 release; data/elections/)", tier: "layer",
     licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
     url: "https://doi.org/10.7910/DVN/2VZ5ZC", use: "commercial", redistribute: true,
     credit: "Döring & Manow, ParlGov 2024 Release, Harvard Dataverse"
@@ -269,7 +269,7 @@ const SOURCES = {
     credit: "Ramona Roller, 'Spatio-temporal data on territories of the Holy Roman Empire', ETH Zurich, 2021 (CC BY-NC-SA 4.0); derived file stays CC BY-NC-SA"
   },
   wikidata: {
-    name: "Wikidata", what: "Structured facts (monarchs, reign dates, royal houses; form of government) queried via SPARQL", tier: "layer",
+    name: "Wikidata", what: "Structured facts (monarchs, reign dates, royal houses; form of government; national elections since 1945 in data/elections/) queried via SPARQL and the entity API", tier: "layer",
     licence: "CC0 1.0", licenceUrl: "https://www.wikidata.org/wiki/Wikidata:Licensing",
     url: "https://www.wikidata.org", use: "commercial", redistribute: true,
     credit: "Wikidata (CC0)"

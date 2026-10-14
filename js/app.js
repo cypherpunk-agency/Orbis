@@ -188,8 +188,23 @@ function filledMesh(){ const ids=new Set([...Object.keys(L.fills),...L.gmap.keys
   const m=hi?FM.hi:FM.lo; if(m) return m;
   const r=topojson.mesh(T,T.objects.countries,(a,b)=>a!==b&&(ids.has(a.id)||ids.has(b.id)));
   if(hi) FM.hi=r; else FM.lo=r; return r; }
+// design preview of selection styles (?sel=A|B|C|D); not used by stories yet
+const SEL=new URLSearchParams(location.search).get("sel");
+function selMap(){ const m=new Map(); Object.entries(L.fills).forEach(([k,c])=>m.set(k,col(c))); L.gmap.forEach((g,k)=>m.set(k,col(g.color))); L.highlight.forEach(k=>{ if(!m.has(k)) m.set(k,C.accent); }); return m; }
+const SELC={key:null,geo:null};
+function selGeoms(m){ const key=[...m].join(); if(SELC.key===key) return SELC.geo; const by=new Map(); m.forEach((c,id)=>{ if(!by.has(c)) by.set(c,new Set()); by.get(c).add(id); });
+  SELC.key=key; SELC.geo=[...by].map(([c,ids])=>({c,g:topojson.merge(WORLD,WORLD.objects.countries.geometries.filter(g=>ids.has(g.id)))})); return SELC.geo; }
+function drawSelection(){ if(!SEL) return; const m=selMap(); if(!m.size) return; const dark=C.dark||onDark;
+  if(SEL==="B"){ ctx.beginPath(); feats.forEach(f=>{ if(!m.has(f.id)) path(geom(f)); }); ctx.fillStyle=dark?"rgba(8,16,24,.55)":"rgba(255,255,255,.6)"; ctx.fill(); return; }
+  const G=selGeoms(m);
+  if(SEL==="A"){ G.forEach(({c,g})=>{ ctx.beginPath(); path(g); ctx.lineJoin="round"; ctx.strokeStyle=dark?"rgba(8,16,24,.6)":"rgba(255,255,255,.85)"; ctx.lineWidth=4.5; ctx.stroke(); ctx.strokeStyle=c; ctx.lineWidth=2; ctx.stroke(); }); }
+  if(SEL==="C"){ G.forEach(({c,g})=>{ ctx.save(); ctx.beginPath(); path(g); ctx.lineJoin="round"; ctx.shadowColor=c; ctx.shadowBlur=10; ctx.strokeStyle=c; ctx.lineWidth=2.6; ctx.stroke(); ctx.restore(); }); }
+  if(SEL==="D"){ G.forEach(({c,g})=>{ ctx.save(); ctx.beginPath(); path(g); ctx.shadowColor="rgba(0,0,0,.55)"; ctx.shadowBlur=16; ctx.shadowOffsetY=5; ctx.fillStyle=c; ctx.fill(); ctx.restore();
+    ctx.beginPath(); path(g); ctx.strokeStyle=dark?"rgba(236,242,244,.7)":"#fff"; ctx.lineWidth=1.2; ctx.stroke(); }); }
+}
 function fillFor(f,i,ras){
   const id=f.id;
+  if(SEL==="A"||SEL==="C"){ const c=L.fills[id]||(L.gmap.get(id)&&L.gmap.get(id).color); if(c&&!hidden(c)){ if(SEL==="A") return d3.interpolateRgb(C.land,col(c))(0.5); return L.political?C.tints[tint[i]]:C.land; } }
   if(L.fills[id]&&!hidden(L.fills[id])) return col(L.fills[id]);
   const g=L.gmap.get(id); if(g&&!hidden(g.color)) return g.tint?d3.interpolateRgb(C.land,col(g.color))(g.tint):col(g.color);  // tint: 0..1 toward the colour, for a light highlight
   if(L.choro){const v=L.cdata[id]; return v==null?(ras?null:C.nodata):L.color(v);}
@@ -484,7 +499,8 @@ function draw(){
     if(OUTL.key!==key){ OUTL.key=key; OUTL.g=topojson.merge(T,T.objects.countries.geometries.filter(g=>ids.has(g.id))); }
     ctx.beginPath(); path(OUTL.g); ctx.lineJoin="round"; ctx.strokeStyle=C.dark?"rgba(12,26,36,.6)":"rgba(255,255,255,.8)"; ctx.lineWidth=4.5; ctx.stroke();
     ctx.strokeStyle=col(L.outline.color); ctx.lineWidth=2; ctx.stroke(); }
-  if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f)); if(L.povView) L.povView.areas.forEach(a=>{ if(L.povView.owner(a)===id) path(a); });});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
+  drawSelection();
+  if(L.highlight.length&&!SEL){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f)); if(L.povView) L.povView.areas.forEach(a=>{ if(L.povView.owner(a)===id) path(a); });});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
   // circles
   L.circles.forEach(c=>{const g=d3.geoCircle().center(c.center).radius(c.km/R_EARTH*deg).precision(1)();
     ctx.beginPath();path(g);ctx.globalAlpha=0.22;ctx.fillStyle=col(c.color);ctx.fill();ctx.globalAlpha=1;
@@ -1597,7 +1613,7 @@ async function openElections(m){
   const C0=ELX.countries||{}, now=new Date(), yrs=d=>(now-new Date(Math.floor(d/1e4),Math.floor(d/100)%100-1,d%100))/31557600000;
   const val={}, fam={}; Object.entries(C0).forEach(([k,c])=>{ const l=c.last; if(!l) return;
     if(l.family&&FAMILY[l.family]) fam[k]=l.family;
-    const v=elxState.m==="turnout"?l.turnout:elxState.m==="share"?l.share:elxState.m==="age"?(l.date?Math.round(yrs(l.date)*10)/10:null):null; if(v!=null) val[k]=v; });
+    const v=elxState.m==="turnout"?l.turnout:elxState.m==="share"?l.share:elxState.m==="age"?((c.latest||l).date?Math.round(yrs((c.latest||l).date)*10)/10:null):null; if(v!=null) val[k]=v; });
   const label=ELX_MEASURES.find(x=>x[0]===elxState.m)[1], src=[].concat(ELX.source||[]);
   const d={source:src[0],years:[0],series:{v:{label,values:Object.fromEntries(Object.entries(val).map(([k,v])=>[k,[v]]))}},
     sets:{fam:{labels:Object.fromEntries(Object.entries(FAMILY).map(([k,v])=>[k,v[0]])),values:fam}}};
@@ -1626,7 +1642,7 @@ async function electionCard(id){
     spark=`<figure class="md-line"><figcaption>${esc(t("Turnout"))}</figcaption><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(t("Turnout over time"))}"><path d="${d3.line().x(e=>sx(Math.floor(e.date/1e4))).y(e=>sy(e.turnout))(tl)}" fill="none" stroke="${col("c1")}" stroke-width="2"/>`+
       `<text x="4" y="${h-2}" class="md-tick">${Math.floor(tl[0].date/1e4)}</text><text x="${w-30}" y="${h-2}" class="md-tick" text-anchor="end">${Math.floor(tl[tl.length-1].date/1e4)}</text><text x="${w-26}" y="${sy(tl[tl.length-1].turnout)+4}" class="md-tick">${pct(tl[tl.length-1].turnout)}</text></svg></figure>`; }
   const rows=E.slice(0,6).map(e=>{ const ps=(e.parties||[]).filter(p=>p.share!=null).slice(0,8), mx=d3.max(ps,p=>p.share)||1;
-    return `<li class="elx-e"><div class="elx-h"><b>${esc(fmtDate(e.date))}</b><span>${esc(t(e.type==="president"?"Presidential":"Parliamentary"))}${e.turnout!=null?" · "+esc(t("turnout"))+" "+pct(e.turnout):""}</span></div>`+
+    return `<li class="elx-e"><div class="elx-h"><b>${esc(fmtDate(e.date))}</b><span>${esc(t(e.type==="president"?"Presidential":"Parliamentary"))}${e.decided===false?" · "+esc(t("first round; run-off pending")):""}${e.turnout!=null?" · "+esc(t("turnout"))+" "+pct(e.turnout):""}</span></div>`+
       ps.map(p=>`<div class="ch-row"><span class="nm">${esc(p.name)}</span><span class="bar" style="width:${(p.share/mx*100).toFixed(1)}%;background:${(FAMILY[p.family]||FAMILY.other)[1]}"></span><span class="v">${pct(p.share)}${p.seats!=null?" · "+p.seats:""}</span></div>`).join("")+`</li>`; }).join("");
   c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(t("Elections"))} · ${esc(t("{n} on record",{n:E.length}))}</p><h3>${esc(nameOf(id))}</h3>`+spark+
     (rows?`<ol class="elx-list">${rows}</ol>`:`<p class="elx-none">${esc(t("Only the latest election is on record"))}: ${esc(info.last?fmtDate(info.last.date):"")}${info.last&&info.last.winner?" · "+esc(info.last.winner):""}</p>`)+
