@@ -1,0 +1,254 @@
+{
+  "id": "friends",
+  "cat": "People",
+  "title": "Who your friends are",
+  "hook": "Facebook friendships trace old empires, migrant jobs and closed borders.",
+  "notes": "Meta Social Connectedness Index (SCI), country level, snapshot of 25 Jan 2026 (HDX release, CC0). The SCI measures how likely two Facebook users, one in each country, are to be friends. Here it is shown relative to the median of all country pairs: 100× means a hundred times as likely as a typical pair. Because it is a per-person measure, big countries (Brazil, Mexico, Turkey, the US) score lower than small ones with the same number of friendships. It only covers Facebook users: no data for China, Iran, North Korea, Syria, Cuba, Turkmenistan, Palestine and some small territories, and countries where few people use Facebook are less reliable.",
+  "data": {
+    "sci": "data/people/sci.json"
+  },
+  "scenes": [
+    {
+      "title": "Portugal's friends overseas",
+      "text": "Take one person in Portugal and one in Cape Verde. They are about 2,700 times as likely to be Facebook friends as two people in a typical pair of countries. São Tomé (2,300×) and Guinea-Bissau (1,000×), also former Portuguese colonies, come next, then Luxembourg (770×), home to many Portuguese migrants. Seen from Brazil, Portugal (37×) is the closest tie of all.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -5,
+          22
+        ],
+        "zoom": 2.2
+      },
+      "layers": [
+        {
+          "type": "pairs",
+          "data": "sci",
+          "from": "PRT",
+          "title": "Friendship ties with {name} (× typical pair)",
+          "fmt": "num",
+          "log": true,
+          "fromColor": "c1"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            -23.6,
+            15.1
+          ],
+          "label": "Cape Verde",
+          "color": "c2",
+          "r": 4
+        },
+        {
+          "at": [
+            6.6,
+            0.3
+          ],
+          "label": "São Tomé",
+          "color": "c2",
+          "r": 4
+        },
+        {
+          "at": [
+            6.1,
+            49.7
+          ],
+          "label": "Luxembourg",
+          "color": "c2",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "Britain's cousins far away",
+      "text": "New Zealand (36×) and Australia (33×) lie on the other side of the world, yet Britons are five to six times as connected to them as to France (6×) or the US (5×). Ireland (88×) and Caribbean islands such as St Vincent (130×) and Grenada (90×) are even closer.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          40,
+          5
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "pairs",
+          "data": "sci",
+          "from": "GBR",
+          "title": "Friendship ties with {name} (× typical pair)",
+          "fmt": "num",
+          "log": true,
+          "fromColor": "c1"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            -61.2,
+            13.25
+          ],
+          "label": "St Vincent",
+          "color": "c2",
+          "r": 3
+        },
+        {
+          "at": [
+            -61.7,
+            12.1
+          ],
+          "label": "Grenada",
+          "color": "c2",
+          "r": 3
+        }
+      ]
+    },
+    {
+      "title": "India's Gulf",
+      "text": "India's strongest ties run to the Gulf, where millions of Indians work: the UAE (38×), Kuwait (31×), Bahrain, Qatar and Oman (28–30×). That is far more than with neighbouring Pakistan (4×) or the US (0.8×).",
+      "view": {
+        "mode": "equal",
+        "center": [
+          65,
+          22
+        ],
+        "zoom": 2.3
+      },
+      "layers": [
+        {
+          "type": "pairs",
+          "data": "sci",
+          "from": "IND",
+          "title": "Friendship ties with {name} (× typical pair)",
+          "fmt": "num",
+          "log": true,
+          "fromColor": "c1"
+        }
+      ]
+    },
+    {
+      "title": "Germany's guest workers",
+      "text": "Germany is more connected to Kosovo (156×), North Macedonia (126×) and Bosnia (109×) than to its neighbours Austria (93×) or France (8×). The links follow decades of migration from the Balkans, Poland (25×) and Turkey (19×).",
+      "view": {
+        "mode": "equal",
+        "center": [
+          22,
+          46
+        ],
+        "zoom": 5
+      },
+      "layers": [
+        {
+          "type": "pairs",
+          "data": "sci",
+          "from": "DEU",
+          "title": "Friendship ties with {name} (× typical pair)",
+          "fmt": "num",
+          "log": true,
+          "fromColor": "c1"
+        }
+      ]
+    },
+    {
+      "title": "America looks south",
+      "text": "The US's closest ties run to the Caribbean and Central America: Jamaica (64×), the Bahamas (54×), Honduras (39×), the Dominican Republic and El Salvador (31–36×). Mexico scores 13× because it is so big, but seen from Mexico, the US is its closest tie. Top of the list: Micronesia (81×), whose citizens may live and work in the US.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -100,
+          18
+        ],
+        "zoom": 1.5
+      },
+      "layers": [
+        {
+          "type": "pairs",
+          "data": "sci",
+          "from": "USA",
+          "title": "Friendship ties with {name} (× typical pair)",
+          "fmt": "num",
+          "log": true,
+          "fromColor": "c1"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            158.2,
+            6.9
+          ],
+          "label": "Micronesia",
+          "color": "c2",
+          "r": 4
+        }
+      ]
+    },
+    {
+      "title": "Borders as walls",
+      "text": "Closed or hostile borders cut friendships too.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          36,
+          37
+        ],
+        "zoom": 5.5
+      },
+      "switch": {
+        "label": "Country",
+        "start": 0,
+        "options": [
+          {
+            "c": "ARM",
+            "label": "Armenia",
+            "text": "Armenia is well connected to Georgia (83×) and above all Russia (770×). Across its closed borders with Azerbaijan (4×) and Turkey (1.5×), there are hardly any friendships."
+          },
+          {
+            "c": "GRC",
+            "label": "Greece",
+            "text": "Greeks are tightly linked to Cyprus (610×) and Albania (430×), and to Bulgaria (41×). Turkey, their large neighbour and old rival, scores just 4×."
+          },
+          {
+            "c": "ISR",
+            "label": "Israel",
+            "text": "Israel's ties to Egypt (4×) and Lebanon (9×) are weak; its strongest are with Russia (53×). Jordan (49×) is the exception. There is no data for Syria or the Palestinian territories."
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "pairs",
+          "data": "sci",
+          "from": "{c}",
+          "title": "Friendship ties with {name} (× typical pair)",
+          "fmt": "num",
+          "log": true,
+          "fromColor": "c1"
+        }
+      ]
+    },
+    {
+      "title": "Your turn",
+      "text": "The Philippines, like India, is tied to the Gulf: Qatar (53×), Kuwait (50×) and the UAE (43×) top its list. Tap any country to see who its people are friends with.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          60,
+          15
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "pairs",
+          "data": "sci",
+          "from": "PHL",
+          "title": "Friendship ties with {name} (× typical pair)",
+          "fmt": "num",
+          "log": true,
+          "fromColor": "c1"
+        }
+      ]
+    }
+  ]
+}

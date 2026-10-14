@@ -439,5 +439,19 @@
   "title": "Leaving the countryside",
   "hook": "Between 2000 and 2019 half the world's people lived in places that lost residents to migration, while cities and their suburbs filled up.",
   "file": "stories/countryside.json"
+ },
+ {
+  "id": "friends",
+  "cat": "People",
+  "title": "Who your friends are",
+  "hook": "Facebook friendships trace old empires, migrant jobs and closed borders.",
+  "file": "stories/friends.json"
+ },
+ {
+  "id": "fame",
+  "cat": "People",
+  "title": "Where fame was born",
+  "hook": "Two million notable lives, from 3500 BC to 2018: where they began, and where they ended.",
+  "file": "stories/fame.json"
  }
 ]

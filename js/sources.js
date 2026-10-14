@@ -196,6 +196,18 @@ const SOURCES = {
     url: "https://uis.unesco.org/", use: "noncommercial", redistribute: true,
     credit: "Source: UNESCO Institute for Statistics (CC BY-SA 4.0; share-alike, so kept out of the base tier)"
   },
+  "meta-sci": {
+    name: "Meta Social Connectedness Index (HDX)", what: "Facebook friendship ties between countries, Jan 2026 snapshot", tier: "layer",
+    licence: "CC0 1.0", licenceUrl: "https://data.humdata.org/dataset/social-connectedness-index",
+    url: "https://data.humdata.org/dataset/social-connectedness-index", use: "commercial", redistribute: true,
+    credit: "Meta Social Connectedness Index, via HDX"
+  },
+  bhht: {
+    name: "Notable people 3500 BC–2018 (Laouenan et al.)", what: "Birth and death places, years and gender of 2.3 M notable people", tier: "layer",
+    licence: "CC BY-NC-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    url: "https://doi.org/10.21410/7E4/RDAG3O", use: "noncommercial", redistribute: true,
+    credit: "Laouenan, Bhargava, Eymeoud, Gergaud, Plique & Wasmer (2022), A cross-verified database of notable people, Scientific Data 9:290 (CC BY-NC-SA 4.0)"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",

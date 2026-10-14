@@ -1,0 +1,259 @@
+{
+  "id": "fame",
+  "cat": "People",
+  "title": "Where fame was born",
+  "hook": "Two million notable lives, from 3500 BC to 2018: where they began, and where they ended.",
+  "notes": "Laouenan, Bhargava, Eymeoud, Gergaud, Plique and Wasmer (2022), 'A cross-verified database of notable people, 3500BC–2018AD', Scientific Data 9:290; data.sciencespo doi:10.21410/7E4/RDAG3O (codes: doi:10.21410/7E4/YLG6YR). The record's terms say CC BY-SA 4.0, the licence file shipped with it CC BY-NC-SA 4.0; we follow the stricter one. The database merges Wikipedia (7 language editions, plus others for counts) and Wikidata, so it counts people someone wrote about, not everyone who mattered: Europe and men are over-represented, and recent births are still being added. Of 2.29 million people, 1.65 million have both a birth year and a birthplace; these are mapped in 0.5° cells and counted per city when born within 25 km of a Natural Earth populated place (modern names). Eras are labelled by their first year. The centre of gravity is the average position of all birthplaces of an era. Born vs died uses only the 640,000 people with both places known. Gender shares count men and women with a recorded gender.",
+  "sources": [
+    "naturalearth"
+  ],
+  "data": {
+    "grid": "data/grids/fame.json",
+    "cities": "data/people/fame-cities.json",
+    "centre": "data/people/fame-centre.json",
+    "capitals": "data/people/fame-capitals.json",
+    "women": "data/people/fame-women.json",
+    "trend": "data/people/fame-women-trend.json"
+  },
+  "scenes": [
+    {
+      "title": "Two million lives",
+      "text": "Researchers combined Wikipedia and Wikidata into a list of 2.3 million notable people, from 3500 BC to 2018. For 1.65 million we know when and where they were born. The map glows where the record is thickest: Europe and North America. Two in three people born since 1950 hold a European, US or Canadian passport.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          25
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "grid",
+          "frame": "all",
+          "title": "Notable people born per 0.5° cell, 3500 BC–2018",
+          "fmt": "int"
+        }
+      ]
+    },
+    {
+      "title": "Cities of fame",
+      "text": "Move through the eras. Fame starts around the Mediterranean, then shifts to Italy, Paris and London, and in the 20th century to New York and Los Angeles.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -15,
+          40
+        ],
+        "zoom": 1.7
+      },
+      "timeline": {
+        "years": [
+          -3499,
+          -499,
+          1,
+          500,
+          1000,
+          1300,
+          1500,
+          1600,
+          1700,
+          1750,
+          1800,
+          1850,
+          1900,
+          1925,
+          1950,
+          1975
+        ],
+        "start": -499,
+        "captions": {
+          "-3499": "Before 500 BC: only 130 people with a known birthplace. Athens, Rome and Jerusalem lead.",
+          "-499": "500 BC to the birth of Christ: Rome (340) is far ahead of Athens (80).",
+          "1": "AD 1–499: Rome, Alexandria, Constantinople (today's Istanbul) and Antioch.",
+          "500": "AD 500–999: the largest centres are in the Islamic world: Mecca, Medina and Baghdad, with Constantinople. Xi’an and Córdoba follow.",
+          "1000": "1000–1299: Constantinople, Florence, Lisbon and Kyoto.",
+          "1300": "1300–1499: Florence (460) is the capital of fame, ahead of Venice and Milan.",
+          "1500": "The 1500s: Florence, Antwerp, Paris, Venice, London.",
+          "1600": "The 1600s: Paris takes the lead it will keep for two centuries.",
+          "1800": "1800–1849: Paris, London and Berlin. New York appears.",
+          "1900": "1900–1924: New York overtakes Paris.",
+          "1975": "Born 1975–2018: London, Paris, New York, Los Angeles, Buenos Aires and Tokyo."
+        }
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "cities",
+          "field": "born",
+          "color": "c2",
+          "maxR": 26,
+          "labels": 4,
+          "title": "Notable people born in the city",
+          "fmt": "int"
+        }
+      ],
+      "chart": {
+        "data": "cities",
+        "field": "born",
+        "title": "Most notable births, by city",
+        "top": 6,
+        "fmt": "int",
+        "color": "c2"
+      }
+    },
+    {
+      "title": "The centre drifts west",
+      "text": "Average the birthplaces of each era and you get a centre of gravity. It starts in Anatolia, swings north of the Black Sea, pulled east by births in Asia, then crosses Europe: Bavaria in the 1300s, Belgium by 1700. As America fills up it moves into the Atlantic. Since 1975 it has turned back east, as Asia's share of births rises from 11% to 16%.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          48
+        ],
+        "zoom": 2.4
+      },
+      "timeline": {
+        "years": [
+          -3499,
+          -499,
+          1,
+          500,
+          1000,
+          1300,
+          1500,
+          1600,
+          1700,
+          1750,
+          1800,
+          1850,
+          1900,
+          1925,
+          1950,
+          1975
+        ],
+        "start": 1975
+      },
+      "layers": [
+        {
+          "type": "raster",
+          "data": "grid",
+          "frame": "t",
+          "opacity": 0.5,
+          "title": "Notable people born per 0.5° cell",
+          "fmt": "int"
+        },
+        {
+          "type": "moves",
+          "data": "centre",
+          "set": "centre",
+          "color": "c2",
+          "width": 3
+        }
+      ]
+    },
+    {
+      "title": "The pull of the capital",
+      "text": "Fame often ends in the capital. Compare where people were born with where they died.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -38,
+          44
+        ],
+        "zoom": 2
+      },
+      "switch": {
+        "label": "Show",
+        "start": 1,
+        "options": [
+          {
+            "c": "born",
+            "label": "Born here",
+            "text": "Among people whose places of birth and death are both known, 18,000 were born in Paris, 4,100 in Rome and 2,200 in Madrid."
+          },
+          {
+            "c": "died",
+            "label": "Died here",
+            "text": "Twice as many died in Paris (36,000) as were born there, nearly three times as many in Rome (12,000) and Madrid (5,900). London is milder: 12,000 born, 14,500 died. Across the Atlantic, Washington counts four times as many deaths as births, and Los Angeles more than five times."
+          }
+        ]
+      },
+      "layers": [
+        {
+          "type": "symbols",
+          "data": "capitals",
+          "field": "n",
+          "period": "{c}",
+          "vmax": 36000,
+          "maxR": 40,
+          "color": "c1",
+          "labels": 8,
+          "title": "Notable people",
+          "fmt": "int"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            -77.01,
+            38.9
+          ],
+          "label": "Washington",
+          "color": "c2",
+          "r": 2.5
+        },
+        {
+          "at": [
+            -3.69,
+            40.42
+          ],
+          "label": "Madrid",
+          "color": "c2",
+          "r": 2.5
+        }
+      ]
+    },
+    {
+      "title": "Women enter the record",
+      "text": "From 1500 to the 1830s, only about one notable person in 15 was a woman. The share rose from the mid-1800s and reached a quarter for people born in the 1970s and 1980s. Among people born since 1950 it is over a third in China, Taiwan and Ethiopia, 32% in Sweden and South Korea, and lowest in Saudi Arabia (6%) and Qatar (4%).",
+      "view": {
+        "mode": "equal",
+        "center": [
+          20,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "women",
+          "series": "female",
+          "year": 1950,
+          "vmin": 0,
+          "vmax": 40,
+          "title": "Women among notable people born 1950–2018",
+          "fmt": "pct",
+          "nodataLabel": "Fewer than 200 people"
+        }
+      ],
+      "media": [
+        {
+          "type": "line",
+          "data": "trend",
+          "series": "female",
+          "countries": [
+            "WLD"
+          ],
+          "labels": {
+            "WLD": "All"
+          },
+          "title": "Women among notable people, by decade of birth (%)",
+          "fmt": "pct"
+        }
+      ]
+    }
+  ]
+}

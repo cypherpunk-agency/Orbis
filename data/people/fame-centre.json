@@ -1,0 +1,96 @@
+{
+ "source": "bhht",
+ "asOf": "2018",
+ "retrieved": "2026-10-14",
+ "note": "Laouenan et al. (2022), A cross-verified database of notable people, 3500BC-2018AD, Scientific Data 9:290; data.sciencespo doi:10.21410/7E4/RDAG3O. Centre of gravity of notable people's birthplaces in each era of birth: the mean of their positions as 3-D vectors, projected back to the Earth's surface. Dates are each era's first year (astronomical). Eras: 3500 BC–501 BC (134 people, 34.5, 38.7); 500 BC–1 BC (977 people, 24.2, 41.6); AD 1–AD 499 (1,449 people, 38.8, 47.2); AD 500–AD 999 (2,091 people, 35.9, 47.6); 1000–1299 (4,075 people, 18.4, 48.9); 1300–1499 (9,403 people, 11.9, 47.8); 1500–1599 (16,112 people, 8.6, 48.8); 1600–1699 (23,695 people, 7.8, 50.0); 1700–1749 (22,180 people, 3.4, 50.7); 1750–1799 (47,207 people, -4.3, 50.8); 1800–1849 (101,619 people, -9.7, 52.9); 1850–1899 (226,689 people, -7.6, 55.5); 1900–1924 (194,978 people, -11.6, 55.8); 1925–1949 (283,094 people, -14.2, 55.3); 1950–1974 (362,759 people, -13.0, 56.3); 1975–2018 (358,265 people, -6.2, 56.2). Share by first citizenship (people with one recorded): born AD 500–1499: 79% Europe, 0% USA and Canada, 18% Asia (n=27,447); born 1500–1799: 85% Europe, 8% USA and Canada, 3% Asia (n=147,484); born 1800–1899: 65% Europe, 21% USA and Canada, 3% Asia (n=403,754); born 1900–1949: 54% Europe, 25% USA and Canada, 8% Asia (n=600,463); born 1950–1974: 50% Europe, 23% USA and Canada, 11% Asia (n=461,151); born 1975–2018: 45% Europe, 17% USA and Canada, 16% Asia (n=417,032).",
+ "moves": {
+  "centre": [
+   {
+    "name": "Centre of notable births",
+    "color": "c2",
+    "path": [
+     [
+      34.5,
+      38.7,
+      -3499
+     ],
+     [
+      24.2,
+      41.6,
+      -499
+     ],
+     [
+      38.8,
+      47.2,
+      1
+     ],
+     [
+      35.9,
+      47.6,
+      500
+     ],
+     [
+      18.4,
+      48.9,
+      1000
+     ],
+     [
+      11.9,
+      47.8,
+      1300
+     ],
+     [
+      8.6,
+      48.8,
+      1500
+     ],
+     [
+      7.8,
+      50.0,
+      1600
+     ],
+     [
+      3.4,
+      50.7,
+      1700
+     ],
+     [
+      -4.3,
+      50.8,
+      1750
+     ],
+     [
+      -9.7,
+      52.9,
+      1800
+     ],
+     [
+      -7.6,
+      55.5,
+      1850
+     ],
+     [
+      -11.6,
+      55.8,
+      1900
+     ],
+     [
+      -14.2,
+      55.3,
+      1925
+     ],
+     [
+      -13.0,
+      56.3,
+      1950
+     ],
+     [
+      -6.2,
+      56.2,
+      1975
+     ]
+    ]
+   }
+  ]
+ }
+}
