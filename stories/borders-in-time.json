@@ -10,6 +10,7 @@
  "scenes": [
   {
    "title": "Europe in 1914",
+   "when": "1914",
    "text": "On the eve of the First World War, three empires ruled most of central and eastern Europe: Austria-Hungary, the Russian Empire and the Ottoman Empire. Poland, Czechoslovakia, Yugoslavia and the Baltic states did not exist.",
    "view": {
     "mode": "globe",

@@ -16,6 +16,7 @@
   "scenes": [
     {
       "title": "January: a baseline",
+      "when": "Jan 2022",
       "text": "January 2022 is the pre-invasion baseline in NASA’s Kyiv comparison. The inset is a display composite, with nighttime lights over Landsat context. It is not georeferenced onto the map.",
       "view": {
         "mode": "globe",
@@ -52,6 +53,7 @@
     },
     {
       "title": "March: reduced lighting",
+      "when": "Mar 2022",
       "text": "NASA’s March composite shows reduced lighting around Kyiv. A darker display cannot distinguish damaged supply, deliberate dimming and changes in activity on its own.",
       "view": {
         "mode": "globe",
@@ -88,6 +90,7 @@
     },
     {
       "title": "May: some light returns",
+      "when": "May 2022",
       "text": "NASA reports partial lighting recovery around Kyiv in May. This selected regional view does not establish national recovery, a count of returning people or a measure of intact infrastructure.",
       "view": {
         "mode": "globe",
@@ -124,6 +127,7 @@
     },
     {
       "title": "Energy also depends on water",
+      "when": "Jun 2023",
       "text": "The June 2023 Kakhovka disaster disrupted an interconnected water and energy system. Its location is shown separately from the 2022 light images: the observations describe different dates and different phenomena.",
       "view": {
         "mode": "globe",

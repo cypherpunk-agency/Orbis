@@ -9,6 +9,7 @@
   "scenes": [
     {
       "title": "Light is not evenly spread",
+      "when": "c. 2022",
       "text": "About 91% of humans have electricity at home. Of the roughly 700 million who don't, more than 80% live in sub-Saharan Africa.",
       "view": {"mode": "equal", "center": [20, 5], "zoom": 1},
       "layers": [
@@ -26,6 +27,7 @@
     },
     {
       "title": "The deepest darkness",
+      "when": "c. 2022",
       "text": "In South Sudan, Chad and Burundi, roughly one person in ten has power at home. Across sub-Saharan Africa, it is about half.",
       "view": {"mode": "globe", "center": [22, 2], "zoom": 1.6},
       "layers": [

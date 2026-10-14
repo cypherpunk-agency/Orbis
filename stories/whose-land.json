@@ -10,6 +10,7 @@
  "scenes": [
   {
    "title": "One peninsula, two maps",
+   "when": "Since 2014",
    "text": "Russia annexed Crimea in 2014. Russian maps show it as part of Russia; Ukraine and most other countries still draw it as Ukrainian. Switch the point of view.",
    "view": {
     "mode": "globe",

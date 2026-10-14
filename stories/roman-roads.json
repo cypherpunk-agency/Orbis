@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Out of Rome",
+      "when": "c. 300 BC–AD 300",
       "text": "Rome's great roads fanned out from the city. The Via Appia ran south to Capua and on to Brundisium, the Flaminia crossed the Apennines to the Adriatic, the Aurelia followed the coast to the north-west. Itiner-e, a new digital atlas of Roman roads, maps almost 600 km of the Via Appia alone.",
       "view": {
         "mode": "globe",
@@ -113,6 +114,7 @@
     },
     {
       "title": "300,000 kilometres of road",
+      "when": "c. 300 BC–AD 300",
       "text": "Itiner-e counts about 300,000 km of Roman roads, enough to circle the Earth more than seven times. About 100,000 km were main roads; the other 200,000 km were secondary roads linking towns, mines, ports and forts.",
       "view": {
         "mode": "globe",
@@ -180,6 +182,7 @@
     },
     {
       "title": "From Scotland to the Nile",
+      "when": "c. 300 BC–AD 300",
       "text": "The northernmost road in the atlas ends at Cramond, near Edinburgh; the southernmost, a desert track, at Primis on the Nile in today's Egypt, 4,700 km away as the crow flies. From the Atlantic cape west of Lisbon to Apsarus on the Black Sea coast of Georgia is 4,300 km.",
       "view": {
         "mode": "globe",
@@ -378,6 +381,7 @@
     },
     {
       "title": "Highways of the provinces",
+      "when": "c. 300 BC–AD 300",
       "text": "Some roads carried one name across a whole province. The Via Egnatia crossed the Balkans; Itiner-e tags 1,200 km with its name. The Via Domitia linked Italy with Spain, Hadrian's road crossed Egypt's Eastern Desert, and in Britain Watling Street ran north-west from Londinium, while Dere Street led from Eboracum (York) into Scotland.",
       "view": {
         "mode": "globe",

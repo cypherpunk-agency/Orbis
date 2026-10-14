@@ -18,6 +18,7 @@
   "scenes": [
     {
       "title": "Across borders",
+      "when": "End of 2025",
       "text": "The annual UNHCR series counts about 5.22 million Ukraine-origin refugees at the end of 2025. The lines connect origin and asylum countries; they measure stocks, not journeys or border crossings. Only pairs of at least 5,000 people are included.",
       "view": {
         "mode": "globe",
@@ -104,6 +105,7 @@
     },
     {
       "title": "Displaced within the country",
+      "when": "End of 2025",
       "text": "Cross-border refugee data leaves out internal displacement. UNHCR’s year-end 2025 emergency report estimates 3.7 million internally displaced people. The national marker does not map their individual destinations.",
       "view": {
         "mode": "globe",

@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Nineteenth-century Atlantic migration",
+      "when": "19th century",
       "text": "Germany, Ireland and England were major sources of immigrants during the nineteenth century. The highlighted origin countries identify places described by the Library of Congress, without inventing counts or exact ship routes.",
       "view": {
         "mode": "globe",
@@ -46,6 +47,7 @@
     },
     {
       "title": "Ellis Island: the Atlantic gateway",
+      "when": "1892–1954",
       "text": "Ellis Island inspected immigrants entering through New York from 1892 to 1954. The island locates an inspection station; it cannot represent all arrivals or all immigrants’ final destinations.",
       "view": {
         "mode": "globe",
@@ -72,6 +74,7 @@
     },
     {
       "title": "Exclusion shaped the Pacific crossing",
+      "when": "1882",
       "text": "The Chinese Exclusion Act of 1882 barred Chinese labour immigration. The San Francisco point locates the Pacific gateway affected by federal exclusion, not the location where Congress enacted the law.",
       "view": {
         "mode": "globe",
@@ -98,6 +101,7 @@
     },
     {
       "title": "Angel Island: entry and detention",
+      "when": "1910–1940",
       "text": "Angel Island operated as an immigration station from 1910 to 1940. Many arrivals faced detention and interrogation; this Pacific history complicates a single story of welcome through New York.",
       "view": {
         "mode": "globe",

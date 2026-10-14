@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Ratifying the original union",
+      "when": "1787",
       "text": "Delaware ratified the Constitution in 1787. Its position as the first state reflects ratification order; the state already existed before that constitutional decision.",
       "view": {
         "mode": "globe",
@@ -41,6 +42,7 @@
     },
     {
       "title": "California: admission after acquisition",
+      "when": "1850",
       "text": "California became a state in 1850, after the Mexican cession of 1848. Admission brought representation in the federal union rather than a new international acquisition.",
       "view": {
         "mode": "globe",
@@ -67,6 +69,7 @@
     },
     {
       "title": "Alaska: purchase, territory, state",
+      "when": "Jan 1959",
       "text": "Alaska joined the union in January 1959. The gap from the 1867 purchase shows why an acquisition map and a statehood map answer different questions.",
       "view": {
         "mode": "globe",
@@ -93,6 +96,7 @@
     },
     {
       "title": "Hawaii: the fiftieth state",
+      "when": "Aug 1959",
       "text": "Hawaii became a state in August 1959. Its island geography places part of the union far beyond the contiguous mainland.",
       "view": {
         "mode": "globe",

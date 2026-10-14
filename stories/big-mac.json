@@ -10,6 +10,7 @@
   "scenes": [
     {
       "title": "One burger, many prices",
+      "when": "Jul 2026",
       "text": "The Big Mac is made to the same recipe almost everywhere, so its price is a handy yardstick. In July 2026 it cost $6.22 in the United States, over $9 in Switzerland and about $8 in Norway and Colombia, but under $2.50 in India, Indonesia and Taiwan.",
       "view": {
         "mode": "equal",
@@ -39,6 +40,7 @@
     },
     {
       "title": "What burgers say about currencies",
+      "when": "Jul 2026",
       "text": "In the long run, exchange rates should move so that the same goods cost the same everywhere. By that test, the Swiss franc is about 45% overvalued against the dollar, the euro about 14% and the pound about 19%. The yen is about 50% undervalued, and China's yuan about 37%. The United States is the baseline.",
       "view": {
         "mode": "equal",
@@ -185,6 +187,7 @@
     },
     {
       "title": "Rich countries pay more",
+      "when": "Jul 2026",
       "text": "Burgers are cheap in poor countries partly because wages and rents are low. The Economist's adjusted index allows for each country's income. On that basis China's yuan is only about a quarter undervalued, not 37%. Uruguay, Colombia and Switzerland look the most expensive, Taiwan and Indonesia still the cheapest.",
       "view": {
         "mode": "equal",

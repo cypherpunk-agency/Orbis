@@ -10,6 +10,7 @@
   "scenes": [
     {
       "title": "Who mines what",
+      "when": "2025",
       "text": "Pick a resource. For many of the minerals that batteries, magnets and chips need, one country mines most of the world's supply.",
       "view": {"mode": "equal", "center": [20, 10], "zoom": 1},
       "switch": {"label": "Resource", "options": [
@@ -29,6 +30,7 @@
     },
     {
       "title": "The world redrawn by mining",
+      "when": "2025",
       "text": "Here each country is resized by how much it mines. Watch Congo swell for cobalt, Indonesia for nickel and China for rare earths, while most of the map shrinks to almost nothing.",
       "view": {"mode": "equal", "center": [20, 10], "zoom": 1},
       "switch": {"label": "Resource", "start": 1, "options": [
@@ -43,6 +45,7 @@
     },
     {
       "title": "What is still in the ground",
+      "when": "2025",
       "text": "Production is not the same as reserves. China mines 69% of rare earths but holds about half of known reserves; Brazil has a quarter and barely mines them yet. Chile holds the largest lithium reserves. The towers show known reserves.",
       "view": {"mode": "equal", "center": [25, 12], "zoom": 1},
       "switch": {"label": "Reserves of", "start": 2, "options": [
@@ -57,6 +60,7 @@
     },
     {
       "title": "Everything flows to China",
+      "when": "2024",
       "text": "Ores and concentrates travel to where they are refined, and that is overwhelmingly China. In 2024 Chile and Peru shipped it over $36 billion of copper ore; Australia and Zimbabwe sent lithium ore, Congo cobalt, Myanmar rare earths.",
       "view": {"mode": "globe", "center": [60, 5], "zoom": 1},
       "switch": {"label": "Flow of", "options": [
@@ -80,6 +84,7 @@
     },
     {
       "title": "Breakfast from a few places",
+      "when": "2024",
       "text": "Pick a crop. Two West African neighbours, Côte d'Ivoire and Ghana, grow almost half the world's cocoa. Brazil grows nearly a third of its coffee and over a third of its soybeans. Indonesia and Malaysia make four-fifths of all palm oil.",
       "view": {"mode": "equal", "center": [0, 5], "zoom": 1},
       "switch": {"label": "Crop", "options": [

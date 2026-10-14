@@ -154,6 +154,7 @@
     },
     {
       "title": "Where it stands",
+      "when": "End of 2025",
       "text": "At the end of 2025, by Amnesty International's count, 113 countries had abolished the death penalty for all crimes and 9 for ordinary crimes. 23 more keep it in law but have not executed anyone for at least ten years. 54 retain it. In August 2026 Lebanon became the first country in the Middle East to abolish it.",
       "view": {
         "mode": "equal",
@@ -179,6 +180,7 @@
     },
     {
       "title": "Who still executes",
+      "when": "2025",
       "text": "Only 17 countries carried out executions in 2025. Amnesty recorded at least 2,707, the most since 1981. Iran alone executed at least 2,159, eight in ten of the total, followed by Saudi Arabia (at least 356), Yemen and the United States (47). China executes thousands a year but keeps the number secret, so it is not counted.",
       "view": {
         "mode": "equal",

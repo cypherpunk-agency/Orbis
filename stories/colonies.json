@@ -16,6 +16,7 @@
     },
     {
       "title": "The longest colonies",
+      "when": "1462–1975",
       "text": "The longest colonial eras began in the 15th and 16th centuries, on islands and coasts of the Atlantic. Portugal held Cape Verde from 1462 to 1975 and São Tomé and Príncipe for about 450 years. Belize and Jamaica passed from Spain to Britain and were ruled from Europe for more than 450 years.",
       "view": { "mode": "globe", "center": [-35, 12], "zoom": 1.5 },
       "layers": [
@@ -26,6 +27,7 @@
     },
     {
       "title": "Latin America: three centuries",
+      "when": "1500s–1820s",
       "text": "Spain and Portugal conquered most of the Americas in the 1500s and held them until the 1810s and 1820s. That makes the typical country in Latin America and the Caribbean a colony for about 300 years. Cuba stayed Spanish until 1898, after 387 years.",
       "view": { "mode": "globe", "center": [-70, -2], "zoom": 1.45 },
       "layers": [
@@ -34,6 +36,7 @@
     },
     {
       "title": "Africa: late and short, mostly",
+      "when": "c. 1880–1960s",
       "text": "Most of Africa was conquered only after about 1880 and was independent by the 1960s. The typical African country spent about 80 years under European rule, and 35 of the 51 dated here less than 100. The exceptions are old Portuguese, Dutch and British footholds on the coast: Angola about 400 years, South Africa 260.",
       "view": { "mode": "globe", "center": [18, 2], "zoom": 1.85 },
       "layers": [

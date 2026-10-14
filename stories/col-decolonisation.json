@@ -14,6 +14,7 @@
   "scenes": [
     {
       "title": "1945: the empires still stand",
+      "when": "1945",
       "text": "At the end of the Second World War the eight colonial powers still ruled about a quarter of the world's land, by CShapes borders. Britain alone held 16 million km², France 12 million, from West Africa to Indochina.",
       "view": {
         "mode": "equal",
@@ -161,6 +162,7 @@
     },
     {
       "title": "The UN takes a side",
+      "when": "14 Dec 1960",
       "text": "On 14 December 1960 the UN General Assembly declared that 'all peoples have the right to self-determination' and that colonialism should end quickly. Resolution 1514 passed 89 to 0. Nine states abstained, among them five colonial powers: Belgium, France, Portugal, Spain and Britain.",
       "view": {
         "mode": "equal",
@@ -239,6 +241,7 @@
     },
     {
       "title": "Seventeen territories left",
+      "when": "Oct 2026",
       "text": "The UN still lists 17 'non-self-governing territories'. Ten are run by Britain, three by the United States, two by France and one by New Zealand. The largest, Western Sahara, has no administering power on the list; whether Morocco, which controls most of it, administers or occupies it is disputed.",
       "view": {
         "mode": "equal",

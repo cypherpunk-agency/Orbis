@@ -16,6 +16,7 @@
     },
     {
       "title": "Strait of Hormuz",
+      "when": "2024",
       "text": "About 20 million barrels of oil pass here every day, roughly a fifth of global consumption. At its narrowest the strait is about 33 km wide.",
       "view": {"mode": "globe", "center": [55, 26], "zoom": 5},
       "highlight": ["IRN", "OMN", "ARE"],
@@ -30,6 +31,7 @@
     },
     {
       "title": "The Red Sea detour",
+      "when": "Since late 2023",
       "text": "Since attacks on shipping began in late 2023, many ships avoid Suez and sail around Africa. Compare the two routes from Shanghai to Rotterdam.",
       "view": {"mode": "globe", "center": [45, 5], "zoom": 0.95},
       "routes": [
@@ -102,6 +104,7 @@
     },
     {
       "title": "The Panama Canal",
+      "when": "2023",
       "text": "The canal runs on fresh water from lakes. A severe drought in 2023 forced it to cut daily ship crossings by roughly a third, showing that climate is a chokepoint too.",
       "view": {"mode": "globe", "center": [-80, 10], "zoom": 5},
       "highlight": ["PAN"],

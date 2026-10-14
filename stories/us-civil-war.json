@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "State affiliation was not control",
+      "when": "Late 1861",
       "text": "Slavery was central to secession. This late-1861 affiliation map uses modern state outlines; it does not map occupation or unanimity. West Virginia is omitted because it was then part of Virginia.",
       "view": {
         "mode": "globe",
@@ -43,6 +44,7 @@
     },
     {
       "title": "War begins at a harbour fort",
+      "when": "12 Apr 1861",
       "text": "Confederate forces opened fire on Fort Sumter on 12 April 1861. Charleston Harbour locates the attack that began the war; the point does not describe the later Union blockade.",
       "view": {
         "mode": "globe",
@@ -95,6 +97,7 @@
     },
     {
       "title": "Emancipation had a geographic limit",
+      "when": "1863",
       "text": "The Emancipation Proclamation of 1863 applied to areas in rebellion, with specified exemptions. It did not itself abolish slavery everywhere in the United States; Washington locates the issuing government.",
       "view": {
         "mode": "globe",
@@ -121,6 +124,7 @@
     },
     {
       "title": "Appomattox was one surrender",
+      "when": "9 Apr 1865",
       "text": "Lee surrendered the Army of Northern Virginia at Appomattox on 9 April 1865. The surrender was a major endpoint, but other Confederate armies surrendered later.",
       "view": {
         "mode": "globe",

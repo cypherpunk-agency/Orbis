@@ -7,12 +7,14 @@
   "scenes": [
     {
       "title": "141 to 5",
+      "when": "2 Mar 2022",
       "text": "On 2 March 2022, a week after Russia's full-scale invasion, the UN General Assembly demanded that Russia 'immediately, completely and unconditionally' withdraw its forces from Ukraine. 141 of 193 member states voted in favour, 5 against and 35 abstained; 12 did not vote.",
       "view": { "mode": "equal", "center": [10, 15], "zoom": 1 },
       "layers": [{ "type": "categories", "data": "un", "set": "es11_1", "colors": { "yes": "c1", "no": "c2", "abstain": "c3", "absent": "muted" } }]
     },
     {
       "title": "The five against",
+      "when": "Mar–Oct 2022",
       "text": "Only Russia and four other states voted no: Belarus, North Korea, Syria and Eritrea. Seven months later the same vote count recurred on Russia's annexation claims, with Nicaragua in place of Eritrea, which abstained.",
       "view": { "mode": "globe", "center": [75, 35], "zoom": 1.1 },
       "layers": [{ "type": "categories", "data": "un", "set": "es11_1", "colors": { "no": "c2" } }],
@@ -21,6 +23,7 @@
     },
     {
       "title": "The large abstainers",
+      "when": "Mar 2022",
       "text": "Among the 35 abstentions were China and India, the two most populous countries, as well as Pakistan, Bangladesh, Vietnam, Iran and South Africa. 17 of the abstainers were African states. In the debate, several explained their abstention with calls for dialogue and a negotiated settlement.",
       "view": { "mode": "equal", "center": [55, 10], "zoom": 1.25 },
       "layers": [{ "type": "categories", "data": "un", "set": "es11_1", "colors": { "yes": "c1", "abstain": "c3", "absent": "muted" } }],
@@ -28,6 +31,7 @@
     },
     {
       "title": "Four votes, four years",
+      "when": "2022–2026",
       "text": "The Assembly has voted on the war several times. Pick a vote to compare.",
       "view": { "mode": "equal", "center": [10, 15], "zoom": 1 },
       "switch": { "label": "Vote", "start": 0, "options": [
@@ -40,6 +44,7 @@
     },
     {
       "title": "Who moved",
+      "when": "Mar 2022–Feb 2026",
       "text": "Of the 141 countries that voted in favour in March 2022, 106 did so again in February 2026. 35 did not: most abstained, including the United States, Brazil, Indonesia, Saudi Arabia and Hungary; Niger voted against and some did not vote. Bolivia went the other way, from abstaining to voting in favour.",
       "view": { "mode": "equal", "center": [10, 15], "zoom": 1 },
       "layers": [{ "type": "categories", "data": "un", "set": "shift", "colors": { "kept": "c1", "left": "c3", "joined": "c4" } }]

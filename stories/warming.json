@@ -14,18 +14,21 @@
     },
     {
       "title": "The 2020s",
+      "when": "2020s",
       "text": "Today almost the whole map is red. The 2020s so far have been about 1.1 °C warmer than 1951–1980 on average, and warming over land is faster than over the oceans.",
       "view": {"mode": "equal", "center": [10, 10], "zoom": 1},
       "layers": [{"type": "raster", "data": "t", "frame": "2020", "title": "Temperature vs 1951–1980, 2020s", "fmt": "degc"}]
     },
     {
       "title": "The Arctic leads",
+      "when": "2020s",
       "text": "The far north is warming fastest. North of 64°N, the 2020s average is nearly 3 °C above the baseline, more than twice the global figure. As snow and sea ice retreat, darker ground and water absorb more sunlight, which warms them further.",
       "view": {"mode": "globe", "center": [10, 75], "zoom": 1.2},
       "layers": [{"type": "raster", "data": "t", "frame": "2020", "title": "Temperature vs 1951–1980, 2020s", "fmt": "degc"}]
     },
     {
       "title": "2025",
+      "when": "2025",
       "text": "A single recent year: 2025 was about 1.2 °C warmer than 1951–1980 over the areas with data. A few cooler patches remain, mostly over the oceans, but they are exceptions.",
       "view": {"mode": "globe", "center": [-30, 20], "zoom": 1},
       "layers": [{"type": "raster", "data": "t", "frame": "2025", "title": "Temperature vs 1951–1980, 2025", "fmt": "degc"}]

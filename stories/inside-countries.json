@@ -6,6 +6,7 @@
   "scenes": [
     {
       "title": "Austria, Land by Land",
+      "when": "2024",
       "text": "In Austria, output per person is highest in Salzburg (about €65,800 in 2024) and Vienna (€61,900), and lowest in Burgenland (€39,000). Vienna also stands out for how international it is: 37% of its residents were born abroad, against 20% for Austria as a whole.",
       "view": {"mode": "globe", "center": [13.4, 47.6], "zoom": 13},
       "switch": {"label": "Show", "options": [
@@ -17,12 +18,14 @@
     },
     {
       "title": "Germany's east–west gap",
+      "when": "2024",
       "text": "Thirty-five years after reunification, the five eastern Länder still produce less per person than any western one: around €37,000–40,000 against €43,000–60,000 in most of the west. Hamburg, a port and business city, leads at €87,500.",
       "view": {"mode": "globe", "center": [10.4, 51.2], "zoom": 7.5},
       "layers": [{"type": "regions", "country": "DEU", "data": "de", "series": "gdp_pc", "year": 2024, "title": "GDP per person", "fmt": "eur", "labels": true}]
     },
     {
       "title": "American incomes",
+      "when": "2024",
       "text": "The typical household in Washington, D.C., Massachusetts or New Jersey earns over $100,000 a year. In Mississippi it is about $59,000, the lowest of any state.",
       "view": {"mode": "globe", "center": [-96, 38.5], "zoom": 3.2},
       "layers": [{"type": "regions", "country": "USA", "data": "us", "series": "income", "year": 2024, "title": "Median household income", "fmt": "usd"}]

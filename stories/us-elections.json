@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "1860: four candidates, a sectional map",
+      "when": "1860",
       "text": "The National Archives records electoral votes for Lincoln, Douglas, Breckinridge and Bell. New Jersey split its electors. Colours show certified allocations on modern reference outlines, not vote shares or exact 1860 boundaries.",
       "view": {
         "mode": "globe",
@@ -48,6 +49,7 @@
     },
     {
       "title": "New Jersey breaks a simple winner map",
+      "when": "1860",
       "text": "In 1860 New Jersey appointed electors individually. Lincoln received four of its electoral votes and Douglas three; assigning the state entirely to either candidate would erase the split.",
       "view": {
         "mode": "globe",
@@ -74,6 +76,7 @@
     },
     {
       "title": "2020: two tickets, two split states",
+      "when": "2020",
       "text": "The certified 2020 Electoral College result was Biden 306, Trump 232. Maine and Nebraska split their allocations, so the purple category distinguishes them from states assigning all electors to one ticket.",
       "view": {
         "mode": "globe",
@@ -107,6 +110,7 @@
     },
     {
       "title": "Districts inside statewide outlines",
+      "when": "2020",
       "text": "Maine allocated three votes to Biden and one to Trump; Nebraska allocated one to Biden and four to Trump. These points locate the states. This chapter does not invent district boundaries or imply proportional popular-vote representation.",
       "view": {
         "mode": "globe",
@@ -144,6 +148,7 @@
     },
     {
       "title": "The two noncontiguous states",
+      "when": "2020",
       "text": "In the certified 2020 allocation, Alaska cast its electoral votes for Trump and Hawaii for Biden. Their distant geography belongs to the electoral map even though a continental camera cannot show every state at once. Source: National Archives 2020 results.",
       "view": {
         "mode": "globe",

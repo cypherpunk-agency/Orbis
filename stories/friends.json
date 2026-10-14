@@ -10,6 +10,7 @@
   "scenes": [
     {
       "title": "Portugal's friends overseas",
+      "when": "Jan 2026",
       "text": "Take one person in Portugal and one in Cape Verde. They are about 2,700 times as likely to be Facebook friends as two people in a typical pair of countries. São Tomé (2,300×) and Guinea-Bissau (1,000×), also former Portuguese colonies, come next, then Luxembourg (770×), home to many Portuguese migrants. Seen from Brazil, Portugal (37×) is the closest tie of all.",
       "view": {
         "mode": "equal",
@@ -62,6 +63,7 @@
     },
     {
       "title": "Britain's cousins far away",
+      "when": "Jan 2026",
       "text": "New Zealand (36×) and Australia (33×) lie on the other side of the world, yet Britons are five to six times as connected to them as to France (6×) or the US (5×). Ireland (88×) and Caribbean islands such as St Vincent (130×) and Grenada (90×) are even closer.",
       "view": {
         "mode": "equal",
@@ -105,6 +107,7 @@
     },
     {
       "title": "India's Gulf",
+      "when": "Jan 2026",
       "text": "India's strongest ties run to the Gulf, where millions of Indians work: the UAE (38×), Kuwait (31×), Bahrain, Qatar and Oman (28–30×). That is far more than with neighbouring Pakistan (4×) or the US (0.8×).",
       "view": {
         "mode": "equal",
@@ -128,6 +131,7 @@
     },
     {
       "title": "Germany's guest workers",
+      "when": "Jan 2026",
       "text": "Germany is more connected to Kosovo (156×), North Macedonia (126×) and Bosnia (109×) than to its neighbours Austria (93×) or France (8×). The links follow decades of migration from the Balkans, Poland (25×) and Turkey (19×).",
       "view": {
         "mode": "equal",
@@ -151,6 +155,7 @@
     },
     {
       "title": "America looks south",
+      "when": "Jan 2026",
       "text": "The US's closest ties run to the Caribbean and Central America: Jamaica (64×), the Bahamas (54×), Honduras (39×), the Dominican Republic and El Salvador (31–36×). Mexico scores 13× because it is so big, but seen from Mexico, the US is its closest tie. Top of the list: Micronesia (81×), whose citizens may live and work in the US.",
       "view": {
         "mode": "equal",
@@ -185,6 +190,7 @@
     },
     {
       "title": "Neighbours, unequal ties",
+      "when": "Jan 2026",
       "text": "Neighbouring countries can have very different Facebook ties. The index measures relative friendship likelihood; it does not isolate the effects of borders, language, migration or platform use.",
       "view": {
         "mode": "equal",
@@ -229,6 +235,7 @@
     },
     {
       "title": "Your turn",
+      "when": "Jan 2026",
       "text": "The Philippines, like India, is tied to the Gulf: Qatar (53×), Kuwait (50×) and the UAE (43×) top its list. Tap any country to see who its people are friends with.",
       "view": {
         "mode": "equal",

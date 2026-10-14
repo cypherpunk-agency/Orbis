@@ -17,6 +17,7 @@
   "scenes": [
     {
       "title": "Almost even",
+      "when": "2025",
       "text": "In 2025 V-Dem counted 87 democracies and 89 autocracies among the 176 countries and territories it rates. For the second year running autocracies outnumber democracies, for the first time since 2001. Only 31 countries are liberal democracies, with strong courts and limits on those in power.",
       "view": {
         "mode": "equal",
@@ -106,6 +107,7 @@
     },
     {
       "title": "The last ten years",
+      "when": "2015–2025",
       "text": "Between 2015 and 2025, 15 countries slipped from democracy to autocracy in V-Dem's coding, among them India, Indonesia, Mexico, the Philippines and Hungary. Eight went the other way, including Malaysia, Armenia and The Gambia. Old democracies lost ground too: V-Dem moved Britain in 2024 and the United States in 2025 from liberal to electoral democracy.",
       "view": {
         "mode": "equal",
@@ -158,6 +160,7 @@
     },
     {
       "title": "How countries are run",
+      "when": "2026",
       "text": "On paper, most of the world's 196 states are republics. In 71 the president runs the government, in 50 a prime minister answerable to parliament does, and in 14 the two share power, as in France. But the label says little about freedom: 38 of the 71 presidential republics are autocracies in V-Dem's coding.",
       "view": {
         "mode": "equal",
@@ -188,6 +191,7 @@
     },
     {
       "title": "Kings, emirs and sultans",
+      "when": "2026",
       "text": "41 states have a monarch as head of state, and the Pope rules the Vatican. In 31, including Japan, Spain and the 15 realms where Charles III is king, an elected government governs. In 10 the monarch still rules: Saudi Arabia, the other Gulf states, Jordan, Morocco, Brunei and Eswatini.",
       "view": {
         "mode": "equal",
@@ -212,6 +216,7 @@
     },
     {
       "title": "One party, the army, the clergy",
+      "when": "2026",
       "text": "Five communist parties rule alone: in China, Vietnam, Laos, North Korea and Cuba. Soldiers govern seven countries, six of them in Africa, most after coups since 2020. In Iran and Afghanistan clerics hold the final say.",
       "view": {
         "mode": "equal",

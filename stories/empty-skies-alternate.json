@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "A normal spring: 2019",
+      "when": "Apr 2019",
       "text": "In April 2019, OpenSky's volunteer receivers picked up about 2.4 million flights. The busiest international routes ran between the US and Canada, and between Britain and Spain, Germany and Ireland. Receivers are thickest in Europe and North America, so those regions show up best.",
       "view": {
         "mode": "equal",
@@ -39,6 +40,7 @@
     },
     {
       "title": "April 2020: the collapse",
+      "when": "Apr 2020",
       "text": "Then the pandemic grounded the world's fleets. In April 2020 OpenSky saw about 840,000 flights, roughly two-thirds fewer than in January and February. International flights fell by more than 85%. India's departures stopped almost completely.",
       "view": {
         "mode": "equal",
@@ -83,6 +85,7 @@
     },
     {
       "title": "Borders closed",
+      "when": "Apr 2020",
       "text": "The 40 busiest international routes in April 2020, drawn at the same scale as 2019. Flights between the US and Canada fell by more than 80% from a year before. Most routes across Europe almost vanished.",
       "view": {
         "mode": "equal",
@@ -107,6 +110,7 @@
     },
     {
       "title": "What kept flying",
+      "when": "Apr 2020",
       "text": "Not everything stopped. Cargo carriers flew more than before: UPS and FedEx flights were up 5–10% in April 2020, while Ryanair lost 97% and Lufthansa 92%. In the United States, departures fell by about half, much less than in Europe, as domestic flights kept going.",
       "view": {
         "mode": "equal",

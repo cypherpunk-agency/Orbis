@@ -14,6 +14,7 @@
   "scenes": [
     {
       "title": "A palace north of the Alps",
+      "when": "c. 790–800",
       "text": "Aachen was Charlemagne’s preferred residence. Its palatine chapel, begun around 790–800, placed a monumental court church north of the Alps.",
       "view": {
         "mode": "globe",
@@ -41,6 +42,7 @@
     },
     {
       "title": "The imperial title at Rome",
+      "when": "800",
       "text": "In 800 Pope Leo III crowned Charlemagne emperor in Rome. Compare Rome with Aachen: the ceremony’s religious authority and the ruler’s favoured residence occupied different places.",
       "view": {
         "mode": "globe",
@@ -104,6 +106,7 @@
     },
     {
       "title": "A later dynasty takes the throne",
+      "when": "936",
       "text": "Otto I’s royal coronation at Aachen in 936 connected a Saxon ruler with a Carolingian site. The Holy Roman Empire’s origins are a process: the 800 revival and Otto’s later empire are distinguished.",
       "view": {
         "mode": "globe",

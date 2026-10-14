@@ -9,6 +9,7 @@
   "scenes": [
     {
       "title": "Born in Africa",
+      "when": "c. 300,000 years ago",
       "text": "The oldest fossils of our species, Homo sapiens, come from Jebel Irhoud in Morocco and are roughly 300,000 years old. Others, at Omo Kibish in Ethiopia, are at least 233,000 years old. For most of our species' history, every human lived in Africa. All dates in this story are scientific estimates, with wide error bars.",
       "view": {"mode": "globe", "center": [15, 10], "zoom": 1.6},
       "layers": [{"type": "points", "data": "o", "set": "africa", "color": "c2", "r": 6}],
@@ -16,6 +17,7 @@
     },
     {
       "title": "Early forays",
+      "when": "194,000–90,000 years ago",
       "text": "Some groups left early. A jawbone at Misliya cave in Israel is dated to about 194,000–177,000 years ago. Nearby, people were buried at Skhul and Qafzeh about 120,000–90,000 years ago, and a finger bone from Arabia's Nefud desert is about 90,000 years old. Genetics suggests these early groups left few or no descendants among people alive today.",
       "view": {"mode": "globe", "center": [38, 20], "zoom": 2.4},
       "layers": [
@@ -26,6 +28,7 @@
     },
     {
       "title": "The big move",
+      "when": "60,000–43,000 years ago",
       "text": "Nearly all people outside Africa descend from groups that left roughly 60,000 to 50,000 years ago, probably across the Sinai or the narrow mouth of the Red Sea. On the way they met Neanderthals and had children with them, mostly between about 50,000 and 43,000 years ago. Most people outside Africa still carry 1–2% Neanderthal DNA.",
       "view": {"mode": "globe", "center": [42, 22], "zoom": 2.2},
       "layers": [
@@ -36,6 +39,7 @@
     },
     {
       "title": "Along the coasts to Australia",
+      "when": "70,000–50,000 years ago",
       "text": "People spread through South and Southeast Asia, perhaps along the coasts. Fossils from caves in Laos and Sumatra are dated to roughly 70,000 years ago; if those dates hold, some groups got there before the main wave. Even with sea levels much lower, reaching Australia and New Guinea meant crossing open water by boat. Some date the first Australians to 65,000 years ago; others argue for about 50,000.",
       "view": {"mode": "globe", "center": [112, 0], "zoom": 1.5},
       "layers": [
@@ -47,6 +51,7 @@
     },
     {
       "title": "Into Europe and northern Asia",
+      "when": "47,000–40,000 years ago",
       "text": "Modern humans reached Europe by about 47,000–45,000 years ago, at caves such as Bacho Kiro in Bulgaria and Ranis in Germany, where Neanderthals still lived. A 45,000-year-old thigh bone from Ust'-Ishim shows people had reached western Siberia. By about 40,000 years ago they lived near today's Beijing.",
       "view": {"mode": "globe", "center": [72, 44], "zoom": 1.5},
       "layers": [
@@ -60,6 +65,7 @@
     },
     {
       "title": "Into the Americas",
+      "when": "23,000–14,500 years ago",
       "text": "In the last ice age, sea level was about 120 m lower, and a land bridge, Beringia, joined Siberia and Alaska. Footprints at White Sands, New Mexico, suggest people were in North America 23,000–21,000 years ago. By about 14,500 years ago they had reached Florida. A similar date at Monte Verde in Chile was challenged in 2026 and is now debated.",
       "view": {"mode": "equal", "center": [-115, 18], "zoom": 1.7},
       "layers": [
@@ -70,6 +76,7 @@
     },
     {
       "title": "The last places",
+      "when": "3,000 years ago–1280 CE",
       "text": "The open Pacific was the last big region people reached. Seafarers settled Vanuatu and Fiji about 3,000 years ago. Hawaii, Rapa Nui and finally New Zealand, around 1280 CE, were settled within the last thousand years. By then, humans lived on every continent except Antarctica.",
       "view": {"mode": "equal", "center": [-175, -5], "zoom": 1.45},
       "layers": [

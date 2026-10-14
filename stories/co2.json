@@ -6,6 +6,7 @@
   "scenes": [
     {
       "title": "Who emits most today",
+      "when": "2024",
       "text": "In 2024 the world emitted about 38.6 billion tonnes of carbon dioxide from burning fossil fuels and making cement. China emitted 12.3 billion tonnes, nearly a third of the total. The United States emitted 4.9 billion and India 3.2 billion.",
       "view": {"mode": "equal", "center": [20, 20], "zoom": 1},
       "layers": [{"type": "spikes", "data": "gcb", "series": "co2", "year": 2024, "color": "c2", "title": "Fossil CO2 emissions", "fmt": "mt", "labels": 5, "maxH": 0.55}],
@@ -21,6 +22,7 @@
     },
     {
       "title": "Per person, the order flips",
+      "when": "2024",
       "text": "Divide by population and the map looks different. The average person in Qatar emits about 41 tonnes of CO2 a year, an American about 14, a Chinese about 9, an Indian about 2. In much of Africa it is a few hundred kilograms or less. The world average is under 5 tonnes.",
       "view": {"mode": "equal", "center": [20, 15], "zoom": 1},
       "layers": [{"type": "choropleth", "data": "gcb", "series": "co2_pc", "year": 2024, "title": "CO2 per person, a year", "fmt": "kg", "log": true}],
@@ -28,6 +30,7 @@
     },
     {
       "title": "Counting since 1850",
+      "when": "1850–2024",
       "text": "Carbon dioxide stays in the air for centuries, so what has piled up matters most for warming. Since 1850 the United States has emitted about 435 billion tonnes, nearly a quarter of the total. China is second with about 15%, Russia third. India, third today, has emitted less than 4%.",
       "view": {"mode": "equal", "center": [15, 20], "zoom": 1},
       "layers": [{"type": "cartogram", "data": "gcb", "series": "co2_cum", "year": 2024, "title": "CO2 emitted 1850–2024", "fmt": "mt", "labels": 7, "maxK": 4}],

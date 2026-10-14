@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Louisiana: the Mississippi gateway",
+      "when": "1803",
       "text": "The Louisiana Purchase treaty was signed in 1803. New Orleans locates the river port central to negotiations; this point does not stand for the purchase’s boundaries.",
       "view": {
         "mode": "globe",
@@ -75,6 +76,7 @@
     },
     {
       "title": "Texas and the Mexican cession",
+      "when": "1845–1848",
       "text": "Texas entered the United States in 1845. The war with Mexico ended with the 1848 Treaty of Guadalupe Hidalgo and a major territorial cession; Santa Fe locates one affected region, not the whole cession.",
       "view": {
         "mode": "globe",
@@ -101,6 +103,7 @@
     },
     {
       "title": "An agreement on Oregon",
+      "when": "1846",
       "text": "The Oregon Treaty of 1846 divided competing British and US claims in the Pacific Northwest. The point locates the Columbia mouth; it is not a treaty boundary.",
       "view": {
         "mode": "globe",
@@ -127,6 +130,7 @@
     },
     {
       "title": "Beyond the contiguous mainland",
+      "when": "1867",
       "text": "The United States purchased Alaska from Russia in 1867. The acquisition preceded statehood by decades and did not mean that Alaska Native peoples had sold their own rights.",
       "view": {
         "mode": "globe",

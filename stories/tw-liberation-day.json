@@ -18,6 +18,7 @@
  "scenes": [
   {
    "title": "A tariff for almost everyone",
+   "when": "2 Apr 2025",
    "text": "On 2 April 2025, a day the White House called 'Liberation Day', President Trump announced 'reciprocal' tariffs. Executive Order 14257 set 10% for every country and higher rates for 57 partners, the EU counted as one: 20% for the EU, 24% for Japan, 34% for China, up to 50% for Lesotho. Canada and Mexico were left out; since March their goods outside the USMCA trade pact already paid 25% 'fentanyl' tariffs.",
    "view": {
     "mode": "equal",
@@ -53,6 +54,7 @@
   },
   {
    "title": "How the numbers were made",
+   "when": "Apr 2025",
    "text": "The rates did not measure other countries' tariffs. The trade office took the 2024 US goods deficit with each partner and divided it by US imports from that partner; the order then halved the result, with 10% as the floor. China, in the figures published in March 2025: the US bought $439 billion and sold $144 billion, a gap of 67% of imports, so 34%. The EU: 39%, so 20%. Countries the US sells more to than it buys from, like Australia or the UK, got the 10% floor.",
    "view": {
     "mode": "equal",
@@ -126,6 +128,7 @@
   },
   {
    "title": "The August map",
+   "when": "Aug 2025",
    "text": "The pause ended on 7 August 2025 with a new list. Partners with deals got 15% (EU, Japan, South Korea), 19–20% (much of Southeast Asia) or 10% (UK). Switzerland, with no deal, got 39%. Brazil paid 50% after a separate 40% penalty, Canada 35% on goods outside the USMCA. From 27 August India also paid 50%, half of it a penalty for buying Russian oil.",
    "view": {
     "mode": "equal",

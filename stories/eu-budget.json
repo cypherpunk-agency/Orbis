@@ -14,6 +14,7 @@
  "scenes": [
   {
    "title": "Who finances the budget",
+   "when": "2025",
    "text": "In the Commission’s 2025 country data, Germany supplies about €29 billion in VAT/GNI/plastics financing including adjustments, with customs excluded. France follows at about €23 billion. The map and chart use that defined financing measure, rather than treating customs collected at ports as a national contribution.",
    "view": {
     "mode": "globe",
@@ -45,6 +46,7 @@
   },
   {
    "title": "Where spending is allocated",
+   "when": "2025",
    "text": "Country-allocated ordinary spending and NextGenerationEU are separate parts of the Commission workbook. Switch between them, then their sum. In 2025 Italy’s combined allocation is about €23 billion. These nominal expenditure figures include administration; their geographic allocation is an accounting convention.",
    "view": {
     "mode": "globe",
@@ -93,6 +95,7 @@
   },
   {
    "title": "Two sides of a defined cash comparison",
+   "when": "2025",
    "text": "Subtract the defined financing measure from country-allocated expenditure including NGEU. In 2025 Germany is about €16 billion below its financing, while Poland is about €9 billion above. The signed map and switched charts show this arithmetic; it is not the Commission’s operating budgetary balance.",
    "view": {
     "mode": "globe",
@@ -174,6 +177,7 @@
   },
   {
    "title": "Administrative geography matters",
+   "when": "2025",
    "text": "Belgium and Luxembourg host EU institutions. In this 2025 definition their country-allocated spending exceeds financing. The Commission warns that geographic allocation is imperfect and expenditure can benefit several countries. Brussels and Luxembourg locate institutional centres; a positive balance is not a transfer into every resident’s household.",
    "view": {
     "mode": "globe",

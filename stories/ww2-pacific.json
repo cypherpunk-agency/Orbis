@@ -16,6 +16,7 @@
   "scenes": [
     {
       "title": "Pearl Harbor brings the United States into the war",
+      "when": "7 Dec 1941",
       "text": "Japan attacked Pearl Harbor on 7 December 1941. The harbour in Hawaii was a major US naval base; the attack brought the United States into World War II. Hawaii was then a US territory, not yet a state.",
       "view": {
         "mode": "globe",
@@ -43,6 +44,7 @@
     },
     {
       "title": "Midway: a battle around an atoll",
+      "when": "Jun 1942",
       "text": "The June 1942 battle near Midway checked Japanese expansion in the central Pacific. The Navy identifies the main carrier battle on 4 June; the point locates the atoll rather than reconstructing fleets’ positions.",
       "view": {
         "mode": "globe",
@@ -70,6 +72,7 @@
     },
     {
       "title": "Guadalcanal opens a southern campaign",
+      "when": "7 Aug 1942",
       "text": "US Marines landed on Guadalcanal on 7 August 1942. The campaign combined land, sea and air fighting around the Solomon Islands. The point locates the island’s northern shore, not a landing beach perimeter.",
       "view": {
         "mode": "globe",
@@ -97,6 +100,7 @@
     },
     {
       "title": "Command areas crossed the date line",
+      "when": "1 Aug 1942",
       "text": "The Army’s map of 1 August 1942 divides Allied commands across the Pacific. It shows why Hawaii and Australia mattered as distant organising centres. These printed boundaries classify commands, not land occupied by Japan; the original scan is shown below.",
       "view": {
         "mode": "globe",
@@ -156,6 +160,7 @@
     },
     {
       "title": "Okinawa: fighting close to Japan",
+      "when": "1 Apr 1945",
       "text": "US forces landed on Okinawa’s main island on 1 April 1945. The battle brought devastating combat to its civilian population as well as Japanese and Allied forces. No casualty estimate or occupation perimeter is inferred from this point.",
       "view": {
         "mode": "globe",

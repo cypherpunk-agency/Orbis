@@ -10,6 +10,7 @@
  "scenes": [
   {
    "title": "125 years of big earthquakes",
+   "when": "1900–2025",
    "text": "Each circle is an earthquake of magnitude 6 or more since 1900, about 14,400 of them. They are not scattered at random: they trace thin lines around the Pacific, through the Mediterranean and the Himalayas, and along the middle of the oceans.",
    "view": {
     "mode": "equal",
@@ -101,6 +102,7 @@
   },
   {
    "title": "The giants",
+   "when": "1952–2011",
    "text": "Only five earthquakes since 1900 reached magnitude 9: Chile 1960, Alaska 1964, Sumatra 2004, Japan 2011 and Kamchatka 1952. All struck where one plate dives under another.",
    "view": {
     "mode": "equal",

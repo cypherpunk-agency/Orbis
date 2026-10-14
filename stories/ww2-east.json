@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "The invasion of the Soviet Union",
+      "when": "22 Jun 1941",
       "text": "Nazi Germany and its allies attacked the Soviet Union on 22 June 1941. Minsk locates one part of the vast theatre; a point is not an invasion front. USHMM describes this as a war of annihilation against civilians as well as armies.",
       "view": {
         "mode": "globe",
@@ -69,6 +70,7 @@
     },
     {
       "title": "Stalingrad changes the initiative",
+      "when": "Jan–Feb 1943",
       "text": "The surviving German forces at Stalingrad surrendered between 31 January and 2 February 1943. Soviet armies then gained the initiative. The point uses the wartime name for today’s Volgograd, on the Volga River.",
       "view": {
         "mode": "globe",
@@ -96,6 +98,7 @@
     },
     {
       "title": "The advance reaches Berlin",
+      "when": "Spring 1945",
       "text": "Soviet forces drove the German military back and captured Berlin in spring 1945. This located endpoint does not suggest that one uninterrupted route linked every eastern campaign. The intervening fighting and civilian devastation extended across a much larger region.",
       "view": {
         "mode": "globe",

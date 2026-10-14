@@ -14,6 +14,7 @@
   "scenes": [
     {
       "title": "A settlement in Vienna",
+      "when": "1815",
       "text": "In 1815 the Congress of Vienna created the German Confederation. It followed the dissolved empire but did not restore its imperial crown.",
       "view": {
         "mode": "globe",
@@ -41,6 +42,7 @@
     },
     {
       "title": "The assembly moves to Frankfurt",
+      "when": "1815",
       "text": "The 1815 Federal Act placed the confederal assembly at Frankfurt. Comparing Vienna with Frankfurt separates the diplomatic settlement from the new institution’s meeting place.",
       "view": {
         "mode": "globe",
@@ -69,6 +71,7 @@
     },
     {
       "title": "Free cities in the new order",
+      "when": "1815",
       "text": "The Federal Act lists Lübeck, Frankfurt, Bremen and Hamburg alongside member states. The northern city anchors show continuity of some urban political identities within a different federal arrangement.",
       "view": {
         "mode": "globe",

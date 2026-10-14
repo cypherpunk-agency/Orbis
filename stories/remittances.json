@@ -9,12 +9,14 @@
   "scenes": [
     {
       "title": "A quiet giant",
+      "when": "2023",
       "text": "In 2023, migrants sent about 656 billion dollars to families in low- and middle-income countries. That is more than foreign direct investment and development aid combined.",
       "view": {"mode": "globe", "center": [20, 25], "zoom": 1},
       "layers": [{"type": "lines", "data": "routes", "set": "remittances", "color": "c4", "width": 2, "flow": true}]
     },
     {
       "title": "The biggest receivers",
+      "when": "2023",
       "text": "India received about 120 billion dollars, more than any country in history. Mexico followed with about 66 billion, then China, the Philippines and Pakistan.",
       "view": {"mode": "equal", "center": [0, 20], "zoom": 1},
       "layers": [
@@ -32,6 +34,7 @@
     },
     {
       "title": "Where it matters most",
+      "when": "c. 2023",
       "text": "In Tajikistan, money sent home is close to half of the whole economy, mostly from workers in Russia. In Nepal, Honduras and Lebanon, it is about a quarter.",
       "view": {"mode": "globe", "center": [45, 30], "zoom": 1},
       "layers": [

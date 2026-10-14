@@ -48,6 +48,7 @@
   },
   {
    "title": "Constantinople changes hands",
+   "when": "1453",
    "text": "The Ottomans captured Constantinople in 1453. The Met describes Mehmed II’s rebuilding programme and Hagia Sophia’s conversion into an imperial mosque. The city’s position joins the Black Sea approach and the Mediterranean world; the marker is a locator, not a siege reconstruction.",
    "view": {
     "mode": "globe",
@@ -84,6 +85,7 @@
   },
   {
    "title": "An empire beyond Anatolia",
+   "when": "16th century",
    "text": "Selim I’s expansion added Mamluk Syria and Egypt to Ottoman rule. Cairo joins Istanbul on this map as a centre of an imperial world spanning several regions. The paired locations convey expansion without claiming precise sixteenth-century borders.",
    "view": {
     "mode": "globe",

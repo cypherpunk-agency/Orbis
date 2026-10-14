@@ -19,6 +19,7 @@
     },
     {
       "title": "The pipeline web",
+      "when": "2022–2025",
       "text": "Gas is bulky, so the cheapest way to move it over land is a pipe. For decades Russian gas reached Europe through Ukraine, Belarus and under the Baltic Sea. Dashed lines no longer carry Russian gas: Nord Stream was blown up in September 2022, Yamal–Europe stopped the same year and transit through Ukraine ended on 1 January 2025. TurkStream is now the only pipeline carrying Russian gas into the EU.",
       "view": {"mode": "globe", "center": [38, 50], "zoom": 1.7},
       "layers": [{"type": "lines", "data": "infra", "set": "gasPipelines", "color": "c4", "width": 2.4, "labels": true, "flow": true}]
@@ -36,6 +37,7 @@
     },
     {
       "title": "Pipe versus ship",
+      "when": "2024",
       "text": "By value, more gas now crosses borders on ships than in pipes. Australia, the US and Qatar each sold between about $38 and $47 billion of LNG in 2024. Pipeline trade is regional: Norway to Germany and Britain, Turkmenistan to China, Algeria to Italy.",
       "view": {"mode": "equal", "center": [50, 25], "zoom": 1},
       "layers": [
@@ -53,6 +55,7 @@
     },
     {
       "title": "Who uses gas",
+      "when": "2024",
       "text": "Gas heats homes, runs power stations and feeds fertiliser and chemical plants. Per person, the Gulf states use the most because gas powers their desalination and air conditioning: a Qatari resident accounts for about 15,000 cubic metres a year, a Russian about 3,400.",
       "view": {"mode": "equal", "center": [30, 25], "zoom": 1},
       "layers": [{"type": "choropleth", "data": "eia", "series": "gas_cons", "per": "pop", "mult": 1000000, "year": 2024, "title": "Gas use per person, cubic metres a year", "fmt": "m3pp", "log": true}],

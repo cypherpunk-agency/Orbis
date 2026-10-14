@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Conquest before emperors",
+      "when": "To 44 BC",
       "text": "The republic acquired territory by war and diplomacy. Its final civil wars culminated in Caesar’s dictatorship and assassination in 44 BC.",
       "view": {
         "mode": "globe",

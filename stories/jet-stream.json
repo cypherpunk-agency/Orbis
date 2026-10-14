@@ -6,6 +6,7 @@
   "scenes": [
     {
       "title": "Winds at airliner height",
+      "when": "13 Oct 2026",
       "text": "Each streak is a parcel of air drifting with the wind at about the height where airliners cruise. Bright streaks move faster than 35 metres per second, about 125 km/h. Two wavy bands stand out over the mid-latitudes: the jet streams.",
       "view": {"mode": "globe", "center": [-40, 40], "zoom": 1},
       "basemap": "satellite",

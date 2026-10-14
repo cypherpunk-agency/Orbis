@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "1898: a Pacific expansion",
+      "when": "1898",
       "text": "The 1898 war with Spain led to the cession of Guam and the Philippines to the United States. The points locate the islands; they do not imply those places retained identical political status afterward.",
       "view": {
         "mode": "globe",
@@ -51,6 +52,7 @@
     },
     {
       "title": "A Caribbean acquisition",
+      "when": "1898",
       "text": "Spain also ceded Puerto Rico after the 1898 war. Cuba’s status followed a different path; it was not annexed by the United States under the peace treaty.",
       "view": {
         "mode": "globe",
@@ -77,6 +79,7 @@
     },
     {
       "title": "Hawaii: annexation before statehood",
+      "when": "1898",
       "text": "The United States annexed Hawaii in 1898, following the overthrow of Queen Liliuokalani in 1893. It became a state only in 1959; acquisition and admission are separate historical changes.",
       "view": {
         "mode": "globe",
@@ -103,6 +106,7 @@
     },
     {
       "title": "1949: an Atlantic alliance",
+      "when": "1949",
       "text": "The North Atlantic Treaty was signed in Washington in 1949. The alliance linked the United States and Canada with European partners. The map locates the signing and the Atlantic relationship, not a current map of military bases.",
       "view": {
         "mode": "globe",

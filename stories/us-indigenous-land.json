@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Removal from the Southeast",
+      "when": "1830",
       "text": "Congress passed the Indian Removal Act in 1830. The NPS describes forced displacement from southeastern homelands to land west of the Mississippi; this chapter locates events instead of inventing a continental land-loss surface.",
       "view": {
         "mode": "globe",
@@ -41,6 +42,7 @@
     },
     {
       "title": "A treaty without national consent",
+      "when": "1835",
       "text": "The Treaty of New Echota of 1835 ceded Cherokee lands east of the Mississippi. The NPS explains that the signatories did not represent the Cherokee national government and that many Cherokee protested.",
       "view": {
         "mode": "globe",
@@ -67,6 +69,7 @@
     },
     {
       "title": "Forced west in 1838–1839",
+      "when": "1838–1839",
       "text": "Federal troops and militia expelled Cherokee people in 1838. Detachments used several routes; the forced relocation ended in 1839. The two points locate a departure area and Indian Territory, not a single precise trail.",
       "view": {
         "mode": "globe",
@@ -104,6 +107,7 @@
     },
     {
       "title": "Allotment fragmented collective lands",
+      "when": "1887",
       "text": "The Dawes Act of 1887 authorised reservation land allotment to individuals. Its assimilation policy weakened collective landholding; the Washington point locates the federal law, not a reservation or a quantified area lost.",
       "view": {
         "mode": "globe",

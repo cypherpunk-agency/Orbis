@@ -18,6 +18,7 @@
   "scenes": [
     {
       "title": "Election is an institution",
+      "when": "1356",
       "text": "The Golden Bull of 1356 specified electors and rules for choosing the King of the Romans. Frankfurt’s meeting role helps explain the empire as a political structure, not simply an emperor’s estate.",
       "view": {
         "mode": "globe",
@@ -45,6 +46,7 @@
     },
     {
       "title": "A common meeting place",
+      "when": "From 1663",
       "text": "From 1663, the Perpetual Diet sat at Regensburg. A shared assembly operated within an empire whose territorial rulers retained substantial authority.",
       "view": {
         "mode": "globe",
@@ -72,6 +74,7 @@
     },
     {
       "title": "An imperial outline, circa 1789",
+      "when": "c. 1789",
       "text": "The reconstructed map distinguishes imperial membership from possessions held outside the Empire. This source-derived outline is approximate: it describes the mapmaker’s circa-1789 interpretation, with coarse geographic alignment, rather than surveyed legal boundaries.",
       "view": {
         "mode": "globe",
@@ -101,6 +104,7 @@
     },
     {
       "title": "Dynasties crossed the imperial boundary",
+      "when": "c. 1789",
       "text": "The source names Habsburg imperial possessions and Brandenburg separately from those dynasties’ extra-imperial lands. Only the source’s within-empire paths are highlighted. The outer outline supplies context; these are selected holdings, not a complete list of imperial estates.",
       "view": {
         "mode": "globe",
@@ -141,6 +145,7 @@
     },
     {
       "title": "A dated patchwork",
+      "when": "1796",
       "text": "Reilly’s map of Germany, published in Vienna in 1796, preserves a dense pattern of coloured administrative divisions. This archival portrayal provides the territorial fallback: it is a dated map, with approximate alignment, rather than invented modern polygons.",
       "view": {
         "mode": "globe",
@@ -174,6 +179,7 @@
     },
     {
       "title": "Look closer, keep the context",
+      "when": "1796",
       "text": "The Rhine–Main area shows small divisions packed together. Mainz, Trier and Cologne were the Golden Bull’s spiritual electors; Frankfurt hosted elections. The city markers name institutional centres, not the extent of their lands. This 1796 regional view is later than the 1356 rules.",
       "view": {
         "mode": "globe",

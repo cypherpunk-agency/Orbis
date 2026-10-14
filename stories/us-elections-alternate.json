@@ -197,6 +197,7 @@
   },
   {
    "title": "More votes, fewer states",
+   "when": "2000 and 2016",
    "text": "Twice the candidate with the most votes nationwide lost the electoral college.",
    "view": {
     "mode": "globe",

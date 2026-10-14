@@ -15,6 +15,7 @@
  "scenes": [
   {
    "title": "Coal and steel before the EU",
+   "when": "1951–1952",
    "text": "Six governments signed the Coal and Steel treaty in 1951; it entered into force in 1952. France, West Germany, Italy and the Benelux countries began sharing institutions. Highlighted present-day countries locate those six participants; Germany’s modern outline is not its 1952 border.",
    "view": {
     "mode": "globe",
@@ -37,6 +38,7 @@
   },
   {
    "title": "Rome widens the project",
+   "when": "1957–1958",
    "text": "The treaties signed in Rome in 1957 created the European Economic Community and Euratom, effective from January 1958. The map locates the same six participants and the treaty-signing city. Economic cooperation broadened without adding a new member at that moment.",
    "view": {
     "mode": "globe",
@@ -162,6 +164,7 @@
   },
   {
    "title": "Twenty-seven at the cutoff",
+   "when": "Oct 2026",
    "text": "The United Kingdom left in 2020. At the 14 October 2026 cutoff the union has 27 members. This merged outer outline uses modern Natural Earth geometry; it shows the selected members together while hiding their internal lines, not a reconstruction of earlier European borders.",
    "view": {
     "mode": "globe",

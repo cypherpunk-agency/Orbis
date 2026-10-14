@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "A fleet in every ocean",
+      "when": "1700s–1920s",
       "text": "Whaling crews wrote down their position every day at noon. Researchers have transcribed about 468,000 of these positions from 1,449 American voyages. Together they cover almost every ocean, from the Atlantic to the Arctic. The brightest cells are the Pacific grounds and the stopover at Hawaii.",
       "view": {
         "mode": "equal",
@@ -185,6 +186,7 @@
     },
     {
       "title": "Trapped in the ice",
+      "when": "Sep 1871",
       "text": "The Arctic hunt was rich and dangerous. In September 1871 pack ice closed on the fleet off Alaska's northern coast. The crews escaped in small boats, but the database lists 24 ships abandoned in the ice, most of them near Point Belcher.",
       "view": {
         "mode": "globe",
@@ -217,6 +219,7 @@
     },
     {
       "title": "The end of the hunt",
+      "when": "1840s–1920s",
       "text": "In the 1840s about 250 whaling voyages left American ports every year, and they brought home about 400,000 barrels of oil a year. After 1859 cheap kerosene from petroleum replaced whale oil in lamps. By the 1900s fewer than 30 voyages left each year, and the last ones sailed in the 1920s.",
       "view": {
         "mode": "equal",

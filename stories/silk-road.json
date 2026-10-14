@@ -9,6 +9,7 @@
   "scenes": [
     {
       "title": "A web, not a road",
+      "when": "2nd c. BCE–15th c. CE",
       "text": "The 'Silk Road' is a name a German geographer, Ferdinand von Richthofen, coined in 1877. In reality it was a web of caravan tracks and sea lanes linking China with Persia, India and the Mediterranean from about the 2nd century BCE to the 15th century CE. On these lines, Chang'an to Constantinople is about 8,000 km. Few people travelled the whole way: goods passed from trader to trader.",
       "view": {"mode": "equal", "center": [72, 30], "zoom": 2.5},
       "layers": [
@@ -21,6 +22,7 @@
     },
     {
       "title": "Out of Chang'an",
+      "when": "c. 138 BCE",
       "text": "Around 138 BCE, the Han emperor sent an envoy, Zhang Qian, west to find allies against the nomadic Xiongnu. He came back more than a decade later with news of rich lands and fine horses. China then pushed its control along the Hexi Corridor, a strip of oases between mountains and desert, to Dunhuang. In 2014, UNESCO listed 5,000 km of this route network as World Heritage.",
       "view": {"mode": "globe", "center": [101, 37.5], "zoom": 4.2},
       "basemap": "satellite",
@@ -54,6 +56,7 @@
     },
     {
       "title": "Silk west, paper too",
+      "when": "c. 552–790s",
       "text": "Silk was so valuable that China guarded how it was made. Around 552, monks are said to have smuggled silkworm eggs to Constantinople, and the Byzantines started their own industry. Paper went the same way. It reached Samarkand by the 8th century, and Baghdad had paper mills by the 790s, centuries before Europe.",
       "view": {"mode": "globe", "center": [50, 38], "zoom": 2.4},
       "layers": [
@@ -65,6 +68,7 @@
     },
     {
       "title": "The sea route",
+      "when": "c. 830",
       "text": "Ships carried far more than camels. Monsoon winds blew sailors from China to India and the Gulf in one season and back in the next. In 1998, divers off the Indonesian island of Belitung found an Arab-style ship that sank around 830, carrying about 60,000 pieces of Chinese pottery. One bowl is dated 826.",
       "view": {"mode": "globe", "center": [78, 14], "zoom": 1.6},
       "layers": [
@@ -76,6 +80,7 @@
     },
     {
       "title": "Plague travels too",
+      "when": "1338–1347",
       "text": "Trade routes also carry disease. Ancient DNA from graves near Lake Issyk-Kul, in today's Kyrgyzstan, shows the plague strain behind the Black Death was there in 1338–39. By 1346 it was at Caffa, a Genoese port on the Black Sea. Ships took it to Sicily in 1347. Within a few years it had killed perhaps a third to a half of Europe's people.",
       "view": {"mode": "globe", "center": [47, 42], "zoom": 2.1},
       "layers": [

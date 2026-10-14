@@ -15,6 +15,7 @@
  "scenes": [
   {
    "title": "Candidates surround the union",
+   "when": "Oct 2026",
    "text": "The Council lists nine candidate countries at this 14 October 2026 cutoff: Albania, Bosnia and Herzegovina, Georgia, Moldova, Montenegro, North Macedonia, Serbia, Turkey and Ukraine. Their colour denotes candidate status alone. It does not guarantee accession or show a ranking of progress.",
    "view": {
     "mode": "globe",
@@ -37,6 +38,7 @@
   },
   {
    "title": "The Western Balkans",
+   "when": "Oct 2026",
    "text": "Albania, Bosnia and Herzegovina, Montenegro, North Macedonia and Serbia are candidates. Kosovo has applied but is not listed as a candidate. These are different procedural statuses; the map’s Kosovo geometry follows the base map and does not settle the dispute over recognition.",
    "view": {
     "mode": "globe",
@@ -70,6 +72,7 @@
   },
   {
    "title": "Ukraine and Moldova move through negotiations",
+   "when": "Jul 2026",
    "text": "The EU held accession conferences with Ukraine, Moldova, Montenegro and Albania on 14 July 2026. The Council described the Ukraine and Moldova conferences as opening the external-relations cluster. The highlighted candidates are part of an active negotiating process, not already members.",
    "view": {
     "mode": "globe",
@@ -91,6 +94,7 @@
   },
   {
    "title": "Candidate status can coexist with a halt",
+   "when": "Since 2018",
    "text": "The Council describes Turkey’s accession negotiations as effectively at a standstill since June 2018 and Georgia’s process as de facto halted in 2024. Both remain on its candidate list. Candidate colour must therefore be read separately from the state of negotiations.",
    "view": {
     "mode": "globe",

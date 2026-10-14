@@ -17,6 +17,7 @@
   "scenes": [
     {
       "title": "The biggest imbalance",
+      "when": "2024–2025",
       "text": "In 2024 the US bought about $440 billion of goods from China and sold it about $143 billion. No other country's trade with the US was so lopsided in dollars. The first tariffs of Trump's second term, ordered on 1 February 2025, targeted China, Canada and Mexico; only China's escalated into triple digits.",
       "view": {
         "mode": "equal",
@@ -217,6 +218,7 @@
     },
     {
       "title": "China's other weapon",
+      "when": "Apr–Oct 2025",
       "text": "On 4 April 2025 China also required export licences for seven rare earths, including dysprosium and terbium, which go into magnets for cars, wind turbines and weapons. China mines most of the world's rare earths and refines nearly all heavy ones. Shipments slumped and some carmakers outside China halted lines. In October China widened the rules to foreign products with traces of Chinese rare earths.",
       "view": {
         "mode": "globe",

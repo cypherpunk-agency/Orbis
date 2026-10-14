@@ -15,6 +15,7 @@
  "scenes": [
   {
    "title": "Christmas Day, 800",
+   "when": "800",
    "text": "In St Peter's in Rome, Pope Leo III crowned Charlemagne, king of the Franks and of the Lombards, emperor. His realm reached from the Pyrenees to the Elbe and from the North Sea to central Italy: about 1.2 million km² on this map. The West had not had an emperor since 476.",
    "view": {
     "mode": "globe",
@@ -172,6 +173,7 @@
   },
   {
    "title": "The Empire around 1000",
+   "when": "c. 1000",
    "text": "Around 1000 the Empire joined two kingdoms, Germany and Italy, plus Bohemia, under one emperor: about 740,000 km² on this map. In 1033 Conrad II added a third kingdom, Burgundy, from Basel to Provence. It was not yet called 'Holy Roman': 'Holy Empire' appears in 1157, 'Holy Roman Empire' in 1254.",
    "view": {
     "mode": "globe",

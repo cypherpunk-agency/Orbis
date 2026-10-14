@@ -7,6 +7,7 @@
   "scenes": [
     {
       "title": "Sixteen cities, three countries",
+      "when": "2026",
       "text": "The 2026 World Cup was the first with 48 teams and the first hosted by three countries. Its 104 matches were played in 16 stadiums: 78 in the United States, 13 each in Canada and Mexico. Dallas hosted the most, nine.",
       "view": {"mode": "mercator", "center": [-98, 35], "zoom": 2.6},
       "layers": [{"type": "symbols", "data": "wc", "field": "matches", "period": "2026", "color": "c1", "title": "Matches per stadium", "maxR": 16, "labels": 16}],
@@ -15,6 +16,7 @@
     },
     {
       "title": "Corner to corner",
+      "when": "2026",
       "text": "From Vancouver to Miami is about 4,500 km in a straight line, the longest distance between two venues. Mexico City to New York is about 3,400 km. A team could be sent across the continent between rounds.",
       "view": {"mode": "mercator", "center": [-98, 35], "zoom": 2.6},
       "points": [
@@ -31,6 +33,7 @@
     },
     {
       "title": "Three regions",
+      "when": "2026",
       "text": "To cut travel, the schedule grouped the cities into three regions by longitude: West (4 cities), Central (6, including all three Mexican venues) and East (6). Most group games stayed within one region, but about half the teams still had to play in two.",
       "view": {"mode": "mercator", "center": [-98, 35], "zoom": 2.6},
       "legend": [{"color": "c4", "label": "West"}, {"color": "c3", "label": "Central"}, {"color": "c2", "label": "East"}],
@@ -55,6 +58,7 @@
     },
     {
       "title": "Four clocks",
+      "when": "Jun–Jul 2026",
       "text": "The venues ran on four different clocks in June and July: UTC−7 on the Pacific coast, UTC−6 in Mexico, UTC−5 in Dallas, Houston and Kansas City, and UTC−4 in the East. A 3 pm kick-off in Los Angeles was 6 pm in New York and midnight in Paris.",
       "view": {"mode": "mercator", "center": [-98, 35], "zoom": 2.6},
       "legend": [{"color": "c4", "label": "UTC−7 (Pacific summer time)"}, {"color": "c5", "label": "UTC−6 (Mexico, no summer time)"}, {"color": "c3", "label": "UTC−5 (Central summer time)"}, {"color": "c2", "label": "UTC−4 (Eastern summer time)"}],
@@ -79,6 +83,7 @@
     },
     {
       "title": "Qatar 2022: one city",
+      "when": "2022",
       "text": "Four years earlier, Qatar played all 64 matches in eight stadiums in and around Doha. The two farthest apart, Al Bayt in the north and Al Janoub in the south, are about 55 km apart. Fans could watch two matches in a day. In 2026, New York and Philadelphia alone were over 130 km apart.",
       "view": {"mode": "mercator", "center": [50.95, 25.4], "zoom": 90},
       "points": [
@@ -96,6 +101,7 @@
     },
     {
       "title": "The final",
+      "when": "19 Jul 2026",
       "text": "The final was played at MetLife Stadium outside New York on 19 July, 38 days after the opening match in Mexico City. Spain beat Argentina 1–0 after extra time. Across the whole tournament about 6.8 million people watched in the stadiums, an average of about 65,000 a match.",
       "view": {"mode": "mercator", "center": [-98, 35], "zoom": 2.6},
       "layers": [{"type": "symbols", "data": "wc", "field": "matches", "period": "2026", "color": "c1", "title": "Matches per stadium", "maxR": 16, "labels": 0}],

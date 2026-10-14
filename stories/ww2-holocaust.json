@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Warsaw: forced confinement",
+      "when": "1940",
       "text": "German authorities established the Warsaw ghetto in 1940 and sealed it in November. They confined Jewish residents under conditions that caused severe suffering and death. This point locates Warsaw; it does not reconstruct the ghetto wall.",
       "view": {
         "mode": "globe",
@@ -42,6 +43,7 @@
     },
     {
       "title": "Babyn Yar: murder outside the camps",
+      "when": "29–30 Sep 1941",
       "text": "On 29–30 September 1941, German SS and police units and their auxiliaries murdered Jews at the Babyn Yar ravine near Kyiv. The site demonstrates that genocide included mass shootings outside camp systems. The point is an approximate site location, not a grave boundary.",
       "view": {
         "mode": "globe",
@@ -69,6 +71,7 @@
     },
     {
       "title": "Auschwitz-Birkenau: a killing centre",
+      "when": "1942",
       "text": "In 1942 the SS operated a killing centre at Auschwitz-Birkenau in German-occupied Poland. Jews deported from across Europe were murdered there; other targeted groups also suffered and died in the Auschwitz complex. This point locates Birkenau, without drawing unsupported deportation tracks.",
       "view": {
         "mode": "globe",
@@ -96,6 +99,7 @@
     },
     {
       "title": "Liberation did not erase the losses",
+      "when": "15 Apr 1945",
       "text": "British forces liberated Bergen-Belsen on 15 April 1945, finding survivors of catastrophic conditions. USHMM identifies six million Jewish victims of the Holocaust; Nazi Germany also persecuted and murdered millions of other victims. These selected locations cannot represent every person or place affected.",
       "view": {
         "mode": "globe",

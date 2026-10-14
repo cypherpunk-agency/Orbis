@@ -13,6 +13,7 @@
   "scenes": [
     {
       "title": "A tax paid at the border",
+      "when": "12 months to Aug 2026",
       "text": "A tariff is a tax on imports. The American company that brings goods into the country pays it to US Customs when the goods arrive, not the foreign seller. In the 12 months to August 2026 the US imported $3.5 trillion of goods. The circles show where they came from.",
       "view": {
         "mode": "equal",
@@ -51,6 +52,7 @@
     },
     {
       "title": "The bill quadruples",
+      "when": "2024–2025",
       "text": "Through 2024, US Customs collected about $7 billion a month. After the new tariffs of April 2025, collections climbed to a peak of $33 billion in October 2025. In the fiscal year to September 2025, customs brought in $195 billion, two and a half times the year before and nearly 4% of all federal revenue.",
       "view": {
         "mode": "globe",
@@ -81,6 +83,7 @@
     },
     {
       "title": "The highest tariffs since the 1940s",
+      "when": "2025",
       "text": "In 2025, duties equalled 7.8% of the value of everything the US imported, up from 2.3% in 2024. The last time the average was that high was 1947. It is still below the 1930s, when the Smoot-Hawley tariff pushed it near 20%. In single months of late 2025, duties reached about 12% of imports.",
       "view": {
         "mode": "globe",
@@ -123,6 +126,7 @@
     },
     {
       "title": "Who really pays",
+      "when": "2025",
       "text": "The company that pays at the border can absorb the tax, raise its prices, or push the foreign seller to cut prices. Economists at the New York Fed found that foreign exporters cut their prices very little: through November 2025, nearly 90% of the cost fell on US firms and consumers. Goldman Sachs expected consumers to carry about 55% by the end of 2025. The Yale Budget Lab puts the cost at about $1,100 per household per year.",
       "view": {
         "mode": "equal",
@@ -158,6 +162,7 @@
     },
     {
       "title": "The court sends the money back",
+      "when": "Feb–Aug 2026",
       "text": "On 20 February 2026 the Supreme Court ruled 6-3 that the emergency law behind many of the 2025 tariffs, including the 'reciprocal' tariffs on almost every country, does not allow the president to impose tariffs. Customs began paying importers back in spring. Between May and August 2026 it refunded $115 billion, more than it collected, so net customs revenue was negative in May, June and July.",
       "view": {
         "mode": "globe",
@@ -199,6 +204,7 @@
     },
     {
       "title": "Lower, but not gone",
+      "when": "Mid-2026",
       "text": "New tariffs under other laws replaced the struck-down ones. In mid-2026, duties still came to about 7% of imports each month, nearly three times the 2024 level, and collections held near $23 billion a month. The refunds go to the importers who paid, not to the shoppers who paid higher prices. The Yale Budget Lab put the average tariff rate on the books at 11% in August 2026.",
       "view": {
         "mode": "globe",

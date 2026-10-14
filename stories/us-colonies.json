@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Jamestown: a river foothold",
+      "when": "1607",
       "text": "English settlers established Jamestown in 1607 on the James River, within Powhatan country. Its coastal location connected the settlement to Atlantic shipping.",
       "view": {
         "mode": "globe",
@@ -67,6 +68,7 @@
     },
     {
       "title": "A declaration in Philadelphia",
+      "when": "1776",
       "text": "In 1776 the Declaration of Independence announced separation from Britain. Philadelphia is the location of the congressional decision, not a frontier between armies.",
       "view": {
         "mode": "globe",
@@ -93,6 +95,7 @@
     },
     {
       "title": "Thirteen names, an international treaty",
+      "when": "1783",
       "text": "The Treaty of Paris of 1783 named the thirteen states and recognised US independence. British recognition was a diplomatic act; it did not obtain Indigenous consent to the treaty’s western claims. The coloured shapes locate their modern successor states; colonial claims extended beyond these outlines.",
       "view": {
         "mode": "globe",

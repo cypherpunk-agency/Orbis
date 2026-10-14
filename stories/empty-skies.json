@@ -13,6 +13,7 @@
   "scenes": [
     {
       "title": "Before the interruption",
+      "when": "2019",
       "text": "In 2019, registered airlines worldwide made about 38 million takeoffs. The largest circles mark the countries where those carriers were registered. An American carrier’s takeoff abroad still belongs to the United States in this dataset. The map describes airline activity, not every aircraft in each country’s sky.",
       "view": {
         "mode": "equal",
@@ -92,6 +93,7 @@
     },
     {
       "title": "A sharp contraction in Europe",
+      "when": "2020",
       "text": "In 2020, UK-registered carriers recorded about 29% of their 2019 takeoffs. Austria’s were at 37%, Turkey’s at 49%. These percentages compare each country with its own baseline. They do not rank closed airports, restrictions or passenger losses; the composition of each airline industry also matters.",
       "view": {
         "mode": "globe",
@@ -121,6 +123,7 @@
     },
     {
       "title": "Recovery took different paths",
+      "when": "2020–2021",
       "text": "By 2021, the world total had recovered to about 24 million takeoffs, still well below 2019. US-registered carriers were at about 79% of their baseline, Turkey’s at 72%, and the UK’s at 27%. Switch years to compare the same measure; the colour scale is fixed and capped at 150%.",
       "view": {
         "mode": "equal",
@@ -173,6 +176,7 @@
     },
     {
       "title": "What the numbers leave out",
+      "when": "2019–2021",
       "text": "A takeoff is not a passenger: a near-empty flight and a full aircraft each count once. Cargo services also kept moving. Missing observations remain uncoloured. This three-year record shows a collapse and an early return in registered-carrier activity; it cannot explain every change in border policy or the experience of travellers.",
       "view": {
         "mode": "equal",

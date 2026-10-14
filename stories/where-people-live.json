@@ -6,12 +6,14 @@
   "scenes": [
     {
       "title": "Eight billion, unevenly spread",
+      "when": "2025",
       "text": "Each coloured cell shows how many people live there per square kilometre, from 1 (faint) to 10,000 and more (dark). Country averages hide this: deserts, ice and forests are almost empty, while some valleys and coasts are among the most crowded places on Earth. Tap anywhere to read the density.",
       "view": {"mode": "equal", "center": [15, 10], "zoom": 1},
       "layers": [{"type": "raster", "data": "pop", "title": "People per km², 2025", "fmt": "ppkm2"}]
     },
     {
       "title": "The great plains of Asia",
+      "when": "2025",
       "text": "The plain of the Ganges and the deltas of Bangladesh form the largest dense band of people anywhere. Bangladesh averages about 1,300 people per square kilometre, more than ten times Europe's density. Eastern China, Java and the Japanese coast follow.",
       "view": {"mode": "globe", "center": [92, 26], "zoom": 2.6},
       "layers": [{"type": "raster", "data": "pop", "title": "People per km², 2025", "fmt": "ppkm2"}],
@@ -19,6 +21,7 @@
     },
     {
       "title": "A country on a ribbon",
+      "when": "2025",
       "text": "Egypt is a large country on paper, but almost everyone lives on a thin green strip along the Nile and in its delta. The rest is desert. Switch the map to satellite to see the river's green band match the people.",
       "view": {"mode": "globe", "center": [31, 27], "zoom": 5},
       "layers": [{"type": "raster", "data": "pop", "title": "People per km², 2025", "fmt": "ppkm2"}],
@@ -26,6 +29,7 @@
     },
     {
       "title": "Empty quarters",
+      "when": "2025",
       "text": "Canada, Australia and Russia are among the largest countries, yet most of their land has fewer than one person per square kilometre. Their people cluster along a southern border, a coastline or a railway.",
       "view": {"mode": "equal", "center": [40, 30], "zoom": 1.1},
       "layers": [{"type": "raster", "data": "pop", "title": "People per km², 2025", "fmt": "ppkm2"}]

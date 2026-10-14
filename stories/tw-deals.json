@@ -18,6 +18,7 @@
  "scenes": [
   {
    "title": "Three ways to answer",
+   "when": "Oct 2026",
    "text": "Most trading partners chose to negotiate. By October 2026, 20 partners plus the EU had a deal, framework or signed agreement with the US. Only China and Canada answered with tariffs of their own. Brazil got neither a deal nor relief, and the highest rate of all.",
    "view": {
     "mode": "equal",
@@ -98,6 +99,7 @@
   },
   {
    "title": "What a deal was worth",
+   "when": "Aug 2025",
    "text": "A deal usually bought a lower rate, not a zero. In August 2025 the EU, Japan and South Korea settled at 15%, Vietnam at 20% and most of Southeast Asia at 19%. In return, partners pledged to cut their own tariffs, buy US energy, aircraft or farm goods, or invest in the US: $550 billion from Japan and $350 billion from South Korea, by the White House's count.",
    "view": {
     "mode": "equal",
@@ -139,6 +141,7 @@
   },
   {
    "title": "The two who hit back",
+   "when": "2025–2026",
    "text": "China matched every US step in April 2025, up to 125%. Canada put 25% on C$30 billion of US goods in March 2025, then dropped most of it on 1 September 2025, keeping steel, aluminium and cars. When the US hit Canadian dairy, drinks and cars with 50% in August 2026, Canada answered again: 15–50% on US goods from 8 September. The EU prepared tariffs on €93 billion of US goods but has kept them suspended.",
    "view": {
     "mode": "equal",
@@ -166,6 +169,7 @@
   },
   {
    "title": "Singled out",
+   "when": "Aug 2025",
    "text": "Three partners faced rates far above their peers. Brazil, which buys more from the US than it sells, got a 40% penalty on top of 10% in August 2025 over the prosecution of former president Bolsonaro. India paid 25% plus 25% for buying Russian oil: 50%. Switzerland got 39%, more than the EU's 15%.",
    "view": {
     "mode": "equal",
@@ -245,6 +249,7 @@
   },
   {
    "title": "Where things stand",
+   "when": "13 Oct 2026",
    "text": "As of 13 October 2026, deal partners pay 10–12.5% under the new 'forced labour' tariffs, and the EU, Japan, South Korea, Switzerland and Taiwan have that capped to include normal duties. Brazil pays 37.5%. With Canada, the fight has moved to dairy, drinks and cars, with US import bans on some Canadian goods since 29 September 2026.",
    "view": {
     "mode": "equal",

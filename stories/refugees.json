@@ -72,6 +72,7 @@
   },
   {
    "title": "Where refugees live",
+   "when": "2025",
    "text": "Colombia hosts the most refugees (2.8 million, nearly all from Venezuela), followed by Germany (2.7 million), Türkiye (2.4 million, mostly Syrians), Uganda (1.9 million) and Iran (1.7 million). Apart from Germany, the biggest hosts sit right next to a crisis.",
    "view": {
     "mode": "equal",
@@ -107,6 +108,7 @@
   },
   {
    "title": "Two in three stay next door",
+   "when": "2025",
    "text": "About 65% of refugees live in a country that borders their own. For people from Sudan, South Sudan or the Central African Republic it is over 90%. Ukrainians are more widely spread across Europe: about 30% are recorded in neighbouring countries. UNHCR's removal of Russia's Ukraine count from 2024 also affects that comparison.",
    "view": {
     "mode": "equal",
@@ -191,6 +193,7 @@
   },
   {
    "title": "The heaviest load",
+   "when": "2025",
    "text": "Relative to their own size, the countries next to a crisis carry the most. Lebanon hosts about 92 refugees for every 1,000 residents, roughly one in eleven people. Chad hosts 72 and Colombia 53. Germany hosts 32, the United States about 1.",
    "view": {
     "mode": "equal",
@@ -261,6 +264,7 @@
   },
   {
    "title": "The deadliest sea",
+   "when": "2014–2024",
    "text": "The Mediterranean is the deadliest crossing: about 31,000 people died or went missing there in 2014–2024, 24,500 of them on the central route from North Africa to Italy and Malta. Thousands more died crossing the Sahara on the way north, and over 5,000 on the Atlantic route to the Canary Islands.",
    "view": {
     "mode": "globe",

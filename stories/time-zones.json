@@ -12,6 +12,7 @@
     },
     {
       "title": "One clock for China",
+      "when": "Since 1949",
       "text": "China spans about 60 degrees of longitude, four hours of sun time, yet since 1949 the whole country has run on Beijing time, UTC+8. In Kashgar in the far west, the sun stands highest close to 3 pm. Many Uyghurs keep unofficial Xinjiang time, two hours behind. Cross into Afghanistan and clocks jump back three and a half hours.",
       "view": {"mode": "globe", "center": [95, 33], "zoom": 2.2},
       "layers": [{"type": "categories", "data": "tz", "set": "clock", "colors": {"ahead": "c2", "little": "c3", "right": "c4", "behind": "c1", "several": "muted"}}],
@@ -30,6 +31,7 @@
     },
     {
       "title": "Spain and France, an hour early",
+      "when": "Since 1940",
       "text": "Most of Spain lies west of the Greenwich meridian, like Britain and Portugal, which keep Greenwich time. But Spain moved its clocks to Central European Time in 1940, and France kept German time after the occupation. Both run about an hour ahead of the sun. In summer, the sun peaks over Madrid at about 2:15 pm.",
       "view": {"mode": "globe", "center": [2, 46], "zoom": 3.2},
       "layers": [{"type": "categories", "data": "tz", "set": "clock", "colors": {"ahead": "c2", "little": "c3", "right": "c4", "behind": "c1", "several": "muted"}}],
@@ -44,6 +46,7 @@
     },
     {
       "title": "Half hours and quarter hours",
+      "when": "Since 1986",
       "text": "India uses one zone for the whole country, UTC+5:30, though the sun rises about two hours earlier in the far northeast than in the far west. Nepal goes further: since 1986 it has kept UTC+5:45, one of only a few quarter-hour zones. Walk from Nepal into Tibet and the clock jumps two hours and fifteen minutes.",
       "view": {"mode": "globe", "center": [84, 24], "zoom": 3.2},
       "layers": [{"type": "categories", "data": "tz", "set": "clock", "colors": {"ahead": "c2", "little": "c3", "right": "c4", "behind": "c1", "several": "muted"}}],
@@ -58,6 +61,7 @@
     },
     {
       "title": "The date line zig-zags",
+      "when": "1994–2011",
       "text": "The date line is not a law, just an agreement, and countries move it. Kiribati's islands spread across it, so its west and east had different dates. At the end of 1994 the eastern islands skipped 31 December and moved from UTC−10 to UTC+14, the earliest time on Earth. In 2011 Samoa skipped 30 December to join the western side, with Australia and New Zealand. Neighbouring American Samoa, about 125 km away, is now a full day behind.",
       "view": {"mode": "globe", "center": [-175, 0], "zoom": 1.5},
       "layers": [{"type": "lines", "data": "idl", "set": "dateline", "color": "c2", "width": 2.2, "labels": true}],

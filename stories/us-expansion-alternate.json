@@ -14,6 +14,7 @@
  "scenes": [
   {
    "title": "The country in 1783",
+   "when": "1783",
    "text": "When Britain recognised American independence in the Treaty of Paris of 1783, the new country stretched from the Atlantic to the Mississippi. Thirteen states claimed almost all of it; Vermont ran itself as an independent republic until it joined in 1791.",
    "view": {
     "mode": "globe",

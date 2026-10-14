@@ -9,6 +9,7 @@
   "scenes": [
     {
       "title": "Five ships head west",
+      "when": "1519–1520",
       "text": "In September 1519, five Spanish ships under Ferdinand Magellan left Sanlúcar de Barrameda with about 250 men. They were looking for a western sea route to the Spice Islands. After wintering in Patagonia and putting down a mutiny, they found a passage at the tip of South America in October 1520. It took them 38 days to thread it.",
       "view": {"mode": "globe", "center": [-40, -12], "zoom": 1.45},
       "layers": [
@@ -19,6 +20,7 @@
     },
     {
       "title": "The Pacific is bigger than anyone thought",
+      "when": "1520–1521",
       "text": "Magellan expected a short hop to Asia. The crossing took 98 days. The crews ate leather and sawdust, and many died of scurvy. They reached Guam in March 1521 and the Philippines days later. On 27 April 1521, Magellan was killed in a fight on Mactan island.",
       "view": {"mode": "equal", "center": [-175, -8], "zoom": 1.25},
       "routes": [
@@ -33,6 +35,7 @@
     },
     {
       "title": "Eighteen men come home",
+      "when": "1521–1522",
       "text": "Only two ships reached the Spice Islands. The Victoria, under Juan Sebastián Elcano, loaded cloves and sailed home west, across the Indian Ocean and around Africa, avoiding Portuguese ports. She reached Spain on 6 September 1522, three years after leaving, with 18 of the original crew. They were the first people known to have sailed around the world.",
       "view": {"mode": "equal", "center": [10, -5], "zoom": 1},
       "routes": [
@@ -47,6 +50,7 @@
     },
     {
       "title": "Zheng He's treasure fleets",
+      "when": "1405–1433",
       "text": "Between 1405 and 1433, the Ming admiral Zheng He led seven voyages into the Indian Ocean. The first carried about 27,800 men. The fleets traded, carried envoys, and showed off Ming power, reaching Calicut, Hormuz, Jeddah and the East African coast. Ming records describe treasure ships well over 100 m long; many historians think they were smaller. After 1433 the voyages stopped.",
       "view": {"mode": "globe", "center": [82, 10], "zoom": 1.55},
       "layers": [
@@ -57,6 +61,7 @@
     },
     {
       "title": "Ibn Battuta sets out",
+      "when": "1325",
       "text": "In June 1325, a 21-year-old legal scholar named Ibn Battuta left Tangier to make the pilgrimage to Mecca. He did not come home for 24 years. In his first seven years he crossed North Africa, Syria and Arabia, toured Iraq and Persia, and sailed down the East African coast as far as Kilwa.",
       "view": {"mode": "globe", "center": [30, 20], "zoom": 1.6},
       "layers": [
@@ -67,6 +72,7 @@
     },
     {
       "title": "To Delhi, China, and Mali",
+      "when": "1330s–1355",
       "text": "He crossed the steppe and the Hindu Kush to Delhi, where he served the sultan as a judge for about eight years. Sent as an envoy to China, he reached Quanzhou around 1345. On the way home he saw the Black Death in Damascus in 1348. After returning to Morocco in 1349, he crossed the Sahara to Mali and Timbuktu. In Fez, around 1355, he dictated his story: the Rihla.",
       "view": {"mode": "equal", "center": [56, 22], "zoom": 1.85},
       "layers": [

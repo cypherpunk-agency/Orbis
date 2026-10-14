@@ -81,6 +81,7 @@
     },
     {
       "title": "China's share shrinks",
+      "when": "2017–2026",
       "text": "China's share of US imports fell from 22% in 2017 to 13% in 2024, and to under 8% in the 12 months to August 2026. Mexico's rose to 17%. Taiwan and Vietnam, each around 2% in 2017, now supply about 7 to 8% each.",
       "view": {
         "mode": "equal",
@@ -147,6 +148,7 @@
     },
     {
       "title": "Who filled the gap",
+      "when": "2017–2026",
       "text": "Compared with 2017, the US now buys $232 billion less a year from China. Imports from Mexico rose by $287 billion, from Taiwan by $227 billion and from Vietnam by $201 billion. Red marks countries that sell more to the US than in 2017, blue those that sell less.",
       "view": {
         "mode": "equal",
@@ -284,6 +286,7 @@
     },
     {
       "title": "The detour through Southeast Asia",
+      "when": "Since 2017",
       "text": "US imports from Vietnam are five times what they were in 2017, from Thailand four times. Part of this is Chinese and other firms moving final assembly out of China to avoid the tariffs. A World Bank study found that the countries gaining US market share after 2018 were the ones most tied into China's supply chains.",
       "view": {
         "mode": "globe",

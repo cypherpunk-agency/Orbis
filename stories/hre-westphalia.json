@@ -16,6 +16,7 @@
   "scenes": [
     {
       "title": "Two cities, related negotiations",
+      "when": "1648",
       "text": "Münster and Osnabrück hosted the peace settlements with France and Sweden in 1648. Their proximity makes Westphalia a concrete diplomatic geography, not the name of a single signing table.",
       "view": {
         "mode": "globe",
@@ -43,6 +44,7 @@
     },
     {
       "title": "Religion and imperial law",
+      "when": "1648",
       "text": "The treaties addressed confessional rights and relations among imperial estates. The institutional anchor at Regensburg locates the empire’s assembly world; it does not mark where the treaties were signed.",
       "view": {
         "mode": "globe",
@@ -106,6 +108,7 @@
     },
     {
       "title": "A much later territorial view",
+      "when": "1796",
       "text": "The 1796 Reilly map shows the empire’s territorial complexity long after Westphalia. It is expressly not a map of the 1648 settlement and cannot be used to read off its immediate border changes.",
       "view": {
         "mode": "globe",

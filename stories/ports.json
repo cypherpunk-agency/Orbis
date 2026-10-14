@@ -14,6 +14,7 @@
   "scenes": [
     {
       "title": "The busiest ports",
+      "when": "2024",
       "text": "Nearly everything you buy spent part of its journey in a steel box. In 2024 Shanghai handled about 51.5 million of them, counted in twenty-foot units (TEU), more than any port in history. Singapore (41 million) and Ningbo-Zhoushan (39 million) come next. All ten of the busiest ports are in Asia.",
       "view": {
         "mode": "equal",
@@ -47,6 +48,7 @@
     },
     {
       "title": "China's coast is the world's dock",
+      "when": "2024",
       "text": "Six of the top ten are in mainland China, strung along its coast from Tianjin to Guangzhou: the factories of the Yangtze and Pearl River deltas ship from here. Shanghai's main terminal, Yangshan, sits on islands 30 km offshore, linked by a bridge. Busan in South Korea is the busiest port outside China and Singapore.",
       "view": {
         "mode": "globe",
@@ -81,6 +83,7 @@
     },
     {
       "title": "The rise of Ningbo, the fall of Hong Kong",
+      "when": "2009–2023",
       "text": "In 2009 Hong Kong was the world's third-busiest port, with 21 million TEU. By 2023 it had slipped to tenth with 14 million, as factories moved inland and nearby Shenzhen and Guangzhou built their own terminals. Ningbo-Zhoushan more than tripled, from 10.5 to 35 million. Switch between the two years' top tens.",
       "view": {
         "mode": "globe",
@@ -128,6 +131,7 @@
     },
     {
       "title": "The Singapore Strait",
+      "when": "2024",
       "text": "Singapore is the world's biggest transshipment hub: most of its boxes are unloaded from one ship and loaded onto another, without ever entering the country. Across the strait, Malaysia's Tanjung Pelepas (12 million TEU) and, up the coast, Port Klang (15 million) compete for the same traffic.",
       "view": {
         "mode": "globe",
@@ -181,6 +185,7 @@
     },
     {
       "title": "Lanes between the factories and the shops",
+      "when": "2024",
       "text": "Container ships run fixed loops between Asia, Europe and North America. Since attacks on Red Sea shipping began in late 2023, most Asia–Europe services sail around Africa instead of through Suez (dashed). Europe's biggest ports, Rotterdam (13.8 million TEU) and Antwerp-Bruges (13.5 million), rank just outside the world's top ten.",
       "view": {
         "mode": "equal",
@@ -214,6 +219,7 @@
     },
     {
       "title": "America's front door",
+      "when": "2024",
       "text": "Much of America's trade with Asia lands at two neighbouring ports in southern California. Los Angeles (10.3 million TEU) and Long Beach (9.6 million) together handled about 20 million TEU in 2024, a record for Long Beach, as importers rushed goods in ahead of new tariffs.",
       "view": {
         "mode": "globe",

@@ -67,6 +67,7 @@
   },
   {
    "title": "A wall across Britain",
+   "when": "From AD 122",
    "text": "From AD 122 Hadrian had a stone wall built across northern Britain: 80 Roman miles, about 117 km, from the Tyne to the Solway, with a small fort every mile. His successor Antoninus Pius pushed north to a turf wall between the Forth and the Clyde in 142, but the army fell back to Hadrian's line about twenty years later.",
    "view": {
     "mode": "globe",
@@ -119,6 +120,7 @@
   },
   {
    "title": "Rivers and a wall in Germany",
+   "when": "From AD 166",
    "text": "On the continent the Rhine and the Danube formed most of the border. Between them, a palisade, ditch and wall with forts and watchtowers ran about 550 km. In 166 Germanic peoples broke across the Danube; Marcus Aurelius spent most of his last fourteen years fighting them.",
    "view": {
     "mode": "globe",
@@ -240,6 +242,7 @@
   },
   {
    "title": "Four emperors, four capitals",
+   "when": "AD 293",
    "text": "In 293 Diocletian split the work of ruling among four emperors, two senior and two junior, each with an army and a capital close to a frontier: Nicomedia, Sirmium, Mediolanum and Augusta Treverorum (Trier). Rome itself was no longer where emperors lived.",
    "view": {
     "mode": "globe",
@@ -357,6 +360,7 @@
   },
   {
    "title": "Two empires",
+   "when": "AD 395",
    "text": "When Theodosius I died in January 395, his two sons divided the empire: Arcadius took the East from Constantinople, Honorius the West from Mediolanum and later Ravenna. Seventeen years earlier the Goths had killed an emperor at Adrianople; the map of AD 400 already shows Goths and Huns along the frontier.",
    "view": {
     "mode": "globe",

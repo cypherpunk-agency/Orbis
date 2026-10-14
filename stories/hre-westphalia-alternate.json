@@ -60,6 +60,7 @@
   },
   {
    "title": "The peace of 1648",
+   "when": "1648",
    "text": "Treaties signed at Münster and Osnabrück ended the war on 24 October 1648. Calvinists got the same rights as Lutherans, and princes could ally with foreign powers. Sweden took Western Pomerania and Bremen; France kept Metz, Toul and Verdun and Habsburg rights in Alsace. The Swiss and the Dutch were recognised as outside the Empire. Slide the old map in to see the patchwork as an atlas of 1923 drew it.",
    "view": {
     "mode": "globe",
@@ -118,6 +119,7 @@
   },
   {
    "title": "Ten circles",
+   "when": "From 1500",
    "text": "From 1500 the Empire was divided into Imperial Circles, ten from 1512. Each circle's princes, bishops and cities met to keep the peace, raise troops and check the coinage. The Bohemian crown lands and parts of northern Italy stayed outside the circles. Together they covered about 760,000 km² in 1648.",
    "view": {
     "mode": "globe",

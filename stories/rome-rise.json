@@ -19,6 +19,7 @@
  "scenes": [
   {
    "title": "A city on the Tiber",
+   "when": "c. 500 BC",
    "text": "Around 500 BC Rome was one city-state among many in Italy, with Etruscans to the north, Sabines and Samnites in the hills and Greek cities in the south. Romans dated their city's founding to 753 BC and the Republic, with two consuls elected each year, to 509 BC.",
    "view": {
     "mode": "globe",
@@ -83,6 +84,7 @@
   },
   {
    "title": "Italy first",
+   "when": "300–264 BC",
    "text": "Rome grew by war and alliance. By 300 BC it ruled central Italy; by 264 BC, every city south of the Po valley was a Roman ally or subject. Across the sea, Carthage, a Phoenician city in today's Tunisia, ruled the coasts of Africa, southern Spain, Sardinia and western Sicily.",
    "view": {
     "mode": "globe",
@@ -278,6 +280,7 @@
   },
   {
    "title": "The greatest extent, AD 117",
+   "when": "AD 117",
    "text": "Trajan pushed the borders furthest. He conquered Dacia in today's Romania and annexed Arabia, and in 116 even reached the Persian Gulf, but Armenia and Mesopotamia were lost or given up within a year and are not on this map. Even without them, the empire covered about 5 million km² in 117, more than today's European Union (4.2 million km²).",
    "view": {
     "mode": "globe",

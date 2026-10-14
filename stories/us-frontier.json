@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Surveyed land, federal promises",
+      "when": "1862",
       "text": "The Homestead Act of 1862 offered qualifying settlers surveyed public land subject to residence and cultivation. Calling it public land reflected US law, not the absence of Indigenous societies.",
       "view": {
         "mode": "globe",
@@ -41,6 +42,7 @@
     },
     {
       "title": "A Nebraska homestead",
+      "when": "1863",
       "text": "Daniel Freeman filed a claim in 1863 and settled near Beatrice, Nebraska. This located example shows the land policy at farm scale; it is not a map of all homestead claims.",
       "view": {
         "mode": "globe",
@@ -67,6 +69,7 @@
     },
     {
       "title": "Two construction fronts meet",
+      "when": "May 1869",
       "text": "The Central Pacific and Union Pacific met at Promontory Summit in May 1869. The labelled points locate the meeting and the two construction approaches; any connecting lines are schematic, not surveyed railway geometry.",
       "view": {
         "mode": "globe",
@@ -111,6 +114,7 @@
     },
     {
       "title": "Chinese workers built the western connection",
+      "when": "10 May 1869",
       "text": "Chinese workers were essential to Central Pacific construction and placed the final rail at Promontory on 10 May 1869. Their work belongs in the story of infrastructure as well as immigration.",
       "view": {
         "mode": "globe",

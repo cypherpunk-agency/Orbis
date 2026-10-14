@@ -17,6 +17,7 @@
  "scenes": [
   {
    "title": "2,400 towns, 300 lords",
+   "when": "1500",
    "text": "The Deutsches Städtebuch lists 2,390 places in Germany that once held town rights. In 1500 they answered to 309 different lords: princes, counts, bishops, abbots, a knightly order, and the towns themselves. Each cell is an approximate area around a town, drawn by the data's authors, not a border. Tap one to see its lord.",
    "view": {
     "mode": "globe",
@@ -52,6 +53,7 @@
   },
   {
    "title": "Bishops, abbots and free cities",
+   "when": "1500",
    "text": "Much of the map belonged to the church. In 1500 archbishops, bishops, abbots and the Teutonic Order ruled about 560 of these towns. About 70 governed themselves as free or imperial cities, under no lord but the emperor: Lübeck, Nuremberg, Frankfurt, Ulm.",
    "view": {
     "mode": "globe",
@@ -214,6 +216,7 @@
   },
   {
    "title": "Hundreds of territories",
+   "when": "16th century",
    "text": "Towns are one view; territories are another. A researcher at ETH Zurich traced about 250 territories of the 16th century from a modern historical atlas: bishoprics, duchies, counties and imperial cities side by side, many in scattered pieces. In 1500 all were still Catholic. Treat the borders as approximate: the data is incomplete and its dates come from Wikipedia.",
    "view": {
     "mode": "globe",

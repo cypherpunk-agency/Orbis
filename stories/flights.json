@@ -27,6 +27,7 @@
     },
     {
       "title": "Vienna to Tokyo, then and now",
+      "when": "Since 2022",
       "text": "Before 2022, flights crossed Siberia. Since Russia's airspace closed to European airlines, they detour south over Central Asia and China.",
       "view": {"mode": "globe", "center": [80, 50], "zoom": 1.3},
       "fills": {"RUS": "muted"},

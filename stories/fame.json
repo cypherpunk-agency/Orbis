@@ -18,6 +18,7 @@
   "scenes": [
     {
       "title": "Two million lives",
+      "when": "3500 BC–2018",
       "text": "Researchers combined Wikipedia and Wikidata into a list of 2.3 million notable people, from 3500 BC to 2018. For 1.65 million we know when and where they were born. The map glows where the record is thickest: Europe and North America. Among people born since 1950 with a recorded citizenship in this database, roughly two-thirds have a European, US or Canadian first citizenship.",
       "view": {
         "mode": "equal",
@@ -217,6 +218,7 @@
     },
     {
       "title": "Women enter the record",
+      "when": "1500–1980s",
       "text": "From 1500 to the 1830s, only about one notable person in 15 was a woman. The share rose from the mid-1800s and reached a quarter for people born in the 1970s and 1980s. Among people born since 1950 it is over a third in China, Taiwan and Ethiopia, 32% in Sweden and South Korea, and lowest in Saudi Arabia (6%) and Qatar (4%).",
       "view": {
         "mode": "equal",

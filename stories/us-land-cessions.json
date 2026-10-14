@@ -13,6 +13,7 @@
  "scenes": [
   {
    "title": "Area by area",
+   "when": "1784–1894",
    "text": "From 1784 to 1894 the United States took over Native land in hundreds of cessions: by treaty, often under military or political pressure, and later by act of Congress or executive order. Together the 716 areas mapped from Charles Royce's 1899 schedule cover about 6.5 million km², more than four-fifths of today's 48 contiguous states.",
    "view": {
     "mode": "globe",

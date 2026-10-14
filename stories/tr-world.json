@@ -14,6 +14,7 @@
  "scenes": [
   {
    "title": "The straits join two seas",
+   "when": "Since 1936",
    "text": "The Bosporus and Dardanelles connect the Black Sea through the Sea of Marmara to the Aegean. The 1936 Montreux Convention regulates passage through the straits. The markers locate those passages; they are not shipping-volume observations or a reconstructed vessel route.",
    "view": {
     "mode": "globe",
@@ -48,6 +49,7 @@
   },
   {
    "title": "NATO’s southeastern flank",
+   "when": "Feb 1952",
    "text": "Turkey and Greece joined NATO in February 1952. NATO’s history describes Turkey’s strategic position and land and sea bases as important to the alliance. The two country outlines identify the new members in present-day geometry; they do not reconstruct Cold War deployments.",
    "view": {
     "mode": "globe",
@@ -126,6 +128,7 @@
   },
   {
    "title": "Work and family ties with Europe",
+   "when": "1961",
    "text": "The 1961 recruitment agreement connected Turkey with West Germany through labour migration. Marking Bonn and Istanbul shows the international relationship’s geographic span. It represents neither every migrant’s origin nor present-day diaspora size; migration is part of international history as well as domestic change.",
    "view": {
     "mode": "globe",
@@ -213,6 +216,7 @@
   },
   {
    "title": "Syria: refuge and return",
+   "when": "Dec 2025",
    "text": "UNHCR’s 8 December 2025 account describes growing demand for voluntary return from Syria’s neighbouring host countries. Turkey’s southern border is part of that regional displacement geography. Aleppo and Gaziantep are reference locations, not observed individual journeys. This dated source does not establish conditions or totals on 14 October 2026.",
    "view": {
     "mode": "globe",

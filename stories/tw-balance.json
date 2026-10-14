@@ -13,6 +13,7 @@
   "scenes": [
     {
       "title": "A record gap",
+      "when": "2024–2025",
       "text": "In 2024 the US bought $1.2 trillion more goods from the rest of the world than it sold. In 2025, when tariffs rose to their highest level since the 1940s, the gap grew to a record $1.23 trillion. In 1990 it was about $100 billion.",
       "view": {
         "mode": "equal",
@@ -52,6 +53,7 @@
     },
     {
       "title": "Who the US buys more from",
+      "when": "2024",
       "text": "In 2024 the biggest gap was with China: the US bought $297 billion more from China than it sold there. Mexico ($169 billion), Vietnam ($123 billion), Ireland and Germany followed. Blue marks a US deficit. The US sold more than it bought to the Netherlands, Hong Kong, the UAE and Australia.",
       "view": {
         "mode": "equal",
@@ -159,6 +161,7 @@
     },
     {
       "title": "Shifted, not shrunk",
+      "when": "2024–2026",
       "text": "Compared with 2024, the deficit with China shrank by $131 billion. But the deficit with Taiwan grew by $137 billion, with Vietnam by $106 billion, Thailand by $61 billion and Mexico by $56 billion. Blue marks where the US deficit grew. By accounting, a country's trade deficit mirrors the gap between what it invests and what it saves. Unless tariffs change that gap, they mostly move the deficit from one partner to another.",
       "view": {
         "mode": "equal",
@@ -197,6 +200,7 @@
     },
     {
       "title": "Gold makes the gap look smaller",
+      "when": "Mar 2025–Aug 2026",
       "text": "The total gap peaked at $1.38 trillion in the 12 months to March 2025, when companies rushed in goods ahead of the tariffs. In the 12 months to August 2026 it was $1.12 trillion. Imports did not fall. Exports rose, by $326 billion on 2024, the most to Switzerland, a centre of the gold trade: US gold exports more than doubled in January to August 2026, to $87 billion.",
       "view": {
         "mode": "equal",

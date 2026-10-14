@@ -14,6 +14,7 @@
   "scenes": [
     {
       "title": "Power shared",
+      "when": "AD 293",
       "text": "Diocletian’s Tetrarchy shared imperial authority from AD 293. His later palace at Split gives a geographic anchor for the ruler; multiple emperors did not mean modern nation-states.",
       "view": {
         "mode": "globe",
@@ -119,6 +120,7 @@
     },
     {
       "title": "Ravenna and Constantinople",
+      "when": "AD 402",
       "text": "Ravenna became the western imperial seat in AD 402. Comparing it with Constantinople shows how Rome’s old centrality differed from the geography of late imperial government.",
       "view": {
         "mode": "globe",

@@ -16,6 +16,7 @@
  "scenes": [
   {
    "title": "Regions differ inside the same union",
+   "when": "2023",
    "text": "In Eurostat’s February 2025 release of 2023 NUTS 2 data, Eastern and Midland Ireland has GDP per inhabitant of 244.7% of the EU average. Yuzhen Tsentralen in Bulgaria is at 41.3%. Regional reference symbols and the chart compare the same indicator; symbol area follows its value, not a city GDP reading.",
    "view": {
     "mode": "globe",
@@ -49,6 +50,7 @@
   },
   {
    "title": "A capital and a lower-output region",
+   "when": "2023",
    "text": "Praha reaches 192.8% of the EU average while Yuzhen Tsentralen reaches 41.3% in that same release. The highlighted reference places locate whole statistical regions. The comparison crosses countries and uses one observation year and unit; it does not compare municipal incomes.",
    "view": {
     "mode": "globe",
@@ -82,6 +84,7 @@
   },
   {
    "title": "Cohesion has a regional rule",
+   "when": "2021–2027",
    "text": "For 2021–2027, cohesion policy distinguishes less developed regions below 75% of EU-average GDP per head, transition regions from 75% to 100%, and more developed regions above 100%. These selected regions locate the question the policy addresses. Their 2023 values do not retroactively determine official 2021–2027 eligibility.",
    "view": {
     "mode": "globe",
@@ -115,6 +118,7 @@
   },
   {
    "title": "Money crosses into cohesion programmes",
+   "when": "2025",
    "text": "The Commission’s 2025 ordinary-budget allocation for economic, social and territorial cohesion is about €7.1 billion in Poland and €3.2 billion in Italy. This is a country-level funding view beside the regional comparisons. It excludes separate NGEU allocations and does not assign every national euro to a particular region.",
    "view": {
     "mode": "globe",

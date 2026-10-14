@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Twenty years on the move",
+      "when": "2000–2019",
       "text": "Red places have positive net migration balances in 2000–2019; blue places have negative balances. The estimates remove natural population change from births and deaths, and include internal and international migration. The colours show summed annual rates, rather than the percentage change from one fixed starting population.",
       "view": {
         "mode": "equal",
@@ -36,6 +37,7 @@
     },
     {
       "title": "China: from the interior to the coast",
+      "when": "2000–2019",
       "text": "China's national cumulative rate was close to zero (+0.2%), while its provincial rates differed sharply. The summed annual rates were +65% in Beijing, +60% in Shanghai and +47% in Tianjin; they were −22% in Chongqing and Guizhou, −18% in Hubei and −17% in Anhui. Switch between the grid and the authors' province estimates.",
       "view": {
         "mode": "globe",
@@ -79,6 +81,7 @@
     },
     {
       "title": "Europe: the east empties",
+      "when": "2000–2019",
       "text": "Romania and Lithuania show widespread negative net migration in 2000–2019. Their cumulative national rates were −9% and −18%. More than four in five of their modelled 2025 residents live in cells with negative balances for that earlier period; Spain, Italy and Britain had positive national rates.",
       "view": {
         "mode": "globe",
@@ -100,6 +103,7 @@
     },
     {
       "title": "America: the suburbs and the Sun Belt",
+      "when": "2000–2019",
       "text": "The US grid shows migration gains around major southern cities and losses in parts of the northeast and Midwest. State-level cumulative rates were +47% in Nevada, +30% in Arizona and +24% in Florida; New York was −10% and Michigan −9%. These sum annual rates, rather than measuring the change from one fixed state population.",
       "view": {
         "mode": "globe",
@@ -143,6 +147,7 @@
     },
     {
       "title": "What national totals show",
+      "when": "2000–2019",
       "text": "National balances mostly reflect international migration because internal moves offset one another. The cumulative rates for 2000–2019 were +11.5% in Spain and +6.6% in Germany, compared with −18% in Lithuania. China (+0.2%) and India (−1%) look almost still at this scale.",
       "view": {
         "mode": "equal",
@@ -169,6 +174,7 @@
     },
     {
       "title": "What they hide",
+      "when": "2000–2019",
       "text": "National totals hide places with different migration balances. About half of the modelled 2025 residents in China and India live in cells with negative net migration over 2000–2019. The US cumulative national rate was +6.5%, yet 55% of its populated cells had negative balances; the corresponding population shares in Romania and Lithuania exceed 80%.",
       "view": {
         "mode": "equal",

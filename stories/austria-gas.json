@@ -16,6 +16,7 @@
     },
     {
       "title": "A 4,000 km pipe",
+      "when": "1968",
       "text": "Gas from West Siberia crossed Russia, Ukraine and Slovakia to reach Austria. Austria was the first Western country to sign a gas deal with the Soviet Union, in 1968.",
       "view": {"mode": "globe", "center": [45, 55], "zoom": 1.6},
       "routes": [
@@ -32,6 +33,7 @@
     },
     {
       "title": "Deeper dependence",
+      "when": "2022–2023",
       "text": "Even after Russia invaded Ukraine in 2022, Russian gas made up most of Austria's imports, close to 98% at one point in late 2023, largely because of a long-term OMV contract running to 2040.",
       "view": {"mode": "globe", "center": [30, 52], "zoom": 2.2},
       "fills": {"AUT": "c2", "RUS": "c2"},
@@ -48,6 +50,7 @@
     },
     {
       "title": "The tap closes",
+      "when": "Nov 2024–Jan 2025",
       "text": "In November 2024 Gazprom stopped deliveries to OMV, which cancelled the contract. On 1 January 2025, transit through Ukraine ended. Austria now imports via Germany and Italy, including Norwegian gas and LNG.",
       "view": {"mode": "globe", "center": [12, 51], "zoom": 2.3},
       "fills": {"AUT": "c1"},

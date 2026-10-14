@@ -15,6 +15,7 @@
     },
     {
       "title": "The ice is shrinking",
+      "when": "1980–2012",
       "text": "Around 1980, September sea ice covered about 7 million km². In 2012 it fell to about 3.4 million. Each circle has the same area as the ice in that year.",
       "view": {"mode": "globe", "center": [0, 88], "zoom": 1.25},
       "circles": [

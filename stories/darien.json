@@ -9,6 +9,7 @@
   "scenes": [
     {
       "title": "Leaving Caracas",
+      "when": "Since 2014",
       "text": "Since 2014, close to 8 million people have left Venezuela, one of the largest displacement crises in the world. Most stay in South America. Some head north.",
       "view": {"mode": "globe", "center": [-70, 8], "zoom": 3.5},
       "routes": [{"path": [[-66.9, 10.5], [-72.5, 7.9]], "color": "c2", "width": 2, "flow": true}],
@@ -28,6 +29,7 @@
     },
     {
       "title": "The Darién Gap",
+      "when": "2023",
       "text": "About 100 km of roadless jungle, rivers and mountains between Colombia and Panama. The crossing takes most people four to ten days on foot. In 2023, about 520,000 people made it.",
       "view": {"mode": "globe", "center": [-77.4, 8.2], "zoom": 6},
       "routes": [{"path": [[-66.9, 10.5], [-72.5, 7.9], [-75.57, 6.25], [-76.78, 8.42], [-77.35, 8.63], [-77.85, 8.35]], "color": "c2", "width": 3, "flow": true}],
@@ -80,6 +82,7 @@
     },
     {
       "title": "The last border",
+      "when": "2025",
       "text": "From Tapachula, it is still more than 3,000 km across Mexico to the US border. In 2025, crossings through Darién fell to a trickle, and many people began travelling south again.",
       "view": {"mode": "globe", "center": [-85, 18], "zoom": 2},
       "routes": [

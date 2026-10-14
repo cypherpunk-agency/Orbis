@@ -17,6 +17,7 @@
   "scenes": [
     {
       "title": "Poland is attacked from two sides",
+      "when": "Sep 1939",
       "text": "Germany invaded Poland on 1 September 1939; the Soviet Union invaded from the east on 17 September. The Warsaw point locates the country’s capital, without inventing a partition or a daily front.",
       "view": {
         "mode": "globe",
@@ -101,6 +102,7 @@
     },
     {
       "title": "France’s defeat did not create one uniform regime",
+      "when": "Jun 1940",
       "text": "Germany defeated France in June 1940. Occupied areas and the Vichy regime had different administrative arrangements. Paris locates the capital; this point does not fill all of France as one continuous occupied area.",
       "view": {
         "mode": "globe",
@@ -128,6 +130,7 @@
     },
     {
       "title": "An atlas of the western advance",
+      "when": "Jun 1944–May 1945",
       "text": "The US Army’s Northern Europe atlas combines arrows dated from June 1944 to May 1945. Its geography is warped approximately onto this map for overview reading. Use opacity to compare; the arrows are a campaign summary, not one dated front.",
       "view": {
         "mode": "globe",
@@ -186,6 +189,7 @@
     },
     {
       "title": "Bornholm complicates a national liberation date",
+      "when": "May 1945",
       "text": "The Danish National Museum notes that Bornholm experienced Soviet bombardment during Denmark’s liberation. A country-level status colour cannot settle this island’s local control history. The point identifies the exception rather than drawing an unsupported control polygon.",
       "view": {
         "mode": "globe",

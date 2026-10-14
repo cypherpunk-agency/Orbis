@@ -14,6 +14,7 @@
   "scenes": [
     {
       "title": "Royal authority at Aachen",
+      "when": "936",
       "text": "In 936 Otto became king at Aachen. A long-used ceremonial centre helped connect a new dynasty to earlier imperial memory.",
       "view": {
         "mode": "globe",
@@ -76,6 +77,7 @@
     },
     {
       "title": "Saxon centres",
+      "when": "c. 1000",
       "text": "Quedlinburg belonged to the heartland of Saxon-Ottonian rulership. Around 1000, royal places and religious communities helped sustain government; this city anchor does not define an imperial border.",
       "view": {
         "mode": "globe",
@@ -103,6 +105,7 @@
     },
     {
       "title": "Churches and imperial culture",
+      "when": "c. 1000",
       "text": "Hildesheim’s bronze monuments drew on ancient imperial and early Christian models. Compare this ecclesiastical centre with Quedlinburg in the previous scene: churches and royal sites sustained different parts of the northern imperial world.",
       "view": {
         "mode": "globe",

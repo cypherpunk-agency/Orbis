@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "The northern front receded",
+      "when": "Mar 2022",
       "text": "By the end of March 2022, Russian forces withdrew from the northern front. This turning point is located near Kyiv; a point cannot reconstruct the changing extent of control.",
       "view": {
         "mode": "globe",
@@ -40,6 +41,7 @@
     },
     {
       "title": "The Kharkiv region changed",
+      "when": "2022",
       "text": "The 2022 counteroffensives returned nearly all Kharkiv region to Ukrainian control by November, according to OHCHR. Izium provides a regional anchor. This scene deliberately gives the report’s end-November assessment rather than a fabricated daily front.",
       "view": {
         "mode": "globe",
@@ -65,6 +67,7 @@
     },
     {
       "title": "Kherson, 11 November",
+      "when": "Nov 2022",
       "text": "Ukraine regained Kherson city in November. The UN’s first convoy arrived within days. The city’s recovery is distinct from the whole region: OHCHR describes recovered areas on the Dnipro’s right bank.",
       "view": {
         "mode": "globe",
@@ -90,6 +93,7 @@
     },
     {
       "title": "After control changed",
+      "when": "2022–2023",
       "text": "Returning public services, clearing mines and repairing homes were part of the aftermath. OHCHR’s account extends through December 2023; its reporting date should not be read as a current map of safety.",
       "view": {
         "mode": "globe",

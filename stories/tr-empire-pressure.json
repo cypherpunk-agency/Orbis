@@ -15,6 +15,7 @@
  "scenes": [
   {
    "title": "An empire beyond Anatolia",
+   "when": "1886",
    "text": "This is the Ottoman state as mapped on 1 January 1886. Its shape reaches beyond Anatolia into southeastern Europe and the Arab provinces. It is a legal-border snapshot, not a map of every community, dependency or degree of imperial authority.",
    "view": {
     "mode": "globe",

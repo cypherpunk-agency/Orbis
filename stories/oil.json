@@ -19,6 +19,7 @@
     },
     {
       "title": "Who burns it",
+      "when": "2024",
       "text": "Use per person differs enormously. A Saudi resident accounts for about 38 barrels a year, a German about 9, an Indian about 1.4. In total, the US (20.5 million barrels a day) and China (16.4) use more than a third of the world's oil.",
       "view": {"mode": "equal", "center": [10, 15], "zoom": 1},
       "layers": [{"type": "choropleth", "data": "eia", "series": "oil_cons", "per": "pop", "mult": 365, "year": 2024, "title": "Oil use per person, barrels a year", "fmt": "bpp"}],
@@ -32,6 +33,7 @@
     },
     {
       "title": "Most of it goes by sea",
+      "when": "2024",
       "text": "Tankers carry most traded oil, and they squeeze through a handful of narrow straits. In 2024 about 22.5 million barrels a day passed the Strait of Malacca. The Strait of Hormuz alone handled 20.7 million, about a fifth of the world’s oil.",
       "view": {"mode": "globe", "center": [70, 20], "zoom": 1.15},
       "layers": [
@@ -42,6 +44,7 @@
     },
     {
       "title": "The Red Sea empties",
+      "when": "2023–2024",
       "text": "After attacks on shipping in the Red Sea began in late 2023, tankers avoided the Suez route. Oil through Bab el-Mandeb fell from 9.3 million barrels a day in 2023 to 4.1 in 2024, while traffic around Africa's Cape of Good Hope rose from 6.2 to 9.3. The detour adds roughly two weeks to a voyage from the Gulf to Europe.",
       "view": {"mode": "equal", "center": [30, 5], "zoom": 1.7},
       "layers": [

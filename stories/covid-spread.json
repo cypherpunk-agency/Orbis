@@ -9,6 +9,7 @@
   "scenes": [
     {
       "title": "A cluster in Wuhan",
+      "when": "Dec 2019–Jan 2020",
       "text": "On 31 December 2019, health officials in Wuhan, a city of 11 million in central China, reported a cluster of pneumonia cases with an unknown cause. On 11 January 2020, Chinese scientists published the genome of a new coronavirus. On 23 January, Wuhan was locked down. By then, the virus was already travelling.",
       "view": {"mode": "globe", "center": [112, 30], "zoom": 2.2},
       "layers": [{"type": "since", "data": "first", "set": "first_case", "year": 201912, "color": "c2", "title": "First case reported"}],
@@ -35,12 +36,14 @@
     },
     {
       "title": "Everywhere by March",
+      "when": "Mar 2020",
       "text": "March 2020 was the month the virus went global. On 11 March, WHO called the outbreak a pandemic. By the end of the month, 196 countries and territories had reported cases, out of 213 that did so in 2020. Borders closed, but mostly after the virus had already crossed them.",
       "view": {"mode": "equal", "center": [20, 15], "zoom": 1},
       "layers": [{"type": "since", "data": "first", "set": "first_case", "year": 202003, "color": "c2", "title": "First case reported by March 2020"}]
     },
     {
       "title": "The last to report",
+      "when": "2020",
       "text": "A few places kept the virus out for months. Some Pacific island states, isolated by distance and early border closures, reported their first cases only in late 2020, and several, such as Tonga, Kiribati and Tuvalu, none at all that year. Turkmenistan and North Korea said they had no cases, a claim widely doubted.",
       "view": {"mode": "equal", "center": [132, 8], "zoom": 1.75},
       "layers": [{"type": "since", "data": "first", "set": "first_case", "year": 202012, "color": "c2", "title": "First case reported in 2020"}],
@@ -59,6 +62,7 @@
     },
     {
       "title": "The toll",
+      "when": "2020–2022",
       "text": "By the end of 2022, countries had reported about 6.7 million COVID-19 deaths to WHO. Per person, Peru was hit hardest, with about 6,500 deaths per million people, followed by countries in Central and Eastern Europe. These are confirmed deaths only. WHO estimates that about 14.9 million more people died than normal in 2020 and 2021 alone.",
       "view": {"mode": "equal", "center": [10, 15], "zoom": 1},
       "layers": [

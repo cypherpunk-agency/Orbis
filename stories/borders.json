@@ -9,6 +9,7 @@
   "scenes": [
     {
       "title": "Western Sahara, as the UN sees it",
+      "when": "Since 1975",
       "text": "The UN lists Western Sahara as a non-self-governing territory. Its status has been disputed since Spain withdrew in 1975.",
       "view": {"mode": "globe", "center": [-9, 26], "zoom": 3.2},
       "fills": {"MAR": "c1", "ESH": "c3"},
@@ -30,6 +31,7 @@
     },
     {
       "title": "Crimea",
+      "when": "2014",
       "text": "Russia annexed Crimea in 2014. In a 2014 UN General Assembly vote, 100 countries affirmed Ukraine's territorial integrity; most maps still show it as Ukraine.",
       "view": {"mode": "globe", "center": [34, 47], "zoom": 4},
       "fills": {"UKR": "c3", "RUS": "c2"},
@@ -45,6 +47,7 @@
     },
     {
       "title": "Kosovo",
+      "when": "Since 2008",
       "text": "Kosovo declared independence from Serbia in 2008. Roughly half of UN members recognise it; Serbia, Russia, China and five EU states do not.",
       "view": {"mode": "globe", "center": [20.9, 42.6], "zoom": 7},
       "fills": {"XKX": "c3", "SRB": "c1"},

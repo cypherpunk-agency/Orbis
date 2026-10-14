@@ -7,12 +7,14 @@
   "scenes": [
     {
       "title": "Who sanctions Russia",
+      "when": "Since Feb 2022",
       "text": "After Russia's full-scale invasion of Ukraine on 24 February 2022, about 50 governments imposed sanctions on it: the 27 EU states, European neighbours that adopt EU sanctions such as Switzerland and Norway, and the US, UK, Canada, Japan, South Korea, Australia, New Zealand, Singapore and Taiwan with their own measures. Most countries, including China, India, Brazil, Turkey and the Gulf states, did not.",
       "view": { "mode": "equal", "center": [10, 20], "zoom": 1 },
       "layers": [{ "type": "categories", "data": "sx", "set": "sanctions", "colors": { "eu": "c1", "aligned": "c4", "own": "c5" } }]
     },
     {
       "title": "Europe's sanctions",
+      "when": "By Jul 2026",
       "text": "EU sanctions need the agreement of all 27 member states; by July 2026 the EU had adopted 21 packages. Non-EU neighbours from Norway and Switzerland to Albania and Montenegro adopt them too. Serbia, Turkey and Georgia, all candidates to join the EU, have not.",
       "view": { "mode": "globe", "center": [20, 50], "zoom": 2.2 },
       "layers": [{ "type": "categories", "data": "sx", "set": "sanctions", "colors": { "eu": "c1", "aligned": "c4", "own": "c5" } }],
@@ -21,6 +23,7 @@
     },
     {
       "title": "Asia and the Pacific",
+      "when": "2022",
       "text": "In Asia, Japan, South Korea, Taiwan and Singapore imposed sanctions or export controls, as did Australia and New Zealand. Singapore said it acted 'in concert with many other like-minded countries' because Russia had vetoed a Security Council resolution. China, India, Indonesia, Vietnam and the rest of the region did not join.",
       "view": { "mode": "globe", "center": [120, 15], "zoom": 1.5 },
       "layers": [{ "type": "categories", "data": "sx", "set": "sanctions", "colors": { "eu": "c1", "aligned": "c4", "own": "c5" } }],
@@ -41,6 +44,7 @@
     },
     {
       "title": "Sold outside the sanctions map",
+      "when": "2024",
       "text": "In 2024 China and India bought about 93% of Russia's crude exports by value, some 200 million tonnes, and neither imposes sanctions on Russia. With $124 billion in crude sales, Russia remained the world's second-largest crude exporter by value, after Saudi Arabia and just ahead of the United States.",
       "view": { "mode": "equal", "center": [60, 30], "zoom": 1.4 },
       "layers": [

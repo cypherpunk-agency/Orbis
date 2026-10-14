@@ -14,6 +14,7 @@
  "scenes": [
   {
    "title": "43 monarchies",
+   "when": "Oct 2026",
    "text": "Wikipedia's list counts 43 sovereign states with a monarch as head of state: 13 in Asia, 12 in Europe, 9 in the Americas, 6 in Oceania and 3 in Africa. In 28 of them the monarch reigns and parliament governs. Ten are mixed, with monarchs who keep real power, and five are absolute: Saudi Arabia, Oman, Brunei, Eswatini and the Vatican.",
    "view": {
     "mode": "equal",
@@ -166,6 +167,7 @@
   },
   {
    "title": "One king, fifteen countries",
+   "when": "Oct 2026",
    "text": "Charles III is king of 15 countries, the Commonwealth realms: Britain, Canada, Australia, New Zealand, Papua New Guinea and ten others, most of them in the Caribbean and the Pacific. Each has its own crown in law; governors-general act for him.",
    "view": {
     "mode": "equal",
@@ -289,6 +291,7 @@
   },
   {
    "title": "Europe's twelve",
+   "when": "Oct 2026",
    "text": "Twelve European states have a monarch. Ten crowns are hereditary, held by nine houses: Windsor, Bourbon, Glücksburg in Denmark and Norway, Bernadotte, Orange-Nassau, Belgium's Saxe-Coburg line, Nassau in Luxembourg, and the princely houses of Liechtenstein and Monaco. The pope and Andorra's co-princes hold office, not a family seat.",
    "view": {
     "mode": "globe",
@@ -367,6 +370,7 @@
   },
   {
    "title": "Where monarchs still rule",
+   "when": "Oct 2026",
    "text": "Real royal power survives mostly around the Persian Gulf. The kings of Saudi Arabia and the sultans of Oman and Brunei make law themselves; in Kuwait, Qatar, Bahrain, the UAE, Jordan and Morocco parliaments or councils exist, but the monarch keeps most power.",
    "view": {
     "mode": "globe",

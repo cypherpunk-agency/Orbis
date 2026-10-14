@@ -50,6 +50,7 @@
     },
     {
       "title": "The East continues",
+      "when": "After AD 476",
       "text": "Imperial government persisted at Constantinople after AD 476. Its sixth-century world retained Roman law and classical culture alongside Christian imperial institutions.",
       "view": {
         "mode": "globe",

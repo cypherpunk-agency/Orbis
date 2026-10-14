@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "London: the sustained Blitz begins",
+      "when": "7 Sep 1940",
       "text": "The sustained Blitz on London began on 7 September 1940. Bombing damaged homes and infrastructure and killed civilians. The point locates London, without implying that all attacks struck one site or covered the entire city uniformly.",
       "view": {
         "mode": "globe",
@@ -42,6 +43,7 @@
     },
     {
       "title": "Coventry: destruction and a surviving ruin",
+      "when": "14 Nov 1940",
       "text": "The Luftwaffe attacked Coventry on the night of 14 November 1940. The cathedral was destroyed; its ruins remain a witness to the raid. This point locates the city rather than an invented bomb-impact grid.",
       "view": {
         "mode": "globe",
@@ -69,6 +71,7 @@
     },
     {
       "title": "Dresden: an Allied attack",
+      "when": "13–14 Feb 1945",
       "text": "British bombing on the night of 13–14 February 1945 devastated Dresden, followed by US attacks. Naming the attackers matters when mapping civilian destruction. This city point does not estimate a firestorm perimeter or select among disputed casualty totals.",
       "view": {
         "mode": "globe",
@@ -96,6 +99,7 @@
     },
     {
       "title": "Hiroshima: an atomic bombing",
+      "when": "6 Aug 1945",
       "text": "The United States dropped an atomic bomb on Hiroshima on 6 August 1945. The National Archives documents destruction and large-scale loss of life. This point locates the city; it does not model a blast-radius circle or assign a precise death total.",
       "view": {
         "mode": "globe",
@@ -123,6 +127,7 @@
     },
     {
       "title": "Nagasaki: a second atomic bombing",
+      "when": "9 Aug 1945",
       "text": "The United States bombed Nagasaki on 9 August 1945. The two cities experienced different terrain and attack conditions. This chapter identifies the dates and cities without treating them as interchangeable casualty measurements.",
       "view": {
         "mode": "globe",

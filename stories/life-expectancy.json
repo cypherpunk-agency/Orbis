@@ -14,6 +14,7 @@
     },
     {
       "title": "Thirty years apart",
+      "when": "2023",
       "text": "The gap between countries is still huge. A baby in Japan, Hong Kong or South Korea can expect about 84 to 86 years. In Nigeria and Chad it is about 55, in Lesotho, the Central African Republic and South Sudan about 57.",
       "view": {"mode": "equal", "center": [15, 15], "zoom": 1},
       "layers": [{"type": "choropleth", "data": "wpp", "series": "lex", "year": 2023, "title": "Life expectancy at birth, years"}],
@@ -39,6 +40,7 @@
     },
     {
       "title": "The pandemic dip",
+      "when": "2019–2023",
       "text": "Covid-19 cut world life expectancy from 72.6 years in 2019 to 70.9 in 2021. Latin America was hit hard: Bolivia lost about 6 years, Ecuador and Mexico about 5, Peru almost 5. India lost about 3 and the US about 2.5. Japan, China, South Korea, Australia and New Zealand saw no fall. By 2023 the world was back above its old level.",
       "view": {"mode": "equal", "center": [-20, 10], "zoom": 1},
       "layers": [{"type": "choropleth", "data": "gaps", "series": "lex_drop", "year": 2021, "title": "Years lost, 2019 to 2020–21 low", "showYear": false}],
@@ -46,6 +48,7 @@
     },
     {
       "title": "Women live longer",
+      "when": "2023",
       "text": "Almost everywhere, women outlive men. The gap is widest in the former Soviet Union: in Russia, women live about 12 years longer than men, linked to men's drinking, smoking and violent deaths. War widened it further in 2023: to 13 years in Ukraine and 12 in the Palestinian territories. In Nigeria, Togo and Niger, and in Qatar and Bahrain, it is under two years.",
       "view": {"mode": "globe", "center": [45, 45], "zoom": 1.05},
       "layers": [{"type": "choropleth", "data": "gaps", "series": "lex_gap_pct", "year": 2023, "title": "Women's life expectancy above men's", "fmt": "pct"}],

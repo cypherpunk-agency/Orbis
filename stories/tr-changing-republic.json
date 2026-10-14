@@ -15,6 +15,7 @@
  "scenes": [
   {
    "title": "Political power in Ankara",
+   "when": "27 May 1960",
    "text": "The parliament’s history records the military coup of 27 May 1960, the arrest of the prime minister and other leaders, and the suspension of the Assembly. The capital locator marks national institutions; it does not imply that the consequences were confined to Ankara.",
    "view": {
     "mode": "globe",
@@ -168,6 +169,7 @@
   },
   {
    "title": "Labour migration beyond the border",
+   "when": "1961",
    "text": "The 1961 recruitment agreement enabled regulated labour migration from Turkey to West Germany. Bonn locates the German agreement’s political setting, and Istanbul locates Turkey schematically. These dots are country-side reference points, not a claim that migrants all followed one route or came from one city.",
    "view": {
     "mode": "globe",
@@ -202,6 +204,7 @@
   },
   {
    "title": "Kurdish communities and conflict in the southeast",
+   "when": "Jul 2015–Dec 2016",
    "text": "OHCHR’s March 2017 report describes destruction, displacement and alleged human-rights violations in predominantly Kurdish southeastern towns during July 2015–December 2016, including Diyarbakır and Nusaybin. These are selected reported places, not an ethnic boundary, casualty surface or current conflict map. Its findings concern that specific window.",
    "view": {
     "mode": "globe",
@@ -236,6 +239,7 @@
   },
   {
    "title": "A different executive system",
+   "when": "2017–2018",
    "text": "The 2017 constitutional amendments changed the republic from a parliamentary to a presidential system. OSCE’s report on the 2018 elections describes implementation of that change. Ankara remains the institutional centre on this map; no regional voting pattern can be inferred from that single point.",
    "view": {
     "mode": "globe",
@@ -261,6 +265,7 @@
   },
   {
    "title": "Earthquakes across a national boundary",
+   "when": "6 Feb 2023",
    "text": "On 6 February 2023, USGS recorded a magnitude 7.8 earthquake near the Syria–Turkey border. Its epicentre lies near the southeastern cities already discussed. The point marks the USGS epicentre; the city dots provide context, without asserting a damage footprint or a casualty estimate.",
    "view": {
     "mode": "globe",

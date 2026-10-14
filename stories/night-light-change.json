@@ -13,6 +13,7 @@
   "scenes": [
     {
       "title": "Two views of the same night",
+      "when": "2012–2016",
       "text": "These are NASA’s paired 2012 and 2016 night-light composites. Drag the divider: the left shows 2012, the right 2016. Bright clusters trace artificial light, but these processed colour images are not a direct measure of people, wealth or electricity use.",
       "view": {
         "mode": "equal",
@@ -37,6 +38,7 @@
     },
     {
       "title": "Syria grows dark",
+      "when": "2012–2016",
       "text": "Around Aleppo, lights visible in 2012 are much dimmer in the 2016 composite. NASA links the broader loss of Syrian light to years of war and damage to infrastructure. The map cannot count deaths or distinguish every cause of darkness. Compare the city and its surroundings across the divider.",
       "view": {
         "mode": "mercator",
@@ -79,6 +81,7 @@
     },
     {
       "title": "A brighter northern India",
+      "when": "2012–2016",
       "text": "NASA’s comparison highlights new light across northern India between the two composites. Look along the densely settled plain south of the Himalayas. More visible light is a geographic observation: it does not tell us exactly how many homes gained reliable electricity, or which policy produced the change.",
       "view": {
         "mode": "mercator",
@@ -121,6 +124,7 @@
     },
     {
       "title": "The network beneath the glow",
+      "when": "2012–2016",
       "text": "The Nile forms a narrow illuminated corridor through a much darker desert. Coastal cities and transport corridors produce other connected patterns. Move the divider to compare their appearance at the two dates. A dark landscape can still contain people and settlements: outdoor lighting is only one part of life.",
       "view": {
         "mode": "mercator",
@@ -155,6 +159,7 @@
     },
     {
       "title": "A signal, with limits",
+      "when": "2012–2016",
       "text": "The composites select clear observations and combine many nights; they are not two photographs taken on matching evenings. Clouds, viewing conditions, surface reflectance and lighting practices affect the result. Use the date switch to inspect each full frame. For a quantitative change claim, return to calibrated radiance and its quality masks.",
       "view": {
         "mode": "equal",

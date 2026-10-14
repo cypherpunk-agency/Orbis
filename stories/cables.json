@@ -35,6 +35,7 @@
     },
     {
       "title": "When cables break",
+      "when": "Early 2024",
       "text": "In early 2024, a ship's dragging anchor in the Red Sea cut three major cables at once. Repairs need specialised ships, and there are only a few dozen in the world.",
       "view": {"mode": "globe", "center": [42, 16], "zoom": 3.5},
       "layers": [

@@ -14,6 +14,7 @@
   "scenes": [
     {
       "title": "Reorganisation from within",
+      "when": "1803",
       "text": "The Final Recess of 1803 secularised church territories and reduced the number of independent imperial cities. Regensburg anchors the empire’s institutional setting; no speculative before-and-after borders are drawn.",
       "view": {
         "mode": "globe",
@@ -41,6 +42,7 @@
     },
     {
       "title": "Two imperial titles",
+      "when": "1804",
       "text": "In 1804 Francis adopted an Austrian imperial title while still Holy Roman Emperor. Vienna’s court therefore links two different offices, rather than a simple renaming of the same state.",
       "view": {
         "mode": "globe",
@@ -68,6 +70,7 @@
     },
     {
       "title": "Napoleon’s new political order",
+      "when": "1806",
       "text": "The Rhine Confederation separated participating states from the imperial structure in 1806. The regional locator deliberately avoids drawing an uncited outline of its membership.",
       "view": {
         "mode": "globe",

@@ -8,6 +8,7 @@
   "scenes": [
     {
       "title": "The tariffs the court left standing",
+      "when": "Since 2025",
       "text": "Section 232, a 1962 law, lets the president restrict imports that threaten national security, after a Commerce Department investigation. Since 2025 it has been used product by product. The goods hit so far cost the US about $610 billion to import in 2024, nearly one dollar in five. Mexico, Canada, Germany and Japan supply the most.",
       "view": {"mode": "globe", "center": [-70, 68], "zoom": 0.9},
       "layers": [{"type": "flows", "data": "sec", "group": "all", "year": 2024, "to": ["USA"], "top": 25, "color": "c2", "title": "US imports of goods now under Section 232 tariffs, 2024", "fmt": "musd", "maxW": 14}],
@@ -33,6 +34,7 @@
     },
     {
       "title": "Metals: the neighbour pays",
+      "when": "Since 2025",
       "text": "The metal tariffs fall hardest on Canada, the largest foreign supplier of steel, aluminium and copper to the US. In 2024 Canada sold the US about $11 billion of aluminium and $6 billion of steel. Canadian steel and aluminium pay the full 50%; the North American trade agreement gives them no discount.",
       "view": {"mode": "globe", "center": [-80, 40], "zoom": 1.6},
       "switch": {"label": "Metal", "start": 1, "options": [
@@ -66,6 +68,7 @@
     },
     {
       "title": "The list keeps growing",
+      "when": "2026",
       "text": "The chip tariff is narrow for now, but the proclamation warns of broader ones if talks fail; Taiwan and Malaysia would feel them first. In 2026 the list also grew to drones (100% from September) and solar-grade polysilicon (minimum prices from December). The Supreme Court's ruling against the emergency tariffs left every Section 232 tariff in place.",
       "view": {"mode": "globe", "center": [150, 25], "zoom": 1.2},
       "layers": [{"type": "flows", "data": "sec", "group": "chips", "year": 2024, "to": ["USA"], "top": 15, "color": "c5", "title": "US imports of integrated circuits, 2024", "fmt": "musd", "maxW": 14}],

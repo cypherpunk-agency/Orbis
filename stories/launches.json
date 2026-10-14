@@ -58,6 +58,7 @@
     },
     {
       "title": "The Soviet decades",
+      "when": "Late 1960s–1991",
       "text": "From the late 1960s the Soviet Union launched far more often than the United States: up to 108 rockets a year, in 1982. Many flew from Plesetsk in Russia's far north: 1,400 launches by 1991. With about 1,700 through 2025, it is the busiest spaceport in this record.",
       "view": {
         "mode": "globe",
@@ -107,6 +108,7 @@
     },
     {
       "title": "The quiet years",
+      "when": "2001–2017",
       "text": "After the Soviet Union collapsed, launches fell. From 2001 to 2017 the world managed only 55 to 92 launch attempts a year.",
       "view": {
         "mode": "equal",
@@ -148,6 +150,7 @@
     },
     {
       "title": "SpaceX takes over",
+      "when": "2025",
       "text": "In 2025 the world made a record 329 orbital launch attempts. SpaceX flew 170 of them, more than every other launcher combined, from Cape Canaveral, Vandenberg in California and Starbase in Texas. Russia, once the leader, launched 17 times.",
       "view": {
         "mode": "mercator",
@@ -197,6 +200,7 @@
     },
     {
       "title": "Satellites by the thousand",
+      "when": "2010s–2025",
       "text": "Rockets now carry dozens of small satellites at once. In the 2010s about 270 satellites a year reached orbit; in 2025, 4,500 did, and 3,200 of them were SpaceX's Starlink. More than 60% of the payloads catalogued in orbit through 2025 went up between 2020 and 2025.",
       "view": {
         "mode": "globe",
@@ -240,6 +244,7 @@
     },
     {
       "title": "China's rise",
+      "when": "2015–2025",
       "text": "China is the second launch power. It made 92 launch attempts in 2025, up from 19 in 2015, from four inland and coastal spaceports and from ships in the Yellow Sea. Jiuquan, on the edge of the Gobi Desert, was the busiest with 33.",
       "view": {
         "mode": "mercator",

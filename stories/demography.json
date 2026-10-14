@@ -9,6 +9,7 @@
   "scenes": [
     {
       "title": "Median age today",
+      "when": "c. 2024",
       "text": "Half the people in each country are older than this number. Japan and Italy sit near 48–49. Niger sits near 15.",
       "view": {"mode": "equal", "center": [20, 15], "zoom": 1},
       "layers": [{"type": "choropleth", "data": "values", "series": "median_age", "year": 2024, "title": "Median age, years (≈ 2024)", "showYear": false}]

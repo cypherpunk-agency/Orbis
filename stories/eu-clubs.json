@@ -14,6 +14,7 @@
  "scenes": [
   {
    "title": "Three maps occupy the same space",
+   "when": "Oct 2026",
    "text": "EU membership, the euro and Schengen overlap, but they do not coincide. The crossing hatches show all three sets as of 14 October 2026. Schengen here means completed removal of internal land-border controls; temporary checks may still operate inside the area.",
    "view": {
     "mode": "globe",
@@ -79,6 +80,7 @@
   },
   {
    "title": "An opt-out and unfinished adoptions",
+   "when": "Oct 2026",
    "text": "Denmark has a treaty opt-out from adopting the euro. Czechia, Hungary, Poland, Romania and Sweden have not adopted it, but have no equivalent euro opt-out. Colours distinguish that legal difference among EU members at the cutoff.",
    "view": {
     "mode": "globe",
@@ -135,6 +137,7 @@
   },
   {
    "title": "Inside one club, outside another",
+   "when": "Oct 2026",
    "text": "Ireland belongs to the EU and euro area but not Schengen; Cyprus’s internal controls have not yet been lifted. Norway, Iceland, Switzerland and Liechtenstein are in Schengen without EU membership. Switch the highlighted set to see those contrasts rather than treating Europe as one uniform border regime.",
    "view": {
     "mode": "globe",

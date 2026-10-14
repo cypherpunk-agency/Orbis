@@ -17,6 +17,7 @@
  "scenes": [
   {
    "title": "On the eve, 1789",
+   "when": "1789",
    "text": "When revolution broke out in France, the Empire was still a patchwork. The 2,390 towns in this data answered to about 200 lords. Bishops and abbots ruled about 360 of them, and about 70 governed themselves. Prussia, the biggest German power, held about 650.",
    "view": {
     "mode": "globe",

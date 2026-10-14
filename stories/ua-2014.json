@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Crimea, March 2014",
+      "when": "Mar 2014",
       "text": "A referendum under Russian occupation did not change the UN’s recognition of Ukraine’s territorial integrity. The point locates Crimea; it does not shade annexation as lawful sovereignty.",
       "view": {
         "mode": "globe",
@@ -40,6 +41,7 @@
     },
     {
       "title": "Conflict in the east",
+      "when": "2014–2022",
       "text": "Donetsk and Luhansk became central to an armed conflict that preceded February 2022. These regional anchors locate the places addressed by OHCHR; they do not draw the changing line of contact.",
       "view": {
         "mode": "globe",
@@ -65,6 +67,7 @@
     },
     {
       "title": "A war before the full-scale war",
+      "when": "2014–2022",
       "text": "OHCHR’s historical context records eight years of hostilities before the 2022 attack. A chapter beginning in 2022 alone would leave this history out.",
       "view": {
         "mode": "globe",
@@ -90,6 +93,7 @@
     },
     {
       "title": "Rights did not stop at a line",
+      "when": "2014–2021",
       "text": "OHCHR documented arbitrary detention and ill-treatment involving Government actors and armed groups. Its 2014–2021 study examines accountability as well as abuse; a map of military geography cannot tell that whole story.",
       "view": {
         "mode": "globe",

@@ -15,6 +15,7 @@
   "scenes": [
     {
       "title": "Reims: Germany signs surrender",
+      "when": "7 May 1945",
       "text": "Germany’s unconditional military surrender was signed at Reims on 7 May 1945. The document provided for fighting to stop the following day. The point locates the signing, not the position of every remaining German unit.",
       "view": {
         "mode": "globe",
@@ -42,6 +43,7 @@
     },
     {
       "title": "Berlin: a second signing",
+      "when": "8 May 1945",
       "text": "A further surrender document was signed in Berlin on 8 May 1945. The National Archives explains the importance of this act to the Soviet Union. Different ceremonies and time zones help explain different commemorative dates.",
       "view": {
         "mode": "globe",
@@ -69,6 +71,7 @@
     },
     {
       "title": "An announcement reaches the public",
+      "when": "14 Aug 1945",
       "text": "US President Truman announced Japan’s acceptance of surrender on 14 August 1945 in Washington. The date was already 15 August in Japan. The point locates the announcement and distinguishes it from the later formal signing.",
       "view": {
         "mode": "globe",
@@ -96,6 +99,7 @@
     },
     {
       "title": "Tokyo Bay: the formal Japanese surrender",
+      "when": "2 Sep 1945",
       "text": "Japanese representatives signed the surrender instrument aboard USS Missouri in Tokyo Bay on 2 September 1945. That formal act followed the August announcement. A single endpoint does not mean that displacement, hunger and postwar violence ended immediately.",
       "view": {
         "mode": "globe",

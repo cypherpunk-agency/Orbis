@@ -15,12 +15,14 @@
     },
     {
       "title": "The last speaker",
+      "when": "2022",
       "text": "In 2022, Cristina Calderón died in Puerto Williams, Chile. She was the last native speaker of Yaghan, the language of people who lived at the southern tip of the Americas.",
       "view": {"mode": "globe", "center": [-68, -54], "zoom": 5},
       "points": [{"at": [-67.6, -54.93], "label": "Puerto Williams", "r": 6, "color": "c2"}]
     },
     {
       "title": "Livonian",
+      "when": "2013",
       "text": "In 2013, Grizelda Kristiņa, the last native speaker of Livonian from the Latvian coast, died at 103. A small community still learns it today.",
       "view": {"mode": "globe", "center": [22, 57.5], "zoom": 7},
       "points": [{"at": [22, 57.6], "label": "Livonian coast", "r": 6, "color": "c2"}]

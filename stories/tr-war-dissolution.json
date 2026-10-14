@@ -15,6 +15,7 @@
  "scenes": [
   {
    "title": "The state before the war",
+   "when": "1914",
    "text": "The shaded territory is the Ottoman legal-state snapshot of 1 July 1914. The war brought fighting on several fronts, but a border dataset cannot tell us who occupied each place each month. The following scenes use located events rather than invented moving control areas.",
    "view": {
     "mode": "globe",
@@ -83,6 +84,7 @@
   },
   {
    "title": "The Armenian genocide",
+   "when": "1915–1916",
    "text": "In 1915–1916, Ottoman authorities carried out massacres and deportations that destroyed Armenian communities. USHMM estimates at least 664,000 deaths and possibly 1.2 million. The marked Kharput and Syrian desert are documented places in that history, not a complete map of killings or a numerical distribution of victims.",
    "view": {
     "mode": "globe",

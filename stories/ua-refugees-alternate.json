@@ -63,6 +63,7 @@
   },
   {
    "title": "Where they went",
+   "when": "End of 2025",
    "text": "At the end of 2025 Germany hosted 1.17 million refugees from Ukraine and Poland 970,000, followed by Czechia (390,000), the United Kingdom (270,000) and Spain (250,000). About 4.3 million of the 5.2 million lived in the European Union, most under its temporary protection scheme.",
    "view": {
     "mode": "globe",
@@ -132,6 +133,7 @@
   },
   {
    "title": "The Russian figure",
+   "when": "2022–2024",
    "text": "UNHCR lists 1.3 million refugees from Ukraine in Russia at the end of 2022 and 1.2 million a year later. At the end of 2024 the same table shows fewer than 7,000. The data do not say why: the figures are what Russia reports, and the drop should not be read as 1.2 million departures.",
    "view": {
     "mode": "globe",
@@ -176,6 +178,7 @@
   },
   {
    "title": "Displaced at home",
+   "when": "2022–2025",
    "text": "Most Ukrainians who fled stayed inside Ukraine. UNHCR's database counts 5.9 million internally displaced at the end of 2022 and 3.7 million at the end of 2025, on top of 5.2 million refugees abroad: together about a fifth of the pre-war population.",
    "view": {
     "mode": "globe",
