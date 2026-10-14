@@ -598,6 +598,8 @@ function settle(){
 
 // ---------- interaction ----------
 const ptrs=new Map(); let drag=null;
+// no browser context menu on the map or the controls; reading text and links in the panels keep theirs (copy, open link)
+document.addEventListener("contextmenu",e=>{ if(!e.target.closest(":is(#sheet,#toc,#lic) :is(p,h1,h2,h3,li,summary,figcaption,blockquote,a)")||e.target.closest("button")) e.preventDefault(); });
 canvas.addEventListener("pointerdown",e=>{canvas.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
   settle();
   if(ptrs.size===1)drag={x0:e.clientX,y0:e.clientY,moved:false,last:performance.now(),vx:0,vy:0};

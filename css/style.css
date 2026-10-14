@@ -29,6 +29,10 @@ html,body{height:100%;margin:0}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{background:var(--space);color:var(--ink);font-family:var(--ui);overflow:hidden;-webkit-font-smoothing:antialiased}
 #map{position:fixed;inset:0;touch-action:none;display:block;cursor:grab}
+/* the app chrome and map behave like an app: no text selection or long-press callout; reading text stays selectable */
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+:is(#sheet,#toc,#lic) :is(p,h1,h2,h3,li,summary,figcaption,blockquote,a){-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+:is(#sheet,#toc,#lic) button,:is(#sheet,#toc,#lic) button *{-webkit-user-select:none;user-select:none}
 #map:active{cursor:grabbing}
 .projection-snapshot{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 button{font:inherit;color:inherit;cursor:pointer}
