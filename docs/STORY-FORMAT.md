@@ -21,7 +21,7 @@ A story is one JSON file in `stories/`, listed in `stories/index.json`. It names
 | `sources` | no | Extra source ids from `js/sources.js` (for hand-entered facts use `"editorial"`) |
 | `scenes` | yes | Array of scenes, 4–8 is a good length |
 
-`updated` (optional, `"yyyy-mm-dd"`) shows "Updated <date>" under the scene title: use it for stories about events that are still moving.
+`updated` (optional, `"yyyy-mm-dd"`) shows "Updated <date>" at the bottom of the panel, next to the story name: use it for stories about events that are still moving.
 
 ## Series (campaigns)
 
@@ -44,6 +44,7 @@ Planned series and proposed chapter IDs belong in [ROADMAP.md](ROADMAP.md). Add 
 | Field | Meaning |
 |---|---|
 | `title`, `text` | Heading and 1–4 sentences. Plain language, active voice, numbers rounded. |
+| `when` | When the scene's events happen, shown above the title: `"1453"`, `"c. 9500–8000 BC"`, `"Oct 2025"`. Without it, a scene with a timeline shows the timeline's span; otherwise nothing. |
 | `view` | `{ "mode": "globe" \| "equal" \| "mercator", "center": [lon, lat], "zoom": 1 }`. `equal` is the flat Equal Earth map. Zoom 1 shows the whole globe; 2–3 a region. |
 | `basemap` | `"political"` (default), `"satellite"`, `"night"`, `"terrain"` |
 | `layers` | Array of layer specs (below). Each names a dataset alias in `data`. Its dataset's `source` appears in the UI automatically. |

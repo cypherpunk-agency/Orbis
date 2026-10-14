@@ -46,7 +46,6 @@
   <div class="handle"><button id="collapse" aria-label="Show or hide story text" aria-expanded="true"></button></div>
   <p id="sKicker" class="kicker"></p>
   <h2 id="sTitle"></h2>
-  <p id="sUpdated" class="updated" hidden></p>
   <p id="sText" class="collapsible"></p>
   <div id="sCamp" class="collapsible" hidden></div>
   <div id="sCard" class="card collapsible" hidden></div>
@@ -60,14 +59,15 @@
   <div id="sLegend" class="collapsible"></div>
   <div id="sMedia" class="collapsible" hidden></div>
   <div id="sChart" class="collapsible" hidden></div>
+  <p id="sUpdated" class="updated collapsible" hidden></p>
+  <details id="sNotes" class="collapsible"><summary data-t="Sources and notes">Sources and notes</summary><p id="sNotesBody"></p></details>
+  <div id="sData" class="collapsible" aria-label="Data and licences"></div>
+  <div id="sTools" class="collapsible"></div>
   <nav id="steps" aria-label="Story steps">
     <button id="prev" class="btn" data-t="Back">Back</button>
     <div id="dots"></div>
     <button id="next" class="btn" data-t="Next">Next</button>
   </nav>
-  <details id="sNotes" class="collapsible"><summary data-t="Sources and notes">Sources and notes</summary><p id="sNotesBody"></p></details>
-  <div id="sData" class="collapsible" aria-label="Data and licences"></div>
-  <div id="sTools" class="collapsible"></div>
 </section>
 
 <div id="lic" hidden role="dialog" aria-label="Data and licences">

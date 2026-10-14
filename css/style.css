@@ -56,7 +56,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .handle{display:flex;justify-content:center;position:sticky;top:0;background:var(--paper);padding-top:4px;margin:0 -20px;z-index:1}
 #collapse{border:0;background:none;width:64px;height:22px;display:grid;place-items:center}
 #collapse::before{content:"";width:38px;height:4px;border-radius:2px;background:var(--rule)}
-.kicker{margin:2px 0 2px;font-size:15px;font-weight:600;color:var(--accent)}
+.kicker{margin:2px 0 2px;font-size:15px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+.kicker:empty{display:none}
 #sTitle{font-family:var(--serif);font-weight:600;font-size:23px;line-height:1.2;margin:0 0 8px;text-wrap:balance}
 #sText{font-family:var(--serif);font-size:17px;line-height:1.55;margin:0 0 12px;max-width:62ch;color:var(--ink)}
 #sheet.collapsed{max-height:none}
@@ -88,7 +89,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 #tlSlider{width:100%;margin:12px 0 4px;accent-color:var(--accent);height:28px}
 #tlCaption{font-family:var(--serif);font-size:16px;line-height:1.45;color:var(--ink-soft);margin:4px 0 0;min-height:2.9em}
 
-#steps{display:flex;align-items:center;gap:10px;margin:4px 0 6px}
+#steps{display:flex;align-items:center;gap:10px;position:sticky;bottom:0;z-index:1;background:var(--paper);border-top:1px solid var(--rule);
+  margin:12px -20px 0;padding:8px 20px calc(8px + env(safe-area-inset-bottom,0px))}
+#sheet:has(> #steps:not([hidden])):not(.collapsed){padding-bottom:0}
 #steps .btn{height:42px;border-radius:999px;padding:0 18px;font-size:16px;font-weight:600}
 #prev{background:none;border:1px solid var(--rule)}
 #prev:disabled{opacity:.35;cursor:default}
@@ -130,6 +133,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   #sheet{left:16px;right:auto;bottom:auto;top:calc(64px + env(safe-area-inset-top,0px));width:390px;max-height:calc(100% - 84px - env(safe-area-inset-top,0px));
     border:1px solid var(--rule);border-radius:14px;padding:6px 24px 18px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
   .handle{display:none}
+  #steps{margin:12px -24px 0;padding:8px 24px 12px}
   #toc{top:calc(64px + env(safe-area-inset-top,0px));left:16px;right:auto;bottom:16px;width:440px;border:1px solid var(--rule);border-radius:14px}
 }
 @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
@@ -210,7 +214,7 @@ body.embed #tocBtn, body.embed .brand, body.embed .zoom, body.embed #sTools{disp
 body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none;color:var(--ink)}
 
 /* campaigns */
-.updated{margin:0 0 6px;font-size:13px;color:var(--ink-soft)}
+.updated{margin:8px 0 0;font-size:14px;color:var(--ink-soft)}
 .kick-camp{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .camp-go{width:100%;margin:10px 0 6px;height:42px;border-radius:999px;padding:0 18px;font:600 16px var(--ui);background:var(--ink);color:var(--paper);border:1px solid var(--ink);cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .camp-list{list-style:none;margin:6px 0;padding:0}

@@ -14,6 +14,7 @@
  "scenes": [
   {
    "title": "Before states called Turkey",
+   "when": "10th–9th millennium BC",
    "text": "Göbekli Tepe stands in Upper Mesopotamia, near today’s Şanlıurfa. UNESCO dates its monumental enclosures to the tenth and ninth millennia BC and associates their builders with hunter-gatherer communities. This is a place in the history of the land, thousands of years before the Turkish republic.",
    "view": {
     "mode": "globe",
@@ -39,6 +40,7 @@
   },
   {
    "title": "A Bronze Age centre inland",
+   "when": "2nd millennium BC",
    "text": "Hattusha was the Hittite capital. UNESCO describes its influence across Anatolia and northern Syria in the second millennium BC. Its inland setting contrasts with the Aegean coastal cities in the next scene; the dot marks the archaeological site, not the empire’s borders.",
    "view": {
     "mode": "globe",
@@ -64,6 +66,7 @@
   },
   {
    "title": "Greek and Roman layers on the Aegean",
+   "when": "Hellenistic and Roman eras",
    "text": "Ephesus preserves successive Hellenistic and Roman settlements beside an estuary whose coastline changed. The Library of Celsus and Great Theatre belong to its Roman imperial landscape. The archaeological-site marker is inland today; it does not reconstruct the ancient shoreline.",
    "view": {
     "mode": "globe",
@@ -89,6 +92,7 @@
   },
   {
    "title": "Byzantine Constantinople",
+   "when": "Byzantine era",
    "text": "At the meeting of the Bosporus and the Sea of Marmara, Constantinople became an imperial centre. UNESCO’s Istanbul heritage account identifies surviving Byzantine works, including Justinian’s Hagia Sophia. Marking that church locates one surviving layer; it does not turn Byzantine history into a history of the modern nation-state.",
    "view": {
     "mode": "globe",
@@ -114,6 +118,7 @@
   },
   {
    "title": "Armenian Ani at a crossroads",
+   "when": "10th–11th centuries",
    "text": "Ani flourished as a capital of the medieval Armenian Bagratid kingdom in the tenth and eleventh centuries. UNESCO describes its later Byzantine, Seljuk and Georgian layers and its caravan connections. Near today’s Armenia–Turkey boundary, the site makes a history of Anatolia broader than the succession of states in Istanbul.",
    "view": {
     "mode": "globe",
@@ -139,6 +144,7 @@
   },
   {
    "title": "Seljuk Konya, before Ottoman Bursa",
+   "when": "12th–13th centuries",
    "text": "Türkiye’s UNESCO tentative-list description identifies Konya as a Seljuk capital in the twelfth and thirteenth centuries. Farther northwest, Bursa became an early Ottoman capital. These separate centres locate successive political worlds; they are not ethnic territories or a smooth, inevitable transition to modern Turkey.",
    "view": {
     "mode": "globe",

@@ -1326,15 +1326,21 @@ function placeTicks(){ const t=scene&&scene.timeline; ticksEl.hidden=!(t&&t.spac
   ticksEl.innerHTML=t.years.map((y,i)=>`<i style="left:${sliderVal(i)/10}%"></i>`).join(""); }
 el.slider.oninput=()=>{stopPlay();tlIdx=sliderIdx(el.slider.value);setFrame();};
 
+// scene "when": an explicit scene.when, else the span its timeline covers
+function sceneWhen(sc){ if(sc.when) return sc.when; const tl=sc.timeline; if(!tl||!tl.years||!tl.years.length) return "";
+  const a=tl.label(tl.years[0]), b=tl.label(tl.years[tl.years.length-1]); return String(a)===String(b)?String(a):a+" – "+b; }
 function showScene(i, fly=true){
   const st=STORIES[si]; ci=clamp(i,0,st.scenes.length-1); scene=st.scenes[ci]; stopPlay();
   const cp=campaignOf(st); el.camp.hidden=true; el.card.hidden=true;
-  if(cp){ const k=cp.chapters.indexOf(st.id);
-    el.kicker.innerHTML=`<button class="kick-camp" title="${esc(t("All chapters"))}">${esc(cp.title)}</button> · ${esc(t("Chapter {n} of {m}",{n:k+1,m:cp.chapters.length}))}: ${esc(st.title)}`;
-    el.kicker.querySelector("button").onclick=()=>openCampaign(cp.id); }
-  else el.kicker.textContent=st.title;
+  // top: when the scene happens; bottom (#sUpdated): which story/series this is and when it was last edited
+  el.kicker.textContent=sceneWhen(scene);
   el.title.textContent=scene.title; el.text.textContent=scene.text;
-  el.updated.hidden=!st.updated; if(st.updated) el.updated.textContent=t("Updated {d}",{d:fmtDate(st.updated)});
+  const upd=st.updated?` · ${esc(t("Updated {d}",{d:fmtDate(st.updated)}))}`:"";
+  if(cp){ const k=cp.chapters.indexOf(st.id);
+    el.updated.innerHTML=`<button class="kick-camp" title="${esc(t("All chapters"))}">${esc(cp.title)}</button> · ${esc(t("Chapter {n} of {m}",{n:k+1,m:cp.chapters.length}))}: ${esc(st.title)}${upd}`;
+    el.updated.querySelector("button").onclick=()=>openCampaign(cp.id); }
+  else el.updated.innerHTML=esc(st.title)+upd;
+  el.updated.hidden=false;
   markRead(st.id,ci,st.scenes.length);
   el.blocs.hidden=true; el.steps.hidden=false; el.notes.hidden=false;
   if(scene.timeline){el.tl.hidden=false;tlIdx=scene.timeline.start||0;el.slider.max=scene.timeline.spacing?1000:scene.timeline.years.length-1;}
