@@ -35,7 +35,7 @@ Portals, catalogues and publishers to search. Licences are set per dataset in al
 | [Illinois Data Bank](https://databank.illinois.edu) | Cline Center coups | Per dataset | JSON endpoint failed | — | — | — |
 | [Global Data Lab](https://globaldatalab.org) | Subnational HDI | Custom: non-profit only | Free download | — | Yearly | Medium–high |
 
-Still to scout (named in the planning, not yet visited): World Bank Data360/WDI, WHO GHO, UNESCO UIS, UN SDG database, ILOSTAT, UNDP HDR, IHME GBD, national statistics offices, the conflict sources (UCDP candidate, GDELT, ReliefWeb, CrisisWatch). Their licences are being checked for the [history and atlas plan](PLAN-HISTORY-ATLAS.md).
+The history, conflict and indicator sources named in the [history and atlas plan](PLAN-HISTORY-ATLAS.md) were checked in October 2026: see [the licence check below](#licence-check-history-conflicts-and-indicators-october-2026). Still to scout: national statistics offices.
 
 ## Candidate datasets
 
@@ -135,7 +135,7 @@ Story ideas are hooks to test against the data, not checked facts.
 | Dataset | Licence | Verdict | Contents | Layer | Story idea |
 |---|---|---|---|---|---|
 | Malaria Atlas Project | CC BY 3.0 (S) | C-OK | Malaria maps | raster + timeline | Malaria's shrinking map |
-| WHO Global Health Observatory | CC BY-NC-SA 3.0 IGO (S; sources conflict) | Story | Health indicators | choropleth | Vaccination coverage |
+| WHO Global Health Observatory | CC BY 4.0 + WHO terms on data.who.int; who.int data policy limits use to public-health purposes; publications CC BY-NC-SA 3.0 IGO (P; conflicting) | Story (ship values unchanged) | Health indicators | choropleth | Vaccination coverage |
 
 ### Science, education, culture
 
@@ -172,6 +172,87 @@ Story ideas are hooks to test against the data, not checked facts.
 
 Runners-up: Explosions in the sky (CNEOS, once cleared), The coup belt, Damming the world's rivers, The Great Divergence, Born abroad, awarded in America.
 
+## Licence check: history, conflicts and indicators (October 2026)
+
+Check level: P = read at the publisher's own page, file or API; S = secondary; U = unverified. Verdicts follow the two-tier rule in CLAUDE.md.
+
+### History
+
+| Source | Licence | Key terms (quoted or summarised) | Verdict | Check |
+|---|---|---|---|---|
+| historical-basemaps (aourednik) | GPL-3.0 | Derived files stay GPL | Story | P |
+| AWMC geodata (GitHub) | ODbL 1.0 | Share-alike on the database; AWMC map tiles are separately CC BY-NC 3.0 | Story | P |
+| DARMC (Harvard Dataverse) | CC0 per set, or none | Roman Road Network, Ports, Coin Hoards: "limited information on how it can be used" | CC0 sets base; others ask | P |
+| DARE (Åhlfeldt) | CC BY (version unclear) | GeoJSON API and XYZ tiles work | Story once version pinned | S |
+| Stanford ORBIS network | CC BY 3.0 | Edge/node CSVs | Base | P |
+| Euratlas | Proprietary | "in no case the vector data themselves" may be disseminated | Ruled out | P |
+| IEG-Maps (HRE 1378–1806) | "personal use" on own site; CC BY-NC 4.0 per GeoPortOst | Images only | Story if NC listing confirmed | P |
+| HistoGIS HRE Imperial Circles | CC BY 4.0 site-wide, but vectorised from IEG-Maps | Weak licence chain | Story, treat as BY-NC | P |
+| ETH Zürich HRE territories (Roller 2021) | CC BY-NC-SA 4.0 | Auto-generated from a modern map + Wikipedia | Story (quality caveat) | P |
+| Princes & Townspeople (HRE cities) | CC0 1.0 | City→ruler histories c. 1100–1800, city points and borders | Base | P |
+| GeaCron, Centennia | All rights reserved / paid | — | Ruled out | P |
+| Wikidata | CC0 | 60 s query limit, 5 parallel queries, descriptive User-Agent required | Base | P |
+| Wikipedia Russo-Ukrainian war map module | CC BY-SA 4.0 | ~1,012 settlement control points; front shading is only an image | Story | P |
+| DeepStateMap | Proprietary | Credited screenshots free; API/data no transfer, no "identical objects" | Screenshots story; data ask | P |
+| ISW / CTP | All rights reserved | Permission needed for graphics | Ask | P/S |
+| UNHCR Operational Data Portal | CC BY 4.0 | — | Base | P |
+| Kiel Ukraine Support Tracker | None stated | Working paper "All rights reserved" (S) | Ask | P |
+| West Point history atlas | US federal work | USMA pages now 404; verify per plate | Base | S |
+| Library of Congress maps | Free unless a Rights Advisory is present | Credit "Library of Congress, Geography and Map Division" | Base | P |
+| David Rumsey Map Collection | CC BY-NC-SA 3.0 | "not for commercial use" | Story | P |
+| Newberry Atlas of Historical County Boundaries | Open access | "any lawful purpose, commercial or non-commercial" | Base | P |
+| IPUMS NHGIS | Custom | "will not redistribute the data without permission" | Ask | P |
+| USGS territorial acquisitions | Public domain | Shapefile no longer online | Base, availability U | S |
+| MEDSL US President 1976–2024 | CC0 | 514 KB CSV | Base | P |
+| USFS Royce land cessions | CC BY 4.0 | 752 polygons | Base | P |
+| Eurostat GISCO NUTS | GISCO terms | "will not be used for commercial purposes", © EuroGeographics | Story (NC) | P |
+| EU Cohesion Open Data | CC0 (per dataset) | — | Base | P |
+| European Parliament election results | EP reuse notice | Commercial reuse with source and URL | Base | P |
+| Eurobarometer aggregates | CC BY 4.0 or EC reuse notice | Microdata via GESIS unverified | Base (aggregates) | P |
+| EHRI/Stanford European borders 1938–45 | Custom note | "commercial use is strictly prohibited", "scholarly work" | Ask (write to authors) | P |
+| EHRI SAMU killing sites (Ukraine) | CC BY 4.0 | — | Base (sensitive) | P |
+| THOR aerial bombing | Presumed public domain | No licence text seen | U | S |
+| USHMM, Arolsen Archives | Per item / no redistribution | — | Ask / ruled out for files | P |
+| Copernicus Sentinel-2, NASA GIBS HLS | Open | HLS tiles stop at zoom 12 | Base | P |
+
+### Conflicts now
+
+| Source | Licence | Key terms | Verdict | Check |
+|---|---|---|---|---|
+| UCDP GED + Candidate (monthly) | CC BY 4.0 | CSV downloads open; API now needs an emailed token; file names change per release | Base | P |
+| GDELT 2.0 | Open terms | "unlimited and unrestricted use … commercial"; don't ship third-party article titles | Base | P |
+| IPC acute food insecurity (HDX) | CC0 | IPC's own API needs a key | Base | P |
+| IDMC displacement | CC BY-NC-SA 3.0 IGO (own API docs) vs CC BY-IGO (HDX) | Use the stricter one | Story (NC-SA) | P |
+| UNHCR population API | CC BY 4.0 | No key needed | Base | S |
+| HDX HAPI conflict events | ACLED terms | — | Ruled out | P |
+| CFR Global Conflict Tracker, ReliefWeb content | Site terms | No public or commercial reuse / personal non-commercial | Ruled out | P |
+| Crisis Group CrisisWatch | Unknown (site blocked scripts) | — | Ask | U |
+
+### Country indicators
+
+| Source | Licence | Key terms | Verdict | Check |
+|---|---|---|---|---|
+| UNDP HDR | CC BY 3.0 IGO | "for any purpose, even commercially" | Base | P |
+| Penn World Table 11.0 | CC BY 4.0 | — | Base | P |
+| Ember | CC BY 4.0 | Bulk CSV needs no key | Base | P |
+| UMD tree-cover loss (GFW) | CC BY 4.0 | GFW API needs a key; other GFW sets per dataset | Base | P |
+| WRI Aqueduct 4.0 | CC BY | — | Base | P |
+| ILOSTAT | CC BY 4.0 (S) | ILO site blocked scripts | Base (confirm) | S |
+| UNESCO UIS | CC BY-SA 4.0 | API needs no key | Story (SA) | P |
+| V-Dem v16 | CC BY-SA 4.0 (OWID mislabels as CC BY) | — | Story (SA) | P |
+| WHO GHO | See Health row above | Values must not be altered | Story | P |
+| Yale EPI | CC BY-NC-SA 4.0 | — | Story (NC) | P |
+| Freedom House | Custom: non-commercial OK | Data now via request form | Story (NC) | P |
+| TI Corruption Perceptions Index | CC BY-ND 4.0 | Ship scores unchanged only | Story (verbatim) | P |
+| UNdata | UNdata terms | Free to copy and redistribute with citation; commercial not addressed | Story | P |
+| IMF DataMapper | IMF terms | No automated bulk download without permission | Story (in use, no scheduled scraping) | P |
+| Our World in Data | Per origin | Read `origins[].license` per indicator; mixed-origin charts often fail | Per origin | P |
+| OECD, World Inequality Database | CC BY 4.0 (S) | — | Hold until confirmed | S |
+| ND-GAIN, RSF Press Freedom | No licence stated | — | Hold | U |
+| UN SDG Global Database | UN site terms | Personal non-commercial, no redistribution | Ruled out (use custodian agencies) | P |
+| IHME GBD | Non-commercial user agreement | No redistribution | Ruled out | P |
+| UN Comtrade | Usage agreement | Redistribution prohibited without permission | Ruled out | P |
+
 ## Ruled out
 
 Do not revisit unless a written grant is on file.
@@ -183,7 +264,9 @@ Do not revisit unless a written grant is on file.
 | WDPA / Protected Planet | No redistribution via downloads or interactive maps without permission (S) |
 | IUCN Red List and BirdLife ranges | Redistribution not allowed (from memory, re-check if needed) |
 | eBird Status & Trends | Commercial use needs permission; redistribution terms unreadable |
-| ACLED | No redistribution (see LICENSING.md) |
+| ACLED (incl. HDX HAPI conflict events) | No redistribution (see LICENSING.md) |
+| IHME GBD, UN Comtrade, UN SDG database, CFR tracker, ReliefWeb content | No redistribution (P, October 2026 check) |
+| Euratlas, GeaCron, Centennia | Proprietary historical borders |
 | Global Terrorism Database, EM-DAT, Ethnologue, Space-Track, IAEA PRIS | Restrictive or paid terms (from memory) |
 | UCS Satellite Database | No licence stated, paused since 2023: use GCAT |
 | Powell & Thyne coups | No licence stated: use Cline Center |

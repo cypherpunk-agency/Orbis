@@ -2,7 +2,7 @@
 
 What we want to tell next, what the engine and data are missing, and the order to build it in. Companion files: [DATA-CATALOG.md](DATA-CATALOG.md) (where data comes from), [STORY-FORMAT.md](STORY-FORMAT.md) (how stories are written), [LICENSING.md](LICENSING.md) (what we may use).
 
-Status 14 October 2026: engine features built: F1 calendars, F2 shapes over time, F3 control areas and fronts, F4 dated movements, F5 event cards, F6 historical names, F7 map overlays (+ warp tool), F8 before/after swipe, F9 pick a country, F10 regions spanning countries, F11 categories over time, F12 stacked area and Gantt charts, F14 country atlas (World Bank base tier), F17 overlapping memberships, F18 group outlines. Open: F13 scheduled refresh (needs decision 3), F15 density grids (done per story in build scripts), F16 detailed Europe (deferred: historical shapes carry their own detail). Phase A stories are being built; licence checks for the history, conflict and indicator sources are running and fill the "Data" sections below.
+Status 14 October 2026: engine features built: F1 calendars, F2 shapes over time, F3 control areas and fronts, F4 dated movements, F5 event cards, F6 historical names, F7 map overlays (+ warp tool), F8 before/after swipe, F9 pick a country, F10 regions spanning countries, F11 categories over time, F12 stacked area and Gantt charts, F14 country atlas (World Bank base tier), F17 overlapping memberships, F18 group outlines. Open: F13 scheduled refresh (needs decision 3), F15 density grids (done per story in build scripts), F16 detailed Europe (deferred: historical shapes carry their own detail). Phase A stories are being built; licence checks for the history, conflict and indicator sources are done (section 3).
 
 ## Summary
 
@@ -79,18 +79,18 @@ Effort: S = a day, M = a few days, L = a week or more.
 
 ## 3. Data, by topic
 
-Verified candidates are in [DATA-CATALOG.md](DATA-CATALOG.md). The licence check of the history, conflict and indicator sources is running; results are added here when it reports.
+Licence check completed 14 October 2026 (details and quotes in [DATA-CATALOG.md](DATA-CATALOG.md#licence-check-history-conflicts-and-indicators-october-2026)). "Base" = commercial use OK; "story" = allowed as a labelled story layer; "ask" = needs written permission first.
 
-| Topic | Strongest known options | Open questions |
-|---|---|---|
-| Roman Empire | Itiner-e roads (CC BY 4.0), Pleiades places (CC BY 3.0), Maddison (CC BY) | Province and extent polygons by period: AWMC, DARMC, historical-basemaps (GPL, story layer) |
-| Holy Roman Empire | — | Vector territories around 1648/1789 may not exist openly; fallback: overlay of public-domain historical maps (F7) and hand-drawn outlines from them |
-| United States | US Census (public domain), Wikidata (CC0) | Historical county boundaries (Newberry AHCB), election returns (MEDSL), territorial acquisitions (USGS), land cessions |
-| European Union | Membership dates (editorial), Eurostat | NUTS geometry terms (GISCO), cohesion data, budget balances |
-| World War II | CShapes 1938/1945 (NC, in use), public-domain US Army maps | Any open control/front dataset; THOR bombing data; Holocaust geodata terms |
-| Ukraine | UCDP (in use), UNHCR, VIIRS night lights | Control of territory: Wikipedia's map data (CC BY-SA, would be fine for a story layer) vs DeepStateMap/ISW (permission) |
-| Conflicts now | UCDP (in use) | UCDP monthly candidate data, GDELT, ReliefWeb, CrisisWatch, IDMC |
-| Country atlas | World Bank (CC BY 4.0), OWID (CC BY + upstream) | WHO, UNESCO, UNDP, SDG database, ILO, Ember, V-Dem (SA), Freedom House (likely permission), IMF (NC, in use) |
+| Topic | Use | Story layer only | Ask first / avoid |
+|---|---|---|---|
+| Roman Empire | Itiner-e roads (in use), Pleiades (in use), Stanford ORBIS route network (CC BY 3.0), DARE places and tiles (CC BY, pin version), DARMC CC0 sets | AWMC geodata (ODbL), historical-basemaps (GPL) | DARMC road network (no licence), Euratlas (proprietary) |
+| Holy Roman Empire | Princes & Townspeople city→ruler histories 1100–1800 (CC0) | ETH Roller territories (CC BY-NC-SA, auto-generated, weak), HistoGIS Imperial Circles 1648/1792 (treat as BY-NC), IEG-Maps images (conflicting terms: confirm) | GeaCron, Centennia. **No openly licensed HRE territory polygons exist** (decision 2) |
+| United States | Newberry county boundaries 1629–2000, MEDSL presidential returns 1976–2024 (CC0), USFS Royce land cessions (CC BY 4.0), Library of Congress map scans, US Census | — | IPUMS NHGIS (no redistribution); USGS territorial-acquisition shapefile not found online |
+| European Union | Cohesion Open Data (CC0), Eurobarometer aggregates (CC BY 4.0), EP election results (commercial reuse with source) | **GISCO NUTS geometry is non-commercial** (EuroGeographics) | Eurobarometer microdata (GESIS, unverified) |
+| World War II | EHRI SAMU killing sites in Ukraine (CC BY 4.0), West Point atlas scans (public domain, per map), Library of Congress | CShapes 1938/1945 (in use) | EHRI/Stanford monthly borders 1938–45 ("scholarly", no commercial: write to the authors), THOR bombing (likely public domain, unverified), USHMM, Arolsen. **No open front-line dataset exists** |
+| Ukraine | UNHCR (in use), UCDP, Sentinel-2 and NASA GIBS imagery | Wikipedia control-points module (~1,000 points, CC BY-SA), DeepStateMap credited screenshots | DeepStateMap data/API, ISW/CTP, Kiel Support Tracker (no licence) |
+| Conflicts now | UCDP Candidate monthly CSV (CC BY 4.0, file name changes per release; API now needs a token), GDELT (open, machine-coded), IPC hunger via HDX (CC0), UNHCR API (no key) | IDMC displacement (NC-SA: its own terms are stricter than HDX's) | ACLED and HDX HAPI conflict events (= ACLED), CFR tracker, CrisisWatch, ReliefWeb content |
+| Country atlas | UNDP HDR (CC BY 3.0 IGO), Penn World Table 11 (CC BY), Ember (CC BY), UMD tree-cover loss, WRI Aqueduct, UCDP, UNHCR, IPC, ILOSTAT (S) | UNESCO UIS (SA), V-Dem (SA), WHO GHO (CC BY + WHO terms, values unchanged), Yale EPI (NC-SA), Freedom House (NC, data by request), TI CPI (ND: verbatim only), IDMC (NC-SA), UNdata, IMF (no bulk scraping) | IHME GBD, UN Comtrade, UN SDG database as such, UNICEF/IGME, UNODC, SIPRI; hold WID, ND-GAIN, RSF until terms are found. OWID only via each origin's own licence |
 
 ## 4. Editorial rules for history and war
 
@@ -147,7 +147,7 @@ Nothing over ~1 MB per file in git; big rasters are pre-cut or fetched at runtim
 
 ## 7. Decisions for you
 
-1. **Ukraine control of territory**: use Wikipedia's map data (CC BY-SA, allowed as a story layer, quality varies) or ask DeepStateMap/ISW for written permission (better data, takes time)? Default: Wikipedia data, labelled, with UCDP events alongside.
-2. **Holy Roman Empire detail**: if no open vector data exists, accept outlines traced from public-domain historical maps (cited per map), or keep the HRE series at the level of the Empire's outline plus major territories?
+1. **Ukraine control of territory**: use Wikipedia's map data (CC BY-SA, allowed as a story layer, quality varies) or ask DeepStateMap/ISW for written permission (better data, takes time)? Default: Wikipedia data, labelled, with UCDP events alongside. The licence check found the Wikipedia module holds ~1,000 settlement control points (extractable) but no front-line polygon; DeepStateMap allows credited screenshots only.
+2. **Holy Roman Empire detail**: confirmed that no openly licensed territory polygons exist (best: ETH Roller, CC BY-NC-SA, auto-generated). If no open vector data exists, accept outlines traced from public-domain historical maps (cited per map), or keep the HRE series at the level of the Empire's outline plus major territories?
 3. **Scheduled refresh**: allow a GitHub Actions job to commit updated data to `master` weekly?
 4. ~~Atlas non-commercial tier~~ **Decided:** the atlas is an optional layer, so non-commercial and share-alike indicators are included with an "NC" badge; only terms that restrict redistribution (or are unclear) exclude an indicator.
