@@ -596,7 +596,7 @@ def assemble(pg, us, lists, wd_election, family, people):
                 if ws: winner = ws[0]
                 elif any(p["share"] for p in ps_all): winner = max(ps_all, key=lambda p: p["share"] or 0)
             parties = top_parties(ps_all, e.get("seatsTotal"), kind)
-            if not parties and e["turnout"] is None and e["source"] == "wikidata" and not winner: 
+            if not parties and e["turnout"] is None and e["source"] == "wikidata" and not winner:
                 # bare item: date only
                 pass
             row = {"date": e["date"], "type": kind, "turnout": e["turnout"], "parties": parties,
