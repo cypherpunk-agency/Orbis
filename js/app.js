@@ -349,7 +349,10 @@ function draw(){
   L.shapes.forEach(sh=>{ sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
       ctx.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1;
       if(sh.inner){ ctx.strokeStyle=onDark?"rgba(255,255,255,.5)":C.paper; ctx.lineWidth=0.7; if(f.properties.uncertain) ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]); } });
-    sh.outlines.forEach(o=>{ ctx.beginPath(); path(o.geom); ctx.strokeStyle=col(o.color); ctx.lineWidth=2; ctx.stroke(); }); });
+    sh.outlines.forEach(o=>{ ctx.beginPath(); path(o.geom); ctx.strokeStyle=col(o.color); ctx.lineWidth=2; ctx.stroke(); });
+    sh.lost.forEach(f=>{ ctx.beginPath(); path(f); ctx.setLineDash([4,3]); ctx.strokeStyle=C.ink; ctx.lineWidth=1.2; ctx.stroke(); ctx.setLineDash([]); });
+    sh.gained.forEach(f=>{ ctx.beginPath(); path(f); ctx.strokeStyle=C.ink; ctx.lineWidth=2.4; ctx.stroke(); });
+    if(sh.front){ ctx.beginPath(); path(sh.front); ctx.strokeStyle=col(sh.frontColor); ctx.lineWidth=3; ctx.stroke(); } });
   if(L.pov) L.pov.areas.forEach(a=>{ let o=a.properties.o[L.pov.view]; if(o&&!NAMES.has(o)) o=null; if(L.pov.only&&!L.pov.only.includes(a.properties.name)) return;
     ctx.beginPath(); path(a); const idx=feats.findIndex(f=>f.id===o);
     ctx.fillStyle=o&&idx>=0?C.tints[tint[idx]]:C.nodata; ctx.fill();
@@ -666,7 +669,14 @@ const LAYER={
     const groups=[...new Set(idx.map(i=>S.feats[i].properties.group))];
     const outlines=ly.outline===false?[]:groups.map(g=>({color:(G[g]&&G[g].color)||ly.color||"c2",
       geom:topojson.merge(S.topo,idx.filter(i=>S.feats[i].properties.group===g).map(i=>S.obj.geometries[i]))}));
-    L.shapes.push({feats:idx.map(i=>S.feats[i]),groups:G,color:ly.color||"c2",opacity:ly.opacity==null?0.55:ly.opacity,
+    // changes since the previous timeline step: areas lost (dashed) and gained (bold edge)
+    let lost=[], gained=[], front=null;
+    if(ly.changes&&scene&&scene.timeline){ const ys=scene.timeline.years, k=ys.indexOf(yr), py=k>0?ys[k-1]:null;
+      if(py!=null){ const was=new Set(S.feats.map((f,i)=>i).filter(i=>validAt(S.feats[i].properties,py)&&(!ly.groups||ly.groups.includes(S.feats[i].properties.group))));
+        lost=[...was].filter(i=>!idx.includes(i)).map(i=>S.feats[i]); gained=idx.filter(i=>!was.has(i)).map(i=>S.feats[i]); } }
+    // front: the shared edge between areas of different groups
+    if(ly.front) front=topojson.mesh(S.topo,{type:"GeometryCollection",geometries:idx.map(i=>S.obj.geometries[i])},(a,b)=>a!==b&&a.properties.group!==b.properties.group);
+    L.shapes.push({lost,gained,front,frontColor:ly.frontColor||"c2",feats:idx.map(i=>S.feats[i]),groups:G,color:ly.color||"c2",opacity:ly.opacity==null?0.55:ly.opacity,
       labels:ly.labels!==false,inner:ly.inner!==false,outlines,title:ly.title,year:yr});
     groups.forEach(g=>{ if(!L.shapeKeys.some(k=>k.g===g)) L.shapeKeys.push({g,label:(G[g]&&G[g].label)||g,color:(G[g]&&G[g].color)||ly.color||"c2"}); });
   },
@@ -736,8 +746,9 @@ const LAYER={
     let t=ly.title||set.label; if(ly.titles){ const k=Object.keys(ly.titles).map(Number).filter(a=>a<=yr).sort((a,b)=>b-a)[0]; if(k!=null) t=ly.titles[k]; }
     L.groups.push({label:t.replace("{n}",ids.length),color:ly.color||"c2",ids});
   },
-  categories(ly,d,y,L){ // one fill colour per category; values: {ISO3: category}
-    const set=d.sets[ly.set]; if(!set) return;
+  categories(ly,d,y,L){ // one fill colour per category; values: {ISO3: category}, or byYear: {year: {ISO3: category}} following the timeline
+    const set0=d.sets[ly.set]; if(!set0) return;
+    let set=set0; if(set0.byYear){ const ks=Object.keys(set0.byYear).map(Number).sort((a,b)=>a-b), k=ks.filter(v=>v<=+y).pop(); set=Object.assign({},set0,{values:k!=null?set0.byYear[k]:{}}); }
     const nm=ly.names&&(typeof ly.names[ly.set]==="object"?ly.names[ly.set]:ly.names); // story-side labels, e.g. translations
     Object.entries(ly.colors).forEach(([cat,c])=>L.groups.push({label:(nm&&nm[cat])||(set.labels&&set.labels[cat])||cat,color:c,
       ids:Object.entries(set.values).filter(([k,v])=>v===cat).map(([k])=>k)}));
