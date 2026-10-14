@@ -249,3 +249,18 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 
 .ov-row{display:grid;grid-template-columns:1fr 9em;align-items:center;gap:8px;font:14px var(--ui);margin:4px 0}
 .ov-row input{width:100%;accent-color:var(--accent)}
+
+/* country atlas */
+.atl-topics{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.atl-topics button{font:600 14px var(--ui);border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer;min-height:32px}
+.atl-topics button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.atl-q{width:100%;font:15px var(--ui);padding:7px 10px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);margin-bottom:6px}
+.atl-list{list-style:none;margin:0 0 8px;padding:0;max-height:210px;overflow:auto;border-top:1px solid var(--rule)}
+.atl-list button{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule);padding:7px 2px;color:var(--ink);font:15px/1.3 var(--ui);cursor:pointer}
+.atl-list button span{color:var(--ink-soft);font-size:13px;white-space:nowrap}
+.atl-list button[aria-current="true"]{color:var(--accent);font-weight:600}
+.atl-none{padding:8px 2px;color:var(--ink-soft)}
+.atl-prof{list-style:none;margin:4px 0 0;padding:0}
+.atl-prof li{display:grid;grid-template-columns:1fr auto;gap:0 10px;padding:5px 0;border-top:1px solid var(--rule);font:14px/1.3 var(--ui)}
+.atl-prof b{text-align:right}
+.atl-prof small{grid-column:1/-1;color:var(--ink-soft);font-size:12px}

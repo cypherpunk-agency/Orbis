@@ -100,6 +100,18 @@ const SOURCES = {
     url: "https://www.worldbank.org/en/programs/debt-statistics/ids", use: "commercial", redistribute: true,
     credit: "Source: World Bank, International Debt Statistics (CC BY 4.0)"
   },
+  "wb-wdi": {
+    name: "World Bank WDI", what: "World Development Indicators for the country atlas (only indicators whose metadata says CC BY 4.0; per-indicator original sources are named in each file)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://datacatalog.worldbank.org/public-licenses#cc-by",
+    url: "https://datatopics.worldbank.org/world-development-indicators/", use: "commercial", redistribute: true,
+    credit: "Source: World Bank, World Development Indicators (CC BY 4.0)"
+  },
+  "wb-wgi": {
+    name: "World Bank WGI", what: "Worldwide Governance Indicators: government effectiveness, rule of law, corruption control, voice, stability, regulatory quality", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://datacatalog.worldbank.org/public-licenses#cc-by",
+    url: "https://www.worldbank.org/en/publication/worldwide-governance-indicators", use: "commercial", redistribute: true,
+    credit: "Source: World Bank, Worldwide Governance Indicators (CC BY 4.0)"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",

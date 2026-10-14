@@ -54,6 +54,13 @@ if (fs.existsSync(path.join(root, "stories/campaigns.json"))) JSON.parse(read("s
   ["id", "title", "hook", "chapters"].forEach(k => { if (!c[k]) errs.push(`campaign ${c.id}: missing "${k}"`); });
   (c.chapters || []).forEach(id => { if (!index.some(m => m.id === id)) errs.push(`campaign ${c.id}: chapter "${id}" is not in stories/index.json`); });
 });
+// country atlas: every indicator file must name a registered source and a licence that fits its tier
+if (fs.existsSync(path.join(root, "data/atlas/catalog.json"))) JSON.parse(read("data/atlas/catalog.json")).indicators.forEach(it => {
+  if (!SOURCES[it.source]) errs.push(`atlas ${it.id}: unknown source "${it.source}"`);
+  if (!fs.existsSync(path.join(root, it.file))) errs.push(`atlas ${it.id}: missing ${it.file}`);
+  const L = String(it.licence || "").toUpperCase();
+  if (it.tier === "base" && !(L.includes("CC BY") && !L.includes("NC"))) errs.push(`atlas ${it.id}: licence "${it.licence}" not allowed in the base tier`);
+});
 // basemap sources referenced by the engine
 const app = read("js/app.js");
 for (const m of app.matchAll(/source:"([a-z0-9-]+)"/g)) if (!SOURCES[m[1]]) errs.push(`js/app.js: basemap source "${m[1]}" not registered`);

@@ -2,7 +2,7 @@
 
 What we want to tell next, what the engine and data are missing, and the order to build it in. Companion files: [DATA-CATALOG.md](DATA-CATALOG.md) (where data comes from), [STORY-FORMAT.md](STORY-FORMAT.md) (how stories are written), [LICENSING.md](LICENSING.md) (what we may use).
 
-Status 13 October 2026: plan agreed in outline; licence checks for the history, conflict and indicator sources are running and fill the "Data" sections below.
+Status 14 October 2026: engine features built: F1 calendars, F2 shapes over time, F3 control areas and fronts, F4 dated movements, F5 event cards, F6 historical names, F7 map overlays (+ warp tool), F8 before/after swipe, F9 pick a country, F10 regions spanning countries, F11 categories over time, F12 stacked area and Gantt charts, F14 country atlas (World Bank base tier), F17 overlapping memberships, F18 group outlines. Open: F13 scheduled refresh (needs decision 3), F15 density grids (done per story in build scripts), F16 detailed Europe (deferred: historical shapes carry their own detail). Phase A stories are being built; licence checks for the history, conflict and indicator sources are running and fill the "Data" sections below.
 
 ## Summary
 

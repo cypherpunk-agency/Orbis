@@ -548,6 +548,7 @@ function tap(x,y){
   if(!f){hideTip();return;}
   if(L.pairs&&L.pairs.has(f.id)&&L.pairs.from!==f.id){ pairFrom=f.id; markDirty(); L=layers(); Ldirty=false; el.legend.innerHTML=legendHTML(); describe(); render(); }
   else if(L.flows.length||focus){ focus=focus===f.id?null:f.id; L=layers(); el.legend.innerHTML=legendHTML(); render(); }
+  if(si>=0&&STORIES[si].atlas) atlasProfile(f.id);
   let html="<b>"+esc(nameOf(f.id))+"</b>"+gridHtml;
   if(L.choro){const v=L.cdata[f.id]; html+="<span>"+(v==null?t("No data"):esc(String(L.choro.fmt?L.choro.fmt(v):v)))+"</span>";}
   L.vals.forEach(lv=>{const v=lv.values[f.id]; if(v!=null) html+="<span>"+esc(lv.title)+": "+esc(lv.fmt(v))+"</span>";});
@@ -1197,6 +1198,52 @@ function openCard(e){
   c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
   c.scrollIntoView({block:"nearest"});
 }
+// ---------- country atlas: pick any indicator, see it on the map over time, tap a country for its profile ----------
+let ATLAS=null; const atlasState={topic:null,q:""};
+const ATLAS_PROFILE=["SP.POP.TOTL","NY.GDP.PCAP.PP.CD","SP.DYN.LE00.IN","SH.DYN.MORT","SE.TER.ENRR","EN.GHG.CO2.PC.CE.AR5","IT.NET.USER.ZS","SI.POV.GINI"];
+const atlasData={};
+const atlasLoad=code=>atlasData[code]||(atlasData[code]=loadJSON(ATLAS.indicators.find(x=>x.id===code).file));
+async function openAtlas(code,year){
+  if(!ATLAS){ try{ ATLAS=await loadJSON("data/atlas/catalog.json"); }catch(e){ return openExplore(); } }
+  const it=ATLAS.indicators.find(x=>x.id===code)||ATLAS.indicators.find(x=>x.id==="SP.DYN.LE00.IN")||ATLAS.indicators[0];
+  atlasState.topic=atlasState.topic||it.topic;
+  const d=await atlasLoad(it.id), ys=d.years, vals=Object.values(d.series.v.values);
+  // default year: the latest with at least 60% of the best coverage
+  const cov=ys.map((y,j)=>vals.filter(a=>a[j]!=null).length), best=Math.max(...cov), def=ys[cov.map((c,j)=>c>=best*0.6?j:-1).filter(j=>j>=0).pop()];
+  const v=vals.flatMap(a=>a.filter(x=>x!=null&&x>0)).sort((a,b)=>a-b), skew=v.length&&v[Math.floor(v.length*0.95)]/Math.max(v[Math.floor(v.length*0.5)],1e-9)>20;
+  const sc={title:it.name,text:it.definition?it.definition.split(/(?<=\.)\s/)[0]:"",view:{mode:"equal",center:[10,15],zoom:1},
+    layers:[{type:"choropleth",data:"a",series:"v",year:"t",title:it.name,fmt:it.fmt,log:skew}],
+    chart:{data:"a",series:"v",year:"t",top:10,title:"Highest",fmt:it.fmt},
+    timeline:{years:ys,start:ys.includes(+year)?+year:def}};
+  const st={id:"@atlas",cat:"Atlas",title:t("Country atlas"),hook:"",file:"atlas",atlas:it,sources:[],
+    notes:(it.long||it.name)+". "+(it.definition||"")+" Licence: "+it.licence+".",scenes:[sc],_data:{a:d}};
+  // compile the timeline like a story file
+  const yrs=sc.timeline.years; sc.timeline={isDate:false,years:yrs,start:Math.max(0,yrs.indexOf(sc.timeline.start)),label:y=>Cal.year(y),second:null,frame:y=>({year:y})};
+  let i=STORIES.findIndex(x=>x.id==="@atlas"); if(i<0){ STORIES.push(st); i=STORIES.length-1; } else STORIES[i]=st;
+  const fly=si!==i; si=i; quiz.mode=null; closeToc(); sheet.classList.remove("collapsed");
+  showScene(0,fly); el.steps.hidden=true; renderAtlasPicker(); history.replaceState(null,"","#atlas/"+it.id);
+}
+function renderAtlasPicker(){
+  const st=STORIES[si]; if(!st||!st.atlas||!ATLAS) return; const cur=st.atlas.id, q=atlasState.q.trim().toLowerCase();
+  const list=ATLAS.indicators.filter(x=>q?(x.name+" "+(x.long||"")).toLowerCase().includes(q):x.topic===atlasState.topic);
+  el.camp.innerHTML=`<div class="atl-topics">${ATLAS.topics.filter(tp=>ATLAS.indicators.some(x=>x.topic===tp)).map(tp=>`<button data-tp="${esc(tp)}" aria-pressed="${!q&&tp===atlasState.topic}">${esc(t(tp))}</button>`).join("")}</div>
+    <input class="atl-q" type="search" placeholder="${esc(t("Search indicators"))}" value="${esc(atlasState.q)}" aria-label="${esc(t("Search indicators"))}">
+    <ul class="atl-list">${list.map(x=>`<li><button data-code="${esc(x.id)}" aria-current="${x.id===cur}">${esc(x.name)}<span>${x.years[0]}–${x.years[1]}</span></button></li>`).join("")||`<li class="atl-none">${t("No match")}</li>`}</ul>`;
+  el.camp.hidden=false;
+  el.camp.querySelectorAll("[data-tp]").forEach(b=>b.onclick=()=>{ atlasState.topic=b.dataset.tp; atlasState.q=""; renderAtlasPicker(); });
+  el.camp.querySelectorAll("[data-code]").forEach(b=>b.onclick=()=>openAtlas(b.dataset.code));
+  const qi=el.camp.querySelector(".atl-q"); qi.oninput=()=>{ atlasState.q=qi.value; const pos=qi.selectionStart; renderAtlasPicker(); const n=el.camp.querySelector(".atl-q"); n.focus(); n.setSelectionRange(pos,pos); };
+}
+async function atlasProfile(id){
+  const st=STORIES[si]; if(!st||!st.atlas) return;
+  const rows=await Promise.all(ATLAS_PROFILE.filter(c=>ATLAS.indicators.some(x=>x.id===c)).map(async c=>{ const it=ATLAS.indicators.find(x=>x.id===c), d=await atlasLoad(c), a=d.series.v.values[id];
+    if(!a) return null; let j=a.length-1; while(j>=0&&a[j]==null) j--; if(j<0) return null;
+    const all=Object.values(d.series.v.values).map(x=>x[j]).filter(x=>x!=null).sort((p,q)=>q-p);
+    return `<li><span>${esc(it.name)}</span><b>${esc(String(fmtOf(it.fmt)(a[j])))}</b><small>${d.years[j]} · #${all.indexOf(a[j])+1} of ${all.length}</small></li>`; }));
+  const c=el.card; c.hidden=false;
+  c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(t("Country profile"))}</p><h3>${esc(nameOf(id))}</h3><ul class="atl-prof">${rows.filter(Boolean).join("")}</ul>`;
+  c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
+}
 // ---------- campaigns: a series of stories with a landing page, chapter order and reading progress ----------
 let CAMPAIGNS=[];
 const campaignOf=st=>st&&CAMPAIGNS.find(c=>c.chapters.includes(st.id.replace(/^@stories\/|\.json$/g,"")));
@@ -1243,8 +1290,8 @@ function buildToc(){
   $("tocCount").textContent=STORIES.length;
 }
 $("exploreBtn").onclick=openExplore;
-$("tocTools").innerHTML=`<button id="quizBtn">${t("Quiz")}</button><button id="cityBtn">${t("Your city")}</button><a href="editor.html">${t("Write a story")}</a>`;
-$("quizBtn").onclick=openQuiz; $("cityBtn").onclick=openCity;
+$("tocTools").innerHTML=`<button id="atlasBtn">${t("Country atlas")}</button><button id="quizBtn">${t("Quiz")}</button><button id="cityBtn">${t("Your city")}</button><a href="editor.html">${t("Write a story")}</a>`;
+$("atlasBtn").onclick=()=>openAtlas(); $("quizBtn").onclick=openQuiz; $("cityBtn").onclick=openCity;
 $("tocBtn").onclick=()=>toc.hidden?openToc():closeToc();
 $("tocClose").onclick=closeToc;
 function openToc(focus=true){ toc.hidden=false; layout(); $("tocBtn").setAttribute("aria-expanded","true"); stopPlay();
@@ -1285,6 +1332,7 @@ loadJSON("stories/index.json").then(list=>{ STORIES.unshift(...list.map(x=>Objec
   const idx=STORIES.findIndex(s=>s.id===h[0]);
   if(idx>=0) openStory(idx, Math.max(0,(+h[1]||1)-1));
   else if(h[0]==="c"&&h[1]) openCampaign(h[1]);
+  else if(h[0]==="atlas") openAtlas(h[1]);
   else if(h[0]==="explore") openExplore();
   else if(h[0]==="quiz") openQuiz();
   else if(h[0]==="city") openCity();
