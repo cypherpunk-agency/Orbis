@@ -15,6 +15,7 @@ python3 -m http.server 8000   # then http://localhost:8000
 - `js/sources.js` — register of every data source and its licence (shown in the UI)
 - `js/blocs.js` — country groups for Explore mode
 - `js/i18n.js` — `t()` helper for interface strings (English only)
+- `data/atlas/` — country atlas: `catalog.json` plus one file per indicator (`python3 tools/build/atlas.py` rebuilds; licence checked per indicator)
 - `editor.html` — story editor: edit JSON, check it, preview it in Orbis (`#@draft`), download it
 - `js/app.js` — rendering (d3 canvas, globe/equal-area/Mercator morphing), story navigation, explore mode
 - `data/world.js` — world country topology (`WORLD`, TopoJSON)
@@ -29,7 +30,7 @@ Scenes declare layers instead of code (choropleth, symbols, spikes, cartogram, f
 
 See [docs/FRAMEWORK.md](docs/FRAMEWORK.md) for the framework plan, [docs/ROADMAP.md](docs/ROADMAP.md) for limits and the story backlog, and [docs/LICENSING.md](docs/LICENSING.md) for the licence policy (`node tools/check-licences.js`).
 
-Deep links: `#<story-id>/<scene>` (e.g. `#map-lies/2`), `#c/<series-id>` (e.g. `#c/trade-war`), `#explore`, `#quiz`, `#city`, `#@stories/<file>.json` (unlisted story), `#@draft` (editor preview). Add `?embed=1` for a chrome-less embed.
+Deep links: `#<story-id>/<scene>` (e.g. `#map-lies/2`), `#c/<series-id>` (e.g. `#c/trade-war`), `#atlas[/<indicator>]` (country atlas, e.g. `#atlas/SP.DYN.LE00.IN`), `#explore`, `#quiz`, `#city`, `#@stories/<file>.json` (unlisted story), `#@draft` (editor preview). Add `?embed=1` for a chrome-less embed.
 
 Tests: `sh tools/test-all.sh` screenshots every scene of every story (needs `npm install` in `tools/`).
 

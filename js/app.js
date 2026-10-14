@@ -1210,7 +1210,7 @@ async function openAtlas(code,year){
   const d=await atlasLoad(it.id), ys=d.years, vals=Object.values(d.series.v.values);
   // default year: the latest with at least 60% of the best coverage
   const cov=ys.map((y,j)=>vals.filter(a=>a[j]!=null).length), best=Math.max(...cov), def=ys[cov.map((c,j)=>c>=best*0.6?j:-1).filter(j=>j>=0).pop()];
-  const v=vals.flatMap(a=>a.filter(x=>x!=null&&x>0)).sort((a,b)=>a-b), skew=v.length&&v[Math.floor(v.length*0.95)]/Math.max(v[Math.floor(v.length*0.5)],1e-9)>20;
+  const v=vals.flatMap(a=>a.filter(x=>x!=null&&x>0)).sort((a,b)=>a-b), skew=v.length&&v[Math.floor(v.length*0.95)]/Math.max(v[Math.floor(v.length*0.5)],1e-9)>4;
   const sc={title:it.name,text:it.definition?it.definition.split(/(?<=\.)\s/)[0]:"",view:{mode:"equal",center:[10,15],zoom:1},
     layers:[{type:"choropleth",data:"a",series:"v",year:"t",title:it.name,fmt:it.fmt,log:skew}],
     chart:{data:"a",series:"v",year:"t",top:10,title:"Highest",fmt:it.fmt},
@@ -1238,8 +1238,10 @@ async function atlasProfile(id){
   const st=STORIES[si]; if(!st||!st.atlas) return;
   const rows=await Promise.all(ATLAS_PROFILE.filter(c=>ATLAS.indicators.some(x=>x.id===c)).map(async c=>{ const it=ATLAS.indicators.find(x=>x.id===c), d=await atlasLoad(c), a=d.series.v.values[id];
     if(!a) return null; let j=a.length-1; while(j>=0&&a[j]==null) j--; if(j<0) return null;
-    const all=Object.values(d.series.v.values).map(x=>x[j]).filter(x=>x!=null).sort((p,q)=>q-p);
-    return `<li><span>${esc(it.name)}</span><b>${esc(String(fmtOf(it.fmt)(a[j])))}</b><small>${d.years[j]} · #${all.indexOf(a[j])+1} of ${all.length}</small></li>`; }));
+    // rank against every country's latest value from the last five years
+    const latest=x=>{ for(let k=x.length-1;k>=Math.max(0,j-5);k--) if(x[k]!=null) return x[k]; return null; };
+    const all=Object.values(d.series.v.values).map(latest).filter(x=>x!=null).sort((p,q)=>q-p);
+    return `<li><span>${esc(it.name)}</span><b>${esc(String(fmtOf(it.fmt)(a[j])))}</b><small>${d.years[j]} · ${all.indexOf(a[j])+1}${["th","st","nd","rd"][((all.indexOf(a[j])+1)%100>10&&(all.indexOf(a[j])+1)%100<14)?0:Math.min((all.indexOf(a[j])+1)%10,4)%4]||"th"} highest of ${all.length}</small></li>`; }));
   const c=el.card; c.hidden=false;
   c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(t("Country profile"))}</p><h3>${esc(nameOf(id))}</h3><ul class="atl-prof">${rows.filter(Boolean).join("")}</ul>`;
   c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
