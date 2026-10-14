@@ -52,6 +52,7 @@ function readColors(){
   const cs=getComputedStyle(document.documentElement);
   ["ocean","land","border","grat","ink","halo","accent","paper","ink-soft","c1","c2","c3","c4","c5","c6","c7","c8","muted","nodata","rim","t0","t1","t2","t3","t4","s0","s1","s2","s3"].forEach(k=>C[k]=cs.getPropertyValue("--"+k).trim());
   C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.ink_soft=C["ink-soft"]; C.muted=C.muted||C.ink_soft;
+  C.dark=d3.hsl(C.paper).l<0.5;  // dark theme (not the same as onDark, which means an imagery basemap)
   C.seq=d3.interpolateRgbBasis([C.s0,C.s1,C.s2,C.s3]);
 }
 const col = c => !c ? C.accent : (C[c] || c);
@@ -101,11 +102,19 @@ function layout(){
   if(sheetDrag) return; // re-laid out when the drag settles
   if(projectionSnapshot&&(W!==innerWidth||H!==innerHeight||DPR!==Math.min(2,devicePixelRatio||1))) settle();
   W=innerWidth;H=innerHeight;DPR=Math.min(2,devicePixelRatio||1);
-  canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+"px";canvas.style.height=H+"px";
+  // assigning canvas.width clears and reallocates the canvas (a visible blank frame): only when the size really changed
+  if(canvas.width!==W*DPR||canvas.height!==H*DPR){ canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+"px";canvas.style.height=H+"px"; }
   const sh=sheet.getBoundingClientRect();
   if(W>=820){const tb=topbar.getBoundingClientRect(); F.x=sh.right+8;F.y=tb.bottom;F.w=W-F.x-8;F.h=H-F.y-8; frameScale(); render();}
-  else{const tc=toc.hidden?null:toc.getBoundingClientRect(); frameAbove(tc?tc.top:H-sheet.offsetHeight);}
+  else{const tc=toc.hidden?null:toc.getBoundingClientRect(); frameTo(tc?tc.top:H-sheet.offsetHeight);}
 }
+// phone: when the sheet's height changes (new content, contents list), glide the map frame to its new size
+let frameTop=null, frameAnim=0;
+function frameTo(top){ cancelAnimationFrame(frameAnim); const from=frameTop;
+  if(from==null||reduce||Math.abs(top-from)<2){ frameTop=top; frameAbove(top); return; }
+  const t0=performance.now(), dur=220, step=now=>{ const k=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-k,3);
+    frameTop=from+(top-from)*e; frameAbove(frameTop); if(k<1) frameAnim=requestAnimationFrame(step); };
+  frameAnim=requestAnimationFrame(step); }
 // phone: the map frame is everything between the top bar and the sheet's top edge
 function frameAbove(top){ const tb=topbar.getBoundingClientRect(); F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,top-F.y); frameScale(); render(); }
 function frameScale(){ S.globe=Math.min(F.w,F.h)/2*0.9; ["equal","mercator"].forEach(k=>S[k]=Math.min(F.w/BOUNDS[k][0],F.h/BOUNDS[k][1])*0.96); }
@@ -159,9 +168,17 @@ function fillFor(f,i,ras){
 let tNow=0;
 function visible(at){ return wGlobe()<0.5 || d3.geoDistance(at,V.center)<Math.PI/2-0.02; }
 let onDark=false, placed=[];
+// an area of influence (culture, sphere, people before or beyond states): a soft-edged wash with no border line, so it
+// never reads as a frontier. Blurred where the canvas supports filters; elsewhere a fill plus fading edge strokes.
+function drawInfluence(sh){ const blur=Math.max(4,Math.min(14,6*Math.sqrt(V.zoom))), canBlur="filter" in ctx;
+  sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group], c=col(f.properties.color||(g&&g.color)||sh.color), a=f.properties.opacity!=null?f.properties.opacity:sh.opacity;
+    ctx.save(); ctx.beginPath(); path(f); ctx.fillStyle=c;
+    if(canBlur){ ctx.filter=`blur(${blur}px)`; ctx.globalAlpha=a; ctx.fill(); }
+    else{ ctx.globalAlpha=a*0.7; ctx.fill(); ctx.strokeStyle=c; ctx.lineJoin="round"; [blur*2,blur,blur/2].forEach(w=>{ ctx.globalAlpha=a*0.18; ctx.lineWidth=w; ctx.stroke(); }); }
+    ctx.restore(); }); }
 function label(text,x,y,opts={}){
   const size=opts.size||13;
-  ctx.font=size+"px 'Barlow Semi Condensed', 'Arial Narrow', sans-serif";
+  ctx.font=(opts.italic?"italic ":"")+size+"px 'Barlow Semi Condensed', 'Arial Narrow', sans-serif";
   ctx.textAlign=opts.align||"left";ctx.textBaseline="middle";
   // skip labels that would overlap one already drawn (earlier labels have priority)
   const w=ctx.measureText(text).width, offset=opts.align==="center"?w/2:opts.align==="right"?w:0;
@@ -394,13 +411,19 @@ function draw(){
       if(o===null&&L.povView.view==="un"){ ctx.beginPath(); path(a); ctx.fillStyle=C.nodata; ctx.fill(); return; }  // unresolved: neutral
       const f=byId.get(o); if(!f) return; const fc=fillFor(f,feats.indexOf(f),ras); if(!fc) return; ctx.beginPath(); path(a); ctx.fillStyle=fc; ctx.fill(); });
     ctx.globalAlpha=1;
+    // historical scenes hide today's borders; with no period state borders on the map, keep them as a faint dashed guide
+    if(scene&&scene.modernBorders===false&&!L.hist&&!L.shapes.some(sh=>sh.feats.length&&!sh.influence)){ ctx.beginPath(); path(useHi()?HI.borders:borders);
+      ctx.setLineDash([3,3]); ctx.strokeStyle=onDark?"rgba(240,245,248,.38)":"rgba(29,42,48,.35)"; ctx.lineWidth=0.8; ctx.stroke(); ctx.setLineDash([]); }
     if(!(scene&&scene.modernBorders===false)){ ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke();
       // contested areas: dashed outline, as on many web maps, whichever view is drawn
       if(L.contested){ ctx.beginPath(); L.contested.forEach(a=>path(a)); ctx.setLineDash([2.5,2.5]); ctx.strokeStyle=onDark?"rgba(240,245,248,.7)":C.ink_soft; ctx.lineWidth=0.9; ctx.stroke(); ctx.setLineDash([]); } }
   }
-  L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
-    ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=C.paper; ctx.lineWidth=0.8; ctx.stroke(); });
-  L.shapes.forEach(sh=>{ sh.feats.forEach(f=>{ if(!sh.fill) return; const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
+  // categorical areas sit slightly into the land (softer than flat poster colours); one hairline that reads on light and
+  // dark fills alike, so internal borders never vanish against a fill of similar tone
+  L.regions.forEach(rg=>{ ctx.globalAlpha=rg.cat?0.78:1; rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
+    ctx.globalAlpha=1; ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=(C.dark||onDark)?"rgba(236,242,244,.42)":"rgba(255,255,255,.85)"; ctx.lineWidth=(C.dark||onDark)?0.6:0.8; ctx.stroke(); });
+  L.shapes.filter(sh=>sh.influence).forEach(drawInfluence);
+  L.shapes.forEach(sh=>{ if(sh.influence) return; sh.feats.forEach(f=>{ if(!sh.fill) return; const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
       ctx.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1;
       if(sh.inner){ ctx.strokeStyle=onDark?"rgba(255,255,255,.5)":C.paper; ctx.lineWidth=0.7; if(f.properties.uncertain) ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]); } });
     sh.outlines.forEach(o=>{ ctx.beginPath(); path(o.geom); ctx.strokeStyle=col(o.color); ctx.lineWidth=2; ctx.stroke(); });
@@ -491,7 +514,7 @@ function draw(){
     const c=d3.geoCentroid(a); if(!visible(c)) return; const p=proj(c); if(p) labels.push([o?nameOf(o):t("disputed"),p[0],p[1],{align:"center",size:12,color:C.accent}]); });
   if(L._cartoLabels) labels.unshift(...L._cartoLabels);
   L.shapes.forEach(sh=>{ if(!sh.labels) return; sh.feats.slice().sort((a,b)=>a._a-b._a).forEach(f=>{ const n=f.properties.label||f.properties.name;
-    if(!n||!f._c||!visible(f._c)) return; const p=proj(f._c); if(p) labels.unshift([n,p[0],p[1],{align:"center",size:f._a>0.01?14:12,color:C.ink}]); }); });
+    if(!n||!f._c||!visible(f._c)) return; const p=proj(f._c); if(p) labels.unshift([n,p[0],p[1],{align:"center",size:f._a>0.01?14:12,color:C.ink,italic:sh.influence}]); }); });
   if(L.countryLabels&&!L.carto&&!L.hist) countryLabels(labels);
   labels.forEach(l=>label(...l));
   // rim
@@ -586,6 +609,8 @@ function settle(){
 
 // ---------- interaction ----------
 const ptrs=new Map(); let drag=null;
+// no browser context menu on the map or the controls; reading text and links in the panels keep theirs (copy, open link)
+document.addEventListener("contextmenu",e=>{ if(!e.target.closest(":is(#sheet,#toc,#lic) :is(p,h1,h2,h3,li,summary,figcaption,blockquote,a)")||e.target.closest("button")) e.preventDefault(); });
 canvas.addEventListener("pointerdown",e=>{canvas.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
   settle();
   if(ptrs.size===1)drag={x0:e.clientX,y0:e.clientY,moved:false,last:performance.now(),vx:0,vy:0};
@@ -631,7 +656,7 @@ function tap(x,y){
   const hit=L.points.filter(p=>p.card&&visible(p.at)).map(p=>{ const q=proj(p.at); return q?[Math.hypot(q[0]-x,q[1]-y),p]:null; }).filter(Boolean).sort((a,b)=>a[0]-b[0])[0];
   if(hit&&hit[0]<14){ openCard(hit[1].card); return; }
   for(const sh of L.shapes){ const sf=sh.feats.slice().sort((a,b)=>a._a-b._a).find(f=>d3.geoContains(f,ll)); if(sf){ const p=sf.properties;
-    tip.innerHTML="<b>"+esc(p.name||"")+"</b><span>"+esc([p.from!=null?Cal.year(p.from):"",p.to!=null?Cal.year(p.to):""].join("–"))+(p.note?" · "+esc(p.note):"")+"</span>";
+    tip.innerHTML="<b>"+esc(p.name||"")+"</b><span>"+esc([p.from!=null?Cal.year(p.from):"",p.to!=null?Cal.year(p.to):""].join("–"))+(p.note?" · "+esc(p.note):"")+"</span>"+(sh.influence?"<span>"+esc(t("Approximate area of influence, not a border"))+"</span>":"");
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; } }
   if(L.hist){ const hf=L.hist.H.feats.find(f=>d3.geoContains(f,ll));
     tip.innerHTML=hf?"<b>"+esc(hf.properties.name||"")+"</b><span>"+esc(t("Borders of {y}",{y:L.hist.year}))+"</span>":"<span>"+esc(t("Not an independent state in {y}",{y:L.hist.year}))+"</span>";
@@ -813,9 +838,11 @@ const LAYER={
     // dots: the source point of each area (properties.at), coloured by group; groups with "hollow": true draw as rings
     if(ly.dots) idx.forEach(i=>{ const p=S.feats[i].properties, g=G[p.group]; if(p.at) L.points.push({at:p.at,r:ly.dotR||2.5,color:p.color||(g&&g.color)||ly.color||"c2",hollow:!!(g&&g.hollow),minZoom:ly.dotMinZoom}); });
     const flash=ly.changes==="flash"||ly.flash;
-    L.shapes.push({lost,gained,front,flash,fill:ly.fill!==false,frontColor:ly.frontColor||"c2",feats:idx.map(i=>S.feats[i]),groups:G,color:ly.color||"c2",opacity:ly.opacity==null?(ly.dots&&ly.fill!==false?0.25:0.55):ly.opacity,
+    const influence=ly.style==="influence";
+    if(influence){ outlines.length=0; lost=[]; gained=[]; front=null; }
+    L.shapes.push({influence,lost,gained,front,flash,fill:ly.fill!==false,frontColor:ly.frontColor||"c2",feats:idx.map(i=>S.feats[i]),groups:G,color:ly.color||"c2",opacity:ly.opacity==null?(influence?0.4:ly.dots&&ly.fill!==false?0.25:0.55):ly.opacity,
       labels:ly.labels!==false,inner:ly.inner!==false,outlines,title:ly.title,year:yr});
-    groups.forEach(g=>{ if(!L.shapeKeys.some(k=>k.g===g)) L.shapeKeys.push({g,label:(G[g]&&G[g].label)||g,color:(G[g]&&G[g].color)||ly.color||"c2"}); });
+    groups.forEach(g=>{ if(!L.shapeKeys.some(k=>k.g===g)) L.shapeKeys.push({g,label:((G[g]&&G[g].label)||g)+(influence?" ("+t("approximate area")+")":""),color:(G[g]&&G[g].color)||ly.color||"c2",soft:influence}); });
   },
   pairs(ly,d,y,L){ // country × country matrix: colour every country by its value with one chosen country (tap picks another)
     const from=(pairFrom&&d.values[pairFrom])?pairFrom:ly.from, row=d.values[from]; if(!row) return;
@@ -914,7 +941,8 @@ const LAYER={
     L.events.push({pts:pick.map(e=>({at:[e[0],e[1]],r:r(e[3]),now:e[2]===t,v:e[3]})),color:ly.color||"c2",title:ly.title||d.vLabel,count:pick.length,fmt:fmtOf(ly.fmt)});
   },
   borders(ly,d,y,L){ // historical state borders: the latest snapshot at or before the year
-    const yrs=Object.keys(d.snapshots||d.files).map(Number).sort((a,b)=>a-b), yr=+y;
+    // a date slider passes yyyymmdd (or yyyymm): compare by its year
+    const yrs=Object.keys(d.snapshots||d.files).map(Number).sort((a,b)=>a-b), yr=+y>99999999?+y:+y>9999999?Math.floor(+y/1e4):+y>99999?Math.floor(+y/100):+y;
     const snap=yrs.filter(v=>v<=yr).pop()||yrs[0], H=histSnap(ly.data,d,snap); if(!H) return;
     L.hist={H,year:snap,labels:ly.labels!==false};
   },
@@ -1243,7 +1271,7 @@ function legendHTML(){
   else if(L&&L.groups.length) h+=L.groups.map(g=>chip(g.color,g.label)).join("");
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · "+t(k.qty?"line width = tonnes":"line width = value")));
   if(L) L.overlays.forEach((o,i)=>{ h+=`<label class="ov-row"><span>${esc(o.title)}</span>`+(o.slider?`<input type="range" min="0" max="100" value="${Math.round(o.alpha*100)}" data-ov="${i}" aria-label="${esc(t("Opacity of {x}",{x:o.title}))}">`:"")+`</label>`; });
-  if(L) L.shapeKeys.forEach(k=>h+=chip(k.color,k.label));
+  if(L) L.shapeKeys.forEach(k=>h+=k.soft?chip(k.color,k.label).replace("<i ",'<i class="soft" '):chip(k.color,k.label));
   if(L&&L.cardList&&L.cardList.length) h+=`<ol class="card-list">${L.cardList.map((e,i)=>`<li><button data-ci="${i}"><span>${esc(e.cal==="julian"&&isDateNum(e.date)?Cal.other(e.date,"julian",true).replace(" (Julian)",""):fmtWhen(e.date,e))}</span>${esc(((L.kinds&&L.kinds[e.kind]&&ICONS[L.kinds[e.kind].icon])?ICONS[L.kinds[e.kind].icon]+" ":"")+e.title)}</button></li>`).join("")}</ol>`;
   if(L&&L.pairs) h+=`<span class="chip">${esc(t("Tap a country to see its ties"))}</span>`;
   if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?esc(t("Showing {x} only · tap it again for all",{x:nameOf(focus)})):esc(t("Tap a country to see only its flows"))}</span>`;
@@ -1618,7 +1646,7 @@ function dragStart(y){
   sheet.style.transition="none"; place(off0);
 }
 // the sheet sits `off` px below its open position; the map frame follows it
-function place(off){ sheet.style.transform=`translateY(${off}px)`; frameAbove(H-sheetDrag.h+off); }
+function place(off){ sheet.style.transform=`translateY(${off}px)`; cancelAnimationFrame(frameAnim); frameTop=H-sheetDrag.h+off; frameAbove(frameTop); }
 function dragMove(y){ const d=sheetDrag; if(!d) return;
   if(Math.abs(y-d.y0)>4) d.moved=true;
   const now=performance.now(); d.v=0.7*(y-d.last)/Math.max(8,now-d.t)+0.3*d.v; d.last=y; d.t=now;

@@ -6,11 +6,13 @@
   "updated": "2026-10-14",
   "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. The invasion of the Soviet Union: https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front; 2. Leningrad: a city under siege: https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/belagerung-von-leningrad; 3. Stalingrad changes the initiative: https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front; 4. The advance reaches Berlin: https://encyclopedia.ushmm.org/content/en/article/the-soviet-union-and-the-eastern-front",
   "data": {
-    "events": "data/history/ww2/ww2-east.json"
+    "events": "data/history/ww2/ww2-east.json",
+    "borders": "data/history/ww2/borders-names.json"
   },
   "sources": [
     "editorial",
-    "naturalearth"
+    "naturalearth",
+    "cshapes"
   ],
   "scenes": [
     {
@@ -26,7 +28,14 @@
         "zoom": 3.5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -53,7 +62,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -81,7 +97,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1938,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -109,7 +132,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",

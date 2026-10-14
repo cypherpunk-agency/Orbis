@@ -6,11 +6,13 @@
   "updated": "2026-10-14",
   "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Reims: Germany signs surrender: https://www.archives.gov/milestone-documents/surrender-of-germany; 2. Berlin: a second signing: https://www.archives.gov/milestone-documents/surrender-of-germany; 3. An announcement reaches the public: https://www.archives.gov/news/vj-day-75; 4. Tokyo Bay: the formal Japanese surrender: https://www.archives.gov/news/vj-day-75",
   "data": {
-    "events": "data/history/ww2/ww2-end.json"
+    "events": "data/history/ww2/ww2-end.json",
+    "borders": "data/history/ww2/borders-names.json"
   },
   "sources": [
     "editorial",
-    "naturalearth"
+    "naturalearth",
+    "cshapes"
   ],
   "scenes": [
     {
@@ -26,7 +28,14 @@
         "zoom": 4.5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -54,7 +63,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -82,7 +98,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -110,7 +133,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",

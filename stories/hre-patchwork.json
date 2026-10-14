@@ -13,7 +13,8 @@
   "data": {
     "events": "data/history/hre/hre-patchwork.json",
     "atlas": "data/history/hre/reilly1796.json",
-    "territories": "data/history/hre/territories1789.json"
+    "territories": "data/history/hre/territories1789.json",
+    "hb": "data/history/hre-outline.json"
   },
   "scenes": [
     {
@@ -30,6 +31,22 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 1356,
+          "groups": [
+            "frankish",
+            "empire",
+            "middle",
+            "francia",
+            "france",
+            "left",
+            "sweden",
+            "other"
+          ],
+          "opacity": 0.4
+        },
         {
           "type": "cards",
           "data": "events",
@@ -58,6 +75,22 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 1663,
+          "groups": [
+            "frankish",
+            "empire",
+            "middle",
+            "francia",
+            "france",
+            "left",
+            "sweden",
+            "other"
+          ],
+          "opacity": 0.4
+        },
         {
           "type": "cards",
           "data": "events",

@@ -10,7 +10,8 @@
  ],
  "data": {
   "events": "data/history/turkey/republic.json",
-  "borders": "data/history/turkey/snapshots.json"
+  "borders": "data/history/turkey/snapshots.json",
+  "states": "data/history/borders.json"
  },
  "scenes": [
   {
@@ -25,7 +26,14 @@
     "zoom": 5
    },
    "modernBorders": false,
+   "stamp": "Borders as of 1 Jan 1920 · CShapes 2.0 (legal states, not occupation)",
    "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": 1920,
+     "labels": false
+    },
     {
      "type": "cards",
      "data": "events",
@@ -96,7 +104,15 @@
     "zoom": 5
    },
    "modernBorders": false,
-   "layers": [],
+   "stamp": "Borders as of 1 Jan 1920 · CShapes 2.0 (legal states, not occupation)",
+   "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": 1920,
+     "labels": false
+    }
+   ],
    "points": [
     {
      "at": [
@@ -136,7 +152,14 @@
     "zoom": 6
    },
    "modernBorders": false,
+   "stamp": "Borders as of 1 Jan 1925 · CShapes 2.0",
    "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": 1925,
+     "labels": false
+    },
     {
      "type": "cards",
      "data": "events",
@@ -175,7 +198,14 @@
     "zoom": 6
    },
    "modernBorders": false,
+   "stamp": "Borders as of 1 Jan 1925 · CShapes 2.0",
    "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": 1925,
+     "labels": false
+    },
     {
      "type": "cards",
      "data": "events",

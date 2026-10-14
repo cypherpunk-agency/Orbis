@@ -209,7 +209,7 @@ const SOURCES = {
     credit: "Laouenan, Bhargava, Eymeoud, Gergaud, Plique & Wasmer (2022), A cross-verified database of notable people, Scientific Data 9:290 (CC BY-NC-SA 4.0)"
   },
   "historical-basemaps": {
-    name: "historical-basemaps (A. Ourednik)", what: "Approximate world borders, one map per century (500 BC – AD 1650 used)", tier: "layer",
+    name: "historical-basemaps (A. Ourednik)", what: "Approximate world borders and areas of peoples and cultures, one map per century or so (2000 BC – AD 1880 used)", tier: "layer",
     licence: "GPL-3.0", licenceUrl: "https://github.com/aourednik/historical-basemaps/blob/master/LICENSE",
     url: "https://github.com/aourednik/historical-basemaps", use: "sharealike", redistribute: true,
     credit: "historical-basemaps by André Ourednik (GPL-3.0); simplified by Orbis, derived files GPL-3.0"

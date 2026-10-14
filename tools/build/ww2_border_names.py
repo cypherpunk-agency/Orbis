@@ -20,11 +20,11 @@ def build():
     index = json.loads((ROOT / 'data/history/borders.json').read_text(encoding='utf-8'))
     index['files'] = {}
     index['retrieved'] = '2026-10-14'
-    index['asOf'] = '1938-01-01 and 1950-01-01 diplomatic snapshots'
-    index['note'] += (' WWII display view: only ITA, TUR and 1938 DEU consolidated aliases are normalized to Italy, Turkey and Germany. Original labels are retained as sourceName; no geometry, codes, ownership, dates or numerical values change. Other source labels remain verbatim, including the distinct 1950 German states. Not a comprehensive audit of every upstream historical label.')
+    index['asOf'] = '1938-01-01, 1945-01-01 and 1950-01-01 diplomatic snapshots'
+    index['note'] += (' WWII display view: only ITA, TUR and 1938/1945 DEU consolidated aliases are normalized to Italy, Turkey and Germany. Original labels are retained as sourceName; no geometry, codes, ownership, dates or numerical values change. Other source labels remain verbatim, including the distinct 1950 German states. Not a comprehensive audit of every upstream historical label.')
     index['nameSources'] = SOURCES
     index['provenance'] = []
-    for year in (1938, 1950):
+    for year in (1938, 1945, 1950):
         src = ROOT / f'data/history/borders-{year}.json'
         raw = src.read_bytes()
         topology = json.loads(raw)

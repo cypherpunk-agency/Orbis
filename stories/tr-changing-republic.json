@@ -5,12 +5,14 @@
  "hook": "Urban growth, political interventions, migration and unequal regional experiences.",
  "updated": "2026-10-14",
  "sources": [
-  "editorial"
+  "editorial",
+  "cshapes"
  ],
  "notes": "Original Orbis factual annotations, not copied source prose. Locations are approximate city/site locators, not surveyed footprints. Historical geometry fallback: cited located events and places; no empire, ethnic or control polygons are inferred. Source coverage ends 2025. Editorial cutoff: 14 October 2026. References by scene: Scenes 1-2: https://www.tbmm.gov.tr/history/ ; Scene 3 (cities): https://www.worldbank.org/en/country/turkey/publication/turkey-urbanization-review ; Scene 3 (urban series): https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS?locations=TR ; Scene 4: https://www.auswaertiges-amt.de/de/aussenpolitik/anwerbeabkommen/2493338 ; Scene 5: https://www.ohchr.org/Documents/Countries/TR/OHCHR_South-East_TurkeyReport_10March2017.pdf ; corroborating UN library report https://unric.org/en/wp-content/uploads/sites/15/2018/12/libnews-march2017.pdf ; Scene 6: https://cdn.osce.org/sites/default/files/f/documents/9/4/397046_0.pdf ; Scene 7: https://earthquake.usgs.gov/earthquakes/eventpage/us6000jllz/executive",
  "data": {
   "events": "data/history/turkey/changing-republic.json",
-  "urban": "data/history/turkey/urban.json"
+  "urban": "data/history/turkey/urban.json",
+  "states": "data/history/borders.json"
  },
  "scenes": [
   {
@@ -26,7 +28,14 @@
     "zoom": 6
    },
    "modernBorders": false,
+   "stamp": "Borders as of 1 Jul 1960 · CShapes 2.0",
    "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": 1960,
+     "labels": false
+    },
     {
      "type": "cards",
      "data": "events",
@@ -62,7 +71,14 @@
     "zoom": 6
    },
    "modernBorders": false,
+   "stamp": "Borders: latest CShapes 2.0 snapshot at or before {t}",
    "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": "t",
+     "labels": false
+    },
     {
      "type": "cards",
      "data": "events",
@@ -180,7 +196,15 @@
     "zoom": 3
    },
    "modernBorders": false,
-   "layers": [],
+   "stamp": "Borders as of 1 Jul 1960 · CShapes 2.0",
+   "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": 1960,
+     "labels": false
+    }
+   ],
    "points": [
     {
      "at": [
@@ -215,7 +239,15 @@
     "zoom": 6
    },
    "modernBorders": false,
-   "layers": [],
+   "stamp": "Borders as of 1 Jan 2011 · CShapes 2.0",
+   "layers": [
+    {
+     "type": "borders",
+     "data": "states",
+     "year": 2011,
+     "labels": false
+    }
+   ],
    "points": [
     {
      "at": [
@@ -249,7 +281,6 @@
     ],
     "zoom": 6
    },
-   "modernBorders": false,
    "layers": [],
    "points": [
     {
@@ -275,7 +306,6 @@
     ],
     "zoom": 6
    },
-   "modernBorders": false,
    "layers": [],
    "points": [
     {

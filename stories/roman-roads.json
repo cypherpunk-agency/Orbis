@@ -7,7 +7,8 @@
   "data": {
     "main": "data/history/roman-roads.json",
     "minor": "data/history/roman-roads-minor.json",
-    "named": "data/history/roman-roads-named.json"
+    "named": "data/history/roman-roads-named.json",
+    "hb": "data/history/hb-context-ancient.json"
   },
   "sources": [
     "pleiades"
@@ -27,6 +28,34 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4,
+          "labels": false
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "lines",
           "data": "minor",
@@ -127,6 +156,34 @@
       "modernBorders": false,
       "layers": [
         {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4,
+          "labels": false
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
+        {
           "type": "lines",
           "data": "minor",
           "set": "minor_conjectured",
@@ -194,6 +251,34 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4,
+          "labels": false
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "lines",
           "data": "minor",
@@ -264,6 +349,34 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4,
+          "labels": false
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "lines",
           "data": "minor",
@@ -358,6 +471,34 @@
       },
       "layers": [
         {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4,
+          "labels": false
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
+        {
           "type": "lines",
           "data": "minor",
           "set": "minor_conjectured",
@@ -393,6 +534,34 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4,
+          "labels": false
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 200,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "lines",
           "data": "minor",

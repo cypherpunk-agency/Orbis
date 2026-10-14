@@ -7,9 +7,11 @@
  "sources": [
   "editorial"
  ],
- "notes": "Original Orbis factual annotations, not copied source prose. Locations are approximate city/site locators, not surveyed footprints. Historical geometry fallback: cited located events and places; no empire, ethnic or control polygons are inferred. Source coverage ends 1300. Editorial cutoff: 14 October 2026. References by scene: Scene 1: https://whc.unesco.org/en/list/1572/ ; Scene 2: https://whc.unesco.org/en/list/377/ ; Scene 3: https://whc.unesco.org/en/list/1018/ ; Scene 4: https://whc.unesco.org/en/list/356/ ; Scene 5: https://whc.unesco.org/en/list/1518/ ; Scene 6: https://whc.unesco.org/en/tentativelists/1404/ ; Scene 6 (Bursa): https://whc.unesco.org/en/list/1452/",
+ "notes": "Original Orbis factual annotations, not copied source prose. Locations are approximate city/site locators, not surveyed footprints. Historical geometry: cited located events and places. Where a scene shows period borders, they come from historical-basemaps (A. Ourednik, GPL-3.0): approximate state outlines, with peoples and cultures drawn as soft areas of influence; Orbis infers no polygons of its own. Source coverage ends 1300. Editorial cutoff: 14 October 2026. References by scene: Scene 1: https://whc.unesco.org/en/list/1572/ ; Scene 2: https://whc.unesco.org/en/list/377/ ; Scene 3: https://whc.unesco.org/en/list/1018/ ; Scene 4: https://whc.unesco.org/en/list/356/ ; Scene 5: https://whc.unesco.org/en/list/1518/ ; Scene 6: https://whc.unesco.org/en/tentativelists/1404/ ; Scene 6 (Bursa): https://whc.unesco.org/en/list/1452/",
  "data": {
-  "events": "data/history/turkey/anatolia.json"
+  "events": "data/history/turkey/anatolia.json",
+  "hb": "data/history/hb-context-ancient.json",
+  "hbm": "data/history/hb-context-late.json"
  },
  "scenes": [
   {
@@ -51,7 +53,35 @@
     "zoom": 6
    },
    "modernBorders": false,
-   "layers": [],
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": -1999,
+     "groups": [
+      "rome",
+      "east",
+      "client",
+      "carthage",
+      "hellenistic",
+      "persia",
+      "germanic",
+      "states"
+     ],
+     "opacity": 0.4
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": -1999,
+     "groups": [
+      "peoples",
+      "nomads"
+     ],
+     "style": "influence",
+     "opacity": 0.35
+    }
+   ],
    "points": [
     {
      "at": [
@@ -77,7 +107,35 @@
     "zoom": 7
    },
    "modernBorders": false,
-   "layers": [],
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 117,
+     "groups": [
+      "rome",
+      "east",
+      "client",
+      "carthage",
+      "hellenistic",
+      "persia",
+      "germanic",
+      "states"
+     ],
+     "opacity": 0.4
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 117,
+     "groups": [
+      "peoples",
+      "nomads"
+     ],
+     "style": "influence",
+     "opacity": 0.35
+    }
+   ],
    "points": [
     {
      "at": [
@@ -103,7 +161,35 @@
     "zoom": 7
    },
    "modernBorders": false,
-   "layers": [],
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 537,
+     "groups": [
+      "rome",
+      "east",
+      "client",
+      "carthage",
+      "hellenistic",
+      "persia",
+      "germanic",
+      "states"
+     ],
+     "opacity": 0.4
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 537,
+     "groups": [
+      "peoples",
+      "nomads"
+     ],
+     "style": "influence",
+     "opacity": 0.35
+    }
+   ],
    "points": [
     {
      "at": [
@@ -129,7 +215,36 @@
     "zoom": 6
    },
    "modernBorders": false,
-   "layers": [],
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hbm",
+     "year": 1000,
+     "groups": [
+      "frankish",
+      "empire",
+      "byzantine",
+      "ottoman",
+      "turkic",
+      "muslim",
+      "mongol",
+      "austria",
+      "states"
+     ],
+     "opacity": 0.4
+    },
+    {
+     "type": "shapes",
+     "data": "hbm",
+     "year": 1000,
+     "groups": [
+      "peoples",
+      "nomads"
+     ],
+     "style": "influence",
+     "opacity": 0.35
+    }
+   ],
    "points": [
     {
      "at": [
@@ -155,7 +270,36 @@
     "zoom": 5
    },
    "modernBorders": false,
-   "layers": [],
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hbm",
+     "year": 1279,
+     "groups": [
+      "frankish",
+      "empire",
+      "byzantine",
+      "ottoman",
+      "turkic",
+      "muslim",
+      "mongol",
+      "austria",
+      "states"
+     ],
+     "opacity": 0.4
+    },
+    {
+     "type": "shapes",
+     "data": "hbm",
+     "year": 1279,
+     "groups": [
+      "peoples",
+      "nomads"
+     ],
+     "style": "influence",
+     "opacity": 0.35
+    }
+   ],
    "points": [
     {
      "at": [

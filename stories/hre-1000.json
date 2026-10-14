@@ -9,7 +9,8 @@
     "editorial"
   ],
   "data": {
-    "events": "data/history/hre/hre-1000.json"
+    "events": "data/history/hre/hre-1000.json",
+    "hb": "data/history/hre-outline.json"
   },
   "scenes": [
     {
@@ -90,6 +91,17 @@
       "modernBorders": false,
       "layers": [
         {
+          "type": "shapes",
+          "data": "hb",
+          "year": 1000,
+          "groups": [
+            "empire",
+            "france",
+            "sweden"
+          ],
+          "opacity": 0.4
+        },
+        {
           "type": "cards",
           "data": "events",
           "kinds": [
@@ -117,6 +129,17 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 1000,
+          "groups": [
+            "empire",
+            "france",
+            "sweden"
+          ],
+          "opacity": 0.4
+        },
         {
           "type": "cards",
           "data": "events",

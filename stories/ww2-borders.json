@@ -4,7 +4,7 @@
   "title": "The postwar borders",
   "hook": "Administrative decisions, changed states and displaced people.",
   "updated": "2026-10-14",
-  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Potsdam: administration before a final settlement: https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152; 2. Poland’s mapped extent shifts west: https://icr.ethz.ch/data/cshapes/; 3. Two German states appear: https://history.state.gov/countries/germany; 4. Changing borders also moved people: https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152 CShapes 2.0 diplomatic snapshots: 1 January 1938 and 1 January 1950, CC BY-NC-SA 4.0. They are not occupation zones, military control or a continuously updated front. German state formation: https://history.state.gov/countries/germany. Potsdam terms, including Polish administration pending final frontier settlement and population transfers: https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152. These are administrative/diplomatic meanings; the 1950 map must not be called a 1945 snapshot. Wrocław/Breslau context: https://www.wroclaw.pl/dla-mieszkanca/koniec-festung-breslau-poczatek-polskiego-wroclawia. Date-scoped display aliases: Italy/Sardinia becomes Italy; Turkey (Ottoman Empire) becomes Turkey; Germany (Prussia) becomes Germany in 1938. Original labels are retained as sourceName in the derived files; geometry and dates are unchanged. Name evidence: https://history.state.gov/countries/italy/summary; https://history.state.gov/countries/germany; https://www.govinfo.gov/content/pkg/BILLS-115hres924ih/pdf/BILLS-115hres924ih.pdf.",
+  "notes": "Original Orbis factual annotations checked 14 October 2026; event-card links and scene-indexed notes identify the evidence. Points locate selected places approximately, not military fronts, camp boundaries or casualty-density surfaces. Contemporary coastlines are reference geography; modern country borders are hidden unless a scene explicitly compares country status. No comprehensive monthly occupation map is claimed. Sources by scene: 1. Potsdam: administration before a final settlement: https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152; 2. Poland’s mapped extent shifts west: https://icr.ethz.ch/data/cshapes/; 3. Two German states appear: https://history.state.gov/countries/germany; 4. Changing borders also moved people: https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152 CShapes 2.0 diplomatic snapshots: 1 January 1938, 1 January 1945 and 1 January 1950, CC BY-NC-SA 4.0. They are not occupation zones, military control or a continuously updated front. German state formation: https://history.state.gov/countries/germany. Potsdam terms, including Polish administration pending final frontier settlement and population transfers: https://history.state.gov/historicaldocuments/frus1945Berlinv02/d1152. These are administrative/diplomatic meanings; the 1950 map must not be called a 1945 snapshot. Wrocław/Breslau context: https://www.wroclaw.pl/dla-mieszkanca/koniec-festung-breslau-poczatek-polskiego-wroclawia. Date-scoped display aliases: Italy/Sardinia becomes Italy; Turkey (Ottoman Empire) becomes Turkey; Germany (Prussia) becomes Germany in 1938. Original labels are retained as sourceName in the derived files; geometry and dates are unchanged. Name evidence: https://history.state.gov/countries/italy/summary; https://history.state.gov/countries/germany; https://www.govinfo.gov/content/pkg/BILLS-115hres924ih/pdf/BILLS-115hres924ih.pdf.",
   "data": {
     "events": "data/history/ww2/ww2-borders.json",
     "borders": "data/history/ww2/borders-names.json"
@@ -28,7 +28,14 @@
         "zoom": 4
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",
@@ -151,7 +158,14 @@
         "zoom": 5
       },
       "modernBorders": false,
+      "stamp": "Borders as of 1 Jan 1945 · CShapes 2.0 (legal states, not occupation)",
       "layers": [
+        {
+          "type": "borders",
+          "data": "borders",
+          "year": 1945,
+          "labels": false
+        },
         {
           "type": "cards",
           "data": "events",

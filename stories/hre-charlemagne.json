@@ -9,7 +9,8 @@
     "editorial"
   ],
   "data": {
-    "events": "data/history/hre/hre-charlemagne.json"
+    "events": "data/history/hre/hre-charlemagne.json",
+    "hbm": "data/history/hb-context-late.json"
   },
   "scenes": [
     {
@@ -26,6 +27,34 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hbm",
+          "year": 800,
+          "groups": [
+            "frankish",
+            "empire",
+            "byzantine",
+            "ottoman",
+            "turkic",
+            "muslim",
+            "mongol",
+            "austria",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hbm",
+          "year": 800,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",
@@ -55,6 +84,34 @@
       "modernBorders": false,
       "layers": [
         {
+          "type": "shapes",
+          "data": "hbm",
+          "year": 800,
+          "groups": [
+            "frankish",
+            "empire",
+            "byzantine",
+            "ottoman",
+            "turkic",
+            "muslim",
+            "mongol",
+            "austria",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hbm",
+          "year": 800,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
+        {
           "type": "cards",
           "data": "events",
           "kinds": [
@@ -82,6 +139,34 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hbm",
+          "year": "t",
+          "groups": [
+            "frankish",
+            "empire",
+            "byzantine",
+            "ottoman",
+            "turkic",
+            "muslim",
+            "mongol",
+            "austria",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hbm",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",

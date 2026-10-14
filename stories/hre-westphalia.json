@@ -11,7 +11,8 @@
   ],
   "data": {
     "events": "data/history/hre/hre-westphalia.json",
-    "atlas": "data/history/hre/reilly1796.json"
+    "atlas": "data/history/hre/reilly1796.json",
+    "hb": "data/history/hre-outline.json"
   },
   "scenes": [
     {
@@ -28,6 +29,22 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 1648,
+          "groups": [
+            "frankish",
+            "empire",
+            "middle",
+            "francia",
+            "france",
+            "left",
+            "sweden",
+            "other"
+          ],
+          "opacity": 0.4
+        },
         {
           "type": "cards",
           "data": "events",
@@ -57,6 +74,22 @@
       "modernBorders": false,
       "layers": [
         {
+          "type": "shapes",
+          "data": "hb",
+          "year": 1648,
+          "groups": [
+            "frankish",
+            "empire",
+            "middle",
+            "francia",
+            "france",
+            "left",
+            "sweden",
+            "other"
+          ],
+          "opacity": 0.4
+        },
+        {
           "type": "cards",
           "data": "events",
           "kinds": [
@@ -84,6 +117,22 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "frankish",
+            "empire",
+            "middle",
+            "francia",
+            "france",
+            "left",
+            "sweden",
+            "other"
+          ],
+          "opacity": 0.4
+        },
         {
           "type": "cards",
           "data": "events",
