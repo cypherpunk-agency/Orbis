@@ -226,6 +226,24 @@ const SOURCES = {
     url: "https://en.wikipedia.org/wiki/Module:Russo-Ukrainian_war_detailed_map", use: "noncommercial", redistribute: true,
     credit: "Wikipedia contributors, Module:Russo-Ukrainian war detailed map (CC BY-SA 4.0); areas approximated by Orbis"
   },
+  "newberry-ahcb": {
+    name: "Newberry Library, Atlas of Historical County Boundaries", what: "US historical state and territory boundaries 1783–2000 (generalized .01°)", tier: "layer",
+    licence: "Open access, any lawful purpose incl. commercial", licenceUrl: "https://publications.newberry.org/ahcb/download",
+    url: "https://publications.newberry.org/ahcb/", use: "commercial", redistribute: true,
+    credit: "Atlas of Historical County Boundaries, The Newberry Library"
+  },
+  "usfs-royce": {
+    name: "US Forest Service, Tribal Land Cessions in the United States", what: "Royce land cession areas 1784–1894 (2018 digitisation)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://catalog.data.gov/dataset/tribal-lands-ceded-to-the-united-states-feature-layer", use: "commercial", redistribute: true,
+    credit: "USDA Forest Service, Office of Tribal Relations, with NPS NAGPRA, EPA and C. Saunt; after C. C. Royce (1899)"
+  },
+  "medsl-president": {
+    name: "MIT Election Data and Science Lab", what: "U.S. President 1976–2024, state returns", tier: "layer",
+    licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+    url: "https://doi.org/10.7910/DVN/42MVDX", use: "commercial", redistribute: true,
+    credit: "MIT Election Data and Science Lab, U.S. President 1976–2024, Harvard Dataverse"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",

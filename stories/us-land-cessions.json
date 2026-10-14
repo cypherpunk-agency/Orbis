@@ -1,0 +1,203 @@
+{
+ "id": "us-land-cessions",
+ "cat": "Rights",
+ "title": "Land ceded",
+ "hook": "Between 1784 and 1894 the United States acquired most of its land from Native nations, cession by cession. A federal map of 716 areas shows where and when.",
+ "notes": "Areas: US Forest Service, 'Tribal Land Cessions in the United States' (2018, with the National Park Service NAGPRA Program, the EPA and Claudio Saunt; CC BY 4.0), a digitisation of Charles C. Royce's schedule 'Indian Land Cessions in the United States' (18th Annual Report of the Bureau of American Ethnology, 1899). The public layer has 716 dated areas (two undated ones are left out); each is shown from its first cession date. Royce's schedule records cessions to the federal government by treaty, act of Congress or executive order from 1784 to 1894; it leaves out land taken by the colonies and the states, and later losses such as allotment under the Dawes Act. Areas overlap where land was ceded more than once. Names are those in Royce's schedule, which often differ from how nations name themselves today; the Forest Service layer lists the present-day tribes for each area. Areas in the text are Orbis's sums of the mapped areas (overlaps counted once, equal-area projection) against today's 48 contiguous states as drawn by the Newberry Atlas (7.8 million km²). Removal figures: Wikipedia, 'Indian Removal Act' and 'Trail of Tears' (read October 2026).",
+ "data": {
+  "rc": "data/history/us-cessions.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "Area by area",
+   "text": "From 1784 to 1894 the United States took over Native land in hundreds of cessions: by treaty, often under military or political pressure, and later by act of Congress or executive order. Together the 716 areas mapped from Charles Royce's 1899 schedule cover about 6.5 million km², more than four-fifths of today's 48 contiguous states.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -98,
+     39
+    ],
+    "zoom": 3.2
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "rc",
+     "year": 1894,
+     "labels": false,
+     "inner": false,
+     "outline": false,
+     "opacity": 0.45
+    }
+   ]
+  },
+  {
+   "title": "East of the Mississippi, before 1830",
+   "text": "The first cessions lay in the Ohio country and the South. After their defeat at Fallen Timbers, the nations of the Northwest ceded most of what became Ohio at Greenville in 1795. By 1829 the ceded areas covered about 1.7 million km².",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -86,
+     37
+    ],
+    "zoom": 4
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1784,
+     1790,
+     1795,
+     1800,
+     1805,
+     1810,
+     1815,
+     1820,
+     1825,
+     1829
+    ],
+    "start": 1829
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "rc",
+     "year": "t",
+     "labels": false,
+     "inner": false,
+     "outline": false,
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "cards",
+     "data": "rc"
+    }
+   ]
+  },
+  {
+   "title": "Removal",
+   "text": "The Indian Removal Act of 1830 traded land in the West for homelands in the East. In the years that followed about 60,000 Cherokee, Muscogee, Seminole, Chickasaw and Choctaw people were forced west. On the Cherokee removal of 1838–39 about 4,000 people died, the Cherokee Nation's figure; other estimates reach 5,000.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -88,
+     35
+    ],
+    "zoom": 4
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1829,
+     1832,
+     1835,
+     1838,
+     1841,
+     1845,
+     1849
+    ],
+    "start": 1849
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "rc",
+     "year": "t",
+     "labels": false,
+     "inner": false,
+     "outline": false,
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "cards",
+     "data": "rc",
+     "window": 25
+    }
+   ]
+  },
+  {
+   "title": "The West in twenty years",
+   "text": "Between 1850 and 1869 the ceded area more than doubled, from about 2.3 to 5.6 million km², as cessions covered the Plains, the Rockies and the Pacific Northwest.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -104,
+     40
+    ],
+    "zoom": 3.3
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1849,
+     1853,
+     1857,
+     1861,
+     1865,
+     1869
+    ],
+    "start": 1869
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "rc",
+     "year": "t",
+     "labels": false,
+     "inner": false,
+     "outline": false,
+     "opacity": 0.5,
+     "changes": "flash"
+    }
+   ]
+  },
+  {
+   "title": "After the treaties",
+   "text": "In 1871 Congress stopped making treaties with Native nations; land was taken by statute and executive order instead. By 1894 the ceded areas reached about 6.5 million km². The Dawes Act of 1887 then split reservations into private plots: land held by Native Americans fell from about 138 million acres to 48 million by 1934.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -103,
+     41
+    ],
+    "zoom": 3.3
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1869,
+     1874,
+     1879,
+     1884,
+     1889,
+     1894
+    ],
+    "start": 1894
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "rc",
+     "year": "t",
+     "labels": false,
+     "inner": false,
+     "outline": false,
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "cards",
+     "data": "rc",
+     "window": 30,
+     "list": true
+    }
+   ]
+  }
+ ]
+}

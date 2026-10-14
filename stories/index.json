@@ -495,5 +495,33 @@
   "title": "Refugees: millions leave, millions displaced",
   "hook": "Within a year of the invasion, 5.7 million Ukrainians were refugees abroad and almost 6 million displaced at home. Most went west, to Germany and Poland; over a million were recorded in Russia.",
   "file": "stories/ua-refugees.json"
+ },
+ {
+  "id": "us-expansion",
+  "cat": "Geopolitics",
+  "title": "From sea to sea",
+  "hook": "In 1783 the United States ended at the Mississippi. By 1867 it reached from the Atlantic to the Pacific and the Arctic, bought, ceded, annexed and won in eleven steps.",
+  "file": "stories/us-expansion.json"
+ },
+ {
+  "id": "us-land-cessions",
+  "cat": "Rights",
+  "title": "Land ceded",
+  "hook": "Between 1784 and 1894 the United States acquired most of its land from Native nations, cession by cession. A federal map of 716 areas shows where and when.",
+  "file": "stories/us-land-cessions.json"
+ },
+ {
+  "id": "us-union",
+  "cat": "Geopolitics",
+  "title": "Joining and splitting the Union",
+  "hook": "Fifty states joined the Union one by one over 172 years. Eleven of them tried to leave it in 1860–61, and it took four years of war to bring them back.",
+  "file": "stories/us-union.json"
+ },
+ {
+  "id": "us-elections",
+  "cat": "Geopolitics",
+  "title": "Red states, blue states",
+  "hook": "Americans choose their president in 51 separate contests. Thirteen elections, 1976 to 2024, show the map flipping, hardening and coming down to a handful of states.",
+  "file": "stories/us-elections.json"
  }
 ]
