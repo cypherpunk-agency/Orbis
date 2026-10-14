@@ -11,9 +11,17 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 
 ### Obligations for every source
 1. **Register it** in `js/sources.js` (tier, licence, use, credit) and add a row to the register below using its id in backticks.
-2. **Label it in the UI.** Every story and scene lists its sources with their licence in the "Data" line under the story. Non-commercial and permission-only sources get a warning dot. "All licences" opens the full register.
+2. **Label it in the UI.** Every story and scene lists its sources with their licence in the "Data" line under the story. Each chip carries licence-element badges read from the licence: **PD** / **CC0** (no rights reserved), **BY** (attribution), **SA** (share-alike), **NC** (non-commercial), **ND** (no derivatives), **PERM** (used with permission). Share-alike sources get a teal dot, non-commercial and permission-only sources an orange one. Tapping a chip opens the full register at that source, with the full licence name and a link to its text.
 3. **Keep it switchable.** A story layer must never be needed for the base map to work.
-4. **Run the check:** `node tools/check-licences.js` fails if a source is unregistered, undocumented, has a base-tier source without commercial rights, or cannot be published.
+4. **Run the check:** `node tools/check-licences.js` fails if a source is unregistered, undocumented, has a base-tier source without commercial rights, cannot be published, or has a `use` that contradicts its licence text.
+
+### `use` values in `js/sources.js`
+| `use` | Meaning | Examples |
+|---|---|---|
+| `commercial` | Commercial use allowed, no share-alike | Public domain, CC0, CC BY, CC BY-IGO |
+| `sharealike` | Commercial use allowed, but adaptations must keep the same licence | CC BY-SA, GPL, ODbL |
+| `noncommercial` | No commercial use | CC BY-NC, CC BY-NC-SA, CC BY-NC-ND, custom non-commercial terms |
+| `permission` | Used under a written grant (needs a `grant` reference) | — |
 
 > Non-commercial layers stay non-commercial wherever they appear. If the site is ever monetised (ads, paid tiers, client work), those layers must be removed, licensed, or kept off the commercial surface.
 
@@ -51,12 +59,12 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `undp-hdr` | UNDP Human Development Report 2025 composite indices, 1990–2023 (`data/atlas/HDR.*.json`) | Layer | CC BY 3.0 IGO | Commercial | "Source: UNDP, Human Development Report 2025" |
 | `pwt` | Penn World Table 11.0, 1950–2023 (`data/atlas/PWT.*.json`) | Layer | CC BY 4.0 | Commercial | "Feenstra, Inklaar and Timmer, Penn World Table 11.0, GGDC" |
 | `ember` | Ember yearly electricity data, 1985–2025 (`data/atlas/EMBER.*.json`); demand per person uses World Bank population (`wb-wdi`) | Layer | CC BY 4.0 | Commercial | "Source: Ember" |
-| `unesco-uis` | UNESCO UIS public data API, February 2026 release (`data/atlas/UIS.*.json`) | Layer | CC BY-SA 4.0 (share-alike) | Story layer only, shown with the NC badge like other share-alike data | "Source: UNESCO Institute for Statistics" |
+| `unesco-uis` | UNESCO UIS public data API, February 2026 release (`data/atlas/UIS.*.json`) | Layer | CC BY-SA 4.0 (share-alike) | Share-alike | "Source: UNESCO Institute for Statistics" |
 | `meta-sci` | Meta Social Connectedness Index, country level, HDX release (snapshot 25 Jan 2026) (`data/people/sci.json`) | Layer | CC0 1.0 (HDX licence field) | Commercial | "Meta Social Connectedness Index, via HDX" |
 | `bhht` | Cross-verified database of notable people 3500 BC–2018, doi:10.21410/7E4/RDAG3O (`data/people/fame-*.json`, `data/grids/fame*`) | Layer | CC BY-NC-SA 4.0 (shipped LICENSE.txt; the record page says CC BY-SA 4.0, stricter followed) | Non-commercial, share-alike | "Laouenan et al. (2022), Scientific Data" |
-| `historical-basemaps` | historical-basemaps by A. Ourednik, commit da7a4b7 (`data/history/rome-hb-*.json`, `data/history/hre-outline.json`) | Layer | GPL-3.0 (derived files stay GPL-3.0) | Story layer only (copyleft, shown with the NC badge) | "historical-basemaps by André Ourednik"; borders approximate |
-| `awmc` | AWMC geodata, commit 7ecf8bc (`data/history/rome-awmc.json`) | Layer | ODbL 1.0 (derived data stays ODbL; kept separate from GPL files) | Story layer only (share-alike, NC badge) | "Ancient World Mapping Center, UNC" |
-| `wp-ua-control` | Wikipedia Module:Russo-Ukrainian war detailed/overview map, 12 dated revisions (`data/history/ua-control*.json`) | Layer | CC BY-SA 4.0 (derived files stay CC BY-SA) | Story layer only (share-alike, NC badge) | "Wikipedia contributors"; areas are an Orbis approximation (Voronoi cells around settlements) |
+| `historical-basemaps` | historical-basemaps by A. Ourednik, commit da7a4b7 (`data/history/rome-hb-*.json`, `data/history/hre-outline.json`) | Layer | GPL-3.0 (derived files stay GPL-3.0) | Share-alike | "historical-basemaps by André Ourednik"; borders approximate |
+| `awmc` | AWMC geodata, commit 7ecf8bc (`data/history/rome-awmc.json`) | Layer | ODbL 1.0 (derived data stays ODbL; kept separate from GPL files) | Share-alike | "Ancient World Mapping Center, UNC" |
+| `wp-ua-control` | Wikipedia Module:Russo-Ukrainian war detailed/overview map, 12 dated revisions (`data/history/ua-control*.json`) | Layer | CC BY-SA 4.0 (derived files stay CC BY-SA) | Share-alike | "Wikipedia contributors"; areas are an Orbis approximation (Voronoi cells around settlements) |
 | `newberry-ahcb` | Newberry AHCB US historical states and territories (`data/history/us-states.json`, `us-acquisitions.json`, `us-union.json`) | Layer | Open access ("any lawful purpose, commercial or non-commercial") | Commercial | "Atlas of Historical County Boundaries, The Newberry Library" |
 | `usfs-royce` | USFS Tribal Land Cessions (Royce 1899, 2018 digitisation) (`data/history/us-cessions.json`) | Layer | CC BY 4.0 (catalog.data.gov licence field) | Commercial | "USDA Forest Service ... after C. C. Royce (1899)" |
 | `medsl-president` | MEDSL U.S. President 1976–2024, v10 (`data/history/us-elections.json`) | Layer | CC0 1.0 | Commercial | "MIT Election Data and Science Lab" |
@@ -85,7 +93,7 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `economist-bigmac` | The Economist Big Mac index 2000–2026: dollar price, raw and GDP-adjusted index (`data/economics/bigmac.json`) | Layer | CC BY 4.0 (Economist-generated data only; exchange rates and IMF GDP not shipped) | Commercial | "Source: The Economist, Big Mac index" |
 | `ecdc-covid` | ECDC daily COVID-19 cases worldwide to 14 Dec 2020, month of first reported case (`data/people/covid-first.json`) | Layer | CC BY 4.0 | Commercial | ECDC acknowledgement text; modifications stated; no ECDC logo |
 | `owid-covid` | Our World in Data COVID-19, deaths per million to end-2022, from WHO data (`data/people/covid-deaths.json`) | Layer | CC BY 4.0 (OWID); WHO data CC BY 4.0 + WHO terms | Commercial | "Our World in Data, based on WHO"; no misrepresentation |
-| `usgs-quakes` | USGS ANSS ComCat, earthquakes M≥6 1900–2025 (`data/events/earthquakes.json`) | Layer | US public domain; ~47% of events (mostly pre-1973) from ISC-GEM, **CC BY-SA 3.0** (derived file shares alike) | Commercial | USGS credit + "ISC-GEM Catalogue © ISC and GEM Foundation, CC BY-SA 3.0" |
+| `usgs-quakes` | USGS ANSS ComCat, earthquakes M≥6 1900–2025 (`data/events/earthquakes.json`) | Layer | US public domain; ~47% of events (mostly pre-1973) from ISC-GEM, **CC BY-SA 3.0** (derived file shares alike) | Share-alike (ISC-GEM part) | USGS credit + "ISC-GEM Catalogue © ISC and GEM Foundation, CC BY-SA 3.0" |
 | `ucdp-ged` | UCDP GED 26.1 + Candidate events to Aug 2026, events and best-estimate deaths per 0.25° cell and month, Ukraine/Syria/Sudan (`data/events/conflict-*.json`) | Layer | CC BY 4.0 | Commercial | Cite Davies, Pettersson & Öberg (2026); Sundberg & Melander (2013); Hegre et al. (2020) |
 | `cshapes` | CShapes 2.0 (ETH Zurich ICR), state borders incl. dependencies, snapshots 1886–2019 (`data/history/borders.json` index + `borders-<year>.json`) | Layer | CC BY-NC-SA 4.0 (derived files stay CC BY-NC-SA 4.0) | **Non-commercial** | "CShapes 2.0, Schvitz et al. 2022, ETH Zurich ICR"; share-alike |
 | `orbis-schematic` | Drawn by Orbis: pipelines, sea lanes, terminals, refineries (`data/energy/infrastructure.json`), South China Sea claims and 200-nm lines (`data/geopolitics/south-china-sea.json`), container lanes (`data/economics/shipping-lanes.json`), historical journeys and routes (`data/people/journeys.json`, `silk-road.json`, `out-of-africa.json`) | Layer | Own work | Commercial | Marked as schematic |

@@ -35,7 +35,7 @@ SOURCES = {
          "credit": "Penn World Table 11.0 (Feenstra, Inklaar and Timmer), Groningen Growth and Development Centre"},
  "ember": {"licence": "CC BY 4.0", "tier": "commercial", "note": "",
            "credit": "Ember, Yearly Electricity Data"},
- "unesco-uis": {"licence": "CC BY-SA 4.0", "tier": "noncommercial", "note": "share-alike",
+ "unesco-uis": {"licence": "CC BY-SA 4.0", "tier": "sharealike", "note": "share-alike",
                 "credit": "UNESCO Institute for Statistics (UIS)"},
 }
 # V-Dem: listed in the catalog's "skipped" so the gap is documented next to the data

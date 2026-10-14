@@ -279,3 +279,14 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .elx-h{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;margin:2px 0 6px;font:500 .9rem var(--ui)}
 .elx-h span{color:var(--ink-soft)}
 .elx-none{color:var(--ink-soft);font:500 .9rem var(--ui)}
+/* licence element badges: BY, SA, NC, ND, CC0, PD */
+.lts{display:inline-flex;gap:2px;margin-left:4px}
+.lt{font:600 9.5px/1.4 var(--ui);font-style:normal;letter-spacing:.02em;border:1px solid var(--rule);border-radius:3px;padding:0 3px;color:var(--ink-soft);vertical-align:1px}
+.lt-nc,.lt-perm{color:var(--c3);border-color:var(--c3)}
+.lt-sa{color:var(--c4);border-color:var(--c4)}
+.lt-nd{color:var(--c7);border-color:var(--c7)}
+.lt-cc0,.lt-pd{color:var(--c6);border-color:var(--c6)}
+.src.sa{border-color:var(--c4);color:var(--ink)}
+.src.sa::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c4);flex:none}
+.lic-use.sa{color:var(--c4)}
+.lic-key{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 .85rem var(--ui);color:var(--ink-soft);margin:0 0 12px}

@@ -1176,7 +1176,8 @@ function legendHTML(){
   return h;
 }
 // ---------- data and licences ----------
-const useCls=u=>u==="noncommercial"?"nc":u==="permission"?"perm":"";
+const useCls=u=>u==="noncommercial"?"nc":u==="sharealike"?"sa":u==="permission"?"perm":"";
+const tagHTML=s=>licenceTags(s).map(k=>`<i class="lt lt-${k.toLowerCase()}" title="${esc(t(LIC_TAGS[k]))}">${k}</i>`).join("");
 function sourceIds(){
   // story- and scene-level sources, then the base map, which every view shows
   const ids=[];
@@ -1189,7 +1190,7 @@ function sourceIds(){
 }
 function renderData(){
   el.data.innerHTML='<span class="dl">'+t("Data")+'</span>'+sourceIds().map(id=>{const s=SOURCES[id];
-    return `<button class="src ${useCls(s.use)}" data-src="${id}" title="${esc(t(USE_LABEL[s.use]))}"><b>${esc(s.name)}</b>${esc(s.licence)}</button>`;}).join("")+
+    return `<button class="src ${useCls(s.use)}" data-src="${id}" title="${esc(s.licence+" · "+t(USE_LABEL[s.use]))}"><b>${esc(s.name)}</b>${esc(s.licence)}<span class="lts">${tagHTML(s)}</span></button>`;}).join("")+
     '<button id="licAll">'+t("All licences")+'</button>';
   [...el.data.querySelectorAll("[data-src]")].forEach(b=>b.onclick=()=>openLic(b.dataset.src));
   $("licAll").onclick=()=>openLic();
@@ -1197,10 +1198,10 @@ function renderData(){
 const lic=$("lic");
 function openLic(focusId){
   const tiers=[["base",t("Base map and engine (commercial use required)")],["layer",t("Story layers")]];
-  $("licList").innerHTML=tiers.map(([t,h])=>`<section class="lic-tier"><h2>${h}</h2>`+
-    Object.entries(SOURCES).filter(([,s])=>s.tier===t).map(([id,s])=>`<div class="lic-item" id="lic-${id}"><span class="n">${esc(s.name)}</span><span class="w">${esc(s.what)}</span>
+  $("licList").innerHTML=`<p class="lic-key">${Object.entries(LIC_TAGS).map(([k,v])=>`<span><i class="lt lt-${k.toLowerCase()}">${k}</i> ${esc(t(v))}</span>`).join("")}</p>`+tiers.map(([tier,h])=>`<section class="lic-tier"><h2>${h}</h2>`+
+    Object.entries(SOURCES).filter(([,s])=>s.tier===tier).map(([id,s])=>`<div class="lic-item" id="lic-${id}"><span class="n">${esc(s.name)}</span><span class="w">${esc(s.what)}</span>
       <span class="l"><span>${s.licenceUrl?`<a href="${esc(s.licenceUrl)}" target="_blank" rel="noopener">${esc(s.licence)}</a>`:esc(s.licence)}</span>
-      <span class="lic-use ${useCls(s.use)}">${esc(t(USE_LABEL[s.use]))}</span>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${t("Source")}</a>`:""}</span>
+      <span class="lts">${tagHTML(s)}</span><span class="lic-use ${useCls(s.use)}">${esc(t(USE_LABEL[s.use]))}</span>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${t("Source")}</a>`:""}</span>
       <span class="w">${esc(s.credit)}</span></div>`).join("")+`</section>`).join("");
   lic.hidden=false; $("licClose").focus({preventScroll:true});
   if(focusId){const n=$("lic-"+focusId); if(n) n.scrollIntoView({block:"center"});}
@@ -1343,7 +1344,7 @@ function renderAtlasPicker(){
   const list=ATLAS.indicators.filter(x=>q?(x.name+" "+(x.long||"")).toLowerCase().includes(q):x.topic===atlasState.topic);
   el.camp.innerHTML=`<div class="atl-topics">${ATLAS.topics.filter(tp=>ATLAS.indicators.some(x=>x.topic===tp)).map(tp=>`<button data-tp="${esc(tp)}" aria-pressed="${!q&&tp===atlasState.topic}">${esc(t(tp))}</button>`).join("")}</div>
     <input class="atl-q" type="search" placeholder="${esc(t("Search indicators"))}" value="${esc(atlasState.q)}" aria-label="${esc(t("Search indicators"))}">
-    <ul class="atl-list">${list.map(x=>`<li><button data-code="${esc(x.id)}" aria-current="${x.id===cur}"><span class="atl-n">${esc(x.name)}${x.tier==="noncommercial"?' <i class="nc-badge" title="Non-commercial licence: '+esc(x.licence)+'">NC</i>':""}</span><span>${x.years[0]}–${x.years[1]}</span></button></li>`).join("")||`<li class="atl-none">${t("No match")}</li>`}</ul>`;
+    <ul class="atl-list">${list.map(x=>`<li><button data-code="${esc(x.id)}" aria-current="${x.id===cur}"><span class="atl-n">${esc(x.name)}${x.tier!=="commercial"?' <i class="lt lt-'+(x.tier==="noncommercial"?"nc":"sa")+'" title="'+esc(x.licence+": "+t(LIC_TAGS[x.tier==="noncommercial"?"NC":"SA"]))+'">'+(x.tier==="noncommercial"?"NC":"SA")+'</i>':""}</span><span>${x.years[0]}–${x.years[1]}</span></button></li>`).join("")||`<li class="atl-none">${t("No match")}</li>`}</ul>`;
   el.camp.hidden=false;
   el.camp.querySelectorAll("[data-tp]").forEach(b=>b.onclick=()=>{ atlasState.topic=b.dataset.tp; atlasState.q=""; renderAtlasPicker(); });
   el.camp.querySelectorAll("[data-code]").forEach(b=>b.onclick=()=>openAtlas(b.dataset.code));

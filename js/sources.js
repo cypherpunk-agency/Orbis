@@ -193,8 +193,8 @@ const SOURCES = {
   "unesco-uis": {
     name: "UNESCO Institute for Statistics", what: "Upper-secondary completion rate, primary out-of-school rate and researchers per million for the country atlas (UIS public data API)", tier: "layer",
     licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-    url: "https://uis.unesco.org/", use: "noncommercial", redistribute: true,
-    credit: "Source: UNESCO Institute for Statistics (CC BY-SA 4.0; share-alike, so kept out of the base tier)"
+    url: "https://uis.unesco.org/", use: "sharealike", redistribute: true,
+    credit: "Source: UNESCO Institute for Statistics (CC BY-SA 4.0)"
   },
   "meta-sci": {
     name: "Meta Social Connectedness Index (HDX)", what: "Facebook friendship ties between countries, Jan 2026 snapshot", tier: "layer",
@@ -211,19 +211,19 @@ const SOURCES = {
   "historical-basemaps": {
     name: "historical-basemaps (A. Ourednik)", what: "Approximate world borders, one map per century (500 BC – AD 1650 used)", tier: "layer",
     licence: "GPL-3.0", licenceUrl: "https://github.com/aourednik/historical-basemaps/blob/master/LICENSE",
-    url: "https://github.com/aourednik/historical-basemaps", use: "noncommercial", redistribute: true,
+    url: "https://github.com/aourednik/historical-basemaps", use: "sharealike", redistribute: true,
     credit: "historical-basemaps by André Ourednik (GPL-3.0); simplified by Orbis, derived files GPL-3.0"
   },
   awmc: {
     name: "AWMC geodata", what: "Roman state extent (60 BC, AD 117, AD 200) and frontier walls, after the Barrington Atlas", tier: "layer",
     licence: "ODbL 1.0", licenceUrl: "https://opendatacommons.org/licenses/odbl/1-0/",
-    url: "https://github.com/AWMC/geodata", use: "noncommercial", redistribute: true,
+    url: "https://github.com/AWMC/geodata", use: "sharealike", redistribute: true,
     credit: "Ancient World Mapping Center, UNC (AWMC geodata, ODbL 1.0); simplified by Orbis, derived data ODbL"
   },
   "wp-ua-control": {
     name: "Wikipedia Russo-Ukrainian war map", what: "Settlement control markers by revision (Module:Russo-Ukrainian war detailed map and overview map); volunteer-edited", tier: "layer",
     licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-    url: "https://en.wikipedia.org/wiki/Module:Russo-Ukrainian_war_detailed_map", use: "noncommercial", redistribute: true,
+    url: "https://en.wikipedia.org/wiki/Module:Russo-Ukrainian_war_detailed_map", use: "sharealike", redistribute: true,
     credit: "Wikipedia contributors, Module:Russo-Ukrainian war detailed map (CC BY-SA 4.0); areas approximated by Orbis"
   },
   "newberry-ahcb": {
@@ -390,7 +390,7 @@ const SOURCES = {
   "usgs-quakes": {
     name: "USGS earthquake catalogue", what: "Earthquakes of magnitude 6 and above, 1900–2025 (ANSS Comprehensive Catalog; pre-1973 events largely from ISC-GEM)", tier: "layer",
     licence: "US public domain + ISC-GEM CC BY-SA 3.0", licenceUrl: "https://www.isc.ac.uk/iscgem/download.php",
-    url: "https://earthquake.usgs.gov/fdsnws/event/1/", use: "commercial", redistribute: true,
+    url: "https://earthquake.usgs.gov/fdsnws/event/1/", use: "sharealike", redistribute: true,
     credit: "Source: U.S. Geological Survey, ANSS ComCat; ISC-GEM Global Instrumental Earthquake Catalogue © ISC and GEM Foundation, CC BY-SA 3.0"
   },
   "ucdp-ged": {
@@ -417,6 +417,29 @@ const SOURCES = {
   }
 };
 
-const USE_LABEL = { commercial: "Commercial use allowed", noncommercial: "Non-commercial only", permission: "Used with permission" };
+const USE_LABEL = { commercial: "Commercial use allowed", sharealike: "Share-alike: reuse under the same licence", noncommercial: "Non-commercial only", permission: "Used with permission" };
 
-if (typeof module !== "undefined") module.exports = { SOURCES, USE_LABEL };
+// licence elements shown as small badges, read from the licence text (a source may set "tags" to override)
+const LIC_TAGS = {
+  PD: "Public domain: no rights reserved",
+  CC0: "CC0: no rights reserved",
+  BY: "Attribution: credit the source",
+  SA: "Share-alike: adaptations must keep the same licence",
+  NC: "Non-commercial: no commercial use without permission",
+  ND: "No derivatives: shown unaltered",
+  PERM: "Used with written permission"
+};
+function licenceTags(s){
+  if (s.tags) return s.tags;
+  const L = String(s.licence || "").toUpperCase(), t = [];
+  if (/CC0/.test(L)) t.push("CC0");
+  else if (/PUBLIC DOMAIN|NO RESTRICTIONS|NASA OPEN DATA|GOVERNMENT WORK/.test(L)) t.push("PD");
+  if (/\bBY\b|ATTRIBUTION|IGO|ODBL/.test(L)) t.push("BY");
+  if (/\bNC\b|NON-COMMERCIAL|NONCOMMERCIAL/.test(L) || s.use === "noncommercial") t.push("NC");
+  if (/\bSA\b|SHARE-?ALIKE|GPL|ODBL/.test(L) || s.use === "sharealike") t.push("SA");
+  if (/\bND\b|NO DERIVATIVES/.test(L)) t.push("ND");
+  if (s.use === "permission") t.push("PERM");
+  return [...new Set(t)];
+}
+
+if (typeof module !== "undefined") module.exports = { SOURCES, USE_LABEL, LIC_TAGS, licenceTags };
