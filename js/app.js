@@ -1207,16 +1207,22 @@ async function openAtlas(code,year){
   if(!ATLAS){ try{ ATLAS=await loadJSON("data/atlas/catalog.json"); }catch(e){ return openExplore(); } }
   const it=ATLAS.indicators.find(x=>x.id===code)||ATLAS.indicators.find(x=>x.id==="SP.DYN.LE00.IN")||ATLAS.indicators[0];
   atlasState.topic=atlasState.topic||it.topic;
-  const d=await atlasLoad(it.id), ys=d.years, vals=Object.values(d.series.v.values);
+  let d=await atlasLoad(it.id); const ys=d.years;
+  // sparse series (no year covers 80% of reporting countries): show each country's latest value from the last 5 years
+  const raw=Object.values(d.series.v.values), rcov=ys.map((y,j)=>raw.filter(a=>a[j]!=null).length);
+  const carry=Math.max(...rcov)<raw.filter(a=>a.some(x=>x!=null)).length*0.8;
+  if(carry){ const fill=a=>a.map((x,j)=>{ for(let k=j;k>=Math.max(0,j-5);k--) if(a[k]!=null) return a[k]; return null; });
+    d=Object.assign({},d,{series:{v:Object.assign({},d.series.v,{values:Object.fromEntries(Object.entries(d.series.v.values).map(([k,a])=>[k,fill(a)]))})}}); }
+  const vals=Object.values(d.series.v.values);
   // default year: the latest with at least 60% of the best coverage
   const cov=ys.map((y,j)=>vals.filter(a=>a[j]!=null).length), best=Math.max(...cov), def=ys[cov.map((c,j)=>c>=best*0.6?j:-1).filter(j=>j>=0).pop()];
   const v=vals.flatMap(a=>a.filter(x=>x!=null&&x>0)).sort((a,b)=>a-b), skew=v.length&&v[Math.floor(v.length*0.95)]/Math.max(v[Math.floor(v.length*0.5)],1e-9)>4;
   const sc={title:it.name,text:it.definition?it.definition.split(/(?<=\.)\s/)[0]:"",view:{mode:"equal",center:[10,15],zoom:1},
-    layers:[{type:"choropleth",data:"a",series:"v",year:"t",title:it.name,fmt:it.fmt,log:skew}],
+    layers:[{type:"choropleth",data:"a",series:"v",year:"t",title:it.name+(carry?" · "+t("latest value within 5 years"):""),fmt:it.fmt,log:skew}],
     chart:{data:"a",series:"v",year:"t",top:10,title:"Highest",fmt:it.fmt},
     timeline:{years:ys,start:ys.includes(+year)?+year:def}};
   const st={id:"@atlas",cat:"Atlas",title:t("Country atlas"),hook:"",file:"atlas",atlas:it,sources:[],
-    notes:(it.long||it.name)+". "+(it.definition||"")+" Licence: "+it.licence+".",scenes:[sc],_data:{a:d}};
+    notes:(it.long||it.name)+". "+(it.definition||"")+(carry?" Few countries report every year, so the map shows each country's latest value from the five years up to the year shown.":"")+" Licence: "+it.licence+".",scenes:[sc],_data:{a:d}};
   // compile the timeline like a story file
   const yrs=sc.timeline.years; sc.timeline={isDate:false,years:yrs,start:Math.max(0,yrs.indexOf(sc.timeline.start)),label:y=>Cal.year(y),second:null,frame:y=>({year:y})};
   let i=STORIES.findIndex(x=>x.id==="@atlas"); if(i<0){ STORIES.push(st); i=STORIES.length-1; } else STORIES[i]=st;
