@@ -579,5 +579,12 @@
   "title": "Where monarchies remain",
   "hook": "43 countries still have a king, queen, emperor, emir, sultan or pope as head of state. In most the monarch reigns; in a few the monarch still rules.",
   "file": "stories/royals-today.json"
+ },
+ {
+  "id": "governments",
+  "cat": "Geopolitics",
+  "title": "Who rules the world",
+  "hook": "Democracies and autocracies are almost even again. See how the world got here since 1900, and how its 196 states are governed.",
+  "file": "stories/governments.json"
  }
 ]

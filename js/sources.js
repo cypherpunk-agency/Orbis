@@ -263,7 +263,7 @@ const SOURCES = {
     credit: "Ramona Roller, 'Spatio-temporal data on territories of the Holy Roman Empire', ETH Zurich, 2021 (CC BY-NC-SA 4.0); derived file stays CC BY-NC-SA"
   },
   wikidata: {
-    name: "Wikidata", what: "Structured facts (monarchs, reign dates, royal houses) queried via SPARQL", tier: "layer",
+    name: "Wikidata", what: "Structured facts (monarchs, reign dates, royal houses; form of government) queried via SPARQL", tier: "layer",
     licence: "CC0 1.0", licenceUrl: "https://www.wikidata.org/wiki/Wikidata:Licensing",
     url: "https://www.wikidata.org", use: "commercial", redistribute: true,
     credit: "Wikidata (CC0)"
@@ -273,6 +273,12 @@ const SOURCES = {
     licence: "Public domain", licenceUrl: "https://maps.lib.utexas.edu/maps/faq.html",
     url: "https://maps.lib.utexas.edu/maps/historical/history_shepherd_1923.html", use: "commercial", redistribute: true,
     credit: "William R. Shepherd, Historical Atlas (1923/1926); scan: University of Texas Libraries"
+  },
+  vdem: {
+    name: "V-Dem", what: "Regimes of the World classification (Lührmann, Tannenberg & Lindberg 2018), V-Dem v16, 1900–2025, via Our World in Data", tier: "layer",
+    licence: "CC BY-SA 4.0", licenceUrl: "https://www.v-dem.net/data/the-v-dem-dataset/",
+    url: "https://ourworldindata.org/grapher/political-regime", use: "sharealike", redistribute: true,
+    credit: "V-Dem v16 (Coppedge et al. 2026), Regimes of the World; processed by Our World in Data; CC BY-SA 4.0"
   },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
