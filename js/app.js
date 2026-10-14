@@ -51,7 +51,7 @@ let C={};
 function readColors(){
   const cs=getComputedStyle(document.documentElement);
   ["ocean","land","border","grat","ink","halo","accent","paper","ink-soft","c1","c2","c3","c4","c5","muted","nodata","rim","t0","t1","t2","t3","t4","s0","s1","s2","s3"].forEach(k=>C[k]=cs.getPropertyValue("--"+k).trim());
-  C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.ink_soft=C["ink-soft"];
+  C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.ink_soft=C["ink-soft"]; C.muted=C.muted||C.ink_soft;
   C.seq=d3.interpolateRgbBasis([C.s0,C.s1,C.s2,C.s3]);
 }
 const col = c => !c ? C.accent : (C[c] || c);
@@ -222,7 +222,8 @@ const asYear=n=>isDateNum(n)?Math.trunc(n/10000):n;
 const tUnit=n=>n==null?n:(scene&&scene.timeline&&scene.timeline.isDate)?(isDateNum(n)?n:n*10000+Math.sign(n||1)*101):asYear(n);
 const validAt=(p,y)=>(p.from==null||tUnit(p.from)<=y)&&(p.to==null||y<tUnit(p.to));
 // data that arrives after a scene opened: rebuild layers and the panel's legend
-function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML(); render(); }
+function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML();
+  if(scene&&scene.media&&scene.media.some(x=>x.type==="multiples")) renderMedia(); render(); }
 // admin-1 geometry per country, loaded on demand
 const REG={};
 function regionGeo(iso){
@@ -389,7 +390,7 @@ function draw(){
     const line={type:"LineString",coordinates:p};
     ctx.beginPath();path(line);ctx.strokeStyle=col(r.color);ctx.lineWidth=r.width||2;ctx.lineCap="round";
     if(r.dash)ctx.setLineDash([3,5]);
-    ctx.globalAlpha=r.flow?0.45:0.9;ctx.stroke();ctx.globalAlpha=1;ctx.setLineDash([]);
+    ctx.globalAlpha=r.alpha!=null?r.alpha:r.flow?0.45:0.9;ctx.stroke();ctx.globalAlpha=1;ctx.setLineDash([]);
     if(r.flow&&!reduce){ctx.beginPath();path(line);ctx.setLineDash([3,11]);ctx.lineDashOffset=-(tNow/45)%14;ctx.lineWidth=(r.width||2)+0.6;ctx.stroke();ctx.setLineDash([]);}
     if(r.label||r.dist){
       const at=r.labelAt!=null?p[r.labelAt]:p.length>2?p[Math.floor(p.length/2)]:d3.geoInterpolate(p[0],p[1])(0.5);
@@ -761,7 +762,10 @@ const LAYER={
   },
   lines(ly,d,y,L){ // lines with from/to follow the timeline; "labels":"once" labels only the longest piece of each name
     const tl=scene&&scene.timeline, seen=new Map();
-    const ls=(d.lines[ly.set]||[]).filter(x=>(!ly.only||ly.only.includes(x.name))&&(!tl||(x.from==null&&x.to==null)||validAt(x,+y)));
+    const live=x=>!tl||(x.from==null&&x.to==null)||validAt(x,+y);
+    // "fade": true keeps lines that are not (yet) valid as faint ghosts instead of hiding them
+    if(ly.fade) (d.lines[ly.set]||[]).filter(x=>(!ly.only||ly.only.includes(x.name))&&!live(x)).forEach(x=>L.routes.push({path:x.path,color:ly.fadeColor||"muted",width:Math.max(1.6,(x.width||ly.width||2.2)*0.8),alpha:0.6,dash:true}));
+    const ls=(d.lines[ly.set]||[]).filter(x=>(!ly.only||ly.only.includes(x.name))&&live(x));
     if(ly.labels==="once") ls.forEach(x=>{ const b=seen.get(x.name); if(!b||x.path.length>b.path.length) seen.set(x.name,x); });
     ls.forEach(x=>L.routes.push({path:x.path,color:ly.forceColor?ly.color:(x.color||ly.color),width:x.width||ly.width||2.2,
     dash:x.dash!=null?x.dash:(ly.dash!=null?ly.dash:!!x.status&&x.status!=="operating"),flow:ly.flow&&(!x.status||x.status==="operating"),
@@ -889,6 +893,22 @@ function compileLayers(s,L){
     const y=(ly.year==null||ly.year==="t")?((frame&&frame.year!=null?frame.year:null)??(lastYear(d)||new Date().getFullYear())):ly.year;
     fn(ly,d,y,L); });
 }
+// small multiples: one tiny map per year for a layer of this scene (regions or shapes); tap one to jump the timeline there
+function multiples(x,st){
+  const ly0=(scene.layers||[])[x.layer||0], d=ly0&&st&&st._data&&st._data[ly0.data]; if(!d) return "";
+  const ly=subst(ly0), w=x.width||104, h=x.height||(ly.country==="USA"?68:80);
+  const cells=(x.years||[]).map(y=>{ const T={points:[],routes:[],regions:[],shapes:[],shapeKeys:[],vals:[],highlight:[],fills:{}}; LAYER[ly.type]&&LAYER[ly.type](ly,d,y,T);
+    let fs=[], colour=()=>null;
+    if(T.regions[0]){ const rg=T.regions[0]; fs=rg.R.feats; colour=f=>rg.cat?rg.colorOf(f.id):(rg.vals[f.id]==null?null:rg.color(rg.vals[f.id])); }
+    else if(T.shapes[0]){ const sh=T.shapes[0]; fs=sh.feats; colour=f=>{ const g=sh.groups[f.properties.group]; return col(f.properties.color||(g&&g.color)||sh.color); }; }
+    if(!fs.length) return "";
+    const fc={type:"FeatureCollection",features:fs}, pr=(ly.country==="USA"?d3.geoAlbersUsa():d3.geoMercator()).fitExtent([[2,2],[w-2,h-2]],x.extent?{type:"Feature",geometry:{type:"MultiPoint",coordinates:x.extent}}:fc), pa=d3.geoPath(pr);
+    const yi=scene.timeline?scene.timeline.years.indexOf(y):-1;
+    return `<button class="mult${yi===tlIdx?" on":""}" data-ti="${yi}"${yi<0?" disabled":""}><svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true">${fs.map(f=>{ const p=pa(f); return p?`<path d="${p}" fill="${colour(f)||C.nodata}" stroke="${C.paper}" stroke-width="0.4"/>`:""; }).join("")}</svg><span>${esc(scene.timeline?String(scene.timeline.label(y)):String(y))}</span></button>`; }).join("");
+  return `<figure class="md-mult"><figcaption>${esc(x.title||"")}</figcaption><div class="mult-grid">${cells}</div></figure>`;
+}
+document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest(".mult[data-ti]"); if(!b||b.disabled||!scene||!scene.timeline) return;
+  stopPlay(); tlIdx=+b.dataset.ti; setFrame(); });
 function renderMedia(){
   const m=scene&&scene.media, st=si>=0?STORIES[si]:null;
   if(!m||!m.length){ el.media.hidden=true; el.media.innerHTML=""; return; }
@@ -923,6 +943,7 @@ function renderMedia(){
         stk.map((layer,i)=>`<path d="${ar(layer)}" fill="${col(["c1","c2","c3","c4","c5"][i%5])}" fill-opacity="0.85"><title>${esc((x.labels&&x.labels[layer.key])||nameOf(layer.key))}</title></path>`).join("")+
         `<text x="${pad[3]}" y="${h-3}" class="md-tick">${esc(Cal.year(ys[0]))}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${esc(Cal.year(ys[ys.length-1]))}</text></svg>`+
         `<p class="md-keys">${stk.map((layer,i)=>`<span class="chip"><i style="background:${col(["c1","c2","c3","c4","c5"][i%5])}"></i>${esc((x.labels&&x.labels[layer.key])||nameOf(layer.key))}</span>`).join("")}</p></figure>`; }
+    if(x.type==="multiples") return multiples(x,st);
     if(x.type==="gantt"){ // bars for reigns, terms, wars; a marker at the timeline date
       const it=x.items||[]; if(!it.length) return ""; const w=330, rh=16, pad=[4,4,18,4], h=pad[0]+rh*it.length+pad[2];
       const lo=x.from!=null?x.from:d3.min(it,i=>asYear(i.from)), hi=x.to!=null?x.to:d3.max(it,i=>asYear(i.to!=null?i.to:i.from));
@@ -1169,7 +1190,7 @@ function setFrame(){
   const y=t.years[tlIdx]; frame=t.frame(y,tlIdx); el.year.textContent=t.label(y); if(t.second){ const s2=document.createElement("small"); s2.className="tl-cal"; s2.textContent=t.second(y); el.year.append(s2); } el.slider.value=sliderVal(tlIdx);
   el.slider.setAttribute("aria-valuetext",String(t.label(y)));
   el.cap.textContent=frame.caption||""; el.cap.hidden=!frame.caption;
-  L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); if(scene.media&&scene.media.some(x=>x.type==="gantt")) renderMedia(); render();
+  L=layers(); el.legend.innerHTML=legendHTML(); renderChart(); if(scene.media&&scene.media.some(x=>x.type==="gantt"||x.type==="multiples")) renderMedia(); render();
   if(L.shapes.some(sh=>sh.flash&&sh.gained.length)&&!reduce){ flashT=performance.now(); requestAnimationFrame(flashLoop); }
   placeTicks();
 }

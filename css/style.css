@@ -269,3 +269,8 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .tl-ticks{position:relative;height:6px;margin:-6px 9px 4px}
 .tl-ticks i{position:absolute;top:0;width:1px;height:6px;background:var(--ink-soft);opacity:.55}
 .camp-list li.coming>div{display:flex;gap:10px;align-items:flex-start;padding:8px 6px;opacity:.55;cursor:default}
+.md-mult .mult-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px}
+.mult{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px;border:1px solid var(--rule);border-radius:6px;background:transparent;color:var(--ink);font:500 .8rem var(--ui);cursor:pointer}
+.mult svg{width:100%;height:auto}
+.mult.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.mult:disabled{cursor:default}

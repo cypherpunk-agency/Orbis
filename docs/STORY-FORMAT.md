@@ -165,6 +165,8 @@ Added for the history series; all optional.
 - **Card dates**: `"date": [a, b]` is a range ("760–740 BC"); `"circa": true` prefixes "c.". Ranges sort and filter by their start. Years are astronomical (1 BC = 0, so 760 BC = -759).
 - **`symbols` `"scale": "timeline"`**: one size scale across all timeline steps.
 - **`flows`**: `outLabel`/`inLabel` rename the per-country totals ("exports"/"imports"); `"totals": false` drops them.
+- **`lines` `"fade": true`**: lines not yet (or no longer) valid stay as faint dashed ghosts (`fadeColor`).
+- **Media `multiples`**: `{ "type":"multiples", "layer":0, "years":[1976,1992,2008,2024], "title":"..." }` draws one small map per year for that scene layer (`regions` or `shapes`; the US uses an Albers projection with Alaska and Hawaii inset; `extent` [[lon,lat],[lon,lat]] to frame others). Tap a map to jump the timeline there. A margin chart works with the existing `line` media over a series keyed by region id, with `labels` for names.
 - **Series `coming`**: in `stories/campaigns.json`, `"coming": [{"title": "...", "hook": "..."}]` lists planned chapters, greyed and not clickable.
 
 ## Formats (`fmt`)
