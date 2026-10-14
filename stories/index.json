@@ -453,5 +453,26 @@
   "title": "Where fame was born",
   "hook": "Two million notable lives, from 3500 BC to 2018: where they began, and where they ended.",
   "file": "stories/fame.json"
+ },
+ {
+  "id": "rome-rise",
+  "cat": "Geopolitics",
+  "title": "From city to empire",
+  "hook": "In 509 BC Rome ruled a few villages on the Tiber. Six centuries later it ruled the Mediterranean and beyond: 5 million km².",
+  "file": "stories/rome-rise.json"
+ },
+ {
+  "id": "rome-frontier",
+  "cat": "Geopolitics",
+  "title": "The frontier and the split",
+  "hook": "After AD 117 Rome stopped growing and started guarding: walls, ditches and some 1,800 forts. Then it split in two.",
+  "file": "stories/rome-frontier.json"
+ },
+ {
+  "id": "rome-fall",
+  "cat": "Geopolitics",
+  "title": "The fall: West 476, East 1453",
+  "hook": "The Roman Empire fell twice: in the West in 476, after barely 80 years on its own, and in the East a thousand years later.",
+  "file": "stories/rome-fall.json"
  }
 ]

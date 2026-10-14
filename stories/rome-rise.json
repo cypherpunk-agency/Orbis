@@ -1,0 +1,402 @@
+{
+ "id": "rome-rise",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "From city to empire",
+ "hook": "In 509 BC Rome ruled a few villages on the Tiber. Six centuries later it ruled the Mediterranean and beyond: 5 million km².",
+ "notes": "Borders 500 BC – AD 400: historical-basemaps by André Ourednik (GPL-3.0; one map per century, all borders marked approximate by the project; Orbis simplified them). Roman extent in AD 117: Ancient World Mapping Center geodata (ODbL), after the Barrington Atlas; area 4.9 million km² computed by Orbis on the sphere from the simplified outline (Taagepera's widely cited estimate is 5 million km²); the AWMC outline leaves out Trajan's short-lived provinces of Armenia and Mesopotamia (114–117). EU area: Eurostat, 4.2 million km² (EU-27). Founding dates of Rome (753 BC) and the Republic (509 BC) are Roman tradition. Cannae casualties: Livy 22.49 (about 48,000 Roman dead) and Polybius 3.117 (70,000). Hannibal's route is schematic: Polybius and Livy name the stages, not the passes, and the Alpine crossing is still debated. City names are the Latin names of the time, located with the Pleiades gazetteer (CC BY 3.0). The second line under each year counts years 'from the founding of the city' (AUC), as Romans of the late Republic and Empire did.",
+ "data": {
+  "hb": "data/history/rome-hb-ancient.json",
+  "aw": "data/history/rome-awmc.json",
+  "pl": "data/history/rome-places.json",
+  "ev": "data/history/rome-events-rise.json"
+ },
+ "sources": [
+  "editorial",
+  "orbis-schematic",
+  "eurostat"
+ ],
+ "scenes": [
+  {
+   "title": "A city on the Tiber",
+   "text": "Around 500 BC Rome was one city-state among many in Italy, with Etruscans to the north, Sabines and Samnites in the hills and Greek cities in the south. Romans dated their city's founding to 753 BC and the Republic, with two consuls elected each year, to 509 BC.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     13.2,
+     41.6
+    ],
+    "zoom": 8
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": -508,
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": -508,
+     "groups": [
+      "rome",
+      "client",
+      "carthage",
+      "italic",
+      "greek",
+      "persia",
+      "west",
+      "east",
+      "germanic"
+     ],
+     "opacity": 0.5
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": -508,
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": -508
+    }
+   ],
+   "circles": [
+    {
+     "center": [
+      12.45,
+      41.88
+     ],
+     "km": 25,
+     "color": "c2"
+    }
+   ]
+  },
+  {
+   "title": "Italy first",
+   "text": "Rome grew by war and alliance. By 300 BC it ruled central Italy; by 264 BC, every city south of the Po valley was a Roman ally or subject. Across the sea, Carthage, a Phoenician city in today's Tunisia, ruled the coasts of Africa, southern Spain, Sardinia and western Sicily.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     11,
+     39
+    ],
+    "zoom": 3.6
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": -299,
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": -299,
+     "groups": [
+      "rome",
+      "client",
+      "carthage",
+      "italic",
+      "greek",
+      "persia",
+      "west",
+      "east",
+      "germanic"
+     ],
+     "opacity": 0.5
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": -299,
+     "color": "muted"
+    }
+   ]
+  },
+  {
+   "title": "Rome against Carthage",
+   "text": "Three wars between 264 and 146 BC decided who would rule the western Mediterranean. Hannibal marched from Spain over the Alps and destroyed a Roman army at Cannae in 216 BC: about 48,000 dead according to Livy, 70,000 according to Polybius. Rome still won, and in 146 BC razed Carthage. Step through the centuries.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     8,
+     40
+    ],
+    "zoom": 3.1
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     -299,
+     -199,
+     -99
+    ],
+    "start": -299,
+    "calendar": "auc",
+    "captions": {
+     "-299": "Before the wars",
+     "-199": "After Hannibal's war",
+     "-99": "Carthage is gone"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "rome",
+      "client",
+      "carthage",
+      "italic",
+      "greek",
+      "persia",
+      "west",
+      "east",
+      "germanic"
+     ],
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "muted"
+    },
+    {
+     "type": "moves",
+     "data": "ev",
+     "set": "army",
+     "year": "t"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true,
+     "window": 110
+    }
+   ]
+  },
+  {
+   "title": "Our sea",
+   "text": "In the century after Carthage fell, Rome took Greece, most of Anatolia, Syria and, under Julius Caesar, Gaul. After Octavian beat Antony and Cleopatra at Actium in 31 BC, Egypt followed, and Romans could call the Mediterranean 'mare nostrum', our sea. In 27 BC Octavian took the name Augustus: the Republic had become an empire.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     16,
+     39
+    ],
+    "zoom": 2.6
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     -99,
+     0
+    ],
+    "start": 0,
+    "calendar": "auc",
+    "captions": {
+     "-99": "100 BC",
+     "0": "1 BC: Augustus rules"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "rome",
+      "client",
+      "carthage",
+      "italic",
+      "greek",
+      "persia",
+      "west",
+      "east",
+      "germanic"
+     ],
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "list": true,
+     "window": 110
+    }
+   ]
+  },
+  {
+   "title": "The greatest extent, AD 117",
+   "text": "Trajan pushed the borders furthest. He conquered Dacia in today's Romania and annexed Arabia, and in 116 even reached the Persian Gulf, but Armenia and Mesopotamia were lost or given up within a year and are not on this map. Even without them, the empire covered about 5 million km² in 117, more than today's European Union (4.2 million km²).",
+   "view": {
+    "mode": "globe",
+    "center": [
+     20,
+     40
+    ],
+    "zoom": 2.3
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "aw",
+     "year": 117,
+     "opacity": 0.55
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": 117,
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": 117,
+     "list": true,
+     "window": 20
+    }
+   ]
+  },
+  {
+   "title": "Six centuries, one map",
+   "text": "Press play to watch the Roman state grow, century by century, from a city to an empire around the whole Mediterranean. Each map is the historical-basemaps reconstruction for that century; its borders are approximate.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     16,
+     39
+    ],
+    "zoom": 2.6
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     -508,
+     -399,
+     -299,
+     -199,
+     -99,
+     0,
+     100
+    ],
+    "start": -508,
+    "calendar": "auc",
+    "playSpeed": 1600
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "rome",
+      "client",
+      "carthage",
+      "italic",
+      "greek",
+      "persia",
+      "west",
+      "east",
+      "germanic"
+     ],
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "muted"
+    }
+   ],
+   "media": [
+    {
+     "type": "multiples",
+     "layer": 1,
+     "years": [
+      -299,
+      -199,
+      -99,
+      0,
+      100
+     ],
+     "title": "Rome, century by century",
+     "extent": [
+      [
+       -10,
+       25
+      ],
+      [
+       45,
+       52
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

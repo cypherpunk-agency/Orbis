@@ -108,5 +108,105 @@
     "t": "Series published."
    }
   ]
+ },
+ {
+  "id": "rome",
+  "title": "The Roman Empire",
+  "hook": "From a city on the Tiber to an empire of 5 million km², and two falls a thousand years apart. Chapters on conquest, roads, frontiers and the end.",
+  "intro": "Rome began as one small city-state in Italy. By AD 117 it ruled every coast of the Mediterranean, from Britain to Egypt. This series follows the Roman state on the map: how it grew by war, how roads tied it together, where it stopped and built walls, how it split in two, and how it fell, in the West in 476 and in the East in 1453. Borders before AD 500 are reconstructions and approximate; each chapter names its sources.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     16,
+     40
+    ],
+    "zoom": 2.2
+   },
+   "modernBorders": false
+  },
+  "chapters": [
+   "rome-rise",
+   "roman-roads",
+   "rome-frontier",
+   "rome-fall"
+  ],
+  "coming": [
+   {
+    "title": "Cities of the empire",
+    "hook": "Londinium, Lutetia, Colonia: how many days from Rome? Travel times on the Stanford ORBIS network."
+   },
+   {
+    "title": "Rome's eastern rival",
+    "hook": "Seven centuries of war with Parthia and Persia along the Euphrates."
+   },
+   {
+    "title": "What is left",
+    "hook": "Roads under motorways, Latin in five national languages, Roman names on today's map."
+   }
+  ],
+  "dates": [
+   {
+    "d": -752,
+    "t": "Traditional founding of Rome (753 BC)",
+    "circa": true
+   },
+   {
+    "d": -508,
+    "t": "Traditional founding of the Republic (509 BC)",
+    "circa": true
+   },
+   {
+    "d": -263,
+    "t": "First war with Carthage begins (264 BC)"
+   },
+   {
+    "d": -215,
+    "t": "Cannae (216 BC)"
+   },
+   {
+    "d": -145,
+    "t": "Carthage destroyed (146 BC)"
+   },
+   {
+    "d": -26,
+    "t": "Octavian becomes Augustus (27 BC)"
+   },
+   {
+    "d": 117,
+    "t": "Greatest extent under Trajan"
+   },
+   {
+    "d": 122,
+    "t": "Hadrian's Wall begun"
+   },
+   {
+    "d": 330,
+    "t": "Constantinople dedicated"
+   },
+   {
+    "d": 395,
+    "t": "Empire divided between East and West"
+   },
+   {
+    "d": 476,
+    "t": "Last western emperor deposed"
+   },
+   {
+    "d": 1204,
+    "t": "Fourth Crusade sacks Constantinople"
+   },
+   {
+    "d": 1453,
+    "t": "Ottomans take Constantinople"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series started: four chapters (rise, roads, frontier, fall)."
+   }
+  ]
  }
 ]

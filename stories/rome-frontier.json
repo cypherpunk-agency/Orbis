@@ -1,0 +1,412 @@
+{
+ "id": "rome-frontier",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "The frontier and the split",
+ "hook": "After AD 117 Rome stopped growing and started guarding: walls, ditches and some 1,800 forts. Then it split in two.",
+ "notes": "Roman extent AD 117 and AD 200 and the walls: Ancient World Mapping Center geodata (ODbL), after the Barrington Atlas; AWMC does not name its walls, Orbis identified Hadrian's Wall, the Antonine Wall, the Upper German-Raetian Limes and the Fossatum Africae by their location. Forts: every place in the Pleiades gazetteer (CC BY 3.0) typed fort, fortlet or fortress with a Roman or Late Antique date, 1,796 places on 13 Oct 2026; they were not all garrisoned at the same time. Borders AD 300 and AD 400: historical-basemaps (GPL-3.0), approximate. Lengths: Hadrian's Wall 80 Roman miles, 117 km (Wikipedia); Upper German-Raetian Limes about 550 km (UNESCO World Heritage listing 'Frontiers of the Roman Empire'). Dates of events: the sources named on each card.",
+ "data": {
+  "hb": "data/history/rome-hb-ancient.json",
+  "aw": "data/history/rome-awmc.json",
+  "pl": "data/history/rome-places.json",
+  "ev": "data/history/rome-events-frontier.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "Where the empire stopped",
+   "text": "After Trajan, emperors mostly defended what they had. The Pleiades gazetteer lists about 1,800 Roman forts and fortlets. Many crowd along Hadrian's Wall in Britain, the Rhine and the Danube, and the desert edge from Syria to Egypt and Africa.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     16,
+     42
+    ],
+    "zoom": 2.3
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "aw",
+     "year": 200,
+     "opacity": 0.4,
+     "labels": false,
+     "outline": false
+    },
+    {
+     "type": "lines",
+     "data": "aw",
+     "set": "walls",
+     "color": "c1",
+     "width": 4,
+     "labels": "once"
+    },
+    {
+     "type": "points",
+     "data": "pl",
+     "set": "forts",
+     "color": "c3",
+     "r": 1.2,
+     "labels": false,
+     "under": true
+    }
+   ],
+   "legend": [
+    {
+     "color": "c1",
+     "label": "Walls (AWMC)"
+    },
+    {
+     "color": "c3",
+     "label": "Forts and fortlets (Pleiades)"
+    }
+   ]
+  },
+  {
+   "title": "A wall across Britain",
+   "text": "From AD 122 Hadrian had a stone wall built across northern Britain: 80 Roman miles, about 117 km, from the Tyne to the Solway, with a small fort every mile. His successor Antoninus Pius pushed north to a turf wall between the Forth and the Clyde in 142, but the army fell back to Hadrian's line about twenty years later.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -3.0,
+     55.3
+    ],
+    "zoom": 22
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "aw",
+     "year": 117,
+     "opacity": 0.25,
+     "labels": false
+    },
+    {
+     "type": "lines",
+     "data": "aw",
+     "set": "walls",
+     "color": "c1",
+     "width": 4,
+     "labels": "once"
+    },
+    {
+     "type": "points",
+     "data": "pl",
+     "set": "forts",
+     "color": "c3",
+     "r": 1.2,
+     "labels": false,
+     "under": true
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": 150,
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": 145,
+     "window": 25,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Rivers and a wall in Germany",
+   "text": "On the continent the Rhine and the Danube formed most of the border. Between them, a palisade, ditch and wall with forts and watchtowers ran about 550 km. In 166 Germanic peoples broke across the Danube; Marcus Aurelius spent most of his last fourteen years fighting them.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     12,
+     48.5
+    ],
+    "zoom": 9
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "aw",
+     "year": 200,
+     "opacity": 0.25,
+     "labels": false
+    },
+    {
+     "type": "lines",
+     "data": "aw",
+     "set": "walls",
+     "color": "c1",
+     "width": 4,
+     "labels": "once"
+    },
+    {
+     "type": "points",
+     "data": "pl",
+     "set": "forts",
+     "color": "c3",
+     "r": 1.2,
+     "labels": false,
+     "under": true
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": 180,
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": 180,
+     "window": 90,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "The crisis of the third century",
+   "text": "In 260 the Persian king Shapur I captured the emperor Valerian. For 14 years a breakaway Gallic Empire ruled the west, and for three a Palmyrene one the east. Rome recovered, but gave up the German wall around 260 and Dacia north of the Danube in the 270s. Step forward to see the empire of AD 300.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     18,
+     42
+    ],
+    "zoom": 2.6
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     200,
+     300
+    ],
+    "start": 200,
+    "calendar": "auc"
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "aw",
+     "year": "t",
+     "opacity": 0.5,
+     "labels": false
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "rome",
+      "client",
+      "persia",
+      "west",
+      "east",
+      "germanic"
+     ],
+     "opacity": 0.5,
+     "changes": "flash"
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 50,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "Four emperors, four capitals",
+   "text": "In 293 Diocletian split the work of ruling among four emperors, two senior and two junior, each with an army and a capital close to a frontier: Nicomedia, Sirmium, Mediolanum and Augusta Treverorum (Trier). Rome itself was no longer where emperors lived.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     18,
+     42
+    ],
+    "zoom": 2.8
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 300,
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 300,
+     "groups": [
+      "rome",
+      "client",
+      "persia",
+      "west",
+      "east",
+      "germanic"
+     ],
+     "opacity": 0.5
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": 300,
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": 300,
+     "window": 10
+    }
+   ]
+  },
+  {
+   "title": "A new Rome on the Bosporus",
+   "text": "Constantine, the first Christian emperor, refounded the Greek city of Byzantium as his capital and dedicated it in 330 under his own name: Constantinople. It would remain a capital for almost 1,600 years. Move the timeline to see the name change.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     28.9,
+     41.0
+    ],
+    "zoom": 16
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     324,
+     330
+    ],
+    "start": 324,
+    "calendar": "auc",
+    "captions": {
+     "324": "Byzantium",
+     "330": "Constantinople"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "rome",
+      "client",
+      "persia",
+      "west",
+      "east",
+      "germanic"
+     ],
+     "opacity": 0.5,
+     "labels": false
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": "t",
+     "color": "c2"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 10
+    }
+   ]
+  },
+  {
+   "title": "Two empires",
+   "text": "When Theodosius I died in January 395, his two sons divided the empire: Arcadius took the East from Constantinople, Honorius the West from Mediolanum and later Ravenna. Seventeen years earlier the Goths had killed an emperor at Adrianople; the map of AD 400 already shows Goths and Huns along the frontier.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     18,
+     42
+    ],
+    "zoom": 2.4
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 400,
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.18
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 400,
+     "groups": [
+      "rome",
+      "client",
+      "persia",
+      "west",
+      "east",
+      "germanic"
+     ],
+     "opacity": 0.5
+    },
+    {
+     "type": "places",
+     "data": "pl",
+     "year": 400,
+     "color": "muted"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": 400,
+     "window": 30,
+     "list": true
+    }
+   ]
+  }
+ ]
+}

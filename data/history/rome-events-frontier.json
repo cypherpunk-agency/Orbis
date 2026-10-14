@@ -1,0 +1,187 @@
+{
+ "source": "editorial",
+ "asOf": "2026-10-14",
+ "retrieved": "2026-10-14",
+ "note": "Event cards typed by Orbis. Dates: astronomical years (1 BC = 0); ancient dates before 45 BC follow the Roman tradition and are given as years only. Each card names its source (an ancient author and/or the Wikipedia article).",
+ "kinds": {
+  "war": {
+   "label": "Battles and wars",
+   "color": "c2",
+   "icon": "swords"
+  },
+  "rule": {
+   "label": "Rulers and states",
+   "color": "c5",
+   "icon": "crown"
+  },
+  "city": {
+   "label": "Cities",
+   "color": "c1",
+   "icon": "star"
+  },
+  "wall": {
+   "label": "Frontier works",
+   "color": "c3",
+   "icon": "flag"
+  }
+ },
+ "items": [
+  {
+   "title": "The German limes",
+   "date": [
+    100,
+    260
+   ],
+   "at": [
+    9.0,
+    49.5
+   ],
+   "kind": "wall",
+   "text": "A palisade, ditch and wall with forts and watchtowers ran about 550 km between the Rhine and the Danube. It was given up around 260.",
+   "source": "UNESCO 'Frontiers of the Roman Empire'; Wikipedia 'Limes Germanicus'",
+   "url": "https://en.wikipedia.org/wiki/Limes_Germanicus"
+  },
+  {
+   "title": "Fossatum Africae",
+   "date": [
+    100,
+    200
+   ],
+   "at": [
+    5.5,
+    35.0
+   ],
+   "kind": "wall",
+   "text": "Ditches and walls along the edge of the Sahara controlled the movement of herders and traders; most scholars date them to the 2nd century.",
+   "source": "Wikipedia 'Fossatum Africae'",
+   "url": "https://en.wikipedia.org/wiki/Fossatum_Africae",
+   "circa": true
+  },
+  {
+   "title": "Hadrian's Wall",
+   "date": 122,
+   "at": [
+    -2.3,
+    55.0
+   ],
+   "kind": "wall",
+   "text": "Hadrian ordered a stone wall across northern Britain, 80 Roman miles (117 km) from the Tyne to the Solway, with a small fort every mile.",
+   "source": "Historia Augusta, Hadrian 11; Wikipedia \"Hadrian's Wall\"",
+   "url": "https://en.wikipedia.org/wiki/Hadrian%27s_Wall"
+  },
+  {
+   "title": "Antonine Wall",
+   "date": 142,
+   "at": [
+    -4.0,
+    55.98
+   ],
+   "kind": "wall",
+   "text": "Antoninus Pius moved the frontier north to a turf wall between the Forth and the Clyde. It was abandoned after about twenty years.",
+   "source": "Wikipedia 'Antonine Wall'",
+   "url": "https://en.wikipedia.org/wiki/Antonine_Wall"
+  },
+  {
+   "title": "Marcomannic Wars",
+   "date": [
+    166,
+    180
+   ],
+   "at": [
+    16.37,
+    48.21
+   ],
+   "kind": "war",
+   "text": "Germanic peoples crossed the Danube and reached northern Italy. Marcus Aurelius spent most of his last years fighting on the river.",
+   "source": "Cassius Dio 72; Wikipedia 'Marcomannic Wars'",
+   "url": "https://en.wikipedia.org/wiki/Marcomannic_Wars"
+  },
+  {
+   "title": "Citizens all",
+   "date": 212,
+   "at": [
+    12.49,
+    41.89
+   ],
+   "kind": "rule",
+   "text": "Caracalla made almost every free man in the empire a Roman citizen.",
+   "source": "Constitutio Antoniniana; Wikipedia 'Constitutio Antoniniana'",
+   "url": "https://en.wikipedia.org/wiki/Constitutio_Antoniniana"
+  },
+  {
+   "title": "An emperor captured",
+   "date": 260,
+   "at": [
+    38.79,
+    37.16
+   ],
+   "kind": "war",
+   "text": "The Persian king Shapur I captured the emperor Valerian near Edessa. In the same years breakaway states ruled the west (the Gallic Empire, 260–274) and, briefly, the east (Palmyra, 270–273).",
+   "source": "Shapur's inscription at Naqsh-e Rostam; Wikipedia 'Crisis of the Third Century'",
+   "url": "https://en.wikipedia.org/wiki/Crisis_of_the_Third_Century"
+  },
+  {
+   "title": "Dacia given up",
+   "date": [
+    271,
+    275
+   ],
+   "at": [
+    23.32,
+    45.67
+   ],
+   "kind": "war",
+   "text": "Aurelian withdrew from Dacia north of the Danube, the first province Rome abandoned.",
+   "source": "Wikipedia 'Roman Dacia'",
+   "url": "https://en.wikipedia.org/wiki/Roman_Dacia"
+  },
+  {
+   "title": "Four emperors",
+   "date": 293,
+   "at": [
+    29.92,
+    40.77
+   ],
+   "kind": "rule",
+   "text": "Diocletian shared power with three co-emperors, each with his own capital: Nicomedia, Sirmium, Mediolanum and Augusta Treverorum.",
+   "source": "Wikipedia 'Tetrarchy'",
+   "url": "https://en.wikipedia.org/wiki/Tetrarchy"
+  },
+  {
+   "title": "Constantinople",
+   "date": 330,
+   "at": [
+    28.97,
+    41.01
+   ],
+   "kind": "city",
+   "text": "Constantine refounded Byzantium as his new capital and named it after himself, dedicating it on 11 May 330.",
+   "source": "Wikipedia 'Constantinople'",
+   "url": "https://en.wikipedia.org/wiki/Constantinople"
+  },
+  {
+   "title": "Adrianople",
+   "date": 378,
+   "at": [
+    26.56,
+    41.68
+   ],
+   "kind": "war",
+   "text": "Goths who had crossed the Danube destroyed an eastern Roman army and killed the emperor Valens.",
+   "source": "Ammianus Marcellinus 31; Wikipedia 'Battle of Adrianople'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Adrianople"
+  },
+  {
+   "title": "Two empires",
+   "date": 395,
+   "at": [
+    19.61,
+    44.97
+   ],
+   "kind": "rule",
+   "text": "Theodosius I died in January 395. His sons split the empire: Arcadius ruled the east from Constantinople, Honorius the west from Mediolanum and later Ravenna.",
+   "source": "Wikipedia 'Theodosius I'",
+   "url": "https://en.wikipedia.org/wiki/Theodosius_I"
+  }
+ ]
+}

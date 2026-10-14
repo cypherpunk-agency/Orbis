@@ -1,0 +1,213 @@
+{
+ "source": "editorial",
+ "asOf": "2026-10-14",
+ "retrieved": "2026-10-14",
+ "note": "Event cards typed by Orbis. Dates: astronomical years (1 BC = 0); ancient dates before 45 BC follow the Roman tradition and are given as years only. Each card names its source (an ancient author and/or the Wikipedia article).",
+ "kinds": {
+  "war": {
+   "label": "Battles and wars",
+   "color": "c2",
+   "icon": "swords"
+  },
+  "rule": {
+   "label": "Rulers and states",
+   "color": "c5",
+   "icon": "crown"
+  },
+  "city": {
+   "label": "Cities",
+   "color": "c1",
+   "icon": "star"
+  },
+  "wall": {
+   "label": "Frontier works",
+   "color": "c3",
+   "icon": "flag"
+  }
+ },
+ "items": [
+  {
+   "title": "Adrianople",
+   "date": 378,
+   "at": [
+    26.56,
+    41.68
+   ],
+   "kind": "war",
+   "text": "Goths destroyed an eastern Roman army and killed the emperor Valens.",
+   "source": "Ammianus Marcellinus 31; Wikipedia 'Battle of Adrianople'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Adrianople"
+  },
+  {
+   "title": "The Rhine crossing",
+   "date": 406,
+   "at": [
+    8.27,
+    50.0
+   ],
+   "kind": "war",
+   "text": "Vandals, Alans and Suebi crossed the Rhine near Mogontiacum (Mainz) at the end of 406 and moved on into Gaul and Spain.",
+   "source": "Wikipedia 'Crossing of the Rhine'",
+   "url": "https://en.wikipedia.org/wiki/Crossing_of_the_Rhine"
+  },
+  {
+   "title": "Rome sacked",
+   "date": 410,
+   "at": [
+    12.49,
+    41.89
+   ],
+   "kind": "war",
+   "text": "Alaric's Visigoths plundered Rome for three days, the first time in 800 years an enemy had taken the city.",
+   "source": "Wikipedia 'Sack of Rome (410)'",
+   "url": "https://en.wikipedia.org/wiki/Sack_of_Rome_(410)"
+  },
+  {
+   "title": "Vandals take Carthage",
+   "date": 439,
+   "at": [
+    10.32,
+    36.85
+   ],
+   "kind": "war",
+   "text": "The Vandals took Carthage and Rome's richest grain provinces in Africa.",
+   "source": "Wikipedia 'Vandal Kingdom'",
+   "url": "https://en.wikipedia.org/wiki/Vandal_Kingdom"
+  },
+  {
+   "title": "Attila stopped",
+   "date": 451,
+   "at": [
+    4.4,
+    48.9
+   ],
+   "kind": "war",
+   "text": "Romans and Visigoths fought Attila's Huns to a halt in Gaul at the Catalaunian Plains; the exact site is unknown.",
+   "source": "Jordanes, Getica; Wikipedia 'Battle of the Catalaunian Plains'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_the_Catalaunian_Plains"
+  },
+  {
+   "title": "The last western emperor",
+   "date": 476,
+   "at": [
+    12.2,
+    44.42
+   ],
+   "kind": "rule",
+   "text": "The general Odoacer deposed the boy emperor Romulus Augustulus at Ravenna and sent the imperial regalia to Constantinople.",
+   "source": "Wikipedia 'Romulus Augustulus'",
+   "url": "https://en.wikipedia.org/wiki/Romulus_Augustulus"
+  },
+  {
+   "title": "Justinian's wars",
+   "date": [
+    533,
+    554
+   ],
+   "at": [
+    12.2,
+    44.42
+   ],
+   "kind": "war",
+   "text": "Belisarius retook Africa from the Vandals in 533–534; Italy followed after a 20-year war with the Ostrogoths, and part of southern Spain in 552.",
+   "source": "Procopius, Wars; Wikipedia 'Justinian I'",
+   "url": "https://en.wikipedia.org/wiki/Justinian_I"
+  },
+  {
+   "title": "Lombards in Italy",
+   "date": 568,
+   "at": [
+    9.19,
+    45.46
+   ],
+   "kind": "war",
+   "text": "The Lombards invaded Italy; Constantinople kept only Ravenna, Rome, the south and the islands.",
+   "source": "Wikipedia 'Lombards'",
+   "url": "https://en.wikipedia.org/wiki/Lombards"
+  },
+  {
+   "title": "Yarmouk",
+   "date": 636,
+   "at": [
+    35.95,
+    32.8
+   ],
+   "kind": "war",
+   "text": "Arab armies defeated the Romans in Syria. Within six years Syria, Palestine and Egypt were lost.",
+   "source": "Wikipedia 'Battle of the Yarmuk'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_the_Yarmuk"
+  },
+  {
+   "title": "Carthage falls",
+   "date": 698,
+   "at": [
+    10.32,
+    36.85
+   ],
+   "kind": "war",
+   "text": "The Umayyads took Carthage, ending Roman rule in Africa.",
+   "source": "Wikipedia 'Battle of Carthage (698)'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Carthage_(698)"
+  },
+  {
+   "title": "A new western emperor",
+   "date": 800,
+   "at": [
+    12.45,
+    41.9
+   ],
+   "kind": "rule",
+   "text": "The pope crowned the Frankish king Charlemagne emperor in Rome. Constantinople did not recognise the title.",
+   "source": "Wikipedia 'Charlemagne'",
+   "url": "https://en.wikipedia.org/wiki/Charlemagne"
+  },
+  {
+   "title": "Manzikert",
+   "date": 1071,
+   "at": [
+    42.53,
+    39.14
+   ],
+   "kind": "war",
+   "text": "The Seljuk Turks defeated and captured the emperor Romanos IV; Anatolia lay open to Turkish settlement.",
+   "source": "Wikipedia 'Battle of Manzikert'",
+   "url": "https://en.wikipedia.org/wiki/Battle_of_Manzikert"
+  },
+  {
+   "title": "Crusaders take Constantinople",
+   "date": 1204,
+   "at": [
+    28.97,
+    41.01
+   ],
+   "kind": "war",
+   "text": "The Fourth Crusade sacked the city and set up a Latin Empire. Byzantine rulers won it back in 1261.",
+   "source": "Wikipedia 'Sack of Constantinople'",
+   "url": "https://en.wikipedia.org/wiki/Sack_of_Constantinople"
+  },
+  {
+   "title": "Constantinople falls",
+   "date": 1453,
+   "at": [
+    28.97,
+    41.01
+   ],
+   "kind": "war",
+   "text": "Mehmed II's Ottoman army took the city after a siege of 53 days, on 29 May 1453 by the Julian calendar then in use (7 June in today's calendar). The last emperor, Constantine XI, died in the fighting.",
+   "source": "Wikipedia 'Fall of Constantinople'",
+   "url": "https://en.wikipedia.org/wiki/Fall_of_Constantinople"
+  },
+  {
+   "title": "Trebizond",
+   "date": 1461,
+   "at": [
+    39.72,
+    41.0
+   ],
+   "kind": "war",
+   "text": "The Ottomans took Trebizond on the Black Sea, the last Greek state that claimed the Roman succession.",
+   "source": "Wikipedia 'Empire of Trebizond'",
+   "url": "https://en.wikipedia.org/wiki/Empire_of_Trebizond"
+  }
+ ]
+}

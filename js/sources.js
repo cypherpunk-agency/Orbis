@@ -208,6 +208,18 @@ const SOURCES = {
     url: "https://doi.org/10.21410/7E4/RDAG3O", use: "noncommercial", redistribute: true,
     credit: "Laouenan, Bhargava, Eymeoud, Gergaud, Plique & Wasmer (2022), A cross-verified database of notable people, Scientific Data 9:290 (CC BY-NC-SA 4.0)"
   },
+  "historical-basemaps": {
+    name: "historical-basemaps (A. Ourednik)", what: "Approximate world borders, one map per century (500 BC – AD 1500 used)", tier: "layer",
+    licence: "GPL-3.0", licenceUrl: "https://github.com/aourednik/historical-basemaps/blob/master/LICENSE",
+    url: "https://github.com/aourednik/historical-basemaps", use: "noncommercial", redistribute: true,
+    credit: "historical-basemaps by André Ourednik (GPL-3.0); simplified by Orbis, derived files GPL-3.0"
+  },
+  awmc: {
+    name: "AWMC geodata", what: "Roman state extent (60 BC, AD 117, AD 200) and frontier walls, after the Barrington Atlas", tier: "layer",
+    licence: "ODbL 1.0", licenceUrl: "https://opendatacommons.org/licenses/odbl/1-0/",
+    url: "https://github.com/AWMC/geodata", use: "noncommercial", redistribute: true,
+    credit: "Ancient World Mapping Center, UNC (AWMC geodata, ODbL 1.0); simplified by Orbis, derived data ODbL"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",
