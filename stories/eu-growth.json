@@ -165,7 +165,7 @@
   {
    "title": "Twenty-seven at the cutoff",
    "when": "Oct 2026",
-   "text": "The United Kingdom left in 2020. At the 14 October 2026 cutoff the union has 27 members. This merged outer outline uses modern Natural Earth geometry; it shows the selected members together while hiding their internal lines, not a reconstruction of earlier European borders.",
+   "text": "The United Kingdom left in 2020. At the 14 October 2026 cutoff the union has 27 members. This merged outer outline uses modern Natural Earth geometry; it shows the members as one area, with today's national borders kept for orientation; it is not a reconstruction of earlier European borders.",
    "view": {
     "mode": "globe",
     "center": [
@@ -183,8 +183,7 @@
      "labels": false,
      "opacity": 0.18
     }
-   ],
-   "modernBorders": false
+   ]
   }
  ]
 }

@@ -32,7 +32,7 @@ const geom=f=>(useHi()&&HI.byId.get(f.id))||f;
 function loadDetail(){
   return fetch("data/world50.json").then(r=>r.json()).then(t=>{
     const fs=topojson.feature(t,t.objects.countries).features;
-    HI.byId=new Map(fs.map(f=>[f.id,f])); HI.borders=topojson.mesh(t,t.objects.countries,(a,b)=>a!==b);
+    HI.byId=new Map(fs.map(f=>[f.id,f])); HI.topo=t; HI.borders=topojson.mesh(t,t.objects.countries,(a,b)=>a!==b);
     fs.forEach(f=>{ HI.label.set(f.id,[f.properties.lx,f.properties.ly]); 
       if(byId.has(f.id)) return;   // a small state the 1:110m map lacks: add it everywhere
       f.properties={name:f.properties.name}; feats.push(f); byId.set(f.id,f); AREA.set(f.id,d3.geoArea(f));
@@ -139,7 +139,9 @@ function layers(){
   const s=scene||{};
   const L={fills:{},groups:[],choro:null,routes:[],points:[],under:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[],overlays:[],hatches:[]};
   Object.assign(L.fills,s.fills||{});
-  L.groups=(s.groups||[]).slice();
+  const idsOf=v=>typeof v==="string"?((BLOCS[v]&&BLOCS[v].ids)||[]):(v||[]);
+  L.groups=(s.groups||[]).map(g=>Object.assign({},g,{ids:idsOf(g.ids)}));
+  L.outline=s.outline?{ids:idsOf(s.outline.ids),color:s.outline.color||"ink"}:null;
   if(s.choro) L.choro=s.choro;
   L.routes=arr(s.routes).slice(); L.points=arr(s.points).slice(); L.circles=(s.circles||[]).slice();
   if(frame){ if(frame.groups)L.groups=L.groups.concat(frame.groups); if(frame.routes)L.routes=L.routes.concat(frame.routes);
@@ -147,7 +149,8 @@ function layers(){
   if(explore.bloc){const b=BLOCS[explore.bloc];L.groups.push({label:t(b.label),color:"c2",ids:b.ids});}
   if(!scene&&explore.country) L.highlight.push(explore.country);
   L.political = scene ? !!s.political : !explore.bloc;
-  L.countryLabels = scene ? !!s.countryLabels : true;
+  // stories label only the countries they colour (fills, groups) unless they ask for all names (true) or none (false)
+  L.countryLabels = scene ? (s.countryLabels===true?true:s.countryLabels===false?false:"coloured") : true;
   compileLayers(s,L);
   const pv=s.pov||(si>=0&&STORIES[si]&&STORIES[si].pov), P=povAreas();
   if(P){ L.contested=P;
@@ -166,10 +169,18 @@ function layers(){
   return L;
 }
 let L=null;
+// the internal borders of every country that carries a colour (fills, groups, choropleth), cached per set of ids
+const FM={key:null,lo:null,hi:null}, OUTL={key:null,g:null};
+function filledMesh(){ const ids=new Set([...Object.keys(L.fills),...L.gmap.keys(),...(L.choro?Object.keys(L.cdata||{}):[])]); if(!ids.size) return null;
+  const key=[...ids].sort().join(); if(FM.key!==key){ FM.key=key; FM.lo=null; FM.hi=null; }
+  const hi=useHi(), T=hi?HI.topo:WORLD; if(!T) return null;
+  const m=hi?FM.hi:FM.lo; if(m) return m;
+  const r=topojson.mesh(T,T.objects.countries,(a,b)=>a!==b&&(ids.has(a.id)||ids.has(b.id)));
+  if(hi) FM.hi=r; else FM.lo=r; return r; }
 function fillFor(f,i,ras){
   const id=f.id;
   if(L.fills[id]) return col(L.fills[id]);
-  const g=L.gmap.get(id); if(g) return col(g.color);
+  const g=L.gmap.get(id); if(g) return g.tint?d3.interpolateRgb(C.land,col(g.color))(g.tint):col(g.color);  // tint: 0..1 toward the colour, for a light highlight
   if(L.choro){const v=L.cdata[id]; return v==null?(ras?null:C.nodata):L.color(v);}
   if(ras) return null;
   if(L.political) return C.tints[tint[i]];
@@ -186,7 +197,7 @@ let onDark=false, placed=[];
 // blur filter (which made every frame of a moving globe slow on phones)
 const INF={c:document.createElement("canvas"),k:4}; INF.x=INF.c.getContext("2d");
 function drawInfluence(sh){ const k=INF.k, w=Math.ceil(W/k), h=Math.ceil(H/k), o=INF.x;
-  if(INF.c.width!==w||INF.c.height!==h){ INF.c.width=w; INF.c.height=h; } else o.clearRect(0,0,w,h);
+  if(INF.c.width!==w||INF.c.height!==h){ INF.c.width=w; INF.c.height=h; } else { o.setTransform(1,0,0,1,0,0); o.clearRect(0,0,w,h); }
   o.setTransform(1/k,0,0,1/k,0,0); path.context(o);
   sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; o.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity;
     o.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); o.beginPath(); path(f); o.fill(); });
@@ -430,6 +441,8 @@ function draw(){
     if(scene&&scene.modernBorders===false&&!L.hist&&!L.shapes.some(sh=>sh.feats.length&&!sh.influence)){ ctx.beginPath(); path(useHi()?HI.borders:borders);
       ctx.setLineDash([3,3]); ctx.strokeStyle=onDark?"rgba(240,245,248,.38)":"rgba(29,42,48,.35)"; ctx.lineWidth=0.8; ctx.stroke(); ctx.setLineDash([]); }
     if(!(scene&&scene.modernBorders===false)){ ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke();
+      // borders of coloured countries: a light hairline, so neighbours in the same colour stay distinguishable
+      const fm=filledMesh(); if(fm){ ctx.beginPath(); path(fm); ctx.strokeStyle=(C.dark||onDark)?"rgba(236,242,244,.5)":"rgba(255,255,255,.9)"; ctx.lineWidth=0.7; ctx.stroke(); }
       // contested areas: dashed outline, as on many web maps, whichever view is drawn
       if(L.contested){ ctx.beginPath(); L.contested.forEach(a=>path(a)); ctx.setLineDash([2.5,2.5]); ctx.strokeStyle=onDark?"rgba(240,245,248,.7)":C.ink_soft; ctx.lineWidth=0.9; ctx.stroke(); ctx.setLineDash([]); } }
   }
@@ -456,6 +469,10 @@ function draw(){
     ctx.beginPath(); path(a); const idx=feats.findIndex(f=>f.id===o);
     ctx.fillStyle=o&&idx>=0?C.tints[tint[idx]]:C.nodata; ctx.fill();
     ctx.setLineDash([3,3]); ctx.strokeStyle=C.accent; ctx.lineWidth=1.3; ctx.stroke(); ctx.setLineDash([]); });
+  if(L.outline){ const T=useHi()?HI.topo:WORLD, ids=new Set(L.outline.ids), key=(useHi()?"hi:":"lo:")+L.outline.ids.join();
+    if(OUTL.key!==key){ OUTL.key=key; OUTL.g=topojson.merge(T,T.objects.countries.geometries.filter(g=>ids.has(g.id))); }
+    ctx.beginPath(); path(OUTL.g); ctx.lineJoin="round"; ctx.strokeStyle=C.dark?"rgba(12,26,36,.6)":"rgba(255,255,255,.8)"; ctx.lineWidth=4.5; ctx.stroke();
+    ctx.strokeStyle=col(L.outline.color); ctx.lineWidth=2; ctx.stroke(); }
   if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f)); if(L.povView) L.povView.areas.forEach(a=>{ if(L.povView.owner(a)===id) path(a); });});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
   // circles
   L.circles.forEach(c=>{const g=d3.geoCircle().center(c.center).radius(c.km/R_EARTH*deg).precision(1)();
@@ -530,7 +547,7 @@ function draw(){
   if(L._cartoLabels) labels.unshift(...L._cartoLabels);
   L.shapes.forEach(sh=>{ if(!sh.labels) return; sh.feats.slice().sort((a,b)=>a._a-b._a).forEach(f=>{ const n=f.properties.label||f.properties.name;
     if(!n||!f._c||!visible(f._c)) return; const p=proj(f._c); if(p) labels.unshift([n,p[0],p[1],{align:"center",size:f._a>0.01?14:12,color:C.ink,italic:sh.influence}]); }); });
-  if(L.countryLabels&&!L.carto&&!L.hist) countryLabels(labels);
+  if(L.countryLabels&&!L.carto&&!L.hist) countryLabels(labels,L.countryLabels==="coloured"?new Set([...Object.keys(L.fills),...L.gmap.keys()]):null);
   labels.forEach(l=>label(...l));
   // rim
   ctx.beginPath();path(SPHERE);ctx.strokeStyle=C.rim;ctx.lineWidth=1;ctx.stroke();
@@ -544,10 +561,11 @@ function stampText(){ if(!scene||!scene.stamp) return ""; const tl=scene.timelin
 // largest countries first; a name is shown when the country is big enough on screen to hold it
 const BY_AREA=()=>feats.slice().sort((a,b)=>AREA.get(b.id)-AREA.get(a.id));
 let byAreaCache=null, byAreaN=0;
-function countryLabels(labels){
+function countryLabels(labels,only){
+  if(only&&!only.size) return;
   if(!byAreaCache||byAreaN!==feats.length){ byAreaCache=BY_AREA(); byAreaN=feats.length; }
   const R=Math.min(F.w,F.h)/2*V.zoom*0.9, soft=onDark?"#D9E2E6":C.ink_soft;
-  byAreaCache.forEach(f=>{ const n=nameOf(f.id), size=Math.sqrt(AREA.get(f.id))*R;
+  byAreaCache.forEach(f=>{ if(only&&!only.has(f.id)) return; const n=nameOf(f.id), size=Math.sqrt(AREA.get(f.id))*R;
     if(size<n.length*5.2) return;
     const at=HI.label.get(f.id)||ANCHOR.get(f.id); if(!at||!visible(at)) return; const p=proj(at); if(!p) return;
     labels.push([n,p[0],p[1],{align:"center",size:size>160?14:12,color:soft}]); });
@@ -1037,8 +1055,9 @@ function subst(o){ const op=switchOpt(); if(!op||o==null) return o;
       return v.replace(/\{(\w+)\}/g,(x,k)=>op[k]!=null?String(op[k]):x); }
     if(Array.isArray(v)) return v.map(walk); if(v&&typeof v==="object"){ const r={}; for(const k in v) r[k]=walk(v[k]); return r; } return v; };
   return walk(o); }
+let campData=null;  // datasets of the open series landing page (campaigns.json `data`)
 function compileLayers(s,L){
-  const st=si>=0?STORIES[si]:null, D=(st&&st._data)||{};
+  const st=si>=0?STORIES[si]:null, D=(st&&st._data)||(si<0&&campData)||{};
   (subst(s.layers)||[]).forEach(ly=>{ const d=D[ly.data], fn=LAYER[ly.type]; if(!d||!fn) return;
     const y=(ly.year==null||ly.year==="t")?((frame&&frame.year!=null?frame.year:null)??(lastYear(d)||new Date().getFullYear())):ly.year;
     fn(ly,d,y,L); });
@@ -1322,6 +1341,7 @@ function sourceIds(){
   if(si>=0&&STORIES[si].scenes){ const st=STORIES[si], D=st._data||{};
     ids.push(...(st.sources||(st._data?[]:["editorial"])), ...((scene&&scene.sources)||[]));
     if(scene) [...(subst(scene.layers)||[]), ...(scene.chart?[subst(scene.chart)]:[])].forEach(l=>{const d=D[l.data]; if(d&&d.source) ids.push(d.source);}); }
+  if(si<0&&campData&&scene) (scene.layers||[]).forEach(l=>{ const d=campData[l.data]; if(d&&d.source) ids.push(...[].concat(d.source)); });
   if(BASEMAPS[BM.mode].source) ids.push(BASEMAPS[BM.mode].source);
   ids.push("naturalearth");
   return [...new Set(ids)].filter(id=>SOURCES[id]);
@@ -1428,7 +1448,7 @@ async function openStory(i, scn=0){
   showScene(scn==="last"?STORIES[i].scenes.length-1:scn);
 }
 function openExplore(){
-  explore.country=null; el.camp.innerHTML="";
+  explore.country=null; el.camp.innerHTML=""; campData=null; campTok++;
   quiz.mode=null; si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true; el.card.hidden=true;
   el.kicker.textContent=t("Explore"); el.title.textContent=t("The world, your way");
   el.text.textContent=t("Drag to turn the world, pinch or scroll to zoom, tap a country for its key facts and the stories about it. Switch between political, satellite and night views with the map button. Show a group of countries:");
@@ -1599,8 +1619,12 @@ function markRead(id,scene,n){ if(id.startsWith("@")) return; const r=readState(
   try{ localStorage.setItem("orbis-read",JSON.stringify(r)); }catch(e){} }
 function fmtDate(d){ const x=new Date(String(d).length===8?String(d).replace(/(\d{4})(\d\d)(\d\d)/,"$1-$2-$3"):d);
   return isNaN(x)?String(d):x.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}); }
-function openCampaign(id){
+let campTok=0;
+async function openCampaign(id){
   const cp=CAMPAIGNS.find(c=>c.id===id); if(!cp) return openToc();
+  const tok=++campTok; campData=null;
+  if(cp.data){ const D={}; try{ await Promise.all(Object.entries(cp.data).map(async([k,u])=>{ D[k]=await loadJSON(u); })); }catch(e){}
+    if(tok!==campTok) return; campData=D; }
   quiz.mode=null; si=-1; frame=null; closeToc(); stopPlay(); sheet.classList.remove("collapsed");
   scene=Object.assign({layers:[],political:true,view:{mode:"globe",center:[0,25],zoom:1}},cp.scene||{});
   markDirty(); el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=true; el.sw.hidden=true; el.chart.hidden=true; el.media.hidden=true;
@@ -1647,7 +1671,11 @@ const sheetClose=$("sheetClose");
 function syncClose(){ sheetClose.hidden=/^#?(explore)?$/.test(location.hash); }
 const replaceState0=history.replaceState.bind(history);
 history.replaceState=(...a)=>{ replaceState0(...a); syncClose(); };
-sheetClose.onclick=e=>{ e.stopPropagation(); openExplore(); };
+sheetClose.onclick=e=>{ e.stopPropagation();
+  const st=si>=0?STORIES[si]:null, cp=st&&!st.id.startsWith("@")&&campaignOf(st);
+  if(cp) return openCampaign(cp.id);
+  const toList=si>=0||/^#(c|quiz|city)\b/.test(location.hash);
+  openExplore(); if(toList) openToc(); };
 function setCollapsed(on){ sheet.classList.toggle("collapsed",on); if(!on) sheet.scrollTop=0; requestAnimationFrame(layout); }
 $("collapse").onclick=e=>{ e.stopPropagation(); toggleSheet(!sheet.classList.contains("collapsed")); };
 new MutationObserver(()=>$("collapse").setAttribute("aria-expanded",String(!sheet.classList.contains("collapsed")))).observe(sheet,{attributes:true,attributeFilter:["class"]});

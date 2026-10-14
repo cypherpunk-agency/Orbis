@@ -197,7 +197,31 @@
     ],
     "zoom": 2.5
    },
-   "modernBorders": false
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 117,
+     "groups": [
+      "rome",
+      "client",
+      "persia"
+     ],
+     "opacity": 0.45
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 117,
+     "groups": [
+      "peoples",
+      "nomads"
+     ],
+     "style": "influence"
+    }
+   ],
+   "stamp": "The empire around AD 117 · approximate borders, historical-basemaps"
   },
   "chapters": [
    "rome-carthage",
@@ -239,7 +263,10 @@
     "d": "2026-10-14",
     "t": "Seven reviewed chapters registered, reusing All roads lead to Rome."
    }
-  ]
+  ],
+  "data": {
+   "hb": "data/history/hb-context-ancient.json"
+  }
  },
  {
   "id": "united-states",
@@ -255,7 +282,17 @@
      38
     ],
     "zoom": 2.5
-   }
+   },
+   "groups": [
+    {
+     "label": "United States",
+     "color": "c1",
+     "ids": [
+      "USA"
+     ],
+     "tint": 0.5
+    }
+   ]
   },
   "chapters": [
    "us-colonies",
@@ -290,6 +327,18 @@
      50
     ],
     "zoom": 3
+   },
+   "groups": [
+    {
+     "label": "EU member states (27)",
+     "color": "c1",
+     "ids": "EU",
+     "tint": 0.5
+    }
+   ],
+   "outline": {
+    "ids": "EU",
+    "color": "c1"
    }
   },
   "chapters": [
@@ -322,7 +371,17 @@
      49
     ],
     "zoom": 5
-   }
+   },
+   "groups": [
+    {
+     "label": "Ukraine",
+     "color": "c1",
+     "ids": [
+      "UKR"
+     ],
+     "tint": 0.5
+    }
+   ]
   },
   "chapters": [
    "ua-2014",
@@ -356,7 +415,16 @@
     ],
     "zoom": 3
    },
-   "modernBorders": false
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "borders",
+     "data": "borders",
+     "year": 1938,
+     "labels": true
+    }
+   ],
+   "stamp": "Borders as of 1 Jan 1938 · CShapes 2.0"
   },
   "chapters": [
    "ww2-before",
@@ -374,7 +442,10 @@
     "d": "2026-10-14",
     "t": "Complete scoped chapter order registered after chapter source and visual review."
    }
-  ]
+  ],
+  "data": {
+   "borders": "data/history/ww2/borders-names.json"
+  }
  },
  {
   "id": "holy-roman-empire",
@@ -391,7 +462,20 @@
     ],
     "zoom": 3
    },
-   "modernBorders": false
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 1356,
+     "groups": [
+      "empire",
+      "france"
+     ],
+     "opacity": 0.4
+    }
+   ],
+   "stamp": "The empire in 1356 · approximate borders, historical-basemaps"
   },
   "chapters": [
    "hre-charlemagne",
@@ -407,7 +491,10 @@
     "d": "2026-10-14",
     "t": "Complete scoped chapter order registered after chapter source and visual review."
    }
-  ]
+  ],
+  "data": {
+   "hb": "data/history/hre-outline.json"
+  }
  },
  {
   "id": "rome",
@@ -424,7 +511,31 @@
     ],
     "zoom": 2.2
    },
-   "modernBorders": false
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 117,
+     "groups": [
+      "rome",
+      "client",
+      "persia"
+     ],
+     "opacity": 0.45
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 117,
+     "groups": [
+      "peoples",
+      "nomads"
+     ],
+     "style": "influence"
+    }
+   ],
+   "stamp": "The empire around AD 117 · approximate borders, historical-basemaps"
   },
   "chapters": [
    "rome-rise",
@@ -507,7 +618,10 @@
     "d": "2026-10-14",
     "t": "Series started: four chapters (rise, roads, frontier, fall)."
    }
-  ]
+  ],
+  "data": {
+   "hb": "data/history/hb-context-ancient.json"
+  }
  },
  {
   "id": "ukraine",
@@ -526,6 +640,16 @@
    },
    "highlight": [
     "UKR"
+   ],
+   "groups": [
+    {
+     "label": "Ukraine",
+     "color": "c1",
+     "ids": [
+      "UKR"
+     ],
+     "tint": 0.5
+    }
    ]
   },
   "chapters": [
@@ -632,7 +756,38 @@
     ],
     "zoom": 2.8
    },
-   "modernBorders": false
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "royal-crowns",
+     "data": "h",
+     "set": "crowns",
+     "year": 1714,
+     "unit": "areas",
+     "title": "Ruling house",
+     "colors": {
+      "capet": "c1",
+      "habsburg": "c3",
+      "britain": "c7",
+      "hanover": "c8",
+      "wettin": "#3E9B4F",
+      "romanov": "c2",
+      "hohenzollern": "#8C96A8",
+      "wittelsbach": "c4",
+      "oldenburg": "c5",
+      "vasa": "s1",
+      "braganza": "s2",
+      "savoy": "s3",
+      "orange": "#EE8A2A",
+      "bonaparte": "#D8B630",
+      "osman": "c6",
+      "other": "muted",
+      "none": "s0"
+     }
+    }
+   ],
+   "stamp": "Ruling houses in 1714"
   },
   "chapters": [
    "royals-england",
@@ -733,7 +888,10 @@
     "d": "2026-10-14",
     "t": "Series published with four chapters."
    }
-  ]
+  ],
+  "data": {
+   "h": "data/history/royals-crowns.json"
+  }
  },
  {
   "id": "colonialism",
@@ -749,7 +907,17 @@
      10
     ],
     "zoom": 1
-   }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 1880,
+     "labels": false,
+     "inner": false
+    }
+   ],
+   "stamp": "Colonial empires around 1880 · approximate, historical-basemaps"
   },
   "chapters": [
    "col-empires",
@@ -809,7 +977,10 @@
     "title": "Legacies",
     "hook": "Borders drawn in Europe, and the languages the empires left behind."
    }
-  ]
+  ],
+  "data": {
+   "hb": "data/history/col-empires-hb.json"
+  }
  },
  {
   "id": "united-states-boundaries",
@@ -943,7 +1114,20 @@
     ],
     "zoom": 3.4
    },
-   "modernBorders": false
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 1356,
+     "groups": [
+      "empire",
+      "france"
+     ],
+     "opacity": 0.4
+    }
+   ],
+   "stamp": "The empire in 1356 · approximate borders, historical-basemaps"
   },
   "chapters": [
    "hre-origins",
@@ -1012,6 +1196,9 @@
     "d": "2026-10-14",
     "t": "Series published with four chapters."
    }
-  ]
+  ],
+  "data": {
+   "hb": "data/history/hre-outline.json"
+  }
  }
 ]
