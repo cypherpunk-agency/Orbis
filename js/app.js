@@ -52,7 +52,9 @@ function readColors(){
   const cs=getComputedStyle(document.documentElement);
   ["ocean","land","border","grat","ink","halo","accent","paper","ink-soft","c1","c2","c3","c4","c5","c6","c7","c8","muted","nodata","rim","t0","t1","t2","t3","t4","s0","s1","s2","s3"].forEach(k=>C[k]=cs.getPropertyValue("--"+k).trim());
   C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.ink_soft=C["ink-soft"]; C.muted=C.muted||C.ink_soft;
-  C.dark=d3.hsl(C.paper).l<0.5;  // dark theme (not the same as onDark, which means an imagery basemap)
+  C.dark=d3.hsl(C.paper).l<0.5;
+  if(typeof divergingFromPalette==="function"&&typeof DIV!=="undefined") divergingFromPalette();
+  if(typeof ND!=="undefined"&&ND) C.nodata=ND==="1"?(C.dark?"#68716F":"#D6D3CB"):C.land;  // dark theme (not the same as onDark, which means an imagery basemap)
   C.seq=d3.interpolateRgbBasis([C.s0,C.s1,C.s2,C.s3]);
 }
 const col = c => !c ? C.accent : (C[c] || c);
@@ -85,8 +87,11 @@ const curKind=()=>V.t<0.5?V.a:V.b;
 let moving=false;
 // story beats: the previous frame dissolves over the new one, so colours, outlines and labels fade instead of snapping
 const BEAT={c:document.createElement("canvas"),ms:380}; let beat=null;
-function beatFade(){ HIDE.clear(); if(reduce||!canvas.width) return; snap(BEAT.c); beat={t0:null}; render(); }
-function beatStep(now){ if(beat.t0==null) beat.t0=now; const k=Math.min(1,(now-beat.t0)/BEAT.ms), e=k*k*(3-2*k);
+function beatFade(){ HIDE.clear(); if(reduce||!canvas.width) return; snap(BEAT.c); beat={t0:null,key:viewKey()}; render(); }
+function beatStep(now){
+  // only while the map stays where it was: if the camera or the frame moves, an old snapshot on top reads as a double image
+  if(beat.key!==viewKey()){ beat=null; return false; }
+  if(beat.t0==null) beat.t0=now; const k=Math.min(1,(now-beat.t0)/BEAT.ms), e=k*k*(3-2*k);
   if(k<1){ ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.globalAlpha=1-e; ctx.drawImage(BEAT.c,0,0); ctx.restore(); return true; }
   beat=null; return false; }
 // when the map settles, the detailed outlines replace the light ones: cross-fade the two frames instead of a hard swap.
@@ -501,6 +506,8 @@ function draw(){
     sh.gained.forEach(f=>{ ctx.beginPath(); path(f); if(fl>0){ const g=sh.groups[f.properties.group]; ctx.globalAlpha=0.9*fl; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1; }
       ctx.strokeStyle=C.ink; ctx.lineWidth=2.4; ctx.stroke(); });
     if(sh.front){ ctx.beginPath(); path(sh.front); ctx.strokeStyle=col(sh.frontColor); ctx.lineWidth=3; ctx.stroke(); } });
+  if(ND==="2"&&L.choro){ ctx.save(); ctx.beginPath(); feats.forEach(f=>{ if(L.cdata[f.id]==null) path(geom(f)); }); ctx.clip(); ctx.beginPath();
+    for(let k=-H;k<W+H;k+=6){ ctx.moveTo(k,0); ctx.lineTo(k+H,H); } ctx.strokeStyle=C.dark?"rgba(236,242,244,.22)":"rgba(29,42,48,.18)"; ctx.lineWidth=1; ctx.stroke(); ctx.restore(); }
   L.hatches.forEach(hh=>{ if(hidden(hh.color)) return; ctx.save(); ctx.beginPath(); hh.ids.forEach(id=>{ const f=byId.get(id); if(f) path(geom(f)); }); ctx.clip();
     const a=hh.angle*rad, R=Math.hypot(W,H), dx=Math.cos(a), dy=Math.sin(a), step=7; ctx.beginPath();
     for(let k=-R;k<=R;k+=step){ const cx=W/2-dy*k, cy=H/2+dx*k; ctx.moveTo(cx-dx*R,cy-dy*R); ctx.lineTo(cx+dx*R,cy+dy*R); }
@@ -873,7 +880,12 @@ function pointValues(ly,d,y){
   const pi=d.periods.indexOf(String(ly.period||y));
   return d.points.filter(p=>p[ly.field]&&p[ly.field][pi]!=null).map(p=>({id:p.id,name:p.name,at:p.at,v:p[ly.field][pi]}));
 }
-const DIVERGING=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
+let DIVERGING=d3.interpolateRgbBasis(["#2166AC","#67A9CF","#F7F7F7","#EF8A62","#B2182B"]);
+// preview (?div=1|2, ?nd=1|2): diverging scales through the land colour, and no-data treatments
+const QP=new URLSearchParams(location.search), DIV=QP.get("div"), ND=QP.get("nd");
+function divergingFromPalette(){ if(!DIV) return; const dark=C.dark, a=DIV==="1"?C.c1:C.c4, b=DIV==="1"?C.c2:C.c3;
+  const end=c=>dark?d3.interpolateLab(c,"#FFFFFF")(0.28):d3.interpolateLab(c,"#000000")(0.18), mid=c=>d3.interpolateLab(C.land,c)(0.45);
+  DIVERGING=d3.interpolateLab ? d3.piecewise(d3.interpolateLab,[end(a),mid(a),C.land,mid(b),end(b)]) : DIVERGING; }
 const pickByYear=(o,y)=>{ if(!o) return null; const k=Object.keys(o).map(Number).sort((a,b)=>a-b).filter(v=>v<=+y).pop(); return k!=null?o[k]:null; };
 const d0=e=>Array.isArray(e.date)?e.date[0]:e.date;
 const dKey=v=>isDateNum(v)?v:v*10000+Math.sign(v||1)*101;   // years and yyyymmdd dates on one scale for sorting   // a date range [a, b] sorts and filters by its start
