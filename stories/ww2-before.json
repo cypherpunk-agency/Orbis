@@ -32,8 +32,7 @@
         {
           "type": "borders",
           "data": "borders",
-          "year": 1938,
-          "labels": false
+          "year": 1938
         }
       ],
       "sources": [
@@ -87,8 +86,7 @@
         {
           "type": "borders",
           "data": "borders",
-          "year": 1938,
-          "labels": false
+          "year": 1938
         },
         {
           "type": "cards",
@@ -122,8 +120,7 @@
         {
           "type": "borders",
           "data": "borders",
-          "year": 1938,
-          "labels": false
+          "year": 1938
         },
         {
           "type": "cards",
@@ -157,8 +154,7 @@
         {
           "type": "borders",
           "data": "borders",
-          "year": 1938,
-          "labels": false
+          "year": 1938
         },
         {
           "type": "cards",

@@ -165,8 +165,7 @@
     {
      "type": "borders",
      "data": "b",
-     "year": "t",
-     "labels": false
+     "year": "t"
     }
    ],
    "timeline": {

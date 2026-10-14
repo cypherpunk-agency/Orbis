@@ -31,8 +31,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1920,
-     "labels": false
+     "year": 1920
     },
     {
      "type": "cards",
@@ -109,8 +108,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1920,
-     "labels": false
+     "year": 1920
     }
    ],
    "points": [
@@ -157,8 +155,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1925,
-     "labels": false
+     "year": 1925
     },
     {
      "type": "cards",
@@ -203,8 +200,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1925,
-     "labels": false
+     "year": 1925
     },
     {
      "type": "cards",

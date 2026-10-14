@@ -33,8 +33,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1960,
-     "labels": false
+     "year": 1960
     },
     {
      "type": "cards",
@@ -76,8 +75,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": "t",
-     "labels": false
+     "year": "t"
     },
     {
      "type": "cards",
@@ -201,8 +199,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1960,
-     "labels": false
+     "year": 1960
     }
    ],
    "points": [
@@ -244,8 +241,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 2011,
-     "labels": false
+     "year": 2011
     }
    ],
    "points": [

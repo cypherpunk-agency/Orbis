@@ -176,8 +176,8 @@ function layers(){
   if(explore.bloc){const b=BLOCS[explore.bloc];L.groups.push({label:t(b.label),color:"c2",ids:b.ids});}
   if(!scene&&explore.country) L.highlight.push(explore.country);
   L.political = scene ? !!s.political : !explore.bloc;
-  // stories label only the countries they colour (fills, groups) unless they ask for all names (true) or none (false)
-  L.countryLabels = scene ? (s.countryLabels===true?true:s.countryLabels===false?false:"coloured") : true;
+  // country names everywhere unless a scene turns them off (countryLabels: false); overlapping names are skipped
+  L.countryLabels = scene ? s.countryLabels!==false : true;
   compileLayers(s,L);
   const pv=s.pov||(si>=0&&STORIES[si]&&STORIES[si].pov), P=povAreas();
   if(P){ L.contested=P;
@@ -307,6 +307,18 @@ function histSnap(alias,d,yr){
   if(d.snapshots) setTimeout(()=>done(d.snapshots[yr]),0); else loadJSON(d.files[yr]).then(done);
   return null;
 }
+// CShapes names carry alternatives in brackets ("Turkey (Ottoman Empire)"): show the name valid at the snapshot year
+const HIST_NAMES={"Turkey (Ottoman Empire)":[[1923,"Ottoman Empire"],"Turkey"],"Germany (Prussia)":["Germany"],"Italy/Sardinia":["Italy"],
+  "Russia (Soviet Union)":[[1922,"Russia"],[1992,"Soviet Union"],"Russia"],"Iran (Persia)":[[1935,"Persia"],"Iran"],"Sri Lanka (Ceylon)":[[1972,"Ceylon"],"Sri Lanka"],
+  "Myanmar (Burma)":[[1989,"Burma"],"Myanmar"],"Cambodia (Kampuchea)":["Cambodia"],"Congo, Democratic Republic of (Zaire)":[[1971,"Congo"],[1997,"Zaire"],"DR Congo"],
+  "Belarus (Byelorussia)":["Belarus"],"Burkina Faso (Upper Volta)":[[1984,"Upper Volta"],"Burkina Faso"],"Madagascar (Malagasy)":["Madagascar"],
+  "Macedonia (FYROM/North Macedonia)":[[2020,"Macedonia"],"North Macedonia"],"Swaziland (Eswatini)":[[2018,"Swaziland"],"Eswatini"],
+  "Tanzania (Tanganyika)":[[1964,"Tanganyika"],"Tanzania"],"Yemen (Arab Republic of Yemen)":[[1991,"North Yemen"],"Yemen"],"Zimbabwe (Rhodesia)":[[1980,"Rhodesia"],"Zimbabwe"],
+  "Vietnam (Annam/Cochin China/Tonkin)":["Vietnam"],"British Somaliland (Somaliland Republic)":["British Somaliland"],
+  "New Guinea (German New Guinea) (Kaiser Wilhelmsland)":[[1920,"German New Guinea"],"New Guinea"],"Sabah (North Borneo)":[[1963,"North Borneo"],"Sabah"],
+  "West Irian (Dutch New Guinea)":[[1963,"Dutch New Guinea"],"West Irian"]};
+function histName(n,year){ n=n||""; const r=HIST_NAMES[n]; if(!r) return n.replace(/\s*\(.*\)\s*$/,""); const y=+year;
+  for(const e of r){ if(!Array.isArray(e)) return e; if(y<e[0]) return e[1]; } return n; }
 // shapes over time (any polygons with from/to dates: empires, provinces, occupied areas), decoded once per dataset
 const SHP={};
 function shapeSet(alias,d){
@@ -480,9 +492,12 @@ function draw(){
   if(!ras){ctx.beginPath();path(SPHERE);ctx.fillStyle=C.ocean;ctx.fill();}
   ctx.beginPath();path(GRAT);ctx.strokeStyle=onDark?"rgba(255,255,255,.10)":C.grat;ctx.lineWidth=0.6;ctx.stroke();
   if(L.hist){ const Hh=L.hist.H;
+    // period states, clipped to today's coastline so there is one coastline (the two datasets simplify coasts differently)
     ctx.beginPath(); feats.forEach(f=>path(f)); ctx.fillStyle=onDark?"rgba(255,255,255,.1)":C.land; ctx.fill();
-    Hh.feats.forEach((f,i)=>{ ctx.beginPath(); path(f); ctx.fillStyle=C.tints[Hh.tint[i]]; ctx.globalAlpha=ras?0.75:1; ctx.fill(); ctx.globalAlpha=1; });
-    ctx.beginPath(); path(Hh.mesh); ctx.strokeStyle=C.ink; ctx.lineWidth=0.9; ctx.stroke();
+    ctx.save(); ctx.beginPath(); feats.forEach(f=>path(geom(f))); ctx.clip();
+    // each state also strokes its own colour a few pixels outward, so coastal slivers the coarser outline misses are covered
+    Hh.feats.forEach((f,i)=>{ ctx.beginPath(); path(f); ctx.fillStyle=ctx.strokeStyle=C.tints[Hh.tint[i]]; ctx.globalAlpha=ras?0.75:1; ctx.lineJoin="round"; ctx.lineWidth=7; ctx.stroke(); ctx.fill(); ctx.globalAlpha=1; });
+    ctx.beginPath(); path(Hh.mesh); ctx.strokeStyle=onDark?"rgba(240,245,248,.6)":C.border; ctx.lineWidth=0.9; ctx.stroke(); ctx.restore();
   }
   else if(L.carto) drawCartogram(ras);
   else{
@@ -598,7 +613,7 @@ function draw(){
       E.pts.forEach(p=>{ if(p.now!==now||!visible(p.at)) return; const q=proj(p.at); if(!q) return; ctx.moveTo(q[0]+p.r,q[1]); ctx.arc(q[0],q[1],p.r,0,2*Math.PI); });
       ctx.fillStyle=c; ctx.globalAlpha=a; ctx.fill(); ctx.globalAlpha=1; if(now){ctx.lineWidth=0.8; ctx.strokeStyle=C.halo; ctx.stroke();} }); });
   if(L.hist&&L.hist.labels){ const Hh=L.hist.H, R=Math.min(F.w,F.h)/2*V.zoom*0.9;
-    Hh.feats.map((f,i)=>[f,i]).sort((a,b)=>Hh.area[b[1]]-Hh.area[a[1]]).forEach(([f,i])=>{ const n=f.properties.name||"", size=Math.sqrt(Hh.area[i])*R;
+    Hh.feats.map((f,i)=>[f,i]).sort((a,b)=>Hh.area[b[1]]-Hh.area[a[1]]).forEach(([f,i])=>{ const n=histName(f.properties.name,L.hist.year), size=Math.sqrt(Hh.area[i])*R;
       if(size<n.length*5.2) return; const at=f.properties.lx!=null?[f.properties.lx,f.properties.ly]:d3.geoCentroid(f); if(!visible(at)) return;
       const q=proj(at); if(q) labels.push([n,q[0],q[1],{align:"center",size:size>160?14:12}]); }); }
   L.regions.forEach(rg=>{ if(!rg.labels) return; rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], at=[f.properties.lx,f.properties.ly];
@@ -760,7 +775,7 @@ function tap(x,y){
     tip.innerHTML="<b>"+esc(p.name||"")+"</b><span>"+esc([p.from!=null?Cal.year(p.from):"",p.to!=null?Cal.year(p.to):""].join("–"))+(p.note?" · "+esc(p.note):"")+"</span>"+(sh.influence?"<span>"+esc(t("Approximate area of influence, not a border"))+"</span>":"");
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; } }
   if(L.hist){ const hf=L.hist.H.feats.find(f=>d3.geoContains(f,ll));
-    tip.innerHTML=hf?"<b>"+esc(hf.properties.name||"")+"</b><span>"+esc(t("Borders of {y}",{y:L.hist.year}))+"</span>":"<span>"+esc(t("Not an independent state in {y}",{y:L.hist.year}))+"</span>";
+    tip.innerHTML=hf?"<b>"+esc(histName(hf.properties.name,L.hist.year))+"</b><span>"+esc(t("Borders of {y}",{y:L.hist.year}))+"</span>":"<span>"+esc(t("Not an independent state in {y}",{y:L.hist.year}))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
   let f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll));
   if(L.povView){ const a=L.povView.areas.find(a=>d3.geoContains(a,ll)), ow=a&&L.povView.owner(a), o=ow&&byId.get(ow); if(o) f=o;

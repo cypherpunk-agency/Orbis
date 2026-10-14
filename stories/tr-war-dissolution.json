@@ -66,8 +66,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1914,
-     "labels": false
+     "year": 1914
     },
     {
      "type": "cards",
@@ -108,8 +107,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1914,
-     "labels": false
+     "year": 1914
     }
    ],
    "points": [
@@ -150,8 +148,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1920,
-     "labels": false
+     "year": 1920
     },
     {
      "type": "cards",
@@ -195,8 +192,7 @@
     {
      "type": "borders",
      "data": "states",
-     "year": 1920,
-     "labels": false
+     "year": 1920
     },
     {
      "type": "cards",

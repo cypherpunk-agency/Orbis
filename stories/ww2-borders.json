@@ -33,8 +33,7 @@
         {
           "type": "borders",
           "data": "borders",
-          "year": 1945,
-          "labels": false
+          "year": 1945
         },
         {
           "type": "cards",
@@ -117,8 +116,7 @@
         {
           "type": "borders",
           "data": "borders",
-          "year": 1950,
-          "labels": false
+          "year": 1950
         }
       ],
       "sources": [
@@ -163,8 +161,7 @@
         {
           "type": "borders",
           "data": "borders",
-          "year": 1945,
-          "labels": false
+          "year": 1945
         },
         {
           "type": "cards",
