@@ -425,5 +425,19 @@
   "title": "How long were you a colony?",
   "hook": "Cape Verde spent more than 500 years under Portugal, Iraq 15 under Britain. How long European empires ruled each country, and who ruled.",
   "file": "stories/colonies.json"
+ },
+ {
+  "id": "refugees",
+  "cat": "People",
+  "title": "Refugees stay close",
+  "hook": "Most of the world's 36 million refugees live in the country next door, not in the rich countries far away.",
+  "file": "stories/refugees.json"
+ },
+ {
+  "id": "countryside",
+  "cat": "People",
+  "title": "Leaving the countryside",
+  "hook": "Between 2000 and 2019 half the world's people lived in places that lost residents to migration, while cities and their suburbs filled up.",
+  "file": "stories/countryside.json"
  }
 ]

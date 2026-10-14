@@ -1,0 +1,287 @@
+{
+ "id": "refugees",
+ "cat": "People",
+ "title": "Refugees stay close",
+ "hook": "Most of the world's 36 million refugees live in the country next door, not in the rich countries far away.",
+ "notes": "Refugees: UNHCR Refugee Population Statistics, end-year stocks to the end of 2025 (also published on HDX under CC BY-IGO). 'Refugees' here are refugees under UNHCR's mandate plus 'other people in need of international protection' (mostly Venezuelans in Latin America). Not included: asylum seekers, people displaced inside their own country, and about 6 million Palestine refugees under UNRWA's mandate. Flows show origin–asylum pairs of at least 5,000 people. A neighbour is a country with a shared land border on the map. In 2024 UNHCR stopped listing about 1.2 million Ukrainians in Russia, so Ukraine's share in neighbouring countries drops from 2024. Per 1,000 residents uses UN World Population Prospects 2024 (2025 projected), for countries with over 1 million people. Deaths: IOM Missing Migrants Project, incidents 2014–2024 as published on HDX (CC BY-IGO), dead and missing combined; the counts are a minimum, because many deaths are never recorded.",
+ "data": {
+  "r": "data/people/refugees.json",
+  "f": "data/people/refugees-flows.json",
+  "mm": "data/events/missing-migrants.json"
+ },
+ "sources": [
+  "un-wpp"
+ ],
+ "scenes": [
+  {
+   "title": "36 million refugees",
+   "text": "At the end of 2025 about 36 million people lived as refugees outside their country. Five countries account for nearly two-thirds of them: Venezuela (6.5 million), Ukraine (5.2 million), Syria (4.9 million), Afghanistan (3.7 million) and Sudan (2.8 million). Press Play to see crises rise and fall.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     20,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "symbols",
+     "data": "r",
+     "series": "origin",
+     "year": "t",
+     "color": "c2",
+     "maxR": 40,
+     "vmax": 6500000,
+     "labels": 5,
+     "title": "Refugees from this country",
+     "fmt": "people"
+    }
+   ],
+   "timeline": {
+    "years": [
+     2000,
+     2005,
+     2010,
+     2015,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "start": 2025,
+    "captions": {
+     "2000": "About 12 million refugees; Afghanistan is the largest group.",
+     "2015": "Syria's war: 4.9 million Syrians have fled.",
+     "2022": "Russia's full invasion: Ukrainians become one of the largest groups.",
+     "2025": "Many Syrians return home after Assad's fall; Iran and Pakistan push out Afghans."
+    }
+   },
+   "chart": {
+    "data": "r",
+    "series": "origin",
+    "year": "t",
+    "top": 8,
+    "title": "Largest refugee groups, by country of origin",
+    "fmt": "people",
+    "color": "c2",
+    "share": true
+   }
+  },
+  {
+   "title": "Where refugees live",
+   "text": "Colombia hosts the most refugees (2.8 million, nearly all from Venezuela), followed by Germany (2.7 million), Türkiye (2.4 million, mostly Syrians), Uganda (1.9 million) and Iran (1.7 million). Apart from Germany, the biggest hosts sit right next to a crisis.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     20,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "symbols",
+     "data": "r",
+     "series": "hosted",
+     "year": 2025,
+     "color": "c1",
+     "maxR": 40,
+     "labels": 6,
+     "title": "Refugees hosted",
+     "fmt": "people"
+    }
+   ],
+   "chart": {
+    "data": "r",
+    "series": "hosted",
+    "year": 2025,
+    "top": 10,
+    "title": "Largest host countries",
+    "fmt": "people",
+    "color": "c1",
+    "share": true
+   }
+  },
+  {
+   "title": "Two in three stay next door",
+   "text": "About 65% of refugees live in a country that borders their own. For people fleeing Sudan, South Sudan or the Central African Republic it is over 90%. Ukrainians, who can move freely in the EU, are the big exception: only about 30% stay in a neighbouring country.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     20,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "nb_share",
+     "year": 2025,
+     "vmin": 0,
+     "vmax": 100,
+     "title": "Share of a country's refugees living in a neighbouring country",
+     "fmt": "pct0",
+     "nodataLabel": "fewer than 10,000 refugees"
+    }
+   ]
+  },
+  {
+   "title": "Five crises, five patterns",
+   "text": "Pick a crisis to see where its refugees went. Tap a country on the map to see only its flows.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     -5,
+     18
+    ],
+    "zoom": 1.5
+   },
+   "switch": {
+    "label": "Crisis",
+    "start": 0,
+    "options": [
+     {
+      "c": "SYR",
+      "label": "Syria",
+      "text": "Syrians fled mostly to neighbours: 2.3 million live in Türkiye, 530,000 in Lebanon and 420,000 in Jordan. Germany (670,000) is the one large host far away."
+     },
+     {
+      "c": "UKR",
+      "label": "Ukraine",
+      "text": "Ukrainians spread across Europe: Germany hosts 1.2 million, Poland 970,000 and Czechia 390,000. UNHCR no longer counts the 1.2 million it listed in Russia until 2023."
+     },
+     {
+      "c": "VEN",
+      "label": "Venezuela",
+      "text": "Venezuelans moved along the Andes: 2.8 million live in Colombia, 1.1 million in Peru, 700,000 in Brazil and 660,000 in Chile."
+     },
+     {
+      "c": "SDN",
+      "label": "Sudan",
+      "text": "Since war broke out in 2023, Sudanese have fled mostly to neighbouring countries: 1.3 million to Chad, 570,000 to South Sudan and 550,000 to Libya."
+     },
+     {
+      "c": "AFG",
+      "label": "Afghanistan",
+      "text": "Iran (1.6 million) and Pakistan (1.3 million) host most Afghan refugees. Both expelled many in 2024–25, and the number of Afghan refugees fell from 6.4 million in 2023 to 3.7 million."
+     }
+    ]
+   },
+   "layers": [
+    {
+     "type": "flows",
+     "data": "f",
+     "group": "ref",
+     "year": 2025,
+     "from": [
+      "{c}"
+     ],
+     "top": 12,
+     "color": "c2",
+     "maxW": 12,
+     "title": "Refugees, end of 2025",
+     "fmt": "int"
+    }
+   ]
+  },
+  {
+   "title": "The heaviest load",
+   "text": "Relative to their own size, the countries next to a crisis carry the most. Lebanon hosts about 92 refugees for every 1,000 residents, roughly one in eleven people. Chad hosts 72 and Colombia 53. Germany hosts 32, the United States about 1.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     20,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "r",
+     "series": "hosted_per1000",
+     "year": 2025,
+     "log": true,
+     "vmin": 0.1,
+     "vmax": 100,
+     "title": "Refugees per 1,000 residents",
+     "fmt": "num",
+     "nodataLabel": "no data or under 1 million people"
+    }
+   ],
+   "chart": {
+    "data": "r",
+    "series": "hosted_per1000",
+    "year": 2025,
+    "top": 10,
+    "title": "Refugees per 1,000 residents",
+    "fmt": "num",
+    "color": "c3"
+   }
+  },
+  {
+   "title": "Deadly routes",
+   "text": "Some people try to go further. Between 2014 and 2024 the IOM recorded about 73,000 migrants and refugees who died or went missing on the way. Every circle is a place where people died; the bright ones are the year shown. In 2024 alone the count reached about 8,900, the highest on record.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     10,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "events",
+     "data": "mm",
+     "year": "t",
+     "color": "c2",
+     "minR": 1.2,
+     "maxR": 16,
+     "title": "Dead and missing migrants, up to the year shown",
+     "fmt": "int"
+    }
+   ],
+   "timeline": {
+    "years": [
+     2014,
+     2024
+    ],
+    "start": 2024,
+    "captions": {
+     "2016": "The deadliest year in the Mediterranean: about 5,200 dead and missing.",
+     "2024": "About 8,900 dead and missing worldwide."
+    }
+   }
+  },
+  {
+   "title": "The deadliest sea",
+   "text": "The Mediterranean is the deadliest crossing: about 31,000 people died or went missing there in 2014–2024, 24,500 of them on the central route from North Africa to Italy and Malta. Thousands more died crossing the Sahara on the way north, and over 5,000 on the Atlantic route to the Canary Islands.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     8,
+     30
+    ],
+    "zoom": 2.6
+   },
+   "layers": [
+    {
+     "type": "events",
+     "data": "mm",
+     "window": "all",
+     "color": "c2",
+     "minR": 1.2,
+     "maxR": 22,
+     "title": "Dead and missing migrants, 2014–2024",
+     "fmt": "int"
+    }
+   ]
+  }
+ ]
+}

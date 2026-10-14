@@ -1,0 +1,196 @@
+{
+ "id": "countryside",
+ "cat": "People",
+ "title": "Leaving the countryside",
+ "hook": "Between 2000 and 2019 half the world's people lived in places that lost residents to migration, while cities and their suburbs filled up.",
+ "notes": "Net migration 2000–2019 from Niva et al. (2023), 'World's human migration patterns in 2000–2019 unveiled by high-resolution data', Nature Human Behaviour 7: 2023–2037 (data: Zenodo record 7997134, CC BY 4.0). The authors estimate net migration as population change minus births plus deaths, on a 5 arc-minute grid (about 9 km at the equator); it counts moves within a country and across borders alike. Orbis sums the 20 annual rates, averages them into 10-minute cells weighted by population (GHS-POP 2025) and shows them as a share of residents; colours stop at ±50%, and cells with fewer than 1,000 residents are left empty. Single cells are noisy and some regional boundaries show as artificial steps: read the patterns, not single pixels. 'Places that lost residents' = 5-minute cells with net out-migration, weighted by today's population. Province and state values are the authors' own admin-1 sums; national values come from the authors' country file. The authors' country file has no national value for Australia, so it shows as no data on the national map.",
+ "data": {
+  "raster": "data/grids/netmigration.json",
+  "n": "data/people/net-migration.json",
+  "regions": "data/people/net-migration-adm1.json"
+ },
+ "sources": [
+  "ghsl-pop"
+ ],
+ "scenes": [
+  {
+   "title": "Twenty years on the move",
+   "text": "Red places gained people through migration between 2000 and 2019, blue places lost them. Births and deaths are taken out: this is only people moving in or out, whether from the next village or another continent. About half of the world's people live in places that lost more residents than they gained.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     15,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "raster",
+     "data": "raster",
+     "frame": "2000–2019",
+     "title": "Net migration 2000–2019, % of residents",
+     "fmt": "pct"
+    }
+   ]
+  },
+  {
+   "title": "China: from the interior to the coast",
+   "text": "China's national figure barely moved: migration added 0.2% over 20 years. Inside the country, hundreds of millions moved. Migration added the equivalent of 65% of Beijing's population, 60% of Shanghai's and 47% of Tianjin's. Chongqing and Guizhou lost 22%, Hubei 18% and Anhui 17%.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     110,
+     32
+    ],
+    "zoom": 3
+   },
+   "switch": {
+    "label": "Show",
+    "start": 0,
+    "options": [
+     {
+      "ty": "raster",
+      "label": "Grid"
+     },
+     {
+      "ty": "regions",
+      "label": "Provinces"
+     }
+    ]
+   },
+   "layers": [
+    {
+     "type": "{ty}",
+     "data": "{ty}",
+     "frame": "2000–2019",
+     "country": "CHN",
+     "series": "nm20",
+     "year": 2019,
+     "diverging": true,
+     "mid": 0,
+     "vmin": -50,
+     "vmax": 50,
+     "labels": true,
+     "title": "Net migration 2000–2019, % of residents",
+     "fmt": "pct"
+    }
+   ]
+  },
+  {
+   "title": "Europe: the east empties",
+   "text": "Across Romania, Bulgaria and the Baltic states, much of the map is blue: people left for cities and for Western Europe. Romania lost 9% of its population to migration in 20 years, Lithuania 18%. More than four in five of their people live in places that lost residents. Spain, Italy and Britain gained.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     16,
+     48
+    ],
+    "zoom": 3.2
+   },
+   "layers": [
+    {
+     "type": "raster",
+     "data": "raster",
+     "frame": "2000–2019",
+     "title": "Net migration 2000–2019, % of residents",
+     "fmt": "pct"
+    }
+   ]
+  },
+  {
+   "title": "America: the suburbs and the Sun Belt",
+   "text": "In the United States the gains ring the cities. The suburbs of Atlanta, Dallas and Houston grew by about 40% or more through migration alone, while the cores of Dallas and Chicago lost people. Whole states followed: Nevada gained 47%, Arizona 30% and Florida 24%; New York lost 10% and Michigan 9%.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     -92,
+     37
+    ],
+    "zoom": 2.6
+   },
+   "switch": {
+    "label": "Show",
+    "start": 0,
+    "options": [
+     {
+      "ty": "raster",
+      "label": "Grid"
+     },
+     {
+      "ty": "regions",
+      "label": "States"
+     }
+    ]
+   },
+   "layers": [
+    {
+     "type": "{ty}",
+     "data": "{ty}",
+     "frame": "2000–2019",
+     "country": "USA",
+     "series": "nm20",
+     "year": 2019,
+     "diverging": true,
+     "mid": 0,
+     "vmin": -50,
+     "vmax": 50,
+     "labels": true,
+     "title": "Net migration 2000–2019, % of residents",
+     "fmt": "pct"
+    }
+   ]
+  },
+  {
+   "title": "What national totals show",
+   "text": "Country totals mostly count people crossing borders. Over 2000–2019 Spain gained 11.5% of its population through migration and Germany 6.6%; Lithuania lost 18%. China (+0.2%) and India (−1%) look almost still.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     15,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "n",
+     "series": "nm20",
+     "year": 2019,
+     "diverging": true,
+     "mid": 0,
+     "vmin": -30,
+     "vmax": 30,
+     "title": "Net migration 2000–2019, % of population",
+     "fmt": "pct"
+    }
+   ]
+  },
+  {
+   "title": "What they hide",
+   "text": "Inside almost every country, people left some places for others. In China and India about half of all people live in places that lost residents to migration. The United States gained 6.5% overall, yet more than half of its populated places lost people. In Romania and Lithuania it is more than four in five people.",
+   "view": {
+    "mode": "equal",
+    "center": [
+     15,
+     15
+    ],
+    "zoom": 1
+   },
+   "layers": [
+    {
+     "type": "choropleth",
+     "data": "n",
+     "series": "pop_loss",
+     "year": 2019,
+     "vmin": 0,
+     "vmax": 100,
+     "title": "People living in places that lost residents to migration, 2000–2019",
+     "fmt": "pct0",
+     "nodataLabel": "under 1 million people"
+    }
+   ]
+  }
+ ]
+}

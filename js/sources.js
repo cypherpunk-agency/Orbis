@@ -154,6 +154,24 @@ const SOURCES = {
     url: "https://doi.org/10.7910/DVN/T9SDEW", use: "commercial", redistribute: true,
     credit: "Becker, Colonial Dates Dataset (COLDAT), Harvard Dataverse"
   },
+  unhcr: {
+    name: "UNHCR Refugee Population Statistics", what: "Refugees by origin and asylum country, end-year stocks 2000–2025", tier: "layer",
+    licence: "CC BY-IGO 3.0", licenceUrl: "http://creativecommons.org/licenses/by/3.0/igo/legalcode",
+    url: "https://data.humdata.org/dataset/unhcr-population-data-for-world", use: "commercial", redistribute: true,
+    credit: "UNHCR Refugee Population Statistics Database (via HDX)"
+  },
+  "iom-mmp": {
+    name: "IOM Missing Migrants Project", what: "Dead and missing migrants by place and year, 2014–2024", tier: "layer",
+    licence: "CC BY-IGO 3.0", licenceUrl: "http://creativecommons.org/licenses/by/3.0/igo/legalcode",
+    url: "https://data.humdata.org/dataset/iom-missing-migrants-project-data", use: "commercial", redistribute: true,
+    credit: "IOM Missing Migrants Project (via HDX); merged into 0.5° cells by Orbis"
+  },
+  "niva-netmigration": {
+    name: "Global net migration 2000–2019 (Niva et al. 2023)", what: "Gridded (5′) and admin-level net migration, 2000–2019", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://zenodo.org/records/7997134", use: "commercial", redistribute: true,
+    credit: "Niva et al. (2023), Nature Human Behaviour 7: 2023–2037; aggregated to 10′ by Orbis"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",

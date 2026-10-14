@@ -45,6 +45,9 @@ Excluded at every tier: terms that forbid redistribution, unclear or missing ter
 | `itinere` | Itiner-e Roman roads, static version 2024 (Zenodo 17122148) (`data/history/roman-roads*.json`) | Layer | CC BY 4.0 | Commercial | "Itiner-e: de Soto, Pažout, Brughmans et al. (2025)" |
 | `pleiades` | Pleiades gazetteer, city locations (`data/history/roman-roads-named.json`) | Layer | CC BY 3.0 US | Commercial | "Pleiades gazetteer, pleiades.stoa.org" |
 | `coldat` | COLDAT V3, doi:10.7910/DVN/T9SDEW (`data/rights/colonies.json`) | Layer | CC0 1.0 | Commercial | "Becker, COLDAT, Harvard Dataverse" |
+| `unhcr` | UNHCR refugee statistics, end-year stocks 2000–2025 (`data/people/refugees*.json`) | Layer | CC BY-IGO 3.0 (UNHCR's HDX dataset) | Commercial | "UNHCR Refugee Population Statistics Database" |
+| `iom-mmp` | IOM Missing Migrants Project 2014–2024 (`data/events/missing-migrants.json`) | Layer | CC BY-IGO 3.0 (IOM's HDX dataset) | Commercial | "IOM Missing Migrants Project" |
+| `niva-netmigration` | Niva et al. 2023 net migration 2000–2019, Zenodo 7997134 (`data/grids/netmigration*`, `data/people/net-migration*.json`) | Layer | CC BY 4.0 | Commercial | "Niva et al. (2023), Nature Human Behaviour" |
 | `ghsl-pop` | GHSL GHS-POP R2023A population grid, epoch 2025, aggregated to 2048×1024 density (`data/grids/popdensity*`) | Layer | CC BY 4.0 (EC Decision 2011/833/EU) | Commercial | "European Commission, JRC: GHS-POP R2023A"; changes indicated |
 | `nasa-gistemp` | NASA GISTEMP v4 temperature anomaly, decadal means 1880s–2020s + 2025 (`data/grids/warming*`) | Layer | NASA open data (no restrictions) | Commercial | "GISTEMP Team, 2026, NASA GISS" + Lenssen et al. 2024 |
 | `noaa-gfs` | NOAA GFS 250 hPa winds, 2026-10-13 12 UTC (`data/grids/wind*`) | Layer | US public domain | Commercial | "NOAA/NCEP GFS"; no implied endorsement |
