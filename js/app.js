@@ -85,7 +85,7 @@ const curKind=()=>V.t<0.5?V.a:V.b;
 let moving=false;
 // story beats: the previous frame dissolves over the new one, so colours, outlines and labels fade instead of snapping
 const BEAT={c:document.createElement("canvas"),ms:380}; let beat=null;
-function beatFade(){ if(reduce||!canvas.width) return; snap(BEAT.c); beat={t0:null}; render(); }
+function beatFade(){ HIDE.clear(); if(reduce||!canvas.width) return; snap(BEAT.c); beat={t0:null}; render(); }
 function beatStep(now){ if(beat.t0==null) beat.t0=now; const k=Math.min(1,(now-beat.t0)/BEAT.ms), e=k*k*(3-2*k);
   if(k<1){ ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.globalAlpha=1-e; ctx.drawImage(BEAT.c,0,0); ctx.restore(); return true; }
   beat=null; return false; }
@@ -114,7 +114,7 @@ const canvas=document.getElementById("map"), ctx=canvas.getContext("2d");
 let projectionSnapshot=null;
 const path=d3.geoPath(proj,ctx);
 let W=0,H=0,DPR=1;
-const sheet=document.getElementById("sheet"), topbar=document.getElementById("topbar"), toc=document.getElementById("toc");
+const sheet=document.getElementById("sheet"), topbar=document.getElementById("topbar"), toc=document.getElementById("toc"), mapctl=document.getElementById("mapctl");
 let sheetDrag=null; // phone sheet drag in progress (see "the sheet follows the finger")
 function layout(){
   if(sheetDrag) return; // re-laid out when the drag settles
@@ -123,7 +123,10 @@ function layout(){
   // assigning canvas.width clears and reallocates the canvas (a visible blank frame): only when the size really changed
   if(canvas.width!==W*DPR||canvas.height!==H*DPR){ canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+"px";canvas.style.height=H+"px"; }
   const sh=sheet.getBoundingClientRect();
-  if(W>=820){const tb=topbar.getBoundingClientRect(); F.x=sh.right+8;F.y=tb.bottom;F.w=W-F.x-8;F.h=H-F.y-8; frameScale(); render();}
+  if(W>=820){const tb=topbar.getBoundingClientRect(); F.x=sh.right+8;F.y=tb.bottom;F.w=W-F.x-8;F.h=H-F.y-8;
+    if(!mapctl.hidden){ mapctl.style.left=(F.x+F.w/2)+"px"; mapctl.style.top=(F.y+4)+"px"; mapctl.style.bottom="auto"; mapctl.style.maxWidth=Math.min(760,F.w-24)+"px";
+      const ch=mapctl.offsetHeight+12; F.y+=ch; F.h-=ch; }
+    frameScale(); render();}
   else{const tc=toc.hidden?null:toc.getBoundingClientRect(); frameTo(tc?tc.top:H-sheet.offsetHeight);}
 }
 // phone: when the sheet's height changes (new content, contents list), glide the map frame to its new size
@@ -134,7 +137,9 @@ function frameTo(top){ cancelAnimationFrame(frameAnim); const from=frameTop;
     frameTop=from+(top-from)*e; frameAbove(frameTop); if(k<1) frameAnim=requestAnimationFrame(step); };
   frameAnim=requestAnimationFrame(step); }
 // phone: the map frame is everything between the top bar and the sheet's top edge
-function frameAbove(top){ const tb=topbar.getBoundingClientRect(); F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,top-F.y); frameScale(); render(); }
+function frameAbove(top){ const tb=topbar.getBoundingClientRect(); let bottom=top;
+  if(!mapctl.hidden&&toc.hidden){ mapctl.style.top="auto"; mapctl.style.left=""; mapctl.style.maxWidth=""; mapctl.style.bottom=(H-top+8)+"px"; bottom=top-mapctl.offsetHeight-16; }
+  F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,bottom-F.y); frameScale(); render(); }
 function frameScale(){ S.globe=Math.min(F.w,F.h)/2*0.9; ["equal","mercator"].forEach(k=>S[k]=Math.min(F.w/BOUNDS[k][0],F.h/BOUNDS[k][1])*0.96); }
 
 // ---------- active scene ----------
@@ -185,8 +190,8 @@ function filledMesh(){ const ids=new Set([...Object.keys(L.fills),...L.gmap.keys
   if(hi) FM.hi=r; else FM.lo=r; return r; }
 function fillFor(f,i,ras){
   const id=f.id;
-  if(L.fills[id]) return col(L.fills[id]);
-  const g=L.gmap.get(id); if(g) return g.tint?d3.interpolateRgb(C.land,col(g.color))(g.tint):col(g.color);  // tint: 0..1 toward the colour, for a light highlight
+  if(L.fills[id]&&!hidden(L.fills[id])) return col(L.fills[id]);
+  const g=L.gmap.get(id); if(g&&!hidden(g.color)) return g.tint?d3.interpolateRgb(C.land,col(g.color))(g.tint):col(g.color);  // tint: 0..1 toward the colour, for a light highlight
   if(L.choro){const v=L.cdata[id]; return v==null?(ras?null:C.nodata):L.color(v);}
   if(ras) return null;
   if(L.political) return C.tints[tint[i]];
@@ -205,7 +210,7 @@ const INF={c:document.createElement("canvas"),k:4}; INF.x=INF.c.getContext("2d")
 function drawInfluence(sh){ const k=INF.k, w=Math.ceil(W/k), h=Math.ceil(H/k), o=INF.x;
   if(INF.c.width!==w||INF.c.height!==h){ INF.c.width=w; INF.c.height=h; } else { o.setTransform(1,0,0,1,0,0); o.clearRect(0,0,w,h); }
   o.setTransform(1/k,0,0,1/k,0,0); path.context(o);
-  sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; o.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity;
+  sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; if(hidden(f.properties.color||(g&&g.color)||sh.color)) return; o.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity;
     o.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); o.beginPath(); path(f); o.fill(); });
   path.context(ctx); ctx.save(); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(INF.c,0,0,W,H); ctx.restore(); }
 function label(text,x,y,opts={}){
@@ -457,16 +462,16 @@ function draw(){
   L.regions.forEach(rg=>{ ctx.globalAlpha=rg.cat?0.78:1; rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
     ctx.globalAlpha=1; ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=(C.dark||onDark)?"rgba(236,242,244,.42)":"rgba(255,255,255,.85)"; ctx.lineWidth=(C.dark||onDark)?0.6:0.8; ctx.stroke(); });
   L.shapes.filter(sh=>sh.influence).forEach(drawInfluence);
-  L.shapes.forEach(sh=>{ if(sh.influence) return; sh.feats.forEach(f=>{ if(!sh.fill) return; const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
+  L.shapes.forEach(sh=>{ if(sh.influence) return; sh.feats.forEach(f=>{ if(!sh.fill) return; const g=sh.groups[f.properties.group]; if(hidden(f.properties.color||(g&&g.color)||sh.color)) return; ctx.beginPath(); path(f);
       ctx.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1;
       if(sh.inner){ ctx.strokeStyle=onDark?"rgba(255,255,255,.5)":C.paper; ctx.lineWidth=0.7; if(f.properties.uncertain) ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]); } });
-    sh.outlines.forEach(o=>{ ctx.beginPath(); path(o.geom); ctx.strokeStyle=col(o.color); ctx.lineWidth=2; ctx.stroke(); });
+    sh.outlines.forEach(o=>{ if(hidden(o.color)) return; ctx.beginPath(); path(o.geom); ctx.strokeStyle=col(o.color); ctx.lineWidth=2; ctx.stroke(); });
     sh.lost.forEach(f=>{ ctx.beginPath(); path(f); ctx.setLineDash([4,3]); ctx.strokeStyle=C.ink; ctx.lineWidth=1.2; ctx.stroke(); ctx.setLineDash([]); });
     const fl=sh.flash&&!reduce?clamp(1-(performance.now()-flashT)/700,0,1):0;
     sh.gained.forEach(f=>{ ctx.beginPath(); path(f); if(fl>0){ const g=sh.groups[f.properties.group]; ctx.globalAlpha=0.9*fl; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1; }
       ctx.strokeStyle=C.ink; ctx.lineWidth=2.4; ctx.stroke(); });
     if(sh.front){ ctx.beginPath(); path(sh.front); ctx.strokeStyle=col(sh.frontColor); ctx.lineWidth=3; ctx.stroke(); } });
-  L.hatches.forEach(hh=>{ ctx.save(); ctx.beginPath(); hh.ids.forEach(id=>{ const f=byId.get(id); if(f) path(geom(f)); }); ctx.clip();
+  L.hatches.forEach(hh=>{ if(hidden(hh.color)) return; ctx.save(); ctx.beginPath(); hh.ids.forEach(id=>{ const f=byId.get(id); if(f) path(geom(f)); }); ctx.clip();
     const a=hh.angle*rad, R=Math.hypot(W,H), dx=Math.cos(a), dy=Math.sin(a), step=7; ctx.beginPath();
     for(let k=-R;k<=R;k+=step){ const cx=W/2-dy*k, cy=H/2+dx*k; ctx.moveTo(cx-dx*R,cy-dy*R); ctx.lineTo(cx+dx*R,cy+dy*R); }
     ctx.strokeStyle=col(hh.color); ctx.lineWidth=1.6; ctx.globalAlpha=0.85; ctx.stroke(); ctx.globalAlpha=1; ctx.restore();
@@ -1003,7 +1008,7 @@ const LAYER={
       if(ly.only) Object.keys(cats).forEach(id=>{ if(!ly.only.includes(cats[id])) delete cats[id]; });
       const share=(s0.shareByYear?pickByYear(s0.shareByYear,y):s0.share)||{}, sh=ly.shade;
       const lab=c=>(ly.names&&ly.names[c])||(s0.labels&&s0.labels[c])||c;
-      const colorOf=id=>{ const c=cats[id]; if(c==null||!ly.colors[c]) return null; const base=col(ly.colors[c]);
+      const colorOf=id=>{ const c=cats[id]; if(c==null||!ly.colors[c]) return null; if(hidden(ly.colors[c])) return C.land; const base=col(ly.colors[c]);
         if(!sh||share[id]==null) return base; return d3.interpolateRgb(C.paper,base)(0.3+0.7*clamp((share[id]-sh.min)/((sh.max-sh.min)||1),0,1)); };
       // "countNote": {"US-DC": "DC"} keeps an id out of the count and names it instead ("19 states + DC")
       const cn=ly.countNote||{}, keys=Object.keys(ly.colors).map(c=>{ const ids=Object.keys(cats).filter(id=>cats[id]===c);
@@ -1306,25 +1311,33 @@ const $=id=>document.getElementById(id);
 const el={kicker:$("sKicker"),title:$("sTitle"),text:$("sText"),legend:$("sLegend"),tl:$("sTimeline"),slider:$("tlSlider"),year:$("tlYear"),play:$("tlPlay"),cap:$("tlCaption"),
   prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart"),sw:$("sSwitch"),media:$("sMedia"),camp:$("sCamp"),updated:$("sUpdated"),card:$("sCard")};
 el.legend.addEventListener("input",e=>{ const r=e.target.closest("[data-ov]"); if(r&&L&&L.overlays[+r.dataset.ov]){ const o=L.overlays[+r.dataset.ov]; o.alpha=+r.value/100; ovAlpha[o.tex]=o.alpha; render(); } });
-el.legend.addEventListener("click",e=>{ const b=e.target.closest("[data-ci]"); if(b&&L&&L.cardList){ const it=L.cardList[+b.dataset.ci]; if(it){ openCard(it); flyTo({mode:curKind(),center:it.at,zoom:Math.max(V.zoom,2)},900); } } });
+// the legend and scene switches float over the map (#mapctl); event lists stay in the panel (#sCards)
+const sCards=$("sCards");
+function syncCtl(){ const cl=el.legend.querySelector(".card-list"); sCards.innerHTML=""; if(cl) sCards.appendChild(cl);
+  const on=!el.sw.hidden||el.legend.childElementCount>0; if(mapctl.hidden===on){ mapctl.hidden=!on; layout(); } }
+new MutationObserver(syncCtl).observe(el.legend,{childList:true}); new MutationObserver(syncCtl).observe(el.sw,{attributes:true,attributeFilter:["hidden"]});
+new ResizeObserver(()=>{ if(!mapctl.hidden) layout(); }).observe(mapctl);
+el.legend.addEventListener("click",e=>{ const b=e.target.closest(".tg"); if(!b) return; const k=b.dataset.hk;
+  if(HIDE.has(k)) HIDE.delete(k); else HIDE.add(k); b.setAttribute("aria-pressed",String(!HIDE.has(k))); render(); });
+sCards.addEventListener("click",e=>{ const b=e.target.closest("[data-ci]"); if(b&&L&&L.cardList){ const it=L.cardList[+b.dataset.ci]; if(it){ openCard(it); flyTo({mode:curKind(),center:it.at,zoom:Math.max(V.zoom,2)},900); } } });
 let si=-1, ci=0, tlIdx=0, playing=null;
 const explore={bloc:null,country:null};
 
 function legendHTML(){
   const s=scene; if(!s){ if(explore.bloc) return chip("c2",t(BLOCS[explore.bloc].label)); return ""; }
   let h="";
-  if(s.legend) h+=s.legend.map(l=>chip(l.color,l.label)).join("");
-  else if(L&&L.groups.length) h+=L.groups.map(g=>chip(g.color,g.label)).join("");
+  if(s.legend) h+=s.legend.map(l=>chipT(l.color,l.label)).join("");
+  else if(L&&L.groups.length) h+=L.groups.map(g=>chipT(g.color,g.label)).join("");
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · "+t(k.qty?"line width = tonnes":"line width = value")));
   if(L) L.overlays.forEach((o,i)=>{ h+=`<label class="ov-row"><span>${esc(o.title)}</span>`+(o.slider?`<input type="range" min="0" max="100" value="${Math.round(o.alpha*100)}" data-ov="${i}" aria-label="${esc(t("Opacity of {x}",{x:o.title}))}">`:"")+`</label>`; });
-  if(L) L.shapeKeys.forEach(k=>h+=k.soft?chip(k.color,k.label).replace("<i ",'<i class="soft" '):chip(k.color,k.label));
+  if(L) L.shapeKeys.forEach(k=>h+=k.g.startsWith("card:")?chip(k.color,k.label):k.soft?chipT(k.color,k.label).replace("<i ",'<i class="soft" '):chipT(k.color,k.label));
   if(L&&L.cardList&&L.cardList.length) h+=`<ol class="card-list">${L.cardList.map((e,i)=>`<li><button data-ci="${i}"><span>${esc(e.cal==="julian"&&isDateNum(e.date)?Cal.other(e.date,"julian",true).replace(" (Julian)",""):fmtWhen(e.date,e))}</span>${esc(((L.kinds&&L.kinds[e.kind]&&ICONS[L.kinds[e.kind].icon])?ICONS[L.kinds[e.kind].icon]+" ":"")+e.title)}</button></li>`).join("")}</ol>`;
   if(L&&L.pairs) h+=`<span class="chip">${esc(t("Tap a country to see its ties"))}</span>`;
   if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?esc(t("Showing {x} only · tap it again for all",{x:nameOf(focus)})):esc(t("Tap a country to see only its flows"))}</span>`;
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · "+t("country size = amount"));
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · ${t("circle area = amount")}</span></span>`;
-  if(L) L.regions.filter(rg=>rg.cat).forEach(rg=>{ h+=`<div class="ramp-title">${esc(rg.title)}</div>`+rg.keys.map(k=>chip(k.color,rg.counts===false?k.label:k.label+": "+k.n+(rg.unit?" "+(k.n===1&&/s$/.test(rg.unit)?rg.unit.slice(0,-1):rg.unit):"")+k.extra.map(x=>" + "+x).join(""))).join("")+(rg.shadeNote?`<span class="chip">${esc(rg.shadeNote)}</span>`:""); });
+  if(L) L.regions.filter(rg=>rg.cat).forEach(rg=>{ h+=`<div class="ramp-title">${esc(rg.title)}</div>`+rg.keys.map(k=>chipT(k.color,rg.counts===false?k.label:k.label+": "+k.n+(rg.unit?" "+(k.n===1&&/s$/.test(rg.unit)?rg.unit.slice(0,-1):rg.unit):"")+k.extra.map(x=>" + "+x).join(""))).join("")+(rg.shadeNote?`<span class="chip">${esc(rg.shadeNote)}</span>`:""); });
   if(L) L.regions.filter(rg=>!rg.cat).forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(q=>(rg.ramp||C.seq)(q)).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(rg.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(rg.fmt(rg.lo))}</span><span>${esc(rg.fmt(rg.hi))}</span></div></div>`; });
   if(L&&L.pov) h+=`<span class="chip"><i style="background:none;border:1.5px dashed ${C.accent}"></i>${esc(t("Disputed areas, drawn as seen from {x}",{x:nameOf(L.pov.viewIso)}))}</span>`;
@@ -1377,6 +1390,9 @@ function closeLic(){ lic.hidden=true; }
 $("licClose").onclick=closeLic;
 
 function chip(c,t){return `<span class="chip"><i style="background:${col(c)}"></i>${esc(t)}</span>`;}
+// a legend entry that switches its colour on the map on and off
+const HIDE=new Set(), hk=c=>{ const d=d3.color(col(c)); return d?d.formatHex():String(c); }, hidden=c=>HIDE.size>0&&c!=null&&HIDE.has(hk(c));
+function chipT(c,label){ const k=hk(c); return `<button class="chip tg" data-hk="${k}" aria-pressed="${String(!HIDE.has(k))}" title="${esc(t("Show or hide on the map"))}"><i style="background:${col(c)}"></i>${esc(label)}</button>`; }
 
 let flashT=-1e9;
 function flashLoop(){ render(); if(performance.now()-flashT<720) requestAnimationFrame(flashLoop); }

@@ -79,7 +79,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   #sheet.collapsed #sTitle{font-size:18px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 }
 
-#sLegend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 12px}
+#sLegend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0}
 #sLegend:empty{display:none}
 .chip{display:inline-flex;align-items:center;gap:6px;font-size:15px;color:var(--ink-soft)}
 .chip i{width:12px;height:12px;border-radius:3px;display:inline-block;flex:none}
@@ -328,3 +328,15 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .cty-src{font-size:13px;color:var(--ink-soft);margin:10px 0 0}
 #sheet:has(#sheetClose:not([hidden])) :is(#sKicker,#sTitle){padding-right:40px}
 .chip i.soft{filter:blur(1.5px);opacity:.75}
+/* map controls: scene switches and the legend, floating over the map (top centre on desktop, above the sheet on phones) */
+#mapctl{position:fixed;z-index:3;left:8px;right:8px;background:color-mix(in srgb,var(--paper) 92%,transparent);border:1px solid var(--rule);border-radius:12px;
+  padding:8px 12px;box-shadow:0 4px 18px rgba(0,0,0,.18);max-height:30vh;overflow:auto;display:flex;flex-direction:column;gap:8px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#mapctl[hidden]{display:none}
+#mapctl #sSwitch{margin:0}
+#mapctl .ramp{max-width:340px}
+@media (min-width:820px){#mapctl{right:auto;transform:translateX(-50%);width:max-content}}
+.chip.tg{border:0;background:none;padding:2px 4px;margin:-2px -4px;border-radius:6px;font:inherit;font-size:15px;color:var(--ink-soft);cursor:pointer}
+.chip.tg:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.chip.tg[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
+.chip.tg[aria-pressed="false"] i{background:none!important;box-shadow:inset 0 0 0 1.5px var(--ink-soft)}
+body.embed #mapctl{max-height:24vh}

@@ -50,15 +50,14 @@
   <div id="sCamp" class="collapsible" hidden></div>
   <div id="sCard" class="card collapsible" hidden></div>
   <div id="blocs" class="collapsible" hidden></div>
-  <div id="sSwitch" class="collapsible" hidden></div>
   <div id="sTimeline" class="collapsible" hidden>
     <div class="tl-row"><output id="tlYear"></output><button id="tlPlay" aria-label="Play timeline">Play</button></div>
     <input id="tlSlider" type="range" min="0" max="10" step="1" value="0" aria-label="Year">
     <p id="tlCaption" hidden></p>
   </div>
-  <div id="sLegend" class="collapsible"></div>
   <div id="sMedia" class="collapsible" hidden></div>
   <div id="sChart" class="collapsible" hidden></div>
+  <div id="sCards" class="collapsible"></div>
   <p id="sUpdated" class="updated collapsible" hidden></p>
   <details id="sNotes" class="collapsible"><summary data-t="Sources and notes">Sources and notes</summary><p id="sNotesBody"></p></details>
   <div id="sData" class="collapsible" aria-label="Data and licences"></div>
@@ -69,6 +68,8 @@
     <button id="next" class="btn" data-t="Next">Next</button>
   </nav>
 </section>
+
+<div id="mapctl" hidden><div id="sSwitch" hidden></div><div id="sLegend"></div></div>
 
 <div id="lic" hidden role="dialog" aria-label="Data and licences">
   <div class="toc-head"><h1 data-t="Data and licences">Data and licences</h1><button id="licClose" data-t="Close">Close</button></div>
