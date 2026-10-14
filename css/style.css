@@ -264,3 +264,5 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .atl-prof li{display:grid;grid-template-columns:1fr auto;gap:0 10px;padding:5px 0;border-top:1px solid var(--rule);font:14px/1.3 var(--ui)}
 .atl-prof b{text-align:right}
 .atl-prof small{grid-column:1/-1;color:var(--ink-soft);font-size:12px}
+.nc-badge{font:600 10px var(--ui);font-style:normal;color:var(--c3);border:1px solid var(--c3);border-radius:4px;padding:0 3px;vertical-align:1px}
+.atl-list button .atl-n{color:inherit;font-size:inherit;white-space:normal}

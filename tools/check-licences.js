@@ -59,7 +59,9 @@ if (fs.existsSync(path.join(root, "data/atlas/catalog.json"))) JSON.parse(read("
   if (!SOURCES[it.source]) errs.push(`atlas ${it.id}: unknown source "${it.source}"`);
   if (!fs.existsSync(path.join(root, it.file))) errs.push(`atlas ${it.id}: missing ${it.file}`);
   const L = String(it.licence || "").toUpperCase();
-  if (it.tier === "base" && !(L.includes("CC BY") && !L.includes("NC"))) errs.push(`atlas ${it.id}: licence "${it.licence}" not allowed in the base tier`);
+  if (!["commercial", "noncommercial"].includes(it.tier)) errs.push(`atlas ${it.id}: tier must be commercial or noncommercial`);
+  if (it.tier === "commercial" && (L.includes("NC") || !(L.includes("CC BY") || L.includes("CC0")))) errs.push(`atlas ${it.id}: licence "${it.licence}" is not commercial`);
+  if (SOURCES[it.source] && it.tier === "noncommercial" && SOURCES[it.source].use === "commercial") errs.push(`atlas ${it.id}: non-commercial indicator under a commercial source id`);
 });
 // basemap sources referenced by the engine
 const app = read("js/app.js");

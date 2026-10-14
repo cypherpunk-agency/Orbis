@@ -112,6 +112,18 @@ const SOURCES = {
     url: "https://www.worldbank.org/en/publication/worldwide-governance-indicators", use: "commercial", redistribute: true,
     credit: "Source: World Bank, Worldwide Governance Indicators (CC BY 4.0)"
   },
+  "wb-wdi-nc": {
+    name: "World Bank WDI (non-commercial)", what: "World Development Indicators whose original source licenses them for non-commercial use or share-alike only (named per indicator in the atlas)", tier: "layer",
+    licence: "Per indicator, e.g. CC BY-NC 4.0", licenceUrl: "https://datacatalog.worldbank.org/public-licenses",
+    url: "https://datatopics.worldbank.org/world-development-indicators/", use: "noncommercial", redistribute: true,
+    credit: "Source: World Bank, World Development Indicators (licence per indicator)"
+  },
+  "wb-wgi-nc": {
+    name: "World Bank WGI (non-commercial)", what: "Worldwide Governance Indicators published under a non-commercial or share-alike licence", tier: "layer",
+    licence: "Per indicator", licenceUrl: "https://datacatalog.worldbank.org/public-licenses",
+    url: "https://www.worldbank.org/en/publication/worldwide-governance-indicators", use: "noncommercial", redistribute: true,
+    credit: "Source: World Bank, Worldwide Governance Indicators (licence per indicator)"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",

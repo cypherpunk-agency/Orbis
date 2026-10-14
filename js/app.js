@@ -1228,7 +1228,7 @@ function renderAtlasPicker(){
   const list=ATLAS.indicators.filter(x=>q?(x.name+" "+(x.long||"")).toLowerCase().includes(q):x.topic===atlasState.topic);
   el.camp.innerHTML=`<div class="atl-topics">${ATLAS.topics.filter(tp=>ATLAS.indicators.some(x=>x.topic===tp)).map(tp=>`<button data-tp="${esc(tp)}" aria-pressed="${!q&&tp===atlasState.topic}">${esc(t(tp))}</button>`).join("")}</div>
     <input class="atl-q" type="search" placeholder="${esc(t("Search indicators"))}" value="${esc(atlasState.q)}" aria-label="${esc(t("Search indicators"))}">
-    <ul class="atl-list">${list.map(x=>`<li><button data-code="${esc(x.id)}" aria-current="${x.id===cur}">${esc(x.name)}<span>${x.years[0]}–${x.years[1]}</span></button></li>`).join("")||`<li class="atl-none">${t("No match")}</li>`}</ul>`;
+    <ul class="atl-list">${list.map(x=>`<li><button data-code="${esc(x.id)}" aria-current="${x.id===cur}"><span class="atl-n">${esc(x.name)}${x.tier==="noncommercial"?' <i class="nc-badge" title="Non-commercial licence: '+esc(x.licence)+'">NC</i>':""}</span><span>${x.years[0]}–${x.years[1]}</span></button></li>`).join("")||`<li class="atl-none">${t("No match")}</li>`}</ul>`;
   el.camp.hidden=false;
   el.camp.querySelectorAll("[data-tp]").forEach(b=>b.onclick=()=>{ atlasState.topic=b.dataset.tp; atlasState.q=""; renderAtlasPicker(); });
   el.camp.querySelectorAll("[data-code]").forEach(b=>b.onclick=()=>openAtlas(b.dataset.code));

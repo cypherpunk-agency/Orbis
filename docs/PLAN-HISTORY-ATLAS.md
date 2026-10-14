@@ -124,7 +124,7 @@ Each phase ends as before: browser check of every scene, `node tools/check-licen
 
 **Phase E: country atlas**
 - Engine: F14.
-- Data: a base tier of commercially usable indicators (World Bank, OWID-own, UN sources as cleared), plus a story-layer tier (WHO, V-Dem, IMF) labelled as such. Target: 150–300 indicators across health, education, economy, environment, governance, people.
+- Data: commercially usable indicators (World Bank CC BY, OWID-own, UN sources as cleared) plus non-commercial or share-alike ones (WHO, V-Dem, IMF), labelled "NC". Only terms that restrict redistribution exclude an indicator.
 
 **Phase F: conflicts now**
 - Engine: F13 scheduled refresh (needs GitHub Actions on the repository).
@@ -150,4 +150,4 @@ Nothing over ~1 MB per file in git; big rasters are pre-cut or fetched at runtim
 1. **Ukraine control of territory**: use Wikipedia's map data (CC BY-SA, allowed as a story layer, quality varies) or ask DeepStateMap/ISW for written permission (better data, takes time)? Default: Wikipedia data, labelled, with UCDP events alongside.
 2. **Holy Roman Empire detail**: if no open vector data exists, accept outlines traced from public-domain historical maps (cited per map), or keep the HRE series at the level of the Empire's outline plus major territories?
 3. **Scheduled refresh**: allow a GitHub Actions job to commit updated data to `master` weekly?
-4. **Atlas non-commercial tier**: show non-commercial indicators (WHO, IMF) in the atlas with a badge, or keep the atlas commercial-only?
+4. ~~Atlas non-commercial tier~~ **Decided:** the atlas is an optional layer, so non-commercial and share-alike indicators are included with an "NC" badge; only terms that restrict redistribution (or are unclear) exclude an indicator.

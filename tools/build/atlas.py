@@ -62,6 +62,15 @@ TOPICS = {
 }
 WGI = {"GE.EST", "RL.EST", "CC.EST", "VA.EST", "PV.EST", "RQ.EST"}
 
+def licence_tier(lic):
+    """'commercial' (CC BY / CC0), 'noncommercial' (open but NC or share-alike: allowed as a labelled layer), or None
+    (redistribution restricted or terms unclear, e.g. SIPRI's limit on reproducing its data)."""
+    L = (lic or "").upper().replace("-", " ")
+    if "CC0" in L or "PUBLIC DOMAIN" in L: return "commercial"
+    if "CC BY" in L or "CREATIVE COMMONS ATTRIBUTION" in L:
+        return "noncommercial" if ("NC" in L.split() or "NONCOMMERCIAL" in L.replace(" ", "") or " SA" in L or "SHAREALIKE" in L.replace(" ", "")) else "commercial"
+    return None
+
 def get(url, tries=4):
     for k in range(tries):
         try:
@@ -97,9 +106,8 @@ def main():
             except Exception as e:
                 skipped.append((code, f"no metadata: {e}")); continue
             lic = mt.get("License_Type", "")
-            L = lic.upper().replace("-", " ")
-            if not ("CC BY" in L and "NC" not in L and "SA" not in L.split()):  # base tier: commercial use, no share-alike
-                skipped.append((code, f"licence: {lic or 'not stated'}")); print("skip", code, lic); continue
+            tier = licence_tier(lic)
+            if not tier: skipped.append((code, f"licence: {lic or 'not stated'}")); print("skip", code, lic); continue
             rows = get(f"{API}/country/all/indicator/{code}?format=json&per_page=20000&source={src}")
             if not isinstance(rows, list) or len(rows) < 2 or not rows[1]: skipped.append((code, "no data")); continue
             vals = {}
@@ -111,7 +119,8 @@ def main():
             y0, y1 = years[0], years[-1]; ys = list(range(y0, y1 + 1))
             series = {c: [sig(d.get(y)) for y in ys] for c, d in sorted(vals.items())}
             name = mt.get("IndicatorName") or short
-            ds = {"source": "wb-wgi" if src == 3 else "wb-wdi", "asOf": rows[0].get("lastupdated", ""), "retrieved": time.strftime("%Y-%m-%d"),
+            sid = ("wb-wgi" if src == 3 else "wb-wdi") + ("-nc" if tier == "noncommercial" else "")
+            ds = {"source": sid, "asOf": rows[0].get("lastupdated", ""), "retrieved": time.strftime("%Y-%m-%d"),
                   "note": f"World Bank, {'Worldwide Governance Indicators' if src == 3 else 'World Development Indicators'}, {code}: {name}. Licence {lic}. Original source: {(mt.get('Source') or '').strip()[:300]}",
                   "years": ys, "series": {"v": {"label": short, "units": mt.get("Unitofmeasure", ""), "values": series}}}
             fn = f"data/atlas/{code}.json"
@@ -119,7 +128,7 @@ def main():
             latest = max((y for d in vals.values() for y in d), default=y1)
             n_latest = sum(1 for d in vals.values() if any(y >= latest - 2 for y in d))
             catalog.append({"id": code, "name": short, "long": name, "topic": topic, "fmt": fmt, "units": mt.get("Unitofmeasure", ""),
-                            "source": ds["source"], "licence": lic, "tier": "base", "years": [y0, y1], "countries": len(vals),
+                            "source": ds["source"], "licence": lic, "tier": tier, "years": [y0, y1], "countries": len(vals),
                             "recent": n_latest, "file": fn, "definition": (mt.get("Longdefinition") or "")[:600]})
             print(f"{code:24s} {len(vals):4d} countries {y0}-{y1} {os.path.getsize(os.path.join(ROOT, fn)) // 1024} KB")
             time.sleep(0.3)
