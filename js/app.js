@@ -123,6 +123,7 @@ function layers(){
   if(frame){ if(frame.groups)L.groups=L.groups.concat(frame.groups); if(frame.routes)L.routes=L.routes.concat(frame.routes);
     if(frame.points)L.points=L.points.concat(frame.points); if(frame.fills)Object.assign(L.fills,frame.fills); }
   if(explore.bloc){const b=BLOCS[explore.bloc];L.groups.push({label:t(b.label),color:"c2",ids:b.ids});}
+  if(!scene&&explore.country) L.highlight.push(explore.country);
   L.political = scene ? !!s.political : !explore.bloc;
   L.countryLabels = scene ? !!s.countryLabels : true;
   compileLayers(s,L);
@@ -640,6 +641,7 @@ function tap(x,y){
       tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,5000); return; } }
   if(!f&&gridHtml){ tip.innerHTML="<b>"+d3.format(".1f")(Math.abs(ll[1]))+"°"+(ll[1]>=0?"N":"S")+" "+d3.format(".1f")(Math.abs(ll[0]))+"°"+(ll[0]>=0?"E":"W")+"</b>"+gridHtml;
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
+  if(inExplore()){ hideTip(); if(f) openCountry(f.id); else if(explore.country) openExplore(); return; }
   if(!f){hideTip();return;}
   if(L.pairs&&L.pairs.has(f.id)&&L.pairs.from!==f.id){ pairFrom=f.id; markDirty(); L=layers(); Ldirty=false; el.legend.innerHTML=legendHTML(); describe(); render(); }
   else if(L.flows.length||focus){ focus=focus===f.id?null:f.id; L=layers(); el.legend.innerHTML=legendHTML(); render(); }
@@ -1231,7 +1233,7 @@ const el={kicker:$("sKicker"),title:$("sTitle"),text:$("sText"),legend:$("sLegen
 el.legend.addEventListener("input",e=>{ const r=e.target.closest("[data-ov]"); if(r&&L&&L.overlays[+r.dataset.ov]){ const o=L.overlays[+r.dataset.ov]; o.alpha=+r.value/100; ovAlpha[o.tex]=o.alpha; render(); } });
 el.legend.addEventListener("click",e=>{ const b=e.target.closest("[data-ci]"); if(b&&L&&L.cardList){ const it=L.cardList[+b.dataset.ci]; if(it){ openCard(it); flyTo({mode:curKind(),center:it.at,zoom:Math.max(V.zoom,2)},900); } } });
 let si=-1, ci=0, tlIdx=0, playing=null;
-const explore={bloc:null};
+const explore={bloc:null,country:null};
 
 function legendHTML(){
   const s=scene; if(!s){ if(explore.bloc) return chip("c2",t(BLOCS[explore.bloc].label)); return ""; }
@@ -1379,12 +1381,43 @@ async function openStory(i, scn=0){
   showScene(scn==="last"?STORIES[i].scenes.length-1:scn);
 }
 function openExplore(){
+  explore.country=null; el.camp.innerHTML="";
   quiz.mode=null; si=-1; scene=null; frame=null; markDirty(); closeToc(); stopPlay(); sheet.classList.remove("collapsed"); el.chart.hidden=true; el.sw.hidden=true; el.media.hidden=true; el.camp.hidden=true; el.updated.hidden=true; el.card.hidden=true;
   el.kicker.textContent=t("Explore"); el.title.textContent=t("The world, your way");
-  el.text.textContent=t("Drag to turn the world, pinch or scroll to zoom, tap a country to see its name. Switch between political, satellite and night views with the map button. Show a group of countries:");
+  el.text.textContent=t("Drag to turn the world, pinch or scroll to zoom, tap a country for its key facts and the stories about it. Switch between political, satellite and night views with the map button. Show a group of countries:");
   el.tl.hidden=true; el.steps.hidden=true; el.notes.hidden=true; el.blocs.hidden=false;
   renderBlocs(); renderData(); el.legend.innerHTML=legendHTML(); history.replaceState(null,"","#explore");
   syncMode(curKind()); render();
+}
+// ---------- Explore: tap a country for its facts and the stories that feature it (data/countries.json, tools/build/countries.py) ----------
+const inExplore=()=>si<0&&!quiz.mode&&/^#(explore|country\/)/.test(location.hash);
+const FACT_LABEL={"SP.POP.TOTL":"Population","NY.GDP.PCAP.PP.CD":"Income per person","SP.DYN.LE00.IN":"Life expectancy","EN.GHG.CO2.PC.CE.AR5":"CO2 per person"};
+const ord=n=>n+(["th","st","nd","rd"][(n%100>10&&n%100<14)?0:n%10]||"th");
+let countryTok=0;
+async function openCountry(id){
+  const tok=++countryTok; let C=null, A=null;
+  try{ [C,A]=await Promise.all([loadJSON("data/countries.json"),ATLAS?Promise.resolve(ATLAS):loadJSON("data/atlas/catalog.json")]); ATLAS=ATLAS||A; }catch(e){ return; }
+  if(tok!==countryTok||!inExplore()) return;
+  const c=C.countries[id]||{f:[],s:[]};
+  explore.country=id; closeToc(); sheet.classList.remove("collapsed"); markDirty(); L=layers(); Ldirty=false;
+  el.kicker.textContent=t("Country"); el.title.textContent=nameOf(id); el.text.textContent=""; el.blocs.hidden=true; el.card.hidden=true;
+  const facts=c.f.map(([code,v,y,r,n])=>{ const it=ATLAS.indicators.find(x=>x.id===code); if(!it) return "";
+    return `<li><span>${esc(t(FACT_LABEL[code]||it.name))}</span><b>${esc(String(fmtOf(it.fmt)(v)))}</b><small>${y} · ${esc(t("{r} of {n}",{r:ord(r),n}))}</small></li>`; }).join("");
+  const list=c.s.map(([sid,i])=>{ const k=STORIES.findIndex(x=>x.id===sid); return k<0?"":{k,i,st:STORIES[k]}; }).filter(Boolean);
+  const cp=x=>campaignOf(x.st), item=x=>`<li><button data-k="${x.k}" data-i="${x.i}"><span><b>${esc(x.st.title)}</b><span class="toc-hook">${esc(cp(x)?cp(x).title:t(x.st.cat||""))}</span></span></button></li>`;
+  const SHOW=5;
+  el.camp.innerHTML=(facts?`<ul class="cty-facts">${facts}</ul>`:"")+
+    `<h3 class="cty-h">${esc(list.length?t("Stories featuring {c}",{c:nameOf(id)}):t("No stories about {c} yet",{c:nameOf(id)}))}</h3>`+
+    (list.length?`<ol class="camp-list cty-list">${list.slice(0,SHOW).map(item).join("")}</ol>`+(list.length>SHOW?`<button class="cty-more">${esc(t("Show all {n}",{n:list.length}))}</button>`:""):"")+
+    `<div class="cty-act"><button class="cty-atlas">${esc(t("Compare in the country atlas"))}</button><button class="cty-back">${esc(t("Back to Explore"))}</button></div>`+
+    (facts?`<p class="cty-src">${esc(t("Facts: World Bank, World Development Indicators (CC BY 4.0); latest year within five years; rank among countries reporting."))}</p>`:"");
+  el.camp.hidden=false;
+  const wire=()=>el.camp.querySelectorAll(".cty-list button").forEach(b=>b.onclick=()=>{ explore.country=null; openStory(+b.dataset.k,+b.dataset.i); });
+  wire();
+  const more=el.camp.querySelector(".cty-more"); if(more) more.onclick=()=>{ el.camp.querySelector(".cty-list").innerHTML=list.map(item).join(""); more.remove(); wire(); };
+  el.camp.querySelector(".cty-atlas").onclick=async()=>{ explore.country=null; await openAtlas(); atlasProfile(id); };
+  el.camp.querySelector(".cty-back").onclick=()=>openExplore();
+  el.legend.innerHTML=legendHTML(); history.replaceState(null,"","#country/"+id); sheet.scrollTop=0; render();
 }
 function renderBlocs(){
   el.blocs.innerHTML=[["",{label:t("None")}],...Object.entries(BLOCS).map(([k,b])=>[k,{label:t(b.label)}])].map(([k,b])=>`<button class="bloc" data-k="${k}" aria-pressed="${String((explore.bloc||"")===k)}">${esc(b.label)}</button>`).join("");
@@ -1615,6 +1648,7 @@ loadJSON("stories/index.json").then(list=>{ STORIES.unshift(...list.map(x=>Objec
   else if(h[0]==="atlas") openAtlas(h[1]);
   else if(h[0]==="elections") openElections(h[1]);
   else if(h[0]==="explore") openExplore();
+  else if(h[0]==="country"&&h[1]){ openExplore(); history.replaceState(null,"","#country/"+h[1]); openCountry(h[1].toUpperCase()); }
   else if(h[0]==="quiz") openQuiz();
   else if(h[0]==="city") openCity();
   else { openExplore(); openToc(false); }
