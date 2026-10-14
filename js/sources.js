@@ -244,6 +244,12 @@ const SOURCES = {
     url: "https://doi.org/10.7910/DVN/42MVDX", use: "commercial", redistribute: true,
     credit: "MIT Election Data and Science Lab, U.S. President 1976–2024, Harvard Dataverse"
   },
+  parlgov: {
+    name: "ParlGov (Döring & Manow)", what: "Lower-house election results in 37 EU/OECD democracies, 1945–2023 (2024 release)", tier: "layer",
+    licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+    url: "https://doi.org/10.7910/DVN/2VZ5ZC", use: "commercial", redistribute: true,
+    credit: "Döring & Manow, ParlGov 2024 Release, Harvard Dataverse"
+  },
   "princes-townspeople": {
     name: "Princes and Townspeople (Cantoni, Mohr, Weigand)", what: "Rulers of 2,390 German towns by year, 1300–1807, and interpolated town areas (vols. 1–2)", tier: "layer",
     licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
