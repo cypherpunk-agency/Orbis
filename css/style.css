@@ -323,3 +323,4 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .cty-act .cty-back{border-color:var(--rule);color:var(--ink-soft)}
 .cty-src{font-size:13px;color:var(--ink-soft);margin:10px 0 0}
 #sheet:has(#sheetClose:not([hidden])) :is(#sKicker,#sTitle){padding-right:40px}
+.chip i.soft{filter:blur(1.5px);opacity:.75}
