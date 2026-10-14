@@ -615,7 +615,8 @@ async function ensureStory(i){
   const meta=STORIES[i]; if(meta.scenes) return meta;
   const js=meta.file==="draft"?JSON.parse(localStorage.getItem("orbis-draft")||"null"):await loadJSON(meta.file), data={};
   await Promise.all(Object.entries(js.data||{}).map(async([k,u])=>{ data[k]=await loadJSON(u); }));
-  js.scenes.forEach(sc=>{ const t=sc.timeline; if(t&&!t.frame){
+  js.scenes.forEach(sc=>{ if(sc.media&&!Array.isArray(sc.media)) sc.media=[sc.media];  // one media item may be given as an object
+    const t=sc.timeline; if(t&&!t.frame){
     // [a, b] = every year (or every `step` years) from a to b; years are astronomical (1 BC = 0)
     const ys=!t.format&&t.years.length===2&&(t.step||t.years[1]-t.years[0]>1)?d3.range(t.years[0],t.years[1]+1,t.step||1):t.years;
     const lab0=t.format==="month"?(y=>MON[y%100-1]+" "+Math.floor(y/100)):t.format==="date"?(y=>Cal.date(y)):(y=>Cal.year(y,t.era)), lab=y=>(t.labels&&t.labels[y])||lab0(y);
