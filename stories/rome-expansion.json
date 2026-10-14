@@ -7,7 +7,8 @@
   "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. Met: The Roman Republic and The Roman Empire; English Heritage for AD 43. Historical geometry fallback: georeferenced Mitchell 1880 map, inset removed; its provincial divisions and colouring are retained as historical cartography, not authoritative boundaries. Credit: David Rumsey Map Collection, David Rumsey Map Center, Stanford Libraries. Adaptation CC BY-NC-SA 3.0.",
   "data": {
     "events": "data/history/rome/rome-expansion.json",
-    "atlas": "data/history/rome/mitchell1880.json"
+    "atlas": "data/history/rome/mitchell1880.json",
+    "hb": "data/history/hb-context-ancient.json"
   },
   "sources": [
     "editorial"
@@ -55,6 +56,33 @@
       "modernBorders": false,
       "layers": [
         {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
+        {
           "type": "cards",
           "data": "events",
           "year": "t",
@@ -91,6 +119,33 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",

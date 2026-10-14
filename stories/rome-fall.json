@@ -6,7 +6,9 @@
   "updated": "2026-10-14",
   "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. Met Roman Empire for AD 410 and 476; Met Byzantium and Byzantium: Faith and Power for 1204, 1261 and 1453. AD 476 marks western deposition and eastern continuity, not a boundary snapshot. Western deposition is conventionally associated with Ravenna; Roman institutions survived it.",
   "data": {
-    "events": "data/history/rome/rome-fall.json"
+    "events": "data/history/rome/rome-fall.json",
+    "hb": "data/history/hb-context-ancient.json",
+    "hbm": "data/history/hb-context-late.json"
   },
   "sources": [
     "editorial"
@@ -25,6 +27,33 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",
@@ -62,6 +91,33 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 527,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 527,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",
@@ -126,6 +182,61 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
+        {
+          "type": "shapes",
+          "data": "hbm",
+          "year": "t",
+          "groups": [
+            "frankish",
+            "empire",
+            "byzantine",
+            "ottoman",
+            "turkic",
+            "muslim",
+            "mongol",
+            "austria",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hbm",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",

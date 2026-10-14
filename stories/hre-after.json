@@ -9,7 +9,8 @@
     "editorial"
   ],
   "data": {
-    "events": "data/history/hre/hre-after.json"
+    "events": "data/history/hre/hre-after.json",
+    "hbm": "data/history/hb-context-late.json"
   },
   "scenes": [
     {
@@ -26,6 +27,23 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hbm",
+          "year": 1815,
+          "groups": [
+            "frankish",
+            "empire",
+            "byzantine",
+            "ottoman",
+            "turkic",
+            "muslim",
+            "mongol",
+            "austria",
+            "states"
+          ],
+          "opacity": 0.4
+        },
         {
           "type": "cards",
           "data": "events",

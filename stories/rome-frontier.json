@@ -6,7 +6,8 @@
   "updated": "2026-10-14",
   "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. English Heritage supplies wall history and endpoint names; UNESCO Frontiers of the Roman Empire and Danube Limes supply frontier context. AD 142 and AD 150 are conventional/period anchors as marked in cards, not precise construction dates.",
   "data": {
-    "events": "data/history/rome/rome-frontier.json"
+    "events": "data/history/rome/rome-frontier.json",
+    "hb": "data/history/hb-context-ancient.json"
   },
   "sources": [
     "editorial"
@@ -25,6 +26,33 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 122,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 122,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",
@@ -52,6 +80,33 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",
@@ -91,6 +146,33 @@
       "modernBorders": false,
       "layers": [
         {
+          "type": "shapes",
+          "data": "hb",
+          "year": 150,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 150,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
+        {
           "type": "cards",
           "data": "events",
           "year": "t",
@@ -117,6 +199,33 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 150,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 150,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",

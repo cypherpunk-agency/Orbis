@@ -6,7 +6,8 @@
   "updated": "2026-10-14",
   "notes": "Historical locations are approximate city/site anchors, not surveyed battle sites or territorial polygons. No modern state is used as a proxy for Roman sovereignty. Events follow cited ancient accounts and institutional histories; ancient authors are not neutral eyewitnesses to every event. BC dates use astronomical years internally. Met, The Roman Empire (Tetrarchy, Constantine and Theodosius); UNESCO Ravenna for AD 402. Historical place-name change is tied to the AD 330 foundation; no claim of an instantaneous universal name replacement.",
   "data": {
-    "events": "data/history/rome/rome-split.json"
+    "events": "data/history/rome/rome-split.json",
+    "hb": "data/history/hb-context-ancient.json"
   },
   "sources": [
     "editorial"
@@ -26,6 +27,33 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 293,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 293,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",
@@ -53,6 +81,33 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "places",
           "data": "events",
@@ -96,6 +151,33 @@
       "modernBorders": false,
       "layers": [
         {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": "t",
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
+        {
           "type": "cards",
           "data": "events",
           "year": "t",
@@ -132,6 +214,33 @@
       },
       "modernBorders": false,
       "layers": [
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 402,
+          "groups": [
+            "rome",
+            "east",
+            "client",
+            "carthage",
+            "hellenistic",
+            "persia",
+            "germanic",
+            "states"
+          ],
+          "opacity": 0.4
+        },
+        {
+          "type": "shapes",
+          "data": "hb",
+          "year": 402,
+          "groups": [
+            "peoples",
+            "nomads"
+          ],
+          "style": "influence",
+          "opacity": 0.35
+        },
         {
           "type": "cards",
           "data": "events",
