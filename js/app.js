@@ -102,14 +102,13 @@ function layout(){
   if(projectionSnapshot&&(W!==innerWidth||H!==innerHeight||DPR!==Math.min(2,devicePixelRatio||1))) settle();
   W=innerWidth;H=innerHeight;DPR=Math.min(2,devicePixelRatio||1);
   canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+"px";canvas.style.height=H+"px";
-  const tb=topbar.getBoundingClientRect(), sh=sheet.getBoundingClientRect();
-  const desktop=W>=820;
-  if(desktop){F.x=sh.right+8;F.y=tb.bottom;F.w=W-F.x-8;F.h=H-F.y-8;}
-  else{const tc=toc.hidden?null:toc.getBoundingClientRect(); F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,(tc?tc.top:H-sheet.offsetHeight)-F.y);}
-  S.globe=Math.min(F.w,F.h)/2*0.9;
-  ["equal","mercator"].forEach(k=>S[k]=Math.min(F.w/BOUNDS[k][0],F.h/BOUNDS[k][1])*0.96);
-  render();
+  const sh=sheet.getBoundingClientRect();
+  if(W>=820){const tb=topbar.getBoundingClientRect(); F.x=sh.right+8;F.y=tb.bottom;F.w=W-F.x-8;F.h=H-F.y-8; frameScale(); render();}
+  else{const tc=toc.hidden?null:toc.getBoundingClientRect(); frameAbove(tc?tc.top:H-sheet.offsetHeight);}
 }
+// phone: the map frame is everything between the top bar and the sheet's top edge
+function frameAbove(top){ const tb=topbar.getBoundingClientRect(); F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,top-F.y); frameScale(); render(); }
+function frameScale(){ S.globe=Math.min(F.w,F.h)/2*0.9; ["equal","mercator"].forEach(k=>S[k]=Math.min(F.w/BOUNDS[k][0],F.h/BOUNDS[k][1])*0.96); }
 
 // ---------- active scene ----------
 let scene=null, frame=null; // frame = timeline overlay
@@ -1604,31 +1603,41 @@ const replaceState0=history.replaceState.bind(history);
 history.replaceState=(...a)=>{ replaceState0(...a); syncClose(); };
 sheetClose.onclick=e=>{ e.stopPropagation(); openExplore(); };
 function setCollapsed(on){ sheet.classList.toggle("collapsed",on); if(!on) sheet.scrollTop=0; requestAnimationFrame(layout); }
-$("collapse").onclick=e=>{ e.stopPropagation(); setCollapsed(!sheet.classList.contains("collapsed")); };
+$("collapse").onclick=e=>{ e.stopPropagation(); toggleSheet(!sheet.classList.contains("collapsed")); };
 new MutationObserver(()=>$("collapse").setAttribute("aria-expanded",String(!sheet.classList.contains("collapsed")))).observe(sheet,{attributes:true,attributeFilter:["class"]});
 // phone: the sheet follows the finger. Drag the handle or the collapsed bar up/down, or pull the text down from its top;
 // on release it settles open or tucked into a one-line bar (by position and flick speed).
-sheet.addEventListener("click",e=>{ if(sheet.classList.contains("collapsed")&&innerWidth<820&&!sheetDrag) setCollapsed(false); });
+sheet.addEventListener("click",e=>{ if(sheet.classList.contains("collapsed")&&innerWidth<820&&!sheetDrag) toggleSheet(false); });
 function dragStart(y){
-  const fromBar=sheet.classList.contains("collapsed"), bar=fromBar?sheet.offsetHeight:0;
+  const fromBar=sheet.classList.contains("collapsed"), sc=sheet.scrollTop;
   if(fromBar){ sheet.classList.remove("collapsed"); sheet.scrollTop=0; }
-  const h=sheet.offsetHeight, room=Math.max(1,h-(bar||64)), off0=fromBar?room:0;
-  sheetDrag={y0:y,off0,off:off0,room,last:y,t:performance.now(),v:0,moved:false,fromBar};
-  sheet.style.transition="none"; sheet.style.transform=`translateY(${off0}px)`;
+  const h=sheet.offsetHeight; sheet.classList.add("collapsed"); const bar=sheet.offsetHeight; sheet.classList.remove("collapsed");
+  if(!fromBar) sheet.scrollTop=sc;
+  const room=Math.max(1,h-bar), off0=fromBar?room:0;
+  sheetDrag={y0:y,off0,off:off0,room,last:y,t:performance.now(),v:0,moved:false,fromBar,h};
+  sheet.style.transition="none"; place(off0);
 }
+// the sheet sits `off` px below its open position; the map frame follows it
+function place(off){ sheet.style.transform=`translateY(${off}px)`; frameAbove(H-sheetDrag.h+off); }
 function dragMove(y){ const d=sheetDrag; if(!d) return;
   if(Math.abs(y-d.y0)>4) d.moved=true;
   const now=performance.now(); d.v=0.7*(y-d.last)/Math.max(8,now-d.t)+0.3*d.v; d.last=y; d.t=now;
-  d.off=clamp(d.off0+y-d.y0,0,d.room); sheet.style.transform=`translateY(${d.off}px)`;
+  d.off=clamp(d.off0+y-d.y0,0,d.room); place(d.off);
 }
 function dragEnd(){ const d=sheetDrag; if(!d) return;
-  if(!d.moved){ sheetDrag=null; sheet.style.transition=""; sheet.style.transform=""; if(d.fromBar) sheet.classList.add("collapsed"); return; }
-  const close=d.v>0.4||(d.v>-0.4&&d.off>d.room/2);
-  sheet.style.transition="transform .22s ease-out"; sheet.style.transform=`translateY(${close?d.room:0}px)`;
-  let done=false; const fin=()=>{ if(done) return; done=true; sheet.style.transition="none"; sheet.style.transform="";
-    sheetDrag=null; setCollapsed(close); requestAnimationFrame(()=>{ sheet.style.transition=""; }); };
-  sheet.addEventListener("transitionend",fin,{once:true}); setTimeout(fin,300);
+  if(!d.moved){ sheetDrag=null; sheet.style.transition=""; sheet.style.transform=""; if(d.fromBar) sheet.classList.add("collapsed"); layout(); return; }
+  settleSheet(d.v>0.4||(d.v>-0.4&&d.off>d.room/2));
 }
+// animate to open (false) or tucked (true), easing out, moving the map frame with it every frame
+function settleSheet(close){ const d=sheetDrag, from=d.off, to=close?d.room:0, t0=performance.now(), dur=reduce?0:240;
+  const step=now=>{ const k=dur?Math.min(1,(now-t0)/dur):1, e=1-Math.pow(1-k,3); d.off=from+(to-from)*e; place(d.off);
+    if(k<1) return requestAnimationFrame(step);
+    sheet.style.transition=""; sheet.style.transform=""; sheetDrag=null;
+    sheet.classList.toggle("collapsed",close); if(!close) sheet.scrollTop=0; layout(); };
+  requestAnimationFrame(step);
+}
+// tap the handle or the bar: the same animation
+function toggleSheet(close){ if(innerWidth>=820||sheetDrag) return setCollapsed(close); dragStart(0); sheetDrag.moved=true; settleSheet(close); }
 // handle and collapsed bar: pointer events (touch-action:none in CSS, so the browser never takes the gesture)
 sheet.addEventListener("pointerdown",e=>{
   if(innerWidth>=820||sheetDrag||e.target.closest("#sheetClose")||!(sheet.classList.contains("collapsed")||e.target.closest(".handle"))) return;
