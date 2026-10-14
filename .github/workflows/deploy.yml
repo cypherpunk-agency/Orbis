@@ -1,0 +1,132 @@
+# Deploys https://orbis.cypherpunk.agency/ on every push to `production`.
+# `master` never deploys: this trigger is one gate, and the WIF provider on the
+# infra side only admits refs/heads/production, so an edited copy of this file
+# on another branch cannot obtain the deploy identity either.
+#
+# Caddy serves the files straight from /mnt/pd/data/services/static/orbis/ on
+# the VM `web-server`. There is no container and no build step: what is in the
+# repo is what is served.
+name: Deploy
+
+on:
+  push:
+    branches: [production]
+  workflow_dispatch:
+
+# Two runs syncing into the same directory would race; queue them instead.
+concurrency:
+  group: orbis-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write # mints the OIDC token for Workload Identity Federation
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/production'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: production
+      url: https://orbis.cypherpunk.agency/
+    env:
+      SITE_URL: https://orbis.cypherpunk.agency
+      BUCKET: cyberphunk-agency-deploy-staging
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Licence check
+        run: node tools/check-licences.js
+
+      - name: Pack the served files
+        # Only what the browser loads; tools/ and docs/ stay in the repo.
+        # The VM syncs with `rsync --delete`, so an empty or partial tarball
+        # would empty the live site. Guarded here and again on the VM.
+        run: |
+          set -euo pipefail
+          for p in index.html editor.html css js data stories; do test -e "$p"; done
+          test -f index.html && test -f js/app.js && test -f data/world50.json
+          tar -czf orbis.tgz index.html editor.html css js data stories
+          ls -l orbis.tgz
+
+      - name: Authenticate to GCP
+        # Keyless. There is no service-account JSON key and there must never be one.
+        id: auth
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+          token_format: access_token
+
+      - uses: google-github-actions/setup-gcloud@v3
+
+      - name: Stage the tarball in GCS
+        # Raw media upload: the deploy account may create objects but not list,
+        # read or overwrite them, which rules out `gcloud storage cp`. A re-run
+        # cannot overwrite either, hence the run attempt in the name.
+        # (scp through IAP from a runner crawls at ~50 KB/s.)
+        env:
+          TOKEN: ${{ steps.auth.outputs.access_token }}
+        run: |
+          set -euo pipefail
+          object="orbis/${GITHUB_SHA}-${GITHUB_RUN_ATTEMPT}.tgz"
+          curl -fsS -X POST \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/gzip" \
+            --data-binary @orbis.tgz \
+            "https://storage.googleapis.com/upload/storage/v1/b/${BUCKET}/o?uploadType=media&name=${object//\//%2F}" \
+            -o /dev/null
+          echo "OBJECT=$object" >> "$GITHUB_ENV"
+
+      - name: Materialise the deploy key
+        # gcloud must use this key on every call. Left to itself it mints a
+        # fresh root-equivalent key into project metadata on each run.
+        env:
+          KEY: ${{ secrets.GCP_DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/gcp_deploy
+          chmod 600 ~/.ssh/gcp_deploy
+          ssh-keygen -y -f ~/.ssh/gcp_deploy > ~/.ssh/gcp_deploy.pub
+
+      - name: Publish on the VM
+        # Fetch and extract unprivileged, then exactly one privileged command,
+        # pinned byte for byte in sudoers.
+        env:
+          GCP_INSTANCE: ${{ vars.GCP_INSTANCE }}
+          GCP_ZONE: ${{ vars.GCP_ZONE }}
+          GCP_PROJECT: ${{ vars.GCP_PROJECT }}
+        run: |
+          set -euo pipefail
+          gcloud compute ssh "$GCP_INSTANCE" --quiet \
+            --zone="$GCP_ZONE" --project="$GCP_PROJECT" \
+            --tunnel-through-iap --ssh-key-file="$HOME/.ssh/gcp_deploy" \
+            --command "set -eu
+              rm -rf /tmp/orbis-deploy /tmp/orbis.tgz
+              /snap/bin/gcloud storage cp 'gs://${BUCKET}/${OBJECT}' /tmp/orbis.tgz
+              mkdir -p /tmp/orbis-deploy
+              tar -xzf /tmp/orbis.tgz -C /tmp/orbis-deploy
+              test -f /tmp/orbis-deploy/index.html
+              sudo /usr/bin/rsync -a --delete /tmp/orbis-deploy/ /mnt/pd/data/services/static/orbis/
+              rm -rf /tmp/orbis-deploy /tmp/orbis.tgz"
+
+      - name: Check the live site
+        # A green publish only says bytes moved. Check that the site now serves
+        # this commit's files, not a placeholder or a stale copy.
+        run: |
+          set -euo pipefail
+          get() { curl -fsS --retry 5 --retry-delay 3 --retry-all-errors -H 'Cache-Control: no-cache' "$SITE_URL/$1" -o "served.$2"; }
+          get "" html
+          get js/app.js js
+          get data/world50.json json
+          grep -qF '<title>Orbis: stories on a turning world' served.html
+          grep -qF 'function loadJSON(url)' served.js
+          grep -qF '"type":"Topology"' served.json
+          # The CSP override is what lets d3, topojson and the fonts load at all.
+          curl -fsS -D- -o /dev/null "$SITE_URL/" | grep -qi '^content-security-policy:.*cdnjs.cloudflare.com'
+          cmp -s served.html index.html || { echo 'served index.html differs from this commit'; exit 1; }
+          cmp -s served.js js/app.js || { echo 'served js/app.js differs from this commit'; exit 1; }
+          cmp -s served.json data/world50.json || { echo 'served data/world50.json differs from this commit'; exit 1; }
+          echo "live: $SITE_URL at $GITHUB_SHA"
