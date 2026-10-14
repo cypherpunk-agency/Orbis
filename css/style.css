@@ -56,6 +56,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .handle{display:flex;justify-content:center;position:sticky;top:0;background:var(--paper);padding-top:4px;margin:0 -20px;z-index:1}
 #collapse{border:0;background:none;width:64px;height:22px;display:grid;place-items:center}
 #collapse::before{content:"";width:38px;height:4px;border-radius:2px;background:var(--rule)}
+.handle{position:sticky}
+#sheetClose{position:absolute;right:10px;top:4px;width:32px;height:32px;border-radius:50%;border:1px solid var(--rule);background:var(--paper);
+  color:var(--ink);font:400 22px/1 var(--ui);display:grid;place-items:center;cursor:pointer;padding:0 0 2px;z-index:2}
+#sheetClose[hidden]{display:none}
 .kicker{margin:2px 0 2px;font-size:15px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
 .kicker:empty{display:none}
 #sTitle{font-family:var(--serif);font-weight:600;font-size:23px;line-height:1.2;margin:0 0 8px;text-wrap:balance}
@@ -132,7 +136,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (min-width:820px){
   #sheet{left:16px;right:auto;bottom:auto;top:calc(64px + env(safe-area-inset-top,0px));width:390px;max-height:calc(100% - 84px - env(safe-area-inset-top,0px));
     border:1px solid var(--rule);border-radius:14px;padding:6px 24px 18px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
-  .handle{display:none}
+  .handle{height:0;padding:0;overflow:visible}
+  #collapse{display:none}
+  #sheetClose{top:4px;right:4px}
   #steps{margin:12px -24px 0;padding:8px 24px 12px}
   #toc{top:calc(64px + env(safe-area-inset-top,0px));left:16px;right:auto;bottom:16px;width:440px;border:1px solid var(--rule);border-radius:14px}
 }
@@ -316,3 +322,4 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .cty-act button{border:1px solid var(--ink);background:none;color:var(--ink);border-radius:999px;height:38px;padding:0 16px;font:600 15px var(--ui);cursor:pointer}
 .cty-act .cty-back{border-color:var(--rule);color:var(--ink-soft)}
 .cty-src{font-size:13px;color:var(--ink-soft);margin:10px 0 0}
+#sheet:has(#sheetClose:not([hidden])) :is(#sKicker,#sTitle){padding-right:40px}

@@ -1597,6 +1597,12 @@ function openToc(focus=true){ toc.hidden=false; layout(); $("tocBtn").setAttribu
 function closeToc(){ toc.hidden=true; $("tocBtn").setAttribute("aria-expanded","false"); spin=false; layout(); }
 
 // collapse sheet
+// close (×): leave any story, series, atlas, quiz or country panel for free exploring; hidden on the Explore intro
+const sheetClose=$("sheetClose");
+function syncClose(){ sheetClose.hidden=/^#?(explore)?$/.test(location.hash); }
+const replaceState0=history.replaceState.bind(history);
+history.replaceState=(...a)=>{ replaceState0(...a); syncClose(); };
+sheetClose.onclick=e=>{ e.stopPropagation(); openExplore(); };
 function setCollapsed(on){ sheet.classList.toggle("collapsed",on); if(!on) sheet.scrollTop=0; requestAnimationFrame(layout); }
 $("collapse").onclick=e=>{ e.stopPropagation(); setCollapsed(!sheet.classList.contains("collapsed")); };
 new MutationObserver(()=>$("collapse").setAttribute("aria-expanded",String(!sheet.classList.contains("collapsed")))).observe(sheet,{attributes:true,attributeFilter:["class"]});
@@ -1625,7 +1631,7 @@ function dragEnd(){ const d=sheetDrag; if(!d) return;
 }
 // handle and collapsed bar: pointer events (touch-action:none in CSS, so the browser never takes the gesture)
 sheet.addEventListener("pointerdown",e=>{
-  if(innerWidth>=820||sheetDrag||!(sheet.classList.contains("collapsed")||e.target.closest(".handle"))) return;
+  if(innerWidth>=820||sheetDrag||e.target.closest("#sheetClose")||!(sheet.classList.contains("collapsed")||e.target.closest(".handle"))) return;
   sheet.setPointerCapture(e.pointerId); dragStart(e.clientY);
   const mv=ev=>dragMove(ev.clientY), up=()=>{ sheet.removeEventListener("pointermove",mv); sheet.removeEventListener("pointerup",up); sheet.removeEventListener("pointercancel",up); dragEnd(); };
   sheet.addEventListener("pointermove",mv); sheet.addEventListener("pointerup",up); sheet.addEventListener("pointercancel",up);
