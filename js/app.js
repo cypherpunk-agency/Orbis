@@ -685,7 +685,7 @@ const d0=e=>Array.isArray(e.date)?e.date[0]:e.date;   // a date range [a, b] sor
 const ICONS={swords:"⚔",star:"★",flag:"⚑",anchor:"⚓",crown:"♛",cross:"✝"};
 const LAYER={
   cards(ly,d,y,L){ // dated events with a story card: tap a dot to read it; optional list in the panel
-    const t=+y, w=ly.window, K=d.kinds||{};
+    const t=+y, K=d.kinds||{}, w=ly.window&&ly.window!=="all"&&scene&&scene.timeline&&scene.timeline.isDate?ly.window*10000:ly.window;  // window in years
     const pick=(d.items||[]).filter(e=>!ly.kinds||ly.kinds.includes(e.kind)).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(d0(e))<=t&&(!w||tUnit(d0(e))>t-w))).sort((a,b)=>d0(a)-d0(b));
     pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",icon:K[e.kind]&&K[e.kind].icon,label:ly.labels===false?null:e.title,card:e,minZoom:ly.minZoom}));
     if(ly.list) L.cardList=(L.cardList||[]).concat(pick); L.kinds=Object.assign(L.kinds||{},K);
@@ -711,7 +711,7 @@ const LAYER={
   shapes(ly,d,y,L){ // polygons valid at the timeline date, coloured by group; optional merged outline per group
     const S=shapeSet(ly.data,d); if(!S) return; const yr=+y, G=d.groups||{};
     const idx=S.feats.map((f,i)=>i).filter(i=>{ const p=S.feats[i].properties; return validAt(p,yr)&&(!ly.groups||ly.groups.includes(p.group)); });
-    const groups=[...new Set(idx.map(i=>S.feats[i].properties.group))];
+    const ord=ly.groups||Object.keys(G), groups=[...new Set(idx.map(i=>S.feats[i].properties.group))].sort((a,b)=>(ord.indexOf(a)+1||1e9)-(ord.indexOf(b)+1||1e9));
     const outlines=ly.outline===false?[]:groups.map(g=>({color:(G[g]&&G[g].color)||ly.color||"c2",
       geom:topojson.merge(S.topo,idx.filter(i=>S.feats[i].properties.group===g).map(i=>S.obj.geometries[i]))}));
     // changes since the previous timeline step: areas lost (dashed) and gained (bold edge)
@@ -842,7 +842,9 @@ const LAYER={
       const lab=c=>(ly.names&&ly.names[c])||(s0.labels&&s0.labels[c])||c;
       const colorOf=id=>{ const c=cats[id]; if(c==null||!ly.colors[c]) return null; const base=col(ly.colors[c]);
         if(!sh||share[id]==null) return base; return d3.interpolateRgb(C.paper,base)(0.3+0.7*clamp((share[id]-sh.min)/((sh.max-sh.min)||1),0,1)); };
-      const keys=Object.keys(ly.colors).map(c=>({label:lab(c),color:ly.colors[c],n:Object.values(cats).filter(v=>v===c).length})).filter(k=>k.n);
+      // "countNote": {"US-DC": "DC"} keeps an id out of the count and names it instead ("19 states + DC")
+      const cn=ly.countNote||{}, keys=Object.keys(ly.colors).map(c=>{ const ids=Object.keys(cats).filter(id=>cats[id]===c);
+        return {label:lab(c),color:ly.colors[c],n:ids.filter(id=>!cn[id]).length,extra:ids.filter(id=>cn[id]).map(id=>cn[id])}; }).filter(k=>k.n||k.extra.length);
       L.regions.push({R,vals:cats,colorOf,cat:true,keys,unit:ly.unit||"",shadeNote:sh&&(ly.shadeLabel||t("Lighter = closer result")),
         title:ly.title?ly.title+" · "+ylab(y):ylab(y),labels:ly.labels,
         tipOf:id=>code[id]!=null&&s0.codes&&s0.codes[code[id]]?(s0.codes[code[id]].label||code[id])+" · "+ylab(y):cats[id]==null?t("No data"):lab(cats[id])+(share[id]!=null?" · "+(ly.shareFmt?fmtOf(ly.shareFmt)(share[id]):share[id].toFixed(1)+"%"):"")+" · "+ylab(y)});
@@ -1144,7 +1146,7 @@ function legendHTML(){
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
   if(L&&L.cartoKey) h+=chip(L.cartoKey.color,L.cartoKey.title+" · "+t("country size = amount"));
   if(L&&L.sizeKey) h+=`<span class="size-key" style="color:${col(L.sizeKey.color)}"><i style="width:16px;height:16px"></i><span style="color:var(--ink-soft)">${esc(L.sizeKey.title)} · ${t("circle area = amount")}</span></span>`;
-  if(L) L.regions.filter(rg=>rg.cat).forEach(rg=>{ h+=`<div class="ramp-title">${esc(rg.title)}</div>`+rg.keys.map(k=>chip(k.color,k.label+": "+k.n+(rg.unit?" "+rg.unit:""))).join("")+(rg.shadeNote?`<span class="chip">${esc(rg.shadeNote)}</span>`:""); });
+  if(L) L.regions.filter(rg=>rg.cat).forEach(rg=>{ h+=`<div class="ramp-title">${esc(rg.title)}</div>`+rg.keys.map(k=>chip(k.color,k.label+": "+k.n+(rg.unit?" "+rg.unit:"")+k.extra.map(x=>" + "+x).join(""))).join("")+(rg.shadeNote?`<span class="chip">${esc(rg.shadeNote)}</span>`:""); });
   if(L) L.regions.filter(rg=>!rg.cat).forEach(rg=>{ const stops=d3.range(0,1.01,0.1).map(q=>(rg.ramp||C.seq)(q)).join(",");
     h+=`<div class="ramp"><div class="ramp-title">${esc(rg.title)}</div><div class="ramp-bar" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-ends"><span>${esc(rg.fmt(rg.lo))}</span><span>${esc(rg.fmt(rg.hi))}</span></div></div>`; });
   if(L&&L.pov) h+=`<span class="chip"><i style="background:none;border:1.5px dashed ${C.accent}"></i>${esc(t("Disputed areas, drawn as seen from {x}",{x:nameOf(L.pov.viewIso)}))}</span>`;

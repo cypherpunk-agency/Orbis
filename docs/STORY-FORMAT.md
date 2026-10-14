@@ -171,6 +171,9 @@ Added for the history series; all optional.
 - **Date ranges**: the era is written once ("AD 100–260", "264–241 BC") and twice only across it ("27 BC–AD 14").
 - **`regions` change lists**: a set may instead give `"codes": {code: {"label", "cat"}}` and `"changes": {regionId: [[year, code], ...]}`; the value at a year is the last code at or before it (any year works), coloured by `codes[code].cat`, tap shows the code's label. `"only": ["church", ...]` colours just those categories.
 - **`places` `"only": [names]`**: keeps places whose name or any period name is listed (so "Constantinople" keeps "Istanbul" after 1453).
+- **`regions` `"countNote": {"US-DC": "DC"}`**: keeps an id out of the legend count and names it ("19 states + DC").
+- **`shapes` legend order** follows the dataset's `groups` order (or the layer's `groups` list).
+- **`cards` `window`** is always in years, also on `"format": "date"` timelines.
 - **Series `coming`**: in `stories/campaigns.json`, `"coming": [{"title": "...", "hook": "..."}]` lists planned chapters, greyed and not clickable.
 
 ## Elections explorer (`#elections`)
