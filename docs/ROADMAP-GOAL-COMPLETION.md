@@ -17,3 +17,10 @@ The accepted checkout is main `78c1fd6` plus the authorized local source/story c
 Report paths above are under `.cache/roadmap-review/`. These checks complement the completed source/content and screenshot inspections linked in the milestone audits and [current regression evidence](ROADMAP-EVIDENCE-REGRESSION.md). They do not imply a new upstream retrieval or clearance. The recorded BHHT reused-artifact licence renewal limitation, bounded observation coverage, historical geometry approximations and other disclosed source limitations remain in force. No concrete unresolved implementation or acceptance blocker was found in this final audit.
 
 The latest corrections remain local and have not been committed or deployed by this goal. Previously hosted-release evidence is separately versioned.
+
+
+## Subsequent main push integration
+
+The user subsequently authorized a push to main. The accepted goal snapshot was committed as `c5aef17`, then newer remote main `afcf91a` was preserved through merge `6b58adf`. Its historical context, border and rendering changes are additional upstream work. The complete goal-era capture evidence above applies to the accepted snapshot, rather than claiming another full capture sweep for those later changes.
+
+Post-merge scope validation passes 59 stories/285 scenes/122 dataset references; licence validation passes 84 sources/139 stories, app syntax and diff checks pass, and all eight actual country-pointer assertions pass on the merged renderer. Post-merge pointer report: `.cache/roadmap-review/main-push-country.json`, renderer SHA256 `d71eae40ad20d7242eccc0ab117eb96ee3dfa5410d87e28e85d4426361ec020d`. The original goal pointer report is retained separately; screenshot prefixes from the focused pointer recheck now reflect the merged UI. This push request targets main only; the production deployment workflow triggers on the production branch.
