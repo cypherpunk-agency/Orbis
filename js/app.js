@@ -113,7 +113,7 @@ function arr(v,kind){ if(!v) return []; if(typeof v==="string") return resolveRe
 function routePath(r){ let p=typeof r.path==="string"?resolveRef(r.path):r.path; if(r.until!=null) p=p.slice(0,r.until+1); return p; }
 function layers(){
   const s=scene||{};
-  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[]};
+  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[],overlays:[]};
   Object.assign(L.fills,s.fills||{});
   L.groups=(s.groups||[]).slice();
   if(s.choro) L.choro=s.choro;
@@ -168,10 +168,11 @@ function drawRaster(){
   if(!Raster.ok) return false;
   const list=[];
   let m=BM.mode;
-  if(m==="political"&&L&&L.rasters.length) m="plain";   // data grids need a base the vector canvas does not cover
+  if(m==="political"&&L&&(L.rasters.length||L.overlays.length)) m="plain";   // data grids need a base the vector canvas does not cover
   if(m==="plain"){ ensurePlain(); list.push({name:"plain"}); }
   else if(BASEMAPS[m].tex){ if(!Raster.has(m)) Raster.load(m,BASEMAPS[m].tex,render); list.push({name:m}); }
   if(DETAIL.name&&DETAIL.mode===m&&Raster.has(DETAIL.name)) list.push({name:DETAIL.name});
+  if(L) L.overlays.forEach(o=>{ if(Raster.has(o.tex)) list.push({name:o.tex,alpha:o.alpha}); });
   const sx=F.x+F.w*swipeAt;
   if(L) L.rasters.forEach(r=>{ if(Raster.has(r.tex)) list.push({name:r.tex,alpha:r.alpha,span:r.side==="L"?[0,sx]:r.side==="R"?[sx,W]:null}); });
   if(!list.length||!list.some(l=>Raster.has(l.name))){ if(rasterOn){Raster.clear();rasterOn=false;} return false; }
@@ -204,6 +205,16 @@ function shapeSet(alias,d){
   if(d.topology) setTimeout(()=>done(d.topology),0); else loadJSON(d.file).then(done);
   return null;
 }
+// historical map overlays: one georeferenced image per dataset, drawn as a raster patch over its lon/lat box
+const OVL={};
+function overlayTex(alias,d){
+  const name="ovl:"+alias; if(OVL[name]==="ready") return name; if(OVL[name]) return null;
+  OVL[name]="loading"; const img=new Image(); img.crossOrigin="anonymous";
+  img.onload=()=>{ Raster.putPatch(name,img,d.bbox); OVL[name]="ready"; lateData(); };
+  img.onerror=()=>{ console.warn("Overlay not loaded",d.image); };
+  img.src=d.image; return null;
+}
+const ovAlpha={};   // opacity chosen with the slider, per overlay
 // is a dated item valid at time y? from inclusive, to exclusive, null = open
 // dates may be years (astronomical) or yyyymmdd; compare them in the scene timeline's unit
 const isDateNum=n=>Math.abs(n)>=10000;
@@ -663,6 +674,10 @@ const LAYER={
       L.routes.push({path:done.map(p=>p.slice(0,2)).concat(finished?[]:[pos]),color:c,width:m.width||ly.width||2.5,dash:m.dash||false});
       L.points.push({at:pos,r:finished?4:6,color:c,label:ly.labels===false?null:m.name}); });
   },
+  overlay(ly,d,y,L){ // a scanned historical map, warped to lon/lat (tools/build/warp_overlay.py)
+    const tex=overlayTex(ly.data,d); if(!tex) return;
+    L.overlays.push({tex,alpha:ovAlpha[tex]!=null?ovAlpha[tex]:(ly.opacity==null?0.85:ly.opacity),title:ly.title||d.title||"Historical map",slider:ly.slider!==false});
+  },
   shapes(ly,d,y,L){ // polygons valid at the timeline date, coloured by group; optional merged outline per group
     const S=shapeSet(ly.data,d); if(!S) return; const yr=+y, G=d.groups||{};
     const idx=S.feats.map((f,i)=>i).filter(i=>{ const p=S.feats[i].properties; return validAt(p,yr)&&(!ly.groups||ly.groups.includes(p.group)); });
@@ -1018,6 +1033,7 @@ function showCity(name,at){
 const $=id=>document.getElementById(id);
 const el={kicker:$("sKicker"),title:$("sTitle"),text:$("sText"),legend:$("sLegend"),tl:$("sTimeline"),slider:$("tlSlider"),year:$("tlYear"),play:$("tlPlay"),cap:$("tlCaption"),
   prev:$("prev"),next:$("next"),dots:$("dots"),notes:$("sNotes"),notesBody:$("sNotesBody"),blocs:$("blocs"),steps:$("steps"),data:$("sData"),chart:$("sChart"),sw:$("sSwitch"),media:$("sMedia"),camp:$("sCamp"),updated:$("sUpdated"),card:$("sCard")};
+el.legend.addEventListener("input",e=>{ const r=e.target.closest("[data-ov]"); if(r&&L&&L.overlays[+r.dataset.ov]){ const o=L.overlays[+r.dataset.ov]; o.alpha=+r.value/100; ovAlpha[o.tex]=o.alpha; render(); } });
 el.legend.addEventListener("click",e=>{ const b=e.target.closest("[data-ci]"); if(b&&L&&L.cardList){ const it=L.cardList[+b.dataset.ci]; if(it){ openCard(it); flyTo({mode:curKind(),center:it.at,zoom:Math.max(V.zoom,2)},900); } } });
 let si=-1, ci=0, tlIdx=0, playing=null;
 const explore={bloc:null};
@@ -1028,6 +1044,7 @@ function legendHTML(){
   if(s.legend) h+=s.legend.map(l=>chip(l.color,l.label)).join("");
   else if(L&&L.groups.length) h+=L.groups.map(g=>chip(g.color,g.label)).join("");
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · "+t(k.qty?"line width = tonnes":"line width = value")));
+  if(L) L.overlays.forEach((o,i)=>{ h+=`<label class="ov-row"><span>${esc(o.title)}</span>`+(o.slider?`<input type="range" min="0" max="100" value="${Math.round(o.alpha*100)}" data-ov="${i}" aria-label="${esc(t("Opacity of {x}",{x:o.title}))}">`:"")+`</label>`; });
   if(L) L.shapeKeys.forEach(k=>h+=chip(k.color,k.label));
   if(L&&L.cardList&&L.cardList.length) h+=`<ol class="card-list">${L.cardList.map((e,i)=>`<li><button data-ci="${i}"><span>${esc(e.cal==="julian"&&isDateNum(e.date)?Cal.other(e.date,"julian",true).replace(" (Julian)",""):fmtWhen(e.date))}</span>${esc(e.title)}</button></li>`).join("")}</ol>`;
   if(L&&L.pairs) h+=`<span class="chip">${esc(t("Tap a country to see its ties"))}</span>`;

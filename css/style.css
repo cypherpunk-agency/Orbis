@@ -246,3 +246,6 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .card-list button span{color:var(--ink-soft);font-variant-numeric:tabular-nums}
 
 .md-keys{margin:4px 0 0;display:flex;flex-wrap:wrap;gap:4px 10px}
+
+.ov-row{display:grid;grid-template-columns:1fr 9em;align-items:center;gap:8px;font:14px var(--ui);margin:4px 0}
+.ov-row input{width:100%;accent-color:var(--accent)}
