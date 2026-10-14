@@ -48,11 +48,21 @@ feats.map((f,i)=>i).sort((a,b)=>nb[b].length-nb[a].length).forEach(i=>{
 
 // ---------- colours ----------
 let C={};
+// palette v3 preview (?pal=v3): OKLCH-built neutrals, equal-lightness categories, single-hue amounts, equal-lightness diverging ends
+const V3=new URLSearchParams(location.search).get("pal")==="v3"?{"dark":{"space":"#101C25","ocean":"#2C4F65","land":"#555C61","border":"#909AA1","nodata":"#727577","muted":"#81878C","t0":"#545C62","t1":"#556161","t2":"#595A63","t3":"#58615B","t4":"#5E5860","c1":"#81AFDF","c2":"#D793B3","c3":"#C8A753","c4":"#67BDB2","c5":"#B39FD9","c6":"#8EB885","c7":"#E39385","c8":"#99AEBB","s0":"#555C61","s1":"#6F89A3","s2":"#91B9DF","s3":"#C5EBFF","d0":"#91C3F6","d1":"#6690BB","d2":"#555C61","d3":"#C6706E","d4":"#F8A49D"},"light":{"space":"#E3E9ED","ocean":"#C1D4DE","land":"#F4F7F9","border":"#9EA6AB","nodata":"#D6D8D9","muted":"#8A9095","t0":"#E9F1F8","t1":"#E3EFEF","t2":"#EEEFF8","t3":"#E6EFE9","t4":"#F4EEF5","c1":"#3D78B2","c2":"#AE5A84","c3":"#B18D2A","c4":"#038A7F","c5":"#7F64AB","c6":"#4F8444","c7":"#C15E50","c8":"#6A7E8A","s0":"#E9F0F5","s1":"#A4C2DC","s2":"#5984AE","s3":"#234877","d0":"#0E5794","d1":"#729CC8","d2":"#F4F7F9","d3":"#D47C76","d4":"#972E2D"}}:null;
+// hue-preserving tint for highlights and historical areas: cool hues step from the land toward the colour,
+// warm hues (which turn olive or brown when darkened) only lose chroma and stay light
+function tintOf(c,k){ const x=d3.lch(col(c)), b=d3.lch(C.land); if(!V3||isNaN(x.h)) return d3.interpolateLab(C.land,col(c))(k);
+  const warm=C.dark&&x.h>15&&x.h<115;  // on a dark map, darkened yellows and oranges turn olive or brown
+  return d3.lch(warm?x.l-(1-k)*6:b.l+(x.l-b.l)*(0.3+0.6*k), x.c*(0.45+0.5*k), x.h)+""; }
 function readColors(){
   const cs=getComputedStyle(document.documentElement);
   ["ocean","land","border","grat","ink","halo","accent","paper","ink-soft","c1","c2","c3","c4","c5","c6","c7","c8","muted","nodata","rim","t0","t1","t2","t3","t4","s0","s1","s2","s3"].forEach(k=>C[k]=cs.getPropertyValue("--"+k).trim());
   C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.ink_soft=C["ink-soft"]; C.muted=C.muted||C.ink_soft;
   C.dark=d3.hsl(C.paper).l<0.5;
+  if(V3){ const P=V3[C.dark?"dark":"light"]; Object.entries(P).forEach(([k,v])=>{ if(k in C||/^d\d/.test(k)) C[k]=v; });
+    C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.seq=d3.interpolateRgbBasis([C.s0,C.s1,C.s2,C.s3]);
+    DIVERGING=d3.piecewise(d3.interpolateLab,[C.d0,C.d1,C.d2,C.d3,C.d4]); document.documentElement.style.setProperty("--space",P.space); }
   if(typeof divergingFromPalette==="function"&&typeof DIV!=="undefined") divergingFromPalette();
   if(typeof ND!=="undefined"&&ND) C.nodata=ND==="1"?(C.dark?"#68716F":"#D6D3CB"):C.land;  // dark theme (not the same as onDark, which means an imagery basemap)
   C.seq=d3.interpolateRgbBasis([C.s0,C.s1,C.s2,C.s3]);
@@ -221,7 +231,7 @@ function fillFor(f,i,ras){
 }
 // story fills and blocs are drawn as a tint over the land, not as a flat poster colour (Daylight Atlas palette)
 const FILL_K=0.4;
-const mild=(c,i)=>FILL_K<1?d3.interpolateLab(L.political?C.tints[tint[i]]:C.land,col(c))(FILL_K):col(c);
+const mild=(c,i)=>V3?tintOf(c,FILL_K+0.15):FILL_K<1?d3.interpolateLab(L.political?C.tints[tint[i]]:C.land,col(c))(FILL_K):col(c);
 function fillBase(f,i,ras){
   const id=f.id;
   if(L.fills[id]&&!hidden(L.fills[id])) return mild(L.fills[id],i);
@@ -245,7 +255,7 @@ function drawInfluence(sh){ const k=INF.k, w=Math.ceil(W/k), h=Math.ceil(H/k), o
   if(INF.c.width!==w||INF.c.height!==h){ INF.c.width=w; INF.c.height=h; } else { o.setTransform(1,0,0,1,0,0); o.clearRect(0,0,w,h); }
   o.setTransform(1/k,0,0,1/k,0,0); path.context(o);
   sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; if(hidden(f.properties.color||(g&&g.color)||sh.color)) return; o.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity;
-    o.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); o.beginPath(); path(f); o.fill(); });
+    o.fillStyle=V3?tintOf(f.properties.color||(g&&g.color)||sh.color,0.75):col(f.properties.color||(g&&g.color)||sh.color); o.beginPath(); path(f); o.fill(); });
   path.context(ctx); ctx.save(); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(INF.c,0,0,W,H); ctx.restore(); }
 function label(text,x,y,opts={}){
   const size=opts.size||13;
@@ -494,11 +504,12 @@ function draw(){
   }
   // categorical areas sit slightly into the land (softer than flat poster colours); one hairline that reads on light and
   // dark fills alike, so internal borders never vanish against a fill of similar tone
-  L.regions.forEach(rg=>{ ctx.globalAlpha=rg.cat?0.78:1; rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
+  L.regions.forEach(rg=>{ ctx.globalAlpha=rg.cat&&!V3?0.78:1; rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c?(V3&&rg.cat&&!C.dark?tintOf(c,0.6):c):C.nodata; ctx.fill(); });
     ctx.globalAlpha=1; ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=(C.dark||onDark)?"rgba(236,242,244,.42)":"rgba(255,255,255,.85)"; ctx.lineWidth=(C.dark||onDark)?0.6:0.8; ctx.stroke(); });
   L.shapes.filter(sh=>sh.influence).forEach(drawInfluence);
   L.shapes.forEach(sh=>{ if(sh.influence) return; sh.feats.forEach(f=>{ if(!sh.fill) return; const g=sh.groups[f.properties.group]; if(hidden(f.properties.color||(g&&g.color)||sh.color)) return; ctx.beginPath(); path(f);
-      ctx.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1;
+      const op=f.properties.opacity!=null?f.properties.opacity:sh.opacity, fc=f.properties.color||(g&&g.color)||sh.color;
+      if(V3){ ctx.fillStyle=tintOf(fc,C.dark?Math.min(1,op*1.25):op); } else { ctx.globalAlpha=op; ctx.fillStyle=col(fc); } ctx.fill(); ctx.globalAlpha=1;
       if(sh.inner){ ctx.strokeStyle=onDark?"rgba(255,255,255,.5)":C.paper; ctx.lineWidth=0.7; if(f.properties.uncertain) ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]); } });
     sh.outlines.forEach(o=>{ if(hidden(o.color)) return; ctx.beginPath(); path(o.geom); ctx.strokeStyle=col(o.color); ctx.lineWidth=2; ctx.stroke(); });
     sh.lost.forEach(f=>{ ctx.beginPath(); path(f); ctx.setLineDash([4,3]); ctx.strokeStyle=C.ink; ctx.lineWidth=1.2; ctx.stroke(); ctx.setLineDash([]); });
@@ -506,7 +517,7 @@ function draw(){
     sh.gained.forEach(f=>{ ctx.beginPath(); path(f); if(fl>0){ const g=sh.groups[f.properties.group]; ctx.globalAlpha=0.9*fl; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1; }
       ctx.strokeStyle=C.ink; ctx.lineWidth=2.4; ctx.stroke(); });
     if(sh.front){ ctx.beginPath(); path(sh.front); ctx.strokeStyle=col(sh.frontColor); ctx.lineWidth=3; ctx.stroke(); } });
-  if(ND==="2"&&L.choro){ ctx.save(); ctx.beginPath(); feats.forEach(f=>{ if(L.cdata[f.id]==null) path(geom(f)); }); ctx.clip(); ctx.beginPath();
+  if((ND==="2"||V3)&&L.choro){ ctx.save(); ctx.beginPath(); feats.forEach(f=>{ if(L.cdata[f.id]==null) path(geom(f)); }); ctx.clip(); ctx.beginPath();
     for(let k=-H;k<W+H;k+=6){ ctx.moveTo(k,0); ctx.lineTo(k+H,H); } ctx.strokeStyle=C.dark?"rgba(236,242,244,.22)":"rgba(29,42,48,.18)"; ctx.lineWidth=1; ctx.stroke(); ctx.restore(); }
   L.hatches.forEach(hh=>{ if(hidden(hh.color)) return; ctx.save(); ctx.beginPath(); hh.ids.forEach(id=>{ const f=byId.get(id); if(f) path(geom(f)); }); ctx.clip();
     const a=hh.angle*rad, R=Math.hypot(W,H), dx=Math.cos(a), dy=Math.sin(a), step=7; ctx.beginPath();
