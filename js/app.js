@@ -95,7 +95,9 @@ const BEAT={c:document.createElement("canvas"),ms:380}; let beat=null;
 function beatFade(){ HIDE.clear(); if(reduce||!canvas.width) return; snap(BEAT.c); beat={t0:null,key:viewKey()}; render(); }
 function beatStep(now){
   // only while the map stays where it was: if the camera or the frame moves, an old snapshot on top reads as a double image
-  if(beat.key!==viewKey()){ beat=null; return false; }
+  // a flight, projection crossfade or frame glide is already under way: skip the dissolve before drawing any of it
+  // (drawing one frame of the old picture and then cutting to the moving new one read as a full-screen flash)
+  if(anim||projectionSnapshot||frameGliding||frameWillChange()||beat.key!==viewKey()){ beat=null; return false; }
   if(beat.t0==null) beat.t0=now; const k=Math.min(1,(now-beat.t0)/BEAT.ms), e=k*k*(3-2*k);
   if(k<1){ ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.globalAlpha=1-e; ctx.drawImage(BEAT.c,0,0); ctx.restore(); return true; }
   beat=null; return false; }
@@ -136,20 +138,24 @@ function layout(){
   if(W>=820){const tb=topbar.getBoundingClientRect(); F.x=sh.right+8;F.y=tb.bottom;F.w=W-F.x-8;F.h=H-F.y-8;
     if(!mapctl.hidden){ mapctl.style.left=(F.x+F.w/2)+"px"; mapctl.style.top=(F.y+4)+"px"; mapctl.style.bottom="auto"; mapctl.style.maxWidth=Math.min(760,F.w-24)+"px";
       const ch=mapctl.offsetHeight+12; F.y+=ch; F.h-=ch; }
+    ctlH=mapctl.hidden?0:mapctl.offsetHeight;
     frameScale(); render();}
   else{const tc=toc.hidden?null:toc.getBoundingClientRect(); frameTo(tc?tc.top:H-sheet.offsetHeight);}
 }
 // phone: when the sheet's height changes (new content, contents list), glide the map frame to its new size
-let frameTop=null, frameAnim=0;
+let frameTop=null, frameAnim=0, frameGliding=false, ctlH=0;
+// will the next layout move the map frame? (the sheet or the map controls changed size since the frame was set)
+function frameWillChange(){ const ch=mapctl.hidden?0:mapctl.offsetHeight; if(ch!==ctlH) return true;
+  return W<820&&frameTop!=null&&toc.hidden&&Math.abs(H-sheet.offsetHeight-frameTop)>2; }
 function frameTo(top){ cancelAnimationFrame(frameAnim); const from=frameTop;
-  if(from==null||reduce||Math.abs(top-from)<2){ frameTop=top; frameAbove(top); return; }
+  if(from==null||reduce||Math.abs(top-from)<2){ frameGliding=false; frameTop=top; frameAbove(top); return; }
   const t0=performance.now(), dur=220, step=now=>{ const k=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-k,3);
-    frameTop=from+(top-from)*e; frameAbove(frameTop); if(k<1) frameAnim=requestAnimationFrame(step); };
-  frameAnim=requestAnimationFrame(step); }
+    frameTop=from+(top-from)*e; frameAbove(frameTop); if(k<1) frameAnim=requestAnimationFrame(step); else frameGliding=false; };
+  frameGliding=true; frameAnim=requestAnimationFrame(step); }
 // phone: the map frame is everything between the top bar and the sheet's top edge
 function frameAbove(top){ const tb=topbar.getBoundingClientRect(); let bottom=top;
   if(!mapctl.hidden&&toc.hidden){ mapctl.style.top="auto"; mapctl.style.left=""; mapctl.style.maxWidth=""; mapctl.style.bottom=(H-top+8)+"px"; bottom=top-mapctl.offsetHeight-16; }
-  F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,bottom-F.y); frameScale(); render(); }
+  ctlH=mapctl.hidden?0:mapctl.offsetHeight; F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,bottom-F.y); frameScale(); render(); }
 function frameScale(){ S.globe=Math.min(F.w,F.h)/2*0.9; ["equal","mercator"].forEach(k=>S[k]=Math.min(F.w/BOUNDS[k][0],F.h/BOUNDS[k][1])*0.96); }
 
 // ---------- active scene ----------
@@ -1764,7 +1770,7 @@ function dragStart(y){
   sheet.style.transition="none"; place(off0);
 }
 // the sheet sits `off` px below its open position; the map frame follows it
-function place(off){ sheet.style.transform=`translateY(${off}px)`; cancelAnimationFrame(frameAnim); frameTop=H-sheetDrag.h+off; frameAbove(frameTop); }
+function place(off){ sheet.style.transform=`translateY(${off}px)`; cancelAnimationFrame(frameAnim); frameGliding=false; frameTop=H-sheetDrag.h+off; frameAbove(frameTop); }
 function dragMove(y){ const d=sheetDrag; if(!d) return;
   if(Math.abs(y-d.y0)>4) d.moved=true;
   const now=performance.now(); d.v=0.7*(y-d.last)/Math.max(8,now-d.t)+0.3*d.v; d.last=y; d.t=now;
