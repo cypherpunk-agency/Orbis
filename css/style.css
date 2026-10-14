@@ -10,18 +10,18 @@
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --space:#0C1A24;--ocean:#123047;--land:#2B3A40;
-  --t0:#34443F;--t1:#383E4A;--t2:#413A40;--t3:#2D4047;--t4:#3C4437;
-  --border:#5E7176;--grat:rgba(180,220,230,.10);--ink:#E8EEF0;--ink-soft:#A9B7BC;--halo:rgba(12,26,36,.85);
+  --space:#0E1E2A;--ocean:#1C4A6B;--land:#435A5E;
+  --t0:#4C5F58;--t1:#505868;--t2:#5B5159;--t3:#425A63;--t4:#55604E;
+  --border:#7D9196;--grat:rgba(180,220,230,.14);--ink:#E8EEF0;--ink-soft:#A9B7BC;--halo:rgba(12,26,36,.85);
   --paper:#132430;--rule:#2B3F4A;--accent:#F06AAE;
-  --c1:#5B8FE0;--c2:#E8559F;--c3:#E0A33A;--c4:#2EB3BC;--c5:#9C8CE0;--c6:#A9BF5A;--c7:#E07A63;--c8:#C29B74;--muted:#4A5357;--nodata:#25343A;--rim:rgba(180,220,230,.3);
+  --c1:#5B8FE0;--c2:#E8559F;--c3:#E0A33A;--c4:#2EB3BC;--c5:#9C8CE0;--c6:#A9BF5A;--c7:#E07A63;--c8:#C29B74;--muted:#4A5357;--nodata:#38494F;--rim:rgba(180,220,230,.3);
   --s0:#2F4247;--s1:#7C5A6C;--s2:#D04D85;--s3:#FFB3D6;}}
 :root[data-theme="dark"]{
-  --space:#0C1A24;--ocean:#123047;--land:#2B3A40;
-  --t0:#34443F;--t1:#383E4A;--t2:#413A40;--t3:#2D4047;--t4:#3C4437;
-  --border:#5E7176;--grat:rgba(180,220,230,.10);--ink:#E8EEF0;--ink-soft:#A9B7BC;--halo:rgba(12,26,36,.85);
+  --space:#0E1E2A;--ocean:#1C4A6B;--land:#435A5E;
+  --t0:#4C5F58;--t1:#505868;--t2:#5B5159;--t3:#425A63;--t4:#55604E;
+  --border:#7D9196;--grat:rgba(180,220,230,.14);--ink:#E8EEF0;--ink-soft:#A9B7BC;--halo:rgba(12,26,36,.85);
   --paper:#132430;--rule:#2B3F4A;--accent:#F06AAE;
-  --c1:#5B8FE0;--c2:#E8559F;--c3:#E0A33A;--c4:#2EB3BC;--c5:#9C8CE0;--c6:#A9BF5A;--c7:#E07A63;--c8:#C29B74;--muted:#4A5357;--nodata:#25343A;--rim:rgba(180,220,230,.3);
+  --c1:#5B8FE0;--c2:#E8559F;--c3:#E0A33A;--c4:#2EB3BC;--c5:#9C8CE0;--c6:#A9BF5A;--c7:#E07A63;--c8:#C29B74;--muted:#4A5357;--nodata:#38494F;--rim:rgba(180,220,230,.3);
   --s0:#2F4247;--s1:#7C5A6C;--s2:#D04D85;--s3:#FFB3D6;}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
