@@ -1631,9 +1631,9 @@ async function atlasProfile(id){
 }
 // ---------- elections explorer: the latest national election everywhere; tap a country for its history ----------
 const ELX_BASE=new URLSearchParams(location.search).get("elx")||"data/elections/";
-const FAMILY={left:["Left","#B2182B"],"centre-left":["Centre-left","#E8829B"],centre:["Centre","#D9A21B"],liberal:["Liberal","#F2C230"],
-  "centre-right":["Centre-right","#4A90C2"],right:["Right","#1F3A93"],green:["Green","#3A9E4F"],regional:["Regional","#8E6CBF"],
-  independent:["Independent","#7F8C8D"],other:["Other","#A9B1B4"]};
+const FAMILY={left:["Left","#B85A5A"],"centre-left":["Centre-left","#D3939C"],centre:["Centre","#C9A55A"],liberal:["Liberal","#D8BC6A"],
+  "centre-right":["Centre-right","#6F9BC0"],right:["Right","#4D6A9E"],green:["Green","#6E9E78"],regional:["Regional","#9789B4"],
+  independent:["Independent","#8A9290"],other:["Other","#A3AAA8"]};
 const ELX_MEASURES=[["family","Winner's party family"],["turnout","Turnout"],["share","Winner's vote share"],["age","Years since the last election"]];
 let ELX=null; const elxState={m:"family"};
 async function openElections(m){
