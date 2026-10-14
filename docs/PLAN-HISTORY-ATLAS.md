@@ -130,6 +130,12 @@ Each phase ends as before: browser check of every scene, `node tools/check-licen
 - Engine: F13 scheduled refresh: declined; refresh by hand with the build scripts, "as of" date on every view.
 - Series: *Wars now*: one chapter per major active conflict, plus an overview map; refreshed weekly.
 
+**Phase G: more history series** (requested 14 October 2026)
+- *European colonialism* (in progress): empires over time, the Atlantic world, the scramble for Africa, decolonisation.
+- *Ruling houses of Europe* (in progress): English and British monarchs, Europe's dynasties, Victoria's grandchildren, today's monarchies.
+- *World War II* and *the European Union*: next, data and features ready (section 3).
+- *History of Asia* (next after those): candidate chapters — China's dynasties (Qin to Qing, with the dynastic cycle as a Gantt), the Mongol Empire (fastest-growing land empire; moves and shapes over time), the Silk Roads and Indian Ocean trade (routes, ports), Mughal and Maratha India, Japan from Tokugawa to Meiji, Southeast Asia's maritime states (Srivijaya, Majapahit, Malacca), the Ottoman and Safavid empires, colonial Asia and independence (1945–1975), the partition of India (1947). Data to scout: historical-basemaps (GPL) for outlines, Wikidata (CC0) for rulers and dynasties, CHGIS (China Historical GIS: check licence), Pleiades/ToposText for ancient places, Old World Trade Routes (ORBIS, CC BY), Seshat (check licence), HYDE population (licence to re-check).
+
 **Continuous: scouting.** Each phase adds what it finds to the catalogue; ideas that need no new features go straight to stories.
 
 ## 6. Size budget
