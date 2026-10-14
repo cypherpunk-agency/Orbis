@@ -175,6 +175,7 @@ Added for the history series; all optional.
 - **`shapes` legend order** follows the dataset's `groups` order (or the layer's `groups` list).
 - **`cards` `window`** is always in years, also on `"format": "date"` timelines.
 - **Story or scene `"pov": "UA"`**: disputed areas from `data/geopolitics/pov.json` are filled, outlined and tapped as part of the country that view assigns them to (keys as in that file's `views`, e.g. "UA" puts Crimea with Ukraine). The base map otherwise follows Natural Earth's de facto borders.
+- **Gantt `row`**: items with the same `"row"` share one line (label from the first labelled item; each bar keeps its own tooltip); `"ticks": [1066, 1485]` draws faint guide lines.
 - **Series `coming`**: in `stories/campaigns.json`, `"coming": [{"title": "...", "hook": "..."}]` lists planned chapters, greyed and not clickable.
 
 ## Elections explorer (`#elections`)

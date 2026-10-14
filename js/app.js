@@ -971,13 +971,18 @@ function renderMedia(){
         `<text x="${pad[3]}" y="${h-3}" class="md-tick">${esc(Cal.year(ys[0]))}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${esc(Cal.year(ys[ys.length-1]))}</text></svg>`+
         `<p class="md-keys">${stk.map((layer,i)=>`<span class="chip"><i style="background:${col(["c1","c2","c3","c4","c5"][i%5])}"></i>${esc((x.labels&&x.labels[layer.key])||nameOf(layer.key))}</span>`).join("")}</p></figure>`; }
     if(x.type==="multiples") return multiples(x,st);
-    if(x.type==="gantt"){ // bars for reigns, terms, wars; a marker at the timeline date
-      const it=x.items||[]; if(!it.length) return ""; const w=330, rh=16, pad=[4,4,18,4], h=pad[0]+rh*it.length+pad[2];
+    if(x.type==="gantt"){ // bars for reigns, terms, wars; a marker at the timeline date. Items with the same "row" share a line
+      const it=x.items||[]; if(!it.length) return "";
+      const rows=[]; it.forEach(i=>{ const key=i.row!=null?"r:"+i.row:"i:"+rows.length; let r=rows.find(r=>r.key===key); if(!r){ r={key,label:null,items:[]}; rows.push(r); } r.items.push(i); if(r.label==null&&i.label) r.label=i.label; });
+      const w=330, rh=16, pad=[4,4,18,4], h=pad[0]+rh*rows.length+pad[2];
       const lo=x.from!=null?x.from:d3.min(it,i=>asYear(i.from)), hi=x.to!=null?x.to:d3.max(it,i=>asYear(i.to!=null?i.to:i.from));
       const sx=d3.scaleLinear().domain([lo,hi]).range([pad[3]+110,w-pad[1]]), now=frame&&frame.year!=null?asYear(frame.year):null;
+      const span=i=>[asYear(i.from),asYear(i.to!=null?i.to:hi)], inside=i=>{ const [a,b]=span(i); return now!=null&&a<=now&&now<b; };
       return `<figure class="md-line"><figcaption>${esc(x.title||"")}</figcaption><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(x.title||"timeline")}">`+
-        it.map((i,k)=>{ const a=asYear(i.from), b=asYear(i.to!=null?i.to:hi), yy=pad[0]+k*rh; const on=now!=null&&a<=now&&now<b;
-          return `<text x="${pad[3]}" y="${yy+11}" class="md-tick"${on?' font-weight="600"':""}>${esc(i.label)}</text><rect x="${sx(a)}" y="${yy+3}" width="${Math.max(2,sx(b)-sx(a))}" height="${rh-6}" rx="2" fill="${col(i.color||x.color||"c1")}" fill-opacity="${now==null||on?0.9:0.35}"><title>${esc(i.label+": "+Cal.year(a)+"–"+(i.to!=null?Cal.year(b):""))}</title></rect>`; }).join("")+
+        (x.ticks||[]).filter(v=>v>=lo&&v<=hi).map(v=>`<line x1="${sx(v)}" x2="${sx(v)}" y1="${pad[0]}" y2="${h-pad[2]}" stroke="${C.rule||"#ccc"}" class="md-grid"/>`).join("")+
+        rows.map((r,k)=>{ const yy=pad[0]+k*rh, on=r.items.some(inside);
+          return `<text x="${pad[3]}" y="${yy+11}" class="md-tick"${on?' font-weight="600"':""}>${esc(r.label||"")}</text>`+r.items.map(i=>{ const [a,b]=span(i), o=inside(i);
+            return `<rect x="${sx(a)}" y="${yy+3}" width="${Math.max(2,sx(b)-sx(a))}" height="${rh-6}" rx="2" fill="${col(i.color||x.color||"c1")}" fill-opacity="${now==null||o?0.9:0.35}"><title>${esc((i.label||r.label||"")+": "+Cal.year(a)+"–"+(i.to!=null?Cal.year(b):""))}</title></rect>`; }).join(""); }).join("")+
         (now!=null&&now>=lo&&now<=hi?`<line x1="${sx(now)}" x2="${sx(now)}" y1="${pad[0]}" y2="${h-pad[2]+2}" stroke="${col("c2")}" stroke-width="1.5"/>`:"")+
         `<text x="${sx(lo)}" y="${h-3}" class="md-tick">${esc(Cal.year(lo))}</text><text x="${w-pad[1]}" y="${h-3}" class="md-tick" text-anchor="end">${esc(Cal.year(hi))}</text></svg></figure>`; }
     return ""; }).join("");
