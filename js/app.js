@@ -561,6 +561,7 @@ function tap(x,y){
   if(L.pairs&&L.pairs.has(f.id)&&L.pairs.from!==f.id){ pairFrom=f.id; markDirty(); L=layers(); Ldirty=false; el.legend.innerHTML=legendHTML(); describe(); render(); }
   else if(L.flows.length||focus){ focus=focus===f.id?null:f.id; L=layers(); el.legend.innerHTML=legendHTML(); render(); }
   if(si>=0&&STORIES[si].atlas) atlasProfile(f.id);
+  if(si>=0&&STORIES[si].elections) electionCard(f.id);
   let html="<b>"+esc(nameOf(f.id))+"</b>"+gridHtml;
   if(L.choro){const v=L.cdata[f.id]; html+="<span>"+(v==null?t("No data"):esc(String(L.choro.fmt?L.choro.fmt(v):v)))+"</span>";}
   L.vals.forEach(lv=>{const v=lv.values[f.id]; if(v!=null) html+="<span>"+esc(lv.title)+": "+esc(lv.fmt(v))+"</span>";});
@@ -643,6 +644,7 @@ const FMT={
   tpp:v=>d3.format(v<10?".1f":",.0f")(v)+" t",
   mil:v=>d3.format(",.0f")(v)+t(" M"),
   yrs:v=>d3.format(".0f")(v)+t(" yrs"),
+  yrs1:v=>d3.format(".1f")(v)+t(" yrs"),
   pct0:v=>d3.format(".0f")(v)+"%",
   usdB:v=>"$"+d3.format(",.0f")(v)+t(" B"),
   people:v=>v>=1e6?d3.format(".1f")(v/1e6)+t(" m"):d3.format(",.0f")(v),
@@ -1334,6 +1336,55 @@ async function atlasProfile(id){
   c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(t("Country profile"))}</p><h3>${esc(nameOf(id))}</h3><ul class="atl-prof">${rows.filter(Boolean).join("")}</ul>`;
   c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
 }
+// ---------- elections explorer: the latest national election everywhere; tap a country for its history ----------
+const ELX_BASE=new URLSearchParams(location.search).get("elx")||"data/elections/";
+const FAMILY={left:["Left","#B2182B"],"centre-left":["Centre-left","#E8829B"],centre:["Centre","#D9A21B"],liberal:["Liberal","#F2C230"],
+  "centre-right":["Centre-right","#4A90C2"],right:["Right","#1F3A93"],green:["Green","#3A9E4F"],regional:["Regional","#8E6CBF"],
+  independent:["Independent","#7F8C8D"],other:["Other","#A9B1B4"]};
+const ELX_MEASURES=[["family","Winner's party family"],["turnout","Turnout"],["share","Winner's vote share"],["age","Years since the last election"]];
+let ELX=null; const elxState={m:"family"};
+async function openElections(m){
+  if(!ELX){ try{ ELX=await loadJSON(ELX_BASE+"world.json"); }catch(e){ return openExplore(); } }
+  if(m&&ELX_MEASURES.some(x=>x[0]===m)) elxState.m=m;
+  const C0=ELX.countries||{}, now=new Date(), yrs=d=>(now-new Date(Math.floor(d/1e4),Math.floor(d/100)%100-1,d%100))/31557600000;
+  const val={}, fam={}; Object.entries(C0).forEach(([k,c])=>{ const l=c.last; if(!l) return;
+    if(l.family&&FAMILY[l.family]) fam[k]=l.family;
+    const v=elxState.m==="turnout"?l.turnout:elxState.m==="share"?l.share:elxState.m==="age"?(l.date?Math.round(yrs(l.date)*10)/10:null):null; if(v!=null) val[k]=v; });
+  const label=ELX_MEASURES.find(x=>x[0]===elxState.m)[1], src=[].concat(ELX.source||[]);
+  const d={source:src[0],years:[0],series:{v:{label,values:Object.fromEntries(Object.entries(val).map(([k,v])=>[k,[v]]))}},
+    sets:{fam:{labels:Object.fromEntries(Object.entries(FAMILY).map(([k,v])=>[k,v[0]])),values:fam}}};
+  const layer=elxState.m==="family"?{type:"categories",data:"e",set:"fam",colors:Object.fromEntries(Object.entries(FAMILY).filter(([k])=>Object.values(fam).includes(k)).map(([k,v])=>[k,v[1]]))}
+    :{type:"choropleth",data:"e",series:"v",year:0,title:label,showYear:false,fmt:elxState.m==="age"?"yrs1":"pct",reverse:elxState.m==="age"};
+  const sc={title:t("Elections"),text:t("The latest national election in each country. Tap a country for its election history."),view:{mode:"equal",center:[10,15],zoom:1},layers:[layer]};
+  const st={id:"@elections",cat:"Elections",title:t("Elections explorer"),hook:"",file:"elections",elections:true,sources:src.slice(1),
+    notes:(ELX.note||"")+(ELX.asOf?" As of "+ELX.asOf+".":""),scenes:[sc],_data:{e:d}};
+  let i=STORIES.findIndex(x=>x.id==="@elections"); if(i<0){ STORIES.push(st); i=STORIES.length-1; } else STORIES[i]=st;
+  const fly=si!==i; si=i; quiz.mode=null; closeToc(); sheet.classList.remove("collapsed");
+  showScene(0,fly); el.steps.hidden=true;
+  el.camp.innerHTML=`<div class="atl-topics">${ELX_MEASURES.map(([k,n])=>`<button data-em="${k}" aria-pressed="${k===elxState.m}">${esc(t(n))}</button>`).join("")}</div>`;
+  el.camp.hidden=false; el.camp.querySelectorAll("[data-em]").forEach(b=>b.onclick=()=>openElections(b.dataset.em));
+  history.replaceState(null,"","#elections/"+elxState.m);
+}
+async function electionCard(id){
+  const st=STORIES[si]; if(!st||!st.elections) return; const c=el.card, info=ELX.countries&&ELX.countries[id];
+  c.hidden=false; c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(t("Elections"))}</p><h3>${esc(nameOf(id))}</h3><p class="elx-none">${esc(info?t("Loading…"):t("No election data"))}</p>`;
+  c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
+  if(!info) return;
+  let D; try{ D=await loadJSON(ELX_BASE+id+".json"); }catch(e){ D={elections:[]}; }
+  if(STORIES[si]!==st||c.hidden) return;
+  const E=(D.elections||[]).slice().sort((a,b)=>b.date-a.date), pct=v=>v==null?"":(Math.round(v*10)/10)+"%";
+  const tl=E.filter(e=>e.turnout!=null).slice().reverse();
+  let spark=""; if(tl.length>2){ const w=300,h=60, sx=d3.scaleLinear().domain(d3.extent(tl,e=>Math.floor(e.date/1e4))).range([4,w-30]), sy=d3.scaleLinear().domain([Math.min(40,d3.min(tl,e=>e.turnout)),100]).range([h-14,4]);
+    spark=`<figure class="md-line"><figcaption>${esc(t("Turnout"))}</figcaption><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(t("Turnout over time"))}"><path d="${d3.line().x(e=>sx(Math.floor(e.date/1e4))).y(e=>sy(e.turnout))(tl)}" fill="none" stroke="${col("c1")}" stroke-width="2"/>`+
+      `<text x="4" y="${h-2}" class="md-tick">${Math.floor(tl[0].date/1e4)}</text><text x="${w-30}" y="${h-2}" class="md-tick" text-anchor="end">${Math.floor(tl[tl.length-1].date/1e4)}</text><text x="${w-26}" y="${sy(tl[tl.length-1].turnout)+4}" class="md-tick">${pct(tl[tl.length-1].turnout)}</text></svg></figure>`; }
+  const rows=E.slice(0,6).map(e=>{ const ps=(e.parties||[]).filter(p=>p.share!=null).slice(0,8), mx=d3.max(ps,p=>p.share)||1;
+    return `<li class="elx-e"><div class="elx-h"><b>${esc(fmtDate(e.date))}</b><span>${esc(t(e.type==="president"?"Presidential":"Parliamentary"))}${e.turnout!=null?" · "+esc(t("turnout"))+" "+pct(e.turnout):""}</span></div>`+
+      ps.map(p=>`<div class="ch-row"><span class="nm">${esc(p.name)}</span><span class="bar" style="width:${(p.share/mx*100).toFixed(1)}%;background:${(FAMILY[p.family]||FAMILY.other)[1]}"></span><span class="v">${pct(p.share)}${p.seats!=null?" · "+p.seats:""}</span></div>`).join("")+`</li>`; }).join("");
+  c.innerHTML=`<button class="card-x" aria-label="${esc(t("Close"))}">×</button><p class="card-when">${esc(t("Elections"))} · ${esc(t("{n} on record",{n:E.length}))}</p><h3>${esc(nameOf(id))}</h3>`+spark+
+    (rows?`<ol class="elx-list">${rows}</ol>`:`<p class="elx-none">${esc(t("Only the latest election is on record"))}: ${esc(info.last?fmtDate(info.last.date):"")}${info.last&&info.last.winner?" · "+esc(info.last.winner):""}</p>`)+
+    `<p class="md-keys">${Object.values(FAMILY).map(([n,cc])=>`<span class="chip"><i style="background:${cc}"></i>${esc(t(n))}</span>`).join("")}</p>`;
+  c.querySelector(".card-x").onclick=()=>{ c.hidden=true; };
+}
 // ---------- campaigns: a series of stories with a landing page, chapter order and reading progress ----------
 let CAMPAIGNS=[];
 const campaignOf=st=>st&&CAMPAIGNS.find(c=>c.chapters.includes(st.id.replace(/^@stories\/|\.json$/g,"")));
@@ -1380,8 +1431,8 @@ function buildToc(){
   $("tocCount").textContent=STORIES.length;
 }
 $("exploreBtn").onclick=openExplore;
-$("tocTools").innerHTML=`<button id="atlasBtn">${t("Country atlas")}</button><button id="quizBtn">${t("Quiz")}</button><button id="cityBtn">${t("Your city")}</button><a href="editor.html">${t("Write a story")}</a>`;
-$("atlasBtn").onclick=()=>openAtlas(); $("quizBtn").onclick=openQuiz; $("cityBtn").onclick=openCity;
+$("tocTools").innerHTML=`<button id="atlasBtn">${t("Country atlas")}</button><button id="elxBtn">${t("Elections")}</button><button id="quizBtn">${t("Quiz")}</button><button id="cityBtn">${t("Your city")}</button><a href="editor.html">${t("Write a story")}</a>`;
+$("atlasBtn").onclick=()=>openAtlas(); $("elxBtn").onclick=()=>openElections(); $("quizBtn").onclick=openQuiz; $("cityBtn").onclick=openCity;
 $("tocBtn").onclick=()=>toc.hidden?openToc():closeToc();
 $("tocClose").onclick=closeToc;
 function openToc(focus=true){ toc.hidden=false; layout(); $("tocBtn").setAttribute("aria-expanded","true"); stopPlay();
@@ -1423,6 +1474,7 @@ loadJSON("stories/index.json").then(list=>{ STORIES.unshift(...list.map(x=>Objec
   if(idx>=0) openStory(idx, Math.max(0,(+h[1]||1)-1));
   else if(h[0]==="c"&&h[1]) openCampaign(h[1]);
   else if(h[0]==="atlas") openAtlas(h[1]);
+  else if(h[0]==="elections") openElections(h[1]);
   else if(h[0]==="explore") openExplore();
   else if(h[0]==="quiz") openQuiz();
   else if(h[0]==="city") openCity();

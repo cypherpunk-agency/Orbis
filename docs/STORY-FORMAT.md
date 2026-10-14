@@ -169,6 +169,10 @@ Added for the history series; all optional.
 - **Media `multiples`**: `{ "type":"multiples", "layer":0, "years":[1976,1992,2008,2024], "title":"..." }` draws one small map per year for that scene layer (`regions` or `shapes`; the US uses an Albers projection with Alaska and Hawaii inset; `extent` [[lon,lat],[lon,lat]] to frame others). Tap a map to jump the timeline there. A margin chart works with the existing `line` media over a series keyed by region id, with `labels` for names.
 - **Series `coming`**: in `stories/campaigns.json`, `"coming": [{"title": "...", "hook": "..."}]` lists planned chapters, greyed and not clickable.
 
+## Elections explorer (`#elections`)
+
+Reads `data/elections/world.json` (`{source, asOf, note, countries: {ISO3: {last: {date, type, turnout, winner, family, share}, n}}}`) and, when a country is tapped, `data/elections/<ISO3>.json` (`{elections: [{date, type, turnout, parties: [{name, share, seats, family}]}]}`). Party families: left, centre-left, centre, liberal, centre-right, right, green, regional, independent, other. Measures: winner's family, turnout, winner's share, years since the last election.
+
 ## Formats (`fmt`)
 
 `int` (1,234), `num`, `dollar` ($6.22), `tpp` (tonnes/person), `mil` ("1,464 M"), `yrs`, `pct0`, `usd`, `eur`, `people`, `degc`, `ppkm2`, `d3:<format>` (any d3-format string, e.g. `d3:$.2f`), `kbd` thousand barrels/day → "1.2 m b/d", `mbd`, `bcm`, `bcfd`, `musd` (million USD → "$1.2 bn"), `busd` (billion USD → "$1.2 tn"), `t` (tonnes), `kt` (thousand tonnes), `kg`, `mt` (thousand tonnes → "Mt"), `pct` (value already in %), `bpp`, `m3pp`. Anything else: compact SI.

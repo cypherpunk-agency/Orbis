@@ -274,3 +274,8 @@ body.embed #openFull{display:inline-flex;align-items:center;text-decoration:none
 .mult svg{width:100%;height:auto}
 .mult.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
 .mult:disabled{cursor:default}
+.elx-list{list-style:none;margin:8px 0 0;padding:0}
+.elx-e{padding:6px 0;border-top:1px solid var(--rule)}
+.elx-h{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;margin:2px 0 6px;font:500 .9rem var(--ui)}
+.elx-h span{color:var(--ink-soft)}
+.elx-none{color:var(--ink-soft);font:500 .9rem var(--ui)}
