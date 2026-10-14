@@ -223,7 +223,9 @@ const asYear=n=>isDateNum(n)?Math.trunc(n/10000):n;
 const tUnit=n=>n==null?n:(scene&&scene.timeline&&scene.timeline.isDate)?(isDateNum(n)?n:n*10000+Math.sign(n||1)*101):asYear(n);
 // a yyyymmdd date compares on the date scale even without a date timeline (a scene with a fixed "year": 18601106)
 const toDay=n=>isDateNum(n)?n:n*10000+Math.sign(n||1)*101;
-const validAt=(p,y)=>{ const u=isDateNum(y)?toDay:tUnit; return (p.from==null||u(p.from)<=y)&&(p.to==null||y<u(p.to)); };
+const onDateTl=()=>!!(scene&&scene.timeline&&scene.timeline.isDate);
+// a fixed plain year on a date timeline counts as 1 January of that year
+const validAt=(p,y)=>{ if(!isDateNum(y)&&onDateTl()) y=toDay(y); const u=isDateNum(y)?toDay:tUnit; return (p.from==null||u(p.from)<=y)&&(p.to==null||y<u(p.to)); };
 // data that arrives after a scene opened: rebuild layers and the panel's legend
 function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML();
   if(scene&&scene.media&&scene.media.some(x=>x.type==="multiples")) renderMedia(); render(); }
@@ -696,7 +698,7 @@ const dKey=v=>isDateNum(v)?v:v*10000+Math.sign(v||1)*101;   // years and yyyymmd
 const ICONS={swords:"⚔",star:"★",flag:"⚑",anchor:"⚓",crown:"♛",cross:"✝"};
 const LAYER={
   cards(ly,d,y,L){ // dated events with a story card: tap a dot to read it; optional list in the panel
-    const t=+y, K=d.kinds||{}, w=ly.window&&ly.window!=="all"&&scene&&scene.timeline&&scene.timeline.isDate?ly.window*10000:ly.window;  // window in years
+    const t=!isDateNum(+y)&&onDateTl()?toDay(+y):+y, K=d.kinds||{}, w=ly.window&&ly.window!=="all"&&scene&&scene.timeline&&scene.timeline.isDate?ly.window*10000:ly.window;  // window in years
     const pick=(d.items||[]).filter(e=>!ly.kinds||ly.kinds.includes(e.kind)).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(d0(e))<=t&&(!w||tUnit(d0(e))>t-w))).sort((a,b)=>dKey(d0(a))-dKey(d0(b)));
     pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",icon:K[e.kind]&&K[e.kind].icon,label:ly.labels===false?null:e.title,card:e,minZoom:ly.minZoom}));
     if(ly.list) L.cardList=(L.cardList||[]).concat(pick); L.kinds=Object.assign(L.kinds||{},K);
