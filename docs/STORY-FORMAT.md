@@ -167,6 +167,8 @@ Added for the history series; all optional.
 - **`flows`**: `outLabel`/`inLabel` rename the per-country totals ("exports"/"imports"); `"totals": false` drops them.
 - **`lines` `"fade": true`**: lines not yet (or no longer) valid stay as faint dashed ghosts (`fadeColor`).
 - **Media `multiples`**: `{ "type":"multiples", "layer":0, "years":[1976,1992,2008,2024], "title":"..." }` draws one small map per year for that scene layer (`regions` or `shapes`; the US uses an Albers projection with Alaska and Hawaii inset; `extent` [[lon,lat],[lon,lat]] to frame others). Tap a map to jump the timeline there. A margin chart works with the existing `line` media over a series keyed by region id, with `labels` for names.
+- **`points` `"under": true`**: plain dots drawn beneath lines (no halo, no labels), e.g. forts under a wall. **`cards` `"kinds": ["war"]`** shows only those kinds.
+- **Date ranges**: the era is written once ("AD 100–260", "264–241 BC") and twice only across it ("27 BC–AD 14").
 - **Series `coming`**: in `stories/campaigns.json`, `"coming": [{"title": "...", "hook": "..."}]` lists planned chapters, greyed and not clickable.
 
 ## Elections explorer (`#elections`)

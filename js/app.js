@@ -113,7 +113,7 @@ function arr(v,kind){ if(!v) return []; if(typeof v==="string") return resolveRe
 function routePath(r){ let p=typeof r.path==="string"?resolveRef(r.path):r.path; if(r.until!=null) p=p.slice(0,r.until+1); return p; }
 function layers(){
   const s=scene||{};
-  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[],overlays:[],hatches:[]};
+  const L={fills:{},groups:[],choro:null,routes:[],points:[],under:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[],overlays:[],hatches:[]};
   Object.assign(L.fills,s.fills||{});
   L.groups=(s.groups||[]).slice();
   if(s.choro) L.choro=s.choro;
@@ -386,6 +386,9 @@ function draw(){
   });
   // routes
   const labels=[];
+  // points drawn beneath lines (points layer "under": true): plain dots, no halo, no labels
+  L.under.forEach(pt=>{ if(pt.minZoom&&V.zoom<pt.minZoom) return; if(!visible(pt.at)) return; const xy=proj(pt.at); if(!xy) return;
+    ctx.beginPath(); ctx.arc(xy[0],xy[1],pt.r||3,0,2*Math.PI); ctx.fillStyle=col(pt.color||"c1"); ctx.fill(); });
   L.routes.forEach(r=>{const p=routePath(r); if(!p||p.length<2) return;
     const line={type:"LineString",coordinates:p};
     ctx.beginPath();path(line);ctx.strokeStyle=col(r.color);ctx.lineWidth=r.width||2;ctx.lineCap="round";
@@ -683,7 +686,7 @@ const ICONS={swords:"⚔",star:"★",flag:"⚑",anchor:"⚓",crown:"♛",cross:"
 const LAYER={
   cards(ly,d,y,L){ // dated events with a story card: tap a dot to read it; optional list in the panel
     const t=+y, w=ly.window, K=d.kinds||{};
-    const pick=(d.items||[]).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(d0(e))<=t&&(!w||tUnit(d0(e))>t-w))).sort((a,b)=>d0(a)-d0(b));
+    const pick=(d.items||[]).filter(e=>!ly.kinds||ly.kinds.includes(e.kind)).filter(e=>y==null||isNaN(t)||ly.window==="all"?true:(tUnit(d0(e))<=t&&(!w||tUnit(d0(e))>t-w))).sort((a,b)=>d0(a)-d0(b));
     pick.forEach(e=>L.points.push({at:e.at,r:e.r||5,color:(K[e.kind]&&K[e.kind].color)||ly.color||"c2",icon:K[e.kind]&&K[e.kind].icon,label:ly.labels===false?null:e.title,card:e,minZoom:ly.minZoom}));
     if(ly.list) L.cardList=(L.cardList||[]).concat(pick); L.kinds=Object.assign(L.kinds||{},K);
     Object.entries(K).forEach(([k,v])=>{ if(pick.some(e=>e.kind===k)&&!L.shapeKeys.some(x=>x.g==="card:"+k)) L.shapeKeys.push({g:"card:"+k,label:(ICONS[v.icon]?ICONS[v.icon]+" ":"")+(v.label||k),color:v.color||"c2"}); });
@@ -864,7 +867,7 @@ const LAYER={
     L.swipe={left:ly.leftLabel||lab,right:ly.rightLabel||String(ly.compare)};
   },
   points(ly,d,y,L){ const tl=scene&&scene.timeline; (d.points[ly.set]||[]).filter(x=>(!ly.only||ly.only.includes(x.name))&&(!tl||(x.from==null&&x.to==null)||validAt(x,+y)))
-    .forEach(x=>L.points.push({at:x.at,label:ly.labels===false?null:x.name,color:ly.forceColor?ly.color:(x.color||ly.color),r:x.r||ly.r||4.5,minZoom:x.minZoom!=null?x.minZoom:ly.minZoom,icon:x.icon||ly.icon})); }
+    .forEach(x=>(ly.under?L.under:L.points).push({at:x.at,label:ly.labels===false?null:x.name,color:ly.forceColor?ly.color:(x.color||ly.color),r:x.r||ly.r||4.5,minZoom:x.minZoom!=null?x.minZoom:ly.minZoom,icon:x.icon||ly.icon})); }
 };
 // tapping a country in a flows scene shows only that country's flows
 let swipeAt=0.5;   // before/after divider position, share of the map frame width
@@ -900,7 +903,7 @@ function compileLayers(s,L){
 function multiples(x,st){
   const ly0=(scene.layers||[])[x.layer||0], d=ly0&&st&&st._data&&st._data[ly0.data]; if(!d) return "";
   const ly=subst(ly0), w=x.width||104, h=x.height||(ly.country==="USA"?68:80);
-  const cells=(x.years||[]).map(y=>{ const T={points:[],routes:[],regions:[],shapes:[],shapeKeys:[],vals:[],highlight:[],fills:{}}; LAYER[ly.type]&&LAYER[ly.type](ly,d,y,T);
+  const cells=(x.years||[]).map(y=>{ const T={points:[],under:[],routes:[],regions:[],shapes:[],shapeKeys:[],vals:[],highlight:[],fills:{}}; LAYER[ly.type]&&LAYER[ly.type](ly,d,y,T);
     let fs=[], colour=()=>null;
     if(T.regions[0]){ const rg=T.regions[0]; fs=rg.R.feats; colour=f=>rg.cat?rg.colorOf(f.id):(rg.vals[f.id]==null?null:rg.color(rg.vals[f.id])); }
     else if(T.shapes[0]){ const sh=T.shapes[0]; fs=sh.feats; colour=f=>{ const g=sh.groups[f.properties.group]; return col(f.properties.color||(g&&g.color)||sh.color); }; }
@@ -1273,7 +1276,7 @@ function renderBlocs(){
 const MON=Cal.MON;
 // ---------- event cards ----------
 const fmtWhen=(n,e)=>{ if(n==null) return ""; const one=v=>Math.abs(v)>=10000?Cal.date(v):Cal.year(v);
-  let s; if(Array.isArray(n)){ const [a,b]=n; s=Math.abs(a)<10000&&a<=0&&b<=0?(1-a)+"–"+Cal.year(b):one(a)+"–"+one(b); } else s=one(n);
+  let s; if(Array.isArray(n)){ const [a,b]=n; s=Math.abs(a)>=10000||Math.abs(b)>=10000?one(a)+"–"+one(b):a<=0&&b<=0?(1-a)+"–"+Cal.year(b):a>0&&b>0?Cal.year(a)+"–"+b:one(a)+"–"+one(b); } else s=one(n);
   return (e&&e.circa?"c. ":"")+s; };
 function openCard(e){
   const c=el.card; c.hidden=false;
