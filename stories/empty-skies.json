@@ -1,0 +1,207 @@
+{
+  "id": "empty-skies",
+  "cat": "Planet",
+  "title": "The sky went quiet, 2020",
+  "hook": "In April 2020 about two in three flights vanished from the radar of volunteer receivers, and more than eight in ten international ones.",
+  "notes": "OpenSky Network COVID-19 flight list, Zenodo record 5815448 (version v21.12, CC BY 4.0; Olive, Strohmeier, Lübbe; Strohmeier et al., Earth System Science Data 13, 2021): one row per flight seen by OpenSky's volunteer ADS-B receivers. Orbis used every month of 2019 and 2020 plus April and August 2021. Origin and destination airports are detected by OpenSky from the flight track and matched to countries with OurAirports (public domain); flights with no detected airport are left out of country counts. Coverage bias: receivers are dense in Europe and North America and sparse over Africa, much of Asia (China especially) and the oceans, and the network kept growing (flights seen in January 2020 were 28% above January 2019). So changes are measured against the January–February 2020 average, before the pandemic hit air travel, not against 2019, and countries should not be compared by their raw counts. That baseline ignores seasons: summer months look stronger. Airlines are identified by the ICAO prefix of the callsign. Small countries with few flights seen can swing to ±100%.",
+  "data": {
+    "dep": "data/statistics/flights.json",
+    "flows": "data/statistics/flights-flows.json",
+    "tot": "data/statistics/flights-totals.json"
+  },
+  "sources": [
+    "ourairports"
+  ],
+  "scenes": [
+    {
+      "title": "A normal spring: 2019",
+      "text": "In April 2019, OpenSky's volunteer receivers picked up about 2.4 million flights. The busiest international routes ran between the US and Canada, and between Britain and Spain, Germany and Ireland. Receivers are thickest in Europe and North America, so those regions show up best.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          0,
+          30
+        ],
+        "zoom": 1.2
+      },
+      "layers": [
+        {
+          "type": "flows",
+          "data": "flows",
+          "group": "intl",
+          "year": 201904,
+          "top": 40,
+          "vmax": 10200,
+          "fmt": "int",
+          "title": "International flights seen, April 2019"
+        }
+      ]
+    },
+    {
+      "title": "April 2020: the collapse",
+      "text": "Then the pandemic grounded the world's fleets. In April 2020 OpenSky saw about 840,000 flights, roughly two-thirds fewer than in January and February. International flights fell by more than 85%. India's departures stopped almost completely.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "dep",
+          "series": "dep_chg",
+          "year": 202004,
+          "diverging": true,
+          "mid": 0,
+          "vmin": -100,
+          "vmax": 100,
+          "fmt": "pct0",
+          "title": "Departures, April 2020 vs Jan–Feb 2020",
+          "showYear": false
+        }
+      ],
+      "media": {
+        "type": "line",
+        "data": "tot",
+        "series": "chg",
+        "countries": [
+          "ALL",
+          "INTL",
+          "DOM"
+        ],
+        "labels": {
+          "ALL": "All flights",
+          "INTL": "International",
+          "DOM": "Domestic"
+        },
+        "title": "Flights seen, % vs Jan–Feb 2020",
+        "fmt": "pct0"
+      }
+    },
+    {
+      "title": "Borders closed",
+      "text": "The 40 busiest international routes in April 2020, drawn at the same scale as 2019. Flights between the US and Canada fell by more than 80% from a year before. Most routes across Europe almost vanished.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          0,
+          30
+        ],
+        "zoom": 1.2
+      },
+      "layers": [
+        {
+          "type": "flows",
+          "data": "flows",
+          "group": "intl",
+          "year": 202004,
+          "top": 40,
+          "vmax": 10200,
+          "fmt": "int",
+          "title": "International flights seen, April 2020"
+        }
+      ]
+    },
+    {
+      "title": "What kept flying",
+      "text": "Not everything stopped. Cargo carriers flew more than before: UPS and FedEx flights were up 5–10% in April 2020, while Ryanair lost 97% and Lufthansa 92%. In the United States, departures fell by about half, much less than in Europe, as domestic flights kept going.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          -40,
+          35
+        ],
+        "zoom": 1.4
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "dep",
+          "series": "dep_chg",
+          "year": 202004,
+          "diverging": true,
+          "mid": 0,
+          "vmin": -100,
+          "vmax": 100,
+          "fmt": "pct0",
+          "title": "Departures, April 2020 vs Jan–Feb 2020",
+          "showYear": false
+        }
+      ],
+      "media": {
+        "type": "line",
+        "data": "tot",
+        "series": "chg",
+        "countries": [
+          "UPS",
+          "FDX",
+          "SWA",
+          "DLH",
+          "RYR"
+        ],
+        "labels": {
+          "UPS": "UPS",
+          "FDX": "FedEx",
+          "SWA": "Southwest",
+          "DLH": "Lufthansa",
+          "RYR": "Ryanair"
+        },
+        "title": "Flights by airline, % vs Jan–Feb 2020",
+        "fmt": "pct0"
+      }
+    },
+    {
+      "title": "The slow way back",
+      "text": "Recovery came in waves: summer 2020, a second slump that winter, then another summer. By August 2021, OpenSky saw slightly more flights than before the pandemic, partly because its network had grown. International flights were still almost a fifth below. Press Play.",
+      "view": {
+        "mode": "equal",
+        "center": [
+          10,
+          20
+        ],
+        "zoom": 1
+      },
+      "layers": [
+        {
+          "type": "choropleth",
+          "data": "dep",
+          "series": "dep_chg",
+          "year": "t",
+          "diverging": true,
+          "mid": 0,
+          "vmin": -100,
+          "vmax": 100,
+          "fmt": "pct0",
+          "title": "Departures vs Jan–Feb 2020"
+        }
+      ],
+      "timeline": {
+        "years": [
+          202003,
+          202004,
+          202005,
+          202006,
+          202007,
+          202008,
+          202009,
+          202010,
+          202011,
+          202012,
+          202104,
+          202108
+        ],
+        "start": 202108,
+        "format": "month",
+        "captions": {
+          "202004": "The low point.",
+          "202008": "Summer 2020: Europe flies again.",
+          "202012": "A second winter of lockdowns.",
+          "202108": "Summer 2021: domestic flights above pre-pandemic levels."
+        }
+      }
+    }
+  ]
+}

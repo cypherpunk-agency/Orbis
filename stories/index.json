@@ -600,5 +600,26 @@
   "title": "Decolonisation",
   "hook": "In 1945 European powers still ruled a quarter of the world's land. Thirty years later almost nothing was left. The waves of independence, and the 17 territories the UN still lists.",
   "file": "stories/col-decolonisation.json"
+ },
+ {
+  "id": "lights-change",
+  "cat": "Planet",
+  "title": "Lights out, lights on, 2012–2024",
+  "hook": "Satellites see the world's night glow up by half in twelve years, except where war, crisis or thrift switched it off.",
+  "file": "stories/lights-change.json"
+ },
+ {
+  "id": "empty-skies",
+  "cat": "Planet",
+  "title": "The sky went quiet, 2020",
+  "hook": "In April 2020 about two in three flights vanished from the radar of volunteer receivers, and more than eight in ten international ones.",
+  "file": "stories/empty-skies.json"
+ },
+ {
+  "id": "ua-front",
+  "cat": "Geopolitics",
+  "title": "The long front, 2023–2026",
+  "hook": "After 2022 the front barely moved, at enormous cost. Russia advanced village by village through Donetsk while striking Ukraine's power grid from the air.",
+  "file": "stories/ua-front.json"
  }
 ]

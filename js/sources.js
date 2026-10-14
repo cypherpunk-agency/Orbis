@@ -280,6 +280,23 @@ const SOURCES = {
     url: "https://ourworldindata.org/grapher/political-regime", use: "sharealike", redistribute: true,
     credit: "V-Dem v16 (Coppedge et al. 2026), Regimes of the World; processed by Our World in Data; CC BY-SA 4.0"
   },
+  "eog-vnl": {
+    name: "EOG VIIRS Nighttime Lights", what: "Annual night-time light (VNL V2, average_masked), 2012–2024, via the OpenGeoHub mirror on Zenodo", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://eogdata.mines.edu/products/vnl/", use: "commercial", redistribute: true,
+    credit: "This product was made utilizing VIIRS Nighttime Lights data produced by the Earth Observation Group, Payne Institute for Public Policy, Colorado School of Mines (mirror: Hengl, Zenodo 10.5281/zenodo.17294744)"
+  },
+  "opensky-covid": {
+    name: "OpenSky Network flight list", what: "Every flight seen by OpenSky's ADS-B receivers, 2019–2021 (COVID-19 dataset v21.12)", tier: "layer",
+    licence: "CC BY 4.0", licenceUrl: "https://creativecommons.org/licenses/by/4.0/",
+    url: "https://zenodo.org/records/5815448", use: "commercial", redistribute: true,
+    credit: "OpenSky Network; Strohmeier, Olive, Lübbe, Schäfer, Lenders, ESSD 13, 2021"
+  },
+  ourairports: {
+    name: "OurAirports", what: "Airport codes and countries (used to place flights)", tier: "layer",
+    licence: "Public domain", licenceUrl: "https://ourairports.com/data/",
+    url: "https://ourairports.com/data/", use: "commercial", redistribute: true, credit: "OurAirports (optional)"
+  },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",
     licence: "CC BY 4.0 (EC reuse decision 2011/833/EU)", licenceUrl: "https://eur-lex.europa.eu/eli/dec/2011/833/oj",
