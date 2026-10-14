@@ -27,7 +27,7 @@ const AREA=new Map(feats.map(f=>[f.id,d3.geoArea(f)]));
 // detailed geometry (Natural Earth 1:50m) arrives after the first paint; it adds small states to the logic set
 // and replaces the 1:110m outlines when zoomed in
 const HI={byId:null,borders:null,label:new Map()};
-const useHi=()=>HI.byId&&V.zoom>=2;
+const useHi=()=>HI.byId&&V.zoom>=2&&!moving;  // detailed outlines only once the map is still
 const geom=f=>(useHi()&&HI.byId.get(f.id))||f;
 function loadDetail(){
   return fetch("data/world50.json").then(r=>r.json()).then(t=>{
@@ -82,10 +82,12 @@ const V={a:"globe",b:"globe",t:0,center:[10,30],zoom:1};
 const wGlobe=()=>(V.a==="globe"?1-V.t:0)+(V.b==="globe"?V.t:0);
 const curKind=()=>V.t<0.5?V.a:V.b;
 
+let moving=false;
 function update(){
   mutator(V.a,V.b,V.t);
   const wg=wGlobe(), c=V.center;
-  proj.scale(V.zoom).rotate([-c[0],-c[1]*wg,0]).translate([0,0]).precision(0.35);
+  // coarser curve resampling while the map moves (most of a frame's cost); full detail once it settles
+  proj.scale(V.zoom).rotate([-c[0],-c[1]*wg,0]).translate([0,0]).precision(moving?1.2:0.35);
   if(wg>0.001) proj.clipAngle(90+(1-wg)*89.4); else proj.clipAngle(null);
   const p=proj(c)||[0,0];
   proj.translate([F.x+F.w/2-p[0],F.y+F.h/2-p[1]]);
@@ -170,12 +172,15 @@ function visible(at){ return wGlobe()<0.5 || d3.geoDistance(at,V.center)<Math.PI
 let onDark=false, placed=[];
 // an area of influence (culture, sphere, people before or beyond states): a soft-edged wash with no border line, so it
 // never reads as a frontier. Blurred where the canvas supports filters; elsewhere a fill plus fading edge strokes.
-function drawInfluence(sh){ const blur=Math.max(4,Math.min(14,6*Math.sqrt(V.zoom))), canBlur="filter" in ctx;
-  sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group], c=col(f.properties.color||(g&&g.color)||sh.color), a=f.properties.opacity!=null?f.properties.opacity:sh.opacity;
-    ctx.save(); ctx.beginPath(); path(f); ctx.fillStyle=c;
-    if(canBlur){ ctx.filter=`blur(${blur}px)`; ctx.globalAlpha=a; ctx.fill(); }
-    else{ ctx.globalAlpha=a*0.7; ctx.fill(); ctx.strokeStyle=c; ctx.lineJoin="round"; [blur*2,blur,blur/2].forEach(w=>{ ctx.globalAlpha=a*0.18; ctx.lineWidth=w; ctx.stroke(); }); }
-    ctx.restore(); }); }
+// drawn at 1/4 resolution offscreen and scaled up: the upscaling softens the edge, at a fraction of the cost of a canvas
+// blur filter (which made every frame of a moving globe slow on phones)
+const INF={c:document.createElement("canvas"),k:4}; INF.x=INF.c.getContext("2d");
+function drawInfluence(sh){ const k=INF.k, w=Math.ceil(W/k), h=Math.ceil(H/k), o=INF.x;
+  if(INF.c.width!==w||INF.c.height!==h){ INF.c.width=w; INF.c.height=h; } else o.clearRect(0,0,w,h);
+  o.setTransform(1/k,0,0,1/k,0,0); path.context(o);
+  sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; o.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity;
+    o.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); o.beginPath(); path(f); o.fill(); });
+  path.context(ctx); ctx.save(); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(INF.c,0,0,W,H); ctx.restore(); }
 function label(text,x,y,opts={}){
   const size=opts.size||13;
   ctx.font=(opts.italic?"italic ":"")+size+"px 'Barlow Semi Condensed', 'Arial Narrow', sans-serif";
@@ -570,6 +575,7 @@ function tick(now){
     if(Math.hypot(inertia.x,inertia.y)<0.0001){inertia=null;scheduleDetail();describe();}else more=true;
   }
   else if(spin&&!drag){V.center=[V.center[0]+dt*0.006,V.center[1]];more=true;}
+  moving=!!((drag&&drag.moved)||anim||inertia||spin||sheetDrag);
   draw();
   if(L&&L.carto&&cartoEase()<1) more=true;
   if(more||hasFlow()) render(); else last=0;
