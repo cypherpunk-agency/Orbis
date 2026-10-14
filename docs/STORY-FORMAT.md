@@ -54,6 +54,7 @@ Chapters are ordinary stories listed in `stories/index.json`. They appear under 
 | `points` | Inline points `[ { "at": [lon, lat], "label": "…", "color": "c3", "r": 4 } ]` |
 | `routes` | Inline lines `[ { "path": [[lon, lat], …], "color": "c1", "width": 2, "dash": false, "flow": true, "label": "…", "labelAt": 3, "dist": true } ]` (`dist` adds the great-circle length) |
 | `circles` | `[ { "center": [lon, lat], "km": 3300, "color": "c2", "label": "…" } ]` |
+| `modernBorders` | `false` hides today's country borders (for historical maps) |
 | `countryLabels` | `true` shows country names (default off in stories, on in Explore) |
 | `political` | `true` tints countries in political colours instead of plain land |
 | `sources` | Extra source ids for this scene |
@@ -77,6 +78,7 @@ Colours: `c1` blue, `c2` magenta, `c3` amber, `c4` teal, `c5` violet, `muted` gr
 | `regions` | series keyed by admin-1 ids | States/provinces of one country: `country` (ISO3; geometry in `data/geo/admin1/<ISO3>.json`), `series`, `year`, `log`, `mult`, `labels: true`, `title`, `fmt` |
 | `raster` | grid descriptor (`data/grids/*.json`) | A lon/lat grid image: `frame` (a frame label, or `"t"` for the timeline), `opacity`, `title`, `fmt` (e.g. `degc`, `ppkm2`). Tap shows the value. Before/after: add `compare` (a second frame label): `frame` shows left of a draggable divider, `compare` right; `leftLabel`/`rightLabel` name the sides. |
 | `particles` | vector grid (`data/grids/wind.json`) | Animated streaks following a u/v field: `count`, `speed`, `color` |
+| `shapes` | shapes over time | Polygons valid at the timeline date (`year: "t"` or a fixed year): empires, provinces, occupied areas. Coloured by `group` (colours and legend labels from the dataset's `groups`), each group outlined as one merged border (`outline: false` to skip), `labels` (default on), `inner: false` hides internal borders, `opacity`, `groups: [..]` to show only some. Tap shows name and dates. Pair with scene `"modernBorders": false` to hide today's borders. |
 | `pairs` | matrix | Pick a country: every other country is coloured by its value with `from` (ISO3), which is filled and outlined; tapping another country makes it the origin. `title` may use `{name}` for the origin's name; `log`, `fmt`, `vmin`/`vmax`, `fromColor` |
 | `categories` | sets | One colour per category: `set`, `colors: { "yes": "c4", "no": "c2" }`, optional `names: { "yes": "…" }` to override the dataset labels (with a switch over sets, `names: { "<set>": { … } }`) |
 
@@ -111,6 +113,14 @@ Flow rows are `[from, to, value, quantity_or_null]`, sorted by value.
 { "source": "…", "lines": { "routes": [ { "name": "…", "status": "operating", "path": [[lon, lat], …], "labelAt": 2 } ] },
   "points": { "ports": [ { "name": "…", "at": [lon, lat] } ] } }
 ```
+
+**Shapes over time** (shapes): TopoJSON inline as `topology` (or a path in `file`), object `shapes`; each feature's properties: `name`, `from`, `to` (astronomical years or `yyyymmdd`; `from` inclusive, `to` exclusive, `null` = open), `group`, optional `label`, `color`, `uncertain: true` (dashed edges), `note`, `at: [lon, lat]` (label position):
+```json
+{ "source": "…", "asOf": "…", "groups": { "rome": { "label": "Roman Empire", "color": "c2" } },
+  "topology": { "type": "Topology", "objects": { "shapes": { "type": "GeometryCollection", "geometries": [
+    { "type": "Polygon", "arcs": [[0]], "properties": { "name": "Gallia", "from": -50, "to": 476, "group": "rome" } } ] } }, "arcs": [ … ] } }
+```
+Build with mapshaper: `node tools/node_modules/mapshaper/bin/mapshaper in.geojson -simplify 10% -rename-layers shapes -o out.json format=topojson`.
 
 **Matrix** (pairs): one row per origin, values in the order of `countries` (`null` = no data):
 ```json

@@ -113,7 +113,7 @@ function arr(v,kind){ if(!v) return []; if(typeof v==="string") return resolveRe
 function routePath(r){ let p=typeof r.path==="string"?resolveRef(r.path):r.path; if(r.until!=null) p=p.slice(0,r.until+1); return p; }
 function layers(){
   const s=scene||{};
-  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null};
+  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[]};
   Object.assign(L.fills,s.fills||{});
   L.groups=(s.groups||[]).slice();
   if(s.choro) L.choro=s.choro;
@@ -192,6 +192,20 @@ function histSnap(alias,d,yr){
   if(d.snapshots) setTimeout(()=>done(d.snapshots[yr]),0); else loadJSON(d.files[yr]).then(done);
   return null;
 }
+// shapes over time (any polygons with from/to dates: empires, provinces, occupied areas), decoded once per dataset
+const SHP={};
+function shapeSet(alias,d){
+  if(SHP[alias]) return SHP[alias].ready?SHP[alias]:null;
+  SHP[alias]={ready:false};
+  const done=t=>{ const o=t.objects.shapes||Object.values(t.objects)[0], fs=topojson.feature(t,o).features;
+    fs.forEach(f=>{ let g=f.geometry; if(g&&g.type==="MultiPolygon"){ let best=null,ba=-1; g.coordinates.forEach(c=>{const q={type:"Polygon",coordinates:c},a=d3.geoArea(q); if(a>ba){ba=a;best=q;}}); g=best; }
+      f._c=f.properties.at||(g?d3.geoCentroid(g):null); f._a=d3.geoArea(f); });
+    Object.assign(SHP[alias],{topo:t,obj:o,feats:fs,ready:true}); lateData(); };
+  if(d.topology) setTimeout(()=>done(d.topology),0); else loadJSON(d.file).then(done);
+  return null;
+}
+// is a dated item valid at time y? from inclusive, to exclusive, null = open
+const validAt=(p,y)=>(p.from==null||p.from<=y)&&(p.to==null||y<p.to);
 // data that arrives after a scene opened: rebuild layers and the panel's legend
 function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML(); render(); }
 // admin-1 geometry per country, loaded on demand
@@ -324,10 +338,14 @@ function draw(){
     if(ras) ctx.globalAlpha=0.72;
     for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(geom(feats[i]));ctx.fillStyle=fc;ctx.fill();}
     ctx.globalAlpha=1;
-    ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke();
+    if(!(scene&&scene.modernBorders===false)){ ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke(); }
   }
   L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id]; ctx.beginPath(); path(f); ctx.fillStyle=v==null?C.nodata:rg.color(v); ctx.fill(); });
     ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=C.paper; ctx.lineWidth=0.8; ctx.stroke(); });
+  L.shapes.forEach(sh=>{ sh.feats.forEach(f=>{ const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
+      ctx.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1;
+      if(sh.inner){ ctx.strokeStyle=onDark?"rgba(255,255,255,.5)":C.paper; ctx.lineWidth=0.7; if(f.properties.uncertain) ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]); } });
+    sh.outlines.forEach(o=>{ ctx.beginPath(); path(o.geom); ctx.strokeStyle=col(o.color); ctx.lineWidth=2; ctx.stroke(); }); });
   if(L.pov) L.pov.areas.forEach(a=>{ let o=a.properties.o[L.pov.view]; if(o&&!NAMES.has(o)) o=null; if(L.pov.only&&!L.pov.only.includes(a.properties.name)) return;
     ctx.beginPath(); path(a); const idx=feats.findIndex(f=>f.id===o);
     ctx.fillStyle=o&&idx>=0?C.tints[tint[idx]]:C.nodata; ctx.fill();
@@ -396,6 +414,8 @@ function draw(){
     if(path.area(a)<400) return;  // skip slivers
     const c=d3.geoCentroid(a); if(!visible(c)) return; const p=proj(c); if(p) labels.push([o?nameOf(o):t("disputed"),p[0],p[1],{align:"center",size:12,color:C.accent}]); });
   if(L._cartoLabels) labels.unshift(...L._cartoLabels);
+  L.shapes.forEach(sh=>{ if(!sh.labels) return; sh.feats.slice().sort((a,b)=>a._a-b._a).forEach(f=>{ const n=f.properties.label||f.properties.name;
+    if(!n||!f._c||!visible(f._c)) return; const p=proj(f._c); if(p) labels.unshift([n,p[0],p[1],{align:"center",size:f._a>0.01?14:12,color:C.ink}]); }); });
   if(L.countryLabels&&!L.carto&&!L.hist) countryLabels(labels);
   labels.forEach(l=>label(...l));
   // rim
@@ -490,6 +510,9 @@ function tap(x,y){
     const x=Math.floor((ll[0]+180)/360*G.w)%G.w, y=Math.min(G.h-1,Math.floor((90-ll[1])/180*G.h)), v=gridDecode(r.desc,G.bytes[y*G.w+x]);
     return v==null?"":"<span>"+esc(r.title)+": "+esc(r.fmt(v))+"</span>"; }).join("");
   if(quiz.mode==="where"&&f0(ll)){ quizTap(f0(ll).id); return; }
+  for(const sh of L.shapes){ const sf=sh.feats.slice().sort((a,b)=>a._a-b._a).find(f=>d3.geoContains(f,ll)); if(sf){ const p=sf.properties;
+    tip.innerHTML="<b>"+esc(p.name||"")+"</b><span>"+esc([p.from!=null?Cal.year(p.from):"",p.to!=null?Cal.year(p.to):""].join("–"))+(p.note?" · "+esc(p.note):"")+"</span>";
+    tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; } }
   if(L.hist){ const hf=L.hist.H.feats.find(f=>d3.geoContains(f,ll));
     tip.innerHTML=hf?"<b>"+esc(hf.properties.name||"")+"</b><span>"+esc(t("Borders of {y}",{y:L.hist.year}))+"</span>":"<span>"+esc(t("Not an independent state in {y}",{y:L.hist.year}))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
@@ -611,6 +634,16 @@ function pointValues(ly,d,y){
   return d.points.filter(p=>p[ly.field]&&p[ly.field][pi]!=null).map(p=>({id:p.id,name:p.name,at:p.at,v:p[ly.field][pi]}));
 }
 const LAYER={
+  shapes(ly,d,y,L){ // polygons valid at the timeline date, coloured by group; optional merged outline per group
+    const S=shapeSet(ly.data,d); if(!S) return; const yr=+y, G=d.groups||{};
+    const idx=S.feats.map((f,i)=>i).filter(i=>{ const p=S.feats[i].properties; return validAt(p,yr)&&(!ly.groups||ly.groups.includes(p.group)); });
+    const groups=[...new Set(idx.map(i=>S.feats[i].properties.group))];
+    const outlines=ly.outline===false?[]:groups.map(g=>({color:(G[g]&&G[g].color)||ly.color||"c2",
+      geom:topojson.merge(S.topo,idx.filter(i=>S.feats[i].properties.group===g).map(i=>S.obj.geometries[i]))}));
+    L.shapes.push({feats:idx.map(i=>S.feats[i]),groups:G,color:ly.color||"c2",opacity:ly.opacity==null?0.55:ly.opacity,
+      labels:ly.labels!==false,inner:ly.inner!==false,outlines,title:ly.title,year:yr});
+    groups.forEach(g=>{ if(!L.shapeKeys.some(k=>k.g===g)) L.shapeKeys.push({g,label:(G[g]&&G[g].label)||g,color:(G[g]&&G[g].color)||ly.color||"c2"}); });
+  },
   pairs(ly,d,y,L){ // country × country matrix: colour every country by its value with one chosen country (tap picks another)
     const from=(pairFrom&&d.values[pairFrom])?pairFrom:ly.from, row=d.values[from]; if(!row) return;
     const v={}; d.countries.forEach((c,i)=>{ if(c!==from&&row[i]!=null&&byId.has(c)) v[c]=row[i]; });
@@ -710,7 +743,7 @@ const LAYER={
     const F=vectorField(ly.data,d); if(!F) return; L.particles={F,color:ly.color||"ink",count:ly.count||2600,speed:ly.speed||1};
   },
   raster(ly,d,y,L){ // a lon/lat grid; frames keyed by label (a year for timelines)
-    const lab=String(ly.frame!=null&&ly.frame!=="t"?ly.frame:((frame&&frame.year)||Object.keys(d.frames).pop()));
+    const lab=String(ly.frame!=null&&ly.frame!=="t"?ly.frame:((frame&&frame.year!=null?frame.year:null)??Object.keys(d.frames).pop()));
     const G=gridFrame(ly.data,d,lab); if(!G) return;
     const base={alpha:ly.opacity==null?0.9:ly.opacity,desc:d,title:ly.title||d.units,fmt:fmtOf(ly.fmt)};
     if(ly.compare==null){ L.rasters.push(Object.assign({tex:G.tex,G},base)); return; }
@@ -744,7 +777,7 @@ function subst(o){ const op=switchOpt(); if(!op||o==null) return o;
 function compileLayers(s,L){
   const st=si>=0?STORIES[si]:null, D=(st&&st._data)||{};
   (subst(s.layers)||[]).forEach(ly=>{ const d=D[ly.data], fn=LAYER[ly.type]; if(!d||!fn) return;
-    const y=(ly.year==null||ly.year==="t")?((frame&&frame.year)||lastYear(d)||new Date().getFullYear()):ly.year;
+    const y=(ly.year==null||ly.year==="t")?((frame&&frame.year!=null?frame.year:null)??(lastYear(d)||new Date().getFullYear())):ly.year;
     fn(ly,d,y,L); });
 }
 function renderMedia(){
@@ -776,7 +809,7 @@ function renderMedia(){
 function renderChart(){
   const c=subst(scene&&scene.chart), st=si>=0?STORIES[si]:null, d=c&&st&&st._data&&st._data[c.data];
   if(!d){ el.chart.hidden=true; return; }
-  const y=(c.year==null||c.year==="t")?((frame&&frame.year)||lastYear(d)):c.year;
+  const y=(c.year==null||c.year==="t")?((frame&&frame.year!=null?frame.year:null)??lastYear(d)):c.year;
   let rows=Array.isArray(d.points)?pointValues(c,d,y).map(p=>[p.name,p.v]):Object.entries(valuesOf(c,d,y)).map(([k,v])=>[nameOf(k),v]);
   rows=rows.filter(r=>c.order==="asc"?r[1]!=null:r[1]>0).sort((a,b)=>c.order==="asc"?a[1]-b[1]:b[1]-a[1]);
   let f=fmtOf(c.fmt);
@@ -937,6 +970,7 @@ function legendHTML(){
   if(s.legend) h+=s.legend.map(l=>chip(l.color,l.label)).join("");
   else if(L&&L.groups.length) h+=L.groups.map(g=>chip(g.color,g.label)).join("");
   if(L) L.flowKeys.forEach(k=>h+=chip(k.color,k.title+" · "+t(k.qty?"line width = tonnes":"line width = value")));
+  if(L) L.shapeKeys.forEach(k=>h+=chip(k.color,k.label));
   if(L&&L.pairs) h+=`<span class="chip">${esc(t("Tap a country to see its ties"))}</span>`;
   if(L&&L.flowKeys.length) h+=`<span class="chip">${focus?esc(t("Showing {x} only · tap it again for all",{x:nameOf(focus)})):esc(t("Tap a country to see only its flows"))}</span>`;
   if(L&&L.spikeKey) h+=chip(L.spikeKey.color,L.spikeKey.title+" · "+t("tower height = amount"));
