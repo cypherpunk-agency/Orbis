@@ -137,6 +137,12 @@ Each phase ends as before: browser check of every scene, `node tools/check-licen
 - *HRE territories 1648* (open): the Shepherd 1648 plate is georeferenced and shipped as an overlay; tracing its territories into polygons (docs/briefs/HRE-TRACING.md) is not done — a colour-segmentation attempt was promising for large territories only.
 - *History of Asia* (next after those): candidate chapters — China's dynasties (Qin to Qing, with the dynastic cycle as a Gantt), the Mongol Empire (fastest-growing land empire; moves and shapes over time), the Silk Roads and Indian Ocean trade (routes, ports), Mughal and Maratha India, Japan from Tokugawa to Meiji, Southeast Asia's maritime states (Srivijaya, Majapahit, Malacca), the Ottoman and Safavid empires, colonial Asia and independence (1945–1975), the partition of India (1947). Data to scout: historical-basemaps (GPL) for outlines, Wikidata (CC0) for rulers and dynasties, CHGIS (China Historical GIS: check licence), Pleiades/ToposText for ancient places, Old World Trade Routes (ORBIS, CC BY), Seshat (check licence), HYDE population (licence to re-check).
 
+**Elections explorer data** (open): the explorer (`#elections`) is built; its data is not committed. `tools/build/elections.py` combines ParlGov 2024 (CC0), Wikidata (CC0) and MEDSL (CC0). A first build was cut short, so Wikidata party names came out as bare IDs and almost no party families. To finish:
+- run `python3 tools/build/elections.py` online (about 40 minutes, Wikidata rate-limits);
+- fix the US "last election" picking the 2023 umbrella item instead of the 2024 presidential election;
+- register `parlgov` in `js/sources.js` and `docs/LICENSING.md`, and extend the `wikidata` and `medsl-president` rows to `data/elections/`;
+- spot-check Germany 2025, UK 2024, Japan 2024, Spain 2023 and India 2024, then commit `data/elections/`.
+
 **Continuous: scouting.** Each phase adds what it finds to the catalogue; ideas that need no new features go straight to stories.
 
 ## 6. Size budget
