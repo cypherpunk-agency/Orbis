@@ -52,6 +52,7 @@ function readColors(){
   const cs=getComputedStyle(document.documentElement);
   ["ocean","land","border","grat","ink","halo","accent","paper","ink-soft","c1","c2","c3","c4","c5","c6","c7","c8","muted","nodata","rim","t0","t1","t2","t3","t4","s0","s1","s2","s3"].forEach(k=>C[k]=cs.getPropertyValue("--"+k).trim());
   C.tints=[C.t0,C.t1,C.t2,C.t3,C.t4]; C.ink_soft=C["ink-soft"]; C.muted=C.muted||C.ink_soft;
+  C.dark=d3.hsl(C.paper).l<0.5;  // dark theme (not the same as onDark, which means an imagery basemap)
   C.seq=d3.interpolateRgbBasis([C.s0,C.s1,C.s2,C.s3]);
 }
 const col = c => !c ? C.accent : (C[c] || c);
@@ -101,11 +102,19 @@ function layout(){
   if(sheetDrag) return; // re-laid out when the drag settles
   if(projectionSnapshot&&(W!==innerWidth||H!==innerHeight||DPR!==Math.min(2,devicePixelRatio||1))) settle();
   W=innerWidth;H=innerHeight;DPR=Math.min(2,devicePixelRatio||1);
-  canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+"px";canvas.style.height=H+"px";
+  // assigning canvas.width clears and reallocates the canvas (a visible blank frame): only when the size really changed
+  if(canvas.width!==W*DPR||canvas.height!==H*DPR){ canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+"px";canvas.style.height=H+"px"; }
   const sh=sheet.getBoundingClientRect();
   if(W>=820){const tb=topbar.getBoundingClientRect(); F.x=sh.right+8;F.y=tb.bottom;F.w=W-F.x-8;F.h=H-F.y-8; frameScale(); render();}
-  else{const tc=toc.hidden?null:toc.getBoundingClientRect(); frameAbove(tc?tc.top:H-sheet.offsetHeight);}
+  else{const tc=toc.hidden?null:toc.getBoundingClientRect(); frameTo(tc?tc.top:H-sheet.offsetHeight);}
 }
+// phone: when the sheet's height changes (new content, contents list), glide the map frame to its new size
+let frameTop=null, frameAnim=0;
+function frameTo(top){ cancelAnimationFrame(frameAnim); const from=frameTop;
+  if(from==null||reduce||Math.abs(top-from)<2){ frameTop=top; frameAbove(top); return; }
+  const t0=performance.now(), dur=220, step=now=>{ const k=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-k,3);
+    frameTop=from+(top-from)*e; frameAbove(frameTop); if(k<1) frameAnim=requestAnimationFrame(step); };
+  frameAnim=requestAnimationFrame(step); }
 // phone: the map frame is everything between the top bar and the sheet's top edge
 function frameAbove(top){ const tb=topbar.getBoundingClientRect(); F.x=0;F.y=tb.bottom;F.w=W;F.h=Math.max(160,top-F.y); frameScale(); render(); }
 function frameScale(){ S.globe=Math.min(F.w,F.h)/2*0.9; ["equal","mercator"].forEach(k=>S[k]=Math.min(F.w/BOUNDS[k][0],F.h/BOUNDS[k][1])*0.96); }
@@ -409,8 +418,10 @@ function draw(){
       // contested areas: dashed outline, as on many web maps, whichever view is drawn
       if(L.contested){ ctx.beginPath(); L.contested.forEach(a=>path(a)); ctx.setLineDash([2.5,2.5]); ctx.strokeStyle=onDark?"rgba(240,245,248,.7)":C.ink_soft; ctx.lineWidth=0.9; ctx.stroke(); ctx.setLineDash([]); } }
   }
-  L.regions.forEach(rg=>{ rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
-    ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=C.paper; ctx.lineWidth=0.8; ctx.stroke(); });
+  // categorical areas sit slightly into the land (softer than flat poster colours); one hairline that reads on light and
+  // dark fills alike, so internal borders never vanish against a fill of similar tone
+  L.regions.forEach(rg=>{ ctx.globalAlpha=rg.cat?0.78:1; rg.R.feats.forEach(f=>{ const v=rg.vals[f.id], c=rg.cat?rg.colorOf(f.id):(v==null?null:rg.color(v)); ctx.beginPath(); path(f); ctx.fillStyle=c||C.nodata; ctx.fill(); });
+    ctx.globalAlpha=1; ctx.beginPath(); path(rg.R.mesh); ctx.strokeStyle=(C.dark||onDark)?"rgba(236,242,244,.42)":"rgba(255,255,255,.85)"; ctx.lineWidth=(C.dark||onDark)?0.6:0.8; ctx.stroke(); });
   L.shapes.filter(sh=>sh.influence).forEach(drawInfluence);
   L.shapes.forEach(sh=>{ if(sh.influence) return; sh.feats.forEach(f=>{ if(!sh.fill) return; const g=sh.groups[f.properties.group]; ctx.beginPath(); path(f);
       ctx.globalAlpha=f.properties.opacity!=null?f.properties.opacity:sh.opacity; ctx.fillStyle=col(f.properties.color||(g&&g.color)||sh.color); ctx.fill(); ctx.globalAlpha=1;
@@ -1635,7 +1646,7 @@ function dragStart(y){
   sheet.style.transition="none"; place(off0);
 }
 // the sheet sits `off` px below its open position; the map frame follows it
-function place(off){ sheet.style.transform=`translateY(${off}px)`; frameAbove(H-sheetDrag.h+off); }
+function place(off){ sheet.style.transform=`translateY(${off}px)`; cancelAnimationFrame(frameAnim); frameTop=H-sheetDrag.h+off; frameAbove(frameTop); }
 function dragMove(y){ const d=sheetDrag; if(!d) return;
   if(Math.abs(y-d.y0)>4) d.moved=true;
   const now=performance.now(); d.v=0.7*(y-d.last)/Math.max(8,now-d.t)+0.3*d.v; d.last=y; d.t=now;
