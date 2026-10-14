@@ -113,7 +113,7 @@ function arr(v,kind){ if(!v) return []; if(typeof v==="string") return resolveRe
 function routePath(r){ let p=typeof r.path==="string"?resolveRef(r.path):r.path; if(r.until!=null) p=p.slice(0,r.until+1); return p; }
 function layers(){
   const s=scene||{};
-  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[],overlays:[]};
+  const L={fills:{},groups:[],choro:null,routes:[],points:[],circles:[],highlight:(s.highlight||[]).slice(),symbols:[],flows:[],vals:[],sizeKey:null,flowKeys:[],spikes:[],spikeKey:null,carto:null,rasters:[],regions:[],pov:null,particles:null,events:[],hist:null,shapes:[],shapeKeys:[],overlays:[],hatches:[]};
   Object.assign(L.fills,s.fills||{});
   L.groups=(s.groups||[]).slice();
   if(s.choro) L.choro=s.choro;
@@ -228,7 +228,8 @@ const REG={};
 function regionGeo(iso){
   if(REG[iso]) return REG[iso].ready?REG[iso]:null;
   REG[iso]={ready:false};
-  loadJSON("data/geo/admin1/"+iso+".json").then(t=>{ const o=t.objects.regions||Object.values(t.objects)[0];
+  // a country's states/provinces (data/geo/admin1/ISO3.json) or a named region set spanning countries (data/geo/regions/<name>.json, e.g. nuts2)
+  loadJSON(/^[A-Z]{3}$/.test(iso)?"data/geo/admin1/"+iso+".json":"data/geo/regions/"+iso+".json").then(t=>{ const o=t.objects.regions||Object.values(t.objects)[0];
     Object.assign(REG[iso],{feats:topojson.feature(t,o).features,mesh:topojson.mesh(t,o,(a,b)=>a!==b),ready:true}); lateData(); })
     .catch(e=>console.warn("No regions for",iso,e));
   return null;
@@ -364,6 +365,11 @@ function draw(){
     sh.lost.forEach(f=>{ ctx.beginPath(); path(f); ctx.setLineDash([4,3]); ctx.strokeStyle=C.ink; ctx.lineWidth=1.2; ctx.stroke(); ctx.setLineDash([]); });
     sh.gained.forEach(f=>{ ctx.beginPath(); path(f); ctx.strokeStyle=C.ink; ctx.lineWidth=2.4; ctx.stroke(); });
     if(sh.front){ ctx.beginPath(); path(sh.front); ctx.strokeStyle=col(sh.frontColor); ctx.lineWidth=3; ctx.stroke(); } });
+  L.hatches.forEach(hh=>{ ctx.save(); ctx.beginPath(); hh.ids.forEach(id=>{ const f=byId.get(id); if(f) path(geom(f)); }); ctx.clip();
+    const a=hh.angle*rad, R=Math.hypot(W,H), dx=Math.cos(a), dy=Math.sin(a), step=7; ctx.beginPath();
+    for(let k=-R;k<=R;k+=step){ const cx=W/2-dy*k, cy=H/2+dx*k; ctx.moveTo(cx-dx*R,cy-dy*R); ctx.lineTo(cx+dx*R,cy+dy*R); }
+    ctx.strokeStyle=col(hh.color); ctx.lineWidth=1.6; ctx.globalAlpha=0.85; ctx.stroke(); ctx.globalAlpha=1; ctx.restore();
+    ctx.beginPath(); hh.ids.forEach(id=>{ const f=byId.get(id); if(f) path(geom(f)); }); ctx.strokeStyle=col(hh.color); ctx.lineWidth=0.8; ctx.stroke(); });
   if(L.pov) L.pov.areas.forEach(a=>{ let o=a.properties.o[L.pov.view]; if(o&&!NAMES.has(o)) o=null; if(L.pov.only&&!L.pov.only.includes(a.properties.name)) return;
     ctx.beginPath(); path(a); const idx=feats.findIndex(f=>f.id===o);
     ctx.fillStyle=o&&idx>=0?C.tints[tint[idx]]:C.nodata; ctx.fill();
@@ -754,6 +760,12 @@ const LAYER={
     L.vals.push({title:ly.title,values:vals,fmt:f});
     L.cartoKey={color:C.seq(0.8),title:ly.title};
   },
+  hatch(ly,d,y,L){ // overlapping memberships: each set hatched at its own angle, so countries in several sets show crossed lines
+    const yr=+y; (ly.sets||[]).forEach((k,i)=>{ const set=d.sets[k]; if(!set) return;
+      const ids=Object.entries(set.members||{}).filter(([c,v])=>{ const a=Array.isArray(v)?v[0]:v, b=Array.isArray(v)?v[1]:null; return a<=yr&&(b==null||yr<b); }).map(([c])=>c);
+      const c=(ly.colors&&ly.colors[k])||["c1","c2","c3","c4","c5"][i%5];
+      L.hatches.push({ids,color:c,angle:[45,-45,0,90][i%4]});
+      L.shapeKeys.push({g:"hatch:"+k,label:((ly.labels&&ly.labels[k])||set.label||k).replace("{n}",ids.length),color:c}); }); },
   since(ly,d,y,L){ // countries coloured from the year they joined/adopted; values: year or [from, until]
     const set=d.sets[ly.set]; if(!set) return; const yr=+y;
     const ids=Object.entries(set.members).filter(([k,v])=>{ const a=Array.isArray(v)?v[0]:v, b=Array.isArray(v)?v[1]:null; return a<=yr&&(b==null||yr<b); }).map(([k])=>k);
@@ -780,7 +792,7 @@ const LAYER={
     L.hist={H,year:snap,labels:ly.labels!==false};
   },
   regions(ly,d,y,L){ // sub-national areas (admin-1) of one country, coloured by a series keyed by region id
-    const R=regionGeo(ly.country); if(!R) return;
+    const R=regionGeo(ly.country||ly.regionSet); if(!R) return;
     const sr=d.series[ly.series], i=yearIndex(d,y); if(!sr||i<0) return;
     const vals={}; Object.entries(sr.values).forEach(([k,a])=>{ if(a[i]!=null) vals[k]=a[i]*(ly.mult||1); });
     const v=Object.values(vals), lo=d3.min(v), hi=d3.max(v);
