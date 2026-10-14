@@ -1,0 +1,283 @@
+{
+ "id": "hre-patchwork",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "A patchwork of lords",
+ "hook": "In 1500 some 2,400 German towns answered to about 300 different lords. Tap any town to see who ruled it, year by year from 1300 to 1789.",
+ "notes": "Towns and rulers: Princes and Townspeople, vols. 1 and 2 (Davide Cantoni, Cathrin Mohr, Matthias Weigand; Harvard Dataverse; CC0), which code the ruler of every town in the Deutsches Städtebuch (2,390 places that held town rights at some time, within Germany's borders of 1937) for every year, by ruling lineage. Orbis uses the authors' city-year panel (primary ruler; where several lords shared a town the authors picked one) for 1300–1789. Grouping of lineages into houses (Habsburg, Hohenzollern, Wittelsbach, Wettin), church rulers and self-governing cities, and the English labels, are by Orbis; the Welf (Hanover), Württemberg, Hesse and hundreds of smaller houses are under 'other'. The coloured cells are the authors' interpolated 'areas of influence' around each town (weighted by terrain and rivers), not historical borders. Coverage: the north and centre of the Empire only; Austria, Bohemia, Switzerland, the Low Countries, Alsace and Italy are not in the data, so Habsburg counts are small. East Prussia was never part of the Empire. Warmia shows as Wettin from 1697 to 1763 because the Saxon electors were then kings of Poland, its overlord. 16th-century territories and confessions: Ramona Roller, ETH Zurich (2021, CC BY-NC-SA 4.0), traced by the author from the maps in Schindling and Ziegler (eds.), 'Die Territorien des Reichs im Zeitalter der Reformation und Konfessionalisierung', with dates and confessions from Wikipedia: research data of uneven quality: the lands of the imperial knights are left out, and some confessions are simplified (Bohemia, for example, shows as Catholic although Utraquist Hussites dominated there). Polygons are shown with the names the source uses. Event cards cite their Wikipedia articles.",
+ "data": {
+  "r": "data/history/hre-rulers.json",
+  "n": "data/history/hre-ruler-counts.json",
+  "t": "data/history/hre-territories-1500s.json",
+  "ev": "data/history/hre-events-patchwork.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "2,400 towns, 300 lords",
+   "text": "The Deutsches Städtebuch lists 2,390 places in Germany that once held town rights. In 1500 they answered to 309 different lords: princes, counts, bishops, abbots, a knightly order, and the towns themselves. Each cell is an approximate area around a town, drawn by the data's authors, not a border. Tap one to see its lord.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     14.2,
+     51.6
+    ],
+    "zoom": 8
+   },
+   "modernBorders": false,
+   "stamp": "Rulers in 1500 · Princes and Townspeople (CC0)",
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "hre-cities",
+     "data": "r",
+     "set": "rulers",
+     "year": 1500,
+     "unit": "towns",
+     "title": "Who ruled the town",
+     "colors": {
+      "hohenzollern": "c1",
+      "church": "c2",
+      "habsburg": "c3",
+      "wittelsbach": "c4",
+      "wettin": "c5",
+      "cities": "ink",
+      "foreign": "s1",
+      "other": "muted"
+     }
+    }
+   ]
+  },
+  {
+   "title": "Bishops, abbots and free cities",
+   "text": "Much of the map belonged to the church. In 1500 archbishops, bishops, abbots and the Teutonic Order ruled about 560 of these towns. About 70 governed themselves as free or imperial cities, under no lord but the emperor: Lübeck, Nuremberg, Frankfurt, Ulm.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     11.5,
+     50.6
+    ],
+    "zoom": 7.6
+   },
+   "modernBorders": false,
+   "stamp": "Rulers in 1500 · Princes and Townspeople (CC0)",
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "hre-cities",
+     "data": "r",
+     "set": "rulers",
+     "year": 1500,
+     "unit": "towns",
+     "title": "Church and city rule",
+     "only": [
+      "church",
+      "cities"
+     ],
+     "colors": {
+      "church": "c2",
+      "cities": "ink"
+     }
+    }
+   ]
+  },
+  {
+   "title": "The big houses grow",
+   "text": "Over five centuries, inheritance, marriage, purchase and war gathered towns into fewer hands. The number of lords fell from about 480 in 1300 to about 200 in 1789. The Hohenzollerns of Brandenburg ruled 13 of these towns in 1300, about 370 in 1648 and about 650 in 1789. Press play.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     14.2,
+     51.6
+    ],
+    "zoom": 8
+   },
+   "modernBorders": false,
+   "stamp": "Rulers in {t} · Princes and Townspeople (CC0)",
+   "timeline": {
+    "years": [
+     1300,
+     1400,
+     1500,
+     1600,
+     1648,
+     1700,
+     1789
+    ],
+    "start": 1300,
+    "spacing": "time",
+    "playSpeed": 1800
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "hre-cities",
+     "data": "r",
+     "set": "rulers",
+     "year": "t",
+     "unit": "towns",
+     "title": "Who ruled the town",
+     "colors": {
+      "hohenzollern": "c1",
+      "church": "c2",
+      "habsburg": "c3",
+      "wittelsbach": "c4",
+      "wettin": "c5",
+      "cities": "ink",
+      "foreign": "s1",
+      "other": "muted"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 120
+    }
+   ],
+   "media": [
+    {
+     "type": "line",
+     "data": "n",
+     "series": "cities",
+     "title": "Towns ruled by each house or by the church",
+     "countries": [
+      "hohenzollern",
+      "church",
+      "habsburg",
+      "wittelsbach",
+      "wettin"
+     ],
+     "labels": {
+      "hohenzollern": "Hohenzollern",
+      "church": "Church",
+      "habsburg": "Habsburg",
+      "wittelsbach": "Wittelsbach",
+      "wettin": "Wettin"
+     },
+     "fmt": "int"
+    }
+   ]
+  },
+  {
+   "title": "Silesia changes hands",
+   "text": "Ownership could change in one stroke. In 1740 Frederick II of Prussia invaded Habsburg Silesia; the peace of 1742 gave him almost all of it. The Habsburgs' towns in this data fell from about 230 to under 70 in a single year. Move the slider from 1741 to 1742.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     15.2,
+     51.2
+    ],
+    "zoom": 15
+   },
+   "modernBorders": false,
+   "stamp": "Rulers in {t} · Princes and Townspeople (CC0)",
+   "timeline": {
+    "years": [
+     1739,
+     1740,
+     1741,
+     1742,
+     1743
+    ],
+    "start": 1741
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "hre-cities",
+     "data": "r",
+     "set": "rulers",
+     "year": "t",
+     "unit": "towns",
+     "title": "Who ruled the town",
+     "colors": {
+      "hohenzollern": "c1",
+      "church": "c2",
+      "habsburg": "c3",
+      "wittelsbach": "c4",
+      "wettin": "c5",
+      "cities": "ink",
+      "foreign": "s1",
+      "other": "muted"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 5
+    }
+   ]
+  },
+  {
+   "title": "Hundreds of territories",
+   "text": "Towns are one view; territories are another. A researcher at ETH Zurich traced about 250 territories of the 16th century from a modern historical atlas: bishoprics, duchies, counties and imperial cities side by side, many in scattered pieces. In 1500 all were still Catholic. Treat the borders as approximate: the data is incomplete and its dates come from Wikipedia.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     9.5,
+     50.2
+    ],
+    "zoom": 7.4
+   },
+   "modernBorders": false,
+   "stamp": "Territories c. 1500 · ETH Zurich, Roller 2021 (approximate)",
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "t",
+     "year": 1500,
+     "opacity": 0.4,
+     "outline": false
+    }
+   ]
+  },
+  {
+   "title": "The Reformation splits the map",
+   "text": "After Luther's 95 theses of 1517, princes and cities chose sides. The Peace of Augsburg in 1555 let each prince decide the faith of his land: 'whose realm, his religion'. By 1555 about as many mapped territories were Lutheran as Catholic; Calvinism, not yet allowed, spread after that. Press play.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     9.5,
+     50.2
+    ],
+    "zoom": 7.4
+   },
+   "modernBorders": false,
+   "stamp": "Official confession in {t} · ETH Zurich, Roller 2021 (approximate)",
+   "timeline": {
+    "years": [
+     1517,
+     1530,
+     1555,
+     1580,
+     1600
+    ],
+    "start": 1517,
+    "spacing": "time",
+    "playSpeed": 1800
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "t",
+     "year": "t",
+     "opacity": 0.55,
+     "outline": false,
+     "labels": false,
+     "changes": "flash"
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 40,
+     "list": true
+    }
+   ]
+  }
+ ]
+}

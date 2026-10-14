@@ -1,0 +1,115 @@
+{
+"source": "editorial",
+"asOf": "2026-10-14",
+"retrieved": "2026-10-14",
+"note": "Event cards typed by Orbis from the cited Wikipedia articles. Dates are stored in the Gregorian calendar; cards marked Julian also show the date as their sources give it.",
+"kinds": {
+"rule": {
+"label": "Crowns and rulers",
+"color": "c5",
+"icon": "crown"
+},
+"war": {
+"label": "Wars and battles",
+"color": "c2",
+"icon": "swords"
+},
+"law": {
+"label": "Treaties and laws",
+"color": "c1",
+"icon": "flag"
+}
+},
+"items": [
+{
+"title": "Charlemagne crowned emperor",
+"date": 8001229,
+"at": [
+12.4534,
+41.9022
+],
+"kind": "rule",
+"text": "Pope Leo III crowned Charlemagne, king of the Franks and of the Lombards, emperor in St Peter's in Rome on Christmas Day 800. The West had not had an emperor since 476.",
+"source": "Wikipedia, 'Charlemagne'",
+"url": "https://en.wikipedia.org/wiki/Charlemagne",
+"cal": "julian"
+},
+{
+"title": "Charlemagne dies at Aachen",
+"date": 8140201,
+"at": [
+6.0839,
+50.7747
+],
+"kind": "rule",
+"text": "Charlemagne died at Aachen, his favourite residence, and was buried in his palace chapel, today's Aachen Cathedral. German kings were crowned there until 1531.",
+"source": "Wikipedia, 'Charlemagne'; 'Aachen Cathedral'",
+"url": "https://en.wikipedia.org/wiki/Aachen_Cathedral",
+"cal": "julian"
+},
+{
+"title": "Treaty of Verdun",
+"date": 843,
+"at": [
+5.3833,
+49.1598
+],
+"kind": "law",
+"text": "Charlemagne's grandsons split the empire in three: West Francia went to Charles the Bald, East Francia to Louis the German, and a middle kingdom from the North Sea to Italy, with the imperial title, to Lothair.",
+"source": "Wikipedia, 'Treaty of Verdun'",
+"url": "https://en.wikipedia.org/wiki/Treaty_of_Verdun"
+},
+{
+"title": "Battle of Lechfeld",
+"date": 9550815,
+"at": [
+10.88,
+48.25
+],
+"kind": "war",
+"text": "Otto I, king of East Francia, defeated the Magyar (Hungarian) horsemen near Augsburg, ending decades of raids into Germany. The victory made his name.",
+"source": "Wikipedia, 'Battle of Lechfeld'",
+"url": "https://en.wikipedia.org/wiki/Battle_of_Lechfeld",
+"cal": "julian"
+},
+{
+"title": "Otto I crowned emperor",
+"date": 9620207,
+"at": [
+12.4534,
+41.9022
+],
+"kind": "rule",
+"text": "Pope John XII crowned Otto emperor in Rome. From here on, whoever was elected king in Germany could claim the imperial crown: historians usually date the Holy Roman Empire from 962.",
+"source": "Wikipedia, 'Holy Roman Empire'; 'Otto I, Holy Roman Emperor'",
+"url": "https://en.wikipedia.org/wiki/Otto_I,_Holy_Roman_Emperor",
+"cal": "julian"
+},
+{
+"title": "Otto III crowned in Rome",
+"date": 9960526,
+"at": [
+12.4534,
+41.9022
+],
+"kind": "rule",
+"text": "Otto III, aged 15, was crowned emperor. He settled in Rome and called his programme a 'renewal of the Empire of the Romans'.",
+"source": "Wikipedia, 'Otto III, Holy Roman Emperor'",
+"url": "https://en.wikipedia.org/wiki/Otto_III,_Holy_Roman_Emperor",
+"cal": "julian"
+},
+{
+"title": "Burgundy joins the Empire",
+"date": 10330208,
+"at": [
+6.938,
+46.82
+],
+"kind": "rule",
+"text": "Conrad II was crowned king of Burgundy at Payerne, adding the Kingdom of Burgundy (Arles), from Basel to Provence, to Germany and Italy: the third kingdom of the Empire.",
+"source": "Wikipedia, 'Holy Roman Empire' (infobox); 'Kingdom of Burgundy'",
+"url": "https://en.wikipedia.org/wiki/Kingdom_of_Burgundy",
+"cal": "julian"
+}
+]
+}

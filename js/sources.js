@@ -209,7 +209,7 @@ const SOURCES = {
     credit: "Laouenan, Bhargava, Eymeoud, Gergaud, Plique & Wasmer (2022), A cross-verified database of notable people, Scientific Data 9:290 (CC BY-NC-SA 4.0)"
   },
   "historical-basemaps": {
-    name: "historical-basemaps (A. Ourednik)", what: "Approximate world borders, one map per century (500 BC – AD 1500 used)", tier: "layer",
+    name: "historical-basemaps (A. Ourednik)", what: "Approximate world borders, one map per century (500 BC – AD 1650 used)", tier: "layer",
     licence: "GPL-3.0", licenceUrl: "https://github.com/aourednik/historical-basemaps/blob/master/LICENSE",
     url: "https://github.com/aourednik/historical-basemaps", use: "noncommercial", redistribute: true,
     credit: "historical-basemaps by André Ourednik (GPL-3.0); simplified by Orbis, derived files GPL-3.0"
@@ -243,6 +243,24 @@ const SOURCES = {
     licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
     url: "https://doi.org/10.7910/DVN/42MVDX", use: "commercial", redistribute: true,
     credit: "MIT Election Data and Science Lab, U.S. President 1976–2024, Harvard Dataverse"
+  },
+  "princes-townspeople": {
+    name: "Princes and Townspeople (Cantoni, Mohr, Weigand)", what: "Rulers of 2,390 German towns by year, 1300–1807, and interpolated town areas (vols. 1–2)", tier: "layer",
+    licence: "CC0 1.0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+    url: "https://dataverse.harvard.edu/dataverse/princesandtownspeople", use: "commercial", redistribute: true,
+    credit: "Princes and Townspeople, Cantoni, Mohr and Weigand, Harvard Dataverse (doi:10.7910/DVN/GZPPVE, doi:10.7910/DVN/ZGSJED)"
+  },
+  "histogis-circles": {
+    name: "HistoGIS: Imperial Circles 1648 and 1792", what: "Imperial Circles of the Holy Roman Empire, traced from IEG-Maps; HistoGIS says CC BY 4.0, treated as CC BY-NC because the IEG-Maps source is non-commercial", tier: "layer",
+    licence: "CC BY-NC 4.0 (as treated)", licenceUrl: "https://creativecommons.org/licenses/by-nc/4.0/",
+    url: "https://histogis.acdh.oeaw.ac.at/shapes/source/detail/220", use: "noncommercial", redistribute: true,
+    credit: "Anna Piechl, HistoGIS (ACDH-CH, ÖAW), based on A. Kunz, 'Reichskreise 1648/1792', IEG-Maps, Mainz"
+  },
+  "eth-hre-territories": {
+    name: "ETH Zurich: territories of the Holy Roman Empire (Roller 2021)", what: "16th-century territories and confessions, traced by hand from a modern atlas; attributes from Wikipedia", tier: "layer",
+    licence: "CC BY-NC-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    url: "https://www.research-collection.ethz.ch/handle/20.500.11850/472583", use: "noncommercial", redistribute: true,
+    credit: "Ramona Roller, 'Spatio-temporal data on territories of the Holy Roman Empire', ETH Zurich, 2021 (CC BY-NC-SA 4.0); derived file stays CC BY-NC-SA"
   },
   "ghsl-pop": {
     name: "GHSL population grid", what: "Population density grid, 2025 (GHS-POP R2023A, 30 arc-second, aggregated)", tier: "layer",

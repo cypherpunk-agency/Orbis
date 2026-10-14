@@ -1,0 +1,284 @@
+{
+ "id": "hre-end",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "1806: the end of the Empire",
+ "hook": "In 1789 some 200 lords ruled Germany's towns. Eighteen years later Napoleon had redrawn the map, and the thousand-year Empire was gone.",
+ "notes": "Towns and rulers: Princes and Townspeople vol. 2 (Cantoni, Mohr, Weigand; CC0), towns of the Deutsches Städtebuch within Germany's 1937 borders; 1790–1807 derived by Orbis from the authors' rule episodes (primary ruler), which match the authors' own panel for 2,374 of 2,390 towns in 1789. The source records changes by year; France's rule on the left bank of the Rhine appears from 1801, the year of the Treaty of Lunéville, although French troops held it from 1794. Cells are the authors' approximate areas around each town, not borders. Groupings and labels by Orbis. Imperial Circles 1792: HistoGIS / IEG-Maps (A. Piechl after A. Kunz), treated as non-commercial. Figures on the Imperial Recess of 1803 (112 estates abolished, 6 of 51 imperial cities kept): Wikipedia, 'German mediatisation'. Emperors' houses: Wikipedia, 'List of Holy Roman Emperors'. Outlines 800–1650: historical-basemaps (A. Ourednik, GPL-3.0; approximate).",
+ "data": {
+  "r": "data/history/hre-rulers.json",
+  "k": "data/history/hre-circles.json",
+  "hb": "data/history/hre-outline.json",
+  "ev": "data/history/hre-events-end.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "On the eve, 1789",
+   "text": "When revolution broke out in France, the Empire was still a patchwork. The 2,390 towns in this data answered to about 200 lords. Bishops and abbots ruled about 360 of them, and about 70 governed themselves. Prussia, the biggest German power, held about 650.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     14.2,
+     51.6
+    ],
+    "zoom": 8
+   },
+   "modernBorders": false,
+   "stamp": "Rulers in 1789 · Princes and Townspeople (CC0)",
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "hre-cities",
+     "data": "r",
+     "set": "rulers",
+     "year": 1789,
+     "unit": "towns",
+     "title": "Who ruled the town",
+     "colors": {
+      "hohenzollern": "c1",
+      "church": "c2",
+      "habsburg": "c3",
+      "wittelsbach": "c4",
+      "wettin": "c5",
+      "cities": "ink",
+      "foreign": "s1",
+      "other": "muted"
+     }
+    }
+   ]
+  },
+  {
+   "title": "France reaches the Rhine",
+   "text": "French armies held the left bank of the Rhine from 1794. In the Treaty of Lunéville in 1801 the emperor accepted the Rhine as France's border: about 150 towns in this data, from Aachen to Speyer, became French. The princes who lost land there were promised compensation inside the Empire.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     6.8,
+     50.3
+    ],
+    "zoom": 13
+   },
+   "modernBorders": false,
+   "stamp": "Rulers in {t} · Princes and Townspeople (CC0)",
+   "timeline": {
+    "years": [
+     1789,
+     1801
+    ],
+    "start": 1801
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "hre-cities",
+     "data": "r",
+     "set": "rulers",
+     "year": "t",
+     "unit": "towns",
+     "title": "Who ruled the town",
+     "colors": {
+      "hohenzollern": "c1",
+      "church": "c2",
+      "habsburg": "c3",
+      "wittelsbach": "c4",
+      "wettin": "c5",
+      "cities": "ink",
+      "foreign": "s1",
+      "other": "muted"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 2
+    }
+   ]
+  },
+  {
+   "title": "1803: the church states vanish",
+   "text": "The compensation came from the church and the cities. The Imperial Recess of 1803 abolished 112 imperial estates: almost every bishopric and abbey, and all but six of the 51 free imperial cities. In this data, towns ruled by the church fell from about 270 to 15 in a year. Move the slider.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     10.2,
+     50.4
+    ],
+    "zoom": 11
+   },
+   "modernBorders": false,
+   "stamp": "Church and city rule in {t} · Princes and Townspeople (CC0)",
+   "timeline": {
+    "years": [
+     1802,
+     1803
+    ],
+    "start": 1802
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "hre-cities",
+     "data": "r",
+     "set": "rulers",
+     "year": "t",
+     "unit": "towns",
+     "title": "Church and city rule",
+     "only": [
+      "church",
+      "cities"
+     ],
+     "colors": {
+      "church": "c2",
+      "cities": "ink"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 1
+    }
+   ]
+  },
+  {
+   "title": "1806: the end",
+   "text": "After beating Austria at Austerlitz, Napoleon gathered 16 German states into the Confederation of the Rhine in July 1806. On 6 August Francis II laid down the imperial crown. By 1807 the towns in this data had fewer than 60 lords, and Napoleon's brother Jérôme was king of a new Westphalia. Step through the years.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     14.2,
+     51.6
+    ],
+    "zoom": 8
+   },
+   "modernBorders": false,
+   "stamp": "Rulers in {t} · Princes and Townspeople (CC0)",
+   "timeline": {
+    "years": [
+     1789,
+     1801,
+     1803,
+     1806,
+     1807
+    ],
+    "start": 1807,
+    "spacing": "time"
+   },
+   "layers": [
+    {
+     "type": "regions",
+     "regionSet": "hre-cities",
+     "data": "r",
+     "set": "rulers",
+     "year": "t",
+     "unit": "towns",
+     "title": "Who ruled the town",
+     "colors": {
+      "hohenzollern": "c1",
+      "church": "c2",
+      "habsburg": "c3",
+      "wittelsbach": "c4",
+      "wettin": "c5",
+      "cities": "ink",
+      "foreign": "s1",
+      "other": "muted"
+     }
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 3,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "A thousand years",
+   "text": "Counted from Charlemagne's crowning in 800, the Empire lasted a thousand years; from Otto's in 962, almost 850. From 1438 every emperor but one was a Habsburg, and Francis kept a smaller title, Emperor of Austria. Press play to see the outline century by century; these borders are approximate reconstructions.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     10,
+     47
+    ],
+    "zoom": 3.2
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     800,
+     1000,
+     1300,
+     1500,
+     1650
+    ],
+    "start": 1650,
+    "spacing": "time",
+    "playSpeed": 1500
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.15
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": "t",
+     "groups": [
+      "empire",
+      "frankish"
+     ],
+     "opacity": 0.45,
+     "changes": "flash"
+    }
+   ],
+   "media": [
+    {
+     "type": "gantt",
+     "title": "Emperors' houses, 1273–1806",
+     "from": 1273,
+     "to": 1806,
+     "items": [
+      {
+       "label": "Luxembourg",
+       "from": 1346,
+       "to": 1437,
+       "color": "c5"
+      },
+      {
+       "label": "Habsburg",
+       "from": 1438,
+       "to": 1740,
+       "color": "c3"
+      },
+      {
+       "label": "Wittelsbach (Charles VII)",
+       "from": 1742,
+       "to": 1745,
+       "color": "c4"
+      },
+      {
+       "label": "Habsburg-Lorraine",
+       "from": 1745,
+       "to": 1806,
+       "color": "c3"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+"source": "editorial",
+"asOf": "2026-10-14",
+"retrieved": "2026-10-14",
+"note": "Event cards typed by Orbis from the cited Wikipedia articles. Dates are stored in the Gregorian calendar; cards marked Julian also show the date as their sources give it.",
+"kinds": {
+"war": {
+"label": "Wars and battles",
+"color": "c2",
+"icon": "swords"
+},
+"law": {
+"label": "Treaties and laws",
+"color": "c1",
+"icon": "flag"
+}
+},
+"items": [
+{
+"title": "Defenestration of Prague",
+"date": 16180523,
+"at": [
+14.4003,
+50.0905
+],
+"kind": "war",
+"text": "Protestant Bohemian nobles threw two imperial governors and a secretary out of a window of Prague Castle. All three survived; the revolt that followed grew into the Thirty Years' War.",
+"source": "Wikipedia, 'Defenestrations of Prague'",
+"url": "https://en.wikipedia.org/wiki/Defenestrations_of_Prague"
+},
+{
+"title": "Battle of White Mountain",
+"date": 16201108,
+"at": [
+14.32,
+50.078
+],
+"kind": "war",
+"text": "Imperial and Catholic League troops crushed the Bohemian rebels outside Prague. Bohemia was forcibly re-Catholicised.",
+"source": "Wikipedia, 'Battle of White Mountain'",
+"url": "https://en.wikipedia.org/wiki/Battle_of_White_Mountain"
+},
+{
+"title": "Sack of Magdeburg",
+"date": 16310520,
+"at": [
+11.6276,
+52.1205
+],
+"kind": "war",
+"text": "Imperial and League troops stormed the Protestant city of Magdeburg. About 20,000 defenders and civilians died; of some 25,000 inhabitants about 5,000 survived.",
+"source": "Wikipedia, 'Sack of Magdeburg'",
+"url": "https://en.wikipedia.org/wiki/Sack_of_Magdeburg"
+},
+{
+"title": "Battle of Lützen",
+"date": 16321116,
+"at": [
+12.1427,
+51.2617
+],
+"kind": "war",
+"text": "The Swedish army beat Wallenstein's imperial army near Leipzig, but King Gustavus Adolphus of Sweden was killed in the battle.",
+"source": "Wikipedia, 'Battle of Lützen (1632)'",
+"url": "https://en.wikipedia.org/wiki/Battle_of_L%C3%BCtzen_(1632)",
+"cal": "julian"
+},
+{
+"title": "Peace of Westphalia",
+"date": 16481024,
+"at": [
+7.6261,
+51.9625
+],
+"kind": "law",
+"text": "Treaties negotiated at Münster and Osnabrück ended the war. Calvinists won the same rights as Lutherans; the princes could make alliances abroad; Sweden gained Western Pomerania, Bremen-Verden and Wismar; France kept Metz, Toul, Verdun and Habsburg rights in Alsace; the Swiss and Dutch were recognised as outside the Empire. Protestant delegates dated it 14 October.",
+"source": "Wikipedia, 'Peace of Westphalia'",
+"url": "https://en.wikipedia.org/wiki/Peace_of_Westphalia",
+"cal": "julian"
+},
+{
+"title": "Protestants switch calendars",
+"date": 17000301,
+"at": [
+13.405,
+52.52
+],
+"kind": "law",
+"text": "The Protestant estates of the Empire adopted an 'improved calendar': Sunday 18 February 1700 was followed by Monday 1 March. For 117 years, Catholic and Protestant neighbours had dated letters ten days apart.",
+"source": "Wikipedia, 'Adoption of the Gregorian calendar'",
+"url": "https://en.wikipedia.org/wiki/Adoption_of_the_Gregorian_calendar"
+},
+{
+"title": "Gregorian calendar",
+"date": 15821015,
+"at": [
+12.4534,
+41.9022
+],
+"kind": "law",
+"text": "Pope Gregory XIII's reform dropped ten days: Thursday 4 October 1582 was followed by Friday 15 October. Catholic states adopted it within a few years; the Empire's Protestant estates refused a calendar issued by the pope.",
+"source": "Wikipedia, 'Gregorian calendar'; 'Adoption of the Gregorian calendar'",
+"url": "https://en.wikipedia.org/wiki/Gregorian_calendar"
+}
+]
+}

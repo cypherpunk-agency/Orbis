@@ -523,5 +523,33 @@
   "title": "Red states, blue states",
   "hook": "Americans choose their president in 51 separate contests. Thirteen elections, 1976 to 2024, show the map flipping, hardening and coming down to a handful of states.",
   "file": "stories/us-elections.json"
+ },
+ {
+  "id": "hre-origins",
+  "cat": "Geopolitics",
+  "title": "An emperor in the West",
+  "hook": "On Christmas Day 800 a pope crowned a Frankish king emperor. Two centuries later his eastern heirs ruled an empire from the North Sea to Rome.",
+  "file": "stories/hre-origins.json"
+ },
+ {
+  "id": "hre-patchwork",
+  "cat": "Geopolitics",
+  "title": "A patchwork of lords",
+  "hook": "In 1500 some 2,400 German towns answered to about 300 different lords. Tap any town to see who ruled it, year by year from 1300 to 1789.",
+  "file": "stories/hre-patchwork.json"
+ },
+ {
+  "id": "hre-westphalia",
+  "cat": "Geopolitics",
+  "title": "Westphalia and the ten circles",
+  "hook": "Thirty years of war ended in 1648 with a peace dated twice: 24 October for Catholics, 14 October for Protestants.",
+  "file": "stories/hre-westphalia.json"
+ },
+ {
+  "id": "hre-end",
+  "cat": "Geopolitics",
+  "title": "1806: the end of the Empire",
+  "hook": "In 1789 some 200 lords ruled Germany's towns. Eighteen years later Napoleon had redrawn the map, and the thousand-year Empire was gone.",
+  "file": "stories/hre-end.json"
  }
 ]

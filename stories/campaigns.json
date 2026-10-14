@@ -432,5 +432,91 @@
     "t": "Series launched with four chapters: territorial expansion, land cessions, statehood and the Civil War, presidential elections 1976-2024; 'America's bases abroad' added as the last chapter."
    }
   ]
+ },
+ {
+  "id": "holy-roman-empire",
+  "title": "The Holy Roman Empire",
+  "hook": "A thousand years, hundreds of lords, one emperor: how Charlemagne's crown became Europe's great patchwork, and how Napoleon ended it.",
+  "intro": "In 800 a pope crowned a Frankish king emperor in Rome. His eastern heirs built an empire that lasted until 1806: not a state like France, but hundreds of principalities, bishoprics and free cities under an elected emperor. This series follows it from Charlemagne to Napoleon, with the ruler of each of 2,390 German towns, year by year.",
+  "updated": "2026-10-14",
+  "scene": {
+   "view": {
+    "mode": "globe",
+    "center": [
+     10,
+     49
+    ],
+    "zoom": 3.4
+   },
+   "modernBorders": false
+  },
+  "chapters": [
+   "hre-origins",
+   "hre-patchwork",
+   "hre-westphalia",
+   "hre-end"
+  ],
+  "coming": [
+   {
+    "title": "Emperors and electors",
+    "hook": "Who chose the emperor, from the Golden Bull of 1356 to the last election in 1792."
+   },
+   {
+    "title": "The Empire in 1648, territory by territory",
+    "hook": "Traced from public-domain maps: the patchwork after Westphalia."
+   },
+   {
+    "title": "What came after",
+    "hook": "German Confederation, Germany and Austria, 1815–1871."
+   }
+  ],
+  "dates": [
+   {
+    "d": 8001229,
+    "t": "Charlemagne crowned emperor in Rome (25 Dec 800, Julian)"
+   },
+   {
+    "d": 9620207,
+    "t": "Otto I crowned emperor (2 Feb 962, Julian)"
+   },
+   {
+    "d": 1356,
+    "t": "Golden Bull fixes the seven electors"
+   },
+   {
+    "d": 15171110,
+    "t": "Luther's 95 theses (31 Oct 1517, Julian)"
+   },
+   {
+    "d": 15551005,
+    "t": "Peace of Augsburg (25 Sep 1555, Julian)"
+   },
+   {
+    "d": 16180523,
+    "t": "Defenestration of Prague: Thirty Years' War begins"
+   },
+   {
+    "d": 16481024,
+    "t": "Peace of Westphalia"
+   },
+   {
+    "d": 17000301,
+    "t": "Protestant estates adopt the 'improved calendar'"
+   },
+   {
+    "d": 18030225,
+    "t": "Imperial Recess abolishes church states and most free cities"
+   },
+   {
+    "d": 18060806,
+    "t": "Francis II dissolves the Empire"
+   }
+  ],
+  "changelog": [
+   {
+    "d": "2026-10-14",
+    "t": "Series published with four chapters."
+   }
+  ]
  }
 ]

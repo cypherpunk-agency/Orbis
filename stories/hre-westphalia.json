@@ -1,0 +1,281 @@
+{
+ "id": "hre-westphalia",
+ "cat": "Geopolitics",
+ "updated": "2026-10-14",
+ "title": "Westphalia and the ten circles",
+ "hook": "Thirty years of war ended in 1648 with a peace dated twice: 24 October for Catholics, 14 October for Protestants.",
+ "notes": "Death toll of the Thirty Years' War: 4.5 to 8 million soldiers and civilians, the range given by Wikipedia ('Thirty Years' War'), which gathers historians' estimates; local losses of more than 50% are reported there too. Magdeburg figures: Wikipedia, 'Sack of Magdeburg'. Empire outline for 1500–1647 and 1648: historical-basemaps (A. Ourednik, GPL-3.0; approximate). Imperial Circles 1648 and 1792: Anna Piechl, HistoGIS (ACDH-CH, Austrian Academy of Sciences), traced from Andreas Kunz, 'Reichskreise 1648' and 'Reichskreise 1792', IEG-Maps (Leibniz Institute of European History, Mainz); Orbis treats them as non-commercial because IEG-Maps restricts its maps. Areas (about 760,000 km² for all circles plus the land outside them in 1648, 720,000 in 1792; the source draws only part of Imperial Italy) computed by Orbis on an equal-area projection. Confessions around 1618: Ramona Roller, ETH Zurich (2021, CC BY-NC-SA 4.0), approximate. Calendar: Wikipedia, 'Adoption of the Gregorian calendar'. Dates are stored in the Gregorian calendar; the second line under the date in the last scene, and cards marked so, give the Julian (old-style) date.",
+ "data": {
+  "hb": "data/history/hre-outline.json",
+  "k": "data/history/hre-circles.json",
+  "t": "data/history/hre-territories-1500s.json",
+  "ev": "data/history/hre-events-westphalia.json"
+ },
+ "sources": [
+  "editorial"
+ ],
+ "scenes": [
+  {
+   "title": "Thirty years of war",
+   "text": "In 1618 Protestant nobles in Prague threw the emperor's governors out of a window. The revolt grew into a war of Catholic against Protestant princes, then of Habsburgs against Sweden and France, fought mostly on German soil. Between 4.5 and 8 million soldiers and civilians died, by historians' estimates; some regions lost more than half their people.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     11.5,
+     50.5
+    ],
+    "zoom": 7.5
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1618,
+     1620,
+     1631,
+     1632,
+     1648
+    ],
+    "start": 1618,
+    "spacing": "time",
+    "playSpeed": 1800
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "t",
+     "year": 1618,
+     "opacity": 0.35,
+     "outline": false,
+     "labels": false
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": 31,
+     "list": true
+    }
+   ]
+  },
+  {
+   "title": "The peace of 1648",
+   "text": "Treaties signed at Münster and Osnabrück ended the war on 24 October 1648. Calvinists got the same rights as Lutherans, and princes could ally with foreign powers. Sweden took Western Pomerania and Bremen; France kept Metz, Toul and Verdun and Habsburg rights in Alsace. The Swiss and the Dutch were recognised as outside the Empire.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     9,
+     50
+    ],
+    "zoom": 5
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 1648,
+     "groups": [
+      "other"
+     ],
+     "labels": false,
+     "outline": false,
+     "opacity": 0.15
+    },
+    {
+     "type": "shapes",
+     "data": "hb",
+     "year": 1648,
+     "groups": [
+      "left",
+      "sweden",
+      "france"
+     ],
+     "opacity": 0.45
+    },
+    {
+     "type": "shapes",
+     "data": "k",
+     "year": 1648,
+     "groups": [
+      "empire"
+     ],
+     "opacity": 0.35
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": 1648,
+     "window": 1
+    }
+   ]
+  },
+  {
+   "title": "Ten circles",
+   "text": "From 1500 the Empire was divided into Imperial Circles, ten from 1512. Each circle's princes, bishops and cities met to keep the peace, raise troops and check the coinage. The Bohemian crown lands and parts of northern Italy stayed outside the circles. Together they covered about 760,000 km² in 1648.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     11,
+     49.5
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "k",
+     "year": 1648,
+     "groups": [
+      "k-austrian",
+      "k-bavarian",
+      "k-swabian",
+      "k-franconian",
+      "k-upper-rhenish",
+      "k-electoral-rhenish",
+      "k-lower-rhenish-westphalian",
+      "k-lower-saxon",
+      "k-upper-saxon",
+      "k-burgundian",
+      "k-outside-the-circles"
+     ],
+     "opacity": 0.45,
+     "outline": false
+    }
+   ]
+  },
+  {
+   "title": "France moves east",
+   "text": "Between 1648 and 1792 the circles lost land in the west. France took Franche-Comté in 1678 and Lorraine in 1766, so the Burgundian Circle shrank by about half and the Upper Rhenish Circle by almost a third. The whole mapped Empire fell from about 760,000 to 720,000 km².",
+   "view": {
+    "mode": "globe",
+    "center": [
+     8,
+     49.5
+    ],
+    "zoom": 6
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     1648,
+     1792
+    ],
+    "start": 1648,
+    "captions": {
+     "1648": "Circles in 1648",
+     "1792": "Circles in 1792"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "k",
+     "year": "t",
+     "groups": [
+      "k-austrian",
+      "k-bavarian",
+      "k-swabian",
+      "k-franconian",
+      "k-upper-rhenish",
+      "k-electoral-rhenish",
+      "k-lower-rhenish-westphalian",
+      "k-lower-saxon",
+      "k-upper-saxon",
+      "k-burgundian",
+      "k-outside-the-circles"
+     ],
+     "opacity": 0.45,
+     "outline": false,
+     "labels": false,
+     "changes": true
+    }
+   ],
+   "media": [
+    {
+     "type": "multiples",
+     "layer": 0,
+     "years": [
+      1648,
+      1792
+     ],
+     "title": "Imperial Circles, 1648 and 1792",
+     "extent": [
+      [
+       2,
+       44
+      ],
+      [
+       19,
+       55
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Ten days apart",
+   "text": "In 1582 Pope Gregory XIII dropped ten days from the calendar. Catholic territories followed within a few years; Protestant ones refused a pope's calendar. So the Peace of Westphalia was signed on 24 October in Catholic Münster but on 14 October by the Protestants' reckoning. Only in 1700 did the Protestant estates switch: 18 February was followed by 1 March.",
+   "view": {
+    "mode": "globe",
+    "center": [
+     10.5,
+     50.5
+    ],
+    "zoom": 7
+   },
+   "modernBorders": false,
+   "timeline": {
+    "years": [
+     15821015,
+     16481024,
+     17000301
+    ],
+    "start": 16481024,
+    "format": "date",
+    "calendar": "julian",
+    "captions": {
+     "15821015": "First day of the Gregorian calendar",
+     "16481024": "Peace of Westphalia",
+     "17000301": "Protestant estates switch"
+    }
+   },
+   "layers": [
+    {
+     "type": "shapes",
+     "data": "t",
+     "year": 16180101,
+     "opacity": 0.5,
+     "outline": false,
+     "labels": false,
+     "groups": [
+      "catholic",
+      "lutheran",
+      "reformed",
+      "mixed"
+     ]
+    },
+    {
+     "type": "shapes",
+     "data": "k",
+     "year": 16481024,
+     "groups": [
+      "empire"
+     ],
+     "fill": false,
+     "labels": false
+    },
+    {
+     "type": "cards",
+     "data": "ev",
+     "year": "t",
+     "window": "all",
+     "list": true,
+     "kinds": [
+      "law"
+     ]
+    }
+   ]
+  }
+ ]
+}
