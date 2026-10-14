@@ -1,5 +1,5 @@
 # Deploys https://orbis.cypherpunk.agency/ on every push to `production`.
-# `master` never deploys: this trigger is one gate, and the WIF provider on the
+# `main` never deploys: this trigger is one gate, and the WIF provider on the
 # infra side only admits refs/heads/production, so an edited copy of this file
 # on another branch cannot obtain the deploy identity either.
 #
