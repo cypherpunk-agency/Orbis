@@ -124,6 +124,7 @@ function layers(){
   L.political = scene ? !!s.political : !explore.bloc;
   L.countryLabels = scene ? !!s.countryLabels : true;
   compileLayers(s,L);
+  const pv=s.pov||(si>=0&&STORIES[si]&&STORIES[si].pov); if(pv){ const P=povAreas(); if(P) L.povView={view:pv,areas:P}; }
   L.gmap=new Map(); L.groups.forEach(g=>g.ids.forEach(id=>L.gmap.set(id,g)));
   if(L.choro){const ch=L.choro,d=ch.values||DATA[ch.data],vals=Object.values(d);
     const lo=ch.vmin!=null?ch.vmin:d3.min(vals),hi=ch.vmax!=null?ch.vmax:d3.max(vals);
@@ -224,6 +225,10 @@ const validAt=(p,y)=>(p.from==null||tUnit(p.from)<=y)&&(p.to==null||y<tUnit(p.to
 // data that arrives after a scene opened: rebuild layers and the panel's legend
 function lateData(){ markDirty(); L=layers(); Ldirty=false; if(el&&el.legend) el.legend.innerHTML=legendHTML();
   if(scene&&scene.media&&scene.media.some(x=>x.type==="multiples")) renderMedia(); render(); }
+// disputed areas (data/geopolitics/pov.json), for the story/scene "pov" option
+let POVA=null;
+function povAreas(){ if(POVA) return POVA.ready?POVA.areas:null; POVA={ready:false};
+  loadJSON("data/geopolitics/pov.json").then(d=>{ POVA={ready:true,areas:topojson.feature(d.areas,d.areas.objects.areas).features}; lateData(); }); return null; }
 // admin-1 geometry per country, loaded on demand
 const REG={};
 function regionGeo(iso){
@@ -354,6 +359,8 @@ function draw(){
   else{
     if(ras) ctx.globalAlpha=0.72;
     for(let i=0;i<feats.length;i++){const fc=fillFor(feats[i],i,ras); if(!fc) continue; ctx.beginPath();path(geom(feats[i]));ctx.fillStyle=fc;ctx.fill();}
+    // story/scene "pov": disputed areas drawn as part of the country that view assigns them to (e.g. "UA": Crimea with Ukraine)
+    if(L.povView) L.povView.areas.forEach(a=>{ const f=byId.get(a.properties.o[L.povView.view]); if(!f) return; const fc=fillFor(f,feats.indexOf(f),ras); if(!fc) return; ctx.beginPath(); path(a); ctx.fillStyle=fc; ctx.fill(); });
     ctx.globalAlpha=1;
     if(!(scene&&scene.modernBorders===false)){ ctx.beginPath();path(useHi()?HI.borders:borders);ctx.strokeStyle=onDark?"rgba(240,245,248,.42)":C.border;ctx.lineWidth=onDark?0.7:0.6;ctx.stroke(); }
   }
@@ -377,7 +384,7 @@ function draw(){
     ctx.beginPath(); path(a); const idx=feats.findIndex(f=>f.id===o);
     ctx.fillStyle=o&&idx>=0?C.tints[tint[idx]]:C.nodata; ctx.fill();
     ctx.setLineDash([3,3]); ctx.strokeStyle=C.accent; ctx.lineWidth=1.3; ctx.stroke(); ctx.setLineDash([]); });
-  if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f));});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
+  if(L.highlight.length){ctx.beginPath();L.highlight.forEach(id=>{const f=byId.get(id);if(f)path(geom(f)); if(L.povView) L.povView.areas.forEach(a=>{ if(a.properties.o[L.povView.view]===id) path(a); });});ctx.strokeStyle=C.ink;ctx.lineWidth=1.6;ctx.stroke();}
   // circles
   L.circles.forEach(c=>{const g=d3.geoCircle().center(c.center).radius(c.km/R_EARTH*deg).precision(1)();
     ctx.beginPath();path(g);ctx.globalAlpha=0.22;ctx.fillStyle=col(c.color);ctx.fill();ctx.globalAlpha=1;
@@ -557,7 +564,8 @@ function tap(x,y){
   if(L.hist){ const hf=L.hist.H.feats.find(f=>d3.geoContains(f,ll));
     tip.innerHTML=hf?"<b>"+esc(hf.properties.name||"")+"</b><span>"+esc(t("Borders of {y}",{y:L.hist.year}))+"</span>":"<span>"+esc(t("Not an independent state in {y}",{y:L.hist.year}))+"</span>";
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
-  const f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll));
+  let f=feats.find(f=>d3.geoContains((HI.byId&&HI.byId.get(f.id))||f,ll));
+  if(L.povView){ const a=L.povView.areas.find(a=>d3.geoContains(a,ll)), o=a&&byId.get(a.properties.o[L.povView.view]); if(o) f=o; }
   if(!f&&gridHtml){ tip.innerHTML="<b>"+d3.format(".1f")(Math.abs(ll[1]))+"°"+(ll[1]>=0?"N":"S")+" "+d3.format(".1f")(Math.abs(ll[0]))+"°"+(ll[0]>=0?"E":"W")+"</b>"+gridHtml;
     tip.hidden=false; tip.style.left=clamp(x,70,W-70)+"px"; tip.style.top=Math.max(70,y-14)+"px"; clearTimeout(tipTimer); tipTimer=setTimeout(hideTip,3500); return; }
   if(!f){hideTip();return;}

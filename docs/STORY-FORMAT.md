@@ -174,6 +174,7 @@ Added for the history series; all optional.
 - **`regions` `"countNote": {"US-DC": "DC"}`**: keeps an id out of the legend count and names it ("19 states + DC").
 - **`shapes` legend order** follows the dataset's `groups` order (or the layer's `groups` list).
 - **`cards` `window`** is always in years, also on `"format": "date"` timelines.
+- **Story or scene `"pov": "UA"`**: disputed areas from `data/geopolitics/pov.json` are filled, outlined and tapped as part of the country that view assigns them to (keys as in that file's `views`, e.g. "UA" puts Crimea with Ukraine). The base map otherwise follows Natural Earth's de facto borders.
 - **Series `coming`**: in `stories/campaigns.json`, `"coming": [{"title": "...", "hook": "..."}]` lists planned chapters, greyed and not clickable.
 
 ## Elections explorer (`#elections`)
