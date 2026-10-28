@@ -79,38 +79,28 @@ jobs:
             -o /dev/null
           echo "OBJECT=$object" >> "$GITHUB_ENV"
 
-      - name: Materialise the deploy key
-        # gcloud must use this key on every call. Left to itself it mints a
-        # fresh root-equivalent key into project metadata on each run.
-        env:
-          KEY: ${{ secrets.GCP_DEPLOY_SSH_KEY }}
-        run: |
-          set -euo pipefail
-          mkdir -p ~/.ssh && chmod 700 ~/.ssh
-          printf '%s\n' "$KEY" > ~/.ssh/gcp_deploy
-          chmod 600 ~/.ssh/gcp_deploy
-          ssh-keygen -y -f ~/.ssh/gcp_deploy > ~/.ssh/gcp_deploy.pub
-
       - name: Publish on the VM
-        # Fetch and extract unprivileged, then exactly one privileged command,
-        # pinned byte for byte in sudoers.
+        # Through the VM user deploy-orbis, whose key can do exactly one thing: run the
+        # server's deploy gate (deploy-standards 4a). The gate only accepts
+        # `publish orbis orbis/<object>`, pulls that object from GCS, checks it, and lets
+        # the root half rsync it into the served tree. No shell, no other site, no
+        # forwarding - so this key is not a root credential, unlike the metadata key the
+        # old `gcloud compute ssh` step used. Plain ssh over an IAP tunnel, host key pinned.
         env:
+          VM_DEPLOY_SSH_KEY: ${{ secrets.VM_DEPLOY_SSH_KEY }}
           GCP_INSTANCE: ${{ vars.GCP_INSTANCE }}
           GCP_ZONE: ${{ vars.GCP_ZONE }}
           GCP_PROJECT: ${{ vars.GCP_PROJECT }}
         run: |
           set -euo pipefail
-          gcloud compute ssh "$GCP_INSTANCE" --quiet \
-            --zone="$GCP_ZONE" --project="$GCP_PROJECT" \
-            --tunnel-through-iap --ssh-key-file="$HOME/.ssh/gcp_deploy" \
-            --command "set -eu
-              rm -rf /tmp/orbis-deploy /tmp/orbis.tgz
-              /snap/bin/gcloud storage cp 'gs://${BUCKET}/${OBJECT}' /tmp/orbis.tgz
-              mkdir -p /tmp/orbis-deploy
-              tar -xzf /tmp/orbis.tgz -C /tmp/orbis-deploy
-              test -f /tmp/orbis-deploy/index.html
-              sudo /usr/bin/rsync -a --delete /tmp/orbis-deploy/ /mnt/pd/data/services/static/orbis/
-              rm -rf /tmp/orbis-deploy /tmp/orbis.tgz"
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$VM_DEPLOY_SSH_KEY" > ~/.ssh/vm_deploy
+          chmod 600 ~/.ssh/vm_deploy
+          echo "web-server ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHL2UFG8Mk0Nyysj2mQntSvjxNTSdgPvyEDg2JAkmAQh" > ~/.ssh/known_hosts_vm
+          ssh -i ~/.ssh/vm_deploy -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts_vm" -o HostKeyAlias=web-server \
+            -o ProxyCommand="gcloud compute start-iap-tunnel $GCP_INSTANCE 22 --listen-on-stdin --zone=$GCP_ZONE --project=$GCP_PROJECT --verbosity=warning" \
+            deploy-orbis@web-server "publish orbis $OBJECT"
 
       - name: Check the live site
         # A green publish only says bytes moved. Check that the site now serves
